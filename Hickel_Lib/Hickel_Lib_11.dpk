@@ -61,7 +61,6 @@ contains
   hl.Datenbank.CSVExporter in 'hl_Datenbank\hl.Datenbank.CSVExporter.pas',
   hl_Exceptions in 'Src\hl_Exceptions.pas',
   hl.System.Types in 'hl_System\hl.System.Types.pas',
-  hl_Config in 'Src\hl_Config.pas',
   hl_Datenbank in 'Src\hl_Datenbank.pas',
   hl_Log in 'Src\hl_Log.pas',
   hl_Report in 'Src\hl_Report.pas',

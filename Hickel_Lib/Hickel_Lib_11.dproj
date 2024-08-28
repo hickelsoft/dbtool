@@ -1079,7 +1079,6 @@
         <DCCReference Include="hl_Datenbank\hl.Datenbank.CSVExporter.pas"/>
         <DCCReference Include="Src\hl_Exceptions.pas"/>
         <DCCReference Include="hl_System\hl.System.Types.pas"/>
-        <DCCReference Include="Src\hl_Config.pas"/>
         <DCCReference Include="Src\hl_Datenbank.pas"/>
         <DCCReference Include="Src\hl_Log.pas"/>
         <DCCReference Include="Src\hl_Report.pas"/>
