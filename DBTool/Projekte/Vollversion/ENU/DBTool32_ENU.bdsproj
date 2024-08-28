@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<PersonalityInfo>
+		<Option>
+			<Option Name="Personality">W32ResourceDLL.Personality</Option>
+			<Option Name="ProjectType">ResourceDLL</Option>
+			<Option Name="Version">1.0</Option>
+			<Option Name="GUID">{CF2D6A31-07F1-4E0F-B89F-34AAFD05D892}</Option>
+		</Option>
+	</PersonalityInfo>
+	<W32ResourceDLL.Personality>
+		<Source>
+			<Source Name="MainSource">DBTool32.dpr</Source>
+		</Source>
+		<Options>
+			<Options Name="BaseLang">1031</Options>
+			<Options Name="TargetName">..\..\..\..\..\..\HS-Service\DBTool32.ENU</Options>
+			<Options Name="BRCC_IncludePath"></Options>
+			<Options Name="Company"></Options>
+			<Options Name="Configuration"></Options>
+			<Options Name="Copyright"></Options>
+			<Options Name="Description"></Options>
+			<Options Name="Trademark"></Options>
+			<Options Name="Product"></Options>
+			<Options Name="ProductVersion"></Options>
+			<Options Name="Title"></Options>
+			<Options Name="FileVersion"></Options>
+			<Options Name="Evidence"></Options>
+			<Options Name="KeyFile"></Options>
+			<Options Name="KeyName"></Options>
+		</Options>
+		<FileList>
+			<File FileName="C\SVN\Delphi\DBTool\Database.dfm" ContainerId="W32Form" ModuleName="Database.dfm"/>
+			<File FileName="C\SVN\Delphi\DBTool\DateiNeu.dfm" ContainerId="W32Form" ModuleName="DateiNeu.dfm"/>
+			<File FileName="C\SVN\Delphi\DBTool\EditRTF.dfm" ContainerId="W32Form" ModuleName="EditRTF.dfm"/>
+			<File FileName="C\SVN\Delphi\DBTool\Export.dfm" ContainerId="W32Form" ModuleName="Export.dfm"/>
+			<File FileName="C\SVN\Delphi\DBTool\IbDatabaseName.dfm" ContainerId="W32Form" ModuleName="IbDatabaseName.dfm"/>
+			<File FileName="C\SVN\Delphi\DBTool\Import.dfm" ContainerId="W32Form" ModuleName="Import.dfm"/>
+			<File FileName="C\SVN\Delphi\DBTool\Info.dfm" ContainerId="W32Form" ModuleName="Info.dfm"/>
+			<File FileName="C\SVN\Delphi\DBTool\Main.dfm" ContainerId="W32Form" ModuleName="Main.dfm"/>
+			<File FileName="C\SVN\Delphi\DBTool\OpenMySqlDb.dfm" ContainerId="W32Form" ModuleName="OpenMySqlDb.dfm"/>
+			<File FileName="C\SVN\Delphi\DBTool\OpenSqlDb.dfm" ContainerId="W32Form" ModuleName="OpenSqlDb.dfm"/>
+			<File FileName="C\SVN\Delphi\DBTool\Optionen.dfm" ContainerId="W32Form" ModuleName="Optionen.dfm"/>
+			<File FileName="C\SVN\Delphi\DBTool\Query.dfm" ContainerId="W32Form" ModuleName="Query.dfm"/>
+			<File FileName="C\SVN\Delphi\DBTool\Table.dfm" ContainerId="W32Form" ModuleName="Table.dfm"/>
+			<File FileName="c\HS-Service\DBTool32_DRC.rc" ContainerId="W32RC" ModuleName="DBTool32_DRC.rc"/>
+		</FileList>
+	</W32ResourceDLL.Personality>
+</BorlandProject>

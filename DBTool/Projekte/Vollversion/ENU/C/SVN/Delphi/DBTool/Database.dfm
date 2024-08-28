@@ -1,0 +1,248 @@
+object MDI_Database: TMDI_Database
+  Left = 554
+  Top = 123
+  Caption = 'Database'
+  ClientHeight = 492
+  ClientWidth = 837
+  Color = clBtnFace
+  Font.Charset = ANSI_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  FormStyle = fsMDIChild
+  Icon.Data = {
+    0000010001001010100000000000280100001600000028000000100000002000
+    00000100040000000000C0000000000000000000000000000000000000000000
+    0000000080000080000000808000800000008000800080800000C0C0C0008080
+    80000000FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF000000
+    0000000000000000BBFBFB000000003B3BFFF3B3000003B3BBFBFB3B30000B3B
+    000000B3B00003003BFFF300300000B3BBFBFB3B00000B3B000000B3B0000300
+    3BFFF300300000B3BBFBFB3B00000B3B000000B3B0000300BFBFBF00300000FB
+    FBFBFBFB000000FFBFBFBFFF00000000FFFFFF0000000000000000000000FFFF
+    0000F03F0000C00F0000800700008007000080070000C00F0000800700008007
+    0000C00F00008007000080070000C00F0000C00F0000F03F0000FFFF0000}
+  KeyPreview = True
+  Position = poDefault
+  Visible = True
+  OnClose = FormClose
+  OnCreate = FormCreate
+  OnDestroy = FormDestroy
+  OnKeyDown = FormKeyDown
+  OnShow = FormShow
+  TextHeight = 13
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 100
+    Height = 492
+    Align = alLeft
+    BevelOuter = bvNone
+    BorderStyle = bsSingle
+    Color = 5263440
+    ParentBackground = False
+    TabOrder = 0
+    Visible = False
+  end
+  object Panel2: TPanel
+    Left = 100
+    Top = 0
+    Width = 737
+    Height = 492
+    Align = alClient
+    BevelOuter = bvNone
+    TabOrder = 1
+    object Notebook1: TNotebook
+      Left = 0
+      Top = 0
+      Width = 737
+      Height = 492
+      Align = alClient
+      TabOrder = 0
+      object TPage
+        Left = 0
+        Top = 0
+        Caption = 'Tables'
+        object Panel3: TPanel
+          Left = 0
+          Top = 0
+          Width = 737
+          Height = 24
+          Align = alTop
+          Alignment = taLeftJustify
+          BevelOuter = bvNone
+          Caption = ' Database'
+          Color = 5263440
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWhite
+          Font.Height = -16
+          Font.Name = 'Tahoma'
+          Font.Style = [fsBold]
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 0
+          object btnAktualisieren: TSpeedButton
+            Left = 662
+            Top = 0
+            Width = 75
+            Height = 24
+            Align = alRight
+            Caption = 'Refresh'
+            Flat = True
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            OnClick = btnAktualisierenClick
+            ExplicitLeft = 315
+          end
+          object SpeedButton2: TSpeedButton
+            Left = 576
+            Top = 0
+            Width = 86
+            Height = 24
+            Align = alRight
+            Caption = 'New Query'
+            Flat = True
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentFont = False
+            OnClick = SpeedButton2Click
+            ExplicitLeft = 360
+          end
+        end
+        object lvTables: TListView
+          Left = 0
+          Top = 24
+          Width = 737
+          Height = 443
+          Align = alClient
+          Columns = <>
+          DragMode = dmAutomatic
+          MultiSelect = True
+          PopupMenu = pmTables
+          SortType = stText
+          TabOrder = 1
+          ViewStyle = vsList
+          OnCustomDrawItem = lvTablesCustomDrawItem
+          OnDblClick = lvTablesDblClick
+          OnEdited = lvTablesEdited
+          OnDragDrop = lvTablesDragDrop
+          OnDragOver = lvTablesDragOver
+          OnKeyDown = lvTablesKeyDown
+          OnSelectItem = lvTablesSelectItem
+        end
+        object Panel5: TPanel
+          Left = 0
+          Top = 467
+          Width = 737
+          Height = 25
+          Align = alBottom
+          Alignment = taLeftJustify
+          BevelOuter = bvLowered
+          Color = 5263440
+          Font.Charset = ANSI_CHARSET
+          Font.Color = clWhite
+          Font.Height = -11
+          Font.Name = 'Tahoma'
+          Font.Style = []
+          ParentBackground = False
+          ParentFont = False
+          TabOrder = 2
+          object Panel4: TPanel
+            Left = 272
+            Top = 1
+            Width = 464
+            Height = 23
+            Align = alRight
+            Alignment = taRightJustify
+            BevelOuter = bvNone
+            Caption = 
+              'black = Tables,  dark red = Tables with Triggers,  green = View,' +
+              '  blue = Stored Procedures   '
+            Color = 5263440
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -11
+            Font.Name = 'Tahoma'
+            Font.Style = []
+            ParentBackground = False
+            ParentFont = False
+            TabOrder = 0
+          end
+        end
+      end
+    end
+  end
+  object pmTables: TPopupMenu
+    OnPopup = pmTablesPopup
+    Left = 136
+    Top = 56
+    object ffnen1: TMenuItem
+      Caption = '&Open'
+      Default = True
+      OnClick = lvTablesDblClick
+    end
+    object NurStrukturzeigen1: TMenuItem
+      Caption = 'Show only &structure'
+      OnClick = NurStrukturzeigen1Click
+    end
+    object ViewDefinitionanzeigen1: TMenuItem
+      Caption = 'Show &View Definition'
+      OnClick = ViewDefinitionanzeigen1Click
+    end
+    object Triggeranzeigen1: TMenuItem
+      Caption = 'Show &Trigger'
+      OnClick = Triggeranzeigen1Click
+    end
+    object N1: TMenuItem
+      Caption = '-'
+    end
+    object uUmbenennen1: TMenuItem
+      Caption = '&Rename'
+      OnClick = Umbenennen1Click
+    end
+    object Leeren1: TMenuItem
+      Caption = '&Truncate'
+      OnClick = Leeren1Click
+    end
+    object Loeschen1: TMenuItem
+      Caption = '&Delete'
+      OnClick = Loeschen1Click
+    end
+    object N2: TMenuItem
+      Caption = '-'
+    end
+    object Kopierennach1: TMenuItem
+      Caption = 'Copy to'
+    end
+    object N3: TMenuItem
+      Caption = '-'
+    end
+    object AnzahlZeilenzeigen1: TMenuItem
+      Caption = 'Show row count'
+      OnClick = AnzahlZeilenzeigen1Click
+    end
+    object Erste100Zeilenzeigen1: TMenuItem
+      Caption = 'Show first 1000 rows'
+      OnClick = Erste100Zeilenzeigen1Click
+    end
+    object N4: TMenuItem
+      Caption = '-'
+    end
+    object Strukturdrucken1: TMenuItem
+      Caption = '&Print structure'
+      Visible = False
+      OnClick = Strukturdrucken1Click
+    end
+    object abellenNamenkopieren1: TMenuItem
+      Caption = 'Copy table names'
+      OnClick = abellenNamenkopieren1Click
+    end
+  end
+end

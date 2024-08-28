@@ -1,0 +1,67 @@
+
+#define _AMD64_
+
+//
+// Include the necessary resources
+//
+#include <winver.h>
+#include <ntdef.h>
+
+#ifdef RC_INVOKED
+
+//
+// Set up debug information
+//
+#if DBG
+#define VER_DBG VS_FF_DEBUG
+#else
+#define VER_DBG 0
+#endif
+
+// ------- icon -------------------------------------------------------
+
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+MAINICON ICON "DBTool64_Icon.ico"
+
+// ------- manifest -------------------------------------------------------
+
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+1 24 "DBTool64.manifest"
+
+// ------- version info -------------------------------------------------------
+
+// Wir machen die Versionsinfo selbst, weil
+// Delphi 11 irgendwie einen Bug hat (die Versionsinfo wird nicht angezeigt und ist immer Englisch)
+// Außerdem ist der Jahreswechsel einfacher, wenn wir nicht uns durch die GUI klicken müssen...
+
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION             1,0,0,0
+PRODUCTVERSION          1,0,0,0
+FILEFLAGSMASK           VS_FFI_FILEFLAGSMASK
+FILEFLAGS               VER_DBG
+FILEOS                  VOS_NT_WINDOWS32
+FILETYPE                VFT_APP
+BEGIN
+	BLOCK "StringFileInfo"
+	BEGIN
+		BLOCK "040704E4"
+        BEGIN
+			VALUE "CompanyName",      "HickelSOFT Huth GmbH"
+			VALUE "FileDescription",  "Datenbankoberfläche"
+			VALUE "FileVersion",      "1.0.0.0"
+			VALUE "InternalName",     "DBTool"
+			VALUE "LegalCopyright",   "(C) 2016-2024 HickelSOFT Huth GmbH"
+			VALUE "LegalTrademarks",  "DB Tool"
+			VALUE "OriginalFilename", "DBTool64.exe"
+			VALUE "ProductName",      "DB Tool"
+			VALUE "ProductVersion",	  "1.0"
+			VALUE "Comments",         ""
+        END
+	END
+	BLOCK "VarFileInfo"
+	BEGIN
+		VALUE "Translation", 0x0407, 0x04E4
+	END
+END
+#endif

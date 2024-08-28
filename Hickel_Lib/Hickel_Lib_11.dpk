@@ -1,0 +1,116 @@
+package Hickel_Lib_11;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS ON}
+{$RANGECHECKS ON}
+{$REFERENCEINFO OFF}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'HICKEL LIB'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl,
+  rtl,
+  dbrtl,
+  dsnap,
+  xmlrtl,
+  Hickel_Components_11,
+  VclSmp,
+  vclx,
+  vclactnband,
+  designide,
+  Jcl,
+  adortl,
+  ipstudiowin,
+  vclie,
+  soaprtl,
+  inet,
+  vcldb,
+  IndySystem,
+  IndyProtocols,
+  IndyCore;
+
+contains
+  hl_IntegerList in 'Src\hl_IntegerList.pas',
+  hl_Printer_Neu in 'Src\hl_Printer_Neu.pas',
+  hl_Suche in 'Src\hl_Suche.pas',
+  hl.Utils in 'hl_Utils\hl.Utils.pas',
+  hl.Utils.Bank in 'hl_Utils\hl.Utils.Bank.pas',
+  hl.System.SingleInstance in 'hl_System\hl.System.SingleInstance.pas',
+  hl_ExceptionLogger in 'Src\hl_ExceptionLogger.pas',
+  hl.Datenbank.CSVExporter in 'hl_Datenbank\hl.Datenbank.CSVExporter.pas',
+  hl_Exceptions in 'Src\hl_Exceptions.pas',
+  hl.System.Types in 'hl_System\hl.System.Types.pas',
+  hl_Config in 'Src\hl_Config.pas',
+  hl_Datenbank in 'Src\hl_Datenbank.pas',
+  hl_Log in 'Src\hl_Log.pas',
+  hl_Report in 'Src\hl_Report.pas',
+  hl_Crw_Report in 'Src\hl_Crw_Report.pas',
+  hl.Datenbank.Utils in 'hl_Datenbank\hl.Datenbank.Utils.pas',
+  hl.System.ExceptionHandler in 'hl_System\hl.System.ExceptionHandler.pas',
+  hl.Utils.ResIniFile in 'hl_Utils\hl.Utils.ResIniFile.pas',
+  hl.Utils.CRC32 in 'hl_Utils\hl.Utils.CRC32.pas',
+  hl.Utils.MD5 in 'hl_Utils\hl.Utils.MD5.pas',
+  hl.Utils.AsciiTable in 'hl_Utils\hl.Utils.AsciiTable.pas',
+  hl.Utils.StringStreamEx in 'hl_Utils\hl.Utils.StringStreamEx.pas',
+  hl.System.SingleInstance.DummyForm in 'hl_System\hl.System.SingleInstance.DummyForm.pas' {DummyForm},
+  hl.Utils.SetFocusFix in 'hl_Utils\hl.Utils.SetFocusFix.pas',
+  hl.Utils.FormSerialize in 'hl_Utils\hl.Utils.FormSerialize.pas',
+  hl.Utils.DbGridUtils in 'hl_Utils\hl.Utils.DbGridUtils.pas',
+  hl.Utils.DBLookupComboDlgHack in 'hl_Utils\hl.Utils.DBLookupComboDlgHack.pas',
+  hl.Utils.ImageConvert in 'hl_Utils\hl.Utils.ImageConvert.pas',
+  hl.Utils.IndyMemoryHack in 'hl_Utils\hl.Utils.IndyMemoryHack.pas',
+  hl.Utils.Web in 'hl_Utils\hl.Utils.Web.pas',
+  hl.Utils.Color in 'hl_Utils\hl.Utils.Color.pas',
+  hl.Datenbank.RowLock in 'hl_Datenbank\hl.Datenbank.RowLock.pas',
+  hl.Utils.CSV in 'hl_Utils\hl.Utils.CSV.pas',
+  hl_Printer_Bon in 'Src\hl_Printer_Bon.pas',
+  hl.Utils.FingerPrint in 'hl_Utils\hl.Utils.FingerPrint.pas',
+  hl.Utils.VerInfoUtils in 'hl_Utils\hl.Utils.VerInfoUtils.pas',
+  hl.Utils.WmiUtils in 'hl_Utils\hl.Utils.WmiUtils.pas',
+  hl_KeyValue_Args in 'Src\hl_KeyValue_Args.pas',
+  AdoQueryHelper in 'hl_Datenbank\AdoQueryHelper.pas',
+  hl.Utils.StreamEx in 'hl_Utils\hl.Utils.StreamEx.pas',
+  hl_WinMessages in 'Src\hl_WinMessages.pas',
+  HS_Fernwartung in 'Src\HS_Fernwartung.pas',
+  hl_PopupMenuHelper in 'hl_Utils\hl_PopupMenuHelper.pas',
+  HS_MidVer in 'Src\HS_MidVer.pas',
+  hl.Utils.SteuerNr in 'hl_Utils\hl.Utils.SteuerNr.pas',
+  hl.Utils.July22Crypt in 'hl_Utils\hl.Utils.July22Crypt.pas',
+  Deutschland_Feiertage in 'Src\Deutschland_Feiertage.pas',
+  FormatSettingsCompat in 'hl_Utils\FormatSettingsCompat.pas',
+  hl_Adresse in 'Src\hl_Adresse.pas',
+  hl_Lizenz in 'Src\hl_Lizenz.pas',
+  hl_Consts in 'Src\hl_Consts.pas',
+  hl.Utils.AutoSnippingTool in 'hl_Utils\hl.Utils.AutoSnippingTool.pas',
+  hl.Utils.Mapi in 'hl_Utils\hl.Utils.Mapi.pas',
+  hl_IPC_Crw_LowLevel_Client in '..\CrwLowLevel\IPC_API\hl_IPC_Crw_LowLevel_Client.pas',
+  hl_IPC_LowLevel_Client in '..\CrwLowLevel\IPC_API\hl_IPC_LowLevel_Client.pas',
+  HickelSOFT_Design in 'Src\HickelSOFT_Design.pas',
+  HS_Auth in 'Src\HS_Auth.pas',
+  hl_IPC_LowLevel_Common in '..\CrwLowLevel\IPC_API\hl_IPC_LowLevel_Common.pas',
+  hl_MultiLang in 'Src\hl_MultiLang.pas';
+
+end.
+
+

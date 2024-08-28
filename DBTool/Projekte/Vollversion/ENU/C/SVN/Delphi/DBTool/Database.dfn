@@ -1,0 +1,1838 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file original="C:\SVN\Delphi\DBTool\Database.dfm" source-language="de-DE" target-language="en-US" datatype="delphiform" tool="ETM v10.0" ts="C:\SVN\Delphi\DBTool\Database.dfm">
+    <header>
+      <prop-group name="ITEHeaderProp">
+        <prop prop-type="Version">9.0</prop>
+        <prop prop-type="SelfDateTime">45532.6765046296</prop>
+        <prop prop-type="OrigDateTime">45415.5572222222</prop>
+        <prop prop-type="XlatDateTime">45415.5572222222</prop>
+        <prop prop-type="Translated">18</prop>
+        <prop prop-type="UnTranslated">162</prop>
+      </prop-group>
+    </header>
+    <body>
+      <trans-unit id="O:MDI_Database.Left" resname="O:MDI_Database.Left">
+        <source>554</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">0</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.Top" resname="O:MDI_Database.Top">
+        <source>123</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">1</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.Caption" resname="O:MDI_Database.Caption">
+        <source>'Datenbank'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">2</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Database'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.ClientHeight" resname="O:MDI_Database.ClientHeight">
+        <source>492</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">3</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.ClientWidth" resname="O:MDI_Database.ClientWidth">
+        <source>837</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">4</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.Color" resname="O:MDI_Database.Color">
+        <source>clBtnFace</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">5</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.Font.Charset" resname="O:MDI_Database.Font.Charset">
+        <source>ANSI_CHARSET</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">6</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.Font.Color" resname="O:MDI_Database.Font.Color">
+        <source>clWindowText</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">7</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.Font.Height" resname="O:MDI_Database.Font.Height">
+        <source>-11</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">8</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.Font.Name" resname="O:MDI_Database.Font.Name">
+        <source>'Tahoma'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">9</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.Font.Style" resname="O:MDI_Database.Font.Style">
+        <source>[]</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">10</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.FormStyle" resname="O:MDI_Database.FormStyle">
+        <source>fsMDIChild</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">11</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.Icon.Data" resname="O:MDI_Database.Icon.Data">
+        <source>000001000100101010000000000028010000160000002800000010000000200000000100040000000000C00000000000000000000000000000000000000000000000000080000080000000808000800000008000800080800000C0C0C000808080000000FF0000FF000000FFFF00FF000000FF00FF00FFFF0000FFFFFF0000000000000000000000BBFBFB000000003B3BFFF3B3000003B3BBFBFB3B30000B3B000000B3B00003003BFFF300300000B3BBFBFB3B00000B3B000000B3B00003003BFFF300300000B3BBFBFB3B00000B3B000000B3B0000300BFBFBF00300000FBFBFBFBFB000000FFBFBFBFFF00000000FFFFFF0000000000000000000000FFFF0000F03F0000C00F0000800700008007000080070000C00F00008007000080070000C00F00008007000080070000C00F0000C00F0000F03F0000FFFF0000</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">12</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+          <prop prop-type="Open">{</prop>
+          <prop prop-type="Close">}</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.KeyPreview" resname="O:MDI_Database.KeyPreview">
+        <source>True</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">13</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.Position" resname="O:MDI_Database.Position">
+        <source>poDefault</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">14</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.Visible" resname="O:MDI_Database.Visible">
+        <source>True</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">15</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.OnClose" resname="O:MDI_Database.OnClose">
+        <source>FormClose</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">16</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.OnCreate" resname="O:MDI_Database.OnCreate">
+        <source>FormCreate</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">17</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.OnDestroy" resname="O:MDI_Database.OnDestroy">
+        <source>FormDestroy</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">18</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.OnKeyDown" resname="O:MDI_Database.OnKeyDown">
+        <source>FormKeyDown</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">19</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.OnShow" resname="O:MDI_Database.OnShow">
+        <source>FormShow</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">20</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.TextHeight" resname="O:MDI_Database.TextHeight">
+        <source>13</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">21</prop>
+          <prop prop-type="Type">TMDI_Database</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel1.Left" resname="O:MDI_Database.O:Panel1.Left">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">22</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel1.Top" resname="O:MDI_Database.O:Panel1.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">23</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel1.Width" resname="O:MDI_Database.O:Panel1.Width">
+        <source>100</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">24</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel1.Height" resname="O:MDI_Database.O:Panel1.Height">
+        <source>492</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">25</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel1.Align" resname="O:MDI_Database.O:Panel1.Align">
+        <source>alLeft</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">26</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel1.BevelOuter" resname="O:MDI_Database.O:Panel1.BevelOuter">
+        <source>bvNone</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">27</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel1.BorderStyle" resname="O:MDI_Database.O:Panel1.BorderStyle">
+        <source>bsSingle</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">28</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel1.Color" resname="O:MDI_Database.O:Panel1.Color">
+        <source>5263440</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">29</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel1.ParentBackground" resname="O:MDI_Database.O:Panel1.ParentBackground">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">30</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel1.TabOrder" resname="O:MDI_Database.O:Panel1.TabOrder">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">31</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel1.Visible" resname="O:MDI_Database.O:Panel1.Visible">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">32</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.Left" resname="O:MDI_Database.O:Panel2.Left">
+        <source>100</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">33</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.Top" resname="O:MDI_Database.O:Panel2.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">34</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.Width" resname="O:MDI_Database.O:Panel2.Width">
+        <source>737</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">35</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.Height" resname="O:MDI_Database.O:Panel2.Height">
+        <source>492</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">36</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.Align" resname="O:MDI_Database.O:Panel2.Align">
+        <source>alClient</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">37</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.BevelOuter" resname="O:MDI_Database.O:Panel2.BevelOuter">
+        <source>bvNone</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">38</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.TabOrder" resname="O:MDI_Database.O:Panel2.TabOrder">
+        <source>1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">39</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.Left" resname="O:MDI_Database.O:Panel2.O:Notebook1.Left">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">40</prop>
+          <prop prop-type="Type">TNotebook</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.Top" resname="O:MDI_Database.O:Panel2.O:Notebook1.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">41</prop>
+          <prop prop-type="Type">TNotebook</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.Width" resname="O:MDI_Database.O:Panel2.O:Notebook1.Width">
+        <source>737</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">42</prop>
+          <prop prop-type="Type">TNotebook</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.Height" resname="O:MDI_Database.O:Panel2.O:Notebook1.Height">
+        <source>492</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">43</prop>
+          <prop prop-type="Type">TNotebook</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.Align" resname="O:MDI_Database.O:Panel2.O:Notebook1.Align">
+        <source>alClient</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">44</prop>
+          <prop prop-type="Type">TNotebook</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.TabOrder" resname="O:MDI_Database.O:Panel2.O:Notebook1.TabOrder">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">45</prop>
+          <prop prop-type="Type">TNotebook</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.Left" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.Left">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">46</prop>
+          <prop prop-type="Type">TPage</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.Top" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">47</prop>
+          <prop prop-type="Type">TPage</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.Caption" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.Caption">
+        <source>'Tabellen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">48</prop>
+          <prop prop-type="Type">TPage</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Tables'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Left" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Left">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">49</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Top" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">50</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Width" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Width">
+        <source>737</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">51</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Height" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Height">
+        <source>24</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">52</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Align" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Align">
+        <source>alTop</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">53</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Alignment" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Alignment">
+        <source>taLeftJustify</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">54</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.BevelOuter" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.BevelOuter">
+        <source>bvNone</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">55</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Caption" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Caption">
+        <source>' Datenbank'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">56</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>' Database'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Color" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Color">
+        <source>5263440</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">57</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Font.Charset" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Font.Charset">
+        <source>ANSI_CHARSET</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">58</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Font.Color" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Font.Color">
+        <source>clWhite</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">59</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Font.Height" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Font.Height">
+        <source>-16</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">60</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Font.Name" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Font.Name">
+        <source>'Tahoma'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">61</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Font.Style" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.Font.Style">
+        <source>[fsBold]</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">62</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.ParentBackground" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.ParentBackground">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">63</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.ParentFont" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.ParentFont">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">64</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.TabOrder" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.TabOrder">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">65</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Left" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Left">
+        <source>662</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">66</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Top" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">67</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Width" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Width">
+        <source>75</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">68</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Height" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Height">
+        <source>24</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">69</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Align" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Align">
+        <source>alRight</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">70</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Caption" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Caption">
+        <source>'Aktualisieren'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">71</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Refresh'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Flat" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Flat">
+        <source>True</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">72</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Font.Charset" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Font.Charset">
+        <source>ANSI_CHARSET</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">73</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Font.Color" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Font.Color">
+        <source>clWhite</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">74</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Font.Height" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Font.Height">
+        <source>-11</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">75</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Font.Name" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Font.Name">
+        <source>'Tahoma'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">76</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Font.Style" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.Font.Style">
+        <source>[]</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">77</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.ParentFont" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.ParentFont">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">78</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.OnClick" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.OnClick">
+        <source>btnAktualisierenClick</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">79</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.ExplicitLeft" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:btnAktualisieren.ExplicitLeft">
+        <source>315</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">80</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Left" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Left">
+        <source>576</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">81</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Top" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">82</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Width" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Width">
+        <source>86</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">83</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Height" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Height">
+        <source>24</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">84</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Align" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Align">
+        <source>alRight</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">85</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Caption" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Caption">
+        <source>'Neue Abfrage'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">86</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'New Query'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Flat" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Flat">
+        <source>True</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">87</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Font.Charset" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Font.Charset">
+        <source>ANSI_CHARSET</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">88</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Font.Color" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Font.Color">
+        <source>clWhite</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">89</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Font.Height" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Font.Height">
+        <source>-11</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">90</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Font.Name" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Font.Name">
+        <source>'Tahoma'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">91</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Font.Style" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.Font.Style">
+        <source>[]</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">92</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.ParentFont" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.ParentFont">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">93</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.OnClick" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.OnClick">
+        <source>SpeedButton2Click</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">94</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.ExplicitLeft" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel3.O:SpeedButton2.ExplicitLeft">
+        <source>360</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">95</prop>
+          <prop prop-type="Type">TSpeedButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.Left" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.Left">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">96</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.Top" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.Top">
+        <source>24</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">97</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.Width" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.Width">
+        <source>737</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">98</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.Height" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.Height">
+        <source>443</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">99</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.Align" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.Align">
+        <source>alClient</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">100</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.Columns" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.Columns">
+        <source>&lt;&gt;</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">101</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.DragMode" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.DragMode">
+        <source>dmAutomatic</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">102</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.MultiSelect" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.MultiSelect">
+        <source>True</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">103</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.PopupMenu" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.PopupMenu">
+        <source>pmTables</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">104</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.SortType" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.SortType">
+        <source>stText</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">105</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.TabOrder" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.TabOrder">
+        <source>1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">106</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.ViewStyle" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.ViewStyle">
+        <source>vsList</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">107</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.OnCustomDrawItem" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.OnCustomDrawItem">
+        <source>lvTablesCustomDrawItem</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">108</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.OnDblClick" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.OnDblClick">
+        <source>lvTablesDblClick</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">109</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.OnEdited" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.OnEdited">
+        <source>lvTablesEdited</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">110</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.OnDragDrop" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.OnDragDrop">
+        <source>lvTablesDragDrop</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">111</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.OnDragOver" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.OnDragOver">
+        <source>lvTablesDragOver</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">112</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.OnKeyDown" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.OnKeyDown">
+        <source>lvTablesKeyDown</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">113</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.OnSelectItem" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:lvTables.OnSelectItem">
+        <source>lvTablesSelectItem</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">114</prop>
+          <prop prop-type="Type">TListView</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Left" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Left">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">115</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Top" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Top">
+        <source>467</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">116</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Width" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Width">
+        <source>737</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">117</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Height" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Height">
+        <source>25</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">118</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Align" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Align">
+        <source>alBottom</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">119</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Alignment" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Alignment">
+        <source>taLeftJustify</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">120</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.BevelOuter" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.BevelOuter">
+        <source>bvLowered</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">121</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Color" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Color">
+        <source>5263440</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">122</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Font.Charset" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Font.Charset">
+        <source>ANSI_CHARSET</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">123</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Font.Color" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Font.Color">
+        <source>clWhite</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">124</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Font.Height" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Font.Height">
+        <source>-11</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">125</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Font.Name" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Font.Name">
+        <source>'Tahoma'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">126</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Font.Style" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.Font.Style">
+        <source>[]</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">127</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.ParentBackground" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.ParentBackground">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">128</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.ParentFont" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.ParentFont">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">129</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.TabOrder" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.TabOrder">
+        <source>2</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">130</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Left" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Left">
+        <source>272</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">131</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Top" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Top">
+        <source>1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">132</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Width" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Width">
+        <source>464</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">133</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Height" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Height">
+        <source>23</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">134</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Align" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Align">
+        <source>alRight</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">135</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Alignment" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Alignment">
+        <source>taRightJustify</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">136</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.BevelOuter" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.BevelOuter">
+        <source>bvNone</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">137</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Caption" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Caption">
+        <source>'schwarz = Tabellen,  dunkelrot = Tabellen mit Trigger,  grün = View,  blau = Stored Procedures   '</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">138</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'black = Tables,  dark red = Tables with Triggers,  green = View,  blue = Stored Procedures   '</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Color" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Color">
+        <source>5263440</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">139</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Font.Charset" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Font.Charset">
+        <source>ANSI_CHARSET</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">140</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Font.Color" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Font.Color">
+        <source>clWhite</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">141</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Font.Height" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Font.Height">
+        <source>-11</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">142</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Font.Name" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Font.Name">
+        <source>'Tahoma'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">143</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Font.Style" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.Font.Style">
+        <source>[]</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">144</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.ParentBackground" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.ParentBackground">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">145</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.ParentFont" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.ParentFont">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433303472</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">146</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.TabOrder" resname="O:MDI_Database.O:Panel2.O:Notebook1.O:[0]TPage.O:Panel5.O:Panel4.TabOrder">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">147</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.OnPopup" resname="O:MDI_Database.O:pmTables.OnPopup">
+        <source>pmTablesPopup</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">148</prop>
+          <prop prop-type="Type">TPopupMenu</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.Left" resname="O:MDI_Database.O:pmTables.Left">
+        <source>136</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">149</prop>
+          <prop prop-type="Type">TPopupMenu</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.Top" resname="O:MDI_Database.O:pmTables.Top">
+        <source>56</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">150</prop>
+          <prop prop-type="Type">TPopupMenu</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:ffnen1.Caption" resname="O:MDI_Database.O:pmTables.O:ffnen1.Caption">
+        <source>'Ö&amp;ffnen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">151</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'&amp;Open'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:ffnen1.Default" resname="O:MDI_Database.O:pmTables.O:ffnen1.Default">
+        <source>True</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">152</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:ffnen1.OnClick" resname="O:MDI_Database.O:pmTables.O:ffnen1.OnClick">
+        <source>lvTablesDblClick</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">153</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:NurStrukturzeigen1.Caption" resname="O:MDI_Database.O:pmTables.O:NurStrukturzeigen1.Caption">
+        <source>'Nur &amp;Struktur zeigen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">154</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Show only &amp;structure'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:NurStrukturzeigen1.OnClick" resname="O:MDI_Database.O:pmTables.O:NurStrukturzeigen1.OnClick">
+        <source>NurStrukturzeigen1Click</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">155</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:ViewDefinitionanzeigen1.Caption" resname="O:MDI_Database.O:pmTables.O:ViewDefinitionanzeigen1.Caption">
+        <source>'View Definition anzeigen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">156</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Show &amp;View Definition'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:ViewDefinitionanzeigen1.OnClick" resname="O:MDI_Database.O:pmTables.O:ViewDefinitionanzeigen1.OnClick">
+        <source>ViewDefinitionanzeigen1Click</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">157</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:Triggeranzeigen1.Caption" resname="O:MDI_Database.O:pmTables.O:Triggeranzeigen1.Caption">
+        <source>'Trigger anzeigen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">158</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Show &amp;Trigger'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:Triggeranzeigen1.OnClick" resname="O:MDI_Database.O:pmTables.O:Triggeranzeigen1.OnClick">
+        <source>Triggeranzeigen1Click</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">159</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:N1.Caption" resname="O:MDI_Database.O:pmTables.O:N1.Caption">
+        <source>'-'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">160</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:uUmbenennen1.Caption" resname="O:MDI_Database.O:pmTables.O:uUmbenennen1.Caption">
+        <source>'&amp;Umbenennen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">161</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'&amp;Rename'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:uUmbenennen1.OnClick" resname="O:MDI_Database.O:pmTables.O:uUmbenennen1.OnClick">
+        <source>Umbenennen1Click</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">162</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:Leeren1.Caption" resname="O:MDI_Database.O:pmTables.O:Leeren1.Caption">
+        <source>'&amp;Leeren'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">163</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'&amp;Truncate'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:Leeren1.OnClick" resname="O:MDI_Database.O:pmTables.O:Leeren1.OnClick">
+        <source>Leeren1Click</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">164</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:Loeschen1.Caption" resname="O:MDI_Database.O:pmTables.O:Loeschen1.Caption">
+        <source>'Lösche&amp;n'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">165</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'&amp;Delete'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:Loeschen1.OnClick" resname="O:MDI_Database.O:pmTables.O:Loeschen1.OnClick">
+        <source>Loeschen1Click</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">166</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:N2.Caption" resname="O:MDI_Database.O:pmTables.O:N2.Caption">
+        <source>'-'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">167</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:Kopierennach1.Caption" resname="O:MDI_Database.O:pmTables.O:Kopierennach1.Caption">
+        <source>'Kopieren nach'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">168</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Copy to'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:N3.Caption" resname="O:MDI_Database.O:pmTables.O:N3.Caption">
+        <source>'-'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">169</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:AnzahlZeilenzeigen1.Caption" resname="O:MDI_Database.O:pmTables.O:AnzahlZeilenzeigen1.Caption">
+        <source>'Anzahl Zeilen zeigen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">170</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Show row count'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:AnzahlZeilenzeigen1.OnClick" resname="O:MDI_Database.O:pmTables.O:AnzahlZeilenzeigen1.OnClick">
+        <source>AnzahlZeilenzeigen1Click</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">171</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:Erste100Zeilenzeigen1.Caption" resname="O:MDI_Database.O:pmTables.O:Erste100Zeilenzeigen1.Caption">
+        <source>'Erste 1000 Zeilen zeigen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">172</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Show first 1000 rows'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:Erste100Zeilenzeigen1.OnClick" resname="O:MDI_Database.O:pmTables.O:Erste100Zeilenzeigen1.OnClick">
+        <source>Erste100Zeilenzeigen1Click</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">173</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:N4.Caption" resname="O:MDI_Database.O:pmTables.O:N4.Caption">
+        <source>'-'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">174</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:Strukturdrucken1.Caption" resname="O:MDI_Database.O:pmTables.O:Strukturdrucken1.Caption">
+        <source>'Struktur &amp;drucken'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">175</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'&amp;Print structure'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:Strukturdrucken1.Visible" resname="O:MDI_Database.O:pmTables.O:Strukturdrucken1.Visible">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">176</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:Strukturdrucken1.OnClick" resname="O:MDI_Database.O:pmTables.O:Strukturdrucken1.OnClick">
+        <source>Strukturdrucken1Click</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">177</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:abellenNamenkopieren1.Caption" resname="O:MDI_Database.O:pmTables.O:abellenNamenkopieren1.Caption">
+        <source>'Tabellen-Namen kopieren'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">178</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Copy table names'</target>
+      </trans-unit>
+      <trans-unit id="O:MDI_Database.O:pmTables.O:abellenNamenkopieren1.OnClick" resname="O:MDI_Database.O:pmTables.O:abellenNamenkopieren1.OnClick">
+        <source>abellenNamenkopieren1Click</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433304977</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">179</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

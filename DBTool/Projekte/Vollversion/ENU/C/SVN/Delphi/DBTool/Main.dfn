@@ -1,0 +1,2924 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file original="C:\SVN\Delphi\DBTool\Main.dfm" source-language="de-DE" target-language="en-US" datatype="delphiform" tool="ETM v10.0" ts="C:\SVN\Delphi\DBTool\Main.dfm">
+    <header>
+      <prop-group name="ITEHeaderProp">
+        <prop prop-type="Version">9.0</prop>
+        <prop prop-type="SelfDateTime">45532.7844907407</prop>
+        <prop prop-type="OrigDateTime">45532.7087268519</prop>
+        <prop prop-type="XlatDateTime">45531.6450462963</prop>
+        <prop prop-type="Translated">54</prop>
+        <prop prop-type="UnTranslated">230</prop>
+      </prop-group>
+    </header>
+    <body>
+      <trans-unit id="O:DLG_Main.Left" resname="O:DLG_Main.Left">
+        <source>283</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">0</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.Top" resname="O:DLG_Main.Top">
+        <source>107</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">1</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.Caption" resname="O:DLG_Main.Caption">
+        <source>'Datenbankoberfläche'</source>
+        <target>'Database Desktop'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">2</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.ClientHeight" resname="O:DLG_Main.ClientHeight">
+        <source>616</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">3</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.ClientWidth" resname="O:DLG_Main.ClientWidth">
+        <source>1108</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">4</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.Color" resname="O:DLG_Main.Color">
+        <source>clBlack</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">5</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.Font.Charset" resname="O:DLG_Main.Font.Charset">
+        <source>ANSI_CHARSET</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">6</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.Font.Color" resname="O:DLG_Main.Font.Color">
+        <source>clWindowText</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">7</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.Font.Height" resname="O:DLG_Main.Font.Height">
+        <source>-11</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">8</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.Font.Name" resname="O:DLG_Main.Font.Name">
+        <source>'Tahoma'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">9</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.Font.Style" resname="O:DLG_Main.Font.Style">
+        <source>[]</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">10</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.FormStyle" resname="O:DLG_Main.FormStyle">
+        <source>fsMDIForm</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">11</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.Menu" resname="O:DLG_Main.Menu">
+        <source>MainMenu1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">12</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.Position" resname="O:DLG_Main.Position">
+        <source>poDefault</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">13</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.Scaled" resname="O:DLG_Main.Scaled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">14</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.WindowState" resname="O:DLG_Main.WindowState">
+        <source>wsMaximized</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">15</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.OnCanResize" resname="O:DLG_Main.OnCanResize">
+        <source>FormCanResize</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">16</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.OnCloseQuery" resname="O:DLG_Main.OnCloseQuery">
+        <source>FormCloseQuery</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">17</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.OnCreate" resname="O:DLG_Main.OnCreate">
+        <source>FormCreate</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">18</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.OnDestroy" resname="O:DLG_Main.OnDestroy">
+        <source>FormDestroy</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">19</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.OnPaint" resname="O:DLG_Main.OnPaint">
+        <source>FormPaint</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">20</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.OnShow" resname="O:DLG_Main.OnShow">
+        <source>FormShow</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">21</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.TextHeight" resname="O:DLG_Main.TextHeight">
+        <source>13</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">22</prop>
+          <prop prop-type="Type">TDLG_Main</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.Left" resname="O:DLG_Main.O:Panel1.Left">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">23</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.Top" resname="O:DLG_Main.O:Panel1.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">24</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.Width" resname="O:DLG_Main.O:Panel1.Width">
+        <source>1108</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">25</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.Height" resname="O:DLG_Main.O:Panel1.Height">
+        <source>22</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">26</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.Align" resname="O:DLG_Main.O:Panel1.Align">
+        <source>alTop</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433439236</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">27</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.AutoSize" resname="O:DLG_Main.O:Panel1.AutoSize">
+        <source>True</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">28</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.BevelOuter" resname="O:DLG_Main.O:Panel1.BevelOuter">
+        <source>bvNone</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">29</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.TabOrder" resname="O:DLG_Main.O:Panel1.TabOrder">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">30</prop>
+          <prop prop-type="Type">TPanel</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.Left" resname="O:DLG_Main.O:Panel1.O:tbStandard.Left">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">31</prop>
+          <prop prop-type="Type">TToolBar</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.Top" resname="O:DLG_Main.O:Panel1.O:tbStandard.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">32</prop>
+          <prop prop-type="Type">TToolBar</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.Width" resname="O:DLG_Main.O:Panel1.O:tbStandard.Width">
+        <source>1108</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">33</prop>
+          <prop prop-type="Type">TToolBar</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.Height" resname="O:DLG_Main.O:Panel1.O:tbStandard.Height">
+        <source>22</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">34</prop>
+          <prop prop-type="Type">TToolBar</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.AutoSize" resname="O:DLG_Main.O:Panel1.O:tbStandard.AutoSize">
+        <source>True</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">35</prop>
+          <prop prop-type="Type">TToolBar</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.Caption" resname="O:DLG_Main.O:Panel1.O:tbStandard.Caption">
+        <source>'Standard'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">36</prop>
+          <prop prop-type="Type">TToolBar</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.Color" resname="O:DLG_Main.O:Panel1.O:tbStandard.Color">
+        <source>clBtnFace</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">37</prop>
+          <prop prop-type="Type">TToolBar</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.Images" resname="O:DLG_Main.O:Panel1.O:tbStandard.Images">
+        <source>ilMenu</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">38</prop>
+          <prop prop-type="Type">TToolBar</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.ParentColor" resname="O:DLG_Main.O:Panel1.O:tbStandard.ParentColor">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">39</prop>
+          <prop prop-type="Type">TToolBar</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.ParentShowHint" resname="O:DLG_Main.O:Panel1.O:tbStandard.ParentShowHint">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">40</prop>
+          <prop prop-type="Type">TToolBar</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.ShowHint" resname="O:DLG_Main.O:Panel1.O:tbStandard.ShowHint">
+        <source>True</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">41</prop>
+          <prop prop-type="Type">TToolBar</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.TabOrder" resname="O:DLG_Main.O:Panel1.O:tbStandard.TabOrder">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">42</prop>
+          <prop prop-type="Type">TToolBar</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.Transparent" resname="O:DLG_Main.O:Panel1.O:tbStandard.Transparent">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">43</prop>
+          <prop prop-type="Type">TToolBar</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton15.Left" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton15.Left">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">44</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton15.Top" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton15.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">45</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton15.Action" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton15.Action">
+        <source>DateiNeu1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">46</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton1.Left" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton1.Left">
+        <source>23</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">47</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton1.Top" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton1.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">48</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton1.Action" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton1.Action">
+        <source>FileOpen1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">49</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton16.Left" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton16.Left">
+        <source>46</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">50</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton16.Top" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton16.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">51</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton16.Action" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton16.Action">
+        <source>FileOpenMySqlDb</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">52</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton17.Left" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton17.Left">
+        <source>69</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">53</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton17.Top" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton17.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">54</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton17.Action" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton17.Action">
+        <source>FileOpenSqlServerDb</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">55</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton10.Left" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton10.Left">
+        <source>92</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">56</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton10.Top" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton10.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">57</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton10.Width" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton10.Width">
+        <source>8</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">58</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton10.Caption" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton10.Caption">
+        <source>'ToolButton10'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">59</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton10.Enabled" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton10.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">60</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton10.ImageIndex" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton10.ImageIndex">
+        <source>6</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441204</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">61</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton10.Style" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton10.Style">
+        <source>tbsSeparator</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">62</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton3.Left" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton3.Left">
+        <source>100</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">63</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton3.Top" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton3.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">64</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton3.Action" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton3.Action">
+        <source>DateiDrucken1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">65</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton3.Enabled" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton3.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">66</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton4.Left" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton4.Left">
+        <source>123</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">67</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton4.Top" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton4.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">68</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton4.Action" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton4.Action">
+        <source>DateiSeitenansicht1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">69</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton4.Enabled" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton4.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">70</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.Left" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.Left">
+        <source>146</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">71</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.Top" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">72</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.Width" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.Width">
+        <source>8</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">73</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.Caption" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.Caption">
+        <source>'ToolButton5'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">74</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.Enabled" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">75</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.ImageIndex" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.ImageIndex">
+        <source>3</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">76</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.Style" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.Style">
+        <source>tbsSeparator</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">77</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.Visible" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton5.Visible">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">78</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton6.Left" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton6.Left">
+        <source>154</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">79</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton6.Top" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton6.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">80</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton6.Action" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton6.Action">
+        <source>EditCut1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">81</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton7.Left" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton7.Left">
+        <source>177</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">82</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton7.Top" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton7.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">83</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton7.Action" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton7.Action">
+        <source>EditCopy1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">84</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton8.Left" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton8.Left">
+        <source>200</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">85</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton8.Top" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton8.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">86</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton8.Action" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton8.Action">
+        <source>EditPaste1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">87</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton8.Enabled" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton8.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">88</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton12.Left" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton12.Left">
+        <source>223</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">89</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton12.Top" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton12.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">90</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton12.Width" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton12.Width">
+        <source>8</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">91</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton12.Caption" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton12.Caption">
+        <source>'ToolButton12'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">92</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton12.Enabled" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton12.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">93</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton12.ImageIndex" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton12.ImageIndex">
+        <source>11</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">94</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton12.Style" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton12.Style">
+        <source>tbsSeparator</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">95</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton11.Left" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton11.Left">
+        <source>231</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">96</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton11.Top" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton11.Top">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">97</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton11.Action" resname="O:DLG_Main.O:Panel1.O:tbStandard.O:ToolButton11.Action">
+        <source>BearbeitenSuchen1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">98</prop>
+          <prop prop-type="Type">TToolButton</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.Images" resname="O:DLG_Main.O:alStandard.Images">
+        <source>ilMenu</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">99</prop>
+          <prop prop-type="Type">TActionList</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.Left" resname="O:DLG_Main.O:alStandard.Left">
+        <source>300</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">100</prop>
+          <prop prop-type="Type">TActionList</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.Top" resname="O:DLG_Main.O:alStandard.Top">
+        <source>60</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">101</prop>
+          <prop prop-type="Type">TActionList</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpen1.Category" resname="O:DLG_Main.O:alStandard.O:FileOpen1.Category">
+        <source>'Datei'</source>
+        <target>'File'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">102</prop>
+          <prop prop-type="Type">TFileOpen</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpen1.Caption" resname="O:DLG_Main.O:alStandard.O:FileOpen1.Caption">
+        <source>'Ö&amp;ffnen...'</source>
+        <target>'&amp;Open...'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">103</prop>
+          <prop prop-type="Type">TFileOpen</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpen1.Dialog.DefaultExt" resname="O:DLG_Main.O:alStandard.O:FileOpen1.Dialog.DefaultExt">
+        <source>'gdb'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">104</prop>
+          <prop prop-type="Type">TFileOpen</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpen1.Dialog.Filter" resname="O:DLG_Main.O:alStandard.O:FileOpen1.Dialog.Filter">
+        <source>'Alle bekannten Dateien (*.gdb;*.db;*.dbf;*.mdb;*.accdb)|*.gdb;*.db;*.dbf;*.mdb;*.accdb|Microsoft Jet-Datenbank (*.mdb)|*.mdb|Access-Datenbank (*.accdb)|*.accdb|dBase-Dateien (*.dbf)|*.dbf|Paradox-Dateien (*.db)|*.db|InterBase-Dateien (*.gdb)|*.gdb|Alle Dateien (*.*)|*.*'</source>
+        <target>'Known file types (*.gdb;*.db;*.dbf;*.mdb;*.accdb)|*.gdb;*.db;*.dbf;*.mdb;*.accdb|Microsoft Jet Database (*.mdb)|*.mdb|Access Database (*.accdb)|*.accdb|dBase files (*.dbf)|*.dbf|Paradox files (*.db)|*.db|InterBase files (*.gdb)|*.gdb|All files (*.*)|*.*'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">105</prop>
+          <prop prop-type="Type">TFileOpen</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpen1.Dialog.Options" resname="O:DLG_Main.O:alStandard.O:FileOpen1.Dialog.Options">
+        <source>[ofAllowMultiSelect, ofPathMustExist, ofFileMustExist, ofEnableSizing]</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">106</prop>
+          <prop prop-type="Type">TFileOpen</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpen1.Hint" resname="O:DLG_Main.O:alStandard.O:FileOpen1.Hint">
+        <source>'Öffnen|Vorhandene Datei öffnen'</source>
+        <target>'Open|Open existing file'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">107</prop>
+          <prop prop-type="Type">TFileOpen</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpen1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:FileOpen1.ImageIndex">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">108</prop>
+          <prop prop-type="Type">TFileOpen</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpen1.ShortCut" resname="O:DLG_Main.O:alStandard.O:FileOpen1.ShortCut">
+        <source>16463</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">109</prop>
+          <prop prop-type="Type">TFileOpen</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpen1.OnAccept" resname="O:DLG_Main.O:alStandard.O:FileOpen1.OnAccept">
+        <source>FileOpen1Accept</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">110</prop>
+          <prop prop-type="Type">TFileOpen</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FilePrintSetup1.Category" resname="O:DLG_Main.O:alStandard.O:FilePrintSetup1.Category">
+        <source>'Datei'</source>
+        <target>'File'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">111</prop>
+          <prop prop-type="Type">TFilePrintSetup</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FilePrintSetup1.Caption" resname="O:DLG_Main.O:alStandard.O:FilePrintSetup1.Caption">
+        <source>'&amp;Druckereinstellungen...'</source>
+        <target>'&amp;Printer Settings...'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">112</prop>
+          <prop prop-type="Type">TFilePrintSetup</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FilePrintSetup1.Hint" resname="O:DLG_Main.O:alStandard.O:FilePrintSetup1.Hint">
+        <source>'Druckereinstellungen'</source>
+        <target>'Printer Settings'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">113</prop>
+          <prop prop-type="Type">TFilePrintSetup</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiDrucken1.Category" resname="O:DLG_Main.O:alStandard.O:DateiDrucken1.Category">
+        <source>'Datei'</source>
+        <target>'File'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">114</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiDrucken1.Caption" resname="O:DLG_Main.O:alStandard.O:DateiDrucken1.Caption">
+        <source>'&amp;Drucken'</source>
+        <target>'&amp;Print'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">115</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiDrucken1.Hint" resname="O:DLG_Main.O:alStandard.O:DateiDrucken1.Hint">
+        <source>'Drucken'</source>
+        <target>'Print'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">116</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiDrucken1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:DateiDrucken1.ImageIndex">
+        <source>1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">117</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiDrucken1.Visible" resname="O:DLG_Main.O:alStandard.O:DateiDrucken1.Visible">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">118</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiSeitenansicht1.Category" resname="O:DLG_Main.O:alStandard.O:DateiSeitenansicht1.Category">
+        <source>'Datei'</source>
+        <target>'File'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">119</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiSeitenansicht1.Caption" resname="O:DLG_Main.O:alStandard.O:DateiSeitenansicht1.Caption">
+        <source>'Seitenansic&amp;ht...'</source>
+        <target>'&amp;Page preview...'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">120</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiSeitenansicht1.Hint" resname="O:DLG_Main.O:alStandard.O:DateiSeitenansicht1.Hint">
+        <source>'Seitenansicht'</source>
+        <target>'Page preview'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">121</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiSeitenansicht1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:DateiSeitenansicht1.ImageIndex">
+        <source>2</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">122</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiSeitenansicht1.Visible" resname="O:DLG_Main.O:alStandard.O:DateiSeitenansicht1.Visible">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">123</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:Beenden1.Category" resname="O:DLG_Main.O:alStandard.O:Beenden1.Category">
+        <source>'Datei'</source>
+        <target>'File'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">124</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:Beenden1.Caption" resname="O:DLG_Main.O:alStandard.O:Beenden1.Caption">
+        <source>'&amp;Beenden'</source>
+        <target>'&amp;Exit'</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">125</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:Beenden1.Hint" resname="O:DLG_Main.O:alStandard.O:Beenden1.Hint">
+        <source>'Programm beenden'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">126</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Exit program'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:Beenden1.OnExecute" resname="O:DLG_Main.O:alStandard.O:Beenden1.OnExecute">
+        <source>Beenden1Execute</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">127</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditCut1.Category" resname="O:DLG_Main.O:alStandard.O:EditCut1.Category">
+        <source>'Bearbeiten'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">128</prop>
+          <prop prop-type="Type">TEditCut</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Edit'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditCut1.Caption" resname="O:DLG_Main.O:alStandard.O:EditCut1.Caption">
+        <source>'&amp;Ausschneiden'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">129</prop>
+          <prop prop-type="Type">TEditCut</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'&amp;Cut'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditCut1.Enabled" resname="O:DLG_Main.O:alStandard.O:EditCut1.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">130</prop>
+          <prop prop-type="Type">TEditCut</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditCut1.Hint" resname="O:DLG_Main.O:alStandard.O:EditCut1.Hint">
+        <source>'Ausschneiden|Markiertes Objekt in die Zwischenablage verschieben'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">131</prop>
+          <prop prop-type="Type">TEditCut</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditCut1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:EditCut1.ImageIndex">
+        <source>3</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">132</prop>
+          <prop prop-type="Type">TEditCut</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditCut1.ShortCut" resname="O:DLG_Main.O:alStandard.O:EditCut1.ShortCut">
+        <source>16472</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">133</prop>
+          <prop prop-type="Type">TEditCut</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditCopy1.Category" resname="O:DLG_Main.O:alStandard.O:EditCopy1.Category">
+        <source>'Bearbeiten'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">134</prop>
+          <prop prop-type="Type">TEditCopy</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Edit'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditCopy1.Caption" resname="O:DLG_Main.O:alStandard.O:EditCopy1.Caption">
+        <source>'&amp;Kopieren'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">135</prop>
+          <prop prop-type="Type">TEditCopy</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'&amp;Copy'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditCopy1.Enabled" resname="O:DLG_Main.O:alStandard.O:EditCopy1.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">136</prop>
+          <prop prop-type="Type">TEditCopy</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditCopy1.Hint" resname="O:DLG_Main.O:alStandard.O:EditCopy1.Hint">
+        <source>'Kopieren|Markiertes Objekt in die Zwischenablage kopieren'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">137</prop>
+          <prop prop-type="Type">TEditCopy</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditCopy1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:EditCopy1.ImageIndex">
+        <source>4</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">138</prop>
+          <prop prop-type="Type">TEditCopy</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditCopy1.ShortCut" resname="O:DLG_Main.O:alStandard.O:EditCopy1.ShortCut">
+        <source>16451</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">139</prop>
+          <prop prop-type="Type">TEditCopy</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditPaste1.Category" resname="O:DLG_Main.O:alStandard.O:EditPaste1.Category">
+        <source>'Bearbeiten'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">140</prop>
+          <prop prop-type="Type">TEditPaste</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Edit'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditPaste1.Caption" resname="O:DLG_Main.O:alStandard.O:EditPaste1.Caption">
+        <source>'&amp;Einfügen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">141</prop>
+          <prop prop-type="Type">TEditPaste</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'&amp;Paste'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditPaste1.Hint" resname="O:DLG_Main.O:alStandard.O:EditPaste1.Hint">
+        <source>'Einfügen|Inhalt der Zwischenablage einfügen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">142</prop>
+          <prop prop-type="Type">TEditPaste</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditPaste1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:EditPaste1.ImageIndex">
+        <source>5</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">143</prop>
+          <prop prop-type="Type">TEditPaste</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:EditPaste1.ShortCut" resname="O:DLG_Main.O:alStandard.O:EditPaste1.ShortCut">
+        <source>16470</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">144</prop>
+          <prop prop-type="Type">TEditPaste</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowCascade1.Category" resname="O:DLG_Main.O:alStandard.O:WindowCascade1.Category">
+        <source>'Fenster'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">145</prop>
+          <prop prop-type="Type">TWindowCascade</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Window'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowCascade1.Caption" resname="O:DLG_Main.O:alStandard.O:WindowCascade1.Caption">
+        <source>'Ü&amp;berlappend'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">146</prop>
+          <prop prop-type="Type">TWindowCascade</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowCascade1.Enabled" resname="O:DLG_Main.O:alStandard.O:WindowCascade1.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">147</prop>
+          <prop prop-type="Type">TWindowCascade</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowCascade1.Hint" resname="O:DLG_Main.O:alStandard.O:WindowCascade1.Hint">
+        <source>'Überlappend'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">148</prop>
+          <prop prop-type="Type">TWindowCascade</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowCascade1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:WindowCascade1.ImageIndex">
+        <source>6</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">149</prop>
+          <prop prop-type="Type">TWindowCascade</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowTileHorizontal1.Category" resname="O:DLG_Main.O:alStandard.O:WindowTileHorizontal1.Category">
+        <source>'Fenster'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">150</prop>
+          <prop prop-type="Type">TWindowTileHorizontal</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Window'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowTileHorizontal1.Caption" resname="O:DLG_Main.O:alStandard.O:WindowTileHorizontal1.Caption">
+        <source>'&amp;Untereinander'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">151</prop>
+          <prop prop-type="Type">TWindowTileHorizontal</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowTileHorizontal1.Enabled" resname="O:DLG_Main.O:alStandard.O:WindowTileHorizontal1.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">152</prop>
+          <prop prop-type="Type">TWindowTileHorizontal</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowTileHorizontal1.Hint" resname="O:DLG_Main.O:alStandard.O:WindowTileHorizontal1.Hint">
+        <source>'Untereinander'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">153</prop>
+          <prop prop-type="Type">TWindowTileHorizontal</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowTileHorizontal1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:WindowTileHorizontal1.ImageIndex">
+        <source>7</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">154</prop>
+          <prop prop-type="Type">TWindowTileHorizontal</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowTileVertical1.Category" resname="O:DLG_Main.O:alStandard.O:WindowTileVertical1.Category">
+        <source>'Fenster'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">155</prop>
+          <prop prop-type="Type">TWindowTileVertical</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Window'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowTileVertical1.Caption" resname="O:DLG_Main.O:alStandard.O:WindowTileVertical1.Caption">
+        <source>'&amp;Nebeneinander'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">156</prop>
+          <prop prop-type="Type">TWindowTileVertical</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowTileVertical1.Enabled" resname="O:DLG_Main.O:alStandard.O:WindowTileVertical1.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">157</prop>
+          <prop prop-type="Type">TWindowTileVertical</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowTileVertical1.Hint" resname="O:DLG_Main.O:alStandard.O:WindowTileVertical1.Hint">
+        <source>'Nebeneinander'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">158</prop>
+          <prop prop-type="Type">TWindowTileVertical</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowTileVertical1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:WindowTileVertical1.ImageIndex">
+        <source>8</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">159</prop>
+          <prop prop-type="Type">TWindowTileVertical</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowMinimizeAll1.Category" resname="O:DLG_Main.O:alStandard.O:WindowMinimizeAll1.Category">
+        <source>'Fenster'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">160</prop>
+          <prop prop-type="Type">TWindowMinimizeAll</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Window'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowMinimizeAll1.Caption" resname="O:DLG_Main.O:alStandard.O:WindowMinimizeAll1.Caption">
+        <source>'&amp;Alle minimieren'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">161</prop>
+          <prop prop-type="Type">TWindowMinimizeAll</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowMinimizeAll1.Enabled" resname="O:DLG_Main.O:alStandard.O:WindowMinimizeAll1.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">162</prop>
+          <prop prop-type="Type">TWindowMinimizeAll</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowMinimizeAll1.Hint" resname="O:DLG_Main.O:alStandard.O:WindowMinimizeAll1.Hint">
+        <source>'Alle verkleinern'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">163</prop>
+          <prop prop-type="Type">TWindowMinimizeAll</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowArrange1.Category" resname="O:DLG_Main.O:alStandard.O:WindowArrange1.Category">
+        <source>'Fenster'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">164</prop>
+          <prop prop-type="Type">TWindowArrange</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Window'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowArrange1.Caption" resname="O:DLG_Main.O:alStandard.O:WindowArrange1.Caption">
+        <source>'Symbole an&amp;ordnen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">165</prop>
+          <prop prop-type="Type">TWindowArrange</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:WindowArrange1.Enabled" resname="O:DLG_Main.O:alStandard.O:WindowArrange1.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">166</prop>
+          <prop prop-type="Type">TWindowArrange</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:HilfeInfo1.Category" resname="O:DLG_Main.O:alStandard.O:HilfeInfo1.Category">
+        <source>'Hilfe'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">167</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Help'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:HilfeInfo1.Caption" resname="O:DLG_Main.O:alStandard.O:HilfeInfo1.Caption">
+        <source>'&amp;Info...'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">168</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'&amp;About...'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:HilfeInfo1.Hint" resname="O:DLG_Main.O:alStandard.O:HilfeInfo1.Hint">
+        <source>'Info'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">169</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'About'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:HilfeInfo1.OnExecute" resname="O:DLG_Main.O:alStandard.O:HilfeInfo1.OnExecute">
+        <source>HilfeInfo1Execute</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">170</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:ExtrasOptionen1.Category" resname="O:DLG_Main.O:alStandard.O:ExtrasOptionen1.Category">
+        <source>'Extras'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">171</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:ExtrasOptionen1.Caption" resname="O:DLG_Main.O:alStandard.O:ExtrasOptionen1.Caption">
+        <source>'&amp;Optionen...'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">172</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'&amp;Options...'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:ExtrasOptionen1.Hint" resname="O:DLG_Main.O:alStandard.O:ExtrasOptionen1.Hint">
+        <source>'Optionen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">173</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Options'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:ExtrasOptionen1.OnExecute" resname="O:DLG_Main.O:alStandard.O:ExtrasOptionen1.OnExecute">
+        <source>ExtrasOptionen1Execute</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">174</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpenSqlServerDb.Category" resname="O:DLG_Main.O:alStandard.O:FileOpenSqlServerDb.Category">
+        <source>'Datei'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">175</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'File'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpenSqlServerDb.Caption" resname="O:DLG_Main.O:alStandard.O:FileOpenSqlServerDb.Caption">
+        <source>'SQL-Server-Datenbank öffnen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">176</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Open SQL-Server Database'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpenSqlServerDb.ImageIndex" resname="O:DLG_Main.O:alStandard.O:FileOpenSqlServerDb.ImageIndex">
+        <source>14</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">177</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpenSqlServerDb.OnExecute" resname="O:DLG_Main.O:alStandard.O:FileOpenSqlServerDb.OnExecute">
+        <source>FileOpenSqlServerDbExecute</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">178</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:BearbeitenSuchen1.Category" resname="O:DLG_Main.O:alStandard.O:BearbeitenSuchen1.Category">
+        <source>'Bearbeiten'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">179</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Edit'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:BearbeitenSuchen1.Caption" resname="O:DLG_Main.O:alStandard.O:BearbeitenSuchen1.Caption">
+        <source>'Suchen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">180</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Search'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:BearbeitenSuchen1.Enabled" resname="O:DLG_Main.O:alStandard.O:BearbeitenSuchen1.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">181</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:BearbeitenSuchen1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:BearbeitenSuchen1.ImageIndex">
+        <source>10</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">182</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:BearbeitenSuchen1.ShortCut" resname="O:DLG_Main.O:alStandard.O:BearbeitenSuchen1.ShortCut">
+        <source>16454</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">183</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:BearbeitenSuchen1.OnExecute" resname="O:DLG_Main.O:alStandard.O:BearbeitenSuchen1.OnExecute">
+        <source>BearbeitenSuchen1Execute</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">184</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:BearbeitenWeitersuchen1.Category" resname="O:DLG_Main.O:alStandard.O:BearbeitenWeitersuchen1.Category">
+        <source>'Bearbeiten'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">185</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Edit'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:BearbeitenWeitersuchen1.Caption" resname="O:DLG_Main.O:alStandard.O:BearbeitenWeitersuchen1.Caption">
+        <source>'Weitersuchen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">186</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Search next'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:BearbeitenWeitersuchen1.Enabled" resname="O:DLG_Main.O:alStandard.O:BearbeitenWeitersuchen1.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">187</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:BearbeitenWeitersuchen1.ShortCut" resname="O:DLG_Main.O:alStandard.O:BearbeitenWeitersuchen1.ShortCut">
+        <source>114</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">188</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:BearbeitenWeitersuchen1.OnExecute" resname="O:DLG_Main.O:alStandard.O:BearbeitenWeitersuchen1.OnExecute">
+        <source>BearbeitenWeitersuchen1Execute</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">189</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:ExtrasExport1.Category" resname="O:DLG_Main.O:alStandard.O:ExtrasExport1.Category">
+        <source>'Extras'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">190</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:ExtrasExport1.Caption" resname="O:DLG_Main.O:alStandard.O:ExtrasExport1.Caption">
+        <source>'&amp;Export...'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">191</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:ExtrasExport1.Enabled" resname="O:DLG_Main.O:alStandard.O:ExtrasExport1.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">192</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:ExtrasExport1.OnExecute" resname="O:DLG_Main.O:alStandard.O:ExtrasExport1.OnExecute">
+        <source>ExtrasExport1Execute</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">193</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:ExtrasImport1.Category" resname="O:DLG_Main.O:alStandard.O:ExtrasImport1.Category">
+        <source>'Extras'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">194</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:ExtrasImport1.Caption" resname="O:DLG_Main.O:alStandard.O:ExtrasImport1.Caption">
+        <source>'&amp;Import...'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">195</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:ExtrasImport1.Enabled" resname="O:DLG_Main.O:alStandard.O:ExtrasImport1.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">196</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:ExtrasImport1.OnExecute" resname="O:DLG_Main.O:alStandard.O:ExtrasImport1.OnExecute">
+        <source>ExtrasImport1Execute</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">197</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiNeu1.Category" resname="O:DLG_Main.O:alStandard.O:DateiNeu1.Category">
+        <source>'Datei'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">198</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'File'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiNeu1.Caption" resname="O:DLG_Main.O:alStandard.O:DateiNeu1.Caption">
+        <source>'Neu...'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">199</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'New...'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiNeu1.Hint" resname="O:DLG_Main.O:alStandard.O:DateiNeu1.Hint">
+        <source>'Neu'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">200</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'New'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiNeu1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:DateiNeu1.ImageIndex">
+        <source>13</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">201</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiNeu1.ShortCut" resname="O:DLG_Main.O:alStandard.O:DateiNeu1.ShortCut">
+        <source>16462</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">202</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:DateiNeu1.OnExecute" resname="O:DLG_Main.O:alStandard.O:DateiNeu1.OnExecute">
+        <source>DateiNeu1Execute</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">203</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpenMySqlDb.Category" resname="O:DLG_Main.O:alStandard.O:FileOpenMySqlDb.Category">
+        <source>'Datei'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">204</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'File'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpenMySqlDb.Caption" resname="O:DLG_Main.O:alStandard.O:FileOpenMySqlDb.Caption">
+        <source>'MySQL-Datenbank öffnen...'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">205</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Open MySQL Database...'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpenMySqlDb.ImageIndex" resname="O:DLG_Main.O:alStandard.O:FileOpenMySqlDb.ImageIndex">
+        <source>15</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">206</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:alStandard.O:FileOpenMySqlDb.OnExecute" resname="O:DLG_Main.O:alStandard.O:FileOpenMySqlDb.OnExecute">
+        <source>FileOpenMySqlDbExecute</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">207</prop>
+          <prop prop-type="Type">TAction</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:ilMenu.Left" resname="O:DLG_Main.O:ilMenu.Left">
+        <source>184</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">208</prop>
+          <prop prop-type="Type">TImageList</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:ilMenu.Top" resname="O:DLG_Main.O:ilMenu.Top">
+        <source>52</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">209</prop>
+          <prop prop-type="Type">TImageList</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:ilMenu.Bitmap" resname="O:DLG_Main.O:ilMenu.Bitmap">
+        <source>494C010113008C00040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D360000000000000036000000280000004000000050000000010020000000000000500000000000000000000000000000000000000000000000000000000000000000000080808000808080008080800080808000808080008080800080808000808080008080800080808000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080808000C0C0C00080808000C0C0C00080808000C0C0C00080808000C0C0C00080808000C0C0C000808080008080800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFF0000FFFF00FFFFFF0000FFFF00FFFFFF0000FFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080808000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C00080808000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080800000FFFF000080800000FFFF00FFFFFF00FFFFFF00FFFFFF000080800000FFFF00008080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00C0C0C0000000000000000000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C00000000000000000000080800000FFFF000080800000FFFF0000FFFF00FFFFFF0000FFFF00FFFFFF0000FFFF000080800000FFFF00008080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080008000000080008000800000008000800080000000800080008000000080008000800000008000FFFFFF00FFFFFF00FFFFFF00FFFFFF00C0C0C0000000000000000000FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00C0C0C000000000000000000000FFFF000080800000FFFF0000000000000000000000000000000000000000000000000000FFFF000080800000FFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0080008000FFFFFF00FFFFFF00FFFFFF00FFFFFF00C0C0C0000000000000000000FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00C0C0C00000000000000000000080800000000000000000000080800000FFFF00FFFFFF00FFFFFF00FFFFFF00008080000000000000000000008080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080008000FFFFFF00800080000000800080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000008000FFFFFF00FFFFFF00FFFFFF00FFFFFF00C0C0C0000000000000000000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C00000000000000000000000000000FFFF000080800000FFFF0000FFFF00FFFFFF0000FFFF00FFFFFF0000FFFF000080800000FFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000FFFFFF0000008000800080000000800080808000FFFFFF00FFFFFF00FFFFFF0080008000FFFFFF00FFFFFF00FFFFFF00FFFFFF00C0C0C0000000000000000000FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00C0C0C000000000000000000000FFFF000080800000FFFF0000000000000000000000000000000000000000000000000000FFFF000080800000FFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080008000FFFFFF00FFFFFF000000800080008000000080008000800080808000FFFFFF0000008000FFFFFF00FFFFFF00FFFFFF00FFFFFF00C0C0C0000000000000000000FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00C0C0C00000000000000000000080800000000000000000000080800000FFFF00FFFFFF00FFFFFF00FFFFFF00008080000000000000000000008080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000FFFFFF00FFFFFF00FFFFFF0000008000800080000000800080008000FFFFFF0080008000FFFFFF00FFFFFF00FFFFFF00FFFFFF00C0C0C0000000000000000000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C00000000000000000000000000000FFFF000080800000FFFF0000FFFF00FFFFFF0000FFFF00FFFFFF0000FFFF000080800000FFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080008000FFFFFF00FFFFFF00FFFFFF008000800000008000FFFFFF0000008000FFFFFF0000008000FFFFFF00FFFFFF00FFFFFF00FFFFFF00C0C0C0000000000000000000FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00C0C0C000000000000000000000FFFF000080800000FFFF0000000000000000000000000000000000000000000000000000FFFF000080800000FFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000FFFFFF00FFFFFF00FFFFFF00808080008000800000008000C0C0C000FFFFFF0080008000FFFFFF00FFFFFF00FFFFFF00FFFFFF00C0C0C0000000000000000000FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00FFFFFF00C0C0C000FFFFFF00FFFFFF00C0C0C000000000000000000000808000000000000000000000FFFF00FFFFFF0000FFFF00FFFFFF0000FFFF00FFFFFF000000000000000000008080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080008000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000008000FFFFFF00FFFFFF00FFFFFF00FFFFFF00C0C0C00000000000000000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000000000000000000000000000FFFFFF0000FFFF00FFFFFF0000FFFF00FFFFFF0000FFFF00FFFFFF0000FFFF00FFFFFF0000FFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800080008000000080008000800000008000800080000000800080008000000080008000800000808000008080000080800000808000C0C0C00000000000000000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000800000008000000080000000000000000000000000000000FFFFFF00FFFFFF0000FFFF00FFFFFF0000FFFF00FFFFFF0000FFFF00FFFFFF00FFFFFF00FFFFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080800000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000FFFF0000808000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000808000008080000080800000808000008080000080800000808000008080000080800000808000008080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000C0C0C000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000000000000FFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008080800080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000000000000000000000000000C0C0C000C0C0C000000000000000000000000000C0C0C000C0C0C000808080000000000000000000C0C0C000C0C0C000C0C0C000C0C0C000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000FF000000FF000000FF0000000000FFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080808000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C00080808000FFFFFF00FFFFFF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000000000000000000000000000000080808000C0C0C000000000008080800000000000000000000000000080808000C0C0C000000000008080800000000000C0C0C000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000FF000000FF000000FF0000000000FFFFFF00000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000080808000C0C0C000C0C0C000C0C0C0000000FF0080808000FFFFFF00FFFFFF00FFFFFF000080000000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000008080800000000000C0C0C0000000000080808000C0C0C0000000000080808000C0C0C00000000000808080008080800000000000C0C0C00000000000C0C0C00000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000FF000000FF000000FF0000000000FFFFFF00000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000080808000C0C0C000C0C0C000C0C0C000C0C0C00080808000FFFFFF00FFFFFF00FFFFFF00008000000080000000800000FFFFFF00FFFFFF00FFFFFF000000000000000000C0C0C000C0C0C0008080800000000000000000008080800000000000000000008080800000000000808080000000000000000000C0C0C000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000000000000FFFFFF00000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000080808000C0C0C000C0C0C000C0C0C000C0C0C00080808000FFFFFF00FFFFFF00FFFFFF0000800000008000000080000000800000FFFFFF00FFFFFF0000000000000000008080800000000000000000008080800000000000808080000000000000000000C0C0C000000000008080800000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000080808000C0C0C000C0C0C000C0C0C000C0C0C00080808000FFFFFF00FFFFFF00FFFFFF00008000000080000000800000FFFFFF00FFFFFF00FFFFFF0000000000000000000000000000000000808080000000000000000000808080000000000000000000C0C0C00000000000808080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000FFFFFF00FFFFFF00FFFFFF00000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF0080808000FFFFFF00FFFFFF00FFFFFF000080000000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000C0C0C000000000008080800080808000808080008080800000000000C0C0C000C0C0C0000000000080808000808080000000000000000000000000000000000000000000FFFF0000FFFF0000FFFF000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00000000000000000000000000FFFFFF00FFFFFF00000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000080808000808080008080800080808000808080008080800080808000FFFFFF00FFFFFF0000800000FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000000000000000000000000000000000000000C0C0C000C0C0C00000000000000000000000000000000000C0C0C000808080000000000000000000000000000000000000000000FFFF0000FFFF0000FFFF00000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000000000000FFFFFF00000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000080808000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C0008080800080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000000000000000000000000000000000000000000000000000C0C0C00080808000C0C0C000C0C0C000C0C0C0000000000080808000000000000000000000000000000000000000000000000000FFFF0000FFFF0000FFFF000000000000FFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00808080008080800080808000808080008080800080808000000000000000000000000000000000000000000000000000000000008080800080808000000080008080800080808000C0C0C00000008000C0C0C000000000000000000000000000000000000000000000000000000000000000000000000000FFFF00000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000000000000000000000000000000000000000000000008080800080808000808080008080800080808000808080008080800000000000808080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000C0C0C0008080800000008000000080008080800000008000000080008080800000000000000000000000000000000000000000000000000000000000FFFF0000FFFF0000FFFF000000000000FFFF0000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000FFFFFF00000000000000000000000000000000000000000080808000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C0008080800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000C0C0C0000000800000008000808080000000800000008000808080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFF0000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000000000000000000000000000080808000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00808080008080800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000C0C0C000C0C0C000C0C0C000000080000000800080808000000000000000000000000000000000000000000000000000000000000000000000000000FFFF0000FFFF0000FFFF0000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080808000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C000C0C0C00080808000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008080800080808000C0C0C00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008080800080808000808080008080800080808000808080008080800080808000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000840000008400000084000000840000008400000084000000840000008400000084000000840000008400000084000000840000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000FFFF0000FFFF0000FFFF000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000000000000000000000000000000000000080800000808000000000000000000000000000000000000000000000000000000000000000000000000000008080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000FFFF0000FFFF0000FFFF0000000000000000000000000000FFFFFF00FFFFFF000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000000000000000000000000000008080000080800000000000000000000000000000000000000000000000000000000000000000000000000000808000000000000000000000000000FFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF0000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000FFFF0000FFFF0000FFFF000000000000FFFF000000000000FFFFFF00FFFFFF000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000000000000000000000000000008080000080800000000000000000000000000000000000000000000000000000000000000000000000000000808000000000000000000000000000FFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000000000000FFFF00000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000000000000000000000000000000000000080800000808000000000000000000000000000000000000000000000000000000000000000000000000000008080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000FFFF0000FFFF0000FFFF000000000000FFFF0000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00840000000000000000000000000000000000000000808000008080000080800000808000008080000080800000808000008080000080800000808000008080000080800000000000000000000000000000000000FFFFFF00000000000000000000000000000000000000000000000000FFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000000000000FFFF0000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00840000000000000000000000000000000000000000808000008080000000000000000000000000000000000000000000000000000000000000000000008080000080800000000000000000000000000000000000FFFFFF00000000000000000000000000000000000000000000000000FFFFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000FFFF0000FFFF0000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00840000000000000000000000000000000000000000808000000000000000000000000000000000000000000000000000000000000000000000000000000000000080800000000000000000000000000000000000FFFFFF00000000000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF0000000000000000000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000000000000000000000000000008080000000000000000000000000000000000000000000000000000000000000000000000000000000000000808000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000000000000FFFFFF000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000000000000000000000000000000000000080800000000000000000000000000000000000000000000000000000000000000000000000000000000000008080000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000840000008400000084000000840000008400000084000000840000008400000084000000840000008400000084000000840000000000000000000000000000000000000000808000000000000000000000000000000000000000000000000000000000000000000000000000000000000080800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FF000000FF000000FF00000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00000000008400000084000000840000008400000084000000FFFFFF008400000084000000840000008400000084000000FFFFFF00840000000000000000000000000000000000000000808000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FF000000FF000000FF00000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00000000008400000084000000840000008400000084000000840000008400000084000000840000008400000084000000840000008400000000000000000000000000000000000000008080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000000000000FFFFFF00000000000000000000000000000000000000000000000000000000000000FF000000FF000000FF00000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008400000084000000840000008400000084000000840000008400000084000000840000008400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008400000084000000840000008400000084000000840000008400000084000000840000008400000000000000000000000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000000000008400000084000000840000008400000084000000840000008400000084000000840000008400000084000000840000008400000000000000000000000000000000000000000000000000000000000000000000000000000084000000840000008400000084000000840000008400000084000000840000008400000000000000000000000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000000000000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00840000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000000000000000000000000000000000000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000848484000084840084848400008484008484840084000000FFFFFF00000000000000000000000000000000000000000000000000FFFFFF008400000000000000000000000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00840000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000000000000000000000000000000000000000000000000000000000000000000084000000FFFFFF000000000000000000000000000000000000000000FFFFFF008400000000000000008484008484840000848400848484000084840084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000000000000000000000000000840000008400000084000000840000008400000084000000840000008400000084000000840000008400000084000000840000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000000000000000000000000000000000000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000848484000084840084848400008484008484840084000000FFFFFF00000000000000000000000000FFFFFF008400000084000000840000008400000000000000000000000000000084000000FFFFFF00FFFFFF008400000084000000840000008400000084000000840000008400000084000000FFFFFF0084000000000000008400000084000000840000008400000084000000840000008400000084000000840000008400000084000000840000008400000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF000000000000000000000000000000000000000000FFFFFF008400000000000000008484008484840000848400848484000084840084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF00840000000000000000000000000000000000000084000000FFFFFF00FFFFFF0084000000840000008400000084000000840000008400000084000000840000008400000084000000000000008400000084000000840000008400000084000000840000008400000084000000840000008400000084000000FFFFFF008400000000000000000000000000000000000000FFFFFF000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000848484000084840084848400008484008484840084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000084000000000000000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000000000000000000000000000000000008400000084000000840000008400000084000000840000008400000084000000840000008400000084000000840000008400000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF000000000000000000FFFFFF008400000084000000840000008400000000000000008484008484840000848400848484000084840084000000840000008400000084000000840000008400000084000000000000000000000000000000000000008400000084000000840000008400000084000000840000008400000084000000840000008400000084000000840000000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000000000000000000000000000FFFFFF000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF008400000000000000000000008484840000848400848484000084840084848400008484008484840000848400848484000084840084848400008484000000000000000000000000000000000084000000FFFFFF008400000084000000840000008400000084000000840000008400000084000000FFFFFF00840000000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000840000000000000000000000000000000084840084848400000000000000000000000000000000000000000000000000000000000000000084848400848484000000000000000000000000000000000084000000FFFFFF00840000008400000084000000840000008400000084000000840000008400000084000000840000000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000000000000000000000000000FFFFFF000000000000000000FFFFFF0000000000840000008400000084000000840000008400000084000000000000000000000000000000000000008484840084848400000000000000000000000000000000000000000000000000000000000000000084848400008484000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00840000000000000000000000000000000000000000000000000000008400000084000000840000008400000084000000840000008400000084000000840000008400000084000000840000008400000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000FFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000084840084848400008484000000000000FFFF00000000000000000000FFFF000000000084848400008484008484840000000000000000000000000000000000840000008400000084000000840000008400000084000000840000008400000084000000840000000000000000000000000000000000000000000000000000008400000084000000840000008400000084000000840000008400000084000000840000008400000084000000FFFFFF008400000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFF0000FFFF000000000000000000000000000000000000000000000000000000000000000000000000008400000084000000840000008400000084000000840000008400000084000000FFFFFF008400000000000000000000000000000000000000000000000000000084000000840000008400000084000000840000008400000084000000840000008400000084000000840000008400000084000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000084000000840000008400000084000000840000008400000084000000840000008400000084000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008400000084000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C60000000000C6C6C60000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000000000000000000000000000000000000000000008400000000000000000000008400000000000000000000008400000084000000000000000000000000000000000000000000000000000000008484000084840000848400008484000084840000848400008484000084840000848400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000C6C6C600000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000080808000000000000000000000000000000000000000000000000000000000008400000000000000000000008400000000000000840000000000000000000000840000000000000000000000000000000000000000FFFF00000000000084840000848400008484000084840000848400008484000084840000848400008484000000000000000000000000000000000000000000C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C60000FFFF0000FFFF0000FFFF00C6C6C600C6C6C6000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000080808000C0C0C000C0C0C00080808000000000008080800000000000000000000000000000000000000000000000000084000000000000000000000084000000000000008400000000000000000000008400000000000000000000000000000000000000FFFFFF0000FFFF000000000000848400008484000084840000848400008484000084840000848400008484000084840000000000000000000000000000000000C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600848484008484840084848400C6C6C600C6C6C60000000000C6C6C600000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000080808000C0C0C000C0C0C000FFFF00008080800080808000000000000000000000000000000000000000000000000000000000000000000084000000840000008400000000000000840000000000000000000000840000000000000000000000000000000000000000FFFF00FFFFFF0000FFFF0000000000008484000084840000848400008484000084840000848400008484000084840000848400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000C6C6C600C6C6C6000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000C0C0C000C0C0C000C0C0C000C0C0C00080808000C0C0C0000000000000000000000000000000000000000000000000000000000000000000000000000000000084000000000000008400000084000000840000000000000000000000000000000000000000000000FFFFFF0000FFFF00FFFFFF0000FFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C600C6C6C60000000000C6C6C60000000000C6C6C6000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000C0C0C000FFFF0000C0C0C000C0C0C00080808000C0C0C000000000000000000000000000000000000000000000000000000000000000000000000000000000008400000000000000840000000000000000000000000000000000000000000000000000000000000000FFFF00FFFFFF0000FFFF00FFFFFF0000FFFF00FFFFFF0000FFFF00FFFFFF0000FFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000C6C6C60000000000C6C6C600000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000080808000FFFF0000FFFF0000C0C0C00080808000808080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF0000FFFF00FFFFFF0000FFFF00FFFFFF0000FFFF00FFFFFF0000FFFF00FFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000C6C6C60000000000C6C6C6000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000080808000C0C0C000C0C0C0008080800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFF00FFFFFF0000FFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000000000000FFFFFF00000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000C0C0C00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000424D3E000000000000003E0000002800000040000000500000000100010000000000800200000000000000000000000000000000000000000000FFFFFF00F001FFFFFFFF0000E000FFFFF03F0000C0000000C00F0000C0000000800700000000000080070000000000008007000000000000C00F00000000000080070000000000008007000000000000C00F00000000000080070000000000008007000000000000C00F000000000000C00F0000E0000000F03F0000F000FFFFFFFF00008000FFFFFF07FFDF8000FFFF80019C01C000C00700018400E000C00700000000F000C00700008185F800C00700008187FC00C007000089870600C007000000070700C007000180070180C0070001F05F0180C0070007F00F0060C007003FF00FC060C00F003FF80FC060C01F003FFC0FF044C03F003FFF8FF07EFFFF807FFFFFFFFFFFFFFFFF80008003C001FFFF80008003803107C1C0008003803107C1E0008003803107C1F000800380010101F800800380010001FC00800380010201FE0080038FF10201FF0080038FF18003FF8080038FF1C107838080038FF1C10783E080038FF1E38F83E080038FF5E38F83E0FFFF8001E38F83C4FFFFFFFFFFFFFFFEFFFFFFFFFC00FFFFFFFFFC00FC008003FE008000FC008003FE000000FC008003FE000000E000800380000000E000800380000001E000800380000003E007800380000003800780038001000380078003800300038007800380070FC3801F8003807F0003801F800380FF8007801F800381FFF87F801FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFC007000CF9FF001F80030008F6CF000F00010001F6B7000700010003F6B7000300010003F8B7000100000003FE8F000000000003FE3F001F80000003FF7F001FC0000007FE3F001FE001000FFEBF8FF1E007000FFC9FFFF9F007000FFDDFFF75F003001FFDDFFF8FF803003FFDDFFFFFFFFF007FFFFF00000000000000000000000000000000000000000000</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">210</prop>
+          <prop prop-type="Type">TImageList</prop>
+          <prop prop-type="Localize">0</prop>
+          <prop prop-type="Open">{</prop>
+          <prop prop-type="Close">}</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.Images" resname="O:DLG_Main.O:MainMenu1.Images">
+        <source>ilMenu</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">211</prop>
+          <prop prop-type="Type">TMainMenu</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.Left" resname="O:DLG_Main.O:MainMenu1.Left">
+        <source>52</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">212</prop>
+          <prop prop-type="Type">TMainMenu</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.Top" resname="O:DLG_Main.O:MainMenu1.Top">
+        <source>52</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">213</prop>
+          <prop prop-type="Type">TMainMenu</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.Caption" resname="O:DLG_Main.O:MainMenu1.O:Datei1.Caption">
+        <source>'&amp;Datei'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">214</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'&amp;File'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:Neu1.Action" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:Neu1.Action">
+        <source>DateiNeu1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">215</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:ffnen1.Action" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:ffnen1.Action">
+        <source>FileOpen1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">216</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:MySQLDatenbankffnen1.Action" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:MySQLDatenbankffnen1.Action">
+        <source>FileOpenMySqlDb</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">217</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:SQLServerDatenbankffnen1.Action" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:SQLServerDatenbankffnen1.Action">
+        <source>FileOpenSqlServerDb</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">218</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:SQLServerDatenbankffnen1.Caption" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:SQLServerDatenbankffnen1.Caption">
+        <source>'SQL-Server-Datenbank öffnen...'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">219</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:N6.Caption" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:N6.Caption">
+        <source>'-'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">220</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:Speichern1.Caption" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:Speichern1.Caption">
+        <source>'Speichern'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">221</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Save'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:Speichern1.Enabled" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:Speichern1.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">222</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:Speichern1.Hint" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:Speichern1.Hint">
+        <source>'Änderungen speichern'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">223</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Save changes'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:Speichern1.ImageIndex" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:Speichern1.ImageIndex">
+        <source>9</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">224</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:Speichern1.Visible" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:Speichern1.Visible">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">225</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:N2.Caption" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:N2.Caption">
+        <source>'-'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">226</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:N2.Visible" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:N2.Visible">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">227</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:Druckereinstellungen1.Action" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:Druckereinstellungen1.Action">
+        <source>FilePrintSetup1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">228</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:Druckereinstellungen1.Visible" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:Druckereinstellungen1.Visible">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">229</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:Seitenansicht1.Action" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:Seitenansicht1.Action">
+        <source>DateiSeitenansicht1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">230</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:Drucken1.Action" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:Drucken1.Action">
+        <source>DateiDrucken1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">231</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:N3.Caption" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:N3.Caption">
+        <source>'-'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">232</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:Beenden2.Action" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:Beenden2.Action">
+        <source>Beenden1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">233</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.Caption" resname="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.Caption">
+        <source>'&amp;Bearbeiten'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">234</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.O:Ausschneiden1.Action" resname="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.O:Ausschneiden1.Action">
+        <source>EditCut1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">235</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.O:Kopieren1.Action" resname="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.O:Kopieren1.Action">
+        <source>EditCopy1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">236</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.O:Einfgen1.Action" resname="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.O:Einfgen1.Action">
+        <source>EditPaste1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433441435</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">237</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.O:N4.Caption" resname="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.O:N4.Caption">
+        <source>'-'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">238</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.O:Suchen1.Action" resname="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.O:Suchen1.Action">
+        <source>BearbeitenSuchen1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">239</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.O:Weitersuchen1.Action" resname="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.O:Weitersuchen1.Action">
+        <source>BearbeitenWeitersuchen1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">240</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Extras1.Caption" resname="O:DLG_Main.O:MainMenu1.O:Extras1.Caption">
+        <source>'&amp;Extras'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">241</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Extras1.O:Export1.Action" resname="O:DLG_Main.O:MainMenu1.O:Extras1.O:Export1.Action">
+        <source>ExtrasExport1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">242</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Extras1.O:Import1.Action" resname="O:DLG_Main.O:MainMenu1.O:Extras1.O:Import1.Action">
+        <source>ExtrasImport1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">243</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Extras1.O:N5.Caption" resname="O:DLG_Main.O:MainMenu1.O:Extras1.O:N5.Caption">
+        <source>'-'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">244</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Extras1.O:Optionen1.Action" resname="O:DLG_Main.O:MainMenu1.O:Extras1.O:Optionen1.Action">
+        <source>ExtrasOptionen1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">245</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.Caption" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.Caption">
+        <source>'&amp;Fenster'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">246</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'&amp;Window'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.OnClick" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.OnClick">
+        <source>Fenster1Click</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">247</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:berlappend1.Action" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:berlappend1.Action">
+        <source>WindowCascade1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">248</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Untereinander1.Action" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Untereinander1.Action">
+        <source>WindowTileHorizontal1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">249</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Nebeneinander1.Action" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Nebeneinander1.Action">
+        <source>WindowTileVertical1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">250</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:N1.Caption" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:N1.Caption">
+        <source>'-'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">251</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Anordnen1.Action" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Anordnen1.Action">
+        <source>WindowArrange1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">252</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Alleverkleinern1.Action" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Alleverkleinern1.Action">
+        <source>WindowMinimizeAll1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">253</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:N7.Caption" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:N7.Caption">
+        <source>'-'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">254</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Datenbankfenster1.Caption" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Datenbankfenster1.Caption">
+        <source>'&amp;Datenbankfenster'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">255</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'&amp;Database windows'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Datenbankfenster1.ImageIndex" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Datenbankfenster1.ImageIndex">
+        <source>18</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">256</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:N8.Caption" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:N8.Caption">
+        <source>'-'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">257</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Tabellenfenster1.Caption" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Tabellenfenster1.Caption">
+        <source>'&amp;Tabellen-Fenster'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">258</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'&amp;Table windows'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Tabellenfenster1.ImageIndex" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Tabellenfenster1.ImageIndex">
+        <source>17</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">259</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:AlleTabellenschlieen1.Caption" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:AlleTabellenschlieen1.Caption">
+        <source>'Alle Tabellen-Fenster schließen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">260</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Close all table windows'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:AlleTabellenschlieen1.Enabled" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:AlleTabellenschlieen1.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">261</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:AlleTabellenschlieen1.OnClick" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:AlleTabellenschlieen1.OnClick">
+        <source>AlleTabellenschlieen1Click</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">262</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:N9.Caption" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:N9.Caption">
+        <source>'-'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">263</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Abfragefenster1.Caption" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Abfragefenster1.Caption">
+        <source>'&amp;Abfrage-Fenster'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">264</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'&amp;Query windows'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Abfragefenster1.ImageIndex" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:Abfragefenster1.ImageIndex">
+        <source>16</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">265</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:AlleAbfragefensterschlieen1.Caption" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:AlleAbfragefensterschlieen1.Caption">
+        <source>'Alle Abfrage-Fenster schließen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">266</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Close all query windows'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:AlleAbfragefensterschlieen1.Enabled" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:AlleAbfragefensterschlieen1.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">267</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Fenster1.O:AlleAbfragefensterschlieen1.OnClick" resname="O:DLG_Main.O:MainMenu1.O:Fenster1.O:AlleAbfragefensterschlieen1.OnClick">
+        <source>AlleAbfragefensterschlieen1Click</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">268</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Hilfe1.Caption" resname="O:DLG_Main.O:MainMenu1.O:Hilfe1.Caption">
+        <source>'&amp;?'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">269</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Hilfe1.O:Updates1.Caption" resname="O:DLG_Main.O:MainMenu1.O:Hilfe1.O:Updates1.Caption">
+        <source>'Nach Updates suchen'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">1</prop>
+          <prop prop-type="Order">270</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+        <target>'Search for updates'</target>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Hilfe1.O:Updates1.OnClick" resname="O:DLG_Main.O:MainMenu1.O:Hilfe1.O:Updates1.OnClick">
+        <source>Updates1Click</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">271</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Hilfe1.O:N10.Caption" resname="O:DLG_Main.O:MainMenu1.O:Hilfe1.O:N10.Caption">
+        <source>'-'</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">272</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:MainMenu1.O:Hilfe1.O:Info1.Action" resname="O:DLG_Main.O:MainMenu1.O:Hilfe1.O:Info1.Action">
+        <source>HilfeInfo1</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">273</prop>
+          <prop prop-type="Type">TMenuItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:System.OnExecuteMacro" resname="O:DLG_Main.O:System.OnExecuteMacro">
+        <source>SystemExecuteMacro</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">274</prop>
+          <prop prop-type="Type">TDdeServerConv</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:System.Left" resname="O:DLG_Main.O:System.Left">
+        <source>68</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">275</prop>
+          <prop prop-type="Type">TDdeServerConv</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:System.Top" resname="O:DLG_Main.O:System.Top">
+        <source>176</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">276</prop>
+          <prop prop-type="Type">TDdeServerConv</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:DdeServerItem1.ServerConv" resname="O:DLG_Main.O:DdeServerItem1.ServerConv">
+        <source>System</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">277</prop>
+          <prop prop-type="Type">TDdeServerItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:DdeServerItem1.Left" resname="O:DLG_Main.O:DdeServerItem1.Left">
+        <source>232</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">278</prop>
+          <prop prop-type="Type">TDdeServerItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:DdeServerItem1.Top" resname="O:DLG_Main.O:DdeServerItem1.Top">
+        <source>184</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">279</prop>
+          <prop prop-type="Type">TDdeServerItem</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:StartUpTimer.Enabled" resname="O:DLG_Main.O:StartUpTimer.Enabled">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">280</prop>
+          <prop prop-type="Type">TTimer</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:StartUpTimer.Interval" resname="O:DLG_Main.O:StartUpTimer.Interval">
+        <source>100</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">281</prop>
+          <prop prop-type="Type">TTimer</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:StartUpTimer.OnTimer" resname="O:DLG_Main.O:StartUpTimer.OnTimer">
+        <source>StartUpTimerTimer</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">282</prop>
+          <prop prop-type="Type">TTimer</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:StartUpTimer.Left" resname="O:DLG_Main.O:StartUpTimer.Left">
+        <source>408</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">283</prop>
+          <prop prop-type="Type">TTimer</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_Main.O:StartUpTimer.Top" resname="O:DLG_Main.O:StartUpTimer.Top">
+        <source>72</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45532.6433443171</prop>
+          <prop prop-type="Status">0</prop>
+          <prop prop-type="Order">284</prop>
+          <prop prop-type="Type">TTimer</prop>
+          <prop prop-type="Localize">1</prop>
+        </prop-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -1,0 +1,48 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{FB8081CC-BD99-49E8-8C27-9F526CF815E1}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="CORAplus\DBTool32.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="CORAplus\DBTool64.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="DBTool32">
+        <MSBuild Projects="CORAplus\DBTool32.dproj"/>
+    </Target>
+    <Target Name="DBTool32:Clean">
+        <MSBuild Projects="CORAplus\DBTool32.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DBTool32:Make">
+        <MSBuild Projects="CORAplus\DBTool32.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="DBTool64">
+        <MSBuild Projects="CORAplus\DBTool64.dproj"/>
+    </Target>
+    <Target Name="DBTool64:Clean">
+        <MSBuild Projects="CORAplus\DBTool64.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="DBTool64:Make">
+        <MSBuild Projects="CORAplus\DBTool64.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="DBTool32;DBTool64"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="DBTool32:Clean;DBTool64:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="DBTool32:Make;DBTool64:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

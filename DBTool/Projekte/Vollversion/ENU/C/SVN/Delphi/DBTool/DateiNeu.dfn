@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE xliff PUBLIC "-//XLIFF//DTD XLIFF//EN" "http://www.oasis-open.org/committees/xliff/documents/xliff.dtd">
+<xliff version="1.0">
+  <file original="C:\SVN\Delphi\DBTool\DateiNeu.dfm" source-language="de-DE" target-language="en-US" datatype="delphiform" tool="ETM v10.0" ts="C:\SVN\Delphi\DBTool\DateiNeu.dfm">
+    <header>
+      <prop-group name="ITEHeaderProp">
+        <prop prop-type="Version">9.0</prop>
+        <prop prop-type="SelfDateTime">45532.6433101852</prop>
+        <prop prop-type="OrigDateTime">45531.5871296296</prop>
+        <prop prop-type="XlatDateTime">45531.5871296296</prop>
+        <prop prop-type="Translated">0</prop>
+        <prop prop-type="UnTranslated">93</prop>
+      </prop-group>
+    </header>
+    <body>
+      <trans-unit id="O:DLG_DateiNeu.Left" resname="O:DLG_DateiNeu.Left">
+        <source>279</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">0</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.Top" resname="O:DLG_DateiNeu.Top">
+        <source>107</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">1</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.BorderStyle" resname="O:DLG_DateiNeu.BorderStyle">
+        <source>bsDialog</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">2</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.Caption" resname="O:DLG_DateiNeu.Caption">
+        <source>'Neue Datenbank'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">3</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.ClientHeight" resname="O:DLG_DateiNeu.ClientHeight">
+        <source>151</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">4</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.ClientWidth" resname="O:DLG_DateiNeu.ClientWidth">
+        <source>426</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">5</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.Color" resname="O:DLG_DateiNeu.Color">
+        <source>clBtnFace</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">6</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.Font.Charset" resname="O:DLG_DateiNeu.Font.Charset">
+        <source>ANSI_CHARSET</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">7</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.Font.Color" resname="O:DLG_DateiNeu.Font.Color">
+        <source>clWindowText</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">8</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.Font.Height" resname="O:DLG_DateiNeu.Font.Height">
+        <source>-11</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">9</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.Font.Name" resname="O:DLG_DateiNeu.Font.Name">
+        <source>'Tahoma'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">10</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.Font.Style" resname="O:DLG_DateiNeu.Font.Style">
+        <source>[]</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">11</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.KeyPreview" resname="O:DLG_DateiNeu.KeyPreview">
+        <source>True</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">12</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.Position" resname="O:DLG_DateiNeu.Position">
+        <source>poScreenCenter</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">13</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.OnKeyDown" resname="O:DLG_DateiNeu.OnKeyDown">
+        <source>FormKeyDown</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">14</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.OnShow" resname="O:DLG_DateiNeu.OnShow">
+        <source>FormShow</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">15</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.TextHeight" resname="O:DLG_DateiNeu.TextHeight">
+        <source>13</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">16</prop><prop prop-type="Type">TDLG_DateiNeu</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:lDateiname.Left" resname="O:DLG_DateiNeu.O:lDateiname.Left">
+        <source>136</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">17</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:lDateiname.Top" resname="O:DLG_DateiNeu.O:lDateiname.Top">
+        <source>12</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">18</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:lDateiname.Width" resname="O:DLG_DateiNeu.O:lDateiname.Width">
+        <source>55</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">19</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:lDateiname.Height" resname="O:DLG_DateiNeu.O:lDateiname.Height">
+        <source>13</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">20</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:lDateiname.Caption" resname="O:DLG_DateiNeu.O:lDateiname.Caption">
+        <source>'Dateiname:'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">21</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:btnDatei.Left" resname="O:DLG_DateiNeu.O:btnDatei.Left">
+        <source>392</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">22</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:btnDatei.Top" resname="O:DLG_DateiNeu.O:btnDatei.Top">
+        <source>28</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">23</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:btnDatei.Width" resname="O:DLG_DateiNeu.O:btnDatei.Width">
+        <source>21</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">24</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:btnDatei.Height" resname="O:DLG_DateiNeu.O:btnDatei.Height">
+        <source>21</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">25</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:btnDatei.Caption" resname="O:DLG_DateiNeu.O:btnDatei.Caption">
+        <source>'...'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">26</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:btnDatei.Font.Charset" resname="O:DLG_DateiNeu.O:btnDatei.Font.Charset">
+        <source>ANSI_CHARSET</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">27</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:btnDatei.Font.Color" resname="O:DLG_DateiNeu.O:btnDatei.Font.Color">
+        <source>clBlack</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">28</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:btnDatei.Font.Height" resname="O:DLG_DateiNeu.O:btnDatei.Font.Height">
+        <source>-11</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">29</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:btnDatei.Font.Name" resname="O:DLG_DateiNeu.O:btnDatei.Font.Name">
+        <source>'Tahoma'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">30</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:btnDatei.Font.Style" resname="O:DLG_DateiNeu.O:btnDatei.Font.Style">
+        <source>[]</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">31</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:btnDatei.ParentFont" resname="O:DLG_DateiNeu.O:btnDatei.ParentFont">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">32</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:btnDatei.OnClick" resname="O:DLG_DateiNeu.O:btnDatei.OnClick">
+        <source>btnDateiClick</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">33</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:lServer.Left" resname="O:DLG_DateiNeu.O:lServer.Left">
+        <source>136</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">34</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:lServer.Top" resname="O:DLG_DateiNeu.O:lServer.Top">
+        <source>60</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">35</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:lServer.Width" resname="O:DLG_DateiNeu.O:lServer.Width">
+        <source>36</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">36</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:lServer.Height" resname="O:DLG_DateiNeu.O:lServer.Height">
+        <source>13</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">37</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:lServer.Caption" resname="O:DLG_DateiNeu.O:lServer.Caption">
+        <source>'Server:'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">38</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:rgTyp.Left" resname="O:DLG_DateiNeu.O:rgTyp.Left">
+        <source>8</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">39</prop><prop prop-type="Type">TRadioGroup</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:rgTyp.Top" resname="O:DLG_DateiNeu.O:rgTyp.Top">
+        <source>8</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">40</prop><prop prop-type="Type">TRadioGroup</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:rgTyp.Width" resname="O:DLG_DateiNeu.O:rgTyp.Width">
+        <source>113</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">41</prop><prop prop-type="Type">TRadioGroup</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:rgTyp.Height" resname="O:DLG_DateiNeu.O:rgTyp.Height">
+        <source>133</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">42</prop><prop prop-type="Type">TRadioGroup</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:rgTyp.Caption" resname="O:DLG_DateiNeu.O:rgTyp.Caption">
+        <source>'Datenbanktyp'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">43</prop><prop prop-type="Type">TRadioGroup</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:rgTyp.Items.Strings[0]" resname="O:DLG_DateiNeu.O:rgTyp.Items.Strings[0]">
+        <source>'InterBase'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">44</prop><prop prop-type="Type">TRadioGroup</prop><prop prop-type="Localize">1</prop><prop prop-type="Open">(</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:rgTyp.Items.Strings[1]" resname="O:DLG_DateiNeu.O:rgTyp.Items.Strings[1]">
+        <source>'Jet / Access'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">45</prop><prop prop-type="Type">TRadioGroup</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:rgTyp.Items.Strings[2]" resname="O:DLG_DateiNeu.O:rgTyp.Items.Strings[2]">
+        <source>'MySQL (ODBC)'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">46</prop><prop prop-type="Type">TRadioGroup</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:rgTyp.Items.Strings[3]" resname="O:DLG_DateiNeu.O:rgTyp.Items.Strings[3]">
+        <source>'SQL-Server'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">47</prop><prop prop-type="Type">TRadioGroup</prop><prop prop-type="Localize">1</prop><prop prop-type="Close">)</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:rgTyp.TabOrder" resname="O:DLG_DateiNeu.O:rgTyp.TabOrder">
+        <source>0</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">48</prop><prop prop-type="Type">TRadioGroup</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:rgTyp.OnClick" resname="O:DLG_DateiNeu.O:rgTyp.OnClick">
+        <source>rgTypClick</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">49</prop><prop prop-type="Type">TRadioGroup</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:eDateiname.Left" resname="O:DLG_DateiNeu.O:eDateiname.Left">
+        <source>136</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">50</prop><prop prop-type="Type">TEdit</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:eDateiname.Top" resname="O:DLG_DateiNeu.O:eDateiname.Top">
+        <source>28</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">51</prop><prop prop-type="Type">TEdit</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:eDateiname.Width" resname="O:DLG_DateiNeu.O:eDateiname.Width">
+        <source>257</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">52</prop><prop prop-type="Type">TEdit</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:eDateiname.Height" resname="O:DLG_DateiNeu.O:eDateiname.Height">
+        <source>21</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">53</prop><prop prop-type="Type">TEdit</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:eDateiname.TabOrder" resname="O:DLG_DateiNeu.O:eDateiname.TabOrder">
+        <source>1</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">54</prop><prop prop-type="Type">TEdit</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton1.Left" resname="O:DLG_DateiNeu.O:LbButton1.Left">
+        <source>206</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">55</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton1.Top" resname="O:DLG_DateiNeu.O:LbButton1.Top">
+        <source>116</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">56</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton1.Width" resname="O:DLG_DateiNeu.O:LbButton1.Width">
+        <source>100</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">57</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton1.Height" resname="O:DLG_DateiNeu.O:LbButton1.Height">
+        <source>23</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">58</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton1.Caption" resname="O:DLG_DateiNeu.O:LbButton1.Caption">
+        <source>'OK'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">59</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton1.Default" resname="O:DLG_DateiNeu.O:LbButton1.Default">
+        <source>True</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">60</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton1.Font.Charset" resname="O:DLG_DateiNeu.O:LbButton1.Font.Charset">
+        <source>ANSI_CHARSET</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">61</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton1.Font.Color" resname="O:DLG_DateiNeu.O:LbButton1.Font.Color">
+        <source>clBlack</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">62</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton1.Font.Height" resname="O:DLG_DateiNeu.O:LbButton1.Font.Height">
+        <source>-11</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">63</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton1.Font.Name" resname="O:DLG_DateiNeu.O:LbButton1.Font.Name">
+        <source>'Tahoma'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">64</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton1.Font.Style" resname="O:DLG_DateiNeu.O:LbButton1.Font.Style">
+        <source>[]</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">65</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton1.ParentFont" resname="O:DLG_DateiNeu.O:LbButton1.ParentFont">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">66</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton1.TabOrder" resname="O:DLG_DateiNeu.O:LbButton1.TabOrder">
+        <source>2</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">67</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton1.OnClick" resname="O:DLG_DateiNeu.O:LbButton1.OnClick">
+        <source>LbButton1Click</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">68</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton2.Left" resname="O:DLG_DateiNeu.O:LbButton2.Left">
+        <source>313</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">69</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton2.Top" resname="O:DLG_DateiNeu.O:LbButton2.Top">
+        <source>116</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">70</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton2.Width" resname="O:DLG_DateiNeu.O:LbButton2.Width">
+        <source>100</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">71</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton2.Height" resname="O:DLG_DateiNeu.O:LbButton2.Height">
+        <source>23</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">72</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton2.Cancel" resname="O:DLG_DateiNeu.O:LbButton2.Cancel">
+        <source>True</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">73</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton2.Caption" resname="O:DLG_DateiNeu.O:LbButton2.Caption">
+        <source>'Abbrechen'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">74</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton2.Font.Charset" resname="O:DLG_DateiNeu.O:LbButton2.Font.Charset">
+        <source>ANSI_CHARSET</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">75</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton2.Font.Color" resname="O:DLG_DateiNeu.O:LbButton2.Font.Color">
+        <source>clBlack</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">76</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton2.Font.Height" resname="O:DLG_DateiNeu.O:LbButton2.Font.Height">
+        <source>-11</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">77</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton2.Font.Name" resname="O:DLG_DateiNeu.O:LbButton2.Font.Name">
+        <source>'Tahoma'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">78</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton2.Font.Style" resname="O:DLG_DateiNeu.O:LbButton2.Font.Style">
+        <source>[]</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">79</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton2.ModalResult" resname="O:DLG_DateiNeu.O:LbButton2.ModalResult">
+        <source>2</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">80</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton2.ParentFont" resname="O:DLG_DateiNeu.O:LbButton2.ParentFont">
+        <source>False</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">81</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:LbButton2.TabOrder" resname="O:DLG_DateiNeu.O:LbButton2.TabOrder">
+        <source>3</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">82</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:eServer.Left" resname="O:DLG_DateiNeu.O:eServer.Left">
+        <source>136</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">83</prop><prop prop-type="Type">TEdit</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:eServer.Top" resname="O:DLG_DateiNeu.O:eServer.Top">
+        <source>76</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">84</prop><prop prop-type="Type">TEdit</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:eServer.Width" resname="O:DLG_DateiNeu.O:eServer.Width">
+        <source>277</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">85</prop><prop prop-type="Type">TEdit</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:eServer.Height" resname="O:DLG_DateiNeu.O:eServer.Height">
+        <source>21</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">86</prop><prop prop-type="Type">TEdit</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:eServer.TabOrder" resname="O:DLG_DateiNeu.O:eServer.TabOrder">
+        <source>4</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">87</prop><prop prop-type="Type">TEdit</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:eServer.Text" resname="O:DLG_DateiNeu.O:eServer.Text">
+        <source>'localhost'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">88</prop><prop prop-type="Type">TEdit</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:SaveDialog1.Options" resname="O:DLG_DateiNeu.O:SaveDialog1.Options">
+        <source>[ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">89</prop><prop prop-type="Type">TSaveDialog</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:SaveDialog1.Title" resname="O:DLG_DateiNeu.O:SaveDialog1.Title">
+        <source>'Neue Datenbank'</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">90</prop><prop prop-type="Type">TSaveDialog</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:SaveDialog1.Left" resname="O:DLG_DateiNeu.O:SaveDialog1.Left">
+        <source>384</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">91</prop><prop prop-type="Type">TSaveDialog</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+      <trans-unit id="O:DLG_DateiNeu.O:SaveDialog1.Top" resname="O:DLG_DateiNeu.O:SaveDialog1.Top">
+        <source>56</source>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433310069</prop><prop prop-type="Status">0</prop><prop prop-type="Order">92</prop><prop prop-type="Type">TSaveDialog</prop><prop prop-type="Localize">1</prop></prop-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

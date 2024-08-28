@@ -1,0 +1,67 @@
+
+#define _X86_
+
+//
+// Include the necessary resources
+//
+#include <winver.h>
+#include <ntdef.h>
+
+#ifdef RC_INVOKED
+
+//
+// Set up debug information
+//
+#if DBG
+#define VER_DBG VS_FF_DEBUG
+#else
+#define VER_DBG 0
+#endif
+
+// ------- icon -------------------------------------------------------
+
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+MAINICON ICON "DBTool_Icon.ico"
+
+// ------- manifest -------------------------------------------------------
+
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+1 24 "DBTool.manifest"
+
+// ------- version info -------------------------------------------------------
+
+// Wir machen die Versionsinfo selbst, weil
+// Delphi 11 irgendwie einen Bug hat (die Versionsinfo wird nicht angezeigt und ist immer Englisch)
+// Außerdem ist der Jahreswechsel einfacher, wenn wir nicht uns durch die GUI klicken müssen...
+
+LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION             9,0,6,0
+PRODUCTVERSION          9,0,0,0
+FILEFLAGSMASK           VS_FFI_FILEFLAGSMASK
+FILEFLAGS               VER_DBG
+FILEOS                  VOS_NT_WINDOWS32
+FILETYPE                VFT_APP
+BEGIN
+	BLOCK "StringFileInfo"
+	BEGIN
+		BLOCK "040704E4"
+        BEGIN
+			VALUE "CompanyName",      "HickelSOFT Huth GmbH"
+			VALUE "FileDescription",  "CORAplus Datenbankoberfläche"
+			VALUE "FileVersion",      "9.0.6.0"
+			VALUE "InternalName",     "DBTool"
+			VALUE "LegalCopyright",   "(C) 1992-2024 HickelSOFT Huth GmbH"
+			VALUE "LegalTrademarks",  "CORAplus"
+			VALUE "OriginalFilename", "DBTool.exe"
+			VALUE "ProductName",      "CORAplus"
+			VALUE "ProductVersion",	  "2024 (9.0)"
+			VALUE "Comments",         ""
+        END
+	END
+	BLOCK "VarFileInfo"
+	BEGIN
+		VALUE "Translation", 0x0407, 0x04E4
+	END
+END
+#endif
