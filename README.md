@@ -1,6 +1,10 @@
 # Database Desktop "DBTool"
 
-## Features:
+## Download
+
+**[Setup for Win32 and Win64](https://github.com/hickelsoft/dbtool/raw/main/Distribution/DBTool_Setup.exe)** (approx. 10 MB)
+
+## Features
 
 - Easy to use
 
@@ -52,7 +56,7 @@
 
 - Mostly used/tested with Microsoft SQL Server. Other DBMS might not be as stable.
 
-- CANNOT be used to view or change databases of HickelSOFT CORAplus and HickelSOFT HS-Info 2.0
+- CANNOT be used to view or change databases of HickelSOFT CORA*plus* and HickelSOFT HS-Info 2.0
 
 ## Screenshots
 
