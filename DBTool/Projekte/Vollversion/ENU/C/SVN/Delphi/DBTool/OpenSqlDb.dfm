@@ -48,7 +48,7 @@ object DLG_OpenSqlDb: TDLG_OpenSqlDb
     Width = 80
     Height = 23
     Anchors = [akTop, akRight]
-    Caption = 'Aktualisieren'
+    Caption = 'Refresh'
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
     Font.Height = -11
@@ -82,7 +82,7 @@ object DLG_OpenSqlDb: TDLG_OpenSqlDb
     Height = 23
     Anchors = [akTop, akRight]
     Cancel = True
-    Caption = 'Abbrechen'
+    Caption = 'Cancel'
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
     Font.Height = -11

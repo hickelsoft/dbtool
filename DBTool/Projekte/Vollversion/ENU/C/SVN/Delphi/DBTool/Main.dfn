@@ -5,11 +5,11 @@
     <header>
       <prop-group name="ITEHeaderProp">
         <prop prop-type="Version">9.0</prop>
-        <prop prop-type="SelfDateTime">45532.7844907407</prop>
+        <prop prop-type="SelfDateTime">45533.4636342593</prop>
         <prop prop-type="OrigDateTime">45532.7087268519</prop>
         <prop prop-type="XlatDateTime">45531.6450462963</prop>
-        <prop prop-type="Translated">54</prop>
-        <prop prop-type="UnTranslated">230</prop>
+        <prop prop-type="Translated">68</prop>
+        <prop prop-type="UnTranslated">216</prop>
       </prop-group>
     </header>
     <body>
@@ -1346,11 +1346,12 @@
         <source>'Ausschneiden|Markiertes Objekt in die Zwischenablage verschieben'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433441435</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">131</prop>
           <prop prop-type="Type">TEditCut</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Cut|Copy contents into the clipboard and delete it'</target>
       </trans-unit>
       <trans-unit id="O:DLG_Main.O:alStandard.O:EditCut1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:EditCut1.ImageIndex">
         <source>3</source>
@@ -1408,11 +1409,12 @@
         <source>'Kopieren|Markiertes Objekt in die Zwischenablage kopieren'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433441435</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">137</prop>
           <prop prop-type="Type">TEditCopy</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Copy|Copy contents into the clipboard'</target>
       </trans-unit>
       <trans-unit id="O:DLG_Main.O:alStandard.O:EditCopy1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:EditCopy1.ImageIndex">
         <source>4</source>
@@ -1460,11 +1462,12 @@
         <source>'Einfügen|Inhalt der Zwischenablage einfügen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433441435</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">142</prop>
           <prop prop-type="Type">TEditPaste</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Paste|Paste contents from the clipboard'</target>
       </trans-unit>
       <trans-unit id="O:DLG_Main.O:alStandard.O:EditPaste1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:EditPaste1.ImageIndex">
         <source>5</source>
@@ -1501,11 +1504,12 @@
         <source>'Ü&amp;berlappend'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433441435</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">146</prop>
           <prop prop-type="Type">TWindowCascade</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Cascade'</target>
       </trans-unit>
       <trans-unit id="O:DLG_Main.O:alStandard.O:WindowCascade1.Enabled" resname="O:DLG_Main.O:alStandard.O:WindowCascade1.Enabled">
         <source>False</source>
@@ -1521,11 +1525,12 @@
         <source>'Überlappend'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433441435</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">148</prop>
           <prop prop-type="Type">TWindowCascade</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Cascade'</target>
       </trans-unit>
       <trans-unit id="O:DLG_Main.O:alStandard.O:WindowCascade1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:WindowCascade1.ImageIndex">
         <source>6</source>
@@ -1552,11 +1557,12 @@
         <source>'&amp;Untereinander'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433441435</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">151</prop>
           <prop prop-type="Type">TWindowTileHorizontal</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Tile'</target>
       </trans-unit>
       <trans-unit id="O:DLG_Main.O:alStandard.O:WindowTileHorizontal1.Enabled" resname="O:DLG_Main.O:alStandard.O:WindowTileHorizontal1.Enabled">
         <source>False</source>
@@ -1572,11 +1578,12 @@
         <source>'Untereinander'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433441435</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">153</prop>
           <prop prop-type="Type">TWindowTileHorizontal</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Tile'</target>
       </trans-unit>
       <trans-unit id="O:DLG_Main.O:alStandard.O:WindowTileHorizontal1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:WindowTileHorizontal1.ImageIndex">
         <source>7</source>
@@ -1603,11 +1610,12 @@
         <source>'&amp;Nebeneinander'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433441435</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">156</prop>
           <prop prop-type="Type">TWindowTileVertical</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Side-by-side'</target>
       </trans-unit>
       <trans-unit id="O:DLG_Main.O:alStandard.O:WindowTileVertical1.Enabled" resname="O:DLG_Main.O:alStandard.O:WindowTileVertical1.Enabled">
         <source>False</source>
@@ -1623,11 +1631,12 @@
         <source>'Nebeneinander'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433441435</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">158</prop>
           <prop prop-type="Type">TWindowTileVertical</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Side-by-side'</target>
       </trans-unit>
       <trans-unit id="O:DLG_Main.O:alStandard.O:WindowTileVertical1.ImageIndex" resname="O:DLG_Main.O:alStandard.O:WindowTileVertical1.ImageIndex">
         <source>8</source>
@@ -1654,11 +1663,12 @@
         <source>'&amp;Alle minimieren'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433441435</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">161</prop>
           <prop prop-type="Type">TWindowMinimizeAll</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Minimize all'</target>
       </trans-unit>
       <trans-unit id="O:DLG_Main.O:alStandard.O:WindowMinimizeAll1.Enabled" resname="O:DLG_Main.O:alStandard.O:WindowMinimizeAll1.Enabled">
         <source>False</source>
@@ -1674,11 +1684,12 @@
         <source>'Alle verkleinern'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433441435</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">163</prop>
           <prop prop-type="Type">TWindowMinimizeAll</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Minimize all'</target>
       </trans-unit>
       <trans-unit id="O:DLG_Main.O:alStandard.O:WindowArrange1.Category" resname="O:DLG_Main.O:alStandard.O:WindowArrange1.Category">
         <source>'Fenster'</source>
@@ -1695,11 +1706,12 @@
         <source>'Symbole an&amp;ordnen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433441435</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">165</prop>
           <prop prop-type="Type">TWindowArrange</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Arrange &amp;icons'</target>
       </trans-unit>
       <trans-unit id="O:DLG_Main.O:alStandard.O:WindowArrange1.Enabled" resname="O:DLG_Main.O:alStandard.O:WindowArrange1.Enabled">
         <source>False</source>
@@ -2254,11 +2266,12 @@
         <source>'SQL-Server-Datenbank öffnen...'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433441435</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">219</prop>
           <prop prop-type="Type">TMenuItem</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Open SQL Server database...'</target>
       </trans-unit>
       <trans-unit id="O:DLG_Main.O:MainMenu1.O:Datei1.O:N6.Caption" resname="O:DLG_Main.O:MainMenu1.O:Datei1.O:N6.Caption">
         <source>'-'</source>
@@ -2406,11 +2419,12 @@
         <source>'&amp;Bearbeiten'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433441435</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">234</prop>
           <prop prop-type="Type">TMenuItem</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Edit'</target>
       </trans-unit>
       <trans-unit id="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.O:Ausschneiden1.Action" resname="O:DLG_Main.O:MainMenu1.O:Bearbeiten1.O:Ausschneiden1.Action">
         <source>EditCut1</source>

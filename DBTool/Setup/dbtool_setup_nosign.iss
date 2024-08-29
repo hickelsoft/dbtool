@@ -27,6 +27,9 @@ LicenseFile=lizenzbedingungen.rtf
 OutputBaseFilename=DBTool_Setup
 ;OutputDir=.
 OutputDir=\\SHS\Hotline\DBTool
+PrivilegesRequiredOverridesAllowed=dialog
+UsePreviousPrivileges=no
+ShowLanguageDialog=no
 WizardStyle=modern
 WizardSmallImageFile=..\Private\Export Mini Graphic.bmp
 SetupIconFile=..\Private\DBTool.ico
@@ -36,7 +39,8 @@ ArchitecturesAllowed=x86 x64
 ArchitecturesInstallIn64BitMode=x64
 
 [Languages]
-Name: "german"; MessagesFile: "compiler:Languages\German.isl"
+Name: en; MessagesFile: "compiler:Default.isl"
+Name: de; MessagesFile: "compiler:Languages\German.isl"
 
 [Tasks]
 ; DM entfernt: Flags: unchecked

@@ -2,7 +2,7 @@ object DLG_IbDatabaseName: TDLG_IbDatabaseName
   Left = 284
   Top = 107
   BorderStyle = bsDialog
-  Caption = 'InterBase-Fehler'
+  Caption = 'InterBase Error'
   ClientHeight = 109
   ClientWidth = 464
   Color = clBtnFace
@@ -22,9 +22,9 @@ object DLG_IbDatabaseName: TDLG_IbDatabaseName
     Height = 41
     AutoSize = False
     Caption = 
-      'Die Datenbank konnte nicht ge'#246'ffnet werden. Vermutlich befindet ' +
-      'sie sich auf einem anderen Computer. Bitte geben Sie den Namen a' +
-      'n, mit dem die Datenbank ge'#246'ffnet werden soll:'
+      'The database could not be opened. It'#39's probably on another compu' +
+      'ter. Please enter the name with which the database should be ope' +
+      'ned:'
     WordWrap = True
   end
   object LbButton1: TButton
@@ -49,7 +49,7 @@ object DLG_IbDatabaseName: TDLG_IbDatabaseName
     Width = 100
     Height = 23
     Cancel = True
-    Caption = 'Abbrechen'
+    Caption = 'Cancel'
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
     Font.Height = -11

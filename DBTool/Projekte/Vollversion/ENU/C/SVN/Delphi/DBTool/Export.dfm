@@ -2,7 +2,7 @@ object DLG_Export: TDLG_Export
   Left = 300
   Top = 138
   BorderStyle = bsDialog
-  Caption = 'Datenexport-Assistent'
+  Caption = 'Data Export Assistant'
   ClientHeight = 373
   ClientWidth = 542
   Color = clBtnFace
@@ -31,7 +31,7 @@ object DLG_Export: TDLG_Export
     Top = 340
     Width = 75
     Height = 24
-    Caption = 'Fertigstellen'
+    Caption = 'Finish'
     Enabled = False
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
@@ -47,7 +47,7 @@ object DLG_Export: TDLG_Export
     Top = 340
     Width = 75
     Height = 24
-    Caption = 'Weiter >'
+    Caption = 'Next >'
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
     Font.Height = -11
@@ -62,7 +62,7 @@ object DLG_Export: TDLG_Export
     Top = 340
     Width = 75
     Height = 24
-    Caption = '< Zur'#252'ck'
+    Caption = '< Back'
     Enabled = False
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
@@ -78,7 +78,7 @@ object DLG_Export: TDLG_Export
     Top = 340
     Width = 75
     Height = 24
-    Caption = 'Abbrechen'
+    Caption = 'Cancel'
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
     Font.Height = -11
@@ -117,7 +117,7 @@ object DLG_Export: TDLG_Export
         Top = 16
         Width = 93
         Height = 19
-        Caption = 'Willkommen'
+        Caption = 'Welcome'
         Color = clWhite
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
@@ -134,8 +134,8 @@ object DLG_Export: TDLG_Export
         Height = 33
         AutoSize = False
         Caption = 
-          'Dieser Assistent unterst'#252'tzt Sie beim Exportieren der aktuellen ' +
-          'Tabelle in andere Dateiformate.'
+          'This wizard will help you export the current table to other file' +
+          ' formats.'
         Color = clWhite
         ParentColor = False
         WordWrap = True
@@ -146,7 +146,7 @@ object DLG_Export: TDLG_Export
         Width = 333
         Height = 33
         AutoSize = False
-        Caption = 'Klicken Sie auf "Weiter", um den Vorgang fortzusetzen.'
+        Caption = 'Click "Next" to continue the process.'
         Color = clWhite
         ParentColor = False
         WordWrap = True
@@ -5234,7 +5234,7 @@ object DLG_Export: TDLG_Export
         Top = 84
         Width = 181
         Height = 189
-        Caption = 'Dateiformat'
+        Caption = 'File Format'
         ItemIndex = 0
         Items.Strings = (
           'CSV'
@@ -5242,7 +5242,7 @@ object DLG_Export: TDLG_Export
           'HTML'
           'dBase'
           'Paradox'
-          'SQL-Dump (Experimentell)')
+          'SQL Dump (Experimental)')
         TabOrder = 0
         OnClick = rgDateiformateClick
       end
@@ -5269,7 +5269,7 @@ object DLG_Export: TDLG_Export
           Top = 12
           Width = 69
           Height = 13
-          Caption = 'Dateiformat'
+          Caption = 'File Format'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -5282,7 +5282,7 @@ object DLG_Export: TDLG_Export
           Top = 28
           Width = 296
           Height = 13
-          Caption = 'In welchem Dateiformat sollen die Daten gespeichert werden?'
+          Caption = 'In which file format should the data be saved?'
         end
         object Image1: TImage
           Left = 488
@@ -5522,7 +5522,7 @@ object DLG_Export: TDLG_Export
         Width = 145
         Height = 16
         AutoSize = False
-        Caption = 'Verf'#252'gbare Datenbankfelder:'
+        Caption = 'Available data fields:'
       end
       object DstLabel: TLabel
         Left = 288
@@ -5530,7 +5530,7 @@ object DLG_Export: TDLG_Export
         Width = 145
         Height = 16
         AutoSize = False
-        Caption = 'Zu exportierende Felder:'
+        Caption = 'Fields to be exported:'
       end
       object IncludeBtn: TSpeedButton
         Left = 240
@@ -5676,7 +5676,7 @@ object DLG_Export: TDLG_Export
           Top = 12
           Width = 136
           Height = 13
-          Caption = 'Zu exportierende Felder'
+          Caption = 'Fields to export'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -5689,7 +5689,7 @@ object DLG_Export: TDLG_Export
           Top = 28
           Width = 249
           Height = 13
-          Caption = 'Welche Felder der Tabelle sollen exportiert werden?'
+          Caption = 'Which fields of the table should be exported?'
         end
       end
     end
@@ -5728,14 +5728,14 @@ object DLG_Export: TDLG_Export
           Top = 28
           Width = 260
           Height = 13
-          Caption = 'Durch welches Zeichen soll der Text getrennt werden?'
+          Caption = 'Which character should the text be separated by?'
         end
         object Label6: TLabel
           Left = 20
           Top = 12
           Width = 76
           Height = 13
-          Caption = 'Trennzeichen'
+          Caption = 'Delimiter character'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -5749,14 +5749,14 @@ object DLG_Export: TDLG_Export
         Top = 84
         Width = 300
         Height = 177
-        Caption = 'Weitere Optionen'
+        Caption = 'More options'
         TabOrder = 1
         object Label4: TLabel
           Left = 20
           Top = 80
           Width = 118
           Height = 13
-          Caption = 'Texterkennungszeichen:'
+          Caption = 'Text identifier:'
         end
         object Label18: TLabel
           Left = 20
@@ -5765,9 +5765,9 @@ object DLG_Export: TDLG_Export
           Height = 57
           AutoSize = False
           Caption = 
-            'Falls in einem Eintrag das Trennzeichen selbst vorkommt, wird de' +
-            'r Eintrag in zwei Texterkennungszeichen eingebettet, um eine Unt' +
-            'erscheidung der einzelnen Eintr'#228'ge zu erm'#246'glichen.'
+            'If the separator itself occurs in an entry, the entry is embedde' +
+            'd in two text identifiers to enable the individual entries to be' +
+            ' distinguished.'
           WordWrap = True
         end
         object Bevel8: TBevel
@@ -5782,7 +5782,7 @@ object DLG_Export: TDLG_Export
           Top = 45
           Width = 187
           Height = 13
-          Caption = '(Ist f'#252'r einen Datenimport erforderlich)'
+          Caption = '(Is required for data import)'
         end
         object eTexterkennung: TEdit
           Left = 144
@@ -5798,7 +5798,7 @@ object DLG_Export: TDLG_Export
           Top = 28
           Width = 189
           Height = 17
-          Caption = 'Feldnamen in erste Zeile schreiben'
+          Caption = 'Write field names in the first line'
           Checked = True
           State = cbChecked
           TabOrder = 0
@@ -5809,15 +5809,15 @@ object DLG_Export: TDLG_Export
         Top = 84
         Width = 169
         Height = 177
-        Caption = 'Trennzeichen'
+        Caption = 'Delimiter'
         ItemIndex = 2
         Items.Strings = (
           'Tabulator'
-          'Komma'
-          'Semikolon'
-          'Leerzeichen'
-          'Schr'#228'gstrich'
-          'Anderes, und zwar:')
+          'Comma'
+          'Semicolon'
+          'Space'
+          'Slash'
+          'Other:')
         TabOrder = 0
       end
       object eTrennzeichen: TEdit
@@ -5841,7 +5841,7 @@ object DLG_Export: TDLG_Export
         Top = 108
         Width = 29
         Height = 13
-        Caption = 'Datei:'
+        Caption = 'File:'
       end
       object LbSpeedButton1: TSpeedButton
         Left = 432
@@ -5894,16 +5894,14 @@ object DLG_Export: TDLG_Export
           Top = 28
           Width = 376
           Height = 13
-          Caption = 
-            'Unter welchem Dateinamen sollen die exportierten Daten gespeiche' +
-            'rt werden?'
+          Caption = 'What file name should the exported data be saved under?'
         end
         object Label16: TLabel
           Left = 20
           Top = 12
           Width = 62
           Height = 13
-          Caption = 'Dateiname'
+          Caption = 'Filename'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -5975,7 +5973,7 @@ object DLG_Export: TDLG_Export
           Top = 12
           Width = 66
           Height = 13
-          Caption = 'Export l'#228'uft'
+          Caption = 'Export is running'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -5988,17 +5986,15 @@ object DLG_Export: TDLG_Export
           Top = 28
           Width = 351
           Height = 13
-          Caption = 
-            'Die Daten werden jetzt exportiert. Bitte haben Sie einen Moment ' +
-            'Geduld.'
+          Caption = 'The data will now be exported. Please wait...'
         end
       end
     end
   end
   object SaveDialog1: TSaveDialog
-    Filter = 'Alle Dateien|*.*'
+    Filter = 'All files|*.*'
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
-    Title = 'Dateiname w'#228'hlen'
+    Title = 'Choose file name'
     Left = 12
     Top = 340
   end

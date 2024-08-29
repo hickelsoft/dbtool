@@ -2,7 +2,7 @@ object DLG_Optionen: TDLG_Optionen
   Left = 287
   Top = 118
   BorderStyle = bsDialog
-  Caption = 'Optionen'
+  Caption = 'Options'
   ClientHeight = 378
   ClientWidth = 356
   Color = clBtnFace
@@ -21,15 +21,15 @@ object DLG_Optionen: TDLG_Optionen
     Top = 8
     Width = 237
     Height = 178
-    Caption = 'Als Standard-Anwendung einrichten'
+    Caption = 'Set as default application'
     TabOrder = 0
     object btnStandardDB: TSpeedButton
       Left = 16
       Top = 142
       Width = 205
       Height = 25
-      Hint = 'DBTool als Standard-Anwendung f'#252'r Datenbanken einrichten'
-      Caption = ' Paradox-Tabellen (*.db)'
+      Hint = 'Set up DBTool as the default application for databases'
+      Caption = ' Paradox tables (*.db)'
       Font.Charset = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -11
@@ -45,8 +45,8 @@ object DLG_Optionen: TDLG_Optionen
       Top = 86
       Width = 205
       Height = 25
-      Hint = 'DBTool als Standard-Anwendung f'#252'r Datenbanken einrichten'
-      Caption = ' dBase-Tabellen (*.dbf)'
+      Hint = 'Set up DBTool as the default application for databases'
+      Caption = ' dBase tables (*.dbf)'
       Font.Charset = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -11
@@ -62,8 +62,8 @@ object DLG_Optionen: TDLG_Optionen
       Top = 24
       Width = 205
       Height = 25
-      Hint = 'DBTool als Standard-Anwendung f'#252'r Datenbanken einrichten'
-      Caption = ' Access 97-Datenbanken (*.mdb)'
+      Hint = 'Set up DBTool as the default application for databases'
+      Caption = ' Access 97 databases (*.mdb)'
       Font.Charset = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -11
@@ -79,8 +79,8 @@ object DLG_Optionen: TDLG_Optionen
       Top = 114
       Width = 205
       Height = 25
-      Hint = 'DBTool als Standard-Anwendung f'#252'r Datenbanken einrichten'
-      Caption = ' InterBase-Datenbanken (*.gdb)'
+      Hint = 'Set up DBTool as the default application for databases'
+      Caption = ' InterBase databases (*.gdb)'
       Font.Charset = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -11
@@ -96,8 +96,8 @@ object DLG_Optionen: TDLG_Optionen
       Top = 55
       Width = 205
       Height = 25
-      Hint = 'DBTool als Standard-Anwendung f'#252'r Datenbanken einrichten'
-      Caption = ' Access-Datenbanken (*.accdb)'
+      Hint = 'Set up DBTool as the default application for databases'
+      Caption = ' Access databases (*.accdb)'
       Font.Charset = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -11
@@ -114,7 +114,7 @@ object DLG_Optionen: TDLG_Optionen
     Top = 192
     Width = 237
     Height = 169
-    Caption = 'Farben'
+    Caption = 'Colors'
     TabOrder = 1
     Visible = False
     object btnHintergrund: TSpeedButton
@@ -129,7 +129,7 @@ object DLG_Optionen: TDLG_Optionen
       Top = 24
       Width = 100
       Height = 13
-      Caption = 'Tabellenhintergrund:'
+      Caption = 'Table background:'
     end
     object btnText: TSpeedButton
       Left = 132
@@ -157,7 +157,7 @@ object DLG_Optionen: TDLG_Optionen
       Top = 108
       Width = 67
       Height = 13
-      Caption = 'Aktuelle Zeile:'
+      Caption = 'Current row:'
     end
     object btnFeld: TSpeedButton
       Left = 132
@@ -171,14 +171,14 @@ object DLG_Optionen: TDLG_Optionen
       Top = 136
       Width = 70
       Height = 13
-      Caption = 'Aktuelles Feld:'
+      Caption = 'Current field:'
     end
     object Label5: TLabel
       Left = 16
       Top = 52
       Width = 109
       Height = 13
-      Caption = 'Tabellenhintergrund 2:'
+      Caption = 'Table background 2:'
     end
     object btnZebra: TSpeedButton
       Left = 132
@@ -211,7 +211,7 @@ object DLG_Optionen: TDLG_Optionen
     Width = 90
     Height = 25
     Cancel = True
-    Caption = 'Abbrechen'
+    Caption = 'Cancel'
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
     Font.Height = -11

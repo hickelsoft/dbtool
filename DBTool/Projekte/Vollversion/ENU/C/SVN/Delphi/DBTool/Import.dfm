@@ -2,7 +2,7 @@ object DLG_Import: TDLG_Import
   Left = 279
   Top = 107
   BorderStyle = bsDialog
-  Caption = 'Datenimport-Assistent'
+  Caption = 'Data Import Assistant'
   ClientHeight = 373
   ClientWidth = 542
   Color = clBtnFace
@@ -30,7 +30,7 @@ object DLG_Import: TDLG_Import
     Top = 340
     Width = 75
     Height = 24
-    Caption = 'Fertigstellen'
+    Caption = 'Finish'
     Enabled = False
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
@@ -46,7 +46,7 @@ object DLG_Import: TDLG_Import
     Top = 340
     Width = 75
     Height = 24
-    Caption = 'Weiter >'
+    Caption = 'Next >'
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
     Font.Height = -11
@@ -61,7 +61,7 @@ object DLG_Import: TDLG_Import
     Top = 340
     Width = 75
     Height = 24
-    Caption = '< Zur'#252'ck'
+    Caption = '< Back'
     Enabled = False
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
@@ -77,7 +77,7 @@ object DLG_Import: TDLG_Import
     Top = 340
     Width = 75
     Height = 24
-    Caption = 'Abbrechen'
+    Caption = 'Cancel'
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
     Font.Height = -11
@@ -116,7 +116,7 @@ object DLG_Import: TDLG_Import
         Top = 16
         Width = 93
         Height = 19
-        Caption = 'Willkommen'
+        Caption = 'Welcome'
         Color = clWhite
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
@@ -133,8 +133,8 @@ object DLG_Import: TDLG_Import
         Height = 33
         AutoSize = False
         Caption = 
-          'Dieser Assistent unterst'#252'tzt Sie beim Importieren von Daten aus ' +
-          'Textdateien in die aktuelle Tabelle.'
+          'This wizard helps you import data from text files into the curre' +
+          'nt table.'
         Color = clWhite
         ParentColor = False
         WordWrap = True
@@ -145,7 +145,7 @@ object DLG_Import: TDLG_Import
         Width = 333
         Height = 33
         AutoSize = False
-        Caption = 'Klicken Sie auf "Weiter", um den Vorgang fortzusetzen.'
+        Caption = 'Click "Next" to continue the process.'
         Color = clWhite
         ParentColor = False
         WordWrap = True
@@ -5227,7 +5227,7 @@ object DLG_Import: TDLG_Import
         Top = 80
         Width = 52
         Height = 13
-        Caption = 'Quelldatei:'
+        Caption = 'Source File:'
       end
       object SpeedButton2: TSpeedButton
         Left = 424
@@ -5248,14 +5248,14 @@ object DLG_Import: TDLG_Import
         Top = 172
         Width = 95
         Height = 13
-        Caption = 'Vorschau der Datei:'
+        Caption = 'Preview of file:'
       end
       object Label5: TLabel
         Left = 24
         Top = 132
         Width = 58
         Height = 13
-        Caption = 'Textformat:'
+        Caption = 'Text format:'
       end
       object Panel2: TPanel
         Left = 0
@@ -5280,7 +5280,7 @@ object DLG_Import: TDLG_Import
           Top = 28
           Width = 243
           Height = 13
-          Caption = 'Welche Datei enth'#228'lt die zu importierenden Daten?'
+          Caption = 'Which file contains the data to be imported?'
         end
         object Image1: TImage
           Left = 488
@@ -5513,7 +5513,7 @@ object DLG_Import: TDLG_Import
           Top = 12
           Width = 57
           Height = 13
-          Caption = 'Quelldatei'
+          Caption = 'Source file'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -5571,7 +5571,7 @@ object DLG_Import: TDLG_Import
         Top = 172
         Width = 174
         Height = 13
-        Caption = 'Vorschau der zu importierten Daten:'
+        Caption = 'Preview of the data to be imported:'
       end
       object Panel4: TPanel
         Left = 0
@@ -5602,14 +5602,14 @@ object DLG_Import: TDLG_Import
           Top = 28
           Width = 231
           Height = 13
-          Caption = 'Durch welches Zeichen sind die Felder getrennt?'
+          Caption = 'What character separates the fields?'
         end
         object Label6: TLabel
           Left = 20
           Top = 12
           Width = 76
           Height = 13
-          Caption = 'Trennzeichen'
+          Caption = 'Delimiter character'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -5623,14 +5623,14 @@ object DLG_Import: TDLG_Import
         Top = 76
         Width = 208
         Height = 77
-        Caption = 'Weitere Optionen'
+        Caption = 'More options'
         TabOrder = 1
         object Label4: TLabel
           Left = 20
           Top = 24
           Width = 118
           Height = 13
-          Caption = 'Texterkennungszeichen:'
+          Caption = 'Text identifier:'
         end
         object eTexterkennung: TEdit
           Left = 144
@@ -5646,7 +5646,7 @@ object DLG_Import: TDLG_Import
           Top = 48
           Width = 177
           Height = 17
-          Caption = 'Feldnamen stehen in erster Zeile'
+          Caption = 'Field names in the first line'
           Checked = True
           State = cbChecked
           TabOrder = 1
@@ -5669,7 +5669,7 @@ object DLG_Import: TDLG_Import
         Top = 76
         Width = 269
         Height = 77
-        Caption = 'Trennzeichen'
+        Caption = 'Delimiter character'
         TabOrder = 0
         object rbTabStop: TRadioButton
           Left = 12
@@ -5686,7 +5686,7 @@ object DLG_Import: TDLG_Import
           Top = 24
           Width = 72
           Height = 17
-          Caption = 'Semikolon'
+          Caption = 'Semicolon'
           TabOrder = 1
           OnClick = TrennzeichenOptionCLick
         end
@@ -5696,7 +5696,7 @@ object DLG_Import: TDLG_Import
           Top = 24
           Width = 58
           Height = 17
-          Caption = 'Komma'
+          Caption = 'Comma'
           Checked = True
           TabOrder = 2
           TabStop = True
@@ -5708,7 +5708,7 @@ object DLG_Import: TDLG_Import
           Top = 44
           Width = 80
           Height = 17
-          Caption = 'Leerzeichen'
+          Caption = 'Space'
           TabOrder = 3
           OnClick = TrennzeichenOptionCLick
         end
@@ -5717,7 +5717,7 @@ object DLG_Import: TDLG_Import
           Top = 44
           Width = 113
           Height = 17
-          Caption = 'Anderes, und zwar:'
+          Caption = 'Other:'
           TabOrder = 4
           OnClick = TrennzeichenOptionCLick
         end
@@ -5741,21 +5741,21 @@ object DLG_Import: TDLG_Import
         Top = 80
         Width = 104
         Height = 13
-        Caption = 'Felder der Quelldatei:'
+        Caption = 'Fields of the source file:'
       end
       object DstLabel: TLabel
         Left = 244
         Top = 80
         Width = 104
         Height = 13
-        Caption = 'Felder der Zieltabelle:'
+        Caption = 'Fields of the target table:'
       end
       object Label22: TLabel
         Left = 24
         Top = 208
         Width = 99
         Height = 13
-        Caption = 'Zugeordnete Felder:'
+        Caption = 'Associated fields:'
       end
       object lbSrc: TListBox
         Left = 24
@@ -5804,7 +5804,7 @@ object DLG_Import: TDLG_Import
           Top = 12
           Width = 91
           Height = 13
-          Caption = 'Felder zuordnen'
+          Caption = 'Associate fields'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -5818,8 +5818,8 @@ object DLG_Import: TDLG_Import
           Width = 344
           Height = 13
           Caption = 
-            'Wie sollen die Felder der Quelldatei den Zielfeldern zugeordnet ' +
-            'werden?'
+            'How should the fields of the source file be mapped to the target' +
+            ' fields?'
         end
       end
       object btnAdd: TButton
@@ -5827,7 +5827,7 @@ object DLG_Import: TDLG_Import
         Top = 96
         Width = 75
         Height = 24
-        Caption = 'Hinzuf'#252'gen'
+        Caption = 'Add'
         Enabled = False
         Font.Charset = ANSI_CHARSET
         Font.Color = clBlack
@@ -5843,7 +5843,7 @@ object DLG_Import: TDLG_Import
         Top = 228
         Width = 75
         Height = 24
-        Caption = 'L'#246'schen'
+        Caption = 'Remove'
         Enabled = False
         Font.Charset = ANSI_CHARSET
         Font.Color = clBlack
@@ -5871,7 +5871,7 @@ object DLG_Import: TDLG_Import
         Top = 256
         Width = 75
         Height = 24
-        Caption = 'Alle l'#246'schen'
+        Caption = 'Remove all'
         Enabled = False
         Font.Charset = ANSI_CHARSET
         Font.Color = clBlack
@@ -5894,7 +5894,7 @@ object DLG_Import: TDLG_Import
         Top = 136
         Width = 71
         Height = 13
-        Caption = 'Bitte warten...'
+        Caption = 'Please choose...'
       end
       object Panel1: TPanel
         Left = 32
@@ -5943,7 +5943,7 @@ object DLG_Import: TDLG_Import
           Top = 12
           Width = 69
           Height = 13
-          Caption = 'Import l'#228'uft'
+          Caption = 'Import is running'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -5956,9 +5956,7 @@ object DLG_Import: TDLG_Import
           Top = 28
           Width = 349
           Height = 13
-          Caption = 
-            'Die Daten werden jetzt importiert. Bitte haben Sie einen Moment ' +
-            'Geduld.'
+          Caption = 'The data is now being imported. Please wait...'
         end
       end
     end
@@ -5973,14 +5971,14 @@ object DLG_Import: TDLG_Import
         Top = 77
         Width = 194
         Height = 13
-        Caption = 'Der Import der Daten ist abgeschlossen.'
+        Caption = 'The import of the data is complete.'
       end
       object Label24: TLabel
         Left = 20
         Top = 107
         Width = 145
         Height = 13
-        Caption = 'Status- und Fehlermeldungen:'
+        Caption = 'Status and error messages:'
       end
       object Panel5: TPanel
         Left = 0
@@ -6011,7 +6009,7 @@ object DLG_Import: TDLG_Import
           Top = 12
           Width = 126
           Height = 13
-          Caption = 'Import abgeschlossen'
+          Caption = 'Import finished'
           Font.Charset = ANSI_CHARSET
           Font.Color = clWindowText
           Font.Height = -11
@@ -6024,7 +6022,7 @@ object DLG_Import: TDLG_Import
           Top = 28
           Width = 193
           Height = 13
-          Caption = 'Die Daten wurden erfolgreich importiert.'
+          Caption = 'The data has been imported successfully.'
         end
       end
       object Memo2: TMemo
@@ -6048,9 +6046,9 @@ object DLG_Import: TDLG_Import
   end
   object OpenDialog1: TOpenDialog
     DefaultExt = 'csv'
-    Filter = 'CSV-Dateien (*.csv;*.txt)|*.csv;*.txt|Alle Dateien (*.*)|*.*'
+    Filter = 'CSV files (*.csv;*.txt)|*.csv;*.txt|All files (*.*)|*.*'
     Options = [ofHideReadOnly, ofFileMustExist, ofEnableSizing]
-    Title = 'Dateiname w'#228'hlen'
+    Title = 'Choose filename'
     Left = 12
     Top = 340
   end

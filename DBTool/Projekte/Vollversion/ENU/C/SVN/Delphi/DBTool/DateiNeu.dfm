@@ -2,7 +2,7 @@ object DLG_DateiNeu: TDLG_DateiNeu
   Left = 279
   Top = 107
   BorderStyle = bsDialog
-  Caption = 'Neue Datenbank'
+  Caption = 'New Database'
   ClientHeight = 151
   ClientWidth = 426
   Color = clBtnFace
@@ -21,7 +21,7 @@ object DLG_DateiNeu: TDLG_DateiNeu
     Top = 12
     Width = 55
     Height = 13
-    Caption = 'Dateiname:'
+    Caption = 'Filename:'
   end
   object btnDatei: TSpeedButton
     Left = 392
@@ -42,14 +42,14 @@ object DLG_DateiNeu: TDLG_DateiNeu
     Top = 60
     Width = 36
     Height = 13
-    Caption = 'Server:'
+    Caption = 'Server.'
   end
   object rgTyp: TRadioGroup
     Left = 8
     Top = 8
     Width = 113
     Height = 133
-    Caption = 'Datenbanktyp'
+    Caption = 'Database Type:'
     Items.Strings = (
       'InterBase'
       'Jet / Access'
@@ -87,7 +87,7 @@ object DLG_DateiNeu: TDLG_DateiNeu
     Width = 100
     Height = 23
     Cancel = True
-    Caption = 'Abbrechen'
+    Caption = 'Cancel'
     Font.Charset = ANSI_CHARSET
     Font.Color = clBlack
     Font.Height = -11
@@ -107,7 +107,7 @@ object DLG_DateiNeu: TDLG_DateiNeu
   end
   object SaveDialog1: TSaveDialog
     Options = [ofOverwritePrompt, ofHideReadOnly, ofEnableSizing]
-    Title = 'Neue Datenbank'
+    Title = 'New Database'
     Left = 384
     Top = 56
   end

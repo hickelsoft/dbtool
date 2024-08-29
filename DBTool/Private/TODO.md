@@ -4,11 +4,7 @@
 
 - Add README.md, with screenshots and describe a lot of features like DnD and CLI
 
-- Make a website www.hickelsoft.de/dbtool
-
-- Translate into English
-
-- Cleanup/Check TODO list
+- Make a website www.hickelsoft.de/dbtool and daniel-marschall.de
 
 ## Important features
 
@@ -16,15 +12,17 @@
 
 ## Known bugs
 
-Wenn man das Datenbankfenster schließt, dann schließen sich auch alle Abfragefenster, aber dort wird das OnCloseQuery nicht ausgeführt!
+If you close the database window, all query windows also close, but the OnCloseQuery is not executed there!
 
-Fehler beim Kopieren einer ganzen CORA_1 Datenbank per Drag'n'Drop (Mandanten-DB. System-DB ist OK):
-- BelegeWaBasis und BelegeWaPositionen: "Statistik existiert schon" bei dem Index der 128 Zeichen lang ist im Namen
-- Problem bei den Views: Es kann Abhängigkeitskonflikte geben. Wie können wir eine View erzeugen, ohne dass er prüft, dass die darin beschriebenen Tabellen existieren?
+Error when copying an entire CORA_1 database via drag'n'drop (client DB. System DB is OK):
+- BelegeWaBasis and BelegeWaPositionen: "Statistics already exist" for the index that is 128 characters long in the name
+- Problem with views: There may be dependency conflicts. How can we create a view without it checking that the tables described in it exist?
 
+## Ideas
 
-## DBTool ToDo Liste alt
-(könnten eventuell schon behoben sein)
+Query.pas: Search inside data set or search inside SQL Query. Both things are important!
+
+## DBTool ToDo Old List (might already be solved or invalid)
 
 Weggefallene Funktionen durch Umstellung C++ Builder → Delphi auf Standardkomponenten, wiederherstellen. (Im Quellcode mit XXX markiert)
 
@@ -66,8 +64,8 @@ Anmelden-Dialog (MySQL + SQLServer):
 - Probleme bei unterschiedlicher DPI-Einstellung
 - ~~Wenn man runterscrollt und was klickt, scrollt er hoch und somit klickt man was falsches
   Grund: Reload der Tabellen-Liste beim EditExit~~
-  => OnExit Event entfernt. Man muss nun „Aktualisieren“ klicken.
-- ~~Falschen Servernamen eingeben => Abbrechen klicken => Es wird trotzdem ein Login-Versuch gestartet.~~ => OnExit Event entfernt. Man muss nun „Aktualisieren“ klicken.
+  => OnExit Event entfernt. Man muss nun "Aktualisieren" klicken.
+- ~~Falschen Servernamen eingeben => Abbrechen klicken => Es wird trotzdem ein Login-Versuch gestartet.~~ => OnExit Event entfernt. Man muss nun "Aktualisieren" klicken.
 
 Tabellen => Felder
 
@@ -75,11 +73,11 @@ Tabellen => Felder
 
 Optionen-dialog
 
-`	`Farben funktionieren nicht (haben nie funktioniert)
+- Farben funktionieren nicht (haben nie funktioniert)
 
-`	`Admin Elevation bei MakeStandard()
+- Admin Elevation bei MakeStandard()
 
-Wenn man auf „Weitersuchen“ das erste Mal klickt (es kommt der Suchen-Dialog) und dann sucht, dann kommt die Such-Abschlussmeldung (nix gefunden) zweimal.
+Wenn man auf "Weitersuchen" das erste Mal klickt (es kommt der Suchen-Dialog) und dann sucht, dann kommt die Such-Abschlussmeldung (nix gefunden) zweimal.
 
 **Achtung**: So Dinge wie die Eck-Klammer-Syntax [] oder sp\_rename existieren in anderen Datenbanken nicht. Das muss berücksichtigt werden.
 
@@ -87,14 +85,14 @@ Future: SQLite
 
 Eine Konfigurationsklasse einführen
 
-Rechtsklick zeigt nur „RTF Bearbeiten“, aber nicht die normale Plaintext bearbeitung (doppelklick)
+Rechtsklick zeigt nur "RTF Bearbeiten", aber nicht die normale Plaintext bearbeitung (doppelklick)
 
 Auch TempDB anzeigen
 
 Verschieben einer Tabelle in eine andere Datenbank:
 
 - Man darf nicht zu sich selbst kopieren
-- „Feldtyp LongInt als gefährlich eingestuft“ Meldung prüfen/entfernen
+- "Feldtyp LongInt als gefährlich eingestuft" Meldung prüfen/entfernen
 - Wenn existiert, dann folgende Optionen
   - Abbrechen
   - Löschen und Neu anlegen
@@ -105,9 +103,9 @@ Auswahlbasierter Filter bei DateTime funktioniert nicht
 
 (RH sagte etwas von einer Verschlechterung? Backspace Taste?)
 
-„Spalte ausblenden“ entf.
+"Spalte ausblenden" entf.
 
-„Längster Wert“ => Dauert zu lange => schneller mit SQL Befehl?
+"Längster Wert" => Dauert zu lange => schneller mit SQL Befehl?
 
 SQL Log anlegen
 
@@ -130,36 +128,25 @@ Connection-Timeout ist mittlerweile zu kurz… bei manchen langsamen PCs kommt d
 `	`--> bei dem zweiten (nur Datum) kann ich die Datepicker dropdownbox nicht aufmachen
 
 Man kann einen deadlock erzeugen...
+- 1. Tabelleneditor: Datensatz mit ungültigen Daten in den Editiermodus versetzen (z.B. PK-Konflikt)
+- 2. (ohne zu posten) : in das filter-fenster
+- 3. Filter setzen
+- 4. zurück zur Tabellenansicht: es wird ein Post versucht, der fehlschlägt (z.B. PK Konflikt), aber man kommt aus dem filter-fenster nicht mehr raus
 
-`	`1. Tabelleneditor: Datensatz mit ungültigen Daten in den Editiermodus versetzen (z.B. PK-Konflikt)
-
-`	`2. (ohne zu posten) : in das filter-fenster
-
-`	`3. Filter setzen
-
-`	`4. zurück zur Tabellenansicht: es wird ein Post versucht, der fehlschlägt (z.B. PK Konflikt), aber man kommt aus dem filter-fenster nicht mehr raus
-
-    Select \* from GEB\_KALK where FREMDARTIKELNR = 2205
-
-- Fehler beim Konvertieren des varchar-Werts ‚amru‘ in den int-Datentyp
-- Mit ‚2205‘ (Also Anführungszeichen) geht es
-
-„text“ Felder (z.B. BEDIENER.ZUGANG) sind nicht wie im SQL-Studio dargestellt. Es wird nur die erste Zeile gezeigt. SQL-Studio blendet die Linebreaks aus.
+"text" Felder (z.B. BEDIENER.ZUGANG) sind nicht wie im SQL-Studio dargestellt. Es wird nur die erste Zeile gezeigt. SQL-Studio blendet die Linebreaks aus.
 
 ADO-Table ignoriert Groß und Kleinschreibung beim Filter. Lösung:
 
-    `    `ADOTable1.Filtered := False;
-    
-    `    `ADOTable1.FilterOptions := [foCaseInsensitive];
-    
-    `    `ADOTable1.Filter   := '(BELEG = ''rec'')';
-    
-    `    `ADOTable1.Filtered := True;
-
+```
+ADOTable1.Filtered := False;
+ADOTable1.FilterOptions := [foCaseInsensitive];
+ADOTable1.Filter   := '(BELEG = ''rec'')';
+ADOTable1.Filtered := True;
+```
 
 ---
 
-beim directsql soll man auch viel machen können im kontextmenü
+beim directsql (query) soll man auch viel machen können im kontextmenü
 
 \+ wenn man auf exportieren klickt, dann verschwindet die tabelle kurz
 
@@ -186,6 +173,3 @@ lbdbd esc soll fenster schließen (in cora auch)
 lbdbd: er setzt die default-werte nicht richtig. man muss nach insert erst reloaden
 
 lbdbd : fragen, ob text im direktsql gespeichert werden soll oder nicht
-
-Query.pas : search inside data set or search inside sql query
-

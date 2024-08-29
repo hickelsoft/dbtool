@@ -694,115 +694,113 @@ object DLG_EditRTF: TDLG_EditRTF
     Left = 136
     Top = 84
     object EditCut1: TEditCut
-      Category = 'Bearbeiten'
-      Caption = '&Ausschneiden'
+      Category = 'Edit'
+      Caption = '&Cut'
       Enabled = False
-      Hint = 'Ausschneiden|Markiertes Objekt in die Zwischenablage verschieben'
+      Hint = 'Cut|Copy text into the clipboard and delete it'
       ImageIndex = 0
       ShortCut = 16472
     end
     object EditCopy1: TEditCopy
-      Category = 'Bearbeiten'
-      Caption = '&Kopieren'
+      Category = 'Edit'
+      Caption = '&Copy'
       Enabled = False
-      Hint = 'Kopieren|Markiertes Objekt in die Zwischenablage kopieren'
+      Hint = 'Copy|Copy text into the clipboard'
       ImageIndex = 1
       ShortCut = 16451
     end
     object EditPaste1: TEditPaste
-      Category = 'Bearbeiten'
-      Caption = '&Einf'#252'gen'
-      Hint = 'Einf'#252'gen|Inhalt der Zwischenablage einf'#252'gen'
+      Category = 'Edit'
+      Caption = '&Paste'
+      Hint = 'Paste|Inserts text from the clipboard'
       ImageIndex = 2
       ShortCut = 16470
     end
     object RichEditBold1: TRichEditBold
       Category = 'Format'
       AutoCheck = True
-      Caption = '&Fett'
-      Hint = 'Fett'
+      Caption = '&Bold'
+      Hint = 'Bold'
       ImageIndex = 3
       ShortCut = 16450
     end
     object RichEditItalic1: TRichEditItalic
       Category = 'Format'
       AutoCheck = True
-      Caption = '&Kursiv'
-      Hint = 'Kursiv'
+      Caption = '&Italic'
+      Hint = 'Italic'
       ImageIndex = 4
       ShortCut = 16457
     end
     object RichEditUnderline1: TRichEditUnderline
       Category = 'Format'
       AutoCheck = True
-      Caption = '&Unterstrichen'
-      Hint = 'Unterstrichen'
+      Caption = '&Underline'
+      Hint = 'Underline'
       ImageIndex = 5
       ShortCut = 16469
     end
     object RichEditBullets1: TRichEditBullets
       Category = 'Format'
       AutoCheck = True
-      Caption = '&Aufz'#228'hlungszeichen'
-      Hint = 
-        'Aufz'#228'hlungszeichen|In die aktuielle Zeile ein Aufz'#228'hlungszeichen' +
-        ' einf'#252'gen'
+      Caption = '&Bullet points'
+      Hint = 'Bullet points|Insert a bullet into the current line'
       ImageIndex = 6
     end
     object RichEditAlignLeft1: TRichEditAlignLeft
       Category = 'Format'
       AutoCheck = True
-      Caption = '&Links ausrichten'
-      Hint = 'Links ausrichten|Text linksb'#252'ndig ausrichten'
+      Caption = 'Align &left'
+      Hint = 'Align left|Align text to the left side'
       ImageIndex = 7
     end
     object RichEditAlignRight1: TRichEditAlignRight
       Category = 'Format'
       AutoCheck = True
-      Caption = '&Rechts ausrichten'
-      Hint = 'Rechts ausrichten|Text rechtsb'#252'ndig ausrichten'
+      Caption = 'Align &right'
+      Hint = 'Align right|Align text to the right side'
       ImageIndex = 8
     end
     object RichEditAlignCenter1: TRichEditAlignCenter
       Category = 'Format'
       AutoCheck = True
-      Caption = '&Zentriert'
-      Hint = 'Zentriert|Text zentriert ausrichten'
+      Caption = '&Center'
+      Hint = 'Center|Align text centered'
       ImageIndex = 9
     end
     object SearchFind1: TSearchFind
-      Category = 'Suchen'
-      Caption = 'Su&chen...'
+      Category = 'Search'
+      Caption = '&Search...'
       Enabled = False
-      Hint = 'Suchen|Angegebenen Text suchen'
+      Hint = 'Search|Find a text'
       ImageIndex = 10
       ShortCut = 16454
     end
     object SearchFindNext1: TSearchFindNext
-      Category = 'Suchen'
-      Caption = '&Weitersuchen'
-      Hint = 'Weitersuchen|Letzte Suche wiederholen'
+      Category = 'Search'
+      Caption = '&Search next'
+      Hint = 'Search next|Repeat last search'
       ImageIndex = 11
       ShortCut = 114
     end
     object SearchReplace1: TSearchReplace
-      Category = 'Suchen'
-      Caption = 'Erset&zen'
+      Category = 'Search'
+      Caption = '&Replace'
       Enabled = False
-      Hint = 'Ersetzen|Angegebenen Text durch neuen Text ersetzen'
+      Hint = 'Replace|Replace the text with a new one'
       ImageIndex = 12
       ShortCut = 16456
     end
     object DataSetPost1: TDataSetPost
       Category = 'Dataset'
-      Caption = #220'berneh&men'
-      Hint = #220'bernehmen'
+      Caption = '&Apply'
+      Hint = 'Apply'
       ImageIndex = 13
     end
     object DataSetCancel1: TDataSetCancel
       Category = 'Dataset'
-      Caption = '&Abbrechen'
-      Hint = 'Abbrechen'
+      Caption = '&Cancel'
+      Hint = 'Cancel'
       ImageIndex = 14
     end
   end

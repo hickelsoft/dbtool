@@ -461,7 +461,7 @@ begin
 
   // Aktive Seite umstellen
   TSpeedButton(Sender).Down := True;
-  Notebook1.ActivePage := TSpeedButton(Sender).Caption;
+  Notebook1.ActivePage := TSpeedButton(Sender).Caption; // Attention: Translation must be correct, otherwise this results in failure
 
   // "Upgrade" notwendig? (Nur-Strukturansicht => Daten)
   if (Notebook1.ActivePage = LbSpeedButton2.Caption{'Tabelle'}) or

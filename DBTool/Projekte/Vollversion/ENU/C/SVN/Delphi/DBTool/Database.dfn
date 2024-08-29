@@ -5,7 +5,7 @@
     <header>
       <prop-group name="ITEHeaderProp">
         <prop prop-type="Version">9.0</prop>
-        <prop prop-type="SelfDateTime">45532.6765046296</prop>
+        <prop prop-type="SelfDateTime">45533.4453009259</prop>
         <prop prop-type="OrigDateTime">45415.5572222222</prop>
         <prop prop-type="XlatDateTime">45415.5572222222</prop>
         <prop prop-type="Translated">18</prop>
@@ -1571,7 +1571,7 @@
           <prop prop-type="Type">TMenuItem</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
-        <target>'Show only &amp;structure'</target>
+        <target>'Show only &amp;Structure'</target>
       </trans-unit>
       <trans-unit id="O:MDI_Database.O:pmTables.O:NurStrukturzeigen1.OnClick" resname="O:MDI_Database.O:pmTables.O:NurStrukturzeigen1.OnClick">
         <source>NurStrukturzeigen1Click</source>

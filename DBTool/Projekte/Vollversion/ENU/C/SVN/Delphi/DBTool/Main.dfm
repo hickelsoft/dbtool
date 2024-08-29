@@ -176,7 +176,7 @@ object DLG_Main: TDLG_Main
       Category = 'Edit'
       Caption = '&Cut'
       Enabled = False
-      Hint = 'Ausschneiden|Markiertes Objekt in die Zwischenablage verschieben'
+      Hint = 'Cut|Copy contents into the clipboard and delete it'
       ImageIndex = 3
       ShortCut = 16472
     end
@@ -184,47 +184,47 @@ object DLG_Main: TDLG_Main
       Category = 'Edit'
       Caption = '&Copy'
       Enabled = False
-      Hint = 'Kopieren|Markiertes Objekt in die Zwischenablage kopieren'
+      Hint = 'Copy|Copy contents into the clipboard'
       ImageIndex = 4
       ShortCut = 16451
     end
     object EditPaste1: TEditPaste
       Category = 'Edit'
       Caption = '&Paste'
-      Hint = 'Einf'#252'gen|Inhalt der Zwischenablage einf'#252'gen'
+      Hint = 'Paste|Paste contents from the clipboard'
       ImageIndex = 5
       ShortCut = 16470
     end
     object WindowCascade1: TWindowCascade
       Category = 'Window'
-      Caption = #220'&berlappend'
+      Caption = '&Cascade'
       Enabled = False
-      Hint = #220'berlappend'
+      Hint = 'Cascade'
       ImageIndex = 6
     end
     object WindowTileHorizontal1: TWindowTileHorizontal
       Category = 'Window'
-      Caption = '&Untereinander'
+      Caption = '&Tile'
       Enabled = False
-      Hint = 'Untereinander'
+      Hint = 'Tile'
       ImageIndex = 7
     end
     object WindowTileVertical1: TWindowTileVertical
       Category = 'Window'
-      Caption = '&Nebeneinander'
+      Caption = '&Side-by-side'
       Enabled = False
-      Hint = 'Nebeneinander'
+      Hint = 'Side-by-side'
       ImageIndex = 8
     end
     object WindowMinimizeAll1: TWindowMinimizeAll
       Category = 'Window'
-      Caption = '&Alle minimieren'
+      Caption = '&Minimize all'
       Enabled = False
-      Hint = 'Alle verkleinern'
+      Hint = 'Minimize all'
     end
     object WindowArrange1: TWindowArrange
       Category = 'Window'
-      Caption = 'Symbole an&ordnen'
+      Caption = 'Arrange &icons'
       Enabled = False
     end
     object HilfeInfo1: TAction
@@ -975,7 +975,7 @@ object DLG_Main: TDLG_Main
       end
       object SQLServerDatenbankffnen1: TMenuItem
         Action = FileOpenSqlServerDb
-        Caption = 'SQL-Server-Datenbank '#246'ffnen...'
+        Caption = 'Open SQL Server database...'
       end
       object N6: TMenuItem
         Caption = '-'
@@ -1009,7 +1009,7 @@ object DLG_Main: TDLG_Main
       end
     end
     object Bearbeiten1: TMenuItem
-      Caption = '&Bearbeiten'
+      Caption = '&Edit'
       object Ausschneiden1: TMenuItem
         Action = EditCut1
       end

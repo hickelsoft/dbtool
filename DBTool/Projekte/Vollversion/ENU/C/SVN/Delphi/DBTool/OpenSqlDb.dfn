@@ -5,11 +5,11 @@
     <header>
       <prop-group name="ITEHeaderProp">
         <prop prop-type="Version">9.0</prop>
-        <prop prop-type="SelfDateTime">45532.7130092593</prop>
+        <prop prop-type="SelfDateTime">45533.4640509259</prop>
         <prop prop-type="OrigDateTime">45170.7048842593</prop>
         <prop prop-type="XlatDateTime">45170.7048842593</prop>
-        <prop prop-type="Translated">3</prop>
-        <prop prop-type="UnTranslated">89</prop>
+        <prop prop-type="Translated">5</prop>
+        <prop prop-type="UnTranslated">87</prop>
       </prop-group>
     </header>
     <body>
@@ -354,11 +354,12 @@
         <source>'Aktualisieren'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433456829</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">33</prop>
           <prop prop-type="Type">TSpeedButton</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Refresh'</target>
       </trans-unit>
       <trans-unit id="O:DLG_OpenSqlDb.O:LbSpeedButton1.Font.Charset" resname="O:DLG_OpenSqlDb.O:LbSpeedButton1.Font.Charset">
         <source>ANSI_CHARSET</source>
@@ -654,11 +655,12 @@
         <source>'Abbrechen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433456829</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">63</prop>
           <prop prop-type="Type">TButton</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Cancel'</target>
       </trans-unit>
       <trans-unit id="O:DLG_OpenSqlDb.O:LbButton2.Font.Charset" resname="O:DLG_OpenSqlDb.O:LbButton2.Font.Charset">
         <source>ANSI_CHARSET</source>

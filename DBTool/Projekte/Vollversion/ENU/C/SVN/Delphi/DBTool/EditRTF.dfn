@@ -5,11 +5,11 @@
     <header>
       <prop-group name="ITEHeaderProp">
         <prop prop-type="Version">9.0</prop>
-        <prop prop-type="SelfDateTime">45532.7861574074</prop>
+        <prop prop-type="SelfDateTime">45533.4868981481</prop>
         <prop prop-type="OrigDateTime">45531.915787037</prop>
         <prop prop-type="XlatDateTime">45531.915787037</prop>
-        <prop prop-type="Translated">1</prop>
-        <prop prop-type="UnTranslated">193</prop>
+        <prop prop-type="Translated">37</prop>
+        <prop prop-type="UnTranslated">157</prop>
       </prop-group>
     </header>
     <body>
@@ -1170,21 +1170,23 @@
         <source>'Bearbeiten'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">115</prop>
           <prop prop-type="Type">TEditCut</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Edit'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCut1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:EditCut1.Caption">
         <source>'&amp;Ausschneiden'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">116</prop>
           <prop prop-type="Type">TEditCut</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Cut'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCut1.Enabled" resname="O:DLG_EditRTF.O:ActionList1.O:EditCut1.Enabled">
         <source>False</source>
@@ -1200,11 +1202,12 @@
         <source>'Ausschneiden|Markiertes Objekt in die Zwischenablage verschieben'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">118</prop>
           <prop prop-type="Type">TEditCut</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Cut|Copy text into the clipboard and delete it'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCut1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:EditCut1.ImageIndex">
         <source>0</source>
@@ -1230,21 +1233,23 @@
         <source>'Bearbeiten'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">121</prop>
           <prop prop-type="Type">TEditCopy</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Edit'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.Caption">
         <source>'&amp;Kopieren'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">122</prop>
           <prop prop-type="Type">TEditCopy</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Copy'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.Enabled" resname="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.Enabled">
         <source>False</source>
@@ -1260,11 +1265,12 @@
         <source>'Kopieren|Markiertes Objekt in die Zwischenablage kopieren'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">124</prop>
           <prop prop-type="Type">TEditCopy</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Copy|Copy text into the clipboard'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.ImageIndex">
         <source>1</source>
@@ -1290,31 +1296,34 @@
         <source>'Bearbeiten'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">127</prop>
           <prop prop-type="Type">TEditPaste</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Edit'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.Caption">
         <source>'&amp;Einfügen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">128</prop>
           <prop prop-type="Type">TEditPaste</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Paste'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.Hint">
         <source>'Einfügen|Inhalt der Zwischenablage einfügen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">129</prop>
           <prop prop-type="Type">TEditPaste</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Paste|Inserts text from the clipboard'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.ImageIndex">
         <source>2</source>
@@ -1360,21 +1369,23 @@
         <source>'&amp;Fett'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">134</prop>
           <prop prop-type="Type">TRichEditBold</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Bold'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.Hint">
         <source>'Fett'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">135</prop>
           <prop prop-type="Type">TRichEditBold</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Bold'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.ImageIndex">
         <source>3</source>
@@ -1420,21 +1431,23 @@
         <source>'&amp;Kursiv'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">140</prop>
           <prop prop-type="Type">TRichEditItalic</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Italic'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.Hint">
         <source>'Kursiv'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">141</prop>
           <prop prop-type="Type">TRichEditItalic</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Italic'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.ImageIndex">
         <source>4</source>
@@ -1480,21 +1493,23 @@
         <source>'&amp;Unterstrichen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">146</prop>
           <prop prop-type="Type">TRichEditUnderline</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Underline'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.Hint">
         <source>'Unterstrichen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">147</prop>
           <prop prop-type="Type">TRichEditUnderline</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Underline'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.ImageIndex">
         <source>5</source>
@@ -1540,21 +1555,23 @@
         <source>'&amp;Aufzählungszeichen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">152</prop>
           <prop prop-type="Type">TRichEditBullets</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Bullet points'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditBullets1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditBullets1.Hint">
         <source>'Aufzählungszeichen|In die aktuielle Zeile ein Aufzählungszeichen einfügen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">153</prop>
           <prop prop-type="Type">TRichEditBullets</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Bullet points|Insert a bullet into the current line'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditBullets1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditBullets1.ImageIndex">
         <source>6</source>
@@ -1590,21 +1607,23 @@
         <source>'&amp;Links ausrichten'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">157</prop>
           <prop prop-type="Type">TRichEditAlignLeft</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Align &amp;left'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignLeft1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignLeft1.Hint">
         <source>'Links ausrichten|Text linksbündig ausrichten'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">158</prop>
           <prop prop-type="Type">TRichEditAlignLeft</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Align left|Align text to the left side'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignLeft1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignLeft1.ImageIndex">
         <source>7</source>
@@ -1640,21 +1659,23 @@
         <source>'&amp;Rechts ausrichten'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">162</prop>
           <prop prop-type="Type">TRichEditAlignRight</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Align &amp;right'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignRight1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignRight1.Hint">
         <source>'Rechts ausrichten|Text rechtsbündig ausrichten'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">163</prop>
           <prop prop-type="Type">TRichEditAlignRight</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Align right|Align text to the right side'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignRight1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignRight1.ImageIndex">
         <source>8</source>
@@ -1690,21 +1711,23 @@
         <source>'&amp;Zentriert'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">167</prop>
           <prop prop-type="Type">TRichEditAlignCenter</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Center'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignCenter1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignCenter1.Hint">
         <source>'Zentriert|Text zentriert ausrichten'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">168</prop>
           <prop prop-type="Type">TRichEditAlignCenter</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Center|Align text centered'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignCenter1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignCenter1.ImageIndex">
         <source>9</source>
@@ -1720,21 +1743,23 @@
         <source>'Suchen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">170</prop>
           <prop prop-type="Type">TSearchFind</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Search'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.Caption">
         <source>'Su&amp;chen...'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">171</prop>
           <prop prop-type="Type">TSearchFind</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Search...'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.Enabled" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.Enabled">
         <source>False</source>
@@ -1750,11 +1775,12 @@
         <source>'Suchen|Angegebenen Text suchen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">173</prop>
           <prop prop-type="Type">TSearchFind</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Search|Find a text'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.ImageIndex">
         <source>10</source>
@@ -1780,31 +1806,34 @@
         <source>'Suchen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">176</prop>
           <prop prop-type="Type">TSearchFindNext</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Search'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.Caption">
         <source>'&amp;Weitersuchen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">177</prop>
           <prop prop-type="Type">TSearchFindNext</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Search next'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.Hint">
         <source>'Weitersuchen|Letzte Suche wiederholen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">178</prop>
           <prop prop-type="Type">TSearchFindNext</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Search next|Repeat last search'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.ImageIndex">
         <source>11</source>
@@ -1830,21 +1859,23 @@
         <source>'Suchen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">181</prop>
           <prop prop-type="Type">TSearchReplace</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Search'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.Caption">
         <source>'Erset&amp;zen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">182</prop>
           <prop prop-type="Type">TSearchReplace</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Replace'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.Enabled" resname="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.Enabled">
         <source>False</source>
@@ -1860,11 +1891,12 @@
         <source>'Ersetzen|Angegebenen Text durch neuen Text ersetzen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">184</prop>
           <prop prop-type="Type">TSearchReplace</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Replace|Replace the text with a new one'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.ImageIndex">
         <source>12</source>
@@ -1900,21 +1932,23 @@
         <source>'Überneh&amp;men'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">188</prop>
           <prop prop-type="Type">TDataSetPost</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Apply'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:DataSetPost1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:DataSetPost1.Hint">
         <source>'Übernehmen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">189</prop>
           <prop prop-type="Type">TDataSetPost</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Apply'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:DataSetPost1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:DataSetPost1.ImageIndex">
         <source>13</source>
@@ -1940,21 +1974,23 @@
         <source>'&amp;Abbrechen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">192</prop>
           <prop prop-type="Type">TDataSetCancel</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'&amp;Cancel'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:DataSetCancel1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:DataSetCancel1.Hint">
         <source>'Abbrechen'</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">1</prop>
           <prop prop-type="Order">193</prop>
           <prop prop-type="Type">TDataSetCancel</prop>
           <prop prop-type="Localize">1</prop>
         </prop-group>
+        <target>'Cancel'</target>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:DataSetCancel1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:DataSetCancel1.ImageIndex">
         <source>14</source>

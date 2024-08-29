@@ -1,7 +1,7 @@
 object MDI_Table: TMDI_Table
   Left = 437
   Top = 117
-  Caption = 'Tabelle'
+  Caption = 'Table'
   ClientHeight = 340
   ClientWidth = 752
   Color = clBtnFace
@@ -49,7 +49,7 @@ object MDI_Table: TMDI_Table
       Width = 96
       Height = 23
       Align = alTop
-      Caption = 'Daten'
+      Caption = 'Data'
     end
     object LbSpeedButton2: TSpeedButton
       Left = 0
@@ -58,7 +58,7 @@ object MDI_Table: TMDI_Table
       Height = 23
       Align = alTop
       GroupIndex = 1
-      Caption = 'Tabelle'
+      Caption = 'Table'
       Flat = True
       Font.Charset = ANSI_CHARSET
       Font.Color = clWhite
@@ -112,7 +112,7 @@ object MDI_Table: TMDI_Table
       Width = 96
       Height = 23
       Align = alTop
-      Caption = 'Struktur'
+      Caption = 'Structure'
       ExplicitTop = 92
     end
     object LbSpeedButton6: TSpeedButton
@@ -122,7 +122,7 @@ object MDI_Table: TMDI_Table
       Height = 23
       Align = alTop
       GroupIndex = 1
-      Caption = 'Felder'
+      Caption = 'Fields'
       Flat = True
       Font.Charset = ANSI_CHARSET
       Font.Color = clWhite
@@ -150,7 +150,7 @@ object MDI_Table: TMDI_Table
       Height = 23
       Align = alTop
       GroupIndex = 1
-      Caption = 'Indizes'
+      Caption = 'Indices'
       Flat = True
       Font.Charset = ANSI_CHARSET
       Font.Color = clWhite
@@ -190,7 +190,7 @@ object MDI_Table: TMDI_Table
       object TPage
         Left = 0
         Top = 0
-        Caption = 'Tabelle'
+        Caption = 'Table'
         object Panel3: TPanel
           Left = 0
           Top = 0
@@ -199,7 +199,7 @@ object MDI_Table: TMDI_Table
           Align = alTop
           Alignment = taLeftJustify
           BevelOuter = bvNone
-          Caption = ' Tabelle'
+          Caption = ' Table'
           Color = 5263440
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
@@ -215,7 +215,7 @@ object MDI_Table: TMDI_Table
             Width = 95
             Height = 24
             Align = alRight
-            Caption = 'Layout speichern'
+            Caption = 'Save layout'
             Flat = True
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
@@ -232,7 +232,7 @@ object MDI_Table: TMDI_Table
             Width = 75
             Height = 24
             Align = alRight
-            Caption = 'Aktualisieren'
+            Caption = 'Refresh'
             Flat = True
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
@@ -329,7 +329,7 @@ object MDI_Table: TMDI_Table
       object TPage
         Left = 0
         Top = 0
-        Caption = 'Formular'
+        Caption = 'Form'
         object Panel4: TPanel
           Left = 0
           Top = 0
@@ -338,7 +338,7 @@ object MDI_Table: TMDI_Table
           Align = alTop
           Alignment = taLeftJustify
           BevelOuter = bvNone
-          Caption = '  Formular'
+          Caption = '  Form'
           Color = 5263440
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
@@ -378,7 +378,7 @@ object MDI_Table: TMDI_Table
             Width = 85
             Height = 24
             Align = alRight
-            Caption = 'Filter entfernen'
+            Caption = 'Reset Filter'
             Flat = True
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
@@ -395,7 +395,7 @@ object MDI_Table: TMDI_Table
             Width = 75
             Height = 24
             Align = alRight
-            Caption = 'Aktualisieren'
+            Caption = 'Refresh'
             Flat = True
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
@@ -420,7 +420,7 @@ object MDI_Table: TMDI_Table
             Top = 12
             Width = 75
             Height = 13
-            Caption = 'Datensatzfilter:'
+            Caption = 'Filter:'
           end
         end
         object Panel9: TPanel
@@ -453,7 +453,7 @@ object MDI_Table: TMDI_Table
       object TPage
         Left = 0
         Top = 0
-        Caption = 'Felder'
+        Caption = 'Fields'
         object Panel7: TPanel
           Left = 0
           Top = 0
@@ -462,7 +462,7 @@ object MDI_Table: TMDI_Table
           Align = alTop
           Alignment = taLeftJustify
           BevelOuter = bvNone
-          Caption = '  Felder'
+          Caption = '  Fields'
           Color = 5263440
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
@@ -478,7 +478,7 @@ object MDI_Table: TMDI_Table
             Width = 85
             Height = 24
             Align = alRight
-            Caption = 'Alle anzeigen'
+            Caption = 'Show all'
             Flat = True
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
@@ -495,7 +495,7 @@ object MDI_Table: TMDI_Table
             Width = 85
             Height = 24
             Align = alRight
-            Caption = 'Alle ausblenden'
+            Caption = 'Hide all'
             Flat = True
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
@@ -522,15 +522,15 @@ object MDI_Table: TMDI_Table
             end
             item
               Alignment = taRightJustify
-              Caption = 'Nr.'
+              Caption = 'No.'
             end
             item
-              Caption = 'Typ'
+              Caption = 'Type'
               Width = 75
             end
             item
               Alignment = taRightJustify
-              Caption = 'Gr'#246#223'e'
+              Caption = 'Size'
             end
             item
               Caption = 'NULL'
@@ -553,7 +553,7 @@ object MDI_Table: TMDI_Table
       object TPage
         Left = 0
         Top = 0
-        Caption = 'Indizes'
+        Caption = 'Indices'
         object Panel5: TPanel
           Left = 0
           Top = 0
@@ -562,7 +562,7 @@ object MDI_Table: TMDI_Table
           Align = alTop
           Alignment = taLeftJustify
           BevelOuter = bvNone
-          Caption = '  Indizes'
+          Caption = '  Indices'
           Color = 5263440
           Font.Charset = ANSI_CHARSET
           Font.Color = clWhite
@@ -582,7 +582,7 @@ object MDI_Table: TMDI_Table
           BorderStyle = bsNone
           Columns = <
             item
-              Caption = 'Felder'
+              Caption = 'Fields'
               Width = 400
             end>
           HideSelection = False
@@ -604,7 +604,7 @@ object MDI_Table: TMDI_Table
     Left = 40
     Top = 172
     object RTFbearbeiten1: TMenuItem
-      Caption = 'RTF bearbeiten...'
+      Caption = 'Edit RichText...'
       ImageIndex = 3
       OnClick = RTFbearbeiten1Click
     end
@@ -612,20 +612,20 @@ object MDI_Table: TMDI_Table
       Caption = '-'
     end
     object AuswahlbasierterFilter1: TMenuItem
-      Caption = 'Auswahlbasierter &Filter'
+      Caption = 'Selection based &filter'
       ImageIndex = 0
       OnClick = AuswahlbasierterFilter1Click
     end
     object AuswahlausschlieenderFilter1: TMenuItem
-      Caption = 'A&uswahlausschlie'#223'ender Filter'
+      Caption = 'Selection-excluding filter'
       OnClick = AuswahlausschlieenderFilter1Click
     end
     object FilternnachEingabe1: TMenuItem
-      Caption = 'Filtern nach Eingabewert...'
+      Caption = 'Filter by input value...'
       OnClick = FilternnachEingabe1Click
     end
     object Filterentfernen1: TMenuItem
-      Caption = 'Filter &entfernen'
+      Caption = '&Remove filter'
       ImageIndex = 1
       OnClick = Filterentfernen1Click
     end
@@ -633,47 +633,47 @@ object MDI_Table: TMDI_Table
       Caption = '-'
     end
     object Datenstzezhlen1: TMenuItem
-      Caption = 'Anzahl'
+      Caption = 'Row count'
       OnClick = Datenstzezhlen1Click
     end
     object AnzahlunterschiedlicherWerte1: TMenuItem
-      Caption = 'Anzahl unterschiedlicher Werte'
+      Caption = 'Count of distinct values'
       OnClick = AnzahlunterschiedlicherWerte1Click
     end
     object Spaltensumme1: TMenuItem
-      Caption = '&Spaltensumme'
+      Caption = 'Row &sum'
       ImageIndex = 2
       OnClick = Spaltensumme1Click
     end
     object Minimalwert1: TMenuItem
-      Caption = '&Minimalwert'
+      Caption = '&Minimum value'
       OnClick = Minimalwert1Click
     end
     object Maximalwert1: TMenuItem
-      Caption = 'Ma&ximalwert'
+      Caption = 'Ma&ximum value'
       OnClick = Maximalwert1Click
     end
     object KrzesterWert11: TMenuItem
-      Caption = 'K'#252'rzester Wert (nicht leer)'
+      Caption = 'Shortest non-empty value'
       OnClick = KrzesterWert11Click
     end
     object LngsterWert1: TMenuItem
-      Caption = 'L'#228'ngster &Wert'
+      Caption = '&Longest value'
       OnClick = LngsterWert1Click
     end
     object UnterschiedlicheWerte1: TMenuItem
-      Caption = 'Unterschiedliche Werte'
+      Caption = 'Distinct values'
       OnClick = UnterschiedlicheWerte1Click
     end
     object N2: TMenuItem
       Caption = '-'
     end
     object FixierteSpalten1: TMenuItem
-      Caption = 'F&ixierte Spalten...'
+      Caption = '&Fixed columns...'
       OnClick = FixierteSpalten1Click
     end
     object Spalteausblenden1: TMenuItem
-      Caption = 'Spalte &ausblenden'
+      Caption = '&Hide column'
       OnClick = Spalteausblenden1Click
     end
   end
@@ -960,33 +960,33 @@ object MDI_Table: TMDI_Table
     Left = 144
     Top = 168
     object Feldnamekopieren1: TMenuItem
-      Caption = 'Feldname kopieren'
+      Caption = 'Copy field name'
       OnClick = Feldnamekopieren1Click
     end
     object abellennamekopieren1: TMenuItem
-      Caption = 'Tabellenname kopieren'
+      Caption = 'Copy table name'
       OnClick = abellennamekopieren1Click
     end
     object N4: TMenuItem
       Caption = '-'
     end
     object AlleFelderkopieren1: TMenuItem
-      Caption = 'Alle Felder kopieren'
+      Caption = 'Copy all fields'
       OnClick = AlleFelderkopieren1Click
     end
     object EinfacheInsertAnweisungkopieren2: TMenuItem
-      Caption = 'Einfache Insert Anweisung kopieren (Alle)'
+      Caption = 'Copy simple Insert command (all fields)'
       OnClick = EinfacheInsertAnweisungkopieren2Click
     end
     object N5: TMenuItem
       Caption = '-'
     end
     object AlleNotNullFelderkopieren1: TMenuItem
-      Caption = 'Alle NotNull-Felder kopieren'
+      Caption = 'Copy all NotNull fields'
       OnClick = AlleNotNullFelderkopieren1Click
     end
     object EinfacheInsertAnweisungkopieren1: TMenuItem
-      Caption = 'Einfache Insert Anweisung kopieren (NotNull)'
+      Caption = 'Copy simple Insert command (NotNull fields)'
       OnClick = EinfacheInsertAnweisungkopieren1Click
     end
   end
