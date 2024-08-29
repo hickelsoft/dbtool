@@ -56,7 +56,7 @@
 
 ## Screenshots
 
-![Database Desktop](https://raw.githubusercontent.com/hickelsoft/dbtool/main/DBTool/Private/DBTool Screenshot.png)
+![Database Desktop](https://raw.githubusercontent.com/hickelsoft/dbtool/main/DBTool/Private/DBTool%20Screenshot.png)
 
 ## Source Code
 
