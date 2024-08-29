@@ -1,16 +1,24 @@
 ﻿<!DOCTYPE html>
 <html lang="de">
-
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
-	<!--<link rel="shortcut icon" href="prisma.png">-->
-	<title>DBTool</title>
-	<style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="favicon.png">
+	<title>HickelSOFT Database Desktop / DBTool</title>
+    <style>
+
+        .logo {
+            float: right; /* Lässt das Logo rechts floaten */
+            margin: 20px; /* Abstand zum Rand und Text */
+            width: 25%; /* Breite des Logos */
+        }
+
 		body {
 			background-color:black;
 			color:white;
 			font-family:Arial;
+			z-index: 0;
+
 		}
 		a {
 			color: #91dbe6;
@@ -24,17 +32,19 @@
 		.center {
 			text-align: center;
 		}
-		.copyrighttext  {
-			font-size: small;
-		}
 		@media only screen and (min-width: 1224px) {
 			/* Desktop design */
 			body {
 				margin-left:10%;
 				margin-right:5%;
 			}
+			/*
 			img.logo {
 				width: 33%;
+			}
+			*/
+			img {
+				max-width: 100%;
 			}
 		}
 		@media only screen and (max-width: 1223px) {
@@ -48,25 +58,44 @@
 				margin: 20px auto;
 			}
 		}
-	</style>
+    </style>
 </head>
-
 <body>
 
-<!--<p class="center"><img src="prisma_gross.png" class="logo" alt="HS-Info 2.0 Logo"></p>-->
+<img src="dbtool_logo.jpg" alt="DBTool Logo" class="logo">
 
-<br>
+<noscript>
+	<h1>Database Desktop "DBTool"</h1>
+	<a href="https://www.github.com/hickelsoft/dbtool">Source Code at GitHub</a>
+</noscript>
 
-<h1>HickelSOFT DBTool</h1>
+<div id="content"><!--Loading...--></div>
+<!--<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>-->
+<script src="marked.min.js"></script>
+<script>
+	// URL der Markdown-Datei auf GitHub
+	const url = 'https://raw.githubusercontent.com/hickelsoft/dbtool/main/README.md';
 
+	// Funktion zum Laden und Anzeigen des Markdown-Inhalts
+	async function loadMarkdown() {
+		try {
+			const response = await fetch(url);
+			const markdown = await response.text();
+			var html = marked.parse(markdown);
 
-<a href="https://www.github.com/hickelsoft/dbtool">Quelltext und Download auf GitHub!</a>
+			html = html.replace('<h2>Features', '<a href="https://www.github.com/hickelsoft/dbtool">Source Code at GitHub</a><h2>Features');
+			html = html.replace('https://github.com/hickelsoft/dbtool/raw/main/Distribution/DBTool_Setup.exe', 'download.php/DBTool_Setup.exe');
 
+			document.getElementById('content').innerHTML = html;
+		} catch (error) {
+			console.error('Error while loading file:', error);
+			document.getElementById('content').innerText = 'Error while loading file';
+		}
+	}
 
-<!--
-<p><span class="copyrighttext ">(C) 2004-2023 HickelSOFT Huth GmbH<br>
-Prisma graphic by Suidroot, modified (black background and added text), licensed under CC BY-SA 3.0.</span></p>
--->
+	// Lade den Markdown-Inhalt nach dem Laden der Seite
+	loadMarkdown();
+</script>
 
 </body>
 
