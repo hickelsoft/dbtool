@@ -1,4 +1,6 @@
-# Database Desktop "DBTool"
+# Database Desktop / DBTool
+
+**HickelSOFT Database Desktop** (also known as **DBTool**) is a straightforward and fast database management application for Windows, supporting both 32-bit and 64-bit systems. It handles a variety of DBMS including SQL Server, MySQL, Access, and more. The tool allows for easy table export, import from CSV files, and drag-and-drop table copying across different database connections. With multilingual support (English and German) and quick access to common commands, DBTool is free for commercial use under the Apache 2.0 license.
 
 ## Download
 
@@ -79,3 +81,5 @@ To use and compile the source code, you need:
 Free, even for commercial use. Licensed under the terms of the Apache 2.0 license.
 
 The manufacturer of this software is under no circumstances liable for damages resulting from the use of this software!
+
+(C) 1998-2002 Leif Bruder, 2016-2024 HickelSOFT Huth GmbH
