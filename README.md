@@ -36,7 +36,7 @@
 
 - Copy tables from one database window to another database window using Drag'n'Drop, even if there are different connections/DBMS!
 
-- Open a database(s) using command line (`DBTool64.exe _SRVSRV:(ConnectionString)` or `DBTool32.exe C:\\Paradox.db`) or Drag'n'Drop a DB/MDB/ACCDB/... file into the MDI window.
+- Open a database(s) using command line (`DBTool64.exe "_SQLSRV:...ConnectionString...` or `DBTool64.exe "_MYSQL:...ConnectionString...` or `DBTool32.exe C:\Paradox.db`) or Drag'n'Drop a DB/MDB/ACCDB/... file into the MDI window.
 
 - Program opens very fast, in contrast to tools like SQL Server Management Studio
 
@@ -52,11 +52,11 @@
 
 - Only available for the Microsoft Windows Operating System (7, 8, 8.1, 10, 11, or newer)
 
-- Login currently only via NT Authentication, not via Username/Password.
+- Login via GUI currently only via NT Authentication, not via Username/Password. If you need Username/Password authentication, you can use the command-line to start DBTool, e.g. for SQL Server `DBTool64.exe "_SQLSRV:Provider=SQLOLEDB.1;Password=PASSWORD1234;Persist Security Info=True;User ID=USER1234;Initial Catalog=DATABASENAME1234;Data Source=SERVERNAMEXYZ,49011;Use Encryption for Data=False"`
 
 - Mostly used/tested with Microsoft SQL Server. Other DBMS might not be as stable.
 
-- CANNOT be used to view or change databases of HickelSOFT CORA*plus* and HickelSOFT HS-Info 2.0
+- CANNOT be used to view or modify databases of HickelSOFT CORA*plus* and HickelSOFT HS-Info 2.0
 
 ## Screenshots
 
