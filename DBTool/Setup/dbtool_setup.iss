@@ -32,7 +32,7 @@ UsePreviousPrivileges=no
 ShowLanguageDialog=no
 WizardStyle=modern
 WizardSmallImageFile=..\Private\Export Mini Graphic.bmp
-SetupIconFile=..\Private\DBTool.ico
+SetupIconFile=..\Private\MAINICON.ico
 UninstallDisplayIcon={app}\DBTool32.exe
 ; 64 Bit Support:
 ArchitecturesAllowed=x86 x64

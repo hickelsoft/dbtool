@@ -74,7 +74,7 @@ begin
     {$ELSE}
     Label5.Caption := S64Bits + ' / ' + SHsInfoBundled;
     {$ENDIF}
-    // Zwar ist DBTool kostenlos und HS-Info 2.0, jedoch sollten beim Bundle mit HS-Info 2.0
+    // Zwar ist DBTool kostenlos und OpenSource, jedoch sollten beim Bundle mit HS-Info 2.0
     // die Weitergabe unterbunden werden, da man das dann so interpretieren könnte, dass man
     // das ganze HS-Info 2.0 weitergeben darf. Daher folgender Text um Missverständnisse zu vermeiden:
     Label4.Caption := SHsLicense1;

@@ -702,7 +702,7 @@ begin
 
   FPrinter.GetPrinter( pcName, pcDriver, pcPort, hMode );
 
-  // Delphi macht das aus irgendeinem Grund ist SetPrinterIndex, aber das ist doch quatsch,
+  // Delphi macht das aus irgendeinem Grund in SetPrinterIndex, aber das ist doch quatsch,
   // weil SetPrinter macht doch bereits GlobalFree, also wäre es ein Double-Free!
   // (Bugreport bei Embarcadero eröffnen?)
   GlobalUnlock(hMode);

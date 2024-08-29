@@ -1,24 +1,16 @@
 ﻿<!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="favicon.png">
 	<title>HickelSOFT Database Desktop / DBTool</title>
     <style>
-
-        .logo {
-            float: right; /* Lässt das Logo rechts floaten */
-            margin: 20px; /* Abstand zum Rand und Text */
-            width: 25%; /* Breite des Logos */
-        }
-
 		body {
 			background-color:black;
 			color:white;
 			font-family:Arial;
 			z-index: 0;
-
 		}
 		a {
 			color: #91dbe6;
@@ -38,14 +30,18 @@
 				margin-left:10%;
 				margin-right:5%;
 			}
-			/*
-			img.logo {
-				width: 33%;
+			.logo {
+				float: right;
+				margin: 20px;
+				width: 25%;
+				min-width: 250px;
 			}
-			*/
 			img {
 				max-width: 100%;
 			}
+		}
+		code {
+			background-color: #005070;
 		}
 		@media only screen and (max-width: 1223px) {
 			/* Mobile design */
@@ -56,6 +52,9 @@
 				max-width: 100%;
 				max-height: 90%;
 				margin: 20px auto;
+			}
+			.logo {
+				width: 60%;
 			}
 		}
     </style>
@@ -83,8 +82,10 @@
 			const markdown = await response.text();
 			var html = marked.parse(markdown);
 
+			html = html.replace('<h2>Download', '<p><i><b>Sie suchen nach einer umfangreichen Software (Kasse, Faktura, Warenwirtschaft uvm.) für Handel und Getränkehandel für den Getränkehandel? <a href="https://www.hickelsoft.de/wp/home/coraplus/">Dann klicken Sie hier!</a></b></i></p><h2>Download');
 			html = html.replace('<h2>Features', '<a href="https://www.github.com/hickelsoft/dbtool">Source Code at GitHub</a><h2>Features');
 			html = html.replace('https://github.com/hickelsoft/dbtool/raw/main/Distribution/DBTool_Setup.exe', 'download.php/DBTool_Setup.exe');
+			html = html.replace('Password=PASSWORD1234;Persist Security Info=True;User ID=USER1234;', 'Persist Security Info=True;User ID=John Doe;Password=FooBar;'); // because of viewport
 
 			document.getElementById('content').innerHTML = html;
 		} catch (error) {
@@ -96,6 +97,8 @@
 	// Lade den Markdown-Inhalt nach dem Laden der Seite
 	loadMarkdown();
 </script>
+
+<br><br><br>
 
 </body>
 
