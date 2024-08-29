@@ -1,0 +1,77 @@
+# Database Desktop "DBTool"
+
+## Features:
+
+- Easy to use
+
+- Multilingual (English and German)
+
+- Free, even for commercial use. Licensed under the terms of the Apache 2.0 license
+
+- 32-bit and 64-bit Windows Application
+
+- DBMS supported:
+
+	* SQL Server
+	* MySQL, Access97/Jet (.mdb)
+	* Access (.accdb)
+	* Interbase
+	* Paradox (.db), only 32 bit
+	* dBase (.dbf), only 32 bit
+
+- Export a table as:
+
+	* CSV
+	* XML
+	* HTML
+	* dBase
+	* Paradox
+	* SQL-Dump
+
+- Import a table from a CSV file
+
+- Copy tables from one database window to another database window using Drag'n'Drop, even if there are different connections/DBMS!
+
+- Open a database(s) using command line (`DBTool64.exe _SRVSRV:(ConnectionString)` or `DBTool32.exe C:\\Paradox.db`) or Drag'n'Drop a DB/MDB/ACCDB/... file into the MDI window.
+
+- Program opens very fast, in contrast to tools like SQL Server Management Studio
+
+- Show Table Structure
+
+- Fast commands like Filter by value, max value, min value, count distinct values, etc. are available in the Table windows via right-clicking a column.
+
+- View Tables or Execute SQL Queries
+
+- Show and Edit Views and Stored Procedures
+
+## Technical Restrictions
+
+- Only available for the Microsoft Windows Operating System (7, 8, 8.1, 10, 11, or newer)
+
+- Login currently only via NT Authentication, not via Username/Password.
+
+- Mostly used/tested with Microsoft SQL Server. Other DBMS might not be as stable.
+
+- CANNOT be used to view or change databases of HickelSOFT CORAplus and HickelSOFT HS-Info 2.0
+
+## Screenshots
+
+![Database Desktop](https://raw.githubusercontent.com/hickelsoft/dbtool/main/DBTool/Private/DBTool Screenshot.png)
+
+## Source Code
+
+To use and compile the source code, you need:
+
+- Embarcadero Delphi 12
+
+- BDE for Delphi (to support Paradox and dBase)
+
+- For translations in addition: GetIt Package "VCL Translation Support", and a PHP interpreter
+
+- Woll2Woll InfoPower
+
+## License and Restrictions
+
+Free, even for commercial use. Licensed under the terms of the Apache 2.0 license.
+
+The manufacturer of this software is under no circumstances liable for damages resulting from the use of this software!
