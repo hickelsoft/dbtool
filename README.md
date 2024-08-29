@@ -1,6 +1,12 @@
-# Database Desktop "DBTool"
+# Database Desktop / DBTool
 
-## Features:
+**HickelSOFT Database Desktop** (also known as **DBTool**) is a straightforward and fast database management application for Windows, supporting both 32-bit and 64-bit systems. It handles a variety of DBMS including SQL Server, MySQL, Access, and more. The tool allows for easy table export, import from CSV files, and drag-and-drop table copying across different database connections. With multilingual support (English and German) and quick access to common commands, DBTool is free for commercial use under the Apache 2.0 license.
+
+## Download
+
+**[Setup for Win32 and Win64](https://github.com/hickelsoft/dbtool/raw/main/Distribution/DBTool_Setup.exe)** (approx. 10 MB)
+
+## Features
 
 - Easy to use
 
@@ -32,7 +38,7 @@
 
 - Copy tables from one database window to another database window using Drag'n'Drop, even if there are different connections/DBMS!
 
-- Open a database(s) using command line (`DBTool64.exe _SRVSRV:(ConnectionString)` or `DBTool32.exe C:\\Paradox.db`) or Drag'n'Drop a DB/MDB/ACCDB/... file into the MDI window.
+- Open a database(s) using command line (`DBTool64.exe "_SQLSRV:...ConnectionString...` or `DBTool64.exe "_MYSQL:...ConnectionString...` or `DBTool32.exe C:\Paradox.db`) or Drag'n'Drop a DB/MDB/ACCDB/... file into the MDI window.
 
 - Program opens very fast, in contrast to tools like SQL Server Management Studio
 
@@ -48,11 +54,11 @@
 
 - Only available for the Microsoft Windows Operating System (7, 8, 8.1, 10, 11, or newer)
 
-- Login currently only via NT Authentication, not via Username/Password.
+- Login via GUI currently only via NT Authentication, not via Username/Password. If you need Username/Password authentication, you can use the command-line to start DBTool, e.g. for SQL Server `DBTool64.exe "_SQLSRV:Provider=SQLOLEDB.1;Password=PASSWORD1234;Persist Security Info=True;User ID=USER1234;Initial Catalog=DATABASENAME1234;Data Source=SERVERNAMEXYZ,49011;Use Encryption for Data=False"`
 
 - Mostly used/tested with Microsoft SQL Server. Other DBMS might not be as stable.
 
-- CANNOT be used to view or change databases of HickelSOFT CORAplus and HickelSOFT HS-Info 2.0
+- CANNOT be used to view or modify databases of HickelSOFT CORA*plus* and HickelSOFT HS-Info 2.0
 
 ## Screenshots
 
@@ -75,3 +81,5 @@ To use and compile the source code, you need:
 Free, even for commercial use. Licensed under the terms of the Apache 2.0 license.
 
 The manufacturer of this software is under no circumstances liable for damages resulting from the use of this software!
+
+(C) 1998-2002 Leif Bruder, 2016-2024 HickelSOFT Huth GmbH
