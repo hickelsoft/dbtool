@@ -8,7 +8,8 @@ interface
 uses
   SysUtils, Windows, Classes, Controls, StdCtrls, Forms, ExtCtrls, Database,
   DB, DBGrids, Grids, Wwdbgrid, Wwdbigrd, ComCtrls, Menus, Graphics,
-  ImgList, Buttons, Dialogs, C_Database, System.ImageList, AdoDb, AdoInt;
+  ImgList, Buttons, Dialogs, C_Database, System.ImageList, AdoDb, AdoInt,
+  HsGradientPanel;
 
 type
   TMDI_Table = class(TForm)
@@ -73,6 +74,7 @@ type
     AnzahlunterschiedlicherWerte1: TMenuItem;
     FindDialog1: TFindDialog;
     KrzesterWert11: TMenuItem;
+    HsGradientPanel1: THsGradientPanel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormActivate(Sender: TObject);
     procedure dbgTableCalcCellColors(Sender: TObject; Field: TField; State: TGridDrawState; Highlight: boolean; AFont: TFont; ABrush: TBrush);

@@ -1686,7 +1686,7 @@ BEGIN
 	Export_SOnlyMoveOneElement,	L"Only one element can be moved at a time!"
 	Export_SDBaseInfoText,	L"dBase is the format of choice when it is important that as many programs as possible can read the exported data.<BR><BR>DBTool exports to the dBase for Windows format, which is one of the standard formats for data exchange. However, more specific field types, e.g. auto-increment fields, are not possible and are not taken into account during export."
 	Query_SQueryFor,	L"Query for %s"
-	Query_SDatasetsD,	L"Rows: %.0n"
+	Query_SDatasetsD,	L"Row count: %.0n"
 	Query_SReallyClose,	L"Close window and discard query?"
 	Query_STableEndReached,	L"Reached end of table. Now more occurences of the search text found."
 	Query_SSqlExecuted,	L"SQL Query executed."

@@ -18,7 +18,11 @@ Error when copying an entire CORA_1 database via drag'n'drop (client DB. System 
 - BelegeWaBasis and BelegeWaPositionen: "Statistics already exist" for the index that is 128 characters long in the name
 - Problem with views: There may be dependency conflicts. How can we create a view without it checking that the tables described in it exist?
 
+Table.pas: Left buttons highlight is light blue with white font, which is unreadable!
+
 ## Ideas
+
+Table.pas: It would be nice if the left side menu would also have "Show Stored Procedure Definition" or "Show View Definition", etc.
 
 Query.pas: Search inside data set or search inside SQL Query. Both things are important!
 

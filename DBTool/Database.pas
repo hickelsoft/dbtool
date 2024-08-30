@@ -6,7 +6,8 @@ interface
 
 uses
   SysUtils, Windows, Classes, Controls, StdCtrls, Forms, ExtCtrls, Menus, ComCtrls, Grids,
-  DB, Dialogs, Buttons, C_Database, Wwdbgrid, Wwdbigrd, Graphics, ClipBrd;
+  DB, Dialogs, Buttons, C_Database, Wwdbgrid, Wwdbigrd, Graphics, ClipBrd,
+  HsGradientPanel;
 
 type
   TMDI_Database = class(TForm)
@@ -36,6 +37,7 @@ type
     Erste100Zeilenzeigen1: TMenuItem;
     Triggeranzeigen1: TMenuItem;
     Panel4: TPanel;
+    HsGradientPanel1: THsGradientPanel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure lvTablesDblClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);

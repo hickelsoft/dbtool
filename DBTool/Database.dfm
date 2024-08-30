@@ -43,6 +43,19 @@ object MDI_Database: TMDI_Database
     ParentBackground = False
     TabOrder = 0
     Visible = False
+    object HsGradientPanel1: THsGradientPanel
+      Left = 0
+      Top = 0
+      Width = 96
+      Height = 488
+      MoveWho = mwNone
+      BeginColor = 5263440
+      EndColor = 11711154
+      GradientStyle = gsVertical
+      Align = alClient
+      BevelOuter = bvNone
+      TabOrder = 0
+    end
   end
   object Panel2: TPanel
     Left = 100
@@ -155,9 +168,9 @@ object MDI_Database: TMDI_Database
           ParentFont = False
           TabOrder = 2
           object Panel4: TPanel
-            Left = 272
+            Left = 248
             Top = 1
-            Width = 464
+            Width = 488
             Height = 23
             Align = alRight
             Alignment = taRightJustify

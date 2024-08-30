@@ -7,7 +7,7 @@ interface
 uses
   Windows, SysUtils, Classes, Controls, StdCtrls, ExtCtrls, Forms, Database, Graphics,
   DB, DBGrids, Grids, Wwdbgrid, Wwdbigrd, ComCtrls, Menus, ImgList, Buttons,
-  C_Database, adodb, Dialogs;
+  C_Database, adodb, Dialogs, HsGradientPanel;
 
 type
   TMDI_Query = class(TForm)
@@ -31,6 +31,7 @@ type
     btnSaveQuery: TSpeedButton;
     btnLoadQuery: TSpeedButton;
     btnCSVExport: TSpeedButton;
+    HsGradientPanel1: THsGradientPanel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormActivate(Sender: TObject);
     procedure dbgTableCalcCellColors(Sender: TObject; Field: TField; State: TGridDrawState; Highlight: boolean; AFont: TFont; ABrush: TBrush);

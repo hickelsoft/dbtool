@@ -79,7 +79,7 @@ object DLG_Info: TDLG_Info
     Top = 76
     Width = 195
     Height = 26
-    Caption = '(C) 1998-2002 Leif Bruder'#13#10'(C) 2016-{YEAR} HickelSOFT Huth GmbH'
+    Caption = '(C) 1999-2002 Leif Bruder'#13#10'(C) 2016-{YEAR} HickelSOFT Huth GmbH'
     Transparent = True
   end
   object Image1: TImage

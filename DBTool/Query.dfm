@@ -69,6 +69,19 @@ object MDI_Query: TMDI_Query
     ParentBackground = False
     TabOrder = 0
     Visible = False
+    object HsGradientPanel1: THsGradientPanel
+      Left = 1
+      Top = 1
+      Width = 98
+      Height = 338
+      MoveWho = mwNone
+      BeginColor = 5263440
+      EndColor = 11711154
+      GradientStyle = gsVertical
+      Align = alClient
+      BevelOuter = bvNone
+      TabOrder = 0
+    end
   end
   object Panel2: TPanel
     Left = 100

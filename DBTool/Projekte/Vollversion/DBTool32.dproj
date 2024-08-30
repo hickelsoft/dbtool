@@ -72,7 +72,7 @@
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_Namespace>Datasnap.Win;Web.Win;Soap.Win;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
-        <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1998-2023 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool32.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=DBTool;ProductVersion=1.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1999-2002 Leif Bruder, 2016-2024 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool32.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=DBTool;ProductVersion=1.0;Comments=</VerInfo_Keys>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <Debugger_RunParams>&quot;_SQLSRV:Provider=MSOLEDBSQL;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=HSINFO;Data Source=SHS\HSGMBH,49011&quot;</Debugger_RunParams>
         <Icon_MainIcon>DBTool32_Icon.ico</Icon_MainIcon>
@@ -119,7 +119,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
-        <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1998-2023 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool32.exe;ProductName=DBTool;ProductVersion=1.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1999-2002 Leif Bruder, 2016-2024 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool32.exe;ProductName=DBTool;ProductVersion=1.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_IncludeVerInfo>false</VerInfo_IncludeVerInfo>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
@@ -139,7 +139,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCC_IncludePath>..\VCL_JEDI\lib\d11\debug;..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;..\BetterADO;..\BetterADO;c:\Program Files (x86)\Woll2Woll\ipstudio2007\source\windows;c:\Program Files (x86)\Woll2Woll\fcstudio2007\source\windows;..\vcl_hbtapi;..\VCL_Indy_Head\trunk\Lib\SuperCore;..\VCL_Indy_Head\trunk\Lib\Core;..\VCL_Indy_Head\trunk\Lib\System;..\VCL_Indy_Head\trunk\Lib\Protocols;..\VCL_Indy_Head\trunk\Lib\Security;..\VCL_Indy_Head\trunk\Lib\Design;$(DCC_IncludePath)</DCC_IncludePath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
-        <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1998-2023 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool32.exe;ProductName=DBTool;ProductVersion=1.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1999-2002 Leif Bruder, 2016-2024 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool32.exe;ProductName=DBTool;ProductVersion=1.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
         <VerInfo_Debug>true</VerInfo_Debug>
         <VerInfo_IncludeVerInfo>false</VerInfo_IncludeVerInfo>

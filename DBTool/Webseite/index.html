@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="favicon.png">
-	<title>HickelSOFT Database Desktop / DBTool</title>
+	<title>Database Desktop / DBTool</title>
     <style>
 		body {
 			background-color:black;
@@ -61,10 +61,12 @@
 </head>
 <body>
 
-<img src="dbtool_logo.jpg" alt="DBTool Logo" class="logo">
+<p class="center"><img src="dbtool_logo.jpg" alt="DBTool Logo" class="logo"></p>
+
+<br>
 
 <noscript>
-	<h1>Database Desktop "DBTool"</h1>
+	<h1>HickelSOFT Database Desktop "DBTool"</h1>
 	<a href="https://www.github.com/hickelsoft/dbtool">Source Code at GitHub</a>
 </noscript>
 
@@ -82,7 +84,7 @@
 			const markdown = await response.text();
 			var html = marked.parse(markdown);
 
-			html = html.replace('<h2>Download', '<p><i><b>Sie suchen nach einer umfangreichen Software (Kasse, Faktura, Warenwirtschaft uvm.) für Handel und Getränkehandel für den Getränkehandel? <a href="https://www.hickelsoft.de/wp/home/coraplus/">Dann klicken Sie hier!</a></b></i></p><h2>Download');
+			html = html.replace('<h2>Download', '<p><i><b>Hinweis: Diese Seite beschäftigt sich mit einer Datenbank-Management-Software. Sie suchen nach einer umfangreichen Software (Kasse, Faktura, Warenwirtschaft uvm.) für Handel und Getränkehandel? <a href="https://www.hickelsoft.de/wp/home/coraplus/">Dann klicken Sie hier!</a></b></i></p><h2>Download');
 			html = html.replace('<h2>Features', '<a href="https://www.github.com/hickelsoft/dbtool">Source Code at GitHub</a><h2>Features');
 			html = html.replace('https://github.com/hickelsoft/dbtool/raw/main/Distribution/DBTool_Setup.exe', 'download.php/DBTool_Setup.exe');
 			html = html.replace('Password=PASSWORD1234;Persist Security Info=True;User ID=USER1234;', 'Persist Security Info=True;User ID=John Doe;Password=FooBar;'); // because of viewport
@@ -98,7 +100,7 @@
 	loadMarkdown();
 </script>
 
-<br><br><br>
+<br><br>
 
 </body>
 
