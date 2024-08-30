@@ -19,7 +19,8 @@
 - DBMS supported:
 
 	* SQL Server
-	* MySQL, Access97/Jet (.mdb)
+	* MySQL
+ 	* Access97/Jet (.mdb)
 	* Access (.accdb)
 	* Interbase
 	* Paradox (.db), only 32 bit
@@ -54,7 +55,7 @@
 
 - Only available for the Microsoft Windows Operating System (7, 8, 8.1, 10, 11, or newer)
 
-- Login via GUI currently only via NT Authentication, not via Username/Password. If you need Username/Password authentication, you can use the command-line to start DBTool, e.g. for SQL Server `DBTool64.exe "_SQLSRV:Provider=SQLOLEDB.1;Password=PASSWORD1234;Persist Security Info=True;User ID=USER1234;Initial Catalog=DATABASENAME1234;Data Source=SERVERNAMEXYZ,49011;Use Encryption for Data=False"`
+- Login via GUI currently only via NT Authentication, not via Username/Password. If you need Username/Password authentication, you can use the command-line to start DBTool, e.g. for SQL Server `DBTool64.exe "_SQLSRV:Provider=SQLOLEDB.1;User ID=John Doe;Password=MyPass123;Persist Security Info=True;Initial Catalog=DATABASENAME1234;Data Source=SERVERNAMEXYZ,49011;Use Encryption for Data=False"`
 
 - Mostly used/tested with Microsoft SQL Server. Other DBMS might not be as stable.
 
@@ -81,5 +82,6 @@ To use and compile the source code, you need:
 Free, even for commercial use. Licensed under the terms of the Apache 2.0 license.
 
 The manufacturer of this software is under no circumstances liable for damages resulting from the use of this software!
+
 
 (C) 1998-2002 Leif Bruder, 2016-2024 HickelSOFT Huth GmbH
