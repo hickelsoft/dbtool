@@ -140,7 +140,7 @@ begin
   begin
     if lvTables.Items.Item[i].Selected then
     begin
-      if lvTables.Items.Item[i].Data <> Pointer(2{SP}) then
+      if (Integer(lvTables.Items.Item[i].Data) and 3) in [0{Table}, 1{View}] then
       begin
         tableName := lvTables.Items.Item[i].Caption;
         QueryForm := TMDI_Query.Create(Self, Self);
@@ -194,10 +194,12 @@ begin
             Data := Pointer(1{View})
           else if slAllStoredProcedures.IndexOf(slTables.Strings[i]) <> -1 then
             Data := Pointer(2{SP})
-          else if slAllTriggers.IndexOf(slTables.Strings[i]) <> -1 then
-            Data := Pointer(3{Table with triggers})
           else
             Data := Pointer(0{Table});
+
+          if slAllTriggers.IndexOf(slTables.Strings[i]) <> -1 then
+            Data := Pointer(Integer(Data) or 4{Trigger});
+
           Caption := slTables.Strings[i];
         end;
       end;
@@ -231,8 +233,7 @@ begin
   begin
     if lvTables.Items.Item[i].Selected then
     begin
-      if (lvTables.Items.Item[i].Data = Pointer(0{Table})) or
-         (lvTables.Items.Item[i].Data = Pointer(3{Table with triggers})) then
+      if (Integer(lvTables.Items.Item[i].Data) and 4{Trigger}) <> 0 then
       begin
         sl := TStringList.Create;
         try
@@ -285,7 +286,7 @@ begin
   begin
     if lvTables.Items.Item[i].Selected then
     begin
-      if lvTables.Items.Item[i].Data = Pointer(1{View}) then
+      if (Integer(lvTables.Items.Item[i].Data) and 3) = 1{View} then
       begin
         def := FDatabaseObj.GetViewDefinition(lvTables.Items.Item[i].Caption);
         if def <> '' then
@@ -356,14 +357,22 @@ end;
 procedure TMDI_Database.lvTablesCustomDrawItem(Sender: TCustomListView;
   Item: TListItem; State: TCustomDrawState; var DefaultDraw: Boolean);
 begin
-  if Item.Data = Pointer(1{View}) then
+  // Bit 0..1 Type = 0b00 (0) Table
+  //                 0b01 (1) View
+  //                 0b10 (2) Stored Procedure
+  //                 0b11 (3) Undefined
+  if (Integer(Item.Data) and 3) = 0{Table} then
+    Sender.Canvas.Font.Color := clWindowText
+  else if (Integer(Item.Data) and 3) = 1{View} then
     Sender.Canvas.Font.Color := clGreen
-  else if Item.Data = Pointer(2{SP}) then
+  else if (Integer(Item.Data) and 3) = 2{SP} then
     Sender.Canvas.Font.Color := clBlue
-  else if Item.Data = Pointer(3{Table with triggers}) then
-    Sender.Canvas.Font.Color := clMaroon
-  else
-    Sender.Canvas.Font.Color := clWindowText;
+  else if (Integer(Item.Data) and 3) = 3{Undefined} then
+    Assert(false);
+
+  // Bit 2 (4) = Trigger
+  if (Integer(Item.Data) and 4{Trigger}) <> 0 then
+    Sender.Canvas.Font.Style := [TFontStyle.fsBold];
 end;
 
 procedure TMDI_Database.lvTablesDblClick(Sender: TObject);
@@ -376,7 +385,7 @@ begin
   begin
     if lvTables.Items.Item[i].Selected then
     begin
-      if lvTables.Items.Item[i].Data = Pointer(2{SP}) then
+      if (Integer(lvTables.Items.Item[i].Data) and 3) = 2{SP} then
       begin
         def := FDatabaseObj.GetStoredProcedureDefinition(lvTables.Items.Item[i].Caption);
         if def <> '' then
@@ -436,11 +445,11 @@ begin
       if not lvTables.Items.Item[i].Selected then continue;
       if FDatabaseObj.ViewDetectionImplemented then
       begin
-        if lvTables.Items.Item[i].Data = Pointer(2{SP}) then
+        if (Integer(lvTables.Items.Item[i].Data) and 3) = 2{SP} then
         begin
           // Nix machen mit Stored Procedures
         end
-        else if lvTables.Items.Item[i].Data = Pointer(1{View}) then   //if FDatabaseObj.IsView(lvTables.Items.Item[i].Caption) then
+        else if (Integer(lvTables.Items.Item[i].Data) and 3) = 1{View} then
         begin
           // Bei einem DELETE würden aus allen verknüpften Tabellen gelöscht werden
           Inc(viewsIgnoriert);
@@ -538,7 +547,7 @@ begin
       begin
         if(lvTables.Items.Item[i].Selected) then
         begin
-          if lvTables.Items.Item[i].Data = Pointer(2{SP}) then
+          if (Integer(lvTables.Items.Item[i].Data) and 3) = 2{SP} then
             FDatabaseObj.DropStoredProcedure(lvTables.Items.Item[i].Caption)
           else
             FDatabaseObj.DropTable(lvTables.Items.Item[i].Caption);
@@ -594,7 +603,7 @@ begin
   begin
     if lvTables.Items.Item[i].Selected then
     begin
-      if lvTables.Items.Item[i].Data <> Pointer(2{SP}) then
+      if (Integer(lvTables.Items.Item[i].Data) and 3) in [0{Table}, 1{View}] then
       begin
         tableName := lvTables.Items.Item[i].Caption;
         QueryForm := TMDI_Query.Create(Self, Self);
@@ -636,7 +645,7 @@ begin
 
       if tableName <> tableNameOriginal then
       begin
-        if lvTables.Items.Item[i].Data = Pointer(2{SP}) then
+        if (Integer(lvTables.Items.Item[i].Data) and 3) = 2{SP} then
         begin
           FDatabaseObj.RenameStoredProcedure(tableNameOriginal, tableName);
         end
@@ -679,7 +688,7 @@ procedure TMDI_Database.pmTablesPopup(Sender: TObject);
     begin
       if lvTables.Items.Item[i].Selected then
       begin
-        if lvTables.Items.Item[i].Data = Pointer(1{View}) then   //if FDatabaseObj.IsView(lvTables.Items.Item[i].Caption) then
+        if (Integer(lvTables.Items.Item[i].Data) and 3) = 1{View} then
         begin
           result := true;
           exit;
@@ -697,7 +706,7 @@ procedure TMDI_Database.pmTablesPopup(Sender: TObject);
     begin
       if lvTables.Items.Item[i].Selected then
       begin
-        if lvTables.Items.Item[i].Data <> Pointer(2{SP}) then
+        if (Integer(lvTables.Items.Item[i].Data) and 3) in [0{Table}, 1{View}] then
         begin
           result := false;
           exit;
@@ -795,7 +804,7 @@ begin
   begin
     if lvTables.Items.Item[i].Selected then
     begin
-      if lvTables.Items.Item[i].Data <> Pointer(2{SP}) then
+      if (Integer(lvTables.Items.Item[i].Data) and 3) in [0{Table}, 1{View}] then
       begin
         OpenTable(lvTables.Items.Item[i].Caption, true);
       end;

@@ -176,8 +176,8 @@ object MDI_Database: TMDI_Database
             Alignment = taRightJustify
             BevelOuter = bvNone
             Caption = 
-              'schwarz = Tabellen,  dunkelrot = Tabellen mit Trigger,  gr'#252'n = V' +
-              'iew,  blau = Stored Procedures   '
+              'schwarz = Tabellen,  gr'#252'n = View,  blau = Stored Procedures,  fe' +
+              'tt = mit Trigger   '
             Color = 5263440
             Font.Charset = ANSI_CHARSET
             Font.Color = clWhite
