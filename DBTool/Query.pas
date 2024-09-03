@@ -355,6 +355,8 @@ begin
       begin
         if sLine[iPos] = '''' then
           bQuote := not bQuote
+        // Hier werden "--" Kommentare berücksichtigt
+        // TODO: Auch /* */ Kommentare berücksichtigen!!!
         else if (sLine[iPos] = '-') and (sLine[iPos+1] = '-') and not bQuote then
         begin
           sLine := Trim(Copy(sLine, 1, iPos-1));

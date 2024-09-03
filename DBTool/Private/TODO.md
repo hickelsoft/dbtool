@@ -20,6 +20,8 @@ Error when copying an entire CORA_1 database via drag'n'drop (client DB. System 
 
 Table.pas: Left buttons highlight is light blue with white font, which is unreadable!
 
+Query.pas: /* */ comments are not handled correctly
+
 ## Ideas
 
 Table.pas: It would be nice if the left side menu would also have "Show Stored Procedure Definition" or "Show View Definition", etc.
