@@ -44,6 +44,7 @@
 			<File FileName="C\SVN\Delphi\DBTool\Query.dfm" ContainerId="W32Form" ModuleName="Query.dfm"/>
 			<File FileName="C\SVN\Delphi\DBTool\Table.dfm" ContainerId="W32Form" ModuleName="Table.dfm"/>
 			<File FileName="c\HS-Service\DBTool64_DRC.rc" ContainerId="W32RC" ModuleName="DBTool64_DRC.rc"/>
+			<File FileName="C\SVN\Delphi\Hickel_Components\Statusan.dfm" ContainerId="W32Form" ModuleName="Statusan.dfm"/>
 		</FileList>
 	</W32ResourceDLL.Personality>
 </BorlandProject>

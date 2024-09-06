@@ -15,6 +15,7 @@ library DBTool64;
 {ITE} {DFMFileType} {C\SVN\Delphi\DBTool\Optionen.dfm}
 {ITE} {DFMFileType} {C\SVN\Delphi\DBTool\Query.dfm}
 {ITE} {DFMFileType} {C\SVN\Delphi\DBTool\Table.dfm}
+{ITE} {DFMFileType} {C\SVN\Delphi\Hickel_Components\Statusan.dfm}
 {ITE} {RCFileType} {c\HS-Service\DBTool64_DRC.rc}
 
 {$R 'C\SVN\Delphi\DBTool\Database.dfm' 'MDI_Database:TForm'}
@@ -30,6 +31,7 @@ library DBTool64;
 {$R 'C\SVN\Delphi\DBTool\Optionen.dfm' 'DLG_Optionen:TForm'}
 {$R 'C\SVN\Delphi\DBTool\Query.dfm' 'MDI_Query:TForm'}
 {$R 'C\SVN\Delphi\DBTool\Table.dfm' 'MDI_Table:TForm'}
+{$R 'C\SVN\Delphi\Hickel_Components\Statusan.dfm' 'DLG_Statusanzeige:TForm'}
 {$R 'c\HS-Service\DBTool64_DRC.res' 'c\HS-Service\DBTool64_DRC.rc'}
 
 {$E ENU}

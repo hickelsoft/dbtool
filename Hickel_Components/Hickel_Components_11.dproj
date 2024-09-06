@@ -67,6 +67,7 @@
         <VerInfo_MajorVer>8</VerInfo_MajorVer>
         <VerInfo_Locale>1031</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=HickelSOFT VCL;FileVersion=8.0.0.0;InternalName=Hickel_Components;LegalCopyright=(C) 1992-2023 HickelSOFT Huth GmbH;LegalTrademarks=CORAplus;OriginalFilename=Hickel_Components.bpl;ProductName=CORAplus;ProductVersion=8.0;Comments=</VerInfo_Keys>
+        <DCC_OutputDRCFile>true</DCC_OutputDRCFile>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_Namespace>Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>

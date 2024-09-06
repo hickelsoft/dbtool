@@ -8,7 +8,7 @@
         <FrameworkType>VCL</FrameworkType>
         <ProjectVersion>20.1</ProjectVersion>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -220,7 +220,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <RDP_Source_Files Name="Item10">..\..\OpenSqlDb.dfm</RDP_Source_Files>
                     <RDP_Source_Files Name="Item11">..\..\EditRTF.dfm</RDP_Source_Files>
                     <RDP_Source_Files Name="Item12">..\..\Query.dfm</RDP_Source_Files>
-                    <RDP_Source_Files Name="Item13">..\..\..\..\..\HS-Service\DBTool32.drc</RDP_Source_Files>
+                    <RDP_Source_Files Name="Item13">..\..\..\Hickel_Components\Statusan.dfm</RDP_Source_Files>
+                    <RDP_Source_Files Name="Item14">..\..\..\..\..\HS-Service\DBTool32.drc</RDP_Source_Files>
                 </RDP_Source_Files>
             </Delphi.Personality>
             <Platforms>
@@ -1144,6 +1145,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
         </DCCReference>
         <DCCReference Include="..\..\C_Database.pas"/>
         <DCCReference Include="..\..\Globals.pas"/>
+        <DCCReference Include="..\..\..\Hickel_Components\Statusan.pas">
+            <Form>DLG_Statusanzeige</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
