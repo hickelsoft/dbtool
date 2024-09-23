@@ -1270,25 +1270,8 @@ end;
 
 function ThlDatenbank.GetDatenbankName: hlString;
 begin
-  // TODO: und was ist wenn man per "USE" eine andere Datenbank selektiert hat?
+  // Hinweis: Das funktioniert auch, wenn man mit "use" eine andere Datenbank selektiert hat.
   result := mConnection.DefaultDatabase;
-
-// Alternativ
-(*
-var
-  p: integer;
-const
-  STR = 'Initial Catalog';
-begin
-  result := '';
-
-  p := Pos(STR, connStr);
-  if p = 0 then exit;
-  Delete(connStr,1,p+Length(STR));
-  p := Pos(';', connStr)-1;
-  if p = -1 then p := 999;
-  result := Copy(connStr,1,p);
-*)
 end;
 
 function ThlDatenbank.ExecSqlList(aList: TStrings; mode: TExecSQLListMode=lmFehlerAnzeigenUndAbbrechen;

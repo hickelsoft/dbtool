@@ -50,7 +50,7 @@ type
 
     procedure Anzeige(Modal: boolean); override;
     procedure DateiExport(AExportDateiname: string); override;
-    procedure SendEMail(ExportFilename: string=''; betreff: string=''; text: string=''; toEMail: string=''; toEMailCC: string=''); override;
+    procedure SendEMail(ExportFilename: string=''; betreff: string=''; text: string=''; toEMail: string=''; toEMailCC: string=''; toEMailBCC: string=''); override;
 
     class function CRWExportDateifilter: string;
 
@@ -1434,7 +1434,7 @@ begin
   ll('crpe.WindowZoom.Preview:Set:pwPageWidth');
 end;
 
-procedure ThlCrwReport.SendEMail(ExportFilename: string=''; betreff: string=''; text: string=''; toEMail: string=''; toEMailCC: string='');
+procedure ThlCrwReport.SendEMail(ExportFilename: string=''; betreff: string=''; text: string=''; toEMail: string=''; toEMailCC: string=''; toEMailBCC: string='');
 
   procedure _SendEMail(ExportFilename: string='');
   var
@@ -1538,7 +1538,7 @@ begin
         text,  // Nachrichtentext
         dateiZuSenden, // pdfDatei
         '', '', // Sender
-        '', //Bcc
+        toEMailBCC, //emailAdresseBcc
         toEMailCC, //emailAdresseCC
         '', //empfaengerName
         toEMail); // emailAdresse

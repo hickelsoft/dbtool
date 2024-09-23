@@ -108,7 +108,7 @@ type
     procedure Druck(FPrinterData, FPrinterDataKopien: TPrinterData; ModalBildschirmDruck: boolean); overload; virtual; abstract;
     procedure Anzeige(Modal: boolean); virtual; abstract;
     procedure DateiExport(AExportDateiname: string); virtual; abstract;
-    procedure SendEMail(ExportFilename: string=''; betreff: string=''; text: string=''; toEMail: string=''; toEMailCC: string=''); virtual; abstract;
+    procedure SendEMail(ExportFilename: string=''; betreff: string=''; text: string=''; toEMail: string=''; toEMailCC: string=''; toEMailBCC: string=''); virtual; abstract;
   end;
 
 implementation
