@@ -750,7 +750,11 @@ begin
            //Application.MessageBox(SFieldTypeNotSupported, PChar(Application.Title), MB_ICONEXCLAMATION + MB_OK);
      end;
   end;
-  result := sNeu;
+  if FVerwendeQueryAnstelleTable then
+    // https://github.com/hickelsoft/dbtool/issues/2
+    result := aField.FieldName + ' is null or ' + Trim(sNeu)
+  else
+    result := sNeu;
 
 // ftDate, ftTime, ftDateTime, ftTimeStamp
 // ftGuid
@@ -776,7 +780,7 @@ begin
   else
     sNeu := aField.FieldName + ' <> ';
 
-   case aField.DataType of
+  case aField.DataType of
       ftBoolean:
          sNeu := sNeu + wert; // soll 1 oder 0 sein
 
@@ -797,15 +801,20 @@ begin
       ftDateTime: // DM 05.12.2023 : OK mit SQL Server
          sNeu := sNeu + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(wert) + '''';
 
-   else
+  else
 
          // Wir versuchen's einfach! Vielleicht geht es ja! Bei DateTime geht es.
          sNeu := sNeu + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(wert) + '''';
 
          // sNeu := '';
          //Application.MessageBox(SFieldTypeNotSupported, PChar(Application.Title), MB_ICONEXCLAMATION + MB_OK);
-   end;
-   result := sNeu;
+  end;
+
+  if FVerwendeQueryAnstelleTable then
+    // https://github.com/hickelsoft/dbtool/issues/2
+    result := aField.FieldName + ' is null or ' + Trim(sNeu)
+  else
+    result := sNeu;
 
 // ftDate, ftTime, ftDateTime, ftTimeStamp
 // ftGuid
