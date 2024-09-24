@@ -687,8 +687,6 @@ begin
 end;
 
 function TMDI_Table.GetFilter(aField: TField; bInclude: boolean): string;
-var
-  sNeu: string;
 resourcestring
   SFieldTypeNotSupported = 'Dieser Feldtyp kann (noch) nicht automatisch gefiltert werden.';
 begin
@@ -697,32 +695,32 @@ begin
     if FVerwendeQueryAnstelleTable then
     begin
       if bInclude then
-        sNeu := aField.FieldName + ' is null ' // do not localize
+        result := aField.FieldName + ' is null ' // do not localize
       else
-        sNeu := aField.FieldName + ' is not null '; // do not localize
+        result := aField.FieldName + ' is not null '; // do not localize
     end
     else
     begin
       // Beim Filter muss man wirklich "= null" schreiben und nicht "is null"
       if bInclude then
-        sNeu := aField.FieldName + ' = null ' // do not localize
+        result := aField.FieldName + ' = null ' // do not localize
       else
-        sNeu := aField.FieldName + ' <> null '; // do not localize
+        result := aField.FieldName + ' <> null '; // do not localize
     end;
   end
   else
   begin
     if bInclude then
-      sNeu := aField.FieldName + ' = '
+      result := aField.FieldName + ' = '
     else
-      sNeu := aField.FieldName + ' <> ';
+      result := aField.FieldName + ' <> ';
 
      case aField.DataType of
         ftBoolean:
            if aField.AsBoolean then
-             sNeu := sNeu + '1'
+             result := result + '1'
            else
-             sNeu := sNeu + '0';
+             result := result + '0';
 
         ftInteger,
         ftFloat,
@@ -733,28 +731,28 @@ begin
         ftFMTBcd,
         ftLargeint,
         ftWord:
-           sNeu := sNeu + StringReplace(aField.AsString, ',', '.', []);
+           result := result + StringReplace(aField.AsString, ',', '.', []);
 
         ftString,
         ftFixedChar,
         ftWideString,
         ftDateTime: // DM 05.12.2023 : OK mit SQL Server
-           sNeu := sNeu + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(aField.AsString) + '''';
+           result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(aField.AsString) + '''';
 
      else
 
            // Wir versuchen's einfach! Vielleicht geht es ja!
-           sNeu := sNeu + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(aField.AsString) + '''';
+           result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(aField.AsString) + '''';
 
-           //sNeu := '';
+           //result := '';
            //Application.MessageBox(SFieldTypeNotSupported, PChar(Application.Title), MB_ICONEXCLAMATION + MB_OK);
      end;
+
+     // https://github.com/hickelsoft/dbtool/issues/2
+     if FVerwendeQueryAnstelleTable then
+       result := aField.FieldName + ' is null or ' + Trim(result)
   end;
-  if FVerwendeQueryAnstelleTable then
-    // https://github.com/hickelsoft/dbtool/issues/2
-    result := aField.FieldName + ' is null or ' + Trim(sNeu)
-  else
-    result := sNeu;
+
 
 // ftDate, ftTime, ftDateTime, ftTimeStamp
 // ftGuid
@@ -763,26 +761,24 @@ begin
    ftBoolean:
 
    if TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString = '' then
-      sBuffer := '(' + wwDBGrid1.GetActiveField.FieldName + ' <> 1) and (' + wwDBGrid1.GetActiveField.FieldName + ' <> 0)'
+      result := '(' + wwDBGrid1.GetActiveField.FieldName + ' <> 1) and (' + wwDBGrid1.GetActiveField.FieldName + ' <> 0)'
    else
-      sBuffer := sBuffer + TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString;
+      result := result + TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString;
 *)
 end;
 
 function TMDI_Table.GetFilter(aField: TField; wert: string; bInclude: boolean): string;
-var
-  sNeu: string;
 resourcestring
   SFieldTypeNotSupported = 'Dieser Feldtyp kann (noch) nicht automatisch gefiltert werden.';
 begin
   if bInclude then
-    sNeu := aField.FieldName + ' = '
+    result := aField.FieldName + ' = '
   else
-    sNeu := aField.FieldName + ' <> ';
+    result := aField.FieldName + ' <> ';
 
   case aField.DataType of
       ftBoolean:
-         sNeu := sNeu + wert; // soll 1 oder 0 sein
+         result := result + wert; // soll 1 oder 0 sein
 
       ftInteger,
       ftFloat,
@@ -793,28 +789,27 @@ begin
       ftFMTBcd,
       ftLargeint,
       ftWord:
-         sNeu := sNeu + StringReplace(wert, ',', '.', []);
+         result := result + StringReplace(wert, ',', '.', []);
 
       ftString,
       ftFixedChar,
       ftWideString,
       ftDateTime: // DM 05.12.2023 : OK mit SQL Server
-         sNeu := sNeu + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(wert) + '''';
+         result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(wert) + '''';
 
   else
 
          // Wir versuchen's einfach! Vielleicht geht es ja! Bei DateTime geht es.
-         sNeu := sNeu + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(wert) + '''';
+         result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(wert) + '''';
 
-         // sNeu := '';
+         // result := '';
          //Application.MessageBox(SFieldTypeNotSupported, PChar(Application.Title), MB_ICONEXCLAMATION + MB_OK);
   end;
 
   if FVerwendeQueryAnstelleTable then
     // https://github.com/hickelsoft/dbtool/issues/2
-    result := aField.FieldName + ' is null or ' + Trim(sNeu)
-  else
-    result := sNeu;
+    result := aField.FieldName + ' is null or ' + Trim(result)
+
 
 // ftDate, ftTime, ftDateTime, ftTimeStamp
 // ftGuid
@@ -823,9 +818,9 @@ begin
    ftBoolean:
 
    if TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString = '' then
-      sBuffer := '(' + wwDBGrid1.GetActiveField.FieldName + ' <> 1) and (' + wwDBGrid1.GetActiveField.FieldName + ' <> 0)'
+      result := '(' + wwDBGrid1.GetActiveField.FieldName + ' <> 1) and (' + wwDBGrid1.GetActiveField.FieldName + ' <> 0)'
    else
-      sBuffer := sBuffer + TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString;
+      result := result + TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString;
 *)
 end;
 

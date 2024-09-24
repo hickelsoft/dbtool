@@ -2996,17 +2996,17 @@ BEGIN
 END
 
 /* c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\release\Controls.res */
-/* c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\debug\Dialogs.res */
+/* c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\release\Dialogs.res */
 /* c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\release\Buttons.res */
 /* c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\release\ExtDlgs.res */
-/* c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\debug\Vcl.DBLogDlg.dfm */
-/* c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\debug\Vcl.DBPWDlg.dfm */
+/* c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\release\Vcl.DBLogDlg.dfm */
+/* c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\release\Vcl.DBPWDlg.dfm */
 /* c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\release\DBCtrls.res */
 /* C:\SVN\Delphi\DBTool\IbDatabaseName.DFM */
 /* C:\SVN\Delphi\Hickel_Components\StatusAn.DFM */
 /* C:\Program Files (x86)\woll2woll\InfoPower4kAthens\lib\23.0\win32\vcl.wwinputstring.dfm */
 /* C:\Program Files (x86)\woll2woll\InfoPower4kAthens\lib\23.0\win32\vcl.wwinputstring2.dfm */
-/* c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\debug\Tabs.res */
+/* c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\release\Tabs.res */
 /* C:\Program Files (x86)\woll2woll\InfoPower4kAthens\lib\23.0\win32\vcl.wwfltvw.DFM */
 /* C:\Program Files (x86)\woll2woll\InfoPower4kAthens\lib\23.0\win32\vcl.wwfltdlg.DFM */
 /* C:\Program Files (x86)\woll2woll\InfoPower4kAthens\lib\23.0\win32\vcl.wwgridselectcolumns.dfm */
@@ -3029,7 +3029,7 @@ END
 /* C:\Program Files (x86)\woll2woll\InfoPower4kAthens\lib\23.0\win32\vcl.wwrcdvw.DFM */
 /* c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\release\CategoryButtons.res */
 /* C:\Program Files (x86)\woll2woll\InfoPower4kAthens\lib\23.0\win32\WWDBD32.RES */
-/* C:\Users\dmarschall\Documents\Embarcadero\Studio\23.0\CatalogRepository\JEDICodeLibraryJCL-2023.11\lib\d29\win32\debug\JclUnicode.res */
+/* C:\Users\dmarschall\Documents\Embarcadero\Studio\23.0\CatalogRepository\JEDICodeLibraryJCL-2023.11\lib\d29\win32\JclUnicode.res */
 /* C:\SVN\Delphi\Hickel_Components\MsgBox.Res */
 /* c:\program files (x86)\embarcadero\studio\23.0\lib\Win32\release\SPIN.RES */
 /* C:\SVN\Delphi\DBTool\EditRTF.DFM */

@@ -35,8 +35,8 @@ WizardSmallImageFile=..\Private\Export Mini Graphic.bmp
 SetupIconFile=..\Private\MAINICON.ico
 UninstallDisplayIcon={app}\DBTool32.exe
 ; 64 Bit Support:
-ArchitecturesAllowed=x86 x64
-ArchitecturesInstallIn64BitMode=x64
+ArchitecturesAllowed=x86compatible x64compatible
+ArchitecturesInstallIn64BitMode=x64compatible
 
 [Languages]
 Name: en; MessagesFile: "compiler:Default.isl"

@@ -35,11 +35,11 @@ WizardSmallImageFile=..\Private\Export Mini Graphic.bmp
 SetupIconFile=..\Private\MAINICON.ico
 UninstallDisplayIcon={app}\DBTool32.exe
 ; 64 Bit Support:
-ArchitecturesAllowed=x86 x64
-ArchitecturesInstallIn64BitMode=x64
+ArchitecturesAllowed=x86compatible x64compatible
+ArchitecturesInstallIn64BitMode=x64compatible
 ; Configure Sign Tool in InnoSetup at "Tools => Configure Sign Tools" (adjust the path to your SVN repository location)
 ; Name    = sign_single   
-; Command = "C:\SVN\CORA Delphi\DevTools\AuthentiCode Sign\sign_single.bat" $f
+; Command = "D:\SVN\Delphi\DevTools\AuthentiCode Sign\sign_single.bat" $f
 SignTool=sign_single
 SignedUninstaller=yes
 
