@@ -58,11 +58,6 @@ Source: "\\Win11Dev\DBToolCompile$\DBTool64.enu"; DestDir: "{app}"; DestName: "D
 ; Restliche Dateien liegen hier im Setup-Verzeichnis
 Source: "lizenzbedingungen.rtf"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "Win32\libeay32.dll"; DestDir: "{app}\Win32"; DestName: "libeay32.dll"; Flags: ignoreversion signonce
-Source: "Win64\libeay32.dll"; DestDir: "{app}\Win64"; DestName: "libeay32.dll"; Flags: ignoreversion signonce; Check: Is64BitInstallMode
-Source: "Win32\ssleay32.dll"; DestDir: "{app}\Win32"; DestName: "ssleay32.dll"; Flags: ignoreversion signonce
-Source: "Win64\ssleay32.dll"; DestDir: "{app}\Win64"; DestName: "ssleay32.dll"; Flags: ignoreversion signonce; Check: Is64BitInstallMode
-
 [UninstallDelete]
 Type: files; Name: "{app}\Setup.ini"
 

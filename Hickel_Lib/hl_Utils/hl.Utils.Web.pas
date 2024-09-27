@@ -3,7 +3,7 @@ unit hl.Utils.Web;
 interface
 
 uses
-  Windows, Classes, IdHTTP, IdSSLOpenSSL, IdComponent, ProgrDlg;
+  Windows, Classes, IdSSLOpenSSL, IdComponent, ProgrDlg;
 
 function secure_email(email, linktext: string; crypt_linktext: boolean): string;
 function htmlEntities(s: string): string;
@@ -12,16 +12,21 @@ function InsertHTMLAfterBody(insert, htmlTemplate: string): string;
 function IsHTML(s: string): boolean;
 function HTMLToText(html: string): string;
 function TextToHtml(text: string): string;
-function DoPost(URL: string; lParamList: TStringList): string;
-function DoGet(URL: string): string;
+function DoPost(const URL: string; Params: TStringList): string;
+function DoGet(const URL: string): string;
 function EncodeURIComponent(const ASrc: string): UTF8String;
-procedure DownloadFile(url, filename: string; pgd: TProgressDlg=nil);
+procedure DownloadFile(const url, filename: string; pgd: TProgressDlg=nil);
+
+var
+  hl_Web_UseIndy: boolean;
 
 implementation
 
 uses
   SysUtils, StrUtils, SHDocVW, MsHTML, Variants, ActiveX,
-  IdSSLOpenSSLHeaders, hl.Utils;
+  IdSSLOpenSSLHeaders, IdHTTP,
+  WinInet, System.Net.URLClient,
+  hl.Utils;
 
 function secure_email(email, linktext: string; crypt_linktext: boolean): string;
   function alas_js_crypt(text: string): string;
@@ -204,7 +209,9 @@ begin
   {here you may add another symbols from RFC if you need}
 end;
 
-function DoPost(URL: string; lParamList: TStringList): string;
+{$REGION 'Indy HTTP Get/Post/Download'}
+
+function Indy_DoPost(const URL: string; Params: TStringList): string;
 var
   Stream: TStringStream;
   lHTTP: TIdHTTP;
@@ -220,7 +227,7 @@ begin
     // Mit Stream gehts...
     Stream:= TStringStream.Create('');
     try
-      lHTTP.Post(URL, lParamList, Stream);
+      lHTTP.Post(URL, Params, Stream);
       Stream.Position := 0;
       result := Stream.DataString;
     finally
@@ -231,7 +238,7 @@ begin
   end;
 end;
 
-function DoGet(URL: string): string;
+function Indy_DoGet(const URL: string): string;
 var
   Stream: TStringStream;
   lHTTP: TIdHTTP;
@@ -261,6 +268,506 @@ begin
   finally
     FreeAndNil(lHTTP);
   end;
+end;
+
+type
+  TTempDownloadProgress = class(TObject)
+  public
+    pgd: TProgressDlg;
+    procedure DoWorkEnd(ASender: TObject; AWorkMode: TWorkMode);
+    procedure DoWork(ASender: TObject; AWorkMode: TWorkMode; AWorkCount: Int64);
+    procedure DoWorkBegin(ASender: TObject; AWorkMode: TWorkMode; AWorkCountMax: Int64);
+  end;
+
+procedure TTempDownloadProgress.DoWork(ASender: TObject; AWorkMode: TWorkMode;
+  AWorkCount: Int64);
+begin
+  if pgd.StopButtonSignal then
+  begin
+    Abort;
+  end;
+
+  // In 50KB-Schritten vorangehen, weil die ProgressBar-Komponente nicht Int64 kann!
+  pgd.Position := aworkcount div (1024*50);
+end;
+
+procedure TTempDownloadProgress.DoWorkBegin(ASender: TObject; AWorkMode: TWorkMode;
+  AWorkCountMax: Int64);
+begin
+  // In 50KB-Schritten vorangehen, weil die ProgressBar-Komponente nicht Int64 kann!
+  pgd.MaxValue := AWorkCountMax div (1024*50);
+end;
+
+procedure TTempDownloadProgress.DoWorkEnd(ASender: TObject; AWorkMode: TWorkMode);
+begin
+  // Nichts hier
+end;
+
+procedure Indy_DownloadFile(const url, filename: string; pgd: TProgressDlg=nil);
+var
+  IdHTTP1: TIdHTTP;
+  Stream: TMemoryStream;
+  tmpDownload: TTempDownloadProgress;
+begin
+  IdHTTP1 := TIdHTTP.Create(nil);
+  Stream := TMemoryStream.Create;
+  try
+    IdHTTP1.HandleRedirects := True;
+    IdHTTP1.IOHandler := TIdSSLIOHandlerSocketOpenSSL.Create(IdHTTP1);
+    TIdSSLIOHandlerSocketOpenSSL(IdHTTP1.IOHandler).SSLOptions.SSLVersions := [sslvTLSv1_2];
+    TIdSSLIOHandlerSocketOpenSSL(IdHTTP1.IOHandler).SSLOptions.Method := sslvTLSv1_2;
+
+    if Assigned(pgd) then
+    begin
+      tmpDownload := TTempDownloadProgress.Create;
+      tmpDownload.pgd := pgd;
+
+      IdHTTP1.OnWork := tmpDownload.DoWork;
+      IdHTTP1.OnWorkBegin := tmpDownload.DoWorkBegin;
+      IdHTTP1.OnWorkEnd := tmpDownload.DoWorkEnd;
+    end;
+
+    IdHTTP1.Get(Url, Stream);
+
+    if Assigned(tmpDownload) then
+    begin
+      FreeAndNil(tmpDownload);
+    end;
+
+    Stream.SaveToFile(FileName);
+  finally
+    FreeAndNil(Stream);
+    FreeAndNil(IdHTTP1);
+  end;
+end;
+
+{$ENDREGION}
+
+{$REGION 'WinInet HTTP Get/Post/Download'}
+
+// TODO: For these WinInet implementations, check if Unicode implementation is
+//       identical to the Indy implementations
+
+const
+  USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
+  MaxRedirects = 5;
+
+function GetRedirectLocation(hRequest: HINTERNET): string;
+var
+  Buffer: array[0..1023] of Char;
+  BufferLength, HeaderIndex: DWORD;
+begin
+  Result := '';
+  BufferLength := SizeOf(Buffer);
+  HeaderIndex := 0;
+
+  // Query the "Location" header to get the new URL for redirection
+  if HttpQueryInfo(hRequest, HTTP_QUERY_LOCATION, @Buffer, BufferLength, HeaderIndex) then
+    Result := string(Buffer);
+end;
+
+function GetStatusCode(hRequest: HINTERNET): DWORD;
+var
+  StatusCode: DWORD;
+  StatusCodeLen: DWORD;
+  HeaderIndex: DWORD;
+begin
+  StatusCode := 0;
+  StatusCodeLen := SizeOf(StatusCode);
+  HeaderIndex := 0;
+
+  // Query the status code from the HTTP response
+  if HttpQueryInfo(hRequest, HTTP_QUERY_STATUS_CODE or HTTP_QUERY_FLAG_NUMBER, @StatusCode, StatusCodeLen, HeaderIndex) then
+    Result := StatusCode
+  else
+    Result := 0;
+end;
+
+function WinInet_DoPost(const URL: string; Params: TStringList): string;
+
+  function URLEncodeWithoutUTF8(const AStr: RawByteString): RawByteString;
+  var
+    I: Integer;
+    Ch: AnsiChar;
+  begin
+    Result := '';
+    for I := 1 to Length(AStr) do
+    begin
+      Ch := AStr[I];
+      // Encode only special characters
+      if CharInset(Ch, ['A'..'Z', 'a'..'z', '0'..'9', '-', '_', '.', '~']) then
+        Result := Result + Ch
+      else
+        Result := Result + '%' + AnsiString(IntToHex(Ord(Ch), 2));
+    end;
+  end;
+
+  function StringListToPostData(Params: TStringList): RawByteString;
+  var
+    i: Integer;
+  begin
+    Result := '';
+    for i := 0 to Params.Count - 1 do
+    begin
+      if i > 0 then Result := Result + '&';
+      //Result := Result + TURI.URLEncode(Params.KeyNames[i]) + '=' + TURI.URLEncode(Params.ValueFromIndex[i]);
+      Result := Result + URLEncodeWithoutUTF8(AnsiString(Params.KeyNames[i])) + '=' + URLEncodeWithoutUTF8(AnsiString(Params.ValueFromIndex[i]));
+    end;
+  end;
+
+  procedure ExtractHostAndPath(const URL: string; var Host, Path: string; var Port: integer);
+  var
+    URI: TURI;
+  begin
+    URI := TURI.Create(URL);
+    Host := URI.Host;
+    Path := URI.Path;// + URI.Document;
+    Port := URI.Port;
+  end;
+
+var
+  AURL: string;
+  hSession, hConnect, hRequest: HINTERNET;
+  PostData: RawByteString; // sic!!!
+  Headers, Host, Path: string;
+  Port: integer;
+  PostDataLength: DWORD;
+  Buffer: array[0..1024] of AnsiChar;
+  BytesRead: DWORD;
+  Response: RawByteString;
+  StatusCode: DWORD;
+  RedirectCount: integer;
+const
+  ContentType = 'application/x-www-form-urlencoded';
+begin
+  AUrl := URL;
+
+  hSession := InternetOpen(USER_AGENT, INTERNET_OPEN_TYPE_PRECONFIG, nil, nil, 0);
+  if not Assigned(hSession) then
+    raise Exception.Create('Error initializing WinInet: ' + SysErrorMessage(GetLastError));
+  try
+    RedirectCount := 0;
+    while true do
+    begin
+      ExtractHostAndPath(AURL, Host, Path, Port);
+      hConnect := InternetConnect(hSession, PChar(Host), Port, nil, nil, INTERNET_SERVICE_HTTP, 0, 0);
+      if not Assigned(hConnect) then
+        raise Exception.Create('Error connecting to server: ' + SysErrorMessage(GetLastError));
+      try
+        hRequest := HttpOpenRequest(hConnect, 'POST', PChar(Path), nil, nil, nil, INTERNET_FLAG_SECURE, 0);
+        if not Assigned(hRequest) then
+          raise Exception.Create('Error opening request: ' + SysErrorMessage(GetLastError));
+        try
+          // Set headers.
+          Headers := 'Content-Type: ' + ContentType + #13#10;
+
+          // Convert the StringList parameters to a URL-encoded string.
+          PostData := StringListToPostData(Params);
+          PostDataLength := Length(PostData);
+
+          // Send the request with POST data.
+          if not HttpSendRequest(hRequest, PChar(Headers), Length(Headers), PAnsiChar(PostData), PostDataLength) then
+            raise Exception.Create('Error sending request: ' + SysErrorMessage(GetLastError));
+
+          StatusCode := GetStatusCode(hRequest);
+
+          if (StatusCode >= 300) and (StatusCode < 400) then
+          begin
+            Inc(RedirectCount);
+
+            // Stop following redirects if we exceed the maximum number of allowed redirects.
+            if RedirectCount > MaxRedirects then
+            begin
+              raise Exception.Create('Error: Too many redirects');
+            end;
+
+            // Get the "Location" header for the new URL
+            AURL := GetRedirectLocation(hRequest);
+          end
+          else if (StatusCode = 200) then // do not localize
+          begin
+            // Read the response.
+            Response := '';
+            repeat
+              InternetReadFile(hRequest, @Buffer, SizeOf(Buffer), BytesRead);
+              if BytesRead > 0 then
+                Response := Response + Copy(Buffer, 1, BytesRead);
+            until BytesRead = 0;
+
+            // Output the server response.
+            Result := Response;
+
+            break;
+          end
+          else
+            raise Exception.CreateFmt('HTTP Error %d with GET request %s', [StatusCode, aurl]);
+        finally
+          InternetCloseHandle(hRequest);
+        end;
+      finally
+        InternetCloseHandle(hConnect);
+      end;
+    end;
+  finally
+    InternetCloseHandle(hSession);
+  end;
+end;
+
+function WinInet_DoGet(const Url: string): string;
+var
+  AUrl: string;
+  databuffer : array[0..4095] of ansichar; // SIC! ansichar!
+  Response : ansistring; // SIC! ansistring
+  hSession, hRequest: hInternet;
+  dwread,dwNumber: cardinal;
+  Str    : pansichar; // SIC! pansichar
+  StatusCode: DWORD;
+  RedirectCount: integer;
+begin
+  Response:='';
+  AUrl := Url;
+
+  hSession:=InternetOpen(USER_AGENT, INTERNET_OPEN_TYPE_PRECONFIG, nil, nil, 0);
+  if not Assigned(hSession) then
+    raise Exception.Create('Error initializing WinInet: ' + SysErrorMessage(GetLastError));
+  try
+    RedirectCount := 0;
+    while true do
+    begin
+      hRequest:=InternetOpenUrl(hsession, pchar(AUrl), nil, 0, INTERNET_FLAG_RELOAD, 0);
+      if not Assigned(hRequest) then
+        raise Exception.Create('Error opening request: ' + SysErrorMessage(GetLastError));
+      try
+        StatusCode := GetStatusCode(hRequest);
+        if (StatusCode >= 300) and (StatusCode < 400) then
+        begin
+          Inc(RedirectCount);
+
+          // Stop following redirects if we exceed the maximum number of allowed redirects.
+          if RedirectCount > MaxRedirects then
+          begin
+            raise Exception.Create('Error: Too many redirects');
+          end;
+
+          // Get the "Location" header for the new URL
+          AURL := GetRedirectLocation(hRequest);
+        end
+        else if (StatusCode = 200) then // do not localize
+        begin
+          dwNumber := 1024;
+          while (InternetReadfile(hRequest, @databuffer, dwNumber, DwRead)) do
+          begin
+            if dwRead =0 then
+              break;
+            databuffer[dwread]:=#0;
+            Str := pansichar(@databuffer);
+            Response := Response + Str;
+          end;
+
+          // Output the server response.
+          Result := Response;
+
+          break;
+        end
+        else
+          raise Exception.CreateFmt('HTTP Error %d with GET request %s', [StatusCode, aurl]);
+      finally
+        InternetCloseHandle(hRequest);
+      end;
+    end;
+  finally
+    InternetCloseHandle(hsession);
+  end;
+end;
+
+procedure WinInet_DownloadFile(const URL, FileName: string; pgd: TProgressDlg=nil);
+var
+  AUrl: string;
+  hSession, hRequest: HINTERNET;
+  Buffer: array[0..1023] of Byte;
+  BufferLen: DWORD;
+  FileStream: TFileStream;
+  FileSize, TotalRead: DWORD;
+  dwSize: DWORD;
+  reserved: DWORD;
+  StatusCode: DWORD;
+  RedirectCount: integer;
+begin
+  AUrl := Url;
+
+  hSession := InternetOpen(USER_AGENT, INTERNET_OPEN_TYPE_PRECONFIG, nil, nil, 0);
+  if not Assigned(hSession) then
+    raise Exception.Create('Error initializing WinInet: ' + SysErrorMessage(GetLastError));
+  try
+    RedirectCount := 0;
+    while true do
+    begin
+      hRequest := InternetOpenUrl(hSession, PChar(AURL), nil, 0, INTERNET_FLAG_RELOAD or INTERNET_FLAG_NO_CACHE_WRITE, 0);
+      if not Assigned(hRequest) then
+        raise Exception.Create('Error opening request: ' + SysErrorMessage(GetLastError));
+      try
+        StatusCode := GetStatusCode(hRequest);
+        if (StatusCode >= 300) and (StatusCode < 400) then
+        begin
+          Inc(RedirectCount);
+
+          // Stop following redirects if we exceed the maximum number of allowed redirects.
+          if RedirectCount > MaxRedirects then
+          begin
+            raise Exception.Create('Error: Too many redirects');
+          end;
+
+          // Get the "Location" header for the new URL
+          AURL := GetRedirectLocation(hRequest);
+        end
+        else if (StatusCode = 200) then
+        begin
+          dwSize := SizeOf(FileSize);
+          reserved := 0;
+          if pgd <> nil then
+          begin
+            if HttpQueryInfo(hRequest, HTTP_QUERY_CONTENT_LENGTH or HTTP_QUERY_FLAG_NUMBER, @FileSize, dwSize, reserved) then
+              pgd.MaxValue := FileSize div 1024 // Number of KiB
+            else
+              pgd.MaxValue := 0;
+          end;
+
+          FileStream := TFileStream.Create(FileName, fmCreate);
+          try
+            TotalRead := 0;
+            repeat
+              // Lese Daten von der URL
+              InternetReadFile(hRequest, @Buffer, SizeOf(Buffer), BufferLen);
+              if BufferLen > 0 then
+              begin
+                FileStream.Write(Buffer, BufferLen);
+                TotalRead := TotalRead + BufferLen;
+                if pgd <> nil then pgd.Position := TotalRead div 1024;
+              end;
+            until BufferLen = 0;
+          finally
+            FileStream.Free;
+          end;
+
+          break;
+        end
+        else
+          raise Exception.CreateFmt('HTTP Error %d with GET request %s', [StatusCode, aurl]);
+      finally
+        InternetCloseHandle(hRequest);
+      end;
+    end;
+  finally
+    InternetCloseHandle(hSession);
+  end;
+end;
+
+{$ENDREGION}
+
+procedure CopyOpenSslLibs;
+var
+  //ResStream: TResourceStream;
+  bits: integer;
+  outfil: string;
+  outdir: string;
+begin
+  hl_Web_UseIndy := false;
+
+  // Neuste Version der Indy SSL Libraries hier herunterladen: https://github.com/IndySockets/OpenSSL-Binaries
+
+  {$IFDEF WIN64}
+  bits := 64;
+  {$ELSE}
+  bits := 32;
+  {$ENDIF}
+
+  {$REGION 'Ordner erzeugen'}
+  outdir := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)))+'Win'+IntToStr(bits);
+  if not DirectoryExists(outdir) then
+  begin
+    outdir := IncludeTrailingPathDelimiter(GetTempDir) + 'HS_OpenSSL'+IntToStr(bits);
+  end;
+  if not DirectoryExists(outdir) then
+  begin
+    ForceDirectories(outdir);
+  end;
+  if not DirectoryExists(outdir) then exit;
+  {$ENDREGION}
+
+  {$REGION 'LibEay32'}
+  outfil := IncludeTrailingPathDelimiter(outdir)+'libeay32.dll';
+  if not FileExists(outfil) then
+  begin
+    CopyFile(PChar(IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)))+'libeay32.'+IntToStr(bits)+'.dll'), PChar(outfil), false);
+  end;
+  (*
+  if not FileExists(outfil) then
+  begin
+    try
+      ResStream := TResourceStream.Create(HInstance, 'LIBEAY32', 'DLL');
+      try
+        ResStream.Position := 0;
+        ResStream.SaveToFile(outfil);
+      finally
+        FreeAndNil(ResStream);
+      end;
+    except
+    end;
+  end;
+  *)
+  if not FileExists(outfil) then exit;
+  {$ENDREGION}
+
+  {$REGION 'SslEay32'}
+  outfil := IncludeTrailingPathDelimiter(outdir)+'ssleay32.dll';
+  if not FileExists(outfil) then
+  begin
+    CopyFile(PChar(IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)))+'ssleay32.'+IntToStr(bits)+'.dll'), PChar(outfil), false);
+  end;
+  (*
+  if not FileExists(outfil) then
+  begin
+    try
+      ResStream := TResourceStream.Create(HInstance, 'SSLEAY32', 'DLL');
+      try
+        ResStream.Position := 0;
+        ResStream.SaveToFile(outfil);
+      finally
+        FreeAndNil(ResStream);
+      end;
+    except
+    end;
+  end;
+  *)
+  if not FileExists(outfil) then exit;
+  {$ENDREGION}
+
+  IdOpenSSLSetLibPath(outdir);
+  hl_Web_UseIndy := true;
+end;
+
+function DoPost(const URL: string; Params: TStringList): string;
+begin
+  if hl_Web_UseIndy then
+    result := Indy_DoPost(Url, Params)
+  else
+    result := WinInet_DoPost(Url, Params);
+end;
+
+function DoGet(const Url: string): string;
+begin
+  if hl_Web_UseIndy then
+    result := Indy_DoGet(Url)
+  else
+    result := WinInet_DoGet(Url);
+end;
+
+procedure DownloadFile(const URL, FileName: string; pgd: TProgressDlg=nil);
+begin
+  if hl_Web_UseIndy then
+    Indy_DownloadFile(URL, FileName, pgd)
+  else
+    WinInet_DownloadFile(URL, FileName, pgd);
 end;
 
 // https://marc.durdin.net/2012/07/indy-tiduri-pathencode-urlencode-and-paramsencode-and-more/
@@ -310,150 +817,6 @@ begin
   end;
 
   SetLength(Result, J-1);
-end;
-
-type
-  TTempDownloadProgress = class(TObject)
-  public
-    pgd: TProgressDlg;
-    procedure DoWorkEnd(ASender: TObject; AWorkMode: TWorkMode);
-    procedure DoWork(ASender: TObject; AWorkMode: TWorkMode; AWorkCount: Int64);
-    procedure DoWorkBegin(ASender: TObject; AWorkMode: TWorkMode; AWorkCountMax: Int64);
-  end;
-
-procedure TTempDownloadProgress.DoWork(ASender: TObject; AWorkMode: TWorkMode;
-  AWorkCount: Int64);
-begin
-  if pgd.StopButtonSignal then
-  begin
-    Abort;
-  end;
-
-  // In 50KB-Schritten vorangehen, weil die ProgressBar-Komponente nicht Int64 kann!
-  pgd.Position := aworkcount div (1024*50);
-end;
-
-procedure TTempDownloadProgress.DoWorkBegin(ASender: TObject; AWorkMode: TWorkMode;
-  AWorkCountMax: Int64);
-begin
-  // In 50KB-Schritten vorangehen, weil die ProgressBar-Komponente nicht Int64 kann!
-  pgd.MaxValue := AWorkCountMax div (1024*50);
-end;
-
-procedure TTempDownloadProgress.DoWorkEnd(ASender: TObject; AWorkMode: TWorkMode);
-begin
-  // Nichts hier
-end;
-
-procedure DownloadFile(url, filename: string; pgd: TProgressDlg=nil);
-var
-  IdHTTP1: TIdHTTP;
-  Stream: TMemoryStream;
-  tmpDownload: TTempDownloadProgress;
-begin
-  IdHTTP1 := TIdHTTP.Create(nil);
-  Stream := TMemoryStream.Create;
-  try
-    IdHTTP1.HandleRedirects := True;
-    IdHTTP1.IOHandler := TIdSSLIOHandlerSocketOpenSSL.Create(IdHTTP1);
-    TIdSSLIOHandlerSocketOpenSSL(IdHTTP1.IOHandler).SSLOptions.SSLVersions := [sslvTLSv1_2];
-    TIdSSLIOHandlerSocketOpenSSL(IdHTTP1.IOHandler).SSLOptions.Method := sslvTLSv1_2;
-
-    if Assigned(pgd) then
-    begin
-      tmpDownload := TTempDownloadProgress.Create;
-      tmpDownload.pgd := pgd;
-
-      IdHTTP1.OnWork := tmpDownload.DoWork;
-      IdHTTP1.OnWorkBegin := tmpDownload.DoWorkBegin;
-      IdHTTP1.OnWorkEnd := tmpDownload.DoWorkEnd;
-    end;
-
-    IdHTTP1.Get(Url, Stream);
-
-    if Assigned(tmpDownload) then
-    begin
-      FreeAndNil(tmpDownload);
-    end;
-
-    Stream.SaveToFile(FileName);
-  finally
-    FreeAndNil(Stream);
-    FreeAndNil(IdHTTP1);
-  end;
-end;
-
-procedure CopyOpenSslLibs;
-var
-  ResStream: TResourceStream;
-  bits: integer;
-  outfil: string;
-  outdir: string;
-begin
-  {$IFDEF WIN64}
-  bits := 64;
-  {$ELSE}
-  bits := 32;
-  {$ENDIF}
-
-  {$REGION 'Ordner erzeugen'}
-  outdir := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)))+'Win'+IntToStr(bits);
-  if not DirectoryExists(outdir) then
-  begin
-    outdir := IncludeTrailingPathDelimiter(GetTempDir) + 'HS_OpenSSL'+IntToStr(bits);
-  end;
-  if not DirectoryExists(outdir) then
-  begin
-    ForceDirectories(outdir);
-  end;
-  if not DirectoryExists(outdir) then exit;
-  {$ENDREGION}
-
-  {$REGION 'LibEay32'}
-  outfil := IncludeTrailingPathDelimiter(outdir)+'libeay32.dll';
-  if not FileExists(outfil) then
-  begin
-    CopyFile(PChar(IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)))+'libeay32.'+IntToStr(bits)+'.dll'), PChar(outfil), false);
-  end;
-  if not FileExists(outfil) then
-  begin
-    try
-      ResStream := TResourceStream.Create(HInstance, 'LIBEAY32', 'DLL');
-      try
-        ResStream.Position := 0;
-        ResStream.SaveToFile(outfil);
-      finally
-        FreeAndNil(ResStream);
-      end;
-    except
-    end;
-  end;
-  if not FileExists(outfil) then exit;
-  {$ENDREGION}
-
-  {$REGION 'SslEay32'}
-  outfil := IncludeTrailingPathDelimiter(outdir)+'ssleay32.dll';
-  if not FileExists(outfil) then
-  begin
-    CopyFile(PChar(IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)))+'ssleay32.'+IntToStr(bits)+'.dll'), PChar(outfil), false);
-  end;
-  if not FileExists(outfil) then
-  begin
-    try
-      ResStream := TResourceStream.Create(HInstance, 'SSLEAY32', 'DLL');
-      try
-        ResStream.Position := 0;
-        ResStream.SaveToFile(outfil);
-      finally
-        FreeAndNil(ResStream);
-      end;
-    except
-    end;
-  end;
-  if not FileExists(outfil) then exit;
-  {$ENDREGION}
-
-  IdOpenSSLSetLibPath(outdir);
 end;
 
 initialization
