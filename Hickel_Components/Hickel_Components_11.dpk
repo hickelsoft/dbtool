@@ -54,7 +54,8 @@ contains
   DBMaskEdit in 'DBMaskEdit.pas',
   MetaObjVcl in 'MetaObjVcl.pas',
   HsSqlServerProvider in 'HsSqlServerProvider.pas',
-  HsGradientPanel in 'HsGradientPanel.pas',
+  HsGradientPanel in 'HsGradientPanel.pas' {*,
+  VCL_Hotfix_AltGr in 'VCL_Hotfix_AltGr.pas'*},
   VCL_Hotfix_AltGr in 'VCL_Hotfix_AltGr.pas';
 
 end.

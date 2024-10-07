@@ -74,7 +74,7 @@
         <VerInfo_Locale>1031</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <PostBuildEvent><![CDATA[c:\hs-service\FixResourceDll.exe c:\hs-service\DBTool32.enu c:\hs-service\DBTool64.enu
-rem These post-build events should actually be in the *.enu files, but that does not work with thosy shitty Embarcadero tools!
+rem These post-build events should actually be in the *.enu files, but that does not work with those shitty Embarcadero tools!
 $(PostBuildEvent)]]></PostBuildEvent>
         <DCC_OutputDRCFile>true</DCC_OutputDRCFile>
     </PropertyGroup>
@@ -1131,7 +1131,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>c:\hs-service\FixResourceDll.exe c:\hs-service\DBTool32.enu c:\hs-service\DBTool64.enu&amp;&amp;rem These post-build events should actually be in the *.enu files, but that does not work with thosy shitty Embarcadero tools!</PostBuildEvent>
+        <PostBuildEvent>c:\hs-service\FixResourceDll.exe c:\hs-service\DBTool32.enu c:\hs-service\DBTool64.enu&amp;&amp;rem These post-build events should actually be in the *.enu files, but that does not work with those shitty Embarcadero tools!</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64'">
@@ -1139,7 +1139,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>c:\hs-service\FixResourceDll.exe c:\hs-service\DBTool32.enu c:\hs-service\DBTool64.enu&amp;&amp;rem These post-build events should actually be in the *.enu files, but that does not work with thosy shitty Embarcadero tools!</PostBuildEvent>
+        <PostBuildEvent>c:\hs-service\FixResourceDll.exe c:\hs-service\DBTool32.enu c:\hs-service\DBTool64.enu&amp;&amp;rem These post-build events should actually be in the *.enu files, but that does not work with those shitty Embarcadero tools!</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win32'">
@@ -1147,7 +1147,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>c:\hs-service\FixResourceDll.exe c:\hs-service\DBTool32.enu c:\hs-service\DBTool64.enu&amp;&amp;rem These post-build events should actually be in the *.enu files, but that does not work with thosy shitty Embarcadero tools!</PostBuildEvent>
+        <PostBuildEvent>c:\hs-service\FixResourceDll.exe c:\hs-service\DBTool32.enu c:\hs-service\DBTool64.enu&amp;&amp;rem These post-build events should actually be in the *.enu files, but that does not work with those shitty Embarcadero tools!</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64'">
@@ -1155,7 +1155,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>c:\hs-service\FixResourceDll.exe c:\hs-service\DBTool32.enu c:\hs-service\DBTool64.enu&amp;&amp;rem These post-build events should actually be in the *.enu files, but that does not work with thosy shitty Embarcadero tools!</PostBuildEvent>
+        <PostBuildEvent>c:\hs-service\FixResourceDll.exe c:\hs-service\DBTool32.enu c:\hs-service\DBTool64.enu&amp;&amp;rem These post-build events should actually be in the *.enu files, but that does not work with those shitty Embarcadero tools!</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

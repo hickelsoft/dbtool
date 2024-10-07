@@ -5,11 +5,11 @@
     <header>
       <prop-group name="ITEHeaderProp">
         <prop prop-type="Version">9.0</prop>
-        <prop prop-type="SelfDateTime">45559.4255092593</prop>
-        <prop prop-type="OrigDateTime">45559.4255092593</prop>
+        <prop prop-type="SelfDateTime">45572.4777314815</prop>
+        <prop prop-type="OrigDateTime">45572.4777314815</prop>
         <prop prop-type="XlatDateTime">45541.5404861111</prop>
         <prop prop-type="Translated">596</prop>
-        <prop prop-type="UnTranslated">843</prop>
+        <prop prop-type="UnTranslated">844</prop>
       </prop-group>
     </header>
     <body>
@@ -10674,6 +10674,13 @@
           <prop prop-type="Status">1</prop>
         </prop-group>
         <target>"Multiple lines with comments?"</target>
+      </trans-unit>
+      <trans-unit id="System_RTLConsts_SUnbalancedOperation" resname="System_RTLConsts_SUnbalancedOperation">
+        <source>"Stack- oder Warteschlangenoperation nicht abgeschlossen"</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45572.4777485764</prop>
+          <prop prop-type="Status">0</prop>
+        </prop-group>
       </trans-unit>
     </body>
   </file>
