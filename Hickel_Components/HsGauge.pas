@@ -99,7 +99,7 @@ begin
    if MaxValue <> MinValue then
    begin
       { print gauge }
-      aRect.right := Width * (Progress-MinValue) div (MaxValue-MinValue);
+      aRect.right := int64(Width) * (Progress-MinValue) div (MaxValue-MinValue);
       aRect.top := 0;
       aRect.left := 0;
       aRect.bottom := Height;

@@ -1591,6 +1591,7 @@ begin
   end;
   if (errorCount > 0) then
   begin
+    // TODO: It would be good to show the actual error message!!!
     raise Exception.CreateFmt(SCloudNotDeleteS, [tableName]);
   end;
 end;

@@ -1,5 +1,11 @@
 unit hl.Utils.Web;
 
+// TODO: GET/POST Unicode implementations seem to be off
+//       GET Indy     : Response as UTF8, GET Parameters are sent as '?'
+//       GET WinInet  : Response as UTF8, GET Parameters are sent as ANSI
+//       POST Indy    : Response as UTF8, GET Parameters are sent as '?',  POST parameter as sent as UTF8
+//       POST WinInet : Response as UTF8, GET Parameters are sent as UTF8, POST parameter as sent as UTF8
+
 interface
 
 uses
@@ -25,7 +31,7 @@ implementation
 uses
   SysUtils, StrUtils, SHDocVW, MsHTML, Variants, ActiveX,
   IdSSLOpenSSLHeaders, IdHTTP,
-  WinInet, System.Net.URLClient,
+  WinInet, System.Net.URLClient, System.NetEncoding,
   hl.Utils;
 
 function secure_email(email, linktext: string; crypt_linktext: boolean): string;
@@ -345,9 +351,6 @@ end;
 
 {$REGION 'WinInet HTTP Get/Post/Download'}
 
-// TODO: For these WinInet implementations, check if Unicode implementation is
-//       identical to the Indy implementations
-
 const
   USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
   MaxRedirects = 5;
@@ -385,23 +388,6 @@ end;
 
 function WinInet_DoPost(const URL: string; Params: TStringList): string;
 
-  function URLEncodeWithoutUTF8(const AStr: RawByteString): RawByteString;
-  var
-    I: Integer;
-    Ch: AnsiChar;
-  begin
-    Result := '';
-    for I := 1 to Length(AStr) do
-    begin
-      Ch := AStr[I];
-      // Encode only special characters
-      if CharInset(Ch, ['A'..'Z', 'a'..'z', '0'..'9', '-', '_', '.', '~']) then
-        Result := Result + Ch
-      else
-        Result := Result + '%' + AnsiString(IntToHex(Ord(Ch), 2));
-    end;
-  end;
-
   function StringListToPostData(Params: TStringList): RawByteString;
   var
     i: Integer;
@@ -410,8 +396,7 @@ function WinInet_DoPost(const URL: string; Params: TStringList): string;
     for i := 0 to Params.Count - 1 do
     begin
       if i > 0 then Result := Result + '&';
-      //Result := Result + TURI.URLEncode(Params.KeyNames[i]) + '=' + TURI.URLEncode(Params.ValueFromIndex[i]);
-      Result := Result + URLEncodeWithoutUTF8(AnsiString(Params.KeyNames[i])) + '=' + URLEncodeWithoutUTF8(AnsiString(Params.ValueFromIndex[i]));
+      Result := Result + TNetEncoding.URL.Encode(Params.KeyNames[i]) + '=' + TNetEncoding.URL.Encode(Params.ValueFromIndex[i]);
     end;
   end;
 
@@ -421,7 +406,8 @@ function WinInet_DoPost(const URL: string; Params: TStringList): string;
   begin
     URI := TURI.Create(URL);
     Host := URI.Host;
-    Path := URI.Path;// + URI.Document;
+    Path := URI.Path;
+    if URI.Query <> '' then Path := Path + '?' + URI.Query;
     Port := URI.Port;
   end;
 

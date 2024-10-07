@@ -8,7 +8,7 @@
         <FrameworkType>VCL</FrameworkType>
         <ProjectVersion>20.1</ProjectVersion>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Release</Config>
+        <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win64</Platform>
         <TargetedPlatforms>2</TargetedPlatforms>
         <AppType>Application</AppType>
@@ -152,7 +152,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <VerInfo_IncludeVerInfo>false</VerInfo_IncludeVerInfo>
         <DCC_DebugDCUs>true</DCC_DebugDCUs>
         <DCC_MapFile>3</DCC_MapFile>
-        <Debugger_RunParams>&quot;_SQLSRV:Provider=SQLOLEDB.1;Password=Lewis1$;Persist Security Info=True;User ID=cmdb;Initial Catalog=CMDB;Data Source=SHS,49011;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;Workstation ID=ELY2;Use Encryption for Data=False;Tag with column collation when possible=False&quot;</Debugger_RunParams>
     </PropertyGroup>
     <ProjectExtensions>
         <Borland.Personality>Delphi.Personality.12</Borland.Personality>

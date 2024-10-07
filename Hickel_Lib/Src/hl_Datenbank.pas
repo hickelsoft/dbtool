@@ -232,6 +232,8 @@ type
 
     class function SQKKommentareUmwandeln(sql: TStrings; subquery: boolean=false): string;
 
+    procedure DefragIndexes(FragmentierungSchwellenWert: integer=10);
+
     {$REGION 'RowLock-Funktionen'}
     (*
     function NewLock(AUsername, ATableName, APK1, APK2, APK3, APK4, APK5, APK6: hlString): ThlRowLock;
@@ -809,6 +811,47 @@ end;
 class function ThlDatenbank.DefaultCommandTimeout: integer;
 begin
   result := 300;
+end;
+
+procedure ThlDatenbank.DefragIndexes(FragmentierungSchwellenWert: integer=10);
+var
+  q: ThlDataSet;
+  SchemaName, TableName, IndexName: string;
+begin
+  q := GetTable(
+    'SELECT ' +
+    '  s.name AS SchemaName, ' +
+    '  t.name AS TableName, ' +
+    '  i.name AS IndexName, ' +
+    '  ips.index_type_desc AS IndexType, ' +
+    '  ips.avg_fragmentation_in_percent ' +
+    'FROM sys.dm_db_index_physical_stats (DB_ID(), NULL, NULL, NULL, ''LIMITED'') ips ' +
+    'JOIN sys.tables t ON ips.object_id = t.object_id ' +
+    'JOIN sys.schemas s ON t.schema_id = s.schema_id ' +
+    'JOIN sys.indexes i ON ips.object_id = i.object_id AND ips.index_id = i.index_id ' +
+    'WHERE ips.avg_fragmentation_in_percent > '+IntToStr(FragmentierungSchwellenWert)+' ' +
+    'ORDER BY ips.avg_fragmentation_in_percent DESC');
+  try
+    while not q.Eof do
+    begin
+      SchemaName := q.FieldByName('SchemaName').AsString;
+      TableName := q.FieldByName('TableName').AsString;
+      IndexName := q.FieldByName('IndexName').AsString;
+
+      if q.FieldByName('IndexType').AsString = 'HEAP' then
+      begin
+        ExecSQL(Format('ALTER TABLE [%s].[%s] REBUILD;', [SchemaName, TableName]));
+      end
+      else
+      begin
+        ExecSQL(Format('ALTER INDEX [%s] ON [%s].[%s] REBUILD;', [IndexName, SchemaName, TableName]));
+      end;
+
+      q.Next;
+    end;
+  finally
+    FreeAndNil(q);
+  end;
 end;
 
 destructor ThlDatenbank.Destroy;
