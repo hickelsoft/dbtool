@@ -699,7 +699,10 @@ begin
               // ftADT, ftArray, ftReference, ftDataSet, ftOraBlob, ftOraClob,
               // ftVariant, ftInterface, ftIDispatch, ftGuid, ftTimeStamp,
               // ftOraTimeStamp, ftOraInterval
-              sBuffer := sBuffer + '''' + StringReplace(slBuffer.Strings[i], '''', '''''', [rfReplaceAll]) + ''',';
+              if slBuffer.Strings[i] = '' then
+                sBuffer := sBuffer + 'null,' // do not localize
+              else
+                sBuffer := sBuffer + '''' + StringReplace(slBuffer.Strings[i], '''', '''''', [rfReplaceAll]) + ''',';
             end;
           end;
         end;

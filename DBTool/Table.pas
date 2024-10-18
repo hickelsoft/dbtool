@@ -748,9 +748,19 @@ begin
            //Application.MessageBox(SFieldTypeNotSupported, PChar(Application.Title), MB_ICONEXCLAMATION + MB_OK);
      end;
 
-     // https://github.com/hickelsoft/dbtool/issues/2
      if FVerwendeQueryAnstelleTable then
-       result := aField.FieldName + ' is null or ' + Trim(result)
+     begin
+       if bInclude then
+         result := Trim(result)
+       else
+         result := Trim(result) + ' or ' + aField.FieldName + ' is null'; // https://github.com/hickelsoft/dbtool/issues/2
+     end
+     else
+     begin
+       // This does not work!
+       // (SUCHNAME <> '12345' or SUCHNAME is null) and (ADRESSART = 'LIE')
+       // because you cannot mix or/and for some reason
+     end;
   end;
 
 

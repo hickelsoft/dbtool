@@ -5,11 +5,11 @@
     <header>
       <prop-group name="ITEHeaderProp">
         <prop prop-type="Version">9.0</prop>
-        <prop prop-type="SelfDateTime">45572.4777314815</prop>
-        <prop prop-type="OrigDateTime">45572.4777314815</prop>
+        <prop prop-type="SelfDateTime">45583.9488888889</prop>
+        <prop prop-type="OrigDateTime">45583.9488888889</prop>
         <prop prop-type="XlatDateTime">45541.5404861111</prop>
-        <prop prop-type="Translated">596</prop>
-        <prop prop-type="UnTranslated">844</prop>
+        <prop prop-type="Translated">593</prop>
+        <prop prop-type="UnTranslated">846</prop>
       </prop-group>
     </header>
     <body>
@@ -8636,7 +8636,7 @@
         <target>"Invalid date string: %s"</target>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433528009</prop>
-          <prop prop-type="Status">2</prop>
+          <prop prop-type="Status">3</prop>
         </prop-group>
       </trans-unit>
       <trans-unit id="System_RTLConsts_SInvalidTimeString" resname="System_RTLConsts_SInvalidTimeString">
@@ -8644,14 +8644,14 @@
         <target>"Invalid time string: %s"</target>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433528009</prop>
-          <prop prop-type="Status">2</prop>
+          <prop prop-type="Status">3</prop>
         </prop-group>
       </trans-unit>
       <trans-unit id="System_RTLConsts_SInvalidOffsetString" resname="System_RTLConsts_SInvalidOffsetString">
         <source>"Ungültiger Zeit-Offset-String: %s"</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433528009</prop>
-          <prop prop-type="Status">0</prop>
+          <prop prop-type="Status">3</prop>
         </prop-group>
       </trans-unit>
       <trans-unit id="System_RTLConsts_sMustWaitOnOneEvent" resname="System_RTLConsts_sMustWaitOnOneEvent">
@@ -10105,12 +10105,18 @@
         </prop-group>
       </trans-unit>
       <trans-unit id="System_SysConst_SModuleAccessViolation" resname="System_SysConst_SModuleAccessViolation">
-        <source>"Zugriffsverletzung bei Adresse %p in Modul '%s'. %s von Adresse %p"</source>
-        <target>"Access violation at address %p in module '%s'. %s of address %p"</target>
+        <source>"Zugriffsverletzung bei Adresse %p in Modul '%s' (Offset %x). %s von Adresse %p"</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433529861</prop>
-          <prop prop-type="Status">2</prop>
+          <prop prop-type="Status">0</prop>
         </prop-group>
+        <alt-trans>
+          <source>"Zugriffsverletzung bei Adresse %p in Modul '%s'. %s von Adresse %p"</source>
+          <target>"Access violation at address %p in module '%s'. %s of address %p"</target>
+          <prop-group name="ITEFieldProp">
+            <prop prop-type="Modified">45583.8655758102</prop>
+          </prop-group>
+        </alt-trans>
       </trans-unit>
       <trans-unit id="System_SysConst_SCannotReadPackageInfo" resname="System_SysConst_SCannotReadPackageInfo">
         <source>"Zugriff auf Package-Informationen von '%s' nicht möglich"</source>
@@ -10679,6 +10685,20 @@
         <source>"Stack- oder Warteschlangenoperation nicht abgeschlossen"</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45572.4777485764</prop>
+          <prop prop-type="Status">0</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="Xml_XMLConst_SUrl" resname="Xml_XMLConst_SUrl">
+        <source>"URL"</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45583.9489091204</prop>
+          <prop prop-type="Status">0</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="Vcl_ComStrs_sListViewCannotAddItem" resname="Vcl_ComStrs_sListViewCannotAddItem">
+        <source>"ListView-Element kann nur hinzugefügt werden, wenn OwnerData False ist. Verwenden Sie stattdessen OnData."</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45583.9489091435</prop>
           <prop prop-type="Status">0</prop>
         </prop-group>
       </trans-unit>
