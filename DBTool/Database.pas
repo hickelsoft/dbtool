@@ -243,7 +243,7 @@ begin
             qw := TMDI_Query.Create(Self, Self);
             qw.Memo1.Text := sl.ValueFromIndex[j];
             qw.Memo1.Modified := false;
-            qw.Panel6.Height := Round(qw.ClientHeight * 0.8);
+            qw.Panel6.Height := Round(qw.ClientHeight * 0.7);
             qw.BringToFront;
           end;
         finally
@@ -294,7 +294,7 @@ begin
           qw := TMDI_Query.Create(Self, Self);
           qw.Memo1.Text := def;
           qw.Memo1.Modified := false;
-          qw.Panel6.Height := Round(qw.ClientHeight * 0.8);
+          qw.Panel6.Height := Round(qw.ClientHeight * 0.7);
           qw.SpeedButton1.Click;
           qw.BringToFront;
         end;
@@ -393,7 +393,7 @@ begin
           qw := TMDI_Query.Create(Self, Self);
           qw.Memo1.Text := def;
           qw.Memo1.Modified := false;
-          qw.Panel6.Height := Round(qw.ClientHeight * 0.8);
+          qw.Panel6.Height := Round(qw.ClientHeight * 0.7);
           qw.BringToFront;
         end;
       end

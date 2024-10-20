@@ -81,8 +81,10 @@ begin
     FExceptionHandler(nil, E)
   else if ContainsText(ExtractFileName(ParamStr(0)), 'CORA') then
     TMessageBox.ZeigeException(E)
+  else if Assigned(Screen) and Assigned(Screen.ActiveForm) then
+    MessageBox(Screen.ActiveForm.Handle, PChar(E.Message), PChar(Application.Title), MB_ICONERROR or MB_OK)
   else
-    MessageBox(Application.MainFormHandle, PChar(E.Message), PChar(Application.Title), MB_ICONERROR or MB_OK);
+    MessageBox(0, PChar(E.Message), PChar(Application.Title), MB_TASKMODAL or MB_ICONERROR or MB_OK);
 end;
 
 end.

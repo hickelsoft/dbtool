@@ -31,6 +31,7 @@ type
     DB_ADO: TADOConnection;
     FDatabaseName: string;
     FIstHickelSoftProduktDb_Cache: integer; // 0=Unbekannt, 1=Ja, 2=Nein
+    FConnWasOk: boolean;
     function GetSupportsCommit: boolean;
     function GetSqlFieldType(FieldType: TFieldType; Precision, FieldSize: integer): string;
     //function UmlauteRaus(Sql: String): string;
@@ -353,6 +354,8 @@ begin
   end
   // TODO: Repro. Die Meldung kam plötzlich, nachdem man erfolgreich eine CSV exportiert hat... Können wir nicht mehr nachstellen.
   else raise Exception.CreateFmt('(TDbToolDatabase.Create) '+SUnknownDatabaseType, [DatabaseName]);
+
+  FConnWasOk := true;
 end;
 
 class procedure TDbToolDatabase.CreateDataBase(dt: TDatabaseType; const sName,
@@ -425,7 +428,8 @@ begin
     try
       // Workaround for Problem:  Open DB, Close DB, sp_who2 entry stays and DB cannot be deleted. KeepConnection=False does not help.
       // "select 1" ist dafür da, damit man den Fehler "Erhält keine Ereignismenge" bekommt und das den Debugger stört
-      Query('use master; select 1'); // do not localize
+      if FConnWasOk then
+        Query('use master; select 1'); // do not localize
     except
     end;
     DB_ADO.Close;
