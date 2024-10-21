@@ -230,7 +230,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
             </Platforms>
             <Deployment Version="5">
                 <DeployFile LocalName="c:\HS-Service\DBTool32.exe" Configuration="Debug" Class="ProjectOutput"/>
-                <DeployFile LocalName="c:\HS-Service\DBTool32.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployFile LocalName="c:\HS-Service\DBTool32.exe" Configuration="Release" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="OSX32">

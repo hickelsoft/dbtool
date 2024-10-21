@@ -57,9 +57,9 @@ begin
   else
     Title := 'CORAplus Bondrucker Befehl';
 
-  iNoFeedNoCutSchachtIndex := PaperSources.IndexOf('Document[NoFeed,NoCut]');
-  if iNoFeedNoCutSchachtIndex >= 0 then
-    PaperSourceIndex := iNoFeedNoCutSchachtIndex
+  iNoFeedNoCutSchachtIndex := PaperSources.IndexOf('Document[NoFeed,NoCut]'); // ACHTUNG! DIESE SCHÄCHTE GIBT AB TREIBER VERSION 5 NICHT MEHR!!!
+  if iNoFeedNoCutSchachtIndex >= 0 then                                       // Drucken ohne "Schnipsel" ist daher nur noch über EpsStmApi.dll möglich (das ab Treiber 6 als separater Download erhältlich ist)
+    PaperSourceIndex := iNoFeedNoCutSchachtIndex                              // (Ticket 58437)
   else
     PaperSourceIndex := aSchachtIndex;
 
