@@ -7,7 +7,7 @@ procedure HS_SwitchLanguage;
 implementation
 
 uses
-  Windows;
+  Windows, SysUtils;
 
 // Taken from https://github.com/danielmarschall/spacemission/blob/master/Global.pas
 
@@ -33,6 +33,7 @@ begin
 
     oldHInst := Module.ResInstance;
     Module.ResInstance := newHInst;
+    ResStringCleanupCache;
     FreeLibrary(oldHInst);
   except
     SetLocaleOverride(bakOverride);
