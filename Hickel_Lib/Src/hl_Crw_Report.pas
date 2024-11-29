@@ -1046,6 +1046,9 @@ var
   IstBildschirmDruck: Boolean;
 
 begin
+  // TODO: Sollten wir hier auch mehrfach versuchen, wenn wir eine EAccessViolation bekommen,
+  //       so wie bei Anzeigen/DateiExport/SendEMail? Aber es besteht die Gefahr, dass
+  //       eventuell der Ausdruck dann mehrfach erfolgen könnte (Müller 58601)
    {$REGION 'Connection setzen, sowie einige andere Parameter'}
    try
       ErzeugeReportMitPassendemConnectionString(ReportFileName);
@@ -1108,6 +1111,9 @@ var
   aReportFileNameOriginal: string;
   aReportFileNameBixolon: string;
 begin
+  // TODO: Sollten wir hier auch mehrfach versuchen, wenn wir eine EAccessViolation bekommen,
+  //       so wie bei Anzeigen/DateiExport/SendEMail? Aber es besteht die Gefahr, dass
+  //       eventuell der Ausdruck dann mehrfach erfolgen könnte (Müller 58601)
   try
     aReportFileNameOriginal := ReportFileName;
     try
@@ -1379,40 +1385,43 @@ begin
       begin
         Abort;
       end;
-      // DM 04.06.2023 : Es ist zwar eine EAccessViolation, aber die tritt in CORA_CrystalReports.exe auf.
-      //                 Über die LowLevel IPC-API bekommen wir nur eine Exception zurück, daher können wir nicht
-      //                 100% sicher sein, dass es wirklich eine AccessViolation ist, oder was anderes. Aber egal,
-      //                 bei anderen Exceptions können wir es ja auch 3 Mal probieren!
-      on E: (*EAccessViolation*)Exception do
+      on E: EHsIpcForwardedException do
       begin
-        ThlExceptionHandler.ErstelleStackTrace(E);
-        BitteNochmalVersuchen := errCount < 3;
-        Inc(errCount);
-        if BitteNochmalVersuchen then
+        if E.ClassName = 'EAccessViolation' then
         begin
-          // Ticket 52325 und Ticket 53031, und vielleicht sogar ein paar mehr Kunden...
-          // ... da kommt es bei ll('crpe.Printer.Send()') sporadisch zu einem Fehler in MWSetupPrinter() bei CRPE32.DLL
-          // Bei mir (mit Delphi 11) kam sogar mal das an einer anderen Stelle im Dateiexport:
-          // "Zugriffsverletzung bei Adresse 75F9DC0B in Modul 'RPCRT4.dll'. Lesen von Adresse 00000438"
-          // und unmittelbar danach ging wieder alles (im selben Prozess!)
-          // Deswegen machen wir hier einen Quick'n'Dirty fix:
-          // Wenn der Dateiexport fehlgeschlagen ist, dann warten wir 1 Sekunde und
-          // probieren es einfach nochmal!
-          Sleep(1000);
+          BitteNochmalVersuchen := errCount < 3;
+          Inc(errCount);
+          if BitteNochmalVersuchen then
+          begin
+            // Ticket 52325 und Ticket 53031, und vielleicht sogar ein paar mehr Kunden...
+            // ... da kommt es bei ll('crpe.Printer.Send()') sporadisch zu einem Fehler in MWSetupPrinter() bei CRPE32.DLL
+            // Bei mir (mit Delphi 11) kam sogar mal das an einer anderen Stelle im Dateiexport:
+            // "Zugriffsverletzung bei Adresse 75F9DC0B in Modul 'RPCRT4.dll'. Lesen von Adresse 00000438"
+            // und unmittelbar danach ging wieder alles (im selben Prozess!)
+            // Deswegen machen wir hier einen Quick'n'Dirty fix:
+            // Wenn der Dateiexport fehlgeschlagen ist, dann warten wir 1 Sekunde und
+            // probieren es einfach nochmal!
+            Sleep(1000);
+          end
+          else
+          begin
+            ThlExceptionHandler.ErstelleStackTrace(E);
+            raise; // TMessageBox.ZeigeException(e);
+          end;
         end
         else
         begin
-          raise;
+          BitteNochmalVersuchen := false;
+          ThlExceptionHandler.ErstelleStackTrace(E);
+          raise; // TMessageBox.ZeigeException(e);
         end;
       end;
-      (*
       on E: Exception do
       begin
         BitteNochmalVersuchen := false;
         ThlExceptionHandler.ErstelleStackTrace(E);
-        TMessageBox.ZeigeException(e);
+        raise; // TMessageBox.ZeigeException(e);
       end;
-      *)
     end;
   until not BitteNochmalVersuchen;
 
@@ -1488,40 +1497,43 @@ begin
       begin
         Abort;
       end;
-      // DM 04.06.2023 : Es ist zwar eine EAccessViolation, aber die tritt in CORA_CrystalReports.exe auf.
-      //                 Über die LowLevel IPC-API bekommen wir nur eine Exception zurück, daher können wir nicht
-      //                 100% sicher sein, dass es wirklich eine AccessViolation ist, oder was anderes. Aber egal,
-      //                 bei anderen Exceptions können wir es ja auch 3 Mal probieren!
-      on E: (*EAccessViolation*)Exception do
+      on E: EHsIpcForwardedException do
       begin
-        BitteNochmalVersuchen := errCount < 3;
-        Inc(errCount);
-        if BitteNochmalVersuchen then
+        if E.ClassName = 'EAccessViolation' then
         begin
-          // Ticket 52325 und Ticket 53031, und vielleicht sogar ein paar mehr Kunden...
-          // ... da kommt es bei ll('crpe.Printer.Send()') sporadisch zu einem Fehler in MWSetupPrinter() bei CRPE32.DLL
-          // Bei mir (mit Delphi 11) kam sogar mal das an einer anderen Stelle im Dateiexport:
-          // "Zugriffsverletzung bei Adresse 75F9DC0B in Modul 'RPCRT4.dll'. Lesen von Adresse 00000438"
-          // und unmittelbar danach ging wieder alles (im selben Prozess!)
-          // Deswegen machen wir hier einen Quick'n'Dirty fix:
-          // Wenn der Dateiexport fehlgeschlagen ist, dann warten wir 1 Sekunde und
-          // probieren es einfach nochmal!
-          Sleep(1000);
+          BitteNochmalVersuchen := errCount < 3;
+          Inc(errCount);
+          if BitteNochmalVersuchen then
+          begin
+            // Ticket 52325 und Ticket 53031, und vielleicht sogar ein paar mehr Kunden...
+            // ... da kommt es bei ll('crpe.Printer.Send()') sporadisch zu einem Fehler in MWSetupPrinter() bei CRPE32.DLL
+            // Bei mir (mit Delphi 11) kam sogar mal das an einer anderen Stelle im Dateiexport:
+            // "Zugriffsverletzung bei Adresse 75F9DC0B in Modul 'RPCRT4.dll'. Lesen von Adresse 00000438"
+            // und unmittelbar danach ging wieder alles (im selben Prozess!)
+            // Deswegen machen wir hier einen Quick'n'Dirty fix:
+            // Wenn der Dateiexport fehlgeschlagen ist, dann warten wir 1 Sekunde und
+            // probieren es einfach nochmal!
+            Sleep(1000);
+          end
+          else
+          begin
+            ThlExceptionHandler.ErstelleStackTrace(E);
+            raise; // TMessageBox.ZeigeException(e);
+          end;
         end
         else
         begin
+          BitteNochmalVersuchen := false;
           ThlExceptionHandler.ErstelleStackTrace(E);
-          TMessageBox.ZeigeException(e);
+          raise; // TMessageBox.ZeigeException(e);
         end;
       end;
-      (*
       on E: Exception do
       begin
         BitteNochmalVersuchen := false;
         ThlExceptionHandler.ErstelleStackTrace(E);
-        TMessageBox.ZeigeException(e);
+        raise; // TMessageBox.ZeigeException(e);
       end;
-      *)
     end;
   until not BitteNochmalVersuchen;
 
@@ -1537,7 +1549,7 @@ begin
         betreff,  // Betreff
         text,  // Nachrichtentext
         dateiZuSenden, // pdfDatei
-        '', '', // Sender
+        '', '', // Sender (kommt vom E-Mail-Programm)
         toEMailBCC, //emailAdresseBcc
         toEMailCC, //emailAdresseCC
         '', //empfaengerName

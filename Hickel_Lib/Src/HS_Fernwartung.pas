@@ -187,7 +187,11 @@ begin
             end
             else
             begin
-              raise;
+              try 
+                DeleteFile(downloadedZip);
+              except
+              end; 
+              raise Exception.Create('Fehler beim Entpacken von '+downloadedZip+'. Bitte Internet-Verbindung prüfen und Programm nochmal neu starten. Genaue Fehlermeldung: '+E.Message);
             end;
           end;
         end;

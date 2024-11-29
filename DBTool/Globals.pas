@@ -29,7 +29,6 @@ function GetMySQLDBListFilename: string;
 // Diese Funktionen sind zur Unterscheidung von HickelSOFT-Produkten:
 function Modus_HsInfo2_Verzeichnis: boolean;
 function Modus_CORA_Verzeichnis: boolean;
-function CheckHsMitarbeiterPasswort: boolean;
 
 implementation
 
@@ -117,40 +116,4 @@ begin
             FileExists(IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)))+'CORA_Verwaltung64.exe'); // do not localize
 end;
 
-var
-  HickelSOFTEinmaligBestaetigt: boolean;
-
-function CheckHsMitarbeiterPasswort: boolean;
-var
-  s: string;
-resourcestring
-  SPasswordQuery = 'Passwortabfrage';
-  SAuthAsHickelSoftHelpDesk = 'Bitte als HickelSOFT-Mitarbeiter authentifizieren';
-begin
-  if HickelSOFTEinmaligBestaetigt or IstHickelSoftTestPC then
-  begin
-    result := true;
-    exit;
-  end;
-
-  while true do
-  begin
-    // Das "#0" sorgt dafür, dass es ein Passwort-Eingabefeld ist!
-    s := '';
-    if not InputQuery(SPasswordQuery, #0+SAuthAsHickelSoftHelpDesk, s) then
-    begin
-      result := false;
-      exit;
-    end;
-    result := PruefeHickelSoftPassword(s);
-    if result then
-    begin
-      HickelSOFTEinmaligBestaetigt := true;
-      exit;
-    end;
-  end;
-end;
-
-initialization
-  HickelSOFTEinmaligBestaetigt := false;
 end.

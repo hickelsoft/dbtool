@@ -20,6 +20,9 @@ type
   );
 
 type
+  TProductDbType = (ptNotChecked, ptCORAplus, ptHsInfo2, ptCmDb2, ptOther);
+
+type
   TDbToolDatabase = class(TObject)
   private
     FDatabaseType: TDatabaseType;
@@ -30,7 +33,7 @@ type
     DB_IB_Trans: TIBTransaction;
     DB_ADO: TADOConnection;
     FDatabaseName: string;
-    FIstHickelSoftProduktDb_Cache: integer; // 0=Unbekannt, 1=Ja, 2=Nein
+    FIstHickelSoftProduktDb_Cache: TProductDbType;
     FConnWasOk: boolean;
     function GetSupportsCommit: boolean;
     function GetSqlFieldType(FieldType: TFieldType; Precision, FieldSize: integer): string;
@@ -91,6 +94,7 @@ type
     function SQL_Escape_TableName(sTableName: String): String;
     function SQL_Escape_String(sString: String): String;
     function Clone: TDbToolDatabase;
+    function CheckDatabaseSecurityPassword: boolean;
     function IstHickelSoftProduktDb: boolean;
   end;
 
@@ -103,7 +107,7 @@ implementation
 
 uses
   ComCtrls, Globals, IbDatabaseName, SysUtils, Controls, ProgrDlg, HsSqlServerProvider,
-  hl_Datenbank, StrUtils, HS_Auth;
+  hl_Datenbank, StrUtils, HS_Auth, System.Hash;
 
 resourcestring
   SInternalError = 'Interner Fehler';
@@ -185,7 +189,8 @@ begin
 
       connStrPrefix := 'Provider='+GivenProvider+';'; // do not localize
 
-      if (ConnStrReadAttr('Integrated Security', Copy(DatabaseName, Length('_SQLSRV:')+1)) = '') and // do not localize
+      if not Modus_CORA_Verzeichnis and
+         (ConnStrReadAttr('Integrated Security', Copy(DatabaseName, Length('_SQLSRV:')+1)) = '') and // do not localize
          (ConnStrReadAttr('User ID', Copy(DatabaseName, Length('_SQLSRV:')+1)) = '') then // do not localize
         connStrPrefix := connStrPrefix + 'Integrated Security=SSPI;'; // do not localize
 
@@ -429,7 +434,7 @@ begin
       // Workaround for Problem:  Open DB, Close DB, sp_who2 entry stays and DB cannot be deleted. KeepConnection=False does not help.
       // "select 1" ist dafür da, damit man den Fehler "Erhält keine Ereignismenge" bekommt und das den Debugger stört
       if FConnWasOk then
-        Query('use master; select 1'); // do not localize
+        Query('use master; select 1').Free; // do not localize
     except
     end;
     DB_ADO.Close;
@@ -2124,54 +2129,172 @@ begin
   end;
 end;
 
-function TDbToolDatabase.IstHickelSoftProduktDb: boolean;
+function Ist_HsInfo2_Datenbank(slTables: TStrings): boolean;
+begin
+  result :=
+    (slTables.IndexOf('SERVICE') >= 0) and // do not localize
+    (slTables.IndexOf('ZUGANGSDATEN') >= 0) and // do not localize
+    (slTables.IndexOf('SIGNAL') >= 0) and // do not localize
+    (slTables.IndexOf('ANRUF_HISTORIE') >= 0); // do not localize
+end;
 
-  function Ist_HsInfo2_Datenbank(slTables: TStrings): boolean;
-  begin
-    result :=
-      (slTables.IndexOf('SERVICE') >= 0) and // do not localize
-      (slTables.IndexOf('ZUGANGSDATEN') >= 0) and // do not localize
-      (slTables.IndexOf('SIGNAL') >= 0) and // do not localize
-      (slTables.IndexOf('ANRUF_HISTORIE') >= 0); // do not localize
-  end;
+function Ist_CmDb2_Datenbank(slTables: TStrings): boolean;
+begin
+  result :=
+    (slTables.IndexOf('COMMISSION') >= 0) and // do not localize
+    (slTables.IndexOf('ARTIST') >= 0) and // do not localize
+    (slTables.IndexOf('CONFIG') >= 0) and // do not localize
+    (slTables.IndexOf('MANDATOR') >= 0); // do not localize
+end;
 
-  function Ist_CORA_Datenbank(slTables: TStrings): boolean;
+function Ist_CORA_Datenbank(slTables: TStrings): boolean;
+var
+  istSystemDb: Boolean;
+  istMandantenDb: Boolean;
+begin
+  istSystemDb :=
+    (slTables.IndexOf('CORASYS') >= 0) and // do not localize
+    (slTables.IndexOf('MANDANTEN') >= 0) and // do not localize
+    (slTables.IndexOf('BEDIENER') >= 0); // do not localize
+  istMandantenDb :=
+    (slTables.IndexOf('BELEGEWABASIS') >= 0) and // do not localize
+    (slTables.IndexOf('ARTIKEL') >= 0) and // do not localize
+    (slTables.IndexOf('GEBINDE') >= 0); // do not localize
+  result := istSystemDb or istMandantenDb;
+end;
+
+var
+  HickelSOFTEinmaligBestaetigt: boolean = false;
+  CmDb2EinmaligBestaetigt: boolean = false;
+
+function TDbToolDatabase.CheckDatabaseSecurityPassword: boolean;
+
+  resourcestring
+    SPasswordQuery = 'Passwortabfrage';
+
+  function VerifyCmDb2Password(s: string): boolean;
   var
-    istSystemDb: Boolean;
-    istMandantenDb: Boolean;
+    hashedPassword, salt: string;
+    q: TDataSet;
   begin
-    istSystemDb :=
-      (slTables.IndexOf('CORASYS') >= 0) and // do not localize
-      (slTables.IndexOf('MANDANTEN') >= 0) and // do not localize
-      (slTables.IndexOf('BEDIENER') >= 0); // do not localize
-    istMandantenDb :=
-      (slTables.IndexOf('BELEGEWABASIS') >= 0) and // do not localize
-      (slTables.IndexOf('ARTIKEL') >= 0) and // do not localize
-      (slTables.IndexOf('GEBINDE') >= 0); // do not localize
-    result := istSystemDb or istMandantenDb;
+    q := Query('select VALUE from CONFIG where NAME = ''PASSWORD_HASHED'';'); // do not localize
+    try
+      hashedPassword := q.Fields[0].AsString;
+    finally
+      FreeAndNil(q);
+    end;
+    q := Query('select VALUE from CONFIG where NAME = ''INSTALL_ID'';'); // do not localize
+    try
+      salt := q.Fields[0].AsString;
+    finally
+      FreeAndNil(q);
+    end;
+    result := SameText(THashSHA2.GetHashString(salt + s), hashedPassword);
   end;
 
+  function VerifyHickelSOFTPassword(s: string): boolean;
+  begin
+    // Defined in HS_Auth.pas (confidential / redacted in OpenSource release)
+    result := PruefeHickelSoftPassword(s);
+  end;
+
+  function CheckHsMitarbeiterPassword: boolean;
+  var
+    s: string;
+  resourcestring
+    SAuthAsHickelSoftHelpDesk = 'Bitte als HickelSOFT-Mitarbeiter authentifizieren';
+  begin
+    if HickelSOFTEinmaligBestaetigt or IstHickelSoftTestPC then
+    begin
+      result := true;
+      exit;
+    end;
+
+    while true do
+    begin
+      // Das "#0" sorgt dafür, dass es ein Passwort-Eingabefeld ist!
+      s := '';
+      if not InputQuery(SPasswordQuery, #0+SAuthAsHickelSoftHelpDesk, s) then
+      begin
+        result := false;
+        exit;
+      end;
+      result := VerifyHickelSoftPassword(s);
+      if result then
+      begin
+        HickelSOFTEinmaligBestaetigt := true;
+        exit;
+      end;
+    end;
+  end;
+
+  function CheckCmDb2OrHsMitarbeiterPassword: boolean;
+  var
+    s: string;
+  resourcestring
+    SAuthAsCmDb2 = 'Bitte das CMDB2-Passwort eingeben';
+  begin
+    if CmDb2EinmaligBestaetigt then
+    begin
+      result := true;
+      exit;
+    end;
+
+    while true do
+    begin
+      // Das "#0" sorgt dafür, dass es ein Passwort-Eingabefeld ist!
+      s := '';
+      if not InputQuery(SPasswordQuery, #0+SAuthAsCmDb2, s) then
+      begin
+        result := false;
+        exit;
+      end;
+      result := VerifyHickelSoftPassword(s) or VerifyCmDb2Password(s);
+      if result then
+      begin
+        CmDb2EinmaligBestaetigt := true;
+        exit;
+      end;
+    end;
+  end;
+
+begin
+  result := true;
+  if IstHickelSoftProduktDb then
+  begin
+    if (FIstHickelSoftProduktDb_Cache = ptCORAplus) or (FIstHickelSoftProduktDb_Cache = ptHsInfo2) then
+    begin
+      result := CheckHsMitarbeiterPassword;
+    end
+    else if FIstHickelSoftProduktDb_Cache = ptCmDb2 then
+    begin
+      result := CheckCmDb2OrHsMitarbeiterPassword;
+    end;
+  end;
+end;
+
+function TDbToolDatabase.IstHickelSoftProduktDb: boolean;
 var
   slTables: TStringList;
 begin
-  if FIstHickelSoftProduktDb_Cache = 0 then
+  if FIstHickelSoftProduktDb_Cache = ptNotChecked then
   begin
     slTables := TStringList.Create;
     try
       GetTableNames(slTables);
-      result := Ist_CORA_Datenbank(slTables) or Ist_HsInfo2_Datenbank(slTables);
-      if result then
-        FIstHickelSoftProduktDb_Cache := 1
+      if Ist_CORA_Datenbank(slTables) then
+        FIstHickelSoftProduktDb_Cache := ptCORAplus
+      else if Ist_HsInfo2_Datenbank(slTables) then
+        FIstHickelSoftProduktDb_Cache := ptHsInfo2
+      else if Ist_CmDb2_Datenbank(slTables) then
+        FIstHickelSoftProduktDb_Cache := ptCmDb2
       else
-        FIstHickelSoftProduktDb_Cache := 2;
+        FIstHickelSoftProduktDb_Cache := ptOther;
     finally
       FreeAndNil(slTables);
     end;
-  end
-  else
-  begin
-    result := FIstHickelSoftProduktDb_Cache = 1;
   end;
+  result := FIstHickelSoftProduktDb_Cache <> ptOther;
 end;
 
 end.

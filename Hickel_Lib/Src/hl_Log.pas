@@ -3,7 +3,7 @@ unit hl_Log;
 interface
 
 uses
-  SysUtils, Windows, dialogs;
+  SysUtils, Windows;
 
 type
   ThlLog = class(TObject)

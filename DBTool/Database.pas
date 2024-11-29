@@ -107,7 +107,7 @@ begin
     FDatabaseStr := Format(SSqlServer_S, [StringReplace(FDatabaseStr, ';Data Source=', ' '+SOn+' ', [])]); // do not localize
 
     // Ist es eine CORA- oder HSInfo2-Datenbank? Dann darf nur ein HickelSOFT-Mitarbeiter dran!
-    if FDatabaseObj.IstHickelSoftProduktDb and not CheckHsMitarbeiterPasswort then
+    if not FDatabaseObj.CheckDatabaseSecurityPassword then
     begin
       Close;
       Exit;

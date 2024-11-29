@@ -18,9 +18,11 @@
 // 11. Projekt => Language => Update Localized Project
 // 12. Activate Project DBTool32.enu
 // 13. Compile
-// 14. To test, adjust HKEY_CURRENT_USER\Software\Embarcadero\Locales
-// 15. Run DBTool32.exe to test
-// 16. Compile FixResourceDll.exe (the post-build-process changes the ENU files by adding missing Forms)
+// 14. Compile FixResourceDll.exe (the post-build-process changes the ENU files by adding missing Forms)
+
+// To test, adjust HKEY_CURRENT_USER\Software\Embarcadero\Locales
+// Run DBTool32.exe to test
+
 
 $rcnSource = __DIR__ . '\Projekte\Vollversion\ENU\C\HS-Service\DBTool64_DRC.rcn';
 $rcnTarget = __DIR__ . '\Projekte\Vollversion\ENU\C\HS-Service\DBTool32_DRC.rcn';

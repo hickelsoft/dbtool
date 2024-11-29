@@ -38,6 +38,7 @@ type
     // autoCorrectQuoteProblems: boolean;   // z.B. wenn Anführungszeichen nicht übereinstimmen; TODO
     richTextUmwandeln: boolean;
     Trimmen: boolean;
+    boolean10AnstelleJaNein: boolean;
 
     vfd: TVirtualFieldDefArray;
     useVFD: boolean;
@@ -48,8 +49,9 @@ type
     // aber leider gibt es in D2007 keine abgeleiteten Records. Daher Public.
     procedure CSVKopfzeileEinfügen(ds: TDataSet; sl: TObject; excludeSL: TStrings=nil; renameSL: TStrings=nil);
     function JaNein(b: boolean): string;
+    function Boolean10(b: boolean): string;
     function FeldAlsString(feld: TField; DateTimeFormat: string=''; nkStellen: integer=-1): string;
-    procedure ExportDatensatz(ds: TDataSet; sl: TObject; excludeSL: TStrings);
+    procedure ExportDatensatz(ds: TDataSet; sl: TObject; excludeSL: TStrings=nil);
 
     /// <summary>Exportiert alle Einträge des Dataset in eine Stringlist im CSV-Format</summary>
     /// <param name="ds">Das Dataset mit den Daten</param>
@@ -96,6 +98,14 @@ begin
   finally
     FreeAndNil(RichEdit1);
   end;
+end;
+
+function ThlCSVExporter.Boolean10(b: boolean): string;
+begin
+  if b then
+    result := '1'
+  else
+    result := '0';
 end;
 
 procedure ThlCSVExporter.CSVKopfzeileEinfügen(ds: TDataSet; sl: TObject; excludeSL: TStrings=nil; renameSL: TStrings=nil);
@@ -166,23 +176,38 @@ begin
   end;
 
   case feld.DataType of
-    ftFloat:
+    ftFloat, ftBCD, ftCurrency, ftFMTBcd, ftExtended:
     begin
-      // TODO: Feste Anzahl an Nachkommastellen, gemäß Beschreibungsstandard
       if nkStellen = -1 then nkStellen := floatNachkommastellen;
-      result := format('%.*f', [nkStellen, feld.AsFloat])
+      if nkStellen = -1 then
+      begin
+        // So viele Nachkommastellen wie die Zahl hat
+        result := FloatToStr(feld.AsFloat);
+      end
+      else
+      begin
+        // Feste Anzahl an Nachkommastellen, gemäß Beschreibungsstandard
+        result := format('%.*f', [nkStellen, feld.AsFloat])
+      end;
     end;
 
     ftBoolean:
     begin
-      result := JaNein(feld.AsBoolean);
+      if boolean10AnstelleJaNein then
+      begin
+        result := Boolean10(feld.AsBoolean);
+      end
+      else
+      begin
+        result := JaNein(feld.AsBoolean);
+      end;
       if stringQuotes = sqAlle then
       begin
         result := '"' + result + '"';
       end;
     end;
 
-    ftDateTime:
+    ftDateTime, ftDate, ftTime:
     begin
       if DateTimeFormat = '' then
       begin
@@ -194,7 +219,7 @@ begin
       end;
     end;
 
-    ftString, ftMemo, ftWideMemo:
+    ftString, ftWideString, ftFixedWideChar, ftMemo, ftWideMemo:
     begin
       result := feld.AsString;
       if richTextUmwandeln then
@@ -231,11 +256,12 @@ end;
 {$IF CompilerVersion > 20.0} // Version geraten
 class operator ThlCSVExporter.Initialize(out Dest: ThlCSVExporter);
 begin
-  Dest.floatNachkommastellen := 0;
+  Dest.floatNachkommastellen := -1;
   Dest.stringQuotes := sqAlle;
   Dest.QuoteEscapeRule := qerDouble;
   // Dest.autoCorrectQuoteProblems := false;
   Dest.richTextUmwandeln := false;
+  Dest.boolean10AnstelleJaNein := false;
   Dest.Trimmen := false;
   SetLength(Dest.vfd, 0);
   Dest.useVFD := false;
@@ -280,7 +306,7 @@ begin
     result := s;
 end;
 
-procedure ThlCSVExporter.ExportDatensatz(ds: TDataSet; sl: TObject; excludeSL: TStrings);
+procedure ThlCSVExporter.ExportDatensatz(ds: TDataSet; sl: TObject; excludeSL: TStrings=nil);
 var
   line: string;
   i: integer;
@@ -305,7 +331,7 @@ begin
     for i := 0 to Length(vfd) - 1 do
     begin
       colName := vfd[i].VirtualName;
-      if excludeSL.IndexOf(colName) >= 0 then Continue;
+      if Assigned(excludeSL) and (excludeSL.IndexOf(colName) >= 0) then Continue;
       ProcessVal(FeldAlsString(ds.FieldByName(vfd[i].PhysicalName), vfd[i].DateTimeFormat, vfd[i].Size));
     end;
   end
@@ -314,7 +340,7 @@ begin
     for i := 0 to ds.FieldCount - 1 do
     begin
       colName := ds.FieldDefs.Items[i].Name;
-      if excludeSL.IndexOf(colName) >= 0 then Continue;
+      if Assigned(excludeSL) and (excludeSL.IndexOf(colName) >= 0) then Continue;
       ProcessVal(FeldAlsString(ds.Fields[i], '', floatNachkommastellen));
     end;
   end;

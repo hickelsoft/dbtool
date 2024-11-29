@@ -299,8 +299,10 @@ begin
       else
         anItem.SubItems.Add(IntToStr(aFieldDefs.Items[i].Size));
 
-      if (((adFldIsNullable+adFldMayBeNull) and TAdoTable(aTable).Recordset.Fields[i].Attributes) = 0) then
-      //if aFieldDefs.Items[i].Required then  // .Required geht nicht mit Delphi ADO! Nur mit TBetterAdoDataSet!
+      if (aTable is TAdoTable) and ((((adFldIsNullable+adFldMayBeNull) and TAdoTable(aTable).Recordset.Fields[i].Attributes) = 0)) then
+        // aFieldDefs.Items[i].Required geht nicht mit Delphi ADO! Nur mit TBetterAdoDataSet!
+        anItem.SubItems.Add('NOT NULL') // do not localize
+      else if not (aTable is TAdoTable) and aFieldDefs.Items[i].Required then
         anItem.SubItems.Add('NOT NULL') // do not localize
       else
         anItem.SubItems.Add('NULL'); // do not localize

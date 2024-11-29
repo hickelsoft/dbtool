@@ -2,8 +2,8 @@ unit HsSqlServerProvider;
 
 interface
 
-function SqlServerProvider: string; // gibt den NEUSTEN SQL-Provider zurück oder den Debug-Hartkodierten Provider
-function SqlServerProviderCompat: string; // gibt den ÄLTESTEN SQL-Provider zurück
+function SqlServerProvider(NoCache: boolean=false): string; // gibt den NEUSTEN SQL-Provider zurück oder den Debug-Hartkodierten Provider
+function SqlServerProviderCompat(NoCache: boolean=false): string; // gibt den ÄLTESTEN SQL-Provider zurück
 function ProviderIsInstalled(Provider: string): boolean;
 
 implementation
@@ -14,11 +14,11 @@ uses
 var
   _SqlServerProvider_Cache: string = '';
 
-function SqlServerProvider: string;
+function SqlServerProvider(NoCache: boolean=false): string;
 var
   reg: TRegistry;
 begin
-  if _SqlServerProvider_Cache <> '' then
+  if not NoCache and (_SqlServerProvider_Cache <> '') then
   begin
     result := _SqlServerProvider_Cache;
     exit;
@@ -79,11 +79,11 @@ end;
 var
   _SqlServerProviderCompat_Cache: string = '';
 
-function SqlServerProviderCompat: string;
+function SqlServerProviderCompat(NoCache: boolean=false): string;
 var
   reg: TRegistry;
 begin
-  if _SqlServerProviderCompat_Cache <> '' then
+  if not NoCache and (_SqlServerProviderCompat_Cache <> '') then
   begin
     result := _SqlServerProviderCompat_Cache;
     exit;

@@ -445,6 +445,7 @@ begin
   begin
     // Physikalische Tabelle (in Schema dbo)
     // result := GetScalar('select count (*) from sysobjects where name = ' + aTableName.toSQLString).AsInteger > 0;
+    // result := GetScalar('SELECT 1 FROM ['+adoCon.DefaultDatabase+'].sys.tables WHERE name = N'''+aTableName+''' AND schema_id = SCHEMA_ID(''dbo'')').AsInteger > 0;
     result := GetScalar('SELECT count(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = N'''+adoCon.DefaultDatabase+''' AND TABLE_SCHEMA = N''dbo'' AND TABLE_NAME = N'''+aTableName+'''', adoCon).AsInteger > 0;
   end;
 end;
@@ -638,9 +639,6 @@ procedure ThlDatenbank.RecheckConnectionStatus(Sender: TObject);
 var
   CurConnId: TGUID;
 begin
-  exit; // Ausgeschaltet, da das CORA dadurch extrem langsam wurde! (Ticket 54502, Ticket 54523, Ticket 54508)
-        // Es ist somit nicht möglich, nach einem Verbindungsabbruch dass Delphi weiterhin im Wartungsprogramm angezeigt wird (Login-Flag in Benutzer Tabelle nachtragen)
-
   if stackoverflowProtection then exit;
   stackoverflowProtection := true;
   try

@@ -202,6 +202,8 @@ var
   LowestInsertID: integer;
   query: string;
 begin
+  _hlDB.RecheckConnectionStatus(nil);
+
   try
     if _LockLFD > 0 then
     begin
