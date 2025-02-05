@@ -197,6 +197,10 @@ begin
       if (GivenProvider = 'MSOLEDBSQL19') and (ConnStrReadAttr('Use Encryption for Data', Copy(DatabaseName, Length('_SQLSRV:')+1)) = '') then // do not localize
         connStrPrefix := connStrPrefix + 'Use Encryption for Data=Optional;'; // wichtig für MSOLEDBSQL19 (Generation 3, Version 19+) Treiber // do not localize
 
+      if (SqlServerProvider <> 'SQLOLEDB') and (ConnStrReadAttr('DataTypeCompatibility', Copy(DatabaseName, Length('_SQLSRV:')+1)) = '') then // do not localize
+        connStrPrefix := connStrPrefix + 'DataTypeCompatibility=80;'; // ansonsten funktionieren "time" Datentypen nicht! (sind im Fields[] und FieldDefs[] nicht da und dbGrid kackt ab)
+                                                                      // leider wird der Typ dann als "WideString" ausgegeben, aber ist halt so...
+
       if Modus_CORA_Verzeichnis then
       begin
         if CoraBenutzeranmeldung then

@@ -5,11 +5,11 @@
     <header>
       <prop-group name="ITEHeaderProp">
         <prop prop-type="Version">9.0</prop>
-        <prop prop-type="SelfDateTime">45586.6325462963</prop>
-        <prop prop-type="OrigDateTime">45586.6325462963</prop>
-        <prop prop-type="XlatDateTime">45541.5404861111</prop>
-        <prop prop-type="Translated">593</prop>
-        <prop prop-type="UnTranslated">846</prop>
+        <prop prop-type="SelfDateTime">45693.5625694444</prop>
+        <prop prop-type="OrigDateTime">45693.5625462963</prop>
+        <prop prop-type="XlatDateTime">45541.4988194444</prop>
+        <prop prop-type="Translated">591</prop>
+        <prop prop-type="UnTranslated">850</prop>
       </prop-group>
     </header>
     <body>
@@ -5125,7 +5125,7 @@
         <source>"Passwortabfrage"</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.643352338</prop>
-          <prop prop-type="Status">1</prop>
+          <prop prop-type="Status">3</prop>
         </prop-group>
         <target>"Password query"</target>
       </trans-unit>
@@ -5133,7 +5133,7 @@
         <source>"Bitte als HickelSOFT-Mitarbeiter authentifizieren"</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.643352338</prop>
-          <prop prop-type="Status">1</prop>
+          <prop prop-type="Status">3</prop>
         </prop-group>
         <target>"Please authenticate as HickelSOFT help desk staff"</target>
       </trans-unit>
@@ -8633,7 +8633,6 @@
       </trans-unit>
       <trans-unit id="System_RTLConsts_SInvalidDateString" resname="System_RTLConsts_SInvalidDateString">
         <source>"Ungültiger Datums-String: %s"</source>
-        <target>"Invalid date string: %s"</target>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433528009</prop>
           <prop prop-type="Status">3</prop>
@@ -8641,7 +8640,6 @@
       </trans-unit>
       <trans-unit id="System_RTLConsts_SInvalidTimeString" resname="System_RTLConsts_SInvalidTimeString">
         <source>"Ungültiger Zeit-String: %s"</source>
-        <target>"Invalid time string: %s"</target>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45532.6433528009</prop>
           <prop prop-type="Status">3</prop>
@@ -10699,6 +10697,34 @@
         <source>"ListView-Element kann nur hinzugefügt werden, wenn OwnerData False ist. Verwenden Sie stattdessen OnData."</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45583.9489091435</prop>
+          <prop prop-type="Status">0</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="C_Database_SAuthAsCmDb2" resname="C_Database_SAuthAsCmDb2">
+        <source>"Bitte das CMDB2-Passwort eingeben"</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45625.7220079167</prop>
+          <prop prop-type="Status">0</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="C_Database_SPasswordQuery" resname="C_Database_SPasswordQuery">
+        <source>"Passwortabfrage"</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45625.7220079167</prop>
+          <prop prop-type="Status">0</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="C_Database_SAuthAsHickelSoftHelpDesk" resname="C_Database_SAuthAsHickelSoftHelpDesk">
+        <source>"Bitte als HickelSOFT-Mitarbeiter authentifizieren"</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45625.7220079167</prop>
+          <prop prop-type="Status">0</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="System_RTLConsts_SHashCanNotUpdateSHA2" resname="System_RTLConsts_SHashCanNotUpdateSHA2">
+        <source>"SHA2: Ein finalisierter Hash kann nicht aktualisiert werden"</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45625.7220079167</prop>
           <prop prop-type="Status">0</prop>
         </prop-group>
       </trans-unit>

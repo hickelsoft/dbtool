@@ -148,6 +148,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <VerInfo_IncludeVerInfo>false</VerInfo_IncludeVerInfo>
         <DCC_MapFile>3</DCC_MapFile>
         <DCC_DebugDCUs>true</DCC_DebugDCUs>
+        <Debugger_RunParams>&quot;_SQLSRV:Provider=MSOLEDBSQL19.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=HSINFO;Data Source=SHS\HSGMBH,49011;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;emaN noitacilppA=HS-Info 2.0;Workstation ID=SERVICE1;Use Encryption for Data=Optional;Tag with column collation when possible=False;MARS Connection=False;DataTypeCompatibility=0;Trust Server Certificate=True;Application Intent=READWRITE;MultiSubnetFailover=False;Use FMTONLY=False;TransparentNetworkIPResolution=True;Connect Retry Count=1;Connect Retry Interval=10;;Application Name=DBTool&quot;</Debugger_RunParams>
     </PropertyGroup>
     <ProjectExtensions>
         <Borland.Personality>Delphi.Personality.12</Borland.Personality>
@@ -200,7 +201,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
                 <Platform value="Win64">True</Platform>
             </Platforms>
             <Deployment Version="5">
-                <DeployFile LocalName="c:\HS-Service\Dev\DBTool64.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployFile LocalName="c:\HS-Service\Dev\DBTool64.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployFile LocalName="c:\HS-Service\Dev\DBTool64.exe" Configuration="Release" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">

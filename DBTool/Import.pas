@@ -507,7 +507,7 @@ begin
   // Wird sie verändert (z.B. den Punkt durch einen Pfeil ersetzen), dann muss
   // z.B. an 2 Stellen die Angabe "+3" zu "+4" gemacht werden.
   // (An diesen Stellen wird der Dest-Wert ausgelesen)
-  lbVerknuepfungen.Items.Add(lbSrc.Items.Strings[lbSrc.ItemIndex] + #9 + '.' + #9 + lbDst.Items.Strings[lbDst.ItemIndex]);
+  lbVerknuepfungen.Items.Add(Trim(lbSrc.Items.Strings[lbSrc.ItemIndex]) + #9 + '.' + #9 + Trim(lbDst.Items.Strings[lbDst.ItemIndex]));
   lbSrc.Items.Delete(lbSrc.ItemIndex);
   lbDst.Items.Delete(lbDst.ItemIndex);
   btnAlleLoeschen.Enabled := lbVerknuepfungen.Count > 0;
@@ -604,12 +604,12 @@ begin
     // Feldzuordnungen in ein int-Array einlesen
     // Index = Nummer des Quellfeldes, Inhalt = Nummer des Zielfeldes
     Csv2Sl(FCSVLines.Strings[0], slBuffer, cSep, cText);  // In slBuffer stehen jetzt die Feldnamen der Quelldatei in der Original-Reihenfolge
-    if not cbFeldnamenInErsterZeile.Checked then
+    for i := 0 to slBuffer.Count - 1 do
     begin
-      for i := 0 to slBuffer.Count - 1 do
-      begin
+      if cbFeldnamenInErsterZeile.Checked then
+        slBuffer.Strings[i] := Trim(slBuffer.Strings[i])
+      else
         slBuffer.Strings[i] := Format(FieldD, [i+1]);
-      end;
     end;
     for i := 0 to lbVerknuepfungen.Items.Count-1 do
     begin

@@ -465,6 +465,9 @@ begin
   if SqlServerProvider = 'MSOLEDBSQL19' then
     sqlConnStr := sqlConnStr + 'Use Encryption for Data=Optional;';
 
+  if SqlServerProvider <> 'SQLOLEDB' then
+    sqlConnStr := sqlConnStr + 'DataTypeCompatibility=80;'; // ansonsten funktionieren "time" Datentypen nicht! (sind im Fields[] und FieldDefs[] nicht da und dbGrid kackt ab)
+
   sqlConnStr := sqlConnStr + 'Initial Catalog=' + Datenbank + ';';
   sqlConnStr := sqlConnStr + 'Data Source=' + Server;
 
@@ -480,7 +483,8 @@ end;
 {$REGION 'Funktionen, die ausgeschaltetes BCD sicherstellen'}
 function ThlDatenbank.CreateNewADODataSet(adoCon: TADOConnection=nil): TADODataSet; // TODO: "class function" ???
 begin
-  RecheckConnectionStatus(self);
+  // Abgeschaltet weil CORA SCHON WIEDER zu langsam wird!!! (Pinkert 59369, Kusche 59374, Bokmeier 59381)
+  //RecheckConnectionStatus(self);
 
   {$IFDEF UseBetterADO}
   result := TBetterADODataSet.Create(nil);
@@ -493,7 +497,8 @@ end;
 
 function ThlDatenbank.CreateNewADOQuery(adoCon: TADOConnection=nil): TADOQuery;
 begin
-  RecheckConnectionStatus(self);
+  // Abgeschaltet weil CORA SCHON WIEDER zu langsam wird!!! (Pinkert 59369, Kusche 59374, Bokmeier 59381)
+  //RecheckConnectionStatus(self);
 
   result := TADOQuery.Create(nil);
   SetConnection(result, adoCon);
@@ -502,7 +507,8 @@ end;
 
 function ThlDatenbank.CreateNewADOTable(adoCon: TADOConnection=nil): TADOTable;
 begin
-  RecheckConnectionStatus(self);
+  // Abgeschaltet weil CORA SCHON WIEDER zu langsam wird!!! (Pinkert 59369, Kusche 59374, Bokmeier 59381)
+  //RecheckConnectionStatus(self);
 
   result := TADOTable.Create(nil);
   SetConnection(result, adoCon);

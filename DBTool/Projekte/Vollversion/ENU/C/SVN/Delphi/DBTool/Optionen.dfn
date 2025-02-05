@@ -5,9 +5,9 @@
     <header>
       <prop-group name="ITEHeaderProp">
         <prop prop-type="Version">9.0</prop>
-        <prop prop-type="SelfDateTime">45533.4875925926</prop>
-        <prop prop-type="OrigDateTime">45532.7149305556</prop>
-        <prop prop-type="XlatDateTime">45532.7149305556</prop>
+        <prop prop-type="SelfDateTime">45620.8205092593</prop>
+        <prop prop-type="OrigDateTime">45532.6732638889</prop>
+        <prop prop-type="XlatDateTime">45532.6732638889</prop>
         <prop prop-type="Translated">18</prop>
         <prop prop-type="UnTranslated">169</prop>
       </prop-group>
@@ -16,1890 +16,955 @@
       <trans-unit id="O:DLG_Optionen.Left" resname="O:DLG_Optionen.Left">
         <source>287</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">0</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">0</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.Top" resname="O:DLG_Optionen.Top">
         <source>118</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">1</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">1</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.BorderStyle" resname="O:DLG_Optionen.BorderStyle">
         <source>bsDialog</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">2</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">2</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.Caption" resname="O:DLG_Optionen.Caption">
         <source>'Optionen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">3</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Options'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">1</prop><prop prop-type="Order">3</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.ClientHeight" resname="O:DLG_Optionen.ClientHeight">
         <source>378</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">4</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">4</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.ClientWidth" resname="O:DLG_Optionen.ClientWidth">
         <source>356</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">5</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">5</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.Color" resname="O:DLG_Optionen.Color">
         <source>clBtnFace</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">6</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">6</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.Font.Charset" resname="O:DLG_Optionen.Font.Charset">
         <source>ANSI_CHARSET</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">7</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">7</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.Font.Color" resname="O:DLG_Optionen.Font.Color">
         <source>clWindowText</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">8</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">8</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.Font.Height" resname="O:DLG_Optionen.Font.Height">
         <source>-11</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">9</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">9</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.Font.Name" resname="O:DLG_Optionen.Font.Name">
         <source>'Tahoma'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">10</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">10</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.Font.Style" resname="O:DLG_Optionen.Font.Style">
         <source>[]</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">11</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">11</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.KeyPreview" resname="O:DLG_Optionen.KeyPreview">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">12</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">12</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.Position" resname="O:DLG_Optionen.Position">
         <source>poScreenCenter</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">13</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">13</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.OnKeyDown" resname="O:DLG_Optionen.OnKeyDown">
         <source>FormKeyDown</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">14</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">14</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.OnShow" resname="O:DLG_Optionen.OnShow">
         <source>FormShow</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">15</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">15</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.TextHeight" resname="O:DLG_Optionen.TextHeight">
         <source>13</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">16</prop>
-          <prop prop-type="Type">TDLG_Optionen</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">16</prop><prop prop-type="Type">TDLG_Optionen</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.Left" resname="O:DLG_Optionen.O:GroupBox1.Left">
         <source>8</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">17</prop>
-          <prop prop-type="Type">TGroupBox</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">17</prop><prop prop-type="Type">TGroupBox</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.Top" resname="O:DLG_Optionen.O:GroupBox1.Top">
         <source>8</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">18</prop>
-          <prop prop-type="Type">TGroupBox</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">18</prop><prop prop-type="Type">TGroupBox</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.Width" resname="O:DLG_Optionen.O:GroupBox1.Width">
         <source>237</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">19</prop>
-          <prop prop-type="Type">TGroupBox</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">19</prop><prop prop-type="Type">TGroupBox</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.Height" resname="O:DLG_Optionen.O:GroupBox1.Height">
         <source>178</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459028</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">20</prop>
-          <prop prop-type="Type">TGroupBox</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459028</prop><prop prop-type="Status">0</prop><prop prop-type="Order">20</prop><prop prop-type="Type">TGroupBox</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.Caption" resname="O:DLG_Optionen.O:GroupBox1.Caption">
         <source>'Als Standard-Anwendung einrichten'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">21</prop>
-          <prop prop-type="Type">TGroupBox</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Set as default application'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">1</prop><prop prop-type="Order">21</prop><prop prop-type="Type">TGroupBox</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.TabOrder" resname="O:DLG_Optionen.O:GroupBox1.TabOrder">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">22</prop>
-          <prop prop-type="Type">TGroupBox</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">22</prop><prop prop-type="Type">TGroupBox</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Left" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Left">
         <source>16</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">23</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">23</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Top" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Top">
         <source>142</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">24</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">24</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Width" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Width">
         <source>205</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">25</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">25</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Height" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Height">
         <source>25</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">26</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">26</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Hint" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Hint">
         <source>'DBTool als Standard-Anwendung für Datenbanken einrichten'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">27</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Set up DBTool as the default application for databases'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">1</prop><prop prop-type="Order">27</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Caption" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Caption">
         <source>' Paradox-Tabellen (*.db)'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">28</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>' Paradox tables (*.db)'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">1</prop><prop prop-type="Order">28</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Font.Charset" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Font.Charset">
         <source>ANSI_CHARSET</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">29</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">29</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Font.Color" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Font.Color">
         <source>clBlack</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">30</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">30</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Font.Height" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Font.Height">
         <source>-11</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">31</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">31</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Font.Name" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Font.Name">
         <source>'Tahoma'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">32</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">32</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Font.Style" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.Font.Style">
         <source>[]</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">33</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">33</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.ParentFont" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.ParentFont">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">34</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">34</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.ParentShowHint" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.ParentShowHint">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">35</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">35</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.ShowHint" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.ShowHint">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">36</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">36</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.OnClick" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDB.OnClick">
         <source>btnStandardDBClick</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">37</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">37</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Left" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Left">
         <source>16</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">38</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">38</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Top" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Top">
         <source>86</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">39</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">39</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Width" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Width">
         <source>205</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">40</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">40</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Height" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Height">
         <source>25</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">41</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">41</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Hint" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Hint">
         <source>'DBTool als Standard-Anwendung für Datenbanken einrichten'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">42</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Set up DBTool as the default application for databases'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">1</prop><prop prop-type="Order">42</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Caption" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Caption">
         <source>' dBase-Tabellen (*.dbf)'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">43</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>' dBase tables (*.dbf)'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">1</prop><prop prop-type="Order">43</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Font.Charset" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Font.Charset">
         <source>ANSI_CHARSET</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">44</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">44</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Font.Color" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Font.Color">
         <source>clBlack</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">45</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">45</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Font.Height" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Font.Height">
         <source>-11</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">46</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">46</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Font.Name" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Font.Name">
         <source>'Tahoma'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">47</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">47</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Font.Style" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.Font.Style">
         <source>[]</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">48</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">48</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.ParentFont" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.ParentFont">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">49</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">49</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.ParentShowHint" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.ParentShowHint">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">50</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">50</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.ShowHint" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.ShowHint">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">51</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">51</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.OnClick" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardDBF.OnClick">
         <source>btnStandardDBFClick</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">52</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">52</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Left" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Left">
         <source>16</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">53</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">53</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Top" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Top">
         <source>24</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">54</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">54</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Width" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Width">
         <source>205</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">55</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">55</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Height" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Height">
         <source>25</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">56</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">56</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Hint" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Hint">
         <source>'DBTool als Standard-Anwendung für Datenbanken einrichten'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">57</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Set up DBTool as the default application for databases'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">1</prop><prop prop-type="Order">57</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Caption" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Caption">
         <source>' Access 97-Datenbanken (*.mdb)'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">58</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>' Access 97 databases (*.mdb)'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">1</prop><prop prop-type="Order">58</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Font.Charset" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Font.Charset">
         <source>ANSI_CHARSET</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">59</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">59</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Font.Color" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Font.Color">
         <source>clBlack</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">60</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">60</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Font.Height" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Font.Height">
         <source>-11</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">61</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">61</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Font.Name" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Font.Name">
         <source>'Tahoma'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">62</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">62</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Font.Style" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.Font.Style">
         <source>[]</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">63</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">63</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.ParentFont" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.ParentFont">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">64</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">64</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.ParentShowHint" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.ParentShowHint">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">65</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">65</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.ShowHint" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.ShowHint">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">66</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">66</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.OnClick" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardMDB.OnClick">
         <source>btnStandardMDBClick</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">67</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">67</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Left" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Left">
         <source>16</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">68</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">68</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Top" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Top">
         <source>114</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">69</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">69</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Width" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Width">
         <source>205</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">70</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">70</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Height" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Height">
         <source>25</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">71</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">71</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Hint" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Hint">
         <source>'DBTool als Standard-Anwendung für Datenbanken einrichten'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">72</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Set up DBTool as the default application for databases'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">1</prop><prop prop-type="Order">72</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Caption" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Caption">
         <source>' InterBase-Datenbanken (*.gdb)'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">73</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>' InterBase databases (*.gdb)'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">1</prop><prop prop-type="Order">73</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Font.Charset" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Font.Charset">
         <source>ANSI_CHARSET</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">74</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">74</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Font.Color" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Font.Color">
         <source>clBlack</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">75</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">75</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Font.Height" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Font.Height">
         <source>-11</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">76</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">76</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Font.Name" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Font.Name">
         <source>'Tahoma'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">77</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">77</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Font.Style" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.Font.Style">
         <source>[]</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">78</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">78</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.ParentFont" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.ParentFont">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">79</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">79</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.ParentShowHint" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.ParentShowHint">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">80</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">80</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.ShowHint" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.ShowHint">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">81</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">81</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.OnClick" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardGDB.OnClick">
         <source>btnStandardGDBClick</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">82</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">82</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Left" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Left">
         <source>16</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">83</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">83</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Top" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Top">
         <source>55</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">84</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">84</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Width" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Width">
         <source>205</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">85</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">85</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Height" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Height">
         <source>25</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">86</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">86</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Hint" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Hint">
         <source>'DBTool als Standard-Anwendung für Datenbanken einrichten'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">87</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Set up DBTool as the default application for databases'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">1</prop><prop prop-type="Order">87</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Caption" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Caption">
         <source>' Access-Datenbanken (*.accdb)'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">88</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>' Access databases (*.accdb)'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">1</prop><prop prop-type="Order">88</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Font.Charset" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Font.Charset">
         <source>ANSI_CHARSET</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">89</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">89</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Font.Color" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Font.Color">
         <source>clBlack</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">90</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">90</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Font.Height" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Font.Height">
         <source>-11</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">91</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">91</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Font.Name" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Font.Name">
         <source>'Tahoma'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">92</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">92</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Font.Style" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.Font.Style">
         <source>[]</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">93</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">93</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.ParentFont" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.ParentFont">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">94</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">94</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.ParentShowHint" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.ParentShowHint">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">95</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">95</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.ShowHint" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.ShowHint">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">96</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">96</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.OnClick" resname="O:DLG_Optionen.O:GroupBox1.O:btnStandardAccDb.OnClick">
         <source>btnStandardAccDbClick</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">97</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">97</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.Left" resname="O:DLG_Optionen.O:GroupBox2.Left">
         <source>8</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">98</prop>
-          <prop prop-type="Type">TGroupBox</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">98</prop><prop prop-type="Type">TGroupBox</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.Top" resname="O:DLG_Optionen.O:GroupBox2.Top">
         <source>192</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">99</prop>
-          <prop prop-type="Type">TGroupBox</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">99</prop><prop prop-type="Type">TGroupBox</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.Width" resname="O:DLG_Optionen.O:GroupBox2.Width">
         <source>237</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">100</prop>
-          <prop prop-type="Type">TGroupBox</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">100</prop><prop prop-type="Type">TGroupBox</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.Height" resname="O:DLG_Optionen.O:GroupBox2.Height">
         <source>169</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">101</prop>
-          <prop prop-type="Type">TGroupBox</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">0</prop><prop prop-type="Order">101</prop><prop prop-type="Type">TGroupBox</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.Caption" resname="O:DLG_Optionen.O:GroupBox2.Caption">
         <source>'Farben'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433459838</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">102</prop>
-          <prop prop-type="Type">TGroupBox</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Colors'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433459838</prop><prop prop-type="Status">1</prop><prop prop-type="Order">102</prop><prop prop-type="Type">TGroupBox</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.TabOrder" resname="O:DLG_Optionen.O:GroupBox2.TabOrder">
         <source>1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">103</prop>
-          <prop prop-type="Type">TGroupBox</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">103</prop><prop prop-type="Type">TGroupBox</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.Visible" resname="O:DLG_Optionen.O:GroupBox2.Visible">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">104</prop>
-          <prop prop-type="Type">TGroupBox</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">104</prop><prop prop-type="Type">TGroupBox</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnHintergrund.Left" resname="O:DLG_Optionen.O:GroupBox2.O:btnHintergrund.Left">
         <source>132</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">105</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">105</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnHintergrund.Top" resname="O:DLG_Optionen.O:GroupBox2.O:btnHintergrund.Top">
         <source>20</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">106</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">106</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnHintergrund.Width" resname="O:DLG_Optionen.O:GroupBox2.O:btnHintergrund.Width">
         <source>90</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">107</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">107</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnHintergrund.Height" resname="O:DLG_Optionen.O:GroupBox2.O:btnHintergrund.Height">
         <source>24</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">108</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">108</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnHintergrund.OnClick" resname="O:DLG_Optionen.O:GroupBox2.O:btnHintergrund.OnClick">
         <source>btnFarbeClick</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">109</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">109</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label1.Left" resname="O:DLG_Optionen.O:GroupBox2.O:Label1.Left">
         <source>16</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">110</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">110</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label1.Top" resname="O:DLG_Optionen.O:GroupBox2.O:Label1.Top">
         <source>24</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">111</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">111</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label1.Width" resname="O:DLG_Optionen.O:GroupBox2.O:Label1.Width">
         <source>100</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">112</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">112</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label1.Height" resname="O:DLG_Optionen.O:GroupBox2.O:Label1.Height">
         <source>13</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">113</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">113</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label1.Caption" resname="O:DLG_Optionen.O:GroupBox2.O:Label1.Caption">
         <source>'Tabellenhintergrund:'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">114</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Table background:'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">1</prop><prop prop-type="Order">114</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnText.Left" resname="O:DLG_Optionen.O:GroupBox2.O:btnText.Left">
         <source>132</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">115</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">115</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnText.Top" resname="O:DLG_Optionen.O:GroupBox2.O:btnText.Top">
         <source>76</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">116</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">116</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnText.Width" resname="O:DLG_Optionen.O:GroupBox2.O:btnText.Width">
         <source>90</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">117</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">117</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnText.Height" resname="O:DLG_Optionen.O:GroupBox2.O:btnText.Height">
         <source>24</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">118</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">118</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnText.OnClick" resname="O:DLG_Optionen.O:GroupBox2.O:btnText.OnClick">
         <source>btnFarbeClick</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">119</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">119</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label2.Left" resname="O:DLG_Optionen.O:GroupBox2.O:Label2.Left">
         <source>16</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">120</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">120</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label2.Top" resname="O:DLG_Optionen.O:GroupBox2.O:Label2.Top">
         <source>80</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">121</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">121</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label2.Width" resname="O:DLG_Optionen.O:GroupBox2.O:Label2.Width">
         <source>26</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">122</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">122</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label2.Height" resname="O:DLG_Optionen.O:GroupBox2.O:Label2.Height">
         <source>13</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">123</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">123</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label2.Caption" resname="O:DLG_Optionen.O:GroupBox2.O:Label2.Caption">
         <source>'Text:'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">124</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">124</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnZeile.Left" resname="O:DLG_Optionen.O:GroupBox2.O:btnZeile.Left">
         <source>132</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">125</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">125</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnZeile.Top" resname="O:DLG_Optionen.O:GroupBox2.O:btnZeile.Top">
         <source>104</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">126</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">126</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnZeile.Width" resname="O:DLG_Optionen.O:GroupBox2.O:btnZeile.Width">
         <source>90</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">127</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">127</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnZeile.Height" resname="O:DLG_Optionen.O:GroupBox2.O:btnZeile.Height">
         <source>24</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">128</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">128</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnZeile.OnClick" resname="O:DLG_Optionen.O:GroupBox2.O:btnZeile.OnClick">
         <source>btnFarbeClick</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">129</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">129</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label3.Left" resname="O:DLG_Optionen.O:GroupBox2.O:Label3.Left">
         <source>16</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">130</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">130</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label3.Top" resname="O:DLG_Optionen.O:GroupBox2.O:Label3.Top">
         <source>108</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">131</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">131</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label3.Width" resname="O:DLG_Optionen.O:GroupBox2.O:Label3.Width">
         <source>67</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">132</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">132</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label3.Height" resname="O:DLG_Optionen.O:GroupBox2.O:Label3.Height">
         <source>13</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">133</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">133</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label3.Caption" resname="O:DLG_Optionen.O:GroupBox2.O:Label3.Caption">
         <source>'Aktuelle Zeile:'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">134</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Current row:'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">1</prop><prop prop-type="Order">134</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnFeld.Left" resname="O:DLG_Optionen.O:GroupBox2.O:btnFeld.Left">
         <source>132</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">135</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">135</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnFeld.Top" resname="O:DLG_Optionen.O:GroupBox2.O:btnFeld.Top">
         <source>132</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">136</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">136</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnFeld.Width" resname="O:DLG_Optionen.O:GroupBox2.O:btnFeld.Width">
         <source>90</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">137</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">137</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnFeld.Height" resname="O:DLG_Optionen.O:GroupBox2.O:btnFeld.Height">
         <source>24</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">138</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">138</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnFeld.OnClick" resname="O:DLG_Optionen.O:GroupBox2.O:btnFeld.OnClick">
         <source>btnFarbeClick</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">139</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">139</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label4.Left" resname="O:DLG_Optionen.O:GroupBox2.O:Label4.Left">
         <source>16</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">140</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">140</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label4.Top" resname="O:DLG_Optionen.O:GroupBox2.O:Label4.Top">
         <source>136</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">141</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">141</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label4.Width" resname="O:DLG_Optionen.O:GroupBox2.O:Label4.Width">
         <source>70</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">142</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">142</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label4.Height" resname="O:DLG_Optionen.O:GroupBox2.O:Label4.Height">
         <source>13</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">143</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">143</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label4.Caption" resname="O:DLG_Optionen.O:GroupBox2.O:Label4.Caption">
         <source>'Aktuelles Feld:'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">144</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Current field:'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">1</prop><prop prop-type="Order">144</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label5.Left" resname="O:DLG_Optionen.O:GroupBox2.O:Label5.Left">
         <source>16</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">145</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">145</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label5.Top" resname="O:DLG_Optionen.O:GroupBox2.O:Label5.Top">
         <source>52</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">146</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">146</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label5.Width" resname="O:DLG_Optionen.O:GroupBox2.O:Label5.Width">
         <source>109</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">147</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">147</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label5.Height" resname="O:DLG_Optionen.O:GroupBox2.O:Label5.Height">
         <source>13</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">148</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">148</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:Label5.Caption" resname="O:DLG_Optionen.O:GroupBox2.O:Label5.Caption">
         <source>'Tabellenhintergrund 2:'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">149</prop>
-          <prop prop-type="Type">TLabel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Table background 2:'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">1</prop><prop prop-type="Order">149</prop><prop prop-type="Type">TLabel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnZebra.Left" resname="O:DLG_Optionen.O:GroupBox2.O:btnZebra.Left">
         <source>132</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">150</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">150</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnZebra.Top" resname="O:DLG_Optionen.O:GroupBox2.O:btnZebra.Top">
         <source>48</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">151</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">151</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnZebra.Width" resname="O:DLG_Optionen.O:GroupBox2.O:btnZebra.Width">
         <source>90</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">152</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">152</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnZebra.Height" resname="O:DLG_Optionen.O:GroupBox2.O:btnZebra.Height">
         <source>24</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">153</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">153</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:GroupBox2.O:btnZebra.OnClick" resname="O:DLG_Optionen.O:GroupBox2.O:btnZebra.OnClick">
         <source>btnFarbeClick</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">154</prop>
-          <prop prop-type="Type">TSpeedButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">154</prop><prop prop-type="Type">TSpeedButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton1.Left" resname="O:DLG_Optionen.O:LbButton1.Left">
         <source>256</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">155</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">155</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton1.Top" resname="O:DLG_Optionen.O:LbButton1.Top">
         <source>12</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">156</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">156</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton1.Width" resname="O:DLG_Optionen.O:LbButton1.Width">
         <source>90</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">157</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">157</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton1.Height" resname="O:DLG_Optionen.O:LbButton1.Height">
         <source>25</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">158</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">158</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton1.Caption" resname="O:DLG_Optionen.O:LbButton1.Caption">
         <source>'OK'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">159</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">159</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton1.Default" resname="O:DLG_Optionen.O:LbButton1.Default">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">160</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">160</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton1.Font.Charset" resname="O:DLG_Optionen.O:LbButton1.Font.Charset">
         <source>ANSI_CHARSET</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">161</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">161</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton1.Font.Color" resname="O:DLG_Optionen.O:LbButton1.Font.Color">
         <source>clBlack</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">162</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">162</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton1.Font.Height" resname="O:DLG_Optionen.O:LbButton1.Font.Height">
         <source>-11</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">163</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">163</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton1.Font.Name" resname="O:DLG_Optionen.O:LbButton1.Font.Name">
         <source>'Tahoma'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">164</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">164</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton1.Font.Style" resname="O:DLG_Optionen.O:LbButton1.Font.Style">
         <source>[]</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">165</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">165</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton1.ModalResult" resname="O:DLG_Optionen.O:LbButton1.ModalResult">
         <source>1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">166</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">166</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton1.ParentFont" resname="O:DLG_Optionen.O:LbButton1.ParentFont">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">167</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">167</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton1.TabOrder" resname="O:DLG_Optionen.O:LbButton1.TabOrder">
         <source>2</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">168</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">168</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton1.OnClick" resname="O:DLG_Optionen.O:LbButton1.OnClick">
         <source>LbButton1Click</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">169</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">169</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton2.Left" resname="O:DLG_Optionen.O:LbButton2.Left">
         <source>256</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">170</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">170</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton2.Top" resname="O:DLG_Optionen.O:LbButton2.Top">
         <source>44</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">171</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">171</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton2.Width" resname="O:DLG_Optionen.O:LbButton2.Width">
         <source>90</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">172</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">172</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton2.Height" resname="O:DLG_Optionen.O:LbButton2.Height">
         <source>25</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">173</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">173</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton2.Cancel" resname="O:DLG_Optionen.O:LbButton2.Cancel">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">174</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">174</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton2.Caption" resname="O:DLG_Optionen.O:LbButton2.Caption">
         <source>'Abbrechen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">175</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Cancel'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">1</prop><prop prop-type="Order">175</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton2.Font.Charset" resname="O:DLG_Optionen.O:LbButton2.Font.Charset">
         <source>ANSI_CHARSET</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">176</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">176</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton2.Font.Color" resname="O:DLG_Optionen.O:LbButton2.Font.Color">
         <source>clBlack</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">177</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">177</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton2.Font.Height" resname="O:DLG_Optionen.O:LbButton2.Font.Height">
         <source>-11</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">178</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">178</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton2.Font.Name" resname="O:DLG_Optionen.O:LbButton2.Font.Name">
         <source>'Tahoma'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">179</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">179</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton2.Font.Style" resname="O:DLG_Optionen.O:LbButton2.Font.Style">
         <source>[]</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">180</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">180</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton2.ModalResult" resname="O:DLG_Optionen.O:LbButton2.ModalResult">
         <source>2</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">181</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">181</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton2.ParentFont" resname="O:DLG_Optionen.O:LbButton2.ParentFont">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">182</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">182</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:LbButton2.TabOrder" resname="O:DLG_Optionen.O:LbButton2.TabOrder">
         <source>3</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">183</prop>
-          <prop prop-type="Type">TButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">183</prop><prop prop-type="Type">TButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:ColorDialog1.Options" resname="O:DLG_Optionen.O:ColorDialog1.Options">
         <source>[cdSolidColor]</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">184</prop>
-          <prop prop-type="Type">TColorDialog</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">184</prop><prop prop-type="Type">TColorDialog</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:ColorDialog1.Left" resname="O:DLG_Optionen.O:ColorDialog1.Left">
         <source>264</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">185</prop>
-          <prop prop-type="Type">TColorDialog</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">185</prop><prop prop-type="Type">TColorDialog</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_Optionen.O:ColorDialog1.Top" resname="O:DLG_Optionen.O:ColorDialog1.Top">
         <source>244</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433460648</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">186</prop>
-          <prop prop-type="Type">TColorDialog</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433460648</prop><prop prop-type="Status">0</prop><prop prop-type="Order">186</prop><prop prop-type="Type">TColorDialog</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
     </body>
   </file>

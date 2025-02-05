@@ -51,7 +51,7 @@ BEGIN
 			VALUE "FileDescription",  "Datenbankoberfläche"
 			VALUE "FileVersion",      "1.0.0.0"
 			VALUE "InternalName",     "DBTool"
-			VALUE "LegalCopyright",   "(C) 2016-2024 HickelSOFT Huth GmbH"
+			VALUE "LegalCopyright",   "(C) 2016-2025 HickelSOFT Huth GmbH"
 			VALUE "LegalTrademarks",  "DB Tool"
 			VALUE "OriginalFilename", "DBTool64.exe"
 			VALUE "ProductName",      "DB Tool"

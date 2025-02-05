@@ -5,9 +5,9 @@
     <header>
       <prop-group name="ITEHeaderProp">
         <prop prop-type="Version">9.0</prop>
-        <prop prop-type="SelfDateTime">45533.4868981481</prop>
-        <prop prop-type="OrigDateTime">45531.915787037</prop>
-        <prop prop-type="XlatDateTime">45531.915787037</prop>
+        <prop prop-type="SelfDateTime">45620.8204861111</prop>
+        <prop prop-type="OrigDateTime">45531.8741203704</prop>
+        <prop prop-type="XlatDateTime">45531.8741203704</prop>
         <prop prop-type="Translated">37</prop>
         <prop prop-type="UnTranslated">157</prop>
       </prop-group>
@@ -16,1991 +16,1014 @@
       <trans-unit id="O:DLG_EditRTF.Left" resname="O:DLG_EditRTF.Left">
         <source>279</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">0</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">0</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.Top" resname="O:DLG_EditRTF.Top">
         <source>107</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">1</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">1</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.Caption" resname="O:DLG_EditRTF.Caption">
         <source>'RTF bearbeiten'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">2</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Edit RichText'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">1</prop><prop prop-type="Order">2</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.ClientHeight" resname="O:DLG_EditRTF.ClientHeight">
         <source>381</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">3</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">3</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.ClientWidth" resname="O:DLG_EditRTF.ClientWidth">
         <source>548</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">4</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">4</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.Color" resname="O:DLG_EditRTF.Color">
         <source>clBtnFace</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">5</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">5</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.Font.Charset" resname="O:DLG_EditRTF.Font.Charset">
         <source>DEFAULT_CHARSET</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">6</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">6</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.Font.Color" resname="O:DLG_EditRTF.Font.Color">
         <source>clWindowText</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">7</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">7</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.Font.Height" resname="O:DLG_EditRTF.Font.Height">
         <source>-11</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">8</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">8</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.Font.Name" resname="O:DLG_EditRTF.Font.Name">
         <source>'MS Sans Serif'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">9</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">9</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.Font.Style" resname="O:DLG_EditRTF.Font.Style">
         <source>[]</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">10</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">10</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.KeyPreview" resname="O:DLG_EditRTF.KeyPreview">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">11</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">11</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.OldCreateOrder" resname="O:DLG_EditRTF.OldCreateOrder">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">12</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">12</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.Position" resname="O:DLG_EditRTF.Position">
         <source>poScreenCenter</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">13</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">13</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.OnKeyPress" resname="O:DLG_EditRTF.OnKeyPress">
         <source>FormKeyPress</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">14</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">14</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.PixelsPerInch" resname="O:DLG_EditRTF.PixelsPerInch">
         <source>96</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">15</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">15</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.TextHeight" resname="O:DLG_EditRTF.TextHeight">
         <source>13</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">16</prop>
-          <prop prop-type="Type">TDLG_EditRTF</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">16</prop><prop prop-type="Type">TDLG_EditRTF</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:DBRichEdit1.Left" resname="O:DLG_EditRTF.O:DBRichEdit1.Left">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">17</prop>
-          <prop prop-type="Type">TDBRichEdit</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">17</prop><prop prop-type="Type">TDBRichEdit</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:DBRichEdit1.Top" resname="O:DLG_EditRTF.O:DBRichEdit1.Top">
         <source>23</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">18</prop>
-          <prop prop-type="Type">TDBRichEdit</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">18</prop><prop prop-type="Type">TDBRichEdit</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:DBRichEdit1.Width" resname="O:DLG_EditRTF.O:DBRichEdit1.Width">
         <source>548</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">19</prop>
-          <prop prop-type="Type">TDBRichEdit</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">19</prop><prop prop-type="Type">TDBRichEdit</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:DBRichEdit1.Height" resname="O:DLG_EditRTF.O:DBRichEdit1.Height">
         <source>358</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">20</prop>
-          <prop prop-type="Type">TDBRichEdit</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">20</prop><prop prop-type="Type">TDBRichEdit</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:DBRichEdit1.Align" resname="O:DLG_EditRTF.O:DBRichEdit1.Align">
         <source>alClient</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">21</prop>
-          <prop prop-type="Type">TDBRichEdit</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">21</prop><prop prop-type="Type">TDBRichEdit</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:DBRichEdit1.HideScrollBars" resname="O:DLG_EditRTF.O:DBRichEdit1.HideScrollBars">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">22</prop>
-          <prop prop-type="Type">TDBRichEdit</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">22</prop><prop prop-type="Type">TDBRichEdit</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:DBRichEdit1.ScrollBars" resname="O:DLG_EditRTF.O:DBRichEdit1.ScrollBars">
         <source>ssVertical</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">23</prop>
-          <prop prop-type="Type">TDBRichEdit</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">23</prop><prop prop-type="Type">TDBRichEdit</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:DBRichEdit1.TabOrder" resname="O:DLG_EditRTF.O:DBRichEdit1.TabOrder">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">24</prop>
-          <prop prop-type="Type">TDBRichEdit</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">24</prop><prop prop-type="Type">TDBRichEdit</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.Left" resname="O:DLG_EditRTF.O:ToolBar1.Left">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">25</prop>
-          <prop prop-type="Type">TToolBar</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">25</prop><prop prop-type="Type">TToolBar</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.Top" resname="O:DLG_EditRTF.O:ToolBar1.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">26</prop>
-          <prop prop-type="Type">TToolBar</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">26</prop><prop prop-type="Type">TToolBar</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.Width" resname="O:DLG_EditRTF.O:ToolBar1.Width">
         <source>548</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">27</prop>
-          <prop prop-type="Type">TToolBar</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">27</prop><prop prop-type="Type">TToolBar</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.Height" resname="O:DLG_EditRTF.O:ToolBar1.Height">
         <source>23</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">28</prop>
-          <prop prop-type="Type">TToolBar</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">28</prop><prop prop-type="Type">TToolBar</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.AutoSize" resname="O:DLG_EditRTF.O:ToolBar1.AutoSize">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">29</prop>
-          <prop prop-type="Type">TToolBar</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">29</prop><prop prop-type="Type">TToolBar</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.ButtonHeight" resname="O:DLG_EditRTF.O:ToolBar1.ButtonHeight">
         <source>23</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">30</prop>
-          <prop prop-type="Type">TToolBar</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">30</prop><prop prop-type="Type">TToolBar</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.Caption" resname="O:DLG_EditRTF.O:ToolBar1.Caption">
         <source>'ToolBar1'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">31</prop>
-          <prop prop-type="Type">TToolBar</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">31</prop><prop prop-type="Type">TToolBar</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.Customizable" resname="O:DLG_EditRTF.O:ToolBar1.Customizable">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">32</prop>
-          <prop prop-type="Type">TToolBar</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">32</prop><prop prop-type="Type">TToolBar</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.Images" resname="O:DLG_EditRTF.O:ToolBar1.Images">
         <source>ImageList1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">33</prop>
-          <prop prop-type="Type">TToolBar</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">33</prop><prop prop-type="Type">TToolBar</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.ParentShowHint" resname="O:DLG_EditRTF.O:ToolBar1.ParentShowHint">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">34</prop>
-          <prop prop-type="Type">TToolBar</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">34</prop><prop prop-type="Type">TToolBar</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.ShowHint" resname="O:DLG_EditRTF.O:ToolBar1.ShowHint">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">35</prop>
-          <prop prop-type="Type">TToolBar</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">35</prop><prop prop-type="Type">TToolBar</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.TabOrder" resname="O:DLG_EditRTF.O:ToolBar1.TabOrder">
         <source>1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">36</prop>
-          <prop prop-type="Type">TToolBar</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">36</prop><prop prop-type="Type">TToolBar</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton1.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton1.Left">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">37</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">37</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton1.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton1.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">38</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">38</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton1.Action" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton1.Action">
         <source>EditCut1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">39</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">39</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton2.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton2.Left">
         <source>23</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">40</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">40</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton2.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton2.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">41</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">41</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton2.Action" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton2.Action">
         <source>EditCopy1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">42</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">42</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton3.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton3.Left">
         <source>46</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">43</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">43</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton3.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton3.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">44</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">44</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton3.Action" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton3.Action">
         <source>EditPaste1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">45</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">45</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton18.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton18.Left">
         <source>69</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">46</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">46</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton18.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton18.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">47</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">47</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton18.Width" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton18.Width">
         <source>8</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">48</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">48</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton18.Caption" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton18.Caption">
         <source>'ToolButton18'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">49</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">49</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton18.ImageIndex" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton18.ImageIndex">
         <source>17</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">50</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">50</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton18.Style" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton18.Style">
         <source>tbsSeparator</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">51</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">51</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton4.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton4.Left">
         <source>77</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">52</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">52</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton4.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton4.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">53</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">53</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton4.Action" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton4.Action">
         <source>RichEditBold1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">54</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">54</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton5.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton5.Left">
         <source>100</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">55</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">55</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton5.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton5.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">56</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">56</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton5.Action" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton5.Action">
         <source>RichEditItalic1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">57</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">57</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton6.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton6.Left">
         <source>123</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">58</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">58</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton6.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton6.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">59</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">59</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton6.Action" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton6.Action">
         <source>RichEditUnderline1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">60</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">60</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton20.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton20.Left">
         <source>146</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433312847</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">61</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433312847</prop><prop prop-type="Status">0</prop><prop prop-type="Order">61</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton20.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton20.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">62</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">62</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton20.Width" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton20.Width">
         <source>8</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">63</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">63</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton20.Caption" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton20.Caption">
         <source>'ToolButton20'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">64</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">64</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton20.ImageIndex" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton20.ImageIndex">
         <source>19</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">65</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">65</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton20.Style" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton20.Style">
         <source>tbsSeparator</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">66</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">66</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton8.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton8.Left">
         <source>154</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">67</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">67</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton8.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton8.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">68</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">68</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton8.Action" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton8.Action">
         <source>RichEditAlignLeft1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">69</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">69</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton9.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton9.Left">
         <source>177</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">70</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">70</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton9.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton9.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">71</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">71</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton9.Action" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton9.Action">
         <source>RichEditAlignCenter1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">72</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">72</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton10.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton10.Left">
         <source>200</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">73</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">73</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton10.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton10.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">74</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">74</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton10.Action" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton10.Action">
         <source>RichEditAlignRight1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">75</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">75</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton16.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton16.Left">
         <source>223</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">76</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">76</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton16.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton16.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">77</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">77</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton16.Width" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton16.Width">
         <source>8</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">78</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">78</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton16.Caption" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton16.Caption">
         <source>'ToolButton16'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">79</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">79</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton16.ImageIndex" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton16.ImageIndex">
         <source>15</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">80</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">80</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton16.Style" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton16.Style">
         <source>tbsSeparator</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">81</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">81</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton7.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton7.Left">
         <source>231</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">82</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">82</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton7.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton7.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">83</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">83</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton7.Action" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton7.Action">
         <source>RichEditBullets1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">84</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">84</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton19.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton19.Left">
         <source>254</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">85</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">85</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton19.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton19.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">86</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">86</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton19.Width" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton19.Width">
         <source>8</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">87</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">87</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton19.Caption" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton19.Caption">
         <source>'ToolButton19'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">88</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">88</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton19.ImageIndex" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton19.ImageIndex">
         <source>18</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">89</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">89</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton19.Style" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton19.Style">
         <source>tbsSeparator</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">90</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">90</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton11.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton11.Left">
         <source>262</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">91</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">91</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton11.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton11.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">92</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">92</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton11.Action" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton11.Action">
         <source>SearchFind1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433313773</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">93</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433313773</prop><prop prop-type="Status">0</prop><prop prop-type="Order">93</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton13.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton13.Left">
         <source>285</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">94</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">94</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton13.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton13.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">95</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">95</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton13.Action" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton13.Action">
         <source>SearchReplace1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">96</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">96</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton21.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton21.Left">
         <source>308</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">97</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">97</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton21.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton21.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">98</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">98</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton21.Width" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton21.Width">
         <source>8</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">99</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">99</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton21.Caption" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton21.Caption">
         <source>'ToolButton21'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">100</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">100</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton21.ImageIndex" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton21.ImageIndex">
         <source>7</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">101</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">101</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton21.Style" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton21.Style">
         <source>tbsSeparator</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">102</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">102</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton14.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton14.Left">
         <source>316</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">103</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">103</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton14.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton14.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">104</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">104</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton14.Action" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton14.Action">
         <source>DataSetPost1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">105</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">105</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton15.Left" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton15.Left">
         <source>339</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">106</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">106</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton15.Top" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton15.Top">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">107</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">107</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ToolBar1.O:ToolButton15.Action" resname="O:DLG_EditRTF.O:ToolBar1.O:ToolButton15.Action">
         <source>DataSetCancel1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">108</prop>
-          <prop prop-type="Type">TToolButton</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">108</prop><prop prop-type="Type">TToolButton</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ImageList1.Left" resname="O:DLG_EditRTF.O:ImageList1.Left">
         <source>108</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">109</prop>
-          <prop prop-type="Type">TImageList</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">109</prop><prop prop-type="Type">TImageList</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ImageList1.Top" resname="O:DLG_EditRTF.O:ImageList1.Top">
         <source>84</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">110</prop>
-          <prop prop-type="Type">TImageList</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">110</prop><prop prop-type="Type">TImageList</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ImageList1.Bitmap" resname="O:DLG_EditRTF.O:ImageList1.Bitmap">
         <source>494C01010F0013000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600000000000000360000002800000040000000400000000100200000000000004000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080800000808000000000000000000000000000000000000000000000000000000000000000000000000000008080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000808000008080000000000000000000000000000000000000000000000000000000000000000000000000000080800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008080000080800000000000000000000000000000000000000000000000000000000000000000000000000000808000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080800000808000000000000000000000000000000000000000000000000000000000000000000000000000008080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000808000008080000080800000808000008080000080800000808000008080000080800000808000008080000080800000000000000000000000000000000000800000008000000080000000800000008000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000C6C6C60000000000000000000000000000000000000000000000000000000000C6C6C600000000000000000000000000000000000000000000000000008080000080800000000000000000000000000000000000000000000000000000000000000000000080800000808000000000000000000000000000000000008000000080000000800000008000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000848484000000000000000000000000008484840000000000000000000000000000000000000000000000000000000000000000000080800000000000000000000000000000000000000000000000000000000000000000000000000000000000008080000000000000000000000000000000000080000000800000008000000000000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000808000000000000000000000000000000000000000000000000000000000000000000000000000000000000080800000000000000000000000000000000000800000008000000000000000800000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000C6C6C60000000000000000000000000000000000C6C6C60000000000000000000000000000000000000000000000000000000000000000000000000000808000000000000000000000000000000000000000000000000000000000000000000000000000000000000080800000000000000000000000000000000000800000000000000000000000000000008000000080000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000C6C6C60000000000000000000000000000000000C6C6C6000000000000000000000000000000000000000000000000000000000000000000000000000080800000000000000000000000000000000000000000000000000000000000000000000000000000000000008080000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000800000008000000080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000808000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008484840000000000000000000000000000000000000000000000000000000000000000000000000000000000008080000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00000000000000000000000000000000000000000000000000FFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000C6C6C60000000000000000000000000000000000000000000000000000000000C6C6C6000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00000000000000000000000000C6C6C6000000000000000000FFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000848484000000000000000000000000008484840000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00000000000000000000000000C6C6C6000000000000000000FFFFFF0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000C6C6C60000000000000000000000000000000000C6C6C600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000000000000FFFFFF00000000000000000000000000000000000000000000000000000000000000000000000000C6C6C60000000000000000000000000000000000C6C6C600000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000848484000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000084000000840000008400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000840000008400000084000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008400000084000000840000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008400000084000000840000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000084000000840000008400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000840000008400000084000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000840000008400000084000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008400000084000000840000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000084000000840000008400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008400000084000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008400000084000000840000008400000084000000840000008400000084000000840000008400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008400000000000000000000008400000000000000000000008400000084000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000084000000840000008400000084000000840000008400000084000000840000008400000000000000000000000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008400000000000000000000008400000000000000840000000000000000000000840000000000000000000000000000000000000000000000000000000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000848484000084840084848400008484008484840084000000FFFFFF00000000000000000000000000000000000000000000000000FFFFFF008400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008400000000000000000000008400000000000000840000000000000000000000840000000000000000000000000000000000000000000000000000000000000000000000000000000000000084000000FFFFFF000000000000000000000000000000000000000000FFFFFF008400000000000000008484008484840000848400848484000084840084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000084000000840000008400000000000000840000000000000000000000840000000000000000000000000000000000000000000000000000000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000848484000084840084848400008484008484840084000000FFFFFF00000000000000000000000000FFFFFF008400000084000000840000008400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008400000000000000840000008400000084000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF000000000000000000000000000000000000000000FFFFFF008400000000000000008484008484840000848400848484000084840084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF00840000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008400000000000000840000000000000000000000000000000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000000000000848484000084840084848400008484008484840084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF008400000084000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF000000000000000000FFFFFF00840000008400000084000000840000000000000000848400848484000084840084848400008484008400000084000000840000008400000084000000840000008400000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF000000000000000000000000000000000084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF0084000000000000000000000084848400008484008484840000848400848484000084840084848400008484008484840000848400848484000084840000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00FFFFFF0084000000FFFFFF00FFFFFF00FFFFFF00FFFFFF00840000008400000000000000000000000000000000848400848484000000000000000000000000000000000000000000000000000000000000000000848484008484840000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF000000000000000000FFFFFF00000000008400000084000000840000008400000084000000840000000000000000000000000000000000000084848400848484000000000000000000000000000000000000000000000000000000000000000000848484000084840000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF0000000000FFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000084840084848400008484000000000000FFFF00000000000000000000FFFF000000000084848400008484008484840000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFFFF00FFFFFF00FFFFFF00FFFFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000FFFF0000FFFF000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000424D3E000000000000003E0000002800000040000000400000000100010000000000000200000000000000000000000000000000000000000000FFFFFF00B6E7FFFFFFFF0000B76BC001FFFF000084278031FFFF0000B76B8031FFFF0000CEE78031FFFF0000FFFF8001FFE70000C7C78001C1F30000C7C78001C3FB0000C3878FF1C7FB0000C0078FF1CBFB0000C0078FF1DCF30000C0078FF1FF070000C0078FF1FFFF0000C0078FF5FFFF0000F39F8001FFFF0000F39FFFFFFFFF0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFFE49FFFFFFFF07C1FE49C007C00707C1FFFFFFFFFFFF07C1FFFFF807F83F0101C7C7FFFFFFFF0001C7C7C007C0070001C387FFFFFFFF0001C007F807F01F8003C007FFFFFFFFC107C007C007C007C107C007FFFFFFFFE38FC007F807F83FE38FF39FFFFFFFFFE38FF39FFFFFFFFFFFFFF39FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFE00F8FFFFFFFFFFFFFFF8C03C00781FFF83F8FFFFFFFE3FFF39FFFFFC03FF1FFF39FFFFFFFFFF8FFF39F8FFFC007FC7FF39F8C03FFFFFE3FF39F8FFFC03FFF1FF39FFFFFFFFFFF8FF39FFFFFC007FF03E10F8FFFFFFFFFFFFFFF8C03C03FFFFFFFFF8FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF9FFFFFFFC00FFFFF6CFFE008000FFFFF6B7FE000000FFFFF6B7FE000000F00FF8B780000000F8C7FE8F80000001F8C7FE3F80000003F8C7FF7F80000003F80FFE3F80010003F8C7FEBF80030003F8C7FC9F80070FC3F8C7FDDF807F0003F00FFDDF80FF8007FFFFFDDF81FFF87FFFFFFFFFFFFFFFFFFFFF00000000000000000000000000000000000000000000</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">111</prop>
-          <prop prop-type="Type">TImageList</prop>
-          <prop prop-type="Localize">0</prop>
-          <prop prop-type="Open">{</prop>
-          <prop prop-type="Close">}</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">111</prop><prop prop-type="Type">TImageList</prop><prop prop-type="Localize">0</prop><prop prop-type="Open">{</prop><prop prop-type="Close">}</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.Images" resname="O:DLG_EditRTF.O:ActionList1.Images">
         <source>ImageList1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">112</prop>
-          <prop prop-type="Type">TActionList</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">112</prop><prop prop-type="Type">TActionList</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.Left" resname="O:DLG_EditRTF.O:ActionList1.Left">
         <source>136</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">113</prop>
-          <prop prop-type="Type">TActionList</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">113</prop><prop prop-type="Type">TActionList</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.Top" resname="O:DLG_EditRTF.O:ActionList1.Top">
         <source>84</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">114</prop>
-          <prop prop-type="Type">TActionList</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">114</prop><prop prop-type="Type">TActionList</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCut1.Category" resname="O:DLG_EditRTF.O:ActionList1.O:EditCut1.Category">
         <source>'Bearbeiten'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">115</prop>
-          <prop prop-type="Type">TEditCut</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Edit'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">115</prop><prop prop-type="Type">TEditCut</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCut1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:EditCut1.Caption">
         <source>'&amp;Ausschneiden'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">116</prop>
-          <prop prop-type="Type">TEditCut</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'&amp;Cut'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">116</prop><prop prop-type="Type">TEditCut</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCut1.Enabled" resname="O:DLG_EditRTF.O:ActionList1.O:EditCut1.Enabled">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">117</prop>
-          <prop prop-type="Type">TEditCut</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">117</prop><prop prop-type="Type">TEditCut</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCut1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:EditCut1.Hint">
         <source>'Ausschneiden|Markiertes Objekt in die Zwischenablage verschieben'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">118</prop>
-          <prop prop-type="Type">TEditCut</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Cut|Copy text into the clipboard and delete it'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">118</prop><prop prop-type="Type">TEditCut</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCut1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:EditCut1.ImageIndex">
         <source>0</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">119</prop>
-          <prop prop-type="Type">TEditCut</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">119</prop><prop prop-type="Type">TEditCut</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCut1.ShortCut" resname="O:DLG_EditRTF.O:ActionList1.O:EditCut1.ShortCut">
         <source>16472</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">120</prop>
-          <prop prop-type="Type">TEditCut</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">120</prop><prop prop-type="Type">TEditCut</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.Category" resname="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.Category">
         <source>'Bearbeiten'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">121</prop>
-          <prop prop-type="Type">TEditCopy</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Edit'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">121</prop><prop prop-type="Type">TEditCopy</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.Caption">
         <source>'&amp;Kopieren'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">122</prop>
-          <prop prop-type="Type">TEditCopy</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'&amp;Copy'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">122</prop><prop prop-type="Type">TEditCopy</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.Enabled" resname="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.Enabled">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">123</prop>
-          <prop prop-type="Type">TEditCopy</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">123</prop><prop prop-type="Type">TEditCopy</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.Hint">
         <source>'Kopieren|Markiertes Objekt in die Zwischenablage kopieren'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">124</prop>
-          <prop prop-type="Type">TEditCopy</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Copy|Copy text into the clipboard'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">124</prop><prop prop-type="Type">TEditCopy</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.ImageIndex">
         <source>1</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">125</prop>
-          <prop prop-type="Type">TEditCopy</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">125</prop><prop prop-type="Type">TEditCopy</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.ShortCut" resname="O:DLG_EditRTF.O:ActionList1.O:EditCopy1.ShortCut">
         <source>16451</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">126</prop>
-          <prop prop-type="Type">TEditCopy</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">126</prop><prop prop-type="Type">TEditCopy</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.Category" resname="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.Category">
         <source>'Bearbeiten'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">127</prop>
-          <prop prop-type="Type">TEditPaste</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Edit'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">127</prop><prop prop-type="Type">TEditPaste</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.Caption">
         <source>'&amp;Einfügen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">128</prop>
-          <prop prop-type="Type">TEditPaste</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'&amp;Paste'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">128</prop><prop prop-type="Type">TEditPaste</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.Hint">
         <source>'Einfügen|Inhalt der Zwischenablage einfügen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">129</prop>
-          <prop prop-type="Type">TEditPaste</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Paste|Inserts text from the clipboard'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">129</prop><prop prop-type="Type">TEditPaste</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.ImageIndex">
         <source>2</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">130</prop>
-          <prop prop-type="Type">TEditPaste</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">130</prop><prop prop-type="Type">TEditPaste</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.ShortCut" resname="O:DLG_EditRTF.O:ActionList1.O:EditPaste1.ShortCut">
         <source>16470</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">131</prop>
-          <prop prop-type="Type">TEditPaste</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">131</prop><prop prop-type="Type">TEditPaste</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.Category" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.Category">
         <source>'Format'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">132</prop>
-          <prop prop-type="Type">TRichEditBold</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">132</prop><prop prop-type="Type">TRichEditBold</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.AutoCheck" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.AutoCheck">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">133</prop>
-          <prop prop-type="Type">TRichEditBold</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">133</prop><prop prop-type="Type">TRichEditBold</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.Caption">
         <source>'&amp;Fett'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">134</prop>
-          <prop prop-type="Type">TRichEditBold</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'&amp;Bold'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">134</prop><prop prop-type="Type">TRichEditBold</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.Hint">
         <source>'Fett'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">135</prop>
-          <prop prop-type="Type">TRichEditBold</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Bold'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">135</prop><prop prop-type="Type">TRichEditBold</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.ImageIndex">
         <source>3</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">136</prop>
-          <prop prop-type="Type">TRichEditBold</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">136</prop><prop prop-type="Type">TRichEditBold</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.ShortCut" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditBold1.ShortCut">
         <source>16450</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">137</prop>
-          <prop prop-type="Type">TRichEditBold</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">137</prop><prop prop-type="Type">TRichEditBold</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.Category" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.Category">
         <source>'Format'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">138</prop>
-          <prop prop-type="Type">TRichEditItalic</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">138</prop><prop prop-type="Type">TRichEditItalic</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.AutoCheck" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.AutoCheck">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">139</prop>
-          <prop prop-type="Type">TRichEditItalic</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">139</prop><prop prop-type="Type">TRichEditItalic</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.Caption">
         <source>'&amp;Kursiv'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">140</prop>
-          <prop prop-type="Type">TRichEditItalic</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'&amp;Italic'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">140</prop><prop prop-type="Type">TRichEditItalic</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.Hint">
         <source>'Kursiv'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">141</prop>
-          <prop prop-type="Type">TRichEditItalic</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Italic'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">141</prop><prop prop-type="Type">TRichEditItalic</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.ImageIndex">
         <source>4</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">142</prop>
-          <prop prop-type="Type">TRichEditItalic</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">142</prop><prop prop-type="Type">TRichEditItalic</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.ShortCut" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditItalic1.ShortCut">
         <source>16457</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">143</prop>
-          <prop prop-type="Type">TRichEditItalic</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">143</prop><prop prop-type="Type">TRichEditItalic</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.Category" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.Category">
         <source>'Format'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">144</prop>
-          <prop prop-type="Type">TRichEditUnderline</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">144</prop><prop prop-type="Type">TRichEditUnderline</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.AutoCheck" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.AutoCheck">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">145</prop>
-          <prop prop-type="Type">TRichEditUnderline</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">145</prop><prop prop-type="Type">TRichEditUnderline</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.Caption">
         <source>'&amp;Unterstrichen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">146</prop>
-          <prop prop-type="Type">TRichEditUnderline</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'&amp;Underline'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">146</prop><prop prop-type="Type">TRichEditUnderline</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.Hint">
         <source>'Unterstrichen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">147</prop>
-          <prop prop-type="Type">TRichEditUnderline</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Underline'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">147</prop><prop prop-type="Type">TRichEditUnderline</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.ImageIndex">
         <source>5</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">148</prop>
-          <prop prop-type="Type">TRichEditUnderline</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">148</prop><prop prop-type="Type">TRichEditUnderline</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.ShortCut" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditUnderline1.ShortCut">
         <source>16469</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">149</prop>
-          <prop prop-type="Type">TRichEditUnderline</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">149</prop><prop prop-type="Type">TRichEditUnderline</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditBullets1.Category" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditBullets1.Category">
         <source>'Format'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">150</prop>
-          <prop prop-type="Type">TRichEditBullets</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">150</prop><prop prop-type="Type">TRichEditBullets</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditBullets1.AutoCheck" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditBullets1.AutoCheck">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">151</prop>
-          <prop prop-type="Type">TRichEditBullets</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">151</prop><prop prop-type="Type">TRichEditBullets</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditBullets1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditBullets1.Caption">
         <source>'&amp;Aufzählungszeichen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">152</prop>
-          <prop prop-type="Type">TRichEditBullets</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'&amp;Bullet points'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">152</prop><prop prop-type="Type">TRichEditBullets</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditBullets1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditBullets1.Hint">
         <source>'Aufzählungszeichen|In die aktuielle Zeile ein Aufzählungszeichen einfügen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">153</prop>
-          <prop prop-type="Type">TRichEditBullets</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Bullet points|Insert a bullet into the current line'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">153</prop><prop prop-type="Type">TRichEditBullets</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditBullets1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditBullets1.ImageIndex">
         <source>6</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">154</prop>
-          <prop prop-type="Type">TRichEditBullets</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">154</prop><prop prop-type="Type">TRichEditBullets</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignLeft1.Category" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignLeft1.Category">
         <source>'Format'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">155</prop>
-          <prop prop-type="Type">TRichEditAlignLeft</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">155</prop><prop prop-type="Type">TRichEditAlignLeft</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignLeft1.AutoCheck" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignLeft1.AutoCheck">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">156</prop>
-          <prop prop-type="Type">TRichEditAlignLeft</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">156</prop><prop prop-type="Type">TRichEditAlignLeft</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignLeft1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignLeft1.Caption">
         <source>'&amp;Links ausrichten'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">157</prop>
-          <prop prop-type="Type">TRichEditAlignLeft</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Align &amp;left'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">157</prop><prop prop-type="Type">TRichEditAlignLeft</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignLeft1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignLeft1.Hint">
         <source>'Links ausrichten|Text linksbündig ausrichten'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">158</prop>
-          <prop prop-type="Type">TRichEditAlignLeft</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Align left|Align text to the left side'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">158</prop><prop prop-type="Type">TRichEditAlignLeft</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignLeft1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignLeft1.ImageIndex">
         <source>7</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">159</prop>
-          <prop prop-type="Type">TRichEditAlignLeft</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">159</prop><prop prop-type="Type">TRichEditAlignLeft</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignRight1.Category" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignRight1.Category">
         <source>'Format'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">160</prop>
-          <prop prop-type="Type">TRichEditAlignRight</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">160</prop><prop prop-type="Type">TRichEditAlignRight</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignRight1.AutoCheck" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignRight1.AutoCheck">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">161</prop>
-          <prop prop-type="Type">TRichEditAlignRight</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">161</prop><prop prop-type="Type">TRichEditAlignRight</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignRight1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignRight1.Caption">
         <source>'&amp;Rechts ausrichten'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">162</prop>
-          <prop prop-type="Type">TRichEditAlignRight</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Align &amp;right'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">162</prop><prop prop-type="Type">TRichEditAlignRight</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignRight1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignRight1.Hint">
         <source>'Rechts ausrichten|Text rechtsbündig ausrichten'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">163</prop>
-          <prop prop-type="Type">TRichEditAlignRight</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Align right|Align text to the right side'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">163</prop><prop prop-type="Type">TRichEditAlignRight</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignRight1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignRight1.ImageIndex">
         <source>8</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">164</prop>
-          <prop prop-type="Type">TRichEditAlignRight</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">164</prop><prop prop-type="Type">TRichEditAlignRight</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignCenter1.Category" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignCenter1.Category">
         <source>'Format'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">165</prop>
-          <prop prop-type="Type">TRichEditAlignCenter</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">165</prop><prop prop-type="Type">TRichEditAlignCenter</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignCenter1.AutoCheck" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignCenter1.AutoCheck">
         <source>True</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">166</prop>
-          <prop prop-type="Type">TRichEditAlignCenter</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">166</prop><prop prop-type="Type">TRichEditAlignCenter</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignCenter1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignCenter1.Caption">
         <source>'&amp;Zentriert'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">167</prop>
-          <prop prop-type="Type">TRichEditAlignCenter</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'&amp;Center'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">167</prop><prop prop-type="Type">TRichEditAlignCenter</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignCenter1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignCenter1.Hint">
         <source>'Zentriert|Text zentriert ausrichten'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">168</prop>
-          <prop prop-type="Type">TRichEditAlignCenter</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Center|Align text centered'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">168</prop><prop prop-type="Type">TRichEditAlignCenter</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignCenter1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:RichEditAlignCenter1.ImageIndex">
         <source>9</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">169</prop>
-          <prop prop-type="Type">TRichEditAlignCenter</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">169</prop><prop prop-type="Type">TRichEditAlignCenter</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.Category" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.Category">
         <source>'Suchen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">170</prop>
-          <prop prop-type="Type">TSearchFind</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Search'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">170</prop><prop prop-type="Type">TSearchFind</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.Caption">
         <source>'Su&amp;chen...'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">171</prop>
-          <prop prop-type="Type">TSearchFind</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'&amp;Search...'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">171</prop><prop prop-type="Type">TSearchFind</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.Enabled" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.Enabled">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">172</prop>
-          <prop prop-type="Type">TSearchFind</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">172</prop><prop prop-type="Type">TSearchFind</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.Hint">
         <source>'Suchen|Angegebenen Text suchen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">173</prop>
-          <prop prop-type="Type">TSearchFind</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Search|Find a text'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">173</prop><prop prop-type="Type">TSearchFind</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.ImageIndex">
         <source>10</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">174</prop>
-          <prop prop-type="Type">TSearchFind</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">174</prop><prop prop-type="Type">TSearchFind</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.ShortCut" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFind1.ShortCut">
         <source>16454</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">175</prop>
-          <prop prop-type="Type">TSearchFind</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">175</prop><prop prop-type="Type">TSearchFind</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.Category" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.Category">
         <source>'Suchen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">176</prop>
-          <prop prop-type="Type">TSearchFindNext</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Search'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">176</prop><prop prop-type="Type">TSearchFindNext</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.Caption">
         <source>'&amp;Weitersuchen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">177</prop>
-          <prop prop-type="Type">TSearchFindNext</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'&amp;Search next'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">177</prop><prop prop-type="Type">TSearchFindNext</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.Hint">
         <source>'Weitersuchen|Letzte Suche wiederholen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">178</prop>
-          <prop prop-type="Type">TSearchFindNext</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Search next|Repeat last search'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">178</prop><prop prop-type="Type">TSearchFindNext</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.ImageIndex">
         <source>11</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">179</prop>
-          <prop prop-type="Type">TSearchFindNext</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">179</prop><prop prop-type="Type">TSearchFindNext</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.ShortCut" resname="O:DLG_EditRTF.O:ActionList1.O:SearchFindNext1.ShortCut">
         <source>114</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">180</prop>
-          <prop prop-type="Type">TSearchFindNext</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">180</prop><prop prop-type="Type">TSearchFindNext</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.Category" resname="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.Category">
         <source>'Suchen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">181</prop>
-          <prop prop-type="Type">TSearchReplace</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Search'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">181</prop><prop prop-type="Type">TSearchReplace</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.Caption">
         <source>'Erset&amp;zen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">182</prop>
-          <prop prop-type="Type">TSearchReplace</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'&amp;Replace'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">182</prop><prop prop-type="Type">TSearchReplace</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.Enabled" resname="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.Enabled">
         <source>False</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">183</prop>
-          <prop prop-type="Type">TSearchReplace</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">183</prop><prop prop-type="Type">TSearchReplace</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.Hint">
         <source>'Ersetzen|Angegebenen Text durch neuen Text ersetzen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">184</prop>
-          <prop prop-type="Type">TSearchReplace</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Replace|Replace the text with a new one'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">184</prop><prop prop-type="Type">TSearchReplace</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.ImageIndex">
         <source>12</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">185</prop>
-          <prop prop-type="Type">TSearchReplace</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">185</prop><prop prop-type="Type">TSearchReplace</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.ShortCut" resname="O:DLG_EditRTF.O:ActionList1.O:SearchReplace1.ShortCut">
         <source>16456</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">186</prop>
-          <prop prop-type="Type">TSearchReplace</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">186</prop><prop prop-type="Type">TSearchReplace</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:DataSetPost1.Category" resname="O:DLG_EditRTF.O:ActionList1.O:DataSetPost1.Category">
         <source>'Dataset'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">187</prop>
-          <prop prop-type="Type">TDataSetPost</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">187</prop><prop prop-type="Type">TDataSetPost</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:DataSetPost1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:DataSetPost1.Caption">
         <source>'Überneh&amp;men'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">188</prop>
-          <prop prop-type="Type">TDataSetPost</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'&amp;Apply'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">188</prop><prop prop-type="Type">TDataSetPost</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:DataSetPost1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:DataSetPost1.Hint">
         <source>'Übernehmen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">189</prop>
-          <prop prop-type="Type">TDataSetPost</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Apply'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">189</prop><prop prop-type="Type">TDataSetPost</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:DataSetPost1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:DataSetPost1.ImageIndex">
         <source>13</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">190</prop>
-          <prop prop-type="Type">TDataSetPost</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">190</prop><prop prop-type="Type">TDataSetPost</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:DataSetCancel1.Category" resname="O:DLG_EditRTF.O:ActionList1.O:DataSetCancel1.Category">
         <source>'Dataset'</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">191</prop>
-          <prop prop-type="Type">TDataSetCancel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">191</prop><prop prop-type="Type">TDataSetCancel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:DataSetCancel1.Caption" resname="O:DLG_EditRTF.O:ActionList1.O:DataSetCancel1.Caption">
         <source>'&amp;Abbrechen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">192</prop>
-          <prop prop-type="Type">TDataSetCancel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'&amp;Cancel'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">192</prop><prop prop-type="Type">TDataSetCancel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:DataSetCancel1.Hint" resname="O:DLG_EditRTF.O:ActionList1.O:DataSetCancel1.Hint">
         <source>'Abbrechen'</source>
-        <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">1</prop>
-          <prop prop-type="Order">193</prop>
-          <prop prop-type="Type">TDataSetCancel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
         <target>'Cancel'</target>
+        <prop-group name="ITEFieldProp">
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">1</prop><prop prop-type="Order">193</prop><prop prop-type="Type">TDataSetCancel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
       <trans-unit id="O:DLG_EditRTF.O:ActionList1.O:DataSetCancel1.ImageIndex" resname="O:DLG_EditRTF.O:ActionList1.O:DataSetCancel1.ImageIndex">
         <source>14</source>
         <prop-group name="ITEFieldProp">
-          <prop prop-type="Created">45532.6433314005</prop>
-          <prop prop-type="Status">0</prop>
-          <prop prop-type="Order">194</prop>
-          <prop prop-type="Type">TDataSetCancel</prop>
-          <prop prop-type="Localize">1</prop>
-        </prop-group>
+        <prop prop-type="Created">45532.6433314005</prop><prop prop-type="Status">0</prop><prop prop-type="Order">194</prop><prop prop-type="Type">TDataSetCancel</prop><prop prop-type="Localize">1</prop></prop-group>
       </trans-unit>
     </body>
   </file>

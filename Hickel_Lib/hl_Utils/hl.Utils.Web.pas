@@ -9,7 +9,7 @@ unit hl.Utils.Web;
 interface
 
 uses
-  Windows, Classes, IdSSLOpenSSL, IdComponent, ProgrDlg;
+  Windows, Classes, IdSSLOpenSSL, IdComponent, ProgrDlg, Forms;
 
 function secure_email(email, linktext: string; crypt_linktext: boolean): string;
 function htmlEntities(s: string): string;
@@ -435,6 +435,7 @@ begin
     RedirectCount := 0;
     while true do
     begin
+      if Assigned(Application) and Application.Terminated then Abort;
       ExtractHostAndPath(AURL, Host, Path, Port);
       hConnect := InternetConnect(hSession, PChar(Host), Port, nil, nil, INTERNET_SERVICE_HTTP, 0, 0);
       if not Assigned(hConnect) then
@@ -478,6 +479,7 @@ begin
               InternetReadFile(hRequest, @Buffer, SizeOf(Buffer), BytesRead);
               if BytesRead > 0 then
                 Response := Response + Copy(Buffer, 1, BytesRead);
+              if Assigned(Application) and Application.Terminated then Abort;
             until BytesRead = 0;
 
             // Output the server response.
@@ -520,6 +522,7 @@ begin
     RedirectCount := 0;
     while true do
     begin
+      if Assigned(Application) and Application.Terminated then Abort;
       hRequest:=InternetOpenUrl(hsession, pchar(AUrl), nil, 0, INTERNET_FLAG_RELOAD, 0);
       if not Assigned(hRequest) then
         raise Exception.Create('Error opening request: ' + SysErrorMessage(GetLastError));
@@ -543,7 +546,8 @@ begin
           dwNumber := 1024;
           while (InternetReadfile(hRequest, @databuffer, dwNumber, DwRead)) do
           begin
-            if dwRead =0 then
+            if Assigned(Application) and Application.Terminated then Abort;
+            if dwRead = 0 then
               break;
             databuffer[dwread]:=#0;
             Str := pansichar(@databuffer);
@@ -588,6 +592,7 @@ begin
     RedirectCount := 0;
     while true do
     begin
+      if Assigned(Application) and Application.Terminated then Abort;
       hRequest := InternetOpenUrl(hSession, PChar(AURL), nil, 0, INTERNET_FLAG_RELOAD or INTERNET_FLAG_NO_CACHE_WRITE, 0);
       if not Assigned(hRequest) then
         raise Exception.Create('Error opening request: ' + SysErrorMessage(GetLastError));
@@ -628,8 +633,13 @@ begin
               begin
                 FileStream.Write(Buffer, BufferLen);
                 TotalRead := TotalRead + BufferLen;
-                if pgd <> nil then pgd.Position := TotalRead div 1024;
+                if pgd <> nil then
+                begin
+                  pgd.Position := TotalRead div 1024;
+                  if pgd.StopButtonSignal then Abort;
+                end;
               end;
+              if Assigned(Application) and Application.Terminated then Abort;
             until BufferLen = 0;
           finally
             FileStream.Free;

@@ -676,7 +676,6 @@ begin
      On E: Exception do
      begin
         ThlExceptionHandler.ErstelleStacktrace(E);
-        raise Exception.Create ('Interner Fehler bei Datenbank-Überprüfung: '+ #13#10#13#10 + E.Message + #13#10#13#10 +'Druck wird abgebrochen!');
      end;
   end;
   *)
@@ -697,14 +696,12 @@ begin
                      'Inventurdatum in einer Preisliste oder das Filtern nach Preisgruppe ' +
                      'in einem Artikelsortiment ohne Preise). Bitte prüfen Sie die Filter ' +
                      'und versuchen Sie es erneut.'+#13#10#13#10 + E.Message;
+        raise Exception.Create(nachricht);
       end
       else
       begin
-        nachricht := 'Fehler bei Druckausführung. Meldung der Crystal Reports Engine: ' +
-                     #13#10#13#10 +
-                     E.Message;
+        raise;
       end;
-      raise Exception.Create(nachricht);
     end;
   end;
 
@@ -732,13 +729,8 @@ begin
     on E: Exception do
     begin
       // Kann fehlschlagen: Ticket 36064, nach Update auf Windows 10
-
-      (*
-      raise Exception.Create('Fehler beim Einstellen der Seitenränder: '+ #13#10#13#10 + E.Message + #13#10#13#10 +'Druck wird abgebrochen!');
-      *)
-
+      //TMessageBox.ZeigeException(E);
       ThlExceptionHandler.ErstelleStacktrace(E);
-      TMessageBox.ZeigeException(E);
     end;
   end;
 
@@ -755,7 +747,7 @@ var
   alteAuswahlFormel: string;
 begin
    {$REGION 'Auswahlformel festlegen'}
-   try
+
      {$REGION 'Auswahlformel für Hauptreport'}
       alteAuswahlFormel := lls('crpe.Selection.Formula.Text:Get');
 
@@ -788,16 +780,7 @@ begin
       end;
       ll('crpe.Subreports.Number:Set', '0');
      {$ENDREGION}
-   except
-      on E: EAbort do
-      begin
-        Abort;
-      end;
-      On E: Exception do
-      begin
-         raise Exception.Create ('Fehler beim Auswählen der Datensätze: '+ #13#10#13#10 + E.Message + #13#10#13#10 +'Druck wird abgebrochen!');
-      end;
-   end;
+
    {$ENDREGION}
 end;
 
@@ -807,7 +790,6 @@ procedure ThlCrwReport.Druck(APrinterData, APrinterDataKopien: TPrinterData; Mod
   var
     LKopienModus: TKopienModus;
     i1: integer;
-    iCode: integer;
     tmpSchachtNr: integer;
   begin
     if Assigned(FPrinterData) and
@@ -826,59 +808,24 @@ procedure ThlCrwReport.Druck(APrinterData, APrinterDataKopien: TPrinterData; Mod
         On E: Exception do
         begin
           // Kann fehlschlagen: Ticket 36064, nach Update auf Windows 10
-
-          (*
-          raise Exception.Create ('Fehler beim Einstellen der Seitenränder: '+ #13#10#13#10 + E.Message + #13#10#13#10 +'Druck wird abgebrochen!');
-          *)
-
           ThlExceptionHandler.ErstelleStacktrace(E);
-          TMessageBox.ZeigeException(E);
         end;
       end;
       {$ENDREGION}
 
       {$REGION 'Einstellen des Druckernamens'}
-      iCode := 0;
-      try
         ll('crpe.Printer.Retrieve()');
-        iCode := 1;
         ll('crpe.Printer.Name:Set', TPrinterData.CachedPrinterList[FPrinterData.Printerindex]);
-        iCode := 2;
         // ShowDialog := False;
-        iCode := 3;
         if Pos('_papersize', LowerCase(ReportFileName)) > 0 then
           ll('crpe.Printer.PreserveRptSettings:Set:OrPs') // Or=prOrientation, Ps=prPaperSize
         else
           ll('crpe.Printer.PreserveRptSettings:Set:Or'); // Or=prOrientation
-        iCode := 4;
 
         // PROBLEM: Pointer kann nicht zwischen Prozessen getauscht werden. Aber müssen wir den PMode überhaupt überschreiben?! Wer sagt das?
         // ll('crpe.Printer.PMode:Set', FPrinterData.FDevMode);
 
-        iCode := 5;
-      except
-        on E: EAbort do
-        begin
-          Abort;
-        end;
-        On E: Exception do
-        begin
-          raise Exception.Create ('Fehler beim Einstellen des Druckers: '+ #13#10#13#10 + E.Message + #13#10#13#10 +'Code: '+inttostr(iCode)+#13#10+'Druck wird abgebrochen!');
-        end;
-      end;
-
-      try
         ll('crpe.Printer.Send()');
-      except
-        on E: EAbort do
-        begin
-          Abort;
-        end;
-        On E: Exception do
-        begin
-           raise Exception.Create ('Fehler beim Einstellen des Druckers: '+ #13#10#13#10 + E.Message + #13#10#13#10 +'Code: Printer.Send ' +#13#10+'Druck wird abgebrochen!');
-        end;
-      end;
       {$ENDREGION}
 
       {$REGION 'Einstellen des Einzugschachts und des Duplexes'}
@@ -905,36 +852,14 @@ procedure ThlCrwReport.Druck(APrinterData, APrinterDataKopien: TPrinterData; Mod
         end;
         *)
 
-        try
           // Hinweis: TPrinterData.SetDuplexListe definiert   0=Simplex, 1=Horizontal, 2=Vertical,
           //          während die WinAPI (wingdi.h) definiert 1=Simplex, 2=Vertical,   3=Horizontal
           if FPrinterData.DuplexIndex = 0 then ll('crpe.Printer.pMode^.dmDuplex:Set:DMDUP_SIMPLEX');
           if FPrinterData.DuplexIndex = 1 then ll('crpe.Printer.pMode^.dmDuplex:Set:DMDUP_HORIZONTAL');
           if FPrinterData.DuplexIndex = 2 then ll('crpe.Printer.pMode^.dmDuplex:Set:DMDUP_VERTICAL');
-        except
-          on E: EAbort do
-          begin
-            Abort;
-          end;
-          On E: Exception do
-          begin
-            raise Exception.Create ('Fehler beim Einstellen der Duplexfunktion: '+ #13#10#13#10 + E.Message + #13#10#13#10 +'Druck wird abgebrochen!');
-          end;
-        end;
       end;
 
-      try
-        ll('crpe.Printer.Send()');
-      except
-        on E: EAbort do
-        begin
-          Abort;
-        end;
-        On E: Exception do
-        begin
-          raise Exception.Create ('Fehler beim Übertragen der Druckoptionen: '+ #13#10#13#10 + E.Message + #13#10#13#10 +'Druck wird abgebrochen!');
-        end;
-      end;
+      ll('crpe.Printer.Send()');
       {$ENDREGION}
 
       {$REGION 'Nun drucken, abhängig von der Sortierreihenfolge'}
@@ -958,18 +883,7 @@ procedure ThlCrwReport.Druck(APrinterData, APrinterDataKopien: TPrinterData; Mod
             for i1 := 1 to FPrinterData.SpinKopien.Value do
             begin
               {$REGION 'pf* Felder setzen, insbesondere pfKopie=i1'}
-              try
-                SetzeFelder(FPrinterData, i1)
-              except
-                on E: EAbort do
-                begin
-                  Abort;
-                end;
-                On E: Exception do
-                begin
-                  raise Exception.Create ('Fehler beim Festlegen der Report-Parameter: '+ #13#10#13#10 + E.Message + #13#10#13#10 +'Druck wird abgebrochen!');
-                end;
-              end;
+              SetzeFelder(FPrinterData, i1);
               {$ENDREGION}
               DoExecute;
             end;
@@ -979,18 +893,7 @@ procedure ThlCrwReport.Druck(APrinterData, APrinterDataKopien: TPrinterData; Mod
             ll('crpe.Printoptions.Copies:Set', IntToStr(FPrinterData.SpinKopien.Value));
             // ll('crpe.PrintOptions.Collation:Set', BoolToStr(DefaultCollation));
             {$REGION 'pf* Felder setzen, insbesondere pfKopie=0'}
-            try
-              SetzeFelder(FPrinterData, 0{Standarddrucker hat immer pfKopie=0});
-            except
-              on E: EAbort do
-              begin
-                Abort;
-              end;
-              On E: Exception do
-              begin
-                raise Exception.Create ('Fehler beim Festlegen der Report-Parameter: '+ #13#10#13#10 + E.Message + #13#10#13#10 +'Druck wird abgebrochen!');
-              end;
-            end;
+            SetzeFelder(FPrinterData, 0{Standarddrucker hat immer pfKopie=0});
             {$ENDREGION}
             DoExecute;
           end;
@@ -1001,18 +904,7 @@ procedure ThlCrwReport.Druck(APrinterData, APrinterDataKopien: TPrinterData; Mod
           ll('crpe.Printoptions.Copies:Set', IntToStr(FPrinterData.SpinKopien.Value));
           ll('crpe.PrintOptions.Collation:Set', BoolToStr(true));
           {$REGION 'pf* Felder setzen'}
-          try
-            SetzeFelder(FPrinterData, 0{pfKopie nicht möglich oder implementiert})
-          except
-            on E: EAbort do
-            begin
-              Abort;
-            end;
-            On E: Exception do
-            begin
-              raise Exception.Create ('Fehler beim Festlegen der Report-Parameter: '+ #13#10#13#10 + E.Message + #13#10#13#10 +'Druck wird abgebrochen!');
-            end;
-          end;
+          SetzeFelder(FPrinterData, 0{pfKopie nicht möglich oder implementiert});
           {$ENDREGION}
           DoExecute;
         end;
@@ -1022,18 +914,7 @@ procedure ThlCrwReport.Druck(APrinterData, APrinterDataKopien: TPrinterData; Mod
           ll('crpe.Printoptions.Copies:Set', IntToStr(FPrinterData.SpinKopien.Value));
           ll('crpe.PrintOptions.Collation:Set', BoolToStr(false));
           {$REGION 'pf* Felder setzen'}
-          try
-            SetzeFelder(FPrinterData, 0{pfKopie nicht möglich oder implementiert})
-          except
-            on E: EAbort do
-            begin
-              Abort;
-            end;
-            On E: Exception do
-            begin
-              raise Exception.Create ('Fehler beim Festlegen der Report-Parameter: '+ #13#10#13#10 + E.Message + #13#10#13#10 +'Druck wird abgebrochen!');
-            end;
-          end;
+          SetzeFelder(FPrinterData, 0{pfKopie nicht möglich oder implementiert});
           {$ENDREGION}
           DoExecute;
         end;
@@ -1050,28 +931,16 @@ begin
   //       so wie bei Anzeigen/DateiExport/SendEMail? Aber es besteht die Gefahr, dass
   //       eventuell der Ausdruck dann mehrfach erfolgen könnte (Müller 58601)
    {$REGION 'Connection setzen, sowie einige andere Parameter'}
-   try
-      ErzeugeReportMitPassendemConnectionString(ReportFileName);
+  ErzeugeReportMitPassendemConnectionString(ReportFileName);
 
-      // ll('crpe.Reportoptions.VerifyOnEveryPrint:Set', BoolToStr(True));
+  // ll('crpe.Reportoptions.VerifyOnEveryPrint:Set', BoolToStr(True));
 
-      ll('crpe.ReportTitle:Set', ReportTitle);
+  ll('crpe.ReportTitle:Set', ReportTitle);
 
-      ll('crpe.ProgressDialog:Set', BoolToStr(not KeinProgressDialog));
+  ll('crpe.ProgressDialog:Set', BoolToStr(not KeinProgressDialog));
 
-      ll('crpe.SummaryInfo.Author:Set', 'HickelSOFT Huth GmbH');
-      ll('crpe.SummaryInfo.Title:Set', ReportTitle);
-
-   except
-      on E: EAbort do
-      begin
-        Abort;
-      end;
-      On E: Exception do
-      begin
-         raise Exception.Create ('Fehler beim Initialisieren der Druckfunktion: '+ #13#10#13#10 + E.Message + #13#10#13#10 +'Druck wird abgebrochen!');
-      end;
-   end;
+  ll('crpe.SummaryInfo.Author:Set', 'HickelSOFT Huth GmbH');
+  ll('crpe.SummaryInfo.Title:Set', ReportTitle);
    {$ENDREGION}
 
    AuswahlFormelFestlegen;
@@ -1305,7 +1174,7 @@ begin
       end;
       on E: EHsIpcForwardedException do
       begin
-        if E.ClassName = 'EAccessViolation' then
+        if EHsIpcForwardedException(E).OriginalClass = 'EAccessViolation' then
         begin
           BitteNochmalVersuchen := errCount < 3;
           Inc(errCount);
@@ -1387,7 +1256,7 @@ begin
       end;
       on E: EHsIpcForwardedException do
       begin
-        if E.ClassName = 'EAccessViolation' then
+        if EHsIpcForwardedException(E).OriginalClass = 'EAccessViolation' then
         begin
           BitteNochmalVersuchen := errCount < 3;
           Inc(errCount);
@@ -1499,7 +1368,7 @@ begin
       end;
       on E: EHsIpcForwardedException do
       begin
-        if E.ClassName = 'EAccessViolation' then
+        if EHsIpcForwardedException(E).OriginalClass = 'EAccessViolation' then
         begin
           BitteNochmalVersuchen := errCount < 3;
           Inc(errCount);

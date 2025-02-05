@@ -202,6 +202,9 @@ var
   LowestInsertID: integer;
   query: string;
 begin
+  // Wenn das übertrieben oft aufgerufen wird, wird CORA langsam (Pinkert 59369, Kusche 59374, Bokmeier 59381)
+  // Da der Rowlock aber unbedingt eine gültige Verbindung braucht, ist es OK, zumal Rowlocks nicht
+  // übermäßig verwendet werden sollen, aufgrund der Performance
   _hlDB.RecheckConnectionStatus(nil);
 
   try

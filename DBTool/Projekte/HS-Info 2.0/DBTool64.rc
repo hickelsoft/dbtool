@@ -51,7 +51,7 @@ BEGIN
 			VALUE "FileDescription",  "HS-Info 2.0 Datenbankoberfläche"
 			VALUE "FileVersion",      "2.0.0.0"
 			VALUE "InternalName",     "DBTool"
-			VALUE "LegalCopyright",   "(C) 2004-2024 HickelSOFT Huth GmbH"
+			VALUE "LegalCopyright",   "(C) 2004-2025 HickelSOFT Huth GmbH"
 			VALUE "LegalTrademarks",  "HS-Info 2.0"
 			VALUE "OriginalFilename", "DBTool64.exe"
 			VALUE "ProductName",      "HS-Info 2.0"

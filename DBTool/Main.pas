@@ -140,7 +140,7 @@ uses
   Globals, Database, Table, Info, Optionen, OpenSqlDb, OpenMySqlDb, Export, Import, DateiNeu,
   Registry, Query, hl.Utils.Color, ProgrDlg, hl.Utils, IniFiles,
   hl_Datenbank, HickelSOFT_Design, hl.System.ExceptionHandler, hl.Utils.Web,
-  HS_Auth;
+  HS_Auth, HsSqlServerProvider;
 
 function GetHsInfo2ConnectionString: string;
 var
@@ -222,6 +222,9 @@ begin
 
   // Geheimes HickelSOFT "sa" Passwort sollte nicht in der Config.ini stehen
   result := StringReplace(result, '???', HS_SA_DB_PASSWORD, []); // do not localize
+
+  // Automatisch den besten SQL Client Treiber wählen
+  result := StringReplace(result, 'Provider=(Auto)', 'Provider='+SqlServerProvider, []);
 
   if result = '' then
   begin

@@ -140,7 +140,6 @@ begin
              'OLE DB Services=-5;;' +
              'Current Language=;;' +
              'Initial File Name=;;' +
-             'Use Encryption for Data=0;;' +
              'Replication server name connect option=;;' +
              'Tag with column collation when possible=0';
   end
@@ -164,7 +163,6 @@ begin
              'OLE DB Services=-5;;' +
              'Current Language=;;' +
              'Initial File Name=;;' +
-             'Use Encryption for Data=0;;' +
              'Replication server name connect option=;;' +
              'Tag with column collation when possible=0';
   end;
@@ -172,6 +170,8 @@ begin
   if SqlServerProvider = 'MSOLEDBSQL19' then
     FAdoConnectionString := FAdoConnectionString + ';;Use Encryption for Data=Optional';
 
+  if SqlServerProvider <> 'SQLOLEDB' then
+    FAdoConnectionString := FAdoConnectionString + ';;DataTypeCompatibility=80'; // ansonsten funktionieren "time" Datentypen nicht! (sind im Fields[] und FieldDefs[] nicht da und dbGrid kackt ab)
 end;
 
 procedure ThlReport.SetReportFileName(const Value: string);

@@ -348,8 +348,6 @@ begin
 
       bQuote := false;
 
-      if (sLine <> '') and (ContainsText(sLine, ' Procedure') or ContainsText(sLine, ' Trigger') or ContainsText(sLine, ' View')) then break; // do not localize
-
       iPos := 1;
       while iPos <= Length(sLine)-1 do    // Length()-1 ist korrekt, denn wir greifen auf iPos+1 zu!
       begin
@@ -365,6 +363,8 @@ begin
         end;
         Inc(iPos);
       end;
+
+      if (sLine <> '') and (ContainsText(sLine, ' Procedure') or ContainsText(sLine, ' Trigger') or ContainsText(sLine, ' View')) then break; // do not localize
     end;
 
     sGesamt := slTmp.Text;
