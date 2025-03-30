@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{78e8c1bb-5379-4df3-a604-eee45c3e2460}</ProjectGuid>
+    <MainSource>Hickel_Lib.dpk</MainSource>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
+    <DCC_DependencyCheckOutputName>C:\Users\Public\Documents\RAD Studio\5.0\Bpl\Hickel_Lib.bpl</DCC_DependencyCheckOutputName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_DebugInformation>False</DCC_DebugInformation>
+    <DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
+    <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+    <DCC_Define>RELEASE</DCC_Define>
+    <DCC_BplOutput>..\..\..\..\..\..\..\..\..\CORA2012\BAP\bin</DCC_BplOutput>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <Version>7.0</Version>
+    <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
+    <DCC_IntegerOverflowCheck>True</DCC_IntegerOverflowCheck>
+    <DCC_RangeChecking>True</DCC_RangeChecking>
+    <DCC_UnitSearchPath>..\BetterADO;..\VCL_ZLIB;..\VCL_HBTAPI;..\VCL_Indy_Head\trunk\Lib\SuperCore;..\VCL_Indy_Head\trunk\Lib\Core;..\VCL_Indy_Head\trunk\Lib\System;..\VCL_Indy_Head\trunk\Lib\Protocols;..\VCL_Indy_Head\trunk\Lib\Security;..\VCL_Indy_Head\trunk\Lib\Designxx;..\VCL_PNGIMAGE</DCC_UnitSearchPath>
+    <DCC_ResourcePath>..\BetterADO;..\VCL_ZLIB;..\VCL_HBTAPI;..\VCL_Indy_Head\trunk\Lib\SuperCore;..\VCL_Indy_Head\trunk\Lib\Core;..\VCL_Indy_Head\trunk\Lib\System;..\VCL_Indy_Head\trunk\Lib\Protocols;..\VCL_Indy_Head\trunk\Lib\Security;..\VCL_Indy_Head\trunk\Lib\Designxx;..\VCL_PNGIMAGE</DCC_ResourcePath>
+    <DCC_ObjPath>..\BetterADO;..\VCL_ZLIB;..\VCL_HBTAPI;..\VCL_Indy_Head\trunk\Lib\SuperCore;..\VCL_Indy_Head\trunk\Lib\Core;..\VCL_Indy_Head\trunk\Lib\System;..\VCL_Indy_Head\trunk\Lib\Protocols;..\VCL_Indy_Head\trunk\Lib\Security;..\VCL_Indy_Head\trunk\Lib\Designxx;..\VCL_PNGIMAGE</DCC_ObjPath>
+    <DCC_IncludePath>..\BetterADO;..\VCL_ZLIB;..\VCL_HBTAPI;..\VCL_Indy_Head\trunk\Lib\SuperCore;..\VCL_Indy_Head\trunk\Lib\Core;..\VCL_Indy_Head\trunk\Lib\System;..\VCL_Indy_Head\trunk\Lib\Protocols;..\VCL_Indy_Head\trunk\Lib\Security;..\VCL_Indy_Head\trunk\Lib\Designxx;..\VCL_PNGIMAGE</DCC_IncludePath>
+  </PropertyGroup>
+  <ProjectExtensions>
+    <Borland.Personality>Delphi.Personality</Borland.Personality>
+    <Borland.ProjectType>Package</Borland.ProjectType>
+    <BorlandProject>
+<BorlandProject><Delphi.Personality><Parameters><Parameters Name="UseLauncher">False</Parameters><Parameters Name="LoadAllSymbols">True</Parameters><Parameters Name="LoadUnspecifiedSymbols">False</Parameters></Parameters><Package_Options><Package_Options Name="ImplicitBuild">False</Package_Options><Package_Options Name="DesigntimeOnly">False</Package_Options><Package_Options Name="RuntimeOnly">True</Package_Options><Package_Options Name="PackageDescription">HICKEL LIB</Package_Options></Package_Options><VersionInfo><VersionInfo Name="IncludeVerInfo">True</VersionInfo><VersionInfo Name="AutoIncBuild">False</VersionInfo><VersionInfo Name="MajorVer">8</VersionInfo><VersionInfo Name="MinorVer">0</VersionInfo><VersionInfo Name="Release">0</VersionInfo><VersionInfo Name="Build">0</VersionInfo><VersionInfo Name="Debug">False</VersionInfo><VersionInfo Name="PreRelease">False</VersionInfo><VersionInfo Name="Special">False</VersionInfo><VersionInfo Name="Private">False</VersionInfo><VersionInfo Name="DLL">False</VersionInfo><VersionInfo Name="Locale">1031</VersionInfo><VersionInfo Name="CodePage">1252</VersionInfo></VersionInfo><VersionInfoKeys><VersionInfoKeys Name="CompanyName">HickelSOFT Huth GmbH</VersionInfoKeys><VersionInfoKeys Name="FileDescription">HickelSOFT RTL</VersionInfoKeys><VersionInfoKeys Name="FileVersion">8.0.0.0</VersionInfoKeys><VersionInfoKeys Name="InternalName">Hickel_Lib</VersionInfoKeys><VersionInfoKeys Name="LegalCopyright">(C) 1992-2023 HickelSOFT Huth GmbH</VersionInfoKeys><VersionInfoKeys Name="LegalTrademarks">CORAplus</VersionInfoKeys><VersionInfoKeys Name="OriginalFilename">Hickel_Lib.bpl</VersionInfoKeys><VersionInfoKeys Name="ProductName">CORAplus</VersionInfoKeys><VersionInfoKeys Name="ProductVersion">8.0</VersionInfoKeys><VersionInfoKeys Name="Comments"></VersionInfoKeys></VersionInfoKeys><Source><Source Name="MainSource">Hickel_Lib.dpk</Source></Source><Excluded_Packages>
+      <Excluded_Packages Name="$(BDS)\bin\dclIndyCore100.bpl">Indy 10 Core Design Time</Excluded_Packages>
+      <Excluded_Packages Name="$(BDS)\Bin\dclIndyProtocols100.bpl">Indy 10 Protocols Design Time</Excluded_Packages>
+      <Excluded_Packages Name="c:\Users\Public\Documents\RAD Studio\5.0\Bpl\Hickel_Cora_Lib.bpl">HICKEL CORA LIB</Excluded_Packages>
+      <Excluded_Packages Name="c:\Users\Public\Documents\RAD Studio\5.0\Bpl\Hickel_Cora_Gui.bpl">HICKEL CORA GUI</Excluded_Packages>
+      <Excluded_Packages Name="c:\Users\Public\Documents\RAD Studio\5.0\Bpl\dclIndyCore180.bpl">Indy 10 Core Design Time</Excluded_Packages>
+    </Excluded_Packages></Delphi.Personality></BorlandProject></BorlandProject>
+  </ProjectExtensions>
+  <Import Project="$(MSBuildBinPath)\Borland.Delphi.Targets" />
+  <ItemGroup>
+    <DelphiCompile Include="Hickel_Lib.dpk">
+      <MainSource>MainSource</MainSource>
+    </DelphiCompile>
+    <DCCReference Include="$(SystemRoot)\system32\adortl.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\bdertl.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\BetterADO.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\dbrtl.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\designide.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\dsnap.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\Hickel_Components.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\IndyCore180.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\IndyProtocols180.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\IndySystem180.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\inet.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\ipstudiowin.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\Jcl.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\rtl.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\soaprtl.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\vcl.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\vclactnband.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\vcldb.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\vclie.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\VclSmp.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\vclx.dcp" />
+    <DCCReference Include="$(SystemRoot)\system32\xmlrtl.dcp" />
+    <DCCReference Include="..\CrwLowLevel\IPC_API\hl_IPC_Crw_LowLevel_Client.pas" />
+    <DCCReference Include="..\CrwLowLevel\IPC_API\hl_IPC_LowLevel_Client.pas" />
+    <DCCReference Include="..\CrwLowLevel\IPC_API\hl_IPC_LowLevel_Common.pas" />
+    <DCCReference Include="hl_Datenbank\AdoQueryHelper.pas" />
+    <DCCReference Include="hl_Datenbank\hl.Datenbank.CSVExporter.pas" />
+    <DCCReference Include="hl_Datenbank\hl.Datenbank.RowLock.pas" />
+    <DCCReference Include="hl_Datenbank\hl.Datenbank.Utils.pas" />
+    <DCCReference Include="hl_System\hl.System.ExceptionHandler.pas" />
+    <DCCReference Include="hl_System\hl.System.SingleInstance.DummyForm.pas">
+      <Form>DummyForm</Form>
+    </DCCReference>
+    <DCCReference Include="hl_System\hl.System.SingleInstance.pas" />
+    <DCCReference Include="hl_System\hl.System.Types.pas" />
+    <DCCReference Include="hl_Utils\FormatSettingsCompat.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.AsciiTable.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.AutoSnippingTool.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.Bank.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.Color.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.CRC32.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.CSV.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.DbGridUtils.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.DBLookupComboDlgHack.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.FingerPrint.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.FormSerialize.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.ImageConvert.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.IndyMemoryHack.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.July22Crypt.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.Mapi.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.MD5.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.ResIniFile.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.SetFocusFix.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.SteuerNr.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.StreamEx.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.StringStreamEx.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.VerInfoUtils.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.Web.pas" />
+    <DCCReference Include="hl_Utils\hl.Utils.WmiUtils.pas" />
+    <DCCReference Include="hl_Utils\hl_PopupMenuHelper.pas" />
+    <DCCReference Include="Src\Deutschland_Feiertage.pas" />
+    <DCCReference Include="Src\HickelSOFT_Design.pas" />
+    <DCCReference Include="Src\hl_Adresse.pas" />
+    <DCCReference Include="Src\hl_Consts.pas" />
+    <DCCReference Include="Src\hl_Crw_Report.pas" />
+    <DCCReference Include="Src\hl_Datenbank.pas" />
+    <DCCReference Include="Src\hl_ExceptionLogger.pas" />
+    <DCCReference Include="Src\hl_Exceptions.pas" />
+    <DCCReference Include="Src\hl_IntegerList.pas" />
+    <DCCReference Include="Src\hl_KeyValue_Args.pas" />
+    <DCCReference Include="Src\hl_Lizenz.pas" />
+    <DCCReference Include="Src\hl_Log.pas" />
+    <DCCReference Include="Src\hl_MultiLang.pas" />
+    <DCCReference Include="Src\hl_Printer_Bon.pas" />
+    <DCCReference Include="Src\hl_Printer_Neu.pas" />
+    <DCCReference Include="Src\hl_Report.pas" />
+    <DCCReference Include="Src\hl_Suche.pas" />
+    <DCCReference Include="Src\hl_WinMessages.pas" />
+    <DCCReference Include="Src\HS_Auth.pas" />
+    <DCCReference Include="Src\HS_Fernwartung.pas" />
+    <DCCReference Include="Src\HS_MidVer.pas" />
+  </ItemGroup>
+</Project>

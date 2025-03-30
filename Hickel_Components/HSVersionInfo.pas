@@ -156,7 +156,14 @@ begin
       FLangChar := FLanguageStr + FCharSetStr;
     end;
   except
-    FVersionInfoBuffer := nil;
+    on E: EAbort do
+    begin
+      Abort;
+    end;
+    on E: Exception do
+    begin
+      FVersionInfoBuffer := nil;
+    end;
   end;
 end;
 

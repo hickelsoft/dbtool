@@ -4,7 +4,8 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, StdCtrls, ComCtrls, ImgList, ExtCtrls, HsGradientPanel;
+  Dialogs, StdCtrls, ComCtrls, ImgList, ExtCtrls, HsGradientPanel,
+  System.ImageList;
 
 type
   TDLG_CheckboxVoransicht = class(TForm)
@@ -99,6 +100,8 @@ var
 begin
   if Key = ' ' then
   begin
+    Key := #0;
+
     tmp := false;
     for i := 0 to ListView1.Items.Count - 1 do
     begin

@@ -414,9 +414,14 @@ procedure TMDI_Database.FormKeyDown(Sender: TObject; var Key: word; Shift: TShif
 begin
   if (Key = VK_F5) then
   begin
+    Key := 0;
     ReloadTabellenListe;
   end;
-  if Key = VK_ESCAPE then Close;
+  if Key = VK_ESCAPE then
+  begin
+    Key := 0;
+    Close;
+  end;
 end;
 
 procedure TMDI_Database.FormShow(Sender: TObject);
@@ -786,9 +791,15 @@ begin
     Key := 0;
   end
   else if (Key = VK_DELETE) then
-    Loeschen1Click(Loeschen1)
+  begin
+    Loeschen1Click(Loeschen1);
+    Key := 0;
+  end
   else if (Key = VK_F2) then
+  begin
+    Key := 0;
     Umbenennen1Click(uUmbenennen1);
+  end;
 end;
 
 procedure TMDI_Database.lvTablesSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);

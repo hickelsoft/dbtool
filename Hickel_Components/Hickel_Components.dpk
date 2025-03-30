@@ -1,0 +1,62 @@
+package Hickel_Components;
+
+{$R *.res}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO ON}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION ON}
+{$OVERFLOWCHECKS OFF}
+{$RANGECHECKS OFF}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES OFF}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DESCRIPTION 'HICKEL UI Komponenten'}
+{$IMPLICITBUILD OFF}
+
+requires
+  rtl,
+  vcl,
+  VclSmp,
+  vclx,
+  adortl,
+  dbrtl,
+  vclactnband,
+  xmlrtl,
+  designide,
+  vcldb,
+  Jcl,
+  vclie;
+
+contains
+  Drucker in 'Drucker.pas',
+  HsGauge in 'HsGauge.pas',
+  hstools in 'hstools.pas',
+  HsDruckerConfig in 'HsDruckerConfig.pas',
+  HSVersionInfo in 'HSVersionInfo.pas',
+  MessaBox in 'MessaBox.pas',
+  PicBtn in 'PicBtn.pas',
+  Progrdlg in 'Progrdlg.pas',
+  Statusan in 'Statusan.pas',
+  TeEinDlg in 'TeEinDlg.pas',
+  TextEing in 'TextEing.pas',
+  HsHalfModalForm in 'HsHalfModalForm.pas',
+  HsProgressChecklist in 'HsProgressChecklist.pas',
+  DBMaskEdit in 'DBMaskEdit.pas',
+  MetaObjVcl in 'MetaObjVcl.pas',
+  HsSqlServerProvider in 'HsSqlServerProvider.pas',
+  HsGradientPanel in 'HsGradientPanel.pas',
+  VCL_Hotfix_AltGr in 'VCL_Hotfix_AltGr.pas';
+
+end.

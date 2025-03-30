@@ -206,6 +206,10 @@ begin
            if FTransparent = True then DrawTransparentBitmap(Canvas.Handle, aBitmap, aRect1.Left, aRect1.Top)
            else Canvas.CopyRect(aRect1, aBitmap.Canvas, aRect2);
         except
+          on E: EAbort do
+          begin
+            Abort;
+          end;
         end;
       finally
         FreeAndNil(aBitmap);

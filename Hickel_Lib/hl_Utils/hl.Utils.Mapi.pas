@@ -16,7 +16,7 @@ type
 implementation
 
 uses
-  SysUtils, Windows, Forms, Mapi, Registry, ComObj, hl.Utils.Web, Classes, MessaBox, hl.Utils;
+  SysUtils, Windows, Forms, Mapi, Registry, ComObj, hl.Utils.Web, Classes, MessaBox, hl.Utils, hl_Log;
 
 class function ThlEMail.IsOutlook: boolean;
 var
@@ -115,6 +115,10 @@ begin
       newMail.Display;
     except
       // Ticket 36469: Outlook 2007 unterstützt den Befehl "Display" nicht. Die Mail geht automatisch auf.
+      on E: EAbort do
+      begin
+        Abort;
+      end;
     end;
 
     newMail.Subject := Subject;
@@ -178,16 +182,13 @@ begin
       newMail.Display;
     except
       // Ticket 36469: Outlook 2007 unterstützt den Befehl "Display" nicht. Die Mail geht automatisch auf.
+      on E: EAbort do
+      begin
+        Abort;
+      end;
     end;
 
-    if DirectoryExists('..\Log') then
-    begin
-      debug.SaveToFile('..\Log\HTMLMail.log');
-    end
-    else if DirectoryExists('Log') then
-    begin
-      debug.SaveToFile('Log\HTMLMail.log');
-    end;
+    debug.SaveToFile(ThlLog.DefaultLogDir + 'HTMLMail.log');
 
     result := 0;
   finally

@@ -18,9 +18,6 @@ var
 const
   ConfigRegKey = '\Software\HickelSOFT\DBTool'; // do not localize
 
-var
-  CoraBenutzeranmeldung: boolean;
-
 procedure FixSpeedButtonColors(control: TWinControl; color: TColor);
 function OEM2Ansi(Value: AnsiString): AnsiString;
 function GetSQLServerDBListFilename: string;
@@ -89,7 +86,7 @@ begin
   if outDir <> '' then
     outDir := IncludeTrailingPathDelimiter(outDir) + 'HickelSOFT\DBTool\Config\';
   //ForceDirectories(outDir);
-  result := 'SQLServerList.txt';
+  result := IncludeTrailingPathDelimiter(outDir) + 'SQLServerList.txt';
 end;
 
 function GetMySQLDBListFilename: string;

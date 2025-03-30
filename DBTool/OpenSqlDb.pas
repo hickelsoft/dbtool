@@ -83,7 +83,6 @@ begin
             document.LoadFromFile(serverConfigFile);
             dbServer := document.ChildNodes.FindNode('Cora').ChildNodes.FindNode('Config').ChildNodes.FindNode('DatenbankServer').Text; // do not localize
             selectDbName := document.ChildNodes.FindNode('Cora').ChildNodes.FindNode('Config').ChildNodes.FindNode('DatenbankName').Text;; // do not localize
-            CoraBenutzeranmeldung := document.ChildNodes.FindNode('Cora').ChildNodes.FindNode('Config').ChildNodes.FindNode('AnmeldungAlsBenutzer').Text = '1'; // do not localize
 
             eServer.Text := dbServer;
             FServerChanged := false;

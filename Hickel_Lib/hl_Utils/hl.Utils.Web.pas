@@ -331,7 +331,8 @@ begin
       IdHTTP1.OnWork := tmpDownload.DoWork;
       IdHTTP1.OnWorkBegin := tmpDownload.DoWorkBegin;
       IdHTTP1.OnWorkEnd := tmpDownload.DoWorkEnd;
-    end;
+    end
+    else tmpDownload := nil;
 
     IdHTTP1.Get(Url, Stream);
 
@@ -708,6 +709,10 @@ begin
         FreeAndNil(ResStream);
       end;
     except
+      on E: EAbort do
+      begin
+        Abort;
+      end;
     end;
   end;
   *)
@@ -732,6 +737,10 @@ begin
         FreeAndNil(ResStream);
       end;
     except
+      on E: EAbort do
+      begin
+        Abort;
+      end;
     end;
   end;
   *)

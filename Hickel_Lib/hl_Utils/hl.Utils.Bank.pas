@@ -74,7 +74,14 @@ begin
       l := 9 - Length(alpha);
     end;
   except
-    rest := 0;
+    on E: EAbort do
+    begin
+      Abort;
+    end;
+    on E: Exception do
+    begin
+      rest := 0;
+    end;
   end;
   Result := rest;
 end;

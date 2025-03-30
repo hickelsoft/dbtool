@@ -150,8 +150,8 @@ begin
              'Data Source=' + DatenbankServer + ';;' +
              'Initial Catalog=' + DatenbankName  + ';;' +
 
-             'User ID=sa;;' +
-             'Password='+Passwort+';;' +
+             'User ID=' + BenutzerName + ';;' +
+             'Password=' + Passwort + ';;' +
              'Application Name='+ExtractFileName(ParamStr(0))+' hl_Report;;' +
              'Integrated Security=0;;' +
              'Persist Security Info=True;;' + // Achtung: CRW ignoriert das aus Sicherheitsgründen!

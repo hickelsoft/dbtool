@@ -65,6 +65,10 @@ begin
           break;
         end;
       except
+        on E: EAbort do
+        begin
+          Abort;
+        end;
       end;
       m := Pointer(integer(m)+1);
     until false;

@@ -140,6 +140,9 @@ procedure DeleteFilesWildcards(Source: string; recyclebin: boolean);
 function IsWindows10: boolean;
 function IsWindows11: boolean;
 
+function Crw13_IstInstalliert: boolean;
+function IsVCRuntime2022_64Bit_Installed: Boolean;
+
 function IsWow64: Boolean;
 function ChangeFSRedirection(bDisable: Boolean): Boolean;
 function FixedDrive(Drive: char): Boolean;
@@ -165,8 +168,6 @@ function CreateDesktopShellLink(const TargetName, Args, ALinkName, AIconName: st
 
 procedure FilePutContentsA(filename, binary: AnsiString);
 procedure FilePutContentsW(filename, binary: WideString);
-
-function SecureDate: TDateTime;
 
 procedure CopyFiles(Source, Target: string); // Kann auch mit WildCards umgehen!
 
@@ -236,6 +237,8 @@ function IsStrANumber(const S: string): Boolean;
 
 function GetSysDir: string;
 function Rfc3339ToDatetime(rfc: string): TDatetime;
+
+function IsOdbcDriverInstalled(const DriverName: string): Boolean;
 
 type
   TSenderlessNotifyEvent = procedure of object;
@@ -821,7 +824,14 @@ begin
     try
       Result := FileStream.Size;
     except
-      Result := 0;
+      on E: EAbort do
+      begin
+        Abort;
+      end;
+      on E: Exception do
+      begin
+        Result := 0;
+      end;
     end;
   finally
     FreeAndNil(FileStream);
@@ -1439,7 +1449,6 @@ begin
     on E: EAbort do
     begin
       Abort;
-      result := false;
     end;
     on E: Exception do
     begin
@@ -1943,8 +1952,15 @@ begin
       try
         result := reg.ReadInteger('CurrentMajorVersionNumber') = 10;
       except
-        // Windows Server 2012 Standard hat diesen Registry Key nicht. Es baut aber auf Win7 auf.
-        result := false;
+        on E: EAbort do
+        begin
+          Abort;
+        end;
+        on E: Exception do
+        begin
+          // Windows Server 2012 Standard hat diesen Registry Key nicht. Es baut aber auf Win7 auf.
+          result := false;
+        end;
       end;
       reg.CloseKey;
     end;
@@ -1974,12 +1990,61 @@ begin
         result := (StrToInt(reg.ReadString('CurrentBuild')) >= 22000) and
                   (StrToInt(reg.ReadString('CurrentBuildNumber')) >= 22000);
       except
-        result := false;
+        on E: EAbort do
+        begin
+          Abort;
+        end;
+        on E: Exception do
+        begin
+          result := false;
+        end;
       end;
       reg.CloseKey;
     end;
   finally
     FreeAndNil(reg);
+  end;
+end;
+
+function Crw13_IstInstalliert: boolean;
+var
+  testFile: string;
+begin
+  if WindowsBits = 64 then
+  begin
+    testFile := 'C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\crpe32.dll';
+    if not FileExists(testFile) then begin result := false; Exit; end;
+    // sic! Die 64 Bit crpe32.dll liegt wirklich in "Program Files (x86)" !
+    testFile := 'C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win64_x64\crpe32.dll';
+    if not FileExists(testFile) then begin result := false; Exit; end;
+    result := true;
+  end
+  else
+  begin
+    testFile := 'C:\Program Files\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\crpe32.dll';
+    if not FileExists(testFile) then begin result := false; Exit; end;
+    result := true;
+  end;
+end;
+
+function IsVCRuntime2022_64Bit_Installed: Boolean;
+var
+  Reg: TRegistry;
+begin
+  Result := False;
+  Reg := TRegistry.Create(KEY_READ);
+  try
+    Reg.RootKey := HKEY_LOCAL_MACHINE;
+
+    // Prüfe den Standardpfad für 64-Bit Runtime
+    if Reg.OpenKeyReadOnly('SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64') then
+    begin
+      Result := Reg.ValueExists('Installed') and (Reg.ReadInteger('Installed') = 1);
+      Reg.CloseKey;
+    end;
+
+  finally
+    Reg.Free;
   end;
 end;
 
@@ -2057,6 +2122,10 @@ begin
      end;
     end;
   except
+    on E: EAbort do
+    begin
+      Abort;
+    end;
   end;
 end;
 
@@ -2386,70 +2455,6 @@ begin
   end;
 end;
 
-function SecureDate: TDateTime;
-var
-  SECRET_FILE: string;
-
-  procedure SetzeDateiDatum;
-  var
-    logFile: TextFile;
-  begin
-    AssignFile(logFile, SECRET_FILE);
-    Rewrite(logFile);
-    WriteLn(logFile, '[Settings]'); // Einfach nur irgendein Blödsinn als Ablenkung
-    WriteLn(logFile, 'Pref=1');
-    WriteLn(logFile, 'CLI=0');
-    CloseFile(logFile);
-  end;
-
-  function GebeDateiDatum: TDateTime;
-  begin
-    Result := FileDateToDateTime(FileAge(SECRET_FILE));
-  end;
-
-var
-  SecureFileDate, ComputerUhr: TDateTime;
-begin
-  // ACHTUNG: Geheim!
-  // Das ist Teil eines Kopierschutzes, der verhindert, dass man bei einer
-  // Teststellung die PC-Uhrzeit zurückdreht
-
-  ChangeFSRedirection(true);
-  try
-    SECRET_FILE := SysUtils.GetEnvironmentVariable('APPDATA') + '\' + 'wkscli.ini'; // Irgendein verwirrender Name
-
-    // Zuerst einmal gehen wir davon aus, dass die Computeruhr stimmt
-    ComputerUhr := Now;
-
-    // Nun prüfen wir ob unsere geheime Datei existiert.
-    if FileExists(SECRET_FILE) then
-    begin
-      SecureFileDate := FileDateToDateTime(FileAge(SECRET_FILE));
-      // Ist die Datei neuer als die aktuelle PC-Zeit?
-      if SecureFileDate > ComputerUhr then
-      begin
-        // Wenn ja, dann wurde die Computeruhr zurückgedreht!
-        // Wir nehmen das Datum der Datei.
-        Result := SecureFileDate;
-      end
-      else
-      begin
-        // Ansonsten alles OK. Wir aktualisieren die Datei nun, damit wir die Uhrzeit festhalten
-        SetzeDateiDatum;
-        Result := ComputerUhr;
-      end;
-    end
-    else
-    begin
-      // Datei existiert nicht. Es ist also unser erster Start von CORA
-      SetzeDateiDatum;
-      Result := ComputerUhr;
-    end;
-  finally
-    ChangeFSRedirection(false);
-  end;
-end;
-
 procedure CopyFiles(Source, Target: string); // Kann auch mit WildCards umgehen!
 var
   FO: TShFileOpStruct;
@@ -2517,9 +2522,16 @@ begin
       FreeAndNil(fs);
     end;
   except
-    // Sollte nicht passieren
-    if not FileAge(ExeFile, result) then
-      raise Exception.CreateFmt('GetBuildTimestamp(%s) fehlgeschlagen', [ExeFile]);
+    on E: EAbort do
+    begin
+      Abort;
+    end;
+    on E: Exception do
+    begin
+      // Sollte nicht passieren
+      if not FileAge(ExeFile, result) then
+        raise Exception.CreateFmt('GetBuildTimestamp(%s) fehlgeschlagen', [ExeFile]);
+    end;
   end;
 end;
 
@@ -3469,6 +3481,40 @@ begin
   off_m   := StrToInt(Copy(rfc, 23, 2));
   utc     := EncodeDateTime(jahr, monat, tag, stunde-off_h, minute-off_m, sekunde, 0);
   result  := UTCToLocalDateTime(utc);
+end;
+
+function IsOdbcDriverInstalled(const DriverName: string): Boolean;
+const
+  RootKeys: array[0..1] of string = (
+    'SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers',          // 64-Bit Treiber
+    'SOFTWARE\WOW6432Node\ODBC\ODBCINST.INI\ODBC Drivers' // 32-Bit Treiber (auf 64-Bit Windows)
+  );
+var
+  Reg: TRegistry;
+  DriversKey: string;
+  i: Integer;
+begin
+  Result := False;
+  Reg := TRegistry.Create(KEY_READ);
+  try
+    Reg.RootKey := HKEY_LOCAL_MACHINE;
+
+    // Prüfe beide Pfade (64-Bit und 32-Bit)
+    for i := 0 to High(RootKeys) do
+    begin
+      if Reg.OpenKeyReadOnly(RootKeys[i]) then
+      begin
+        if Reg.ValueExists(DriverName) then
+        begin
+          Result := True;
+          Exit; // Falls gefunden, sofort beenden
+        end;
+        Reg.CloseKey;
+      end;
+    end;
+  finally
+    Reg.Free;
+  end;
 end;
 
 end.

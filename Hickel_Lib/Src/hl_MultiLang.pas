@@ -36,7 +36,14 @@ begin
     ResStringCleanupCache;
     FreeLibrary(oldHInst);
   except
-    SetLocaleOverride(bakOverride);
+    on E: EAbort do
+    begin
+      Abort;
+    end;
+    on E: Exception do
+    begin
+      SetLocaleOverride(bakOverride);
+    end;
   end;
 end;
 

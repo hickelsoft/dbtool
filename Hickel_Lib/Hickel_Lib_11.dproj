@@ -176,6 +176,12 @@
             <Deployment Version="5">
                 <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\21.0\Bpl\Hickel_Lib_11.bpl" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\23.0\Bpl\Hickel_Lib_11.bpl" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\23.0\Bpl\Hickel_Lib_11.bpl" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>Hickel_Lib_11.bpl</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="c:\Users\Public\Documents\Embarcadero\Studio\22.0\Bpl\Hickel_Lib_11.bpl" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="OSX32">
@@ -1108,6 +1114,7 @@
         <DCCReference Include="Src\HS_Auth.pas"/>
         <DCCReference Include="..\CrwLowLevel\IPC_API\hl_IPC_LowLevel_Common.pas"/>
         <DCCReference Include="Src\hl_MultiLang.pas"/>
+        <DCCReference Include="Src\HS_Mitteilung.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

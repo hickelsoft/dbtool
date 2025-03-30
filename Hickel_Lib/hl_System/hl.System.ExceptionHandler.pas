@@ -21,7 +21,7 @@ type
 implementation
 
 uses
-  hl_Log, StrUtils, hl_ExceptionLogger, MessaBox, Windows;
+  hl_Log, StrUtils, hl_ExceptionLogger, MessaBox, Windows, HS_Mitteilung;
 
 class procedure ThlExceptionHandler.ErstelleStacktrace(E: Exception);
 var
@@ -38,6 +38,7 @@ begin
     hlExceptionLog := ThlLog.Create(logfile);
     try
       ThlExceptionLogger.LogException(E, hlExceptionLog);
+      THsMitteilung.SendeStacktraceAnHickelSOFT(hlExceptionLog.FileName);
     finally
       FreeAndNil(hlExceptionLog);
     end;
@@ -45,6 +46,10 @@ begin
     // DM 29.02.2016
     // Große Ausnahme: Wenn hier was fehlschlägt, ignorieren wir es.
     // Denn Fehler in der Fehlerbehandlungsroutine (mit Logs) ist tödlich.
+    on E: EAbort do
+    begin
+      Abort;
+    end;
   end;
 end;
 

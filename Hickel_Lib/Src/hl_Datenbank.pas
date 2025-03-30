@@ -77,7 +77,7 @@ type
     FLastKnownConnectionID: TGuid;
 
     procedure CreateIndiv(ConnStr: string; AConnectionTimeout: integer=0);
-    procedure CreateStandard (Datenbank, Server: string; AnmeldenAlsBenutzer: Boolean; AConnectionTimeout: integer=0);
+    procedure CreateStandard (Datenbank, Server: string; AnmeldungAlsBenutzer: Boolean; AConnectionTimeout: integer=0);
 
     /// <summary>Die holt jeweils den nächsten (und nur den einen) Befehl aus der Stringliste und speichert diesen ohne Zeilenumbrüche im result.</summary>
     /// <param name="ListFile">In dieser Stringliste werden die Befehle, die das File enthält gespeichert. Sie ist als var angelegt, d.h. diue aufrufende Funktion oder Procedure kann hier Werte zurückerhalten.</param>
@@ -105,7 +105,7 @@ type
   public
     class var Debug: ThlSQLDebugEvent;
 
-    constructor Create(Datenbank, Server: string; AnmeldenAlsBenutzer: Boolean; Isolated: Boolean=false; AConnectionTimeout: integer=0); reintroduce; overload;
+    constructor Create(Datenbank, Server: string; AnmeldungAlsBenutzer: Boolean; Isolated: Boolean=false; AConnectionTimeout: integer=0); reintroduce; overload;
     constructor Create(ConnStr: string; Isolated: Boolean=false; AConnectionTimeout: integer=0); overload;
     constructor Create(ADOConnection: TADOConnection); reintroduce; overload;
     destructor Destroy; reintroduce; override;
@@ -450,17 +450,17 @@ begin
   end;
 end;
 
-procedure ThlDatenbank.CreateStandard (Datenbank, Server: string; AnmeldenAlsBenutzer: Boolean; AConnectionTimeout: integer=0);
+procedure ThlDatenbank.CreateStandard (Datenbank, Server: string; AnmeldungAlsBenutzer: Boolean; AConnectionTimeout: integer=0);
 var
   sqlConnStr: string;
 begin
   sqlConnStr := 'Provider='+SqlServerProvider+';';
   sqlConnStr := sqlConnStr + 'Application Name='+ExtractFileName(ParamStr(0))+' hl_Datenbank;';
 
-  if not (AnmeldenAlsBenutzer) then
+  if not (AnmeldungAlsBenutzer) then
     sqlConnStr := sqlConnStr + 'Integrated Security=SSPI;Persist Security Info=False;'
   else
-    sqlConnStr := sqlConnStr + 'User ID=sa;Password='+HS_SA_DB_PASSWORD+';Persist Security Info=True;';
+    sqlConnStr := sqlConnStr + 'User ID='+HS_SA_DB_USER+';Password='+HS_SA_DB_PASSWORD+';Persist Security Info=True;';
 
   if SqlServerProvider = 'MSOLEDBSQL19' then
     sqlConnStr := sqlConnStr + 'Use Encryption for Data=Optional;';
@@ -473,10 +473,10 @@ begin
 
   CreateIndiv(sqlConnStr, AConnectionTimeout);
 end;
-constructor ThlDatenbank.Create(Datenbank, Server: string; AnmeldenAlsBenutzer: Boolean; Isolated: Boolean=false; AConnectionTimeout: integer=0);
+constructor ThlDatenbank.Create(Datenbank, Server: string; AnmeldungAlsBenutzer: Boolean; Isolated: Boolean=false; AConnectionTimeout: integer=0);
 begin
   inherited Create;
-  CreateStandard (Datenbank, Server, AnmeldenAlsBenutzer, AConnectionTimeout);
+  CreateStandard (Datenbank, Server, AnmeldungAlsBenutzer, AConnectionTimeout);
   if (Isolated) then mConnection.IsolationLevel := ilIsolated;
 end;
 

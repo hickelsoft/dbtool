@@ -5,11 +5,11 @@
     <header>
       <prop-group name="ITEHeaderProp">
         <prop prop-type="Version">9.0</prop>
-        <prop prop-type="SelfDateTime">45693.5634722222</prop>
-        <prop prop-type="OrigDateTime">45693.5634722222</prop>
+        <prop prop-type="SelfDateTime">45726.6615277778</prop>
+        <prop prop-type="OrigDateTime">45726.6615509259</prop>
         <prop prop-type="XlatDateTime">45532.6315972222</prop>
-        <prop prop-type="Translated">506</prop>
-        <prop prop-type="UnTranslated">989</prop>
+        <prop prop-type="Translated">507</prop>
+        <prop prop-type="UnTranslated">995</prop>
       </prop-group>
     </header>
     <body>
@@ -11159,6 +11159,56 @@
         <source>"SHA2: Ein finalisierter Hash kann nicht aktualisiert werden"</source>
         <prop-group name="ITEFieldProp">
           <prop prop-type="Created">45620.8205364583</prop>
+          <prop prop-type="Status">0</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="System_NetConsts_SNetUriIndexOutOfRange" resname="System_NetConsts_SNetUriIndexOutOfRange">
+        <source>"Parameterindex (%d) außerhalb des Bereichs (%d..%d)"</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45702.4663985648</prop>
+          <prop prop-type="Status">0</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="System_NetConsts_SNetUriInvalid" resname="System_NetConsts_SNetUriInvalid">
+        <source>"Ungültiger URL: \"%s\""</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45702.4663985648</prop>
+          <prop prop-type="Status">0</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="System_NetConsts_SNetUriParamNotFound" resname="System_NetConsts_SNetUriParamNotFound">
+        <source>"Parameter \"%s\" nicht gefunden"</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45702.4663985648</prop>
+          <prop prop-type="Status">0</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="System_NetConsts_SNetUriInvalidRelPath" resname="System_NetConsts_SNetUriInvalidRelPath">
+        <source>"Ungültiger relativer URL-Pfad: \"%s\""</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45702.466398588</prop>
+          <prop prop-type="Status">0</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="System_RTLConsts_sErrorDecodingURLText" resname="System_RTLConsts_sErrorDecodingURLText">
+        <source>"Fehler beim Decodieren eines im URL-Stil (%%XX) codierten Strings bei Position %d"</source>
+        <target>"Error decoding URL style (%%XX) encoded string at position %d"</target>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45702.466398588</prop>
+          <prop prop-type="Status">2</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="System_RTLConsts_sInvalidURLEncodedChar" resname="System_RTLConsts_sInvalidURLEncodedChar">
+        <source>"Ungültiges URL-codiertes Zeichen (%s) an Position %d"</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45702.4663986111</prop>
+          <prop prop-type="Status">0</prop>
+        </prop-group>
+      </trans-unit>
+      <trans-unit id="System_SysConst_SInvalidInteger2" resname="System_SysConst_SInvalidInteger2">
+        <source>"'%s' ist kein gültiger Integerwert für Typ '%s'"</source>
+        <prop-group name="ITEFieldProp">
+          <prop prop-type="Created">45702.4663986111</prop>
           <prop prop-type="Status">0</prop>
         </prop-group>
       </trans-unit>

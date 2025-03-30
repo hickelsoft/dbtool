@@ -697,25 +697,25 @@ begin
     if FVerwendeQueryAnstelleTable then
     begin
       if bInclude then
-        result := aField.FieldName + ' is null ' // do not localize
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' is null' // do not localize
       else
-        result := aField.FieldName + ' is not null '; // do not localize
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' is not null'; // do not localize
     end
     else
     begin
       // Beim Filter muss man wirklich "= null" schreiben und nicht "is null"
       if bInclude then
-        result := aField.FieldName + ' = null ' // do not localize
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' = null' // do not localize
       else
-        result := aField.FieldName + ' <> null '; // do not localize
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' <> null'; // do not localize
     end;
   end
   else
   begin
     if bInclude then
-      result := aField.FieldName + ' = '
+      result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' = '
     else
-      result := aField.FieldName + ' <> ';
+      result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' <> ';
 
      case aField.DataType of
         ftBoolean:
@@ -755,7 +755,7 @@ begin
        if bInclude then
          result := Trim(result)
        else
-         result := Trim(result) + ' or ' + aField.FieldName + ' is null'; // https://github.com/hickelsoft/dbtool/issues/2
+         result := Trim(result) + ' or ' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' is null'; // https://github.com/hickelsoft/dbtool/issues/2
      end
      else
      begin
@@ -773,7 +773,7 @@ begin
    ftBoolean:
 
    if TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString = '' then
-      result := '(' + wwDBGrid1.GetActiveField.FieldName + ' <> 1) and (' + wwDBGrid1.GetActiveField.FieldName + ' <> 0)'
+      result := '(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 1) and (' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 0)'
    else
       result := result + TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString;
 *)
@@ -784,9 +784,9 @@ resourcestring
   SFieldTypeNotSupported = 'Dieser Feldtyp kann (noch) nicht automatisch gefiltert werden.';
 begin
   if bInclude then
-    result := aField.FieldName + ' = '
+    result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' = '
   else
-    result := aField.FieldName + ' <> ';
+    result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' <> ';
 
   case aField.DataType of
       ftBoolean:
@@ -819,9 +819,12 @@ begin
   end;
 
   if FVerwendeQueryAnstelleTable then
-    // https://github.com/hickelsoft/dbtool/issues/2
-    result := aField.FieldName + ' is null or ' + Trim(result)
-
+  begin
+       if bInclude then
+         result := Trim(result)
+       else
+         result := Trim(result) + ' or ' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' is null'; // https://github.com/hickelsoft/dbtool/issues/2
+  end;
 
 // ftDate, ftTime, ftDateTime, ftTimeStamp
 // ftGuid
@@ -830,7 +833,7 @@ begin
    ftBoolean:
 
    if TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString = '' then
-      result := '(' + wwDBGrid1.GetActiveField.FieldName + ' <> 1) and (' + wwDBGrid1.GetActiveField.FieldName + ' <> 0)'
+      result := '(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 1) and (' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 0)'
    else
       result := result + TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString;
 *)
@@ -908,7 +911,7 @@ procedure TMDI_Table.AnzahlunterschiedlicherWerte1Click(Sender: TObject);
 resourcestring
   SCountDifferentValues = 'Anzahl unterschiedliche Werte';
 begin
-   ShowSqlFunction('COUNT(DISTINCT ' + dbgTable.GetActiveField.FieldName + ')', SCountDifferentValues); // do not localize
+   ShowSqlFunction('COUNT(DISTINCT ' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(dbgTable.GetActiveField.FieldName) + ')', SCountDifferentValues); // do not localize
 end;
 
 procedure TMDI_Table.AuswahlausschlieenderFilter1Click(Sender: TObject);
@@ -1002,7 +1005,7 @@ procedure TMDI_Table.Spaltensumme1Click(Sender: TObject);
 resourcestring
   SColumnSum = 'Spaltensumme';
 begin
-   ShowSqlFunction('SUM(' + dbgTable.GetActiveField.FieldName + ')', SColumnSum); // do not localize
+   ShowSqlFunction('SUM(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(dbgTable.GetActiveField.FieldName) + ')', SColumnSum); // do not localize
 end;
 
 procedure TMDI_Table.SpeedButton1Click(Sender: TObject);
@@ -1062,14 +1065,14 @@ procedure TMDI_Table.Minimalwert1Click(Sender: TObject);
 resourcestring
   SMinimumValue = 'Minimalwert';
 begin
-  ShowSqlFunction('MIN(' + dbgTable.GetActiveField.FieldName + ')', SMinimumValue); // do not localize
+  ShowSqlFunction('MIN(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(dbgTable.GetActiveField.FieldName) + ')', SMinimumValue); // do not localize
 end;
 
 procedure TMDI_Table.Maximalwert1Click(Sender: TObject);
 resourcestring
   SMaximumValue = 'Maximalwert';
 begin
-  ShowSqlFunction('MAX(' + dbgTable.GetActiveField.FieldName + ')', SMaximumValue); // do not localize
+  ShowSqlFunction('MAX(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(dbgTable.GetActiveField.FieldName) + ')', SMaximumValue); // do not localize
 end;
 
 procedure TMDI_Table.Datenstzezhlen1Click(Sender: TObject);
@@ -1148,11 +1151,19 @@ end;
 
 procedure TMDI_Table.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
-  if ord(Key) = VK_F5 then btnAktualisierenClick(Sender);
+  if ord(Key) = VK_F5 then
+  begin
+    Key := 0;
+    btnAktualisierenClick(Sender);
+  end;
   if (Key = VK_ESCAPE) and (not Assigned(dbgTable.DataSource.DataSet) or not (dbgTable.DataSource.DataSet.State in [dsEdit,dsInsert]))
      // TODO: Wenn man im Eingabemodus von einem Darumsfeld ist, dann wird ESC trotzdem dazu führen, dass man rausfliegt. InplaceEditor ist bei DateTime-Edit nicht gesetzt
      and not (Assigned(dbgTable.InplaceEditor) and dbgTable.InplaceEditor.ClassNameIs('TwwInplaceEdit') and dbgTable.InplaceEditor.Visible) // do not localize
-     then Close;
+     then
+  begin
+    Key := 0;
+    Close;
+  end;
 end;
 
 procedure TMDI_Table.IndexMenuClick(Sender: TObject);
@@ -1272,7 +1283,14 @@ begin
          else
            iPos := Pos(FFindStr, dsData.DataSet.Fields.Fields[iSearchField].AsString);
       except
-         iPos := 0;
+        on E: EAbort do
+        begin
+          Abort;
+        end;
+        on E: Exception do
+        begin
+          iPos := 0;
+        end;
       end;
 
       if iPos > 0 then break;
@@ -1327,10 +1345,12 @@ procedure TMDI_Table.mFilterKeyDown(Sender: TObject; var Key: word; Shift: TShif
 begin
   if (ssCtrl in Shift) and (ord(Key) = ord('A')) then // Ctrl+A
   begin
+    Key := 0;
     TMemo(Sender).SelectAll;
   end
   else if Key = VK_F9 then
   begin
+    Key := 0;
     BtnClick(LbSpeedButton2);
   end;
 end;

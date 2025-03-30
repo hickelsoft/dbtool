@@ -189,8 +189,7 @@ begin
 
       connStrPrefix := 'Provider='+GivenProvider+';'; // do not localize
 
-      if not Modus_CORA_Verzeichnis and
-         (ConnStrReadAttr('Integrated Security', Copy(DatabaseName, Length('_SQLSRV:')+1)) = '') and // do not localize
+      if (ConnStrReadAttr('Integrated Security', Copy(DatabaseName, Length('_SQLSRV:')+1)) = '') and // do not localize
          (ConnStrReadAttr('User ID', Copy(DatabaseName, Length('_SQLSRV:')+1)) = '') then // do not localize
         connStrPrefix := connStrPrefix + 'Integrated Security=SSPI;'; // do not localize
 
@@ -203,15 +202,22 @@ begin
 
       if Modus_CORA_Verzeichnis then
       begin
-        if CoraBenutzeranmeldung then
-        begin
-          DB_ADO.ConnectionString := connStrPrefix + Copy(DatabaseName, Length('_SQLSRV:')+1) + ';Application Name='+ExtractFileName(ParamStr(0))+';User ID=sa;Password='+HS_SA_DB_PASSWORD; // do not localize
+        try
+          // SA Auth probieren
+          DB_ADO.ConnectionString := connStrPrefix + Copy(DatabaseName, Length('_SQLSRV:')+1) + ';Application Name='+ExtractFileName(ParamStr(0)); // do not localize
+          DB_ADO.ConnectionString := StringReplace(DB_ADO.ConnectionString, 'Integrated Security=SSPI;', 'User ID='+HS_SA_DB_USER+';Password='+HS_SA_DB_PASSWORD+';', []); // do not localize
           DB_ADO.Connected := true;
-        end
-        else
-        begin
-          DB_ADO.ConnectionString := connStrPrefix + Copy(DatabaseName, Length('_SQLSRV:')+1) + ';Application Name='+ExtractFileName(ParamStr(0))+';Integrated Security=SSPI'; // do not localize
-          DB_ADO.Connected := true;
+        except
+          on E: EAbort do
+          begin
+            Abort;
+          end;
+          on E: Exception do
+          begin
+            // NT Auth probieren
+            DB_ADO.ConnectionString := connStrPrefix + Copy(DatabaseName, Length('_SQLSRV:')+1) + ';Application Name='+ExtractFileName(ParamStr(0)); // do not localize
+            DB_ADO.Connected := true;
+          end;
         end;
       end
       else
@@ -259,50 +265,61 @@ begin
         DB_IB.Connected := true;
         DB_IB_Trans.Active := true;
       except
-        bFehler := true;
-
-        while bFehler do
+        on E: EAbort do
         begin
-          aDlg := TDLG_IbDatabaseName.Create(nil);
-          try
-            // Combobox füllen...
-            aReg := TRegIniFile.Create(ConfigRegKey);
+          Abort;
+        end;
+        on E: Exception do
+        begin
+          bFehler := true;
+
+          while bFehler do
+          begin
+            aDlg := TDLG_IbDatabaseName.Create(nil);
             try
-              aDlg.Edit1.Items.CommaText := aReg.ReadString('MRU', 'InterBase', ''); // do not localize
-            finally
-              FreeAndNil(aReg);
-            end;
-
-            if aDlg.ShowModal = mrOk then
-            begin
-              // ggf. Datenbank-MRU speichern...
-              if aDlg.Edit1.Items.IndexOf(aDlg.Edit1.Text) = -1 then
-              begin
-                aDlg.Edit1.Items.Add(aDlg.Edit1.Text);
-                aReg := TRegIniFile.Create(ConfigRegKey);
-                try
-                  aReg.WriteString('MRU', 'InterBase', aDlg.Edit1.Items.CommaText); // do not localize
-                finally
-                  FreeAndNil(aReg);
-                end;
-              end;
-
-              DatabaseName := aDlg.Edit1.Text;
-              DB_IB.DatabaseName := DatabaseName;
-
+              // Combobox füllen...
+              aReg := TRegIniFile.Create(ConfigRegKey);
               try
-                DB_IB.Connected := true;
-                DB_IB_Trans.Active := true;
-                bFehler := false;
-              except
+                aDlg.Edit1.Items.CommaText := aReg.ReadString('MRU', 'InterBase', ''); // do not localize
+              finally
+                FreeAndNil(aReg);
               end;
-            end
-            else
-            begin
-              raise Exception.Create(SDatabaseCouldNotBeOpened);
+
+              if aDlg.ShowModal = mrOk then
+              begin
+                // ggf. Datenbank-MRU speichern...
+                if aDlg.Edit1.Items.IndexOf(aDlg.Edit1.Text) = -1 then
+                begin
+                  aDlg.Edit1.Items.Add(aDlg.Edit1.Text);
+                  aReg := TRegIniFile.Create(ConfigRegKey);
+                  try
+                    aReg.WriteString('MRU', 'InterBase', aDlg.Edit1.Items.CommaText); // do not localize
+                  finally
+                    FreeAndNil(aReg);
+                  end;
+                end;
+
+                DatabaseName := aDlg.Edit1.Text;
+                DB_IB.DatabaseName := DatabaseName;
+
+                try
+                  DB_IB.Connected := true;
+                  DB_IB_Trans.Active := true;
+                  bFehler := false;
+                except
+                  on E: EAbort do
+                  begin
+                    Abort;
+                  end;
+                end;
+              end
+              else
+              begin
+                raise Exception.Create(SDatabaseCouldNotBeOpened);
+              end;
+            finally
+              FreeAndNil(aDlg);
             end;
-          finally
-            FreeAndNil(aDlg);
           end;
         end;
       end;
@@ -440,6 +457,10 @@ begin
       if FConnWasOk then
         Query('use master; select 1').Free; // do not localize
     except
+      on E: EAbort do
+      begin
+        Abort;
+      end;
     end;
     DB_ADO.Close;
     FreeAndNil(DB_ADO);
@@ -754,6 +775,10 @@ begin
           ibQuery.Active := true;
           result := ibQuery;
         except
+          on E: EAbort do
+          begin
+            Abort;
+          end;
           on E: EIBError do
           begin
             if E.SQLCode = Ord(ibxeEmptySQLStatement) then
@@ -1561,6 +1586,10 @@ var
       ExecSql('DROP VIEW '+SQL_Escape_TableName(tableName)+';'); // do not localize
       errorCount := 0;
     except
+      on E: EAbort do
+      begin
+        Abort;
+      end;
       on E: EOleException do
       begin
         // ShowMessage(E.Message);
@@ -1575,6 +1604,10 @@ var
       ExecSql('DROP TABLE '+SQL_Escape_TableName(tableName)+';'); // do not localize
       errorCount := 0;
     except
+      on E: EAbort do
+      begin
+        Abort;
+      end;
       on E: EOleException do
       begin
         // ShowMessage(E.Message);
@@ -1873,6 +1906,10 @@ begin
           ExecSql(ViewDef);
         Exit;
       except
+        on E: EAbort do
+        begin
+          Abort;
+        end;
         on E: Exception do
         begin
           Application.MessageBox(PChar(Format(SStoredProcedureCreateError, [sTable, E.Message])), PChar(Application.Title), MB_ICONEXCLAMATION + MB_OK);
@@ -1893,6 +1930,10 @@ begin
           ExecSql('Create View ' + SQL_Escape_TableName(sTable) + ' as ' + ViewDef); // do not localize
         Exit;
       except
+        on E: EAbort do
+        begin
+          Abort;
+        end;
         on E: Exception do
         begin
           case Application.MessageBox(PChar(Format(SViewCouldNotBeCreated, [sTable])+#13#10#13#10+E.Message), PChar(Application.Title), MB_ICONEXCLAMATION + MB_YESNOCANCEL) of
@@ -2039,6 +2080,10 @@ begin
               aiFeldIndizes[iFieldCount] := dsDest.FieldByName({UmlauteRaus}(dsSource.Fields.Fields[i].FieldName)).Index;
               Inc(iFieldCount);
             except
+              on E: EAbort do
+              begin
+                Abort;
+              end;
             end;
           end;
 
@@ -2100,6 +2145,10 @@ begin
               try
                 ExecSql(slTrigger.ValueFromIndex[i]);
               except
+                on E: EAbort do
+                begin
+                  Abort;
+                end;
                 on E: Exception do
                 begin
                   Application.MessageBox(PChar(Format(STriggerCouldNotBeCreated, [slTrigger.Names[i], E.Message])), PChar(Application.Title), MB_ICONEXCLAMATION + MB_OK);
@@ -2187,13 +2236,20 @@ function TDbToolDatabase.CheckDatabaseSecurityPassword: boolean;
     finally
       FreeAndNil(q);
     end;
-    q := Query('select VALUE from CONFIG where NAME = ''INSTALL_ID'';'); // do not localize
-    try
-      salt := q.Fields[0].AsString;
-    finally
-      FreeAndNil(q);
+    if (hashedPassword='') and (s='') then
+    begin
+      result := true;
+    end
+    else
+    begin
+      q := Query('select VALUE from CONFIG where NAME = ''INSTALL_ID'';'); // do not localize
+      try
+        salt := q.Fields[0].AsString;
+      finally
+        FreeAndNil(q);
+      end;
+      result := SameText(THashSHA2.GetHashString(salt + s), hashedPassword);
     end;
-    result := SameText(THashSHA2.GetHashString(salt + s), hashedPassword);
   end;
 
   function VerifyHickelSOFTPassword(s: string): boolean;
@@ -2238,7 +2294,7 @@ function TDbToolDatabase.CheckDatabaseSecurityPassword: boolean;
   resourcestring
     SAuthAsCmDb2 = 'Bitte das CMDB2-Passwort eingeben';
   begin
-    if CmDb2EinmaligBestaetigt then
+    if CmDb2EinmaligBestaetigt or VerifyCmDb2Password('') then
     begin
       result := true;
       exit;

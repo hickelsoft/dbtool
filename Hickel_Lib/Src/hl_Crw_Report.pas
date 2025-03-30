@@ -22,7 +22,6 @@ type
 
     procedure SetReport(KopieNummer: integer);
 
-    function ErzeugeReportMitPassendemConnectionString(AReportFile: string): string;
     procedure SetzeSeitenraender(FPrinterData: TPrinterData);
     procedure SetzeCRWExportOptionen(zielDateiname: string);
     procedure SetzeFelder(FPrinterData: TPrinterData; KopieNummer: integer);
@@ -31,10 +30,12 @@ type
     procedure AuswahlFormelFestlegen;
     function IstBonFormular: boolean;
 
+  protected
+    procedure ErzeugeReportMitPassendemConnectionString; virtual;
   public
     DateiNachBearbeitung: TDateiNachBearbeitungProcedure;
 
-    constructor Create;
+    constructor Create(ARequireCrpe: boolean=true);
     destructor Destroy; override;
 
     property ParamPreislistenr: integer read FParamPreislistenr write FParamPreislistenr;
@@ -54,7 +55,7 @@ type
 
     class function CRWExportDateifilter: string;
 
-    function OptimiereReport: string;
+    function OptimiereReport: boolean; virtual;
 
     procedure ll(a1: string; a2: string=''; a3: string=''; a4: string=''; a5: string=''; a6: string='');
     procedure llnw(a1: string; a2: string=''; a3: string=''; a4: string=''; a5: string=''; a6: string=''); // "No wait"
@@ -66,9 +67,9 @@ type
 implementation
 
 uses hl_Exceptions, SysUtils, forms, StrUtils, hl.System.ExceptionHandler, HsSqlServerProvider,
-     hl.Utils, hl_Datenbank, Registry, hl.Utils.Mapi;
+     hl.Utils, hl_Datenbank, Registry, hl.Utils.Mapi, HS_Auth;
 
-constructor ThlCrwReport.Create;
+constructor ThlCrwReport.Create(ARequireCrpe: boolean=true);
 begin
   inherited Create;
 
@@ -76,8 +77,15 @@ begin
   RandUnten := -1;
   ParamPreislistenr := -1;
 
-  crpe2 := TCrwLowLevelClient.Create;
-  ll('crpe.Create()');
+  if ARequireCrpe then
+  begin
+    crpe2 := TCrwLowLevelClient.Create;
+    ll('crpe.Create()');
+  end
+  else
+  begin
+    crpe2 := nil; // e.g. if you just want to run OptimiereReport (CRW13) alone
+  end;
 end;
 
 destructor ThlCrwReport.Destroy;
@@ -87,10 +95,18 @@ begin
     try
       ll('crpe.FreeAndNil()');
     except
+      on E: EAbort do
+      begin
+        Abort;
+      end;
     end;
     try
       ll('Exit');
     except
+      on E: EAbort do
+      begin
+        Abort;
+      end;
     end;
     FreeAndNil(crpe2);
   end;
@@ -396,7 +412,8 @@ begin
     // Data Only ist in vielen Fällen besser für den Anwender.
     // CSV ist keine alternative, da CSV aus irgendeinem Grund die Spaltenüberschriften
     // auf jeder Zeile wiederholt (Formular HL050214)
-    ll('crpe.ExportOptions.Excel.XlsType:Set:ExcelDataOnly'); // nicht verwendet, denn man kann in dem Fall ja CSV wählen
+    ll('crpe.ExportOptions.Excel.XlsType:Set:ExcelDataOnly');
+    //ll('crpe.ExportOptions.Excel.XlsType:Set:ExcelStandard');
   end
   else if LowerCase(ExtractFileExt(zielDateiname)) = '.rtf' then
   begin
@@ -447,12 +464,49 @@ begin
   end;
 end;
 
-function ThlCrwReport.OptimiereReport: string;
+function ThlCrwReport.OptimiereReport: boolean;
 begin
-  result := ErzeugeReportMitPassendemConnectionString(ReportFileName);
+  // not available
+  result := false;
 end;
 
-function ThlCrwReport.ErzeugeReportMitPassendemConnectionString(AReportFile: string): string;
+procedure ThlCrwReport.ErzeugeReportMitPassendemConnectionString;
+
+  function UnnoetigesEntfernen(const connStr: string): string;
+  var
+    i: integer;
+    tmp: string;
+  begin
+    result := connStr;
+
+    // "Get" könnte etwas abgeschnitten haben, wenn der ConnStr > 511 war.
+    // Wir entfernen daher unvollständige Attribute, und hoffen, dass diese nicht relevant sind
+    for i := Length(result) downto 1 do
+    begin
+      if result[i] = '=' then break;
+      if result[i] = ';' then
+      begin
+        result := Copy(result, 1, i);
+        break;
+      end;
+    end;
+
+    // Diese Funktion ist da, weil unser ConnStr unbedingt unter 511 Bytes sein muss, egal wie!!!
+    result := StringReplace(result, 'Current Language=;;', '', [rfReplaceAll]);
+    result := StringReplace(result, 'Current Language=;',  '', [rfReplaceAll]);
+    result := StringReplace(result, 'Initial File Name=;;', '', [rfReplaceAll]);
+    result := StringReplace(result, 'Initial File Name=;',  '', [rfReplaceAll]);
+    result := StringReplace(result, 'Replication server name connect option=;;', '', [rfReplaceAll]);
+    result := StringReplace(result, 'Replication server name connect option=;',  '', [rfReplaceAll]);
+
+    // Verkürze: ABC\DEF,49010 => ABC,49010
+    tmp := ConnStrReadAttr('Data Source', result);
+    if (Pos('\', tmp) <> 0) and (Pos(',', tmp) <> 0) and (Pos(',', tmp) > Pos('\', tmp)) then
+    begin
+      tmp := StringReplace(tmp, Copy(tmp, Pos('\', tmp), Pos(',', tmp) - Pos('\', tmp)), '', []);
+      result := ConnStrWriteAttr('Data Source', tmp, result);
+    end;
+  end;
 
   function VerbindungsZeugErsetzen(rptConnStr, coraConnStr: string): string;
   var
@@ -470,9 +524,6 @@ function ThlCrwReport.ErzeugeReportMitPassendemConnectionString(AReportFile: str
     //    Eimer! (siehe Notgedrungenem Patch "HickelSOFTWorkaround" in UCrpe32.pas,
     //    damals eingebaut, da die Ursache für das automatische Erweitern des
     //    ConnectionStrings nicht feststand)
-    // Leider müssen wir trotzdem den "optimierten" Report speichern,
-    // denn selbst das Setzen von ConnectionBuffer bei gleichem Provider
-    // benötigt in der Summe zu lange (10 Sekunden pro Bon wenn der Rechner langsam ist!)
 
     // Wir übertragen nun die relevanten Anmeldeinformationen vom CORA-ConnStr in den ConnStr aus dem Report!
     result := rptConnStr;
@@ -490,14 +541,11 @@ function ThlCrwReport.ErzeugeReportMitPassendemConnectionString(AReportFile: str
     end;
   end;
 
-  // Gibt längsten ConnStr zurück
-  function ConnectionBufferSetzen(connstr: string): integer;
+  procedure ConnectionBufferSetzen(connstr: string);
   var
     i1, i: integer;
     stmp: string;
   begin
-    result := -1;
-
     // Subreport "0" ist unser Haupt-Report
     for i1 := 0 to lli('crpe.Subreports.Count:Get') -1 do
     begin
@@ -508,15 +556,21 @@ function ThlCrwReport.ErzeugeReportMitPassendemConnectionString(AReportFile: str
         ll('crpe.Tables.Number:Set', IntToStr(i));
 
         stmp := lls('crpe.Tables[].ConnectBuffer:Get', IntToStr(i));
-        if Length(stmp) > result then result := Length(stmp);
         try
           ll('crpe.Tables[].ConnectBuffer:Set', IntToStr(i),
-            VerbindungsZeugErsetzen(lls('crpe.Tables[].ConnectBuffer:Get', IntToStr(i)), connStr));
+            UnnoetigesEntfernen(VerbindungsZeugErsetzen(lls('crpe.Tables[].ConnectBuffer:Get', IntToStr(i)), connStr)));
         except
           // GMRI 06.05.2021 Mandant 1, TOURENLISTE01.rpt
           // Hat ConnectionString von 511 Bytes, und es kracht dann genau beim Setzen von ConnectBuffer
           // Daher machen wir dann das Verhalten aus CORA 7.0
-          ll('crpe.Tables[].ConnectBuffer:Set', IntToStr(i), connStr);
+          on E: EAbort do
+          begin
+            Abort;
+          end;
+          on E: Exception do
+          begin
+            ll('crpe.Tables[].ConnectBuffer:Set', IntToStr(i), UnnoetigesEntfernen(connStr));
+          end;
         end;
       end;
     end;
@@ -540,95 +594,11 @@ begin
   end
   else crpeCreated := false;
 
-  NoReportOptimization := false;
-  reg := TRegistry.Create;
-  try
-    reg.RootKey := HKEY_CURRENT_USER;
-    if reg.OpenKeyReadOnly('SOFTWARE\HickelSOFT\CORAplus\Config') then
-    begin
-      if reg.ValueExists('NoReportOptimization') then
-      begin
-        NoReportOptimization := reg.ReadBool('NoReportOptimization');
-      end;
-      reg.CloseKey;
-    end;
-  finally
-    FreeAndNil(reg);
-  end;
+  ll('crpe.ReportName:Set', ''); // Closes the PrintJob
+  ll('crpe.ReportName:Set', ReportFileName);
 
-  if NoReportOptimization or
-     (Pos('integrated security=0', LowerCase(connstr)) > 0) or
-     (
-       (Pos('user id=',  LowerCase(connstr)) > 0) and
-       (Pos('user id=;', LowerCase(connstr)) = 0)
-     ) then
-  begin
-    // Bei der "sa" Authentifizierung können wir leider nichts optimieren, denn das
-    // ll('crpe.Save()') speichert das Passwort im ConnectionString nicht mit, aus Sicherheitsgründen
-    ll('crpe.ReportName:Set', ''); // Closes the PrintJob
-    ll('crpe.ReportName:Set', AReportFile);
-
-    // Die Datenbankquellen auf Mandant und Server umstellen, inkl. aller Subreporte
-    OldConnStrMaxLength := ConnectionBufferSetzen(connStr);
-
-    result := AReportFile;
-  end
-  else
-  begin
-    // Der Report bekommt einen einzigartigen Namen, sodass eine erneute Optimierung
-    // stattfindet, wenn sich der CORA ConnectionString oder das Änderungsdatum des Reports sich ändert.
-    tmpFile := ChangeFileExt(AReportFile, '__TMP_' + Hash_djb2(connStr + IntToStr(FileAge(AReportFile))) + '.rpt');
-
-    if not FileExists(tmpFile) then
-    begin
-      ll('crpe.ReportName:Set', ''); // Closes the PrintJob
-      ll('crpe.ReportName:Set', AReportFile);
-
-      // Die Datenbankquellen auf Mandant und Server umstellen, inkl. aller Subreporte
-      OldConnStrMaxLength := ConnectionBufferSetzen(connStr);
-
-      if OldConnStrMaxLength >= 511 then
-      begin
-        // GMRI 05.05.2021, Formular TOURENLISTE01.rpt erstellt mit CRW9.
-        // Wenn das Formular so gespeichert wurde, dass der interne Connectionstring
-        // größer als 512 Zeichen ist, dann wird das Abspeichern dazu führen, dass
-        // der Fehler "Falsche Anmeldeparameter" beim Druck kommt, selbst wenn
-        // SetConnectionBuffer mit einem String gesetzt wird, der kleiner als 512 Zeichen
-        // ist! Das heißt, eine Optimierung ist nicht möglich.
-        result := AReportFile;
-      end
-      else
-      begin
-        try
-          ll('crpe.Save()', tmpFile);
-
-          try
-            // Reine Kosmetik: Neuer Report soll gleiches Änderungsdatum haben wie der Originalreport
-            FileSetDate(tmpFile, FileAge(AReportFile));
-          except
-          end;
-
-          result := tmpFile;
-        except
-          // Kann z.B. auf dem Netzlaufwerk (HsInfo) passieren, wenn Rechte falsch sind
-
-          ll('crpe.ReportName:Set', ''); // Closes the PrintJob
-          ll('crpe.ReportName:Set', AReportFile);
-
-          // Die Datenbankquellen auf Mandant und Server umstellen, inkl. aller Subreporte
-          OldConnStrMaxLength := ConnectionBufferSetzen(connStr);
-
-          result := AReportFile;
-        end;
-      end;
-    end
-    else
-    begin
-      ll('crpe.ReportName:Set', ''); // Closes the PrintJob
-      ll('crpe.ReportName:Set', tmpFile);
-      result := tmpFile;
-    end;
-  end;
+  // Die Datenbankquellen auf Mandant und Server umstellen, inkl. aller Subreporte
+  ConnectionBufferSetzen(connStr);
 
   if crpeCreated then ll('crpe.FreeAndNil()');
 end;
@@ -712,7 +682,7 @@ end;
 
 procedure ThlCrwReport.SetReport(KopieNummer: integer);
 begin
-  ErzeugeReportMitPassendemConnectionString(ReportFileName);
+  ErzeugeReportMitPassendemConnectionString;
   ll('crpe.ReportTitle:Set', ReportTitle);
   ll('crpe.SummaryInfo.Author:Set', 'HickelSOFT Huth GmbH');
   ll('crpe.SummaryInfo.Title:Set', ReportTitle);
@@ -931,7 +901,7 @@ begin
   //       so wie bei Anzeigen/DateiExport/SendEMail? Aber es besteht die Gefahr, dass
   //       eventuell der Ausdruck dann mehrfach erfolgen könnte (Müller 58601)
    {$REGION 'Connection setzen, sowie einige andere Parameter'}
-  ErzeugeReportMitPassendemConnectionString(ReportFileName);
+  ErzeugeReportMitPassendemConnectionString;
 
   // ll('crpe.Reportoptions.VerifyOnEveryPrint:Set', BoolToStr(True));
 
@@ -1082,6 +1052,10 @@ procedure ThlCrwReport.Anzeige(Modal: boolean);
         Printers.Printer.PrinterIndex := -1; // default printer
         aPrinterName := Printers.Printer.Printers.Strings[Printer.PrinterIndex];
       except
+        on E: EAbort do
+        begin
+          Abort;
+        end;
       end;
 
       if ContainsText(aPrinterName, 'Bixolon') then
@@ -1103,11 +1077,12 @@ procedure ThlCrwReport.Anzeige(Modal: boolean);
 
       // Die Existenz von EpsStmApi.dll wird geprüft für den Fall dass Kunden den
       // Bondrucker in der Systemsteuerung umbenannt haben
-      if IstBonFormular and not ContainsText(APrinterName, 'Epson') and not FileExists(GetSysDir+'\EpsStmApi.dll') then
+      if IstBonFormular and
+         (ContainsText(APrinterName, 'Bixolon') or (not ContainsText(APrinterName, 'Epson') and not FileExists(GetSysDir+'\EpsStmApi.dll'))) then
       begin
         // EPSON braucht einen linken Rand von 0,395cm; deswegen sind alle unsere
-        // Reports so angepasst. BIXOLON braucht aber 0cm, ansonsten ist rechts
-        // etwas abgeschnitten.
+        // Reports so angepasst. BIXOLON und der Rest der Welt
+        // braucht aber 0cm, ansonsten ist rechts etwas abgeschnitten.
         ll('crpe.Margins.Left:Set', '0');
         // Ticket 51601
         ll('crpe.Margins.Right:Set', '0');

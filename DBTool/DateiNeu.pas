@@ -115,6 +115,10 @@ begin
          try
            TDbToolDatabase.CreateDatabase(dtInterbase, eDateiname.Text, '');
          except
+           on E: EAbort do
+           begin
+             Abort;
+           end;
          end;
          DLG_Main.OpenFile(eDateiname.Text);
          Close;
@@ -124,6 +128,10 @@ begin
          try
            TDbToolDatabase.CreateDatabase(dtAccess, eDateiname.Text, '');
          except
+           on E: EAbort do
+           begin
+             Abort;
+           end;
          end;
          DLG_Main.OpenFile(eDateiname.Text);
          Close;
@@ -145,7 +153,11 @@ end;
 
 procedure TDLG_DateiNeu.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
-  if Key = VK_ESCAPE then Close;
+  if Key = VK_ESCAPE then
+  begin
+    Key := 0;
+    Close;
+  end;
 end;
 
 end.

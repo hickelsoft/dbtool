@@ -145,7 +145,11 @@ end;
 
 procedure TDLG_Import.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
-  if (Key = VK_ESCAPE) and btnCancel.Enabled then btnCancel.Click;
+  if (Key = VK_ESCAPE) and btnCancel.Enabled then
+  begin
+    Key := 0;
+    btnCancel.Click;
+  end;
 end;
 
 procedure TDLG_Import.SpeedButton2Click(Sender: TObject);

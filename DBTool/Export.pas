@@ -155,7 +155,11 @@ uses
 
 procedure TDLG_Export.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
-   if Key = VK_ESCAPE then Close;
+   if Key = VK_ESCAPE then
+   begin
+     Key := 0;
+     Close;
+   end;
 end;
 
 procedure TDLG_Export.FormShow(Sender: TObject);
@@ -368,8 +372,8 @@ procedure TDLG_Export.eDateinameKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
   begin
-    btnFertig.Click;
     Key := #0;
+    btnFertig.Click;
   end;
 end;
 
@@ -645,6 +649,10 @@ begin
         try
            ttNeu.DeleteTable;
         except
+          on E: EAbort do
+          begin
+            Abort;
+          end;
         end;
 
         ttNeu.FieldDefs.Clear;
@@ -658,6 +666,10 @@ begin
                  DataType := FTable1.FieldByName(lbDst.Items[iCounter]).DataType;
                  if FTable1.FieldByName(lbDst.Items[iCounter]).DataType in [ftString, ftBCD, ftFmtBcd, ftBlob, ftMemo, ftGraphic] then Size := FTable1.FieldByName(lbDst.Items[iCounter]).DataSize - 1;
               except
+                on E: EAbort do
+                begin
+                  Abort;
+                end;
               end;
            end;
         end;
@@ -693,7 +705,14 @@ begin
              try
                 ttNeu.Post;
              except
-                ttNeu.Cancel;
+                on E: EAbort do
+                begin
+                  Abort;
+                end;
+                on E: Exception do
+                begin
+                  ttNeu.Cancel;
+                end;
              end;
 
              FTable1.Next;

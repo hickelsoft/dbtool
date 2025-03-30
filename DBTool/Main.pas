@@ -414,7 +414,14 @@ begin
     try
       remoteSetupMd5 := DoGet('https://www.hickelsoft.de/dbtool/checksum.php'); // do not localize
     except
-      remoteSetupMd5 := '';
+      on E: EAbort do
+      begin
+        Abort;
+      end;
+      on E: Exception do
+      begin
+        remoteSetupMd5 := '';
+      end;
     end;
     if Length(Trim(remoteSetupMd5)) <> 32 then
       raise Exception.Create(SRemoteMd5Error);

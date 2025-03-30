@@ -240,6 +240,7 @@ procedure TMessageBox.MessageBoxKeyDown(Sender: TObject; var Key: Word;
 begin
   if (Key = Ord('C')) and (Shift = [ssCtrl]) then
   begin
+    Key := 0;
     PopupMenuClick(Sender);
   end;
 end;

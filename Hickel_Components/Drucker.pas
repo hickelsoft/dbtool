@@ -234,7 +234,14 @@ begin
     try
       FStandardIndex := Printer.PrinterIndex;
     except
-      FStandardIndex := -1;
+      on E: EAbort do
+      begin
+        Abort;
+      end;
+      on E: Exception do
+      begin
+        FStandardIndex := -1;
+      end;
     end;
   end;
 
@@ -275,6 +282,10 @@ begin
        *)
     end;
    except
+     on E: EAbort do
+     begin
+       Abort;
+     end;
    end;
 
    FreeAndNil(LinkedTo);
@@ -784,6 +795,10 @@ begin
                     if strToInt (FBinNumber[iCounter]) = FDevMode.dmDefaultSource then FPaperBin.ItemIndex := iCounter;
                  if FPaperBin.ItemIndex = -1 then FPaperBin.ItemIndex := 0;
               except
+                on E: EAbort do
+                begin
+                  Abort;
+                end;
               end;
             finally
               FreeMem( pcBuffer );
@@ -817,9 +832,16 @@ begin
          try
            fanzahlkopien.value := FPrinter.Copies;
          except
-           // TODO: Ticket 33167 - wenn der Drucker im Netzwerk nicht verfügbar (gesperrt oder nicht mehr freigegeben ist), dann verursacht das Weitermachen einen kaputten Stack
-           // Unbedingt Meldung EPrinter-Exception "Operation auf ausgewähltem Drucker nicht verfügbar." beachten
-           fanzahlkopien.value := 1;
+           on E: EAbort do
+           begin
+             Abort;
+           end;
+           on E: Exception do
+           begin
+             // TODO: Ticket 33167 - wenn der Drucker im Netzwerk nicht verfügbar (gesperrt oder nicht mehr freigegeben ist), dann verursacht das Weitermachen einen kaputten Stack
+             // Unbedingt Meldung EPrinter-Exception "Operation auf ausgewähltem Drucker nicht verfügbar." beachten
+             fanzahlkopien.value := 1;
+           end;
          end;
        end;
     end
@@ -955,6 +977,10 @@ begin
   try
     Printer.Printerindex := -1;
   except
+    on E: EAbort do
+    begin
+      Abort;
+    end;
     on EPrinter do
     begin
       sl := TStringList.Create;

@@ -191,11 +191,19 @@ end;
 
 procedure TMDI_Query.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
-  if Key = VK_F9 then SpeedButton1.Click;
+  if Key = VK_F9 then
+  begin
+    Key := 0;
+    SpeedButton1.Click;
+  end;
   if (Key = VK_ESCAPE) and (not Assigned(DataSource1.DataSet) or not (DataSource1.DataSet.State in [dsEdit,dsInsert]))
     // TODO: Wenn man im Eingabemodus von einem Darumsfeld ist, dann wird ESC trotzdem dazu führen, dass man rausfliegt. InplaceEditor ist bei DateTime-Edit nicht gesetzt
     and not (Assigned(dbgTable.InplaceEditor) and dbgTable.InplaceEditor.ClassNameIs('TwwInplaceEdit') and dbgTable.InplaceEditor.Visible) // do not localize
-    then Close;
+    then
+  begin
+    Key := 0;
+    Close;
+  end;
 end;
 
 procedure TMDI_Query.Find;
@@ -263,12 +271,21 @@ end;
 procedure TMDI_Query.Memo1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
 begin
   if (ssCtrl in Shift) and (Key = ord('A')) then
+  begin
+    Key := 0;
     TMemo(Sender).SelectAll;
+  end
   (*
   else if (ssCtrl in Shift) and (Key = ord('O')) then
-    SQLBefehlffnen1Click(pmSql)
+  begin
+    Key := 0;
+    SQLBefehlffnen1Click(pmSql);
+  end
   else if (ssCtrl in Shift) and (Key = ord('S')) then
+  begin
+    Key := 0;
     Speichern1Click(pmSql);
+  end;
   *)
 end;
 
@@ -297,7 +314,14 @@ begin
       else
         iPos := Pos(FFindStr, DataSource1.DataSet.Fields.Fields[iSearchField].AsString);
     except
-      iPos := 0;
+      on E: EAbort do
+      begin
+        Abort;
+      end;
+      on E: Exception do
+      begin
+        iPos := 0;
+      end;
     end;
 
     if iPos > 0 then break;

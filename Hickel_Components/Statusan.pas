@@ -63,6 +63,7 @@ procedure TDLG_Statusanzeige.btnStopKeyDown(Sender: TObject; var Key: Word; Shif
 begin
   if Key = VK_ESCAPE then
   begin
+    Key := 0;
     btnStop.Click;
   end;
 end;

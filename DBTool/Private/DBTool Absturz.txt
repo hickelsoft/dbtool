@@ -1,0 +1,17 @@
+
+FEHLER: DBTOOL STÜRZT AB BEI "TIME" FELDERN BEI SQL SERVER
+==========================================================
+
+Geht: SQLOLEDB
+Provider=SQLOLEDB.1;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=ZEITERFASSUNG;Data Source=SHS,49011;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;Workstation ID=WIN11DEV;Use Encryption for Data=False;Tag with column collation when possible=False;
+=> Fields und FieldDefs zeigt alle 12 Felder
+
+Geht nicht: MSOLEDBSQL und MSOLEDBSQL19
+Provider=MSOLEDBSQL19.1;Integrated Security=SSPI;Initial Catalog=ZEITERFASSUNG;Data Source=SHS,49011;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;Application Name=DBTool64.exe;Workstation ID=WIN11DEV;Use Encryption for Data=Optional;Tag with column collation when possible=False;MARS Connection=False;DataTypeCompatibility=0;Trust Server Certificate=True;Application Intent=READWRITE;MultiSubnetFailover=False;Use FMTONLY=False;TransparentNetworkIPResolution=True;Connect Retry Count=1;Connect Retry Interval=10;
+=> Fields und FieldDefs zeigt nur 6 Felder (TIME Felder fehlen)
+=> Sobald Grid gezeigt wird, stürzt Programm ab
+	"Fehler bei einem aus mehreren Schritten bestehenden Vorgang.  Prüfen Sie die einzelnen Statuswerte."
+   wahrscheinlich weil "select *" eigentlich mehr Felder liefert, als der Provider hergibt?!
+=> LÖSUNG:
+	Hinzufügen zum ConnectionString:
+	DataTypeCompatibility=80

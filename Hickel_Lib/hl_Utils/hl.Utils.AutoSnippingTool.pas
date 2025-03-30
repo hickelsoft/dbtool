@@ -139,6 +139,10 @@ begin
         Clipboard.Clear;
         i := 0;
       except
+        on E: EAbort do
+        begin
+          Abort;
+        end;
       end;
     end;
 
@@ -178,9 +182,16 @@ begin
         end;
         clipHandle := clip.GetAsHandle(CF_Bitmap);
       except
-        Sleep(100);
-        Application.ProcessMessages;
-        continue;
+        on E: EAbort do
+        begin
+          Abort;
+        end;
+        on E: Exception do
+        begin
+          Sleep(100);
+          Application.ProcessMessages;
+          continue;
+        end;
       end;
 
       img := TPicture.create;
@@ -209,6 +220,10 @@ begin
             clip.Clear;
             i := 0;
           except
+            on E: EAbort do
+            begin
+              Abort;
+            end;
           end;
         end;
       finally

@@ -132,6 +132,10 @@ begin
       MoveFileEx(PChar(ChangeFileExt(ParamStr(i),'.tmp')), PChar(ParamStr(i)), MOVEFILE_REPLACE_EXISTING);
     end;
   except
+    on E: EAbort do
+    begin
+      exit;
+    end;
     on E: Exception do
     begin
       Writeln('Error: ', E.Message);

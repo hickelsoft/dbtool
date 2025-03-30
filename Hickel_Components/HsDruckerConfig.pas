@@ -129,8 +129,16 @@ function THsDruckerConfig.WritePrinter: boolean;
       end;
       FConnection.CommitTrans;
     except
-      FConnection.RollbackTrans;
-      raise;
+      on E: EAbort do
+      begin
+        FConnection.RollbackTrans;
+        Abort;
+      end;
+      on E: Exception do
+      begin
+        FConnection.RollbackTrans;
+        raise;
+      end;
     end;
   end;
 

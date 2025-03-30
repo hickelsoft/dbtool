@@ -108,7 +108,8 @@ contains
   HickelSOFT_Design in 'Src\HickelSOFT_Design.pas',
   HS_Auth in 'Src\HS_Auth.pas',
   hl_IPC_LowLevel_Common in '..\CrwLowLevel\IPC_API\hl_IPC_LowLevel_Common.pas',
-  hl_MultiLang in 'Src\hl_MultiLang.pas';
+  hl_MultiLang in 'Src\hl_MultiLang.pas',
+  HS_Mitteilung in 'Src\HS_Mitteilung.pas';
 
 end.
 

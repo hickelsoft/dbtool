@@ -21,7 +21,7 @@ type
 implementation
 
 uses
-  SyncObjs;
+  SyncObjs, Classes;
 
 var
   CSLog: TCriticalSection;
@@ -29,9 +29,13 @@ var
 class function ThlLog.DefaultLogDir: string;
 var
   exePath: string;
+  slTmp: TStringList;
+const
+  HINWEIS_TXT = '__HINWEIS__.TXT';
 begin
+  {$REGION 'Deprecated log dir Warnung einfügen'}
+  result := '';
   exePath := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)));
-
   (* if Assigned(hclConfig) then
   begin
     result := IncludeTrailingPathDelimiter(hclCore.Config.ClientLogPfad);
@@ -53,18 +57,32 @@ begin
   else if DirectoryExists('Log') then
   begin
     result := 'Log\';
+  end;
+  if not FileExists(result + HINWEIS_TXT) then
+  begin
+    try
+      slTmp := TStringList.Create;
+      try
+        slTmp.Text := 'Wichtiger Hinweis: Logs werden ab sofort pro Windows User gespeichert unter: '+#13#10+
+                      'C:\Users\...\AppData\Local\HickelSOFT\Logs\';
+        slTmp.SaveToFile(result + HINWEIS_TXT);
+      finally
+        FreeAndNil(slTmp);
+      end;
+    except
+      on E: EAbort do Abort;
+    end;
+  end;
+  {$ENDREGION}
+
+  result := SysUtils.GetEnvironmentVariable('APPDATA');
+  if result <> '' then
+  begin
+    result := IncludeTrailingPathDelimiter(result) + '..\Local\HickelSOFT\Logs\';
+    ForceDirectories(result);
   end
   else
-  begin
-    result := SysUtils.GetEnvironmentVariable('APPDATA');
-    if result <> '' then
-    begin
-      result := IncludeTrailingPathDelimiter(result) + '..\Local\HickelSOFT\Logs\';
-      ForceDirectories(result);
-    end
-    else
-      result := exePath; // In das EXE-Verzeichnis schreiben
-  end;
+    result := exePath; // In das EXE-Verzeichnis schreiben
 end;
 
 procedure ThlLog.Delete;
@@ -125,6 +143,10 @@ begin
       // DM 29.02.2016
       // Große Ausnahme: Wenn hier was fehlschlägt, ignorieren wir es.
       // Denn Fehler in der Fehlerbehandlungsroutine (mit Logs) sind tödlich.
+      on E: EAbort do
+      begin
+        Abort;
+      end;
     end;
   finally
     CSLog.Leave;

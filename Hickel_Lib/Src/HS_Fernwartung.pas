@@ -134,7 +134,14 @@ begin
           try
             DownloadFile(zipUrlSigned, downloadedZip+'.tmp', pgd);
           except
-            DownloadFile(zipUrlUnsigned, downloadedZip+'.tmp', pgd);
+            on E: EAbort do
+            begin
+              Abort;
+            end;
+            on E: Exception do
+            begin
+              DownloadFile(zipUrlUnsigned, downloadedZip+'.tmp', pgd);
+            end;
           end;
           if ThlUtils.GetFileSize(downloadedZip+'.tmp') >= 1024 then
           begin
@@ -149,7 +156,7 @@ begin
         except
           on E: EAbort do
           begin
-
+            Abort;
           end;
           on E: Exception do
           begin
@@ -178,6 +185,10 @@ begin
             FreeAndNil(zip);
           end;
         except
+          on E: EAbort do
+          begin
+            Abort;
+          end;
           on E: Exception do
           begin
             if FileExists(downloadedExe) then
@@ -190,7 +201,11 @@ begin
               try 
                 DeleteFile(downloadedZip);
               except
-              end; 
+                on E: EAbort do
+                begin
+                  Abort;
+                end;
+              end;
               raise Exception.Create('Fehler beim Entpacken von '+downloadedZip+'. Bitte Internet-Verbindung prüfen und Programm nochmal neu starten. Genaue Fehlermeldung: '+E.Message);
             end;
           end;

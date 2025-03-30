@@ -125,7 +125,14 @@ begin
      end;
      Application.MessageBox(PChar(Format(SDBToolDefaultInstalled, [MessageName])), PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
   except
-    Application.MessageBox(PChar(SDefaultErrorNoAdmin), PChar(Application.Title), MB_ICONERROR + MB_OK);
+    on E: EAbort do
+    begin
+      Abort;
+    end;
+    on E: Exception do
+    begin
+      Application.MessageBox(PChar(SDefaultErrorNoAdmin), PChar(Application.Title), MB_ICONERROR + MB_OK);
+    end;
   end;
 end;
 
@@ -171,7 +178,11 @@ end;
 
 procedure TDLG_Optionen.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
 begin
-  if Key = VK_ESCAPE then Close;
+  if Key = VK_ESCAPE then
+  begin
+    Key := 0;
+    Close;
+  end;
 end;
 
 end.
