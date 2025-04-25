@@ -9,3 +9,4 @@ del *.ddp
 del *.~*
 del *.local
 del *.identcache
+del *.xlat.$*

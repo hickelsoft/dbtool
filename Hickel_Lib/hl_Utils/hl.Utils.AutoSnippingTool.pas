@@ -143,6 +143,10 @@ begin
         begin
           Abort;
         end;
+        on E: Exception do
+        begin
+          // ignore
+        end;
       end;
     end;
 
@@ -223,6 +227,10 @@ begin
             on E: EAbort do
             begin
               Abort;
+            end;
+            on E: Exception do
+            begin
+              // ignore
             end;
           end;
         end;

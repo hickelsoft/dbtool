@@ -372,7 +372,7 @@ begin
         Height := 48;
         Transparent := true;
 
-        if Copy(DateToStr(Now),1,6) = '01.04.' then
+        if false then // if Copy(DateToStr(Now),1,6) = '01.04.' then
         begin
           if RandomRange(0,2){return 0 or 1} = 0 then
           begin

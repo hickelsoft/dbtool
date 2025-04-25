@@ -140,6 +140,7 @@ procedure DeleteFilesWildcards(Source: string; recyclebin: boolean);
 function IsWindows10: boolean;
 function IsWindows11: boolean;
 
+function Crw11_IstInstalliert: boolean;
 function Crw13_IstInstalliert: boolean;
 function IsVCRuntime2022_64Bit_Installed: Boolean;
 
@@ -2006,6 +2007,42 @@ begin
   end;
 end;
 
+function Crw11_IstInstalliert: boolean;
+var
+  testFile, key: string;
+  reg: TRegistry;
+begin
+  reg := TRegistry.Create;
+  try
+    reg.RootKey := HKEY_LOCAL_MACHINE;
+    if WindowsBits = 64 then
+    begin
+      key := 'SOFTWARE\WOW6432Node\Business Objects\Suite 11.0\Crystal Reports';
+      // testFile := 'C:\Program Files (x86)\Common Files\Business Objects\3.0\bin\crpe32.dll';
+    end
+    else
+    begin
+      key := 'SOFTWARE\Business Objects\Suite 11.0\Crystal Reports';
+      // testFile := 'C:\Program Files\Common Files\Business Objects\3.0\bin\crpe32.dll';
+    end;
+    if reg.OpenKeyReadOnly(key) then
+    begin
+      testFile := IncludeTrailingPathDelimiter(reg.ReadString('CommonFiles')) + 'crpe32.dll';
+      reg.CloseKey;
+    end
+    else
+    begin
+      result := false;
+      exit;
+    end;
+    if not FileExists(testFile) then begin result := false; Exit; end;
+    if FileDateToDateTime(FileAge(testFile)) > EncodeDate(2006, 1, 1) then begin result := false; Exit; end; // Runtime aus 2006 verursacht Probleme (Ticket 53942, 54766, 54770)
+    result := true;
+  finally
+    FreeAndNil(reg);
+  end;
+end;
+
 function Crw13_IstInstalliert: boolean;
 var
   testFile: string;
@@ -2014,15 +2051,18 @@ begin
   begin
     testFile := 'C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\crpe32.dll';
     if not FileExists(testFile) then begin result := false; Exit; end;
+    if FileDateToDateTime(FileAge(testFile)) < EncodeDate(2020, 1, 1) then begin result := false; Exit; end; // Runtime aus 2014 verursacht Probleme (Ticket 60253)
     // sic! Die 64 Bit crpe32.dll liegt wirklich in "Program Files (x86)" !
     testFile := 'C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win64_x64\crpe32.dll';
     if not FileExists(testFile) then begin result := false; Exit; end;
+    if FileDateToDateTime(FileAge(testFile)) < EncodeDate(2020, 1, 1) then begin result := false; Exit; end; // Runtime aus 2014 verursacht Probleme (Ticket 60253)
     result := true;
   end
   else
   begin
     testFile := 'C:\Program Files\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\crpe32.dll';
     if not FileExists(testFile) then begin result := false; Exit; end;
+    if FileDateToDateTime(FileAge(testFile)) < EncodeDate(2020, 1, 1) then begin result := false; Exit; end; // Runtime aus 2014 verursacht Probleme (Ticket 60253)
     result := true;
   end;
 end;
@@ -2125,6 +2165,10 @@ begin
     on E: EAbort do
     begin
       Abort;
+    end;
+    on E: Exception do
+    begin
+      // ignore
     end;
   end;
 end;
@@ -3491,7 +3535,6 @@ const
   );
 var
   Reg: TRegistry;
-  DriversKey: string;
   i: Integer;
 begin
   Result := False;

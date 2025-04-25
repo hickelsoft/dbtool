@@ -205,6 +205,10 @@ begin
                 begin
                   Abort;
                 end;
+                on E: Exception do
+                begin
+                  // ignore
+                end;
               end;
               raise Exception.Create('Fehler beim Entpacken von '+downloadedZip+'. Bitte Internet-Verbindung prüfen und Programm nochmal neu starten. Genaue Fehlermeldung: '+E.Message);
             end;

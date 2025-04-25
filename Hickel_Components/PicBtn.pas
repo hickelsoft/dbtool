@@ -210,6 +210,10 @@ begin
           begin
             Abort;
           end;
+          on E: Exception do
+          begin
+            // ignore
+          end;
         end;
       finally
         FreeAndNil(aBitmap);

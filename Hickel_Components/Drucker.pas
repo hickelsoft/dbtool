@@ -45,17 +45,6 @@ type
       function GetAnzahl: integer;
       procedure EnforceAnyDefaultPrinter;
   protected
-      function GetSchachtNr : Integer;
-      function GetSchachtIndex : Integer;
-      function GetDuplexIndex : Integer;
-      procedure PrinterChange     ( Sender: TObject );
-      procedure SetPrinterIndex   ( Index: Integer );
-      procedure SetDruckerListe   ( PList: TComboBox );
-      procedure SetDuplexListe    ( Value: TComboBox );
-      procedure SetPaperBin       ( Value: TComboBox );
-      procedure SetSpinKopien     ( PSpin: TSpinEdit );
-      procedure SetActive         ( Value: Boolean );
-  public
       //FDevMode: PDeviceMode;
       //hMode: THandle;
       FBinNumber: TStrings;
@@ -72,6 +61,17 @@ type
 
       FKopienModus: TKopienModus;
 
+      function GetSchachtNr : Integer;
+      function GetSchachtIndex : Integer;
+      function GetDuplexIndex : Integer;
+      procedure PrinterChange     ( Sender: TObject );
+      procedure SetPrinterIndex   ( Index: Integer );
+      procedure SetDruckerListe   ( PList: TComboBox );
+      procedure SetDuplexListe    ( Value: TComboBox );
+      procedure SetPaperBin       ( Value: TComboBox );
+      procedure SetSpinKopien     ( PSpin: TSpinEdit );
+      procedure SetActive         ( Value: Boolean );
+  public
       procedure Loaded; override;
       constructor Create( aOwner: TComponent ); override;
       destructor Destroy; override;
@@ -144,7 +144,8 @@ begin
    begin
       KopienDrucker := True;
       Bildschirm := False;
-      Printerindex := StandardIndex;
+      if Printerindex <> StandardIndex then
+        Printerindex := StandardIndex;
       if assigned (ActiveCheckbox) then ActiveCheckbox.Checked := False;
       if assigned( Druckerliste ) then Druckerliste.enabled := True;
       if assigned( Zufuhrliste ) then Zufuhrliste.Enabled := True;
@@ -161,7 +162,8 @@ begin
    begin
       KopienDrucker := False;
       Bildschirm := True;
-      Printerindex := StandardIndex;
+      if Printerindex <> StandardIndex then
+        Printerindex := StandardIndex;
       if assigned (ActiveCheckbox) then ActiveCheckbox.Checked := True;
    end;
 end;
@@ -177,7 +179,8 @@ begin
       if FBildschirm = false then
       begin
          FStandardIndex := Printer.PrinterIndex;
-         PrinterIndex := Printer.PrinterIndex;
+         if PrinterIndex <> Printer.PrinterIndex then
+           PrinterIndex := Printer.PrinterIndex;
          FBinNumber.Clear;
       end;
       // Änderung ende
@@ -247,7 +250,8 @@ begin
 
   FBinNumber := TStringlist.Create;
 
-  PrinterIndex := Printer.PrinterIndex;
+  if PrinterIndex <> Printer.PrinterIndex then
+    PrinterIndex := Printer.PrinterIndex;
 end;
 destructor TPrinterData.Destroy;
 var
@@ -285,6 +289,10 @@ begin
      on E: EAbort do
      begin
        Abort;
+     end;
+     on E: Exception do
+     begin
+       // ignore
      end;
    end;
 
@@ -536,8 +544,16 @@ begin
 end;
 procedure TPrinterData.PrinterChange( Sender: TObject );
 begin
-   if FBildschirm = True then PrinterIndex := FDruckerListe.ItemIndex - 1
-   else PrinterIndex := FDruckerListe.ItemIndex;
+   if FBildschirm = True then
+   begin
+     if PrinterIndex <> FDruckerListe.ItemIndex - 1 then
+       PrinterIndex := FDruckerListe.ItemIndex - 1;
+   end
+   else
+   begin
+     if PrinterIndex <> FDruckerListe.ItemIndex then
+       PrinterIndex := FDruckerListe.ItemIndex;
+   end;
 end;
 procedure TPrinterData.SetDefaults;
 var
@@ -548,13 +564,20 @@ begin
   if KopienDrucker then
   begin
     if Printer.Printers.Count = 0 then
-      PrinterIndex := -1
+    begin
+      if PrinterIndex <> -1 then
+        PrinterIndex := -1;
+    end
     else
-      PrinterIndex := 0;
+    begin
+      if PrinterIndex <> 0 then
+        PrinterIndex := 0;
+    end;
   end
   else
   begin
-    PrinterIndex := -1; // Bildschirm
+    if PrinterIndex <> -1 then
+      PrinterIndex := -1; // Bildschirm
   end;
 
   SchachtIndex := -1;
@@ -598,10 +621,15 @@ begin
       Items.Assign(TPrinterData.CachedPrinterList);
       if FBildschirm = True then
       begin
-         Items.Insert( 0, 'Bildschirm' );
-       FPrinterIndex := -1;
+        Items.Insert( 0, 'Bildschirm' );
+        if FPrinterIndex <> -1 then
+          FPrinterIndex := -1;
       end
-      else FPrinterIndex := FStandardIndex;
+      else
+      begin
+        if FPrinterIndex <> FStandardIndex then
+          FPrinterIndex := FStandardIndex;
+      end;
     end;
     ItemIndex := 0;
     if assigned( Onchange ) then FOnAfterPrinterChange := onChange;
@@ -628,17 +656,20 @@ begin
   if Index < 0 then  // Bildschirm
   begin
     FDrucker := TPrinterData.CachedPrinterList[ FStandardIndex ];
-    FPrinter.PrinterIndex := FStandardIndex;
+    if FPrinter.PrinterIndex <> FStandardIndex then
+      FPrinter.PrinterIndex := FStandardIndex;
   end
   else  // Drucker
   begin
     if index < TPrinterData.CachedPrinterList.Count then
     begin
-      FPrinter.PrinterIndex := Index;
+      if FPrinter.PrinterIndex <> Index then
+        FPrinter.PrinterIndex := Index;
       FDrucker := TPrinterData.CachedPrinterList[ Index ];
     end;
   end;
-  FPrinterIndex := Index;
+  if FPrinterIndex <> Index then
+    FPrinterIndex := Index;
 
 
   // Dieser Code tut aus irgendeinem Grund ein Heap Alloc leaken!!! (App Verifier)
@@ -732,8 +763,8 @@ begin
 
   // Hier nochmal ein ganz anderer Code...
 
-  FPrinter.PrinterIndex := Index;
-  //FPrinterIndex := FPrinter.PrinterIndex;  // <-- nein, wir lassen kein "Feedback" zu. "-1" bleibt bei uns "-1"
+  if FPrinter.PrinterIndex <> Index then
+    FPrinter.PrinterIndex := Index; //FPrinterIndex := FPrinter.PrinterIndex;  // <-- nein, wir lassen kein "Feedback" zu. "-1" bleibt bei uns "-1"
 
   FPrinter.GetPrinter( pcName, pcDriver, pcPort, hMode );
 
@@ -798,6 +829,10 @@ begin
                 on E: EAbort do
                 begin
                   Abort;
+                end;
+                on E: Exception do
+                begin
+                  // ignore
                 end;
               end;
             finally
@@ -975,13 +1010,14 @@ var
   sl: TSTringList;
 begin
   try
-    Printer.Printerindex := -1;
+    if Printer.Printerindex <> -1 then
+      Printer.Printerindex := -1;
   except
     on E: EAbort do
     begin
       Abort;
     end;
-    on EPrinter do
+    on E: EPrinter do
     begin
       sl := TStringList.Create;
       try
@@ -993,6 +1029,10 @@ begin
       finally
         FreeAndNil(sl);
       end;
+    end;
+    on E: Exception do
+    begin
+      raise;
     end;
   end;
 end;

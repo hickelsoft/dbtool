@@ -69,15 +69,15 @@
 
 To use and compile the source code, you need:
 
-- Embarcadero Delphi 12
+- Embarcadero Delphi 12 (Community Edition is free for non-commerical usage)
 
 - BDE for Delphi (to support Paradox and dBase)
 
 - HickelSOFT VCL Components (included in this repository)
 
-- For translations in addition: GetIt Package "VCL Translation Support", and a PHP interpreter
+- [Better Translation Manager](https://github.com/andersmelander/better-translation-manager)
 
-- Woll2Woll InfoPower
+- [Woll2Woll InfoPower](https://www.woll2woll.com/infopower)
 
 ## License and Restrictions
 
@@ -86,4 +86,4 @@ Free, even for commercial use. Licensed under the terms of the Apache 2.0 licens
 The manufacturer of this software is under no circumstances liable for damages resulting from the use of this software!
 
 
-(C) 1999-2002 Leif Bruder, 2016-2024 HickelSOFT Huth GmbH
+(C) 1999-2002 Leif Bruder, 2016-2025 HickelSOFT Huth GmbH

@@ -63,8 +63,6 @@ contains
   hl.System.Types in 'hl_System\hl.System.Types.pas',
   hl_Datenbank in 'Src\hl_Datenbank.pas',
   hl_Log in 'Src\hl_Log.pas',
-  hl_Report in 'Src\hl_Report.pas',
-  hl_Crw_Report in 'Src\hl_Crw_Report.pas',
   hl.Datenbank.Utils in 'hl_Datenbank\hl.Datenbank.Utils.pas',
   hl.System.ExceptionHandler in 'hl_System\hl.System.ExceptionHandler.pas',
   hl.Utils.ResIniFile in 'hl_Utils\hl.Utils.ResIniFile.pas',

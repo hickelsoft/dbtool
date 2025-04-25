@@ -11,8 +11,8 @@ implementation
 uses
   Registry, Windows, SysUtils;
 
-var
-  _SqlServerProvider_Cache: string = '';
+threadvar
+  _SqlServerProvider_Cache: string;
 
 function SqlServerProvider(NoCache: boolean=false): string;
 var

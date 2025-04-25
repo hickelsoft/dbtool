@@ -1,16 +1,12 @@
 <?php
 
 $files = array_merge(
-  //glob('c:/SVN/Delphi/Cora_Verwaltung/Src/*.pas'),
-  //glob('c:/SVN/Delphi/Cora_Verwaltung/Src/*/*.pas'),
-  //glob('c:/SVN/Delphi/Cora_Verwaltung/Src/*/*/*.pas'),
-  //glob('c:/SVN/Delphi/Cora_Verwaltung/Src/*/*/*/*.pas')
 
 
   glob('c:/SVN/VTS_CMDB2/trunk/*.pas'),
   glob('c:/SVN/VTS_CMDB2/trunk/*.dpr'),
-  glob('c:/SVN/VTS_Decoder/Decoder50/*.pas'),
-  glob('c:/SVN/VTS_Decoder/Decoder50/*.dpr'),
+  glob('c:/SVN/VTS_Decoder/Decoder5x/*.pas'),
+  glob('c:/SVN/VTS_Decoder/Decoder5x/*.dpr'),
 
 
   glob('c:/SVN/Delphi/*.pas'),
@@ -35,19 +31,43 @@ $files = array_merge(
 
 
 function checkPascalFile($filePath) {
-    $content = file_get_contents($filePath);
 
+	if (strpos($filePath, '/VCL_') !== false) return;
+	if (strpos($filePath, '/_CRW11') !== false) return;
 	if (strpos($filePath, 'ABGESCHALTETE') !== false) return;
 	if (strpos($filePath, 'BetterADODataSet.pas') !== false) return;
 	if (strpos($filePath, 'PerlRegEx.pas') !== false) return;
 	if (strpos($filePath, '/pcre.pas') !== false) return;
 	if (strpos($filePath, 'schnellere Localization (F7, F8)') !== false) return;
 
+    $content = file_get_contents($filePath);
 
+	if (strpos($content, 'on E: EAbort do{60208}') !== false) {
+		$content = str_ireplace('on E: EAbort do{60208}', 'on E: EAbort do', $content);
+		file_put_contents($filePath, $content);
+	}
 
     if ($content === false) {
         die("Fehler beim Lesen der Datei: $filePath\n");
     }
+
+
+
+
+
+
+
+
+	if (substri_count($content, 'on E: EAbort do') != substri_count($content, 'on E: Exception do')) {
+	  echo $filePath."\n";
+
+	  $content = str_ireplace('on E: EAbort do', 'on E: EAbort do{60208}', $content);
+	  file_put_contents($filePath, $content);
+
+	}
+	return;
+
+
 
 	$content = str_replace('try-except-end', '', $content);
 
@@ -83,8 +103,6 @@ function checkPascalFile($filePath) {
 
 foreach ($files as $file) {
 
-	if (strpos($file, '/VCL_') !== false) continue;
-	if (strpos($file, '/_CRW11') !== false) continue;
 
     checkPascalFile($file);
 
@@ -94,3 +112,8 @@ foreach ($files as $file) {
 }
 
 echo "Fertig.";
+
+function substri_count($haystack, $needle)
+{
+    return substr_count(strtoupper($haystack), strtoupper($needle));
+}

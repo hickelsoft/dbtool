@@ -69,6 +69,10 @@ begin
         begin
           Abort;
         end;
+        on E: Exception do
+        begin
+          // ignore
+        end;
       end;
       m := Pointer(integer(m)+1);
     until false;

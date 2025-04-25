@@ -119,6 +119,10 @@ begin
            begin
              Abort;
            end;
+           on E: Exception do
+           begin
+             // ignore
+           end;
          end;
          DLG_Main.OpenFile(eDateiname.Text);
          Close;
@@ -131,6 +135,10 @@ begin
            on E: EAbort do
            begin
              Abort;
+           end;
+           on E: Exception do
+           begin
+             // ignore
            end;
          end;
          DLG_Main.OpenFile(eDateiname.Text);

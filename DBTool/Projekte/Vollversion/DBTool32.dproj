@@ -6,7 +6,7 @@
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
         <DCC_DependencyCheckOutputName>c:\HS-Service\DBTool32.exe</DCC_DependencyCheckOutputName>
         <FrameworkType>VCL</FrameworkType>
-        <ProjectVersion>20.2</ProjectVersion>
+        <ProjectVersion>20.3</ProjectVersion>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -85,10 +85,10 @@
         <PreBuildEvent><![CDATA[ResCompile DBTool32
 $(PreBuildEvent)]]></PreBuildEvent>
         <VerInfo_IncludeVerInfo>false</VerInfo_IncludeVerInfo>
-        <PostBuildEvent><![CDATA[if exist c:\HS-Service\DBTool32.ENU move c:\HS-Service\DBTool32.ENU c:\HS-Service\_DBTool32.ENU
+        <PostBuildEvent><![CDATA[if exist c:\HS-Service\DbTool32.enu move c:\HS-Service\DbTool32.enu c:\HS-Service\_DbTool32.enu
 ..\..\..\DevTools\MakeJclDbg -e c:\HS-Service\DbTool32.map
-if exist c:\HS-Service\_DBTool32.ENU move c:\HS-Service\_DBTool32.ENU c:\HS-Service\DBTool32.ENU
 del c:\HS-Service\DbTool32.map
+if exist c:\HS-Service\_DbTool32.enu move c:\HS-Service\_DbTool32.enu c:\HS-Service\DbTool32.enu
 $(PostBuildEvent)]]></PostBuildEvent>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
@@ -338,6 +338,16 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     </Platform>
                     <Platform Name="Android64">
                         <RemoteDir>res\values-v31</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="AndroidSplashStylesV35">
+                    <Platform Name="Android">
+                        <RemoteDir>res\values-v35</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\values-v35</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
@@ -1147,7 +1157,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>if exist c:\HS-Service\DBTool32.ENU move c:\HS-Service\DBTool32.ENU c:\HS-Service\_DBTool32.ENU&amp;&amp;..\..\..\DevTools\MakeJclDbg -e c:\HS-Service\DbTool32.map&amp;&amp;if exist c:\HS-Service\_DBTool32.ENU move c:\HS-Service\_DBTool32.ENU c:\HS-Service\DBTool32.ENU&amp;&amp;del c:\HS-Service\DbTool32.map</PostBuildEvent>
+        <PostBuildEvent>if exist c:\HS-Service\DbTool32.enu move c:\HS-Service\DbTool32.enu c:\HS-Service\_DbTool32.enu&amp;&amp;..\..\..\DevTools\MakeJclDbg -e c:\HS-Service\DbTool32.map&amp;&amp;del c:\HS-Service\DbTool32.map&amp;&amp;if exist c:\HS-Service\_DbTool32.enu move c:\HS-Service\_DbTool32.enu c:\HS-Service\DbTool32.enu</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win32'">
@@ -1155,7 +1165,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>if exist c:\HS-Service\DBTool32.ENU move c:\HS-Service\DBTool32.ENU c:\HS-Service\_DBTool32.ENU&amp;&amp;..\..\..\DevTools\MakeJclDbg -e c:\HS-Service\DbTool32.map&amp;&amp;if exist c:\HS-Service\_DBTool32.ENU move c:\HS-Service\_DBTool32.ENU c:\HS-Service\DBTool32.ENU&amp;&amp;del c:\HS-Service\DbTool32.map</PostBuildEvent>
+        <PostBuildEvent>if exist c:\HS-Service\DbTool32.enu move c:\HS-Service\DbTool32.enu c:\HS-Service\_DbTool32.enu&amp;&amp;..\..\..\DevTools\MakeJclDbg -e c:\HS-Service\DbTool32.map&amp;&amp;del c:\HS-Service\DbTool32.map&amp;&amp;if exist c:\HS-Service\_DbTool32.enu move c:\HS-Service\_DbTool32.enu c:\HS-Service\DbTool32.enu</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

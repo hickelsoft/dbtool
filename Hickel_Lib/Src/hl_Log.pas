@@ -70,7 +70,14 @@ begin
         FreeAndNil(slTmp);
       end;
     except
-      on E: EAbort do Abort;
+      on E: EAbort do
+      begin
+        Abort;
+      end;
+      on E: Exception do
+      begin
+        // ignore
+      end;
     end;
   end;
   {$ENDREGION}
@@ -146,6 +153,10 @@ begin
       on E: EAbort do
       begin
         Abort;
+      end;
+      on E: Exception do
+      begin
+        // ignore
       end;
     end;
   finally

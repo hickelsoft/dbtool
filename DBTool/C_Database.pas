@@ -194,7 +194,7 @@ begin
         connStrPrefix := connStrPrefix + 'Integrated Security=SSPI;'; // do not localize
 
       if (GivenProvider = 'MSOLEDBSQL19') and (ConnStrReadAttr('Use Encryption for Data', Copy(DatabaseName, Length('_SQLSRV:')+1)) = '') then // do not localize
-        connStrPrefix := connStrPrefix + 'Use Encryption for Data=Optional;'; // wichtig für MSOLEDBSQL19 (Generation 3, Version 19+) Treiber // do not localize
+        connStrPrefix := connStrPrefix + 'Use Encryption for Data=False;'; // wichtig für MSOLEDBSQL19 (Generation 3, Version 19+) Treiber // do not localize
 
       if (SqlServerProvider <> 'SQLOLEDB') and (ConnStrReadAttr('DataTypeCompatibility', Copy(DatabaseName, Length('_SQLSRV:')+1)) = '') then // do not localize
         connStrPrefix := connStrPrefix + 'DataTypeCompatibility=80;'; // ansonsten funktionieren "time" Datentypen nicht! (sind im Fields[] und FieldDefs[] nicht da und dbGrid kackt ab)
@@ -310,6 +310,10 @@ begin
                   on E: EAbort do
                   begin
                     Abort;
+                  end;
+                  on E: Exception do
+                  begin
+                    // ignore
                   end;
                 end;
               end
@@ -460,6 +464,10 @@ begin
       on E: EAbort do
       begin
         Abort;
+      end;
+      on E: Exception do
+      begin
+        // ignore
       end;
     end;
     DB_ADO.Close;
@@ -785,8 +793,11 @@ begin
               result := nil
             else
               raise;
-          end
-          else raise;
+          end;
+          on E: Exception do
+          begin
+            raise;
+          end;
         end;
       end;
 
@@ -815,8 +826,7 @@ begin
               result := nil
             else
               raise;
-          end
-          else raise;
+          end;
         end;
       end;
 
@@ -1595,6 +1605,10 @@ var
         // ShowMessage(E.Message);
         Inc(errorCount);
       end;
+      on E: Exception do
+      begin
+        raise;
+      end;
     end;
   end;
 
@@ -1612,6 +1626,10 @@ var
       begin
         // ShowMessage(E.Message);
         Inc(errorCount);
+      end;
+      on E: Exception do
+      begin
+        raise;
       end;
     end;
   end;
@@ -2083,6 +2101,10 @@ begin
               on E: EAbort do
               begin
                 Abort;
+              end;
+              on E: Exception do
+              begin
+                // ignore
               end;
             end;
           end;

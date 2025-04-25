@@ -232,7 +232,7 @@ type
 
     class function SQKKommentareUmwandeln(sql: TStrings; subquery: boolean=false): string;
 
-    procedure DefragIndexes(FragmentierungSchwellenWert: integer=10);
+    procedure DefragIndexes;
 
     {$REGION 'RowLock-Funktionen'}
     (*
@@ -463,7 +463,7 @@ begin
     sqlConnStr := sqlConnStr + 'User ID='+HS_SA_DB_USER+';Password='+HS_SA_DB_PASSWORD+';Persist Security Info=True;';
 
   if SqlServerProvider = 'MSOLEDBSQL19' then
-    sqlConnStr := sqlConnStr + 'Use Encryption for Data=Optional;';
+    sqlConnStr := sqlConnStr + 'Use Encryption for Data=False;';
 
   if SqlServerProvider <> 'SQLOLEDB' then
     sqlConnStr := sqlConnStr + 'DataTypeCompatibility=80;'; // ansonsten funktionieren "time" Datentypen nicht! (sind im Fields[] und FieldDefs[] nicht da und dbGrid kackt ab)
@@ -817,7 +817,7 @@ begin
   result := 300;
 end;
 
-procedure ThlDatenbank.DefragIndexes(FragmentierungSchwellenWert: integer=10);
+procedure ThlDatenbank.DefragIndexes;
 var
   q: ThlDataSet;
   SchemaName, TableName, IndexName: string;
@@ -829,11 +829,11 @@ begin
     '  i.name AS IndexName, ' +
     '  ips.index_type_desc AS IndexType, ' +
     '  ips.avg_fragmentation_in_percent ' +
-    'FROM sys.dm_db_index_physical_stats (DB_ID(), NULL, NULL, NULL, ''LIMITED'') ips ' +
+    'FROM sys.dm_db_index_physical_stats (DB_ID(), NULL, NULL, NULL, ''DETAILED'') ips ' +
     'JOIN sys.tables t ON ips.object_id = t.object_id ' +
     'JOIN sys.schemas s ON t.schema_id = s.schema_id ' +
     'JOIN sys.indexes i ON ips.object_id = i.object_id AND ips.index_id = i.index_id ' +
-    'WHERE ips.avg_fragmentation_in_percent > '+IntToStr(FragmentierungSchwellenWert)+' ' +
+    'WHERE ips.index_level = 0 ' + //0=Leaf, 1=Intermediate, 2=Root
     'ORDER BY ips.avg_fragmentation_in_percent DESC');
   try
     while not q.Eof do
@@ -842,20 +842,46 @@ begin
       TableName := q.FieldByName('TableName').AsString;
       IndexName := q.FieldByName('IndexName').AsString;
 
-      if q.FieldByName('IndexType').AsString = 'HEAP' then
+      if q.FieldByName('IndexType').AsString <> 'HASH' then
       begin
-        ExecSQL(Format('ALTER TABLE [%s].[%s] REBUILD;', [SchemaName, TableName]));
-      end
-      else
-      begin
-        ExecSQL(Format('ALTER INDEX [%s] ON [%s].[%s] REBUILD;', [IndexName, SchemaName, TableName]));
+        if q.FieldByName('IndexType').AsString = 'HEAP' then
+        begin
+          ExecSQL(Format('ALTER TABLE [%s].[%s] REBUILD;', [SchemaName, TableName]));
+        end
+        else
+        begin
+          if q.FieldByName('avg_fragmentation_in_percent').AsInteger > 30 then
+            ExecSQL(Format('ALTER INDEX [%s] ON [%s].[%s] REBUILD;', [IndexName, SchemaName, TableName]))
+          else if q.FieldByName('avg_fragmentation_in_percent').AsInteger > 10 then
+            ExecSQL(Format('ALTER INDEX [%s] ON [%s].[%s] REORGANIZE;', [IndexName, SchemaName, TableName]));
+        end;
       end;
+
+      ExecSQL(Format('UPDATE STATISTICS [%s].[%s] WITH FULLSCAN;', [SchemaName, TableName]));
 
       q.Next;
     end;
   finally
     FreeAndNil(q);
   end;
+
+  q := GetTable('SELECT s.name as SchemaName, v.name as TableName ' +
+                'FROM sys.views v ' +
+                'JOIN sys.schemas s ON v.schema_id = s.schema_id;');
+  try
+    while not q.EOF do
+    begin
+      SchemaName := q.FieldByName('SchemaName').AsString;
+      TableName := q.FieldByName('TableName').AsString;
+      ExecSQL(Format('sp_recompile ''[%s].[%s]'';', [SchemaName, TableName]));
+      q.Next;
+    end;
+  finally
+    FreeAndNil(q);
+  end;
+
+  ExecSQL('DBCC FREEPROCCACHE;');
+  ExecSQL('exec sp_updatestats;');
 end;
 
 destructor ThlDatenbank.Destroy;

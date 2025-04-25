@@ -93,8 +93,8 @@ begin
   try
     FDataLink.UpdateRecord;
   except
-    on EAbort do Abort;
-    on Exception do SetFocus;
+    on E: EAbort do Abort;
+    on E: Exception do SetFocus;
   end;//try
   inherited;
 end;//CMExit
