@@ -57,8 +57,13 @@ begin
   else if DirectoryExists('Log') then
   begin
     result := 'Log\';
+  end
+  else
+  begin
+    result := '';
   end;
-  if not FileExists(result + HINWEIS_TXT) then
+
+  if (result <> '') and not FileExists(result + HINWEIS_TXT) then
   begin
     try
       slTmp := TStringList.Create;

@@ -107,6 +107,7 @@ $(PreBuildEvent)]]></PreBuildEvent>
 del c:\HS-Service\DbTool64.map
 if exist c:\HS-Service\_DbTool64.enu move c:\HS-Service\_DbTool64.enu c:\HS-Service\DbTool64.enu
 $(PostBuildEvent)]]></PostBuildEvent>
+        <DCC_MapFile>3</DCC_MapFile>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <Version>7.0</Version>
@@ -151,7 +152,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <VerInfo_Debug>true</VerInfo_Debug>
         <VerInfo_IncludeVerInfo>false</VerInfo_IncludeVerInfo>
         <DCC_DebugDCUs>true</DCC_DebugDCUs>
-        <DCC_MapFile>3</DCC_MapFile>
     </PropertyGroup>
     <ProjectExtensions>
         <Borland.Personality>Delphi.Personality.12</Borland.Personality>
