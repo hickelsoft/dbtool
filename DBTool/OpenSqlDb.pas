@@ -6,7 +6,7 @@ interface
 
 uses
   Windows, SysUtils, Classes, Controls, StdCtrls, Forms, ADODB, Registry, Buttons,
-  msxmldom, XMLDoc, xmldom, XMLIntf, DB;
+  msxmldom, XMLDoc, xmldom, XMLIntf, DB, Vcl.Graphics, Vcl.ExtCtrls;
 
 type
   TDLG_OpenSqlDb = class(TForm)
@@ -18,10 +18,12 @@ type
     LbSpeedButton1: TSpeedButton;
     XMLDocument1: TXMLDocument;
     eServer: TComboBox;
+    Image1: TImage;
     procedure FormShow(Sender: TObject);
     procedure eServerExit(Sender: TObject);
     procedure LbButton1Click(Sender: TObject);
     procedure eServerChange(Sender: TObject);
+    procedure Image1Click(Sender: TObject);
   public
     class var FirstRun: boolean;
   private
@@ -36,7 +38,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Globals, C_Database, HsSqlServerProvider;
+  Globals, C_Database, HsSqlServerProvider, ShellApi;
 
 procedure TDLG_OpenSqlDb.FormShow(Sender: TObject);
 var
@@ -124,6 +126,26 @@ begin
 
   // DM 22.11.2016: Bin mir nicht sicher, ob das gut ist.
   //lbDatabases.SetFocus;
+end;
+
+procedure TDLG_OpenSqlDb.Image1Click(Sender: TObject);
+var
+  fileToOpen: string;
+  sl: TStringList;
+begin
+  fileToOpen := GetSQLServerDBListFilename;
+  {$REGION 'Create empty file if required'}
+  if not FileExists(fileToOpen) then
+  begin
+    sl := TStringList.Create;
+    try
+      sl.SaveToFile(fileToOpen);
+    finally
+      FreeAndNil(sl);
+    end;
+  end;
+  {$ENDREGION}
+  ShellExecute(Handle, 'open', PChar(fileToOpen), '', '', SW_NORMAL);
 end;
 
 procedure TDLG_OpenSqlDb.eServerChange(Sender: TObject);

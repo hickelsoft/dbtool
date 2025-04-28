@@ -221,7 +221,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <RDP_Source_Files Name="Item11">..\..\EditRTF.dfm</RDP_Source_Files>
                     <RDP_Source_Files Name="Item12">..\..\Query.dfm</RDP_Source_Files>
                     <RDP_Source_Files Name="Item13">..\..\..\Hickel_Components\Statusan.dfm</RDP_Source_Files>
-                    <RDP_Source_Files Name="Item14">..\..\..\..\..\HS-Service\DBTool32.drc</RDP_Source_Files>
+                    <RDP_Source_Files Name="Item14">C:\HS-Service\DBTool32.drc</RDP_Source_Files>
                 </RDP_Source_Files>
             </Delphi.Personality>
             <Platforms>

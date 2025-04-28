@@ -3,7 +3,8 @@ unit OpenMySqlDb;
 interface
 
 uses
-  Windows, Classes, Controls, StdCtrls, Forms, ADODB, Registry, Buttons, SysUtils;
+  Windows, Classes, Controls, StdCtrls, Forms, ADODB, Registry, Buttons, SysUtils,
+  Vcl.Graphics, Vcl.ExtCtrls;
 
 type
   TDLG_OpenMySqlDb = class(TForm)
@@ -14,10 +15,12 @@ type
     lbDatabases: TListBox;
     LbSpeedButton1: TSpeedButton;
     eServer: TComboBox;
+    Image1: TImage;
     procedure FormShow(Sender: TObject);
     procedure eServerExit(Sender: TObject);
     procedure LbButton1Click(Sender: TObject);
     procedure eServerChange(Sender: TObject);
+    procedure Image1Click(Sender: TObject);
   private
     FServerChanged: boolean;
   end;
@@ -28,7 +31,7 @@ var
 implementation
 
 uses
-  Globals;
+  Globals, ShellAPI;
 
 {$R *.DFM}
 
@@ -55,6 +58,26 @@ begin
   end;
 
   eServerExit(Sender);
+end;
+
+procedure TDLG_OpenMySqlDb.Image1Click(Sender: TObject);
+var
+  fileToOpen: string;
+  sl: TStringList;
+begin
+  fileToOpen := GetMySQLDBListFilename;
+  {$REGION 'Create empty file if required'}
+  if not FileExists(fileToOpen) then
+  begin
+    sl := TStringList.Create;
+    try
+      sl.SaveToFile(fileToOpen);
+    finally
+      FreeAndNil(sl);
+    end;
+  end;
+  {$ENDREGION}
+  ShellExecute(Handle, 'open', PChar(fileToOpen), '', '', SW_NORMAL);
 end;
 
 procedure TDLG_OpenMySqlDb.eServerChange(Sender: TObject);

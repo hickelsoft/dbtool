@@ -2,7 +2,7 @@
 <xlat>
   <meta>
     <version>3</version>
-    <created>2025-04-25T16:56:00.831+02:00</created>
+    <created>2025-04-28T16:34:27.374+02:00</created>
     <tool>amTranslationManager</tool>
     <toolversion>2.3.9199.24584</toolversion>
   </meta>
@@ -12,9 +12,9 @@
     <sorted>True</sorted>
     <omitnewstate>True</omitnewstate>
   </options>
-  <project sourcefile="..\..\..\HS-Service\DBTool64.exe" stringsymbolfile=".\DBTool64.drc" language="de-DE" properties="2207">
+  <project sourcefile="C:\HS-Service\DBTool64.exe" stringsymbolfile="C:\HS-Service\DBTool64.drc" language="de-DE" properties="2206">
     <targetlanguages>
-      <language language="en-US" translated="882"/>
+      <language language="en-US" translated="898"/>
       <language language="de-DE" translated="0"/>
     </targetlanguages>
     <modules>
@@ -10589,6 +10589,9 @@
             <properties>
               <property>
                 <value>OK</value>
+                <translations>
+                  <translation language="en-US" status="proposed">OK</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10714,6 +10717,9 @@
             <properties>
               <property>
                 <value>OK</value>
+                <translations>
+                  <translation language="en-US" status="proposed">OK</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11942,6 +11948,9 @@
             <properties>
               <property name="Caption">
                 <value>OK</value>
+                <translations>
+                  <translation language="en-US" status="proposed">OK</translation>
+                </translations>
               </property>
               <property name="Font.Name" status="skip">
                 <value>Tahoma</value>
@@ -12872,7 +12881,7 @@
               <property name="Caption">
                 <value>InterBase-Fehler</value>
                 <translations>
-                  <translation language="en-US" status="proposed">InterBase Error</translation>
+                  <translation language="en-US">InterBase Error</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">
@@ -12885,7 +12894,7 @@
               <property name="Caption">
                 <value>Die Datenbank konnte nicht geöffnet werden. Vermutlich befindet sie sich auf einem anderen Computer. Bitte geben Sie den Namen an, mit dem die Datenbank geöffnet werden soll:</value>
                 <translations>
-                  <translation language="en-US" status="proposed">The database could not be opened. It's probably on another computer. Please enter the name with which the database should be opened:</translation>
+                  <translation language="en-US">The database could not be opened. It's probably on another computer. Please enter the name with which the database should be opened:</translation>
                 </translations>
               </property>
             </properties>
@@ -12894,6 +12903,9 @@
             <properties>
               <property name="Caption">
                 <value>OK</value>
+                <translations>
+                  <translation language="en-US">OK</translation>
+                </translations>
               </property>
               <property name="Font.Name" status="skip">
                 <value>Tahoma</value>
@@ -12905,7 +12917,7 @@
               <property name="Caption">
                 <value>Abbrechen</value>
                 <translations>
-                  <translation language="en-US" status="proposed">Cancel</translation>
+                  <translation language="en-US">Cancel</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">
@@ -13488,6 +13500,9 @@
             <properties>
               <property name="Caption">
                 <value>OK</value>
+                <translations>
+                  <translation language="en-US" status="proposed">OK</translation>
+                </translations>
               </property>
               <property name="Font.Name" status="skip">
                 <value>Tahoma</value>
@@ -14198,7 +14213,7 @@
               <property name="Caption">
                 <value>MySQL-Datenbank öffnen</value>
                 <translations>
-                  <translation language="en-US" status="proposed">Open MySQL Database</translation>
+                  <translation language="en-US">Open MySQL Database</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">
@@ -14208,8 +14223,18 @@
           </item>
           <item name="DLG_OpenMySqlDb.eServer" type="TComboBox">
             <properties>
-              <property name="Text">
+              <property name="Text" status="skip">
                 <value>localhost</value>
+              </property>
+            </properties>
+          </item>
+          <item name="DLG_OpenMySqlDb.Image1" type="TImage">
+            <properties>
+              <property name="Hint">
+                <value>Favoriten-Liste bearbeiten</value>
+                <translations>
+                  <translation language="en-US">Edit favorites</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14218,7 +14243,7 @@
               <property name="Caption">
                 <value>Name des Datenbankservers:</value>
                 <translations>
-                  <translation language="en-US" status="proposed">Database Server Name:</translation>
+                  <translation language="en-US">Database Server Name:</translation>
                 </translations>
               </property>
             </properties>
@@ -14228,7 +14253,7 @@
               <property name="Caption">
                 <value>Zu öffnende Datenbank:</value>
                 <translations>
-                  <translation language="en-US" status="proposed">Database:</translation>
+                  <translation language="en-US">Database:</translation>
                 </translations>
               </property>
             </properties>
@@ -14237,6 +14262,9 @@
             <properties>
               <property name="Caption">
                 <value>OK</value>
+                <translations>
+                  <translation language="en-US">OK</translation>
+                </translations>
               </property>
               <property name="Font.Name" status="skip">
                 <value>Tahoma</value>
@@ -14248,7 +14276,7 @@
               <property name="Caption">
                 <value>Abbrechen</value>
                 <translations>
-                  <translation language="en-US" status="proposed">Cancel</translation>
+                  <translation language="en-US">Cancel</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">
@@ -14261,7 +14289,7 @@
               <property name="Caption">
                 <value>Aktualisieren</value>
                 <translations>
-                  <translation language="en-US" status="proposed">Refresh</translation>
+                  <translation language="en-US">Refresh</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">
@@ -14271,14 +14299,14 @@
           </item>
         </items>
       </module>
-      <module name="TDLG_OPENSQLDB" type="form" properties="8">
+      <module name="TDLG_OPENSQLDB" type="form" properties="7">
         <items>
           <item name="DLG_OpenSqlDb" type="TDLG_OpenSqlDb">
             <properties>
               <property name="Caption">
                 <value>SQL-Server-Datenbank öffnen</value>
                 <translations>
-                  <translation language="en-US" status="proposed">Open SQL Server Database</translation>
+                  <translation language="en-US">Open SQL Server Database</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">
@@ -14288,8 +14316,18 @@
           </item>
           <item name="DLG_OpenSqlDb.eServer" type="TComboBox">
             <properties>
-              <property name="Text">
+              <property name="Text" status="skip">
                 <value>localhost</value>
+              </property>
+            </properties>
+          </item>
+          <item name="DLG_OpenSqlDb.Image1" type="TImage">
+            <properties>
+              <property name="Hint">
+                <value>Favoriten-Liste bearbeiten</value>
+                <translations>
+                  <translation language="en-US">Edit favorites</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14298,7 +14336,7 @@
               <property name="Caption">
                 <value>Name des Datenbankservers:</value>
                 <translations>
-                  <translation language="en-US" status="proposed">Database Server Name:</translation>
+                  <translation language="en-US">Database Server Name:</translation>
                 </translations>
               </property>
             </properties>
@@ -14308,7 +14346,7 @@
               <property name="Caption">
                 <value>Zu öffnende Datenbank:</value>
                 <translations>
-                  <translation language="en-US" status="proposed">Database:</translation>
+                  <translation language="en-US">Database:</translation>
                 </translations>
               </property>
             </properties>
@@ -14317,6 +14355,9 @@
             <properties>
               <property name="Caption">
                 <value>OK</value>
+                <translations>
+                  <translation language="en-US">OK</translation>
+                </translations>
               </property>
               <property name="Font.Name" status="skip">
                 <value>Tahoma</value>
@@ -14328,7 +14369,7 @@
               <property name="Caption">
                 <value>Abbrechen</value>
                 <translations>
-                  <translation language="en-US" status="proposed">Cancel</translation>
+                  <translation language="en-US">Cancel</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">
@@ -14341,7 +14382,7 @@
               <property name="Caption">
                 <value>Aktualisieren</value>
                 <translations>
-                  <translation language="en-US" status="proposed">Refresh</translation>
+                  <translation language="en-US">Refresh</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">
@@ -14351,7 +14392,7 @@
           </item>
           <item name="DLG_OpenSqlDb.XMLDocument1" type="TXMLDocument">
             <properties>
-              <property name="DOMVendorDesc">
+              <property name="DOMVendorDesc" status="skip">
                 <value>MSXML</value>
               </property>
             </properties>
@@ -14539,6 +14580,9 @@
             <properties>
               <property name="Caption">
                 <value>OK</value>
+                <translations>
+                  <translation language="en-US" status="proposed">OK</translation>
+                </translations>
               </property>
               <property name="Font.Name" status="skip">
                 <value>Tahoma</value>
@@ -14663,6 +14707,9 @@
             <properties>
               <property name="Caption">
                 <value>OK</value>
+                <translations>
+                  <translation language="en-US" status="proposed">OK</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14670,6 +14717,9 @@
             <properties>
               <property name="Caption">
                 <value>Abbrechen</value>
+                <translations>
+                  <translation language="en-US" status="proposed">Cancel</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14716,6 +14766,9 @@
             <properties>
               <property name="Caption">
                 <value>&amp;OK</value>
+                <translations>
+                  <translation language="en-US" status="proposed">&amp;OK</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -15811,6 +15864,9 @@
             <properties>
               <property name="Caption">
                 <value>&amp;OK</value>
+                <translations>
+                  <translation language="en-US" status="proposed">&amp;OK</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -17701,6 +17757,9 @@
             <properties>
               <property name="Caption">
                 <value>&amp;OK</value>
+                <translations>
+                  <translation language="en-US" status="proposed">&amp;OK</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -17907,6 +17966,9 @@
             <properties>
               <property name="Caption">
                 <value>&amp;OK</value>
+                <translations>
+                  <translation language="en-US" status="proposed">&amp;OK</translation>
+                </translations>
               </property>
             </properties>
           </item>
