@@ -40,7 +40,6 @@ requires
 contains
   Drucker in 'Drucker.pas',
   HsGauge in 'HsGauge.pas',
-  hstools in 'hstools.pas',
   HsDruckerConfig in 'HsDruckerConfig.pas',
   HSVersionInfo in 'HSVersionInfo.pas',
   MessaBox in 'MessaBox.pas',
@@ -53,8 +52,6 @@ contains
   HsProgressChecklist in 'HsProgressChecklist.pas',
   DBMaskEdit in 'DBMaskEdit.pas',
   MetaObjVcl in 'MetaObjVcl.pas',
-  HsSqlServerProvider in 'HsSqlServerProvider.pas',
-  HsGradientPanel in 'HsGradientPanel.pas',
-  VCL_Hotfix_AltGr in 'VCL_Hotfix_AltGr.pas';
+  HsGradientPanel in 'HsGradientPanel.pas';
 
 end.

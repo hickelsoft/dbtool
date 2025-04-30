@@ -1,4 +1,4 @@
-unit HsSqlServerProvider;
+unit hl_SqlServerProvider;
 
 interface
 

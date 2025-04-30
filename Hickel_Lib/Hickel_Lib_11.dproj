@@ -1116,13 +1116,12 @@
         <DCCReference Include="Src\hl_Consts.pas"/>
         <DCCReference Include="hl_Utils\hl.Utils.AutoSnippingTool.pas"/>
         <DCCReference Include="hl_Utils\hl.Utils.Mapi.pas"/>
-        <DCCReference Include="..\CrwLowLevel\IPC_API\hl_IPC_Crw_LowLevel_Client.pas"/>
-        <DCCReference Include="..\CrwLowLevel\IPC_API\hl_IPC_LowLevel_Client.pas"/>
         <DCCReference Include="Src\HickelSOFT_Design.pas"/>
         <DCCReference Include="Src\HS_Auth.pas"/>
-        <DCCReference Include="..\CrwLowLevel\IPC_API\hl_IPC_LowLevel_Common.pas"/>
         <DCCReference Include="Src\hl_MultiLang.pas"/>
         <DCCReference Include="Src\HS_Mitteilung.pas"/>
+        <DCCReference Include="Src\hl_SqlServerProvider.pas"/>
+        <DCCReference Include="Src\VCL_Hotfix_AltGr.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -101,13 +101,12 @@ contains
   hl_Consts in 'Src\hl_Consts.pas',
   hl.Utils.AutoSnippingTool in 'hl_Utils\hl.Utils.AutoSnippingTool.pas',
   hl.Utils.Mapi in 'hl_Utils\hl.Utils.Mapi.pas',
-  hl_IPC_Crw_LowLevel_Client in '..\CrwLowLevel\IPC_API\hl_IPC_Crw_LowLevel_Client.pas',
-  hl_IPC_LowLevel_Client in '..\CrwLowLevel\IPC_API\hl_IPC_LowLevel_Client.pas',
   HickelSOFT_Design in 'Src\HickelSOFT_Design.pas',
   HS_Auth in 'Src\HS_Auth.pas',
-  hl_IPC_LowLevel_Common in '..\CrwLowLevel\IPC_API\hl_IPC_LowLevel_Common.pas',
   hl_MultiLang in 'Src\hl_MultiLang.pas',
-  HS_Mitteilung in 'Src\HS_Mitteilung.pas';
+  HS_Mitteilung in 'Src\HS_Mitteilung.pas',
+  hl_SqlServerProvider in 'Src\hl_SqlServerProvider.pas',
+  VCL_Hotfix_AltGr in 'Src\VCL_Hotfix_AltGr.pas';
 
 end.
 

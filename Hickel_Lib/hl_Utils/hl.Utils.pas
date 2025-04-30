@@ -241,6 +241,9 @@ function Rfc3339ToDatetime(rfc: string): TDatetime;
 
 function IsOdbcDriverInstalled(const DriverName: string): Boolean;
 
+function Make_EditDisplayFormat(nachkommastellen: integer; istEditFormat: boolean): string;
+
+
 type
   TSenderlessNotifyEvent = procedure of object;
 
@@ -3558,6 +3561,17 @@ begin
   finally
     Reg.Free;
   end;
+end;
+
+function Make_EditDisplayFormat(nachkommastellen: integer; istEditFormat: boolean): string;
+begin
+  result := '';
+  result := result + StringOfChar('#', nachkommastellen);
+  if not istEditFormat then
+  begin
+    result := result + ',';
+  end;
+  result := result + '##0.' + StringOfChar('0', nachkommastellen);
 end;
 
 end.

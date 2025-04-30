@@ -2,7 +2,7 @@
 <xlat>
   <meta>
     <version>3</version>
-    <created>2025-04-28T16:34:27.374+02:00</created>
+    <created>2025-04-30T14:36:14.368+02:00</created>
     <tool>amTranslationManager</tool>
     <toolversion>2.3.9199.24584</toolversion>
   </meta>
@@ -12,7 +12,7 @@
     <sorted>True</sorted>
     <omitnewstate>True</omitnewstate>
   </options>
-  <project sourcefile="C:\HS-Service\DBTool64.exe" stringsymbolfile="C:\HS-Service\DBTool64.drc" language="de-DE" properties="2206">
+  <project sourcefile="..\..\..\HS-Service\DBTool64.exe" stringsymbolfile=".\DBTool64.drc" language="de-DE" properties="2206">
     <targetlanguages>
       <language language="en-US" translated="898"/>
       <language language="de-DE" translated="0"/>

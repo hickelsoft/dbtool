@@ -106,7 +106,7 @@ resourcestring
 implementation
 
 uses
-  ComCtrls, Globals, IbDatabaseName, SysUtils, Controls, ProgrDlg, HsSqlServerProvider,
+  ComCtrls, Globals, IbDatabaseName, SysUtils, Controls, ProgrDlg, hl_SqlServerProvider,
   hl_Datenbank, StrUtils, HS_Auth, System.Hash;
 
 resourcestring

@@ -2,9 +2,7 @@ program DBTool64;
 
 uses
   Forms,
-  {$IF CompilerVersion < 20.0}
   VCL_Hotfix_AltGr,
-  {$IFEND }
   Main in '..\..\Main.pas' {DLG_Main},
   Database in '..\..\Database.pas' {MDI_Database},
   Table in '..\..\Table.pas' {MDI_Table},

@@ -67,6 +67,10 @@ var
 begin
   fileToOpen := GetMySQLDBListFilename;
   {$REGION 'Create empty file if required'}
+  if not DirectoryExists(ExtractFilePath(fileToOpen)) then
+  begin
+    ForceDirectories(ExtractFilePath(fileToOpen));
+  end;
   if not FileExists(fileToOpen) then
   begin
     sl := TStringList.Create;

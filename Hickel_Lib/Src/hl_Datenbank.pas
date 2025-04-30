@@ -251,7 +251,7 @@ function ConnStrWriteAttr(attr, val, connStr: string): string;
 implementation
 
 uses
-  MessaBox, hl.System.ExceptionHandler, HsDruckerConfig, HsSqlServerProvider,
+  MessaBox, hl.System.ExceptionHandler, HsDruckerConfig, hl_SqlServerProvider,
   HS_Auth;
 
 { Timer für Debugging }

@@ -17,6 +17,7 @@ type
       FForeColor2: TColor;
       FKind: THsGaugeKind;
       PaintBitmap: TBitmap;
+      class procedure CreateColorFadeBitmap(aBitmap: TBitmap; Height, Width: integer; StartColor, StopColor: TColor; Vertical: boolean);
    public
       aBitmap: TBitmap;
       constructor Create(AOwner: TComponent); override;
@@ -38,16 +39,15 @@ procedure Register;
 
 implementation
 
-uses HsTools;
-
-{------------------------------------------------------------------------------}
+const
+   cGaugeSteps = 255;  // Anzahl der Farben im Farbverlauf der HsGauge (kleinere Zahl = schneller, sieht aber nicht so gut aus)
 
 procedure Register;
 begin
   RegisterComponents('Hs', [THsGauge]);
 end;
 
-{##############################################################################}
+{ THsGauge }
 
 constructor THsGauge.Create(AOwner: TComponent);
 begin
@@ -61,8 +61,6 @@ begin
    FKind := gkHorizontalBar;
 end;
 
-{------------------------------------------------------------------------------}
-
 destructor THsGauge.Destroy;
 begin
    FreeAndNil(PaintBitmap);
@@ -70,7 +68,62 @@ begin
    inherited;
 end;
 
-{------------------------------------------------------------------------------}
+class procedure THsGauge.CreateColorFadeBitmap(aBitmap: TBitmap; Height, Width: integer; StartColor, StopColor: TColor; Vertical: boolean);
+var
+   iCounter, iBuffer: integer;
+   bR1, bG1, bB1: byte;
+   bR2, bG2, bB2: byte;
+   aColor1, aColor2: LongInt;
+   dCurrentR, dCurrentG, dCurrentB, dRStep, dGStep, dBStep: double;  // für mehr Geschwindigkeit!
+   iFillStep: integer;
+begin
+   aBitmap.Height := Height;
+   aBitmap.Width := Width;
+   aBitmap.Canvas.Pen.Style := psClear;
+   aColor1 := ColorToRGB(StartColor);
+   aColor2 := ColorToRGB(StopColor);
+   bR1 := GetRValue(aColor1);
+   bG1 := GetGValue(aColor1);
+   bB1 := GetBValue(aColor1);
+   bR2 := GetRValue(aColor2);
+   bG2 := GetGValue(aColor2);
+   bB2 := GetBValue(aColor2);
+
+   dCurrentR := bR1;
+   dCurrentG := bG1;
+   dCurrentB := bB1;
+
+   dRStep := (bR2-bR1) / cGaugeSteps;
+   dGStep := (bG2-bG1) / cGaugeSteps;
+   dBStep := (bB2-bB1) / cGaugeSteps;
+
+   if Vertical then
+   begin
+      iFillStep := (Height div cGaugeSteps) + 1;
+      for iCounter := 0 to cGaugeSteps do
+      begin
+         iBuffer := iCounter * Height div cGaugeSteps;
+         aBitmap.Canvas.Brush.Color := rgb(trunc(dCurrentR), trunc(dCurrentG), trunc(dCurrentB));
+         dCurrentR := dCurrentR + dRStep;
+         dCurrentG := dCurrentG + dGStep;
+         dCurrentB := dCurrentB + dBStep;
+         aBitmap.Canvas.FillRect(Rect(0, iBuffer, Width, iBuffer + iFillStep));
+      end;
+   end
+   else
+   begin
+      iFillStep := (Width div cGaugeSteps) + 1;
+      for iCounter := 0 to cGaugeSteps do
+      begin
+         iBuffer := Width * iCounter div cGaugeSteps;
+         aBitmap.Canvas.Brush.Color := rgb(trunc(dCurrentR), trunc(dCurrentG), trunc(dCurrentB));
+         dCurrentR := dCurrentR + dRStep;
+         dCurrentG := dCurrentG + dGStep;
+         dCurrentB := dCurrentB + dBStep;
+         aBitmap.Canvas.FillRect(Rect(iBuffer, 0, iBuffer + iFillStep, Height));
+      end;
+   end;
+end;
 
 procedure THsGauge.Paint;
 var
@@ -127,8 +180,6 @@ begin
    Canvas.CopyRect(ClientRect, PaintBitmap.Canvas, ClientRect);
 end;
 
-{------------------------------------------------------------------------------}
-
 procedure THsGauge.SetForeColor(cNew: TColor);
 begin
    FForeColor := cNew;
@@ -136,16 +187,12 @@ begin
    Paint;
 end;
 
-{------------------------------------------------------------------------------}
-
 procedure THsGauge.SetForeColor2(cNew: TColor);
 begin
    FForeColor2 := cNew;
    aBitmap.Width := 0;
    Paint;
 end;
-
-{------------------------------------------------------------------------------}
 
 procedure THsGauge.SetKind(kNew: THsGaugeKind);
 begin

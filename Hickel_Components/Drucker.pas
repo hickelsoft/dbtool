@@ -3,7 +3,7 @@ unit Drucker;
 interface
 
 uses
-  HsTools, Windows, Classes, StdCtrls, Spin, Printers, MessaBox,
+  Windows, Classes, StdCtrls, Spin, Printers, MessaBox,
   SysUtils, winSpool, IniFiles, Controls, Dialogs, Forms, DB, Registry, StrUtils;
 
 type

@@ -165,6 +165,12 @@
                 <Platform value="Win64x">False</Platform>
             </Platforms>
             <Deployment Version="5">
+                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\23.0\Bpl\Hickel_Components_11.bpl" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>Hickel_Components_11.bpl</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="c:\Users\Public\Documents\Embarcadero\Studio\21.0\Bpl\Hickel_Components_11.bpl" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="OSX32">
@@ -1037,7 +1043,6 @@
         <DCCReference Include="Jcl.dcp"/>
         <DCCReference Include="Drucker.pas"/>
         <DCCReference Include="HsGauge.pas"/>
-        <DCCReference Include="hstools.pas"/>
         <DCCReference Include="HsDruckerConfig.pas"/>
         <DCCReference Include="HSVersionInfo.pas"/>
         <DCCReference Include="MessaBox.pas"/>
@@ -1050,12 +1055,10 @@
         <DCCReference Include="HsProgressChecklist.pas"/>
         <DCCReference Include="DBMaskEdit.pas"/>
         <DCCReference Include="MetaObjVcl.pas"/>
-        <DCCReference Include="HsSqlServerProvider.pas"/>
         <DCCReference Include="HsGradientPanel.pas">
             <Form>*,
   VCL_Hotfix_AltGr in &apos;VCL_Hotfix_AltGr.pas&apos;*</Form>
         </DCCReference>
-        <DCCReference Include="VCL_Hotfix_AltGr.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

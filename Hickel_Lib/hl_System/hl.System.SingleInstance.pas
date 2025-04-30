@@ -3,7 +3,7 @@ unit hl.System.SingleInstance;
 interface
 
 uses
-  Forms, Windows, Messages, HsTools;
+  Forms, Windows, Messages;
 
 /// <summary>Sorgt dafür, dass die Anwendung nur einmal geöffnet ist, und holt die Anwendung andernfalls in den Vordergrund.</summary>
 /// <remarks><b>WICHTIG!</b><br />

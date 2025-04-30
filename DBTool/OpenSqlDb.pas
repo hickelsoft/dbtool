@@ -38,7 +38,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Globals, C_Database, HsSqlServerProvider, ShellApi;
+  Globals, C_Database, hl_SqlServerProvider, ShellApi;
 
 procedure TDLG_OpenSqlDb.FormShow(Sender: TObject);
 var
@@ -135,6 +135,10 @@ var
 begin
   fileToOpen := GetSQLServerDBListFilename;
   {$REGION 'Create empty file if required'}
+  if not DirectoryExists(ExtractFilePath(fileToOpen)) then
+  begin
+    ForceDirectories(ExtractFilePath(fileToOpen));
+  end;
   if not FileExists(fileToOpen) then
   begin
     sl := TStringList.Create;

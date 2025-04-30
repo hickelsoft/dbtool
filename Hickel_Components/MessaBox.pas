@@ -77,7 +77,7 @@ implementation
 // dann im Projekt-Suchpfad einfügen: ..\VCL_JEDI\source\common und ..\VCL_JEDI\source\windows
 // Delphi 12:
 // JEDI über GetIt PackageManager installieren. Im nachfolgenden Installer nicht vergessen "Only install selected" zu klicken, damit nur Delphi 12 bearbeitet wird.
-uses HsTools, Dialogs, ShellAPI, Math, JclDebug;
+uses Dialogs, ShellAPI, Math, JclDebug;
 
 {$R MsgBox.Res}
 

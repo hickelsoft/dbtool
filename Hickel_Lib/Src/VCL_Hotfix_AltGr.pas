@@ -2,9 +2,11 @@ unit VCL_Hotfix_AltGr;
 
 interface
 
-// IsAltGRPressed stürzt ab, wenn ein Tastaturtreiber von Parallels Desktop (Apple VM)
-// installiert ist und man die Shift-Taste drückt.
-// Dieser Hotfix patched die Funktion
+// IsAltGRPressed stürzt bei Delphi 2007 ab,
+// wenn ein Tastaturtreiber von Parallels Desktop (Apple VM)
+// installiert ist und man die Shift-Taste drückt. (HS Ticket 52189)
+// Dieser Hotfix patched die Funktion, in dem sie mit der Funktion
+// aus Delphi 12.3 überschrieben wird
 procedure PatchAltGrBug;
 
 implementation
@@ -12,7 +14,11 @@ implementation
 uses
   Menus, Windows, Registry, SysUtils;
 
-// Der folgende Code kommt von Delphi 10.4 (renamed to IsAltGRPressed_New)
+// Der folgende Code kommt von Delphi 12.3, mit folgenden Änderungen
+// - Umbenannt zu IsAltGRPressed_New
+// - IsWow64 geändert
+// - $ENDIF -> $IFEND (alte Delphi Kompatiblität)
+// - .Free -> FreeAndNil()
 
 {$IF NOT DEFINED(CLR)}
 var
@@ -153,6 +159,8 @@ begin
 end;
 {$IFEND}
 
+// Ende vom Delphi 12.3 Code
+
 // Der folgende Code kommt von
 // https://stackoverflow.com/questions/8978177/patch-routine-call-in-delphi
 
@@ -189,9 +197,11 @@ var
 
 procedure PatchAltGrBug;
 begin
+  {$IF CompilerVersion < 20.0} // Version geraten
   if AlreadyFixed then exit;
   RedirectProcedure(@IsAltGRPressed, @IsAltGRPressed_New);
   AlreadyFixed := true;
+  {$IFEND}
 end;
 
 initialization
