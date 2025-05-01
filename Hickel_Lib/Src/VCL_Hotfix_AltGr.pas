@@ -1,13 +1,12 @@
 unit VCL_Hotfix_AltGr;
 
-interface
-
 // IsAltGRPressed stürzt bei Delphi 2007 ab,
 // wenn ein Tastaturtreiber von Parallels Desktop (Apple VM)
 // installiert ist und man die Shift-Taste drückt. (HS Ticket 52189)
 // Dieser Hotfix patched die Funktion, in dem sie mit der Funktion
 // aus Delphi 12.3 überschrieben wird
-procedure PatchAltGrBug;
+
+interface
 
 implementation
 
