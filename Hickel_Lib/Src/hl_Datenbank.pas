@@ -1,10 +1,10 @@
 unit hl_Datenbank;
 
 // DM: Dies ermöglicht, dass eine verschachtelte Transaktion nicht zum Fehler
-//     führt. Allerdings ist diese Funktionalität gefährlich, denn ein Rollback
-//     in einer verschachtelten Transaktion würde "verschluckt" werden.
-//     Daher deaktiviert.
-{.$IFDEF TransaktionsTiefeAutomatik}
+// führt. Allerdings ist diese Funktionalität gefährlich, denn ein Rollback
+// in einer verschachtelten Transaktion würde "verschluckt" werden.
+// Daher deaktiviert.
+{ .$IFDEF TransaktionsTiefeAutomatik }
 
 interface
 
@@ -13,21 +13,22 @@ interface
 {$IFEND}
 
 uses
-  ActiveX, hl_Exceptions, AdoDB, {$IFDEF UseBetterADO}BetterAdoDataset,{$ENDIF} DB, SysUtils, hl_Log, Forms,
-  hl.System.Types, Classes(*, hl.Datenbank.RowLock*), Windows, wwdblook;
+  ActiveX, hl_Exceptions, AdoDB, {$IFDEF UseBetterADO}BetterAdoDataset, {$ENDIF} DB, SysUtils, hl_Log, Forms,
+  hl.System.Types, Classes (*, hl.Datenbank.RowLock*) , Windows, wwdblook;
 
 const
   MaxChars = 50000;
 
 type
   /// <summary>
-  ///  <b>lmFehlerAnzeigenUndAbbrechen</b>: Exception wird angezeigt, Programmfluss wird abgebrochen.<br />
-  ///  <b>lmExceptionWerfen</b>: Bei einem Fehler wird eine echte Exception geworfen.<br />
-  ///  <b>lmBeiFehlerAbbrechen</b>: Bei einem Fehler wird der Programmfluss abgebrochen, allerdings ohne Fehlermeldung.<br />
-  ///  <b>lmFehlerIgnorieren</b>: Es wird trotz Fehler bei der nächsten Zeile weitergemacht. ACHTUNG: Nicht zusammen mit "WithTransAction" nutzen.<br />
-  ///  <b>lmFehlerAnzeigenUndWeitermachen</b>: Es wird trotz Fehler bei der nächsten Zeile weitergemacht, allerdings wird der Fehler angezeigt. ACHTUNG: Nicht zusammen mit "WithTransAction" nutzen.
+  /// <b>lmFehlerAnzeigenUndAbbrechen</b>: Exception wird angezeigt, Programmfluss wird abgebrochen.<br />
+  /// <b>lmExceptionWerfen</b>: Bei einem Fehler wird eine echte Exception geworfen.<br />
+  /// <b>lmBeiFehlerAbbrechen</b>: Bei einem Fehler wird der Programmfluss abgebrochen, allerdings ohne Fehlermeldung.<br />
+  /// <b>lmFehlerIgnorieren</b>: Es wird trotz Fehler bei der nächsten Zeile weitergemacht. ACHTUNG: Nicht zusammen mit "WithTransAction" nutzen.<br />
+  /// <b>lmFehlerAnzeigenUndWeitermachen</b>: Es wird trotz Fehler bei der nächsten Zeile weitergemacht, allerdings wird der Fehler angezeigt. ACHTUNG: Nicht zusammen mit "WithTransAction" nutzen.
   /// </summary>
-  TExecSQLListMode = (lmFehlerAnzeigenUndAbbrechen, lmExceptionWerfen, lmBeiFehlerAbbrechen, lmFehlerIgnorieren, lmFehlerAnzeigenUndWeitermachen);
+  TExecSQLListMode = (lmFehlerAnzeigenUndAbbrechen, lmExceptionWerfen,
+    lmBeiFehlerAbbrechen, lmFehlerIgnorieren, lmFehlerAnzeigenUndWeitermachen);
 
 type
   // Das wird benötigt, da TField an ein Datenbankfeld gebunden ist
@@ -63,7 +64,8 @@ type
   ThlDataSet = type TADODataSet;
 
 type
-  ThlSQLDebugEvent = procedure(const query: string; milliseconds: integer) of object;
+  ThlSQLDebugEvent = procedure(const query: string; milliseconds: integer)
+    of object;
 
 type
   ThlDatenbank = class(TObject)
@@ -76,19 +78,21 @@ type
 
     FLastKnownConnectionID: TGuid;
 
-    procedure CreateIndiv(ConnStr: string; AConnectionTimeout: integer=0);
-    procedure CreateStandard (Datenbank, Server: string; AnmeldungAlsBenutzer: Boolean; AConnectionTimeout: integer=0);
+    procedure CreateIndiv(ConnStr: string; AConnectionTimeout: integer = 0);
+    procedure CreateStandard(Datenbank, Server: string;
+      AnmeldungAlsBenutzer: boolean; AConnectionTimeout: integer = 0);
 
     /// <summary>Die holt jeweils den nächsten (und nur den einen) Befehl aus der Stringliste und speichert diesen ohne Zeilenumbrüche im result.</summary>
     /// <param name="ListFile">In dieser Stringliste werden die Befehle, die das File enthält gespeichert. Sie ist als var angelegt, d.h. diue aufrufende Funktion oder Procedure kann hier Werte zurückerhalten.</param>
-    class function GetBefehlszeile (ListFile: Tstringlist): string;
+    class function GetBefehlszeile(ListFile: Tstringlist): string;
     function GetCommandTimeout: integer;
-    procedure SetCommandTimeout(const Value: integer);
+    procedure SetCommandTimeout(const value: integer);
     function GetDatenbankName: hlString;
 
-    function GetConnectionID: TGUID;
-    
-    class procedure MakeActiveTryReconnect(q: TCustomADODataSet; active: boolean=true);
+    function GetConnectionID: TGuid;
+
+    class procedure MakeActiveTryReconnect(q: TCustomADODataSet;
+      active: boolean = true);
   protected
     ownsConnection: boolean;
 
@@ -105,9 +109,12 @@ type
   public
     class var Debug: ThlSQLDebugEvent;
 
-    constructor Create(Datenbank, Server: string; AnmeldungAlsBenutzer: Boolean; Isolated: Boolean=false; AConnectionTimeout: integer=0); reintroduce; overload;
-    constructor Create(ConnStr: string; Isolated: Boolean=false; AConnectionTimeout: integer=0); overload;
-    constructor Create(ADOConnection: TADOConnection); reintroduce; overload;
+    constructor Create(Datenbank, Server: string; AnmeldungAlsBenutzer: boolean;
+      Isolated: boolean = false; AConnectionTimeout: integer = 0);
+      reintroduce; overload;
+    constructor Create(ConnStr: string; Isolated: boolean = false;
+      AConnectionTimeout: integer = 0); overload;
+    constructor Create(ADOConnection: TAdoConnection); reintroduce; overload;
     destructor Destroy; reintroduce; override;
 
     procedure BeginTransaction;
@@ -119,23 +126,30 @@ type
     function DbOwnerSid: string;
     function SqlServerMac: string;
 
-    procedure ShrinkDatabase(Datenbankname: string; typ: string='LOG');
+    procedure ShrinkDatabase(Datenbankname: string; typ: string = 'LOG');
 
-    class function GetScalar(sql: hlString; adoCon: TADOConnection; timeout: integer=300; controlsEnabled: boolean=false): ThlDatenbankFeld; overload;
+    class function GetScalar(sql: hlString; adoCon: TAdoConnection;
+      timeout: integer = 300; controlsEnabled: boolean = false)
+      : ThlDatenbankFeld; overload;
     function GetScalar(sql: string): ThlDatenbankFeld; overload;
-    function GetScalar(timeOut: integer; sql: string): ThlDatenbankFeld; overload;
+    function GetScalar(timeout: integer; sql: string)
+      : ThlDatenbankFeld; overload;
 
     function Any(const sql: string): boolean;
 
-    property ConnectionID: TGUID read GetConnectionID;
-    //function ConnectionString: string;
-    //function Clone: ThlDatenbank;
+    property ConnectionID: TGuid read GetConnectionID;
+    // function ConnectionString: string;
+    // function Clone: ThlDatenbank;
 
     procedure RecheckConnectionStatus(Sender: TObject);
 
-    class function GetTableWithCon(sql: hlString; adoCon: TADOConnection; timeout: integer=300; controlsEnabled: boolean=false): ThlDataSet; overload;
-    function GetTable(sql: string=''; controlsEnabled: boolean=false): ThlDataSet; overload;
-    function GetTable(timeOut: integer; sql: string=''; controlsEnabled: boolean=false): ThlDataSet; overload;
+    class function GetTableWithCon(sql: hlString; adoCon: TAdoConnection;
+      timeout: integer = 300; controlsEnabled: boolean = false)
+      : ThlDataSet; overload;
+    function GetTable(sql: string = ''; controlsEnabled: boolean = false)
+      : ThlDataSet; overload;
+    function GetTable(timeout: integer; sql: string = '';
+      controlsEnabled: boolean = false): ThlDataSet; overload;
 
     /// <summary>
     /// Führt eine Query aus und liefert den eingefügten AutoIncrement-Wert zurück
@@ -147,43 +161,55 @@ type
     function InsertAndReturnID(query: string): integer;
 
     class procedure ExecSql(sQuery: string; aCon: TAdoConnection); overload;
-    procedure ExecSql(sql: string=''); overload;
-    procedure ExecSql(timeOut: integer; sql: string=''); overload;
+    procedure ExecSql(sql: string = ''); overload;
+    procedure ExecSql(timeout: integer; sql: string = ''); overload;
 
-    property DatenbankName: hlString read GetDatenbankName;
+    property Datenbankname: hlString read GetDatenbankName;
 
-    class procedure DropTable(aTableName: hlString; adoCon: TADOConnection); overload;
-    procedure DropTable (aTableName: string); overload;
+    class procedure DropTable(aTableName: hlString;
+      adoCon: TAdoConnection); overload;
+    procedure DropTable(aTableName: string); overload;
 
-    function FieldCount (aTableName: string): integer;
-    function IndexCount (aTableName: string): integer;
+    function FieldCount(aTableName: string): integer;
+    function IndexCount(aTableName: string): integer;
 
-    function TableExists(aTableName: hlstring): boolean; overload;
-    class function TableExists(aTableName: hlstring; adoCon: TADOConnection): boolean; overload;
+    function TableExists(aTableName: hlString): boolean; overload;
+    class function TableExists(aTableName: hlString; adoCon: TAdoConnection)
+      : boolean; overload;
 
-    function ViewExists(aViewName: hlstring): boolean; overload;
-    class function ViewExists(aViewName: hlstring; adoCon: TADOConnection): boolean; overload;
+    function ViewExists(aViewName: hlString): boolean; overload;
+    class function ViewExists(aViewName: hlString; adoCon: TAdoConnection)
+      : boolean; overload;
 
-    function ColumnExists (aTableName, aColumnName: hlstring): boolean;
+    function ColumnExists(aTableName, aColumnName: hlString): boolean;
 
-    procedure DropColumn (aTableName, aColumnName: hlstring);
-    function IndexExists (aTableName, aIndexName: hlstring): boolean;
+    procedure DropColumn(aTableName, aColumnName: hlString);
+    function IndexExists(aTableName, aIndexName: hlString): boolean;
 
-    procedure SetConnection(x: TADOQuery; adoCon: TADOConnection=nil); overload;
-    procedure SetConnection(x: TADOTable; adoCon: TADOConnection=nil); overload;
-    procedure SetConnection(x: TADODataSet; adoCon: TADOConnection=nil); overload;
+    procedure SetConnection(x: TADOQuery;
+      adoCon: TAdoConnection = nil); overload;
+    procedure SetConnection(x: TADOTable;
+      adoCon: TAdoConnection = nil); overload;
+    procedure SetConnection(x: TADODataSet;
+      adoCon: TAdoConnection = nil); overload;
 
-    function CreateNewADOQuery(adoCon: TADOConnection=nil): TADOQuery;
-    function CreateNewADOTable(adoCon: TADOConnection=nil): TADOTable;
-    function CreateNewADODataSet(adoCon: TADOConnection=nil): TADODataSet;
+    function CreateNewADOQuery(adoCon: TAdoConnection = nil): TADOQuery;
+    function CreateNewADOTable(adoCon: TAdoConnection = nil): TADOTable;
+    function CreateNewADODataSet(adoCon: TAdoConnection = nil): TADODataSet;
 
-    class function StaticCreateNewADOQuery(adoCon: TADOConnection=nil): TADOQuery;
-    class function StaticCreateNewADOTable(adoCon: TADOConnection=nil): TADOTable;
-    class function StaticCreateNewADODataSet(adoCon: TADOConnection=nil): TADODataSet;
+    class function StaticCreateNewADOQuery(adoCon: TAdoConnection = nil)
+      : TADOQuery;
+    class function StaticCreateNewADOTable(adoCon: TAdoConnection = nil)
+      : TADOTable;
+    class function StaticCreateNewADODataSet(adoCon: TAdoConnection = nil)
+      : TADODataSet;
 
-    class procedure StaticSetConnection(x: TADOQuery; adoCon: TADOConnection=nil); overload;
-    class procedure StaticSetConnection(x: TADOTable; adoCon: TADOConnection=nil); overload;
-    class procedure StaticSetConnection(x: TADODataSet; adoCon: TADOConnection=nil); overload;
+    class procedure StaticSetConnection(x: TADOQuery;
+      adoCon: TAdoConnection = nil); overload;
+    class procedure StaticSetConnection(x: TADOTable;
+      adoCon: TAdoConnection = nil); overload;
+    class procedure StaticSetConnection(x: TADODataSet;
+      adoCon: TAdoConnection = nil); overload;
 
     /// <summary>Setzt für alle TADOTable, TADOQuery etc. die "Connection"-Eigenschaft auf die Datenbankverbindung in hclMandanten. Außerdem wird EnableBCD auf False gesetzt.</summary>
     procedure ConnectionsFuerFormKomponentenSetzen(aForm: TForm); overload;
@@ -197,7 +223,8 @@ type
     /// <summary>Funktion lädt ein File, übersetzt den Inhalt in getrennte SQL-Befehle (;-separated) und speichert diese in je einem Eintrag in der Stringliste.</summary>
     /// <param name="aFileName">Hier kommt das File, das gelden werden soll, mitsamt der Pfadangaben</param>
     /// <param name="aList">In dieser Stringliste werden die Befehle, die das File enthält gespeichert. Sie ist als var angelegt, d.h. diue aufrufende Funktion oder Procedure kann hier Werte zurückerhalten.</param>
-    class function FileToStringlist (aFileName: string; aList: TStringlist): integer;
+    class function FileToStringlist(aFileName: string;
+      aList: Tstringlist): integer;
 
     /// <summary>Hier wird eine übergeben Stringlist einfgach als Sql ausgeführt, diese Stringlist kann mehrere SQL-Befehle enthalten, Die Connection muss ebenfalls angegeben werden.</summary>
     /// <param name="aList">Enthält die Liste der SQL-Befehle</param>
@@ -205,48 +232,52 @@ type
     /// <param name="WithTransaction">Wenn true, dann werden die SQL-Befehle in eine Transaktion gepackt.</param>
     /// <param name="timeout">Timeout in Sekunden</param>
     /// <param name="slFehler">Sofern der Modus lmFehlerAnzeigenUndWeitermachen oder lmFehlerIgnorieren ist, werden die SQL-Fehler in diese StringList geschrieben.</param>
-    function ExecSqlList (aList: TStrings; mode: TExecSQLListMode=lmFehlerAnzeigenUndAbbrechen; WithTransaction: boolean=false; timeout: integer=600; slFehler: TStrings=nil): boolean;
+    function ExecSqlList(aList: TStrings;
+      mode: TExecSQLListMode = lmFehlerAnzeigenUndAbbrechen;
+      WithTransaction: boolean = false; timeout: integer = 600;
+      slFehler: TStrings = nil): boolean;
 
     class procedure SaveSqlListToFile(aList: TStrings; fileName: string);
 
     /// <summary>Funktion lädt ein File, übersetzt den Inhalt in getrennte SQL-Befehle (;-separated) und speichert diese in je einem Eintrag in der Stringliste.</summary>
     /// <param name="aList">In dieser Stringliste werden die Befehle, die das File enthält gespeichert. Sie ist als var angelegt, d.h. diue aufrufende Funktion oder Procedure kann hier Werte zurückerhalten.</param>
     /// <remarks>Vorsicht: Funktioniert nicht immer, z.B. werden "begin try" oder "begin catch" nicht als eigenständige Zeile angesehen und man darf kein ; verwenden.</remarks>
-    class function ReorgExecList (aList: TStrings): integer;
-
+    class function ReorgExecList(aList: TStrings): integer;
 
     (*
-     class procedure ExecSql(sQuery: string; aCon: TAdoConnection); overload;
-     class procedure ExecSql(timeOut: integer; sQuery: string; aCon: TAdoConnection); overload;
-     class procedure DropTable (aTableName: string; aCon: TAdoConnection); overload;
-     *)
+      class procedure ExecSql(sQuery: string; aCon: TAdoConnection); overload;
+      class procedure ExecSql(timeOut: integer; sQuery: string; aCon: TAdoConnection); overload;
+      class procedure DropTable (aTableName: string; aCon: TAdoConnection); overload;
+    *)
 
-     class procedure ttRefresh(aTable: TDataSet);
+    class procedure ttRefresh(aTable: TDataset);
 
-     procedure GetTableNames(List: TStrings; SystemTables: Boolean=false);
+    procedure GetTableNames(List: TStrings; SystemTables: boolean = false);
 
-     property CommandTimeout: integer read GetCommandTimeout write SetCommandTimeout;
+    property CommandTimeout: integer read GetCommandTimeout
+      write SetCommandTimeout;
 
-     property Transaktionstiefe: integer read mTransaktionsTiefe;
-     function InTransaction: boolean;
+    property Transaktionstiefe: integer read mTransaktionsTiefe;
+    function InTransaction: boolean;
 
-    class function SQKKommentareUmwandeln(sql: TStrings; subquery: boolean=false): string;
+    class function SQKKommentareUmwandeln(sql: TStrings;
+      subquery: boolean = false): string;
 
     procedure DefragIndexes;
 
-    {$REGION 'RowLock-Funktionen'}
+{$REGION 'RowLock-Funktionen'}
     (*
-    function NewLock(AUsername, ATableName, APK1, APK2, APK3, APK4, APK5, APK6: hlString): ThlRowLock;
-    function NewLockSpecial(AUsername, AModule, AIdentifier: hlString): ThlRowLock;
-    procedure RemoveAllUserLocks(AUsername: hlString);
-    procedure RemoveAllLocks;
-    procedure RemoveInvalidLocks;
+      function NewLock(AUsername, ATableName, APK1, APK2, APK3, APK4, APK5, APK6: hlString): ThlRowLock;
+      function NewLockSpecial(AUsername, AModule, AIdentifier: hlString): ThlRowLock;
+      procedure RemoveAllUserLocks(AUsername: hlString);
+      procedure RemoveAllLocks;
+      procedure RemoveInvalidLocks;
     *)
-    {$ENDREGION}
+{$ENDREGION}
   end;
 
-function ConnStrReadAttr(attr, connStr: string): string;
-function ConnStrWriteAttr(attr, val, connStr: string): string;
+function ConnStrReadAttr(attr, ConnStr: string): string;
+function ConnStrWriteAttr(attr, val, ConnStr: string): string;
 
 implementation
 
@@ -266,10 +297,10 @@ begin
   QueryPerformanceCounter(iTimerStart);
 end;
 
-function _TimerEnd: Integer; { In miliseconds }
+function _TimerEnd: integer; { In miliseconds }
 begin
   QueryPerformanceCounter(iTimerEnd);
-  Result:= Round(1000 * ((iTimerEnd - iTimerStart) / ifrequency));
+  Result := Round(1000 * ((iTimerEnd - iTimerStart) / iFrequency));
 end;
 
 { ThlDatenbankFeld }
@@ -277,11 +308,11 @@ end;
 constructor ThlDatenbankFeld.Create(value: TField);
 begin
   if Assigned(value) then
-    {$IFDEF UNICODE}
+{$IFDEF UNICODE}
     mValue := hlString.Create(value.AsWideString)
-    {$ELSE}
+{$ELSE}
     mValue := hlString.Create(value.AsString)
-    {$ENDIF}
+{$ENDIF}
   else
     mValue := '';
 
@@ -336,32 +367,32 @@ end;
 
 function ThlDatenbankFeld.AsHlString: hlString;
 begin
-  result := mValue;
+  Result := mValue;
 end;
 
 function ThlDatenbankFeld.AsBoolean: boolean;
 begin
-  result := AsHlBoolean;
+  Result := AsHlBoolean;
 end;
 
 function ThlDatenbankFeld.AsDateTime: TDateTime;
 begin
-  result := AsHlDateTime;
+  Result := AsHlDateTime;
 end;
 
 function ThlDatenbankFeld.AsFloat: Double;
 begin
-  result := AsHlFloat;
+  Result := AsHlFloat;
 end;
 
 function ThlDatenbankFeld.AsInt64: int64;
 begin
-  result := AshlInteger;
+  Result := AsHlInteger;
 end;
 
 function ThlDatenbankFeld.AsInteger: integer;
 begin
-  result := AshlInteger;
+  Result := AsHlInteger;
 end;
 
 function ThlDatenbankFeld.AsString: string;
@@ -372,150 +403,177 @@ var
 begin
   sws := AsHlString;
   sas := AnsiString(sws);
-  result := string(sas);
+  Result := string(sas);
 {$ELSE}
 begin
-  result := AsHlString;
+  Result := AsHlString;
 {$ENDIF}
 end;
 
 function ThlDatenbankFeld.AsWideString: string;
 begin
-  result := AsHlString;
+  Result := AsHlString;
 end;
 
 { ThlDatenbank }
 
-function ThlDatenbank.TableExists(aTableName: hlstring): boolean;
+function ThlDatenbank.TableExists(aTableName: hlString): boolean;
 begin
-  result := TableExists(aTableName, mConnection);
+  Result := TableExists(aTableName, mConnection);
 end;
 
-class function ThlDatenbank.GetTableWithCon(sql: hlString; adoCon: TADOConnection; timeout: integer=300; controlsEnabled: boolean=false): ThlDataSet;
+class function ThlDatenbank.GetTableWithCon(sql: hlString;
+  adoCon: TAdoConnection; timeout: integer = 300;
+  controlsEnabled: boolean = false): ThlDataSet;
 begin
   // TODO: Diese Methode ist leider nicht statisch...
   // result := CreateNewADODataset(adoCon);
 
-  {$IFDEF UseBetterADO}
-  result := ThlDataSet(TBetterADODataSet.Create(nil));
-  {$ELSE}
-  result := ThlDataSet(TADODataSet.Create(nil));
-  {$ENDIF}
-  result.EnableBCD := false;
-  result.Connection := adoCon;
-  result.ParamCheck := false;
-  result.CommandText := sql;
-  result.CommandTimeout := timeOut;
-  if Assigned(Debug) then _TimerStart;
-  MakeActiveTryReconnect(result, Trim(sql) <> '');
-  if Assigned(Debug) then Debug(sql, _TimerEnd);
+{$IFDEF UseBetterADO}
+  Result := ThlDataSet(TBetterADODataSet.Create(nil));
+{$ELSE}
+  Result := ThlDataSet(TADODataSet.Create(nil));
+{$ENDIF}
+  Result.EnableBCD := false;
+  Result.Connection := adoCon;
+  Result.ParamCheck := false;
+  Result.CommandText := sql;
+  Result.CommandTimeout := timeout;
+  if Assigned(Debug) then
+    _TimerStart;
+  MakeActiveTryReconnect(Result, Trim(sql) <> '');
+  if Assigned(Debug) then
+    Debug(sql, _TimerEnd);
   if not controlsEnabled then
   begin
-    Result.DisableControls; // Mach iterationen viel schneller, auch wenn keine GUI dran hängt!
+    Result.DisableControls;
+    // Mach iterationen viel schneller, auch wenn keine GUI dran hängt!
   end;
 end;
 
-class function ThlDatenbank.GetScalar(sql: hlString; adoCon: TADOConnection; timeout: integer=300; controlsEnabled: boolean=false): ThlDatenbankFeld;
+class function ThlDatenbank.GetScalar(sql: hlString; adoCon: TAdoConnection;
+  timeout: integer = 300; controlsEnabled: boolean = false): ThlDatenbankFeld;
 var
   q: ThlDataSet;
 begin
-  if sql = '' then raise Exception.Create('GetScalar mit leerem SQL String aufgerufen');
+  if sql = '' then
+    raise Exception.Create('GetScalar mit leerem SQL String aufgerufen');
   q := GetTableWithCon(sql, adoCon, timeout, controlsEnabled);
   try
     if q.RecordCount = 0 then
     begin
-      result := ThlDatenbankFeld.Create('');
-      result.mIsNull := true;
+      Result := ThlDatenbankFeld.Create('');
+      Result.mIsNull := true;
     end
     else
-      result := ThlDatenbankFeld.Create(q.Fields[0]);
+      Result := ThlDatenbankFeld.Create(q.Fields[0]);
   finally
     FreeAndNil(q);
   end;
 end;
 
-class function ThlDatenbank.TableExists(aTableName: hlstring; adoCon: TADOConnection): boolean;
+class function ThlDatenbank.TableExists(aTableName: hlString;
+  adoCon: TAdoConnection): boolean;
 begin
   if Copy(aTableName, 1, 1) = '#' then
   begin
     // TempTable
-    result := GetScalar('select case when OBJECT_ID(''tempdb..'+aTableName+''') is not null then ''1'' else ''0'' end', adoCon).AsInteger > 0;
+    Result := GetScalar('select case when OBJECT_ID(''tempdb..' + aTableName +
+      ''') is not null then ''1'' else ''0'' end', adoCon).AsInteger > 0;
   end
   else
   begin
     // Physikalische Tabelle (in Schema dbo)
     // result := GetScalar('select count (*) from sysobjects where name = ' + aTableName.toSQLString).AsInteger > 0;
     // result := GetScalar('SELECT 1 FROM ['+adoCon.DefaultDatabase+'].sys.tables WHERE name = N'''+aTableName+''' AND schema_id = SCHEMA_ID(''dbo'')').AsInteger > 0;
-    result := GetScalar('SELECT count(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = N'''+adoCon.DefaultDatabase+''' AND TABLE_SCHEMA = N''dbo'' AND TABLE_NAME = N'''+aTableName+'''', adoCon).AsInteger > 0;
+    Result := GetScalar
+      ('SELECT count(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_CATALOG = N'''
+      + adoCon.DefaultDatabase +
+      ''' AND TABLE_SCHEMA = N''dbo'' AND TABLE_NAME = N''' + aTableName + '''',
+      adoCon).AsInteger > 0;
   end;
 end;
 
-procedure ThlDatenbank.CreateStandard (Datenbank, Server: string; AnmeldungAlsBenutzer: Boolean; AConnectionTimeout: integer=0);
+procedure ThlDatenbank.CreateStandard(Datenbank, Server: string;
+  AnmeldungAlsBenutzer: boolean; AConnectionTimeout: integer = 0);
 var
   sqlConnStr: string;
 begin
-  sqlConnStr := 'Provider='+SqlServerProvider+';';
-  sqlConnStr := sqlConnStr + 'Application Name='+ExtractFileName(ParamStr(0))+' hl_Datenbank;';
+  sqlConnStr := 'Provider=' + SqlServerProvider + ';';
+  sqlConnStr := sqlConnStr + 'Application Name=' + ExtractFileName(ParamStr(0))
+    + ' hl_Datenbank;';
 
-  if not (AnmeldungAlsBenutzer) then
-    sqlConnStr := sqlConnStr + 'Integrated Security=SSPI;Persist Security Info=False;'
+  if not(AnmeldungAlsBenutzer) then
+    sqlConnStr := sqlConnStr +
+      'Integrated Security=SSPI;Persist Security Info=False;'
   else
-    sqlConnStr := sqlConnStr + 'User ID='+HS_SA_DB_USER+';Password='+HS_SA_DB_PASSWORD+';Persist Security Info=True;';
+    sqlConnStr := sqlConnStr + 'User ID=' + HS_SA_DB_USER + ';Password=' +
+      HS_SA_DB_PASSWORD + ';Persist Security Info=True;';
 
   if SqlServerProvider = 'MSOLEDBSQL19' then
     sqlConnStr := sqlConnStr + 'Use Encryption for Data=False;';
 
   if SqlServerProvider <> 'SQLOLEDB' then
-    sqlConnStr := sqlConnStr + 'DataTypeCompatibility=80;'; // ansonsten funktionieren "time" Datentypen nicht! (sind im Fields[] und FieldDefs[] nicht da und dbGrid kackt ab)
+    sqlConnStr := sqlConnStr + 'DataTypeCompatibility=80;';
+  // ansonsten funktionieren "time" Datentypen nicht! (sind im Fields[] und FieldDefs[] nicht da und dbGrid kackt ab)
 
   sqlConnStr := sqlConnStr + 'Initial Catalog=' + Datenbank + ';';
   sqlConnStr := sqlConnStr + 'Data Source=' + Server;
 
   CreateIndiv(sqlConnStr, AConnectionTimeout);
 end;
-constructor ThlDatenbank.Create(Datenbank, Server: string; AnmeldungAlsBenutzer: Boolean; Isolated: Boolean=false; AConnectionTimeout: integer=0);
+
+constructor ThlDatenbank.Create(Datenbank, Server: string;
+  AnmeldungAlsBenutzer: boolean; Isolated: boolean = false;
+  AConnectionTimeout: integer = 0);
 begin
   inherited Create;
-  CreateStandard (Datenbank, Server, AnmeldungAlsBenutzer, AConnectionTimeout);
-  if (Isolated) then mConnection.IsolationLevel := ilIsolated;
+  CreateStandard(Datenbank, Server, AnmeldungAlsBenutzer, AConnectionTimeout);
+  if (Isolated) then
+    mConnection.IsolationLevel := ilIsolated;
 end;
 
 {$REGION 'Funktionen, die ausgeschaltetes BCD sicherstellen'}
-function ThlDatenbank.CreateNewADODataSet(adoCon: TADOConnection=nil): TADODataSet; // TODO: "class function" ???
+
+function ThlDatenbank.CreateNewADODataSet(adoCon: TAdoConnection = nil)
+  : TADODataSet; // TODO: "class function" ???
 begin
-  // Abgeschaltet weil CORA SCHON WIEDER zu langsam wird!!! (Pinkert 59369, Kusche 59374, Bokmeier 59381)
-  //RecheckConnectionStatus(self);
+  // Abgeschaltet weil CORA SCHON WIEDER zu langsam wird!!! (Ticket 59369, 59374, 59381)
+  // RecheckConnectionStatus(self);
 
-  {$IFDEF UseBetterADO}
-  result := TBetterADODataSet.Create(nil);
-  {$ELSE}
-  result := TADODataSet.Create(nil);
-  {$ENDIF}
-  SetConnection(result, adoCon);
-  result.EnableBCD := false;
-end;
-
-function ThlDatenbank.CreateNewADOQuery(adoCon: TADOConnection=nil): TADOQuery;
-begin
-  // Abgeschaltet weil CORA SCHON WIEDER zu langsam wird!!! (Pinkert 59369, Kusche 59374, Bokmeier 59381)
-  //RecheckConnectionStatus(self);
-
-  result := TADOQuery.Create(nil);
-  SetConnection(result, adoCon);
-  result.EnableBCD := false;
-end;
-
-function ThlDatenbank.CreateNewADOTable(adoCon: TADOConnection=nil): TADOTable;
-begin
-  // Abgeschaltet weil CORA SCHON WIEDER zu langsam wird!!! (Pinkert 59369, Kusche 59374, Bokmeier 59381)
-  //RecheckConnectionStatus(self);
-
-  result := TADOTable.Create(nil);
-  SetConnection(result, adoCon);
+{$IFDEF UseBetterADO}
+  Result := TBetterADODataSet.Create(nil);
+{$ELSE}
+  Result := TADODataSet.Create(nil);
+{$ENDIF}
+  SetConnection(Result, adoCon);
   Result.EnableBCD := false;
 end;
 
-procedure ThlDatenbank.SetConnection(x: TADOQuery; adoCon: TADOConnection=nil);
+function ThlDatenbank.CreateNewADOQuery(adoCon: TAdoConnection = nil)
+  : TADOQuery;
+begin
+  // Abgeschaltet weil CORA SCHON WIEDER zu langsam wird!!! (Ticket 59369, 59374, 59381)
+  // RecheckConnectionStatus(self);
+
+  Result := TADOQuery.Create(nil);
+  SetConnection(Result, adoCon);
+  Result.EnableBCD := false;
+end;
+
+function ThlDatenbank.CreateNewADOTable(adoCon: TAdoConnection = nil)
+  : TADOTable;
+begin
+  // Abgeschaltet weil CORA SCHON WIEDER zu langsam wird!!! (Ticket 59369, 59374, 59381)
+  // RecheckConnectionStatus(self);
+
+  Result := TADOTable.Create(nil);
+  SetConnection(Result, adoCon);
+  Result.EnableBCD := false;
+end;
+
+procedure ThlDatenbank.SetConnection(x: TADOQuery;
+  adoCon: TAdoConnection = nil);
 begin
   x.ConnectionString := '';
   if Assigned(adoCon) then
@@ -525,7 +583,8 @@ begin
   x.EnableBCD := false;
 end;
 
-procedure ThlDatenbank.SetConnection(x: TADOTable; adoCon: TADOConnection=nil);
+procedure ThlDatenbank.SetConnection(x: TADOTable;
+  adoCon: TAdoConnection = nil);
 begin
   x.ConnectionString := '';
   if Assigned(adoCon) then
@@ -535,13 +594,14 @@ begin
   x.EnableBCD := false;
 end;
 
-class procedure ThlDatenbank.SaveSqlListToFile(aList: TStrings; fileName: string);
+class procedure ThlDatenbank.SaveSqlListToFile(aList: TStrings;
+  fileName: string);
 var
   i: integer;
   line: string;
-  sl: TStringList;
+  sl: Tstringlist;
 begin
-  sl := TStringList.Create;
+  sl := Tstringlist.Create;
   try
     for i := 0 to aList.Count - 1 do
     begin
@@ -555,12 +615,12 @@ begin
   end;
 end;
 
-procedure ThlDatenbank.SetCommandTimeout(const Value: integer);
+procedure ThlDatenbank.SetCommandTimeout(const value: integer);
 begin
-  mConnection.CommandTimeout := Value;
+  mConnection.CommandTimeout := value;
 end;
 
-procedure ThlDatenbank.SetConnection(x: TADODataSet; adoCon: TADOConnection);
+procedure ThlDatenbank.SetConnection(x: TADODataSet; adoCon: TAdoConnection);
 begin
   x.ConnectionString := '';
   if Assigned(adoCon) then
@@ -570,22 +630,21 @@ begin
   x.EnableBCD := false;
 end;
 
-procedure ThlDatenbank.ShrinkDatabase(Datenbankname: string; typ: string='LOG'); // typ ist 'LOG' oder 'ROWS'
+procedure ThlDatenbank.ShrinkDatabase(Datenbankname: string;
+  typ: string = 'LOG'); // typ ist 'LOG' oder 'ROWS'
 var
   q: ThlDataSet;
 begin
-  q := GetTable(
-    'SELECT f.name as LogicalName, ' +
-    'f.physical_name AS PhysicalName, ' +
-    'f.type_desc TypeofFile ' +
+  q := GetTable('SELECT f.name as LogicalName, ' +
+    'f.physical_name AS PhysicalName, ' + 'f.type_desc TypeofFile ' +
     'FROM sys.master_files f ' +
     'INNER JOIN sys.databases d ON d.database_id = f.database_id ' +
-    'where d.name = ''' + Datenbankname + ''' ' +
-    'and f.type_desc = '''+typ+''';');
+    'where d.name = ''' + Datenbankname + ''' ' + 'and f.type_desc = ''' +
+    typ + ''';');
   try
     while not q.Eof do
     begin
-      ExecSQL(3600, 'DBCC SHRINKFILE (N'''+q.Fields[0].AsString+''' , 0)');
+      ExecSql(3600, 'DBCC SHRINKFILE (N''' + q.Fields[0].AsString + ''' , 0)');
       q.Next;
     end;
   finally
@@ -593,41 +652,47 @@ begin
   end;
 end;
 
-class function ThlDatenbank.StaticCreateNewADODataSet(adoCon: TADOConnection): TADODataSet;
+class function ThlDatenbank.StaticCreateNewADODataSet(adoCon: TAdoConnection)
+  : TADODataSet;
 begin
-  {$IFDEF UseBetterADO}
-  result := TBetterADODataSet.Create(nil);
-  {$ELSE}
-  result := TADODataSet.Create(nil);
-  {$ENDIF}
-  StaticSetConnection(result, adoCon);
+{$IFDEF UseBetterADO}
+  Result := TBetterADODataSet.Create(nil);
+{$ELSE}
+  Result := TADODataSet.Create(nil);
+{$ENDIF}
+  StaticSetConnection(Result, adoCon);
 end;
 
-class function ThlDatenbank.StaticCreateNewADOQuery(adoCon: TADOConnection): TADOQuery;
+class function ThlDatenbank.StaticCreateNewADOQuery(adoCon: TAdoConnection)
+  : TADOQuery;
 begin
-  result := TADOQuery.Create(nil);
-  StaticSetConnection(result, adoCon);
+  Result := TADOQuery.Create(nil);
+  StaticSetConnection(Result, adoCon);
 end;
 
-class function ThlDatenbank.StaticCreateNewADOTable(adoCon: TADOConnection): TADOTable;
+class function ThlDatenbank.StaticCreateNewADOTable(adoCon: TAdoConnection)
+  : TADOTable;
 begin
-  result := TADOTable.Create(nil);
-  StaticSetConnection(result, adoCon);
+  Result := TADOTable.Create(nil);
+  StaticSetConnection(Result, adoCon);
 end;
 
-class procedure ThlDatenbank.StaticSetConnection(x: TADOQuery; adoCon: TADOConnection);
-begin
-  x.Connection := adoCon;
-  x.EnableBCD := false;
-end;
-
-class procedure ThlDatenbank.StaticSetConnection(x: TADODataSet; adoCon: TADOConnection);
+class procedure ThlDatenbank.StaticSetConnection(x: TADOQuery;
+  adoCon: TAdoConnection);
 begin
   x.Connection := adoCon;
   x.EnableBCD := false;
 end;
 
-class procedure ThlDatenbank.StaticSetConnection(x: TADOTable; adoCon: TADOConnection);
+class procedure ThlDatenbank.StaticSetConnection(x: TADODataSet;
+  adoCon: TAdoConnection);
+begin
+  x.Connection := adoCon;
+  x.EnableBCD := false;
+end;
+
+class procedure ThlDatenbank.StaticSetConnection(x: TADOTable;
+  adoCon: TAdoConnection);
 begin
   x.Connection := adoCon;
   x.EnableBCD := false;
@@ -636,24 +701,26 @@ end;
 class procedure ThlDatenbank.ErweitereSQLZeile(var zeile: string);
 begin
   zeile := StringReplace(zeile, '/**/', #13#10, [rfReplaceAll]);
-  zeile := StringReplace(zeile, '/*.*/', ';'+#13#10, [rfReplaceAll]);
+  zeile := StringReplace(zeile, '/*.*/', ';' + #13#10, [rfReplaceAll]);
 end;
 
 var
   stackoverflowProtection: boolean = false;
+
 procedure ThlDatenbank.RecheckConnectionStatus(Sender: TObject);
 var
-  CurConnId: TGUID;
+  CurConnId: TGuid;
 begin
-  if stackoverflowProtection then exit;
+  if stackoverflowProtection then
+    exit;
   stackoverflowProtection := true;
   try
-    CurConnId := ConnectionId;
+    CurConnId := ConnectionID;
     if not IsEqualGuid(CurConnId, FLastKnownConnectionID) then
     begin
       if not IsEqualGuid(FLastKnownConnectionID, GUID_NULL) then
       begin
-        //ConnBeforeDisconnect(self);
+        // ConnBeforeDisconnect(self);
         ConnAfterConnect(self);
       end;
       FLastKnownConnectionID := CurConnId;
@@ -678,10 +745,10 @@ var
   iCounter: integer;
   bakActive: boolean;
 begin
-  for iCounter := aForm.ComponentCount-1 downto 0 do
+  for iCounter := aForm.ComponentCount - 1 downto 0 do
   begin
 
-    {$IF CompilerVersion >= 20.0}
+{$IF CompilerVersion >= 20.0}
     // Das gehört eigentlich nicht in diese Funktion, aber es ist wichtig, dass das überall gemacht wird
     // da sonst alles am Arsch ist. (TAdoTable im Lookup zeigt Fehler "Der aktuelle Provider unterstützt nicht die erforderliche Schnittstelle für die Indexfunktion")
     // (Ticket 54113/11)
@@ -692,30 +759,31 @@ begin
     // DM 08.08.2023: Und es geht grad so weiter...! Logbuch Name ändern, auch Absturz (Ticket 54683/1)
     if (aForm.Components[iCounter] is TwwDBCustomLookupCombo) then
     begin
-      TwwDBCustomLookupCombo(aForm.Components[iCounter]).OrderByDisplay := false;
+      TwwDBCustomLookupCombo(aForm.Components[iCounter]).OrderByDisplay
+        := false;
     end;
-    {$IFEND}
-
+{$IFEND}
     // Hier ist das, um was es eigentlich geht
-    if (aForm.Components[iCounter] is TAdoTable) then
+    if (aForm.Components[iCounter] is TADOTable) then
     begin
-      bakActive := TAdoTable(aForm.Components[iCounter]).Active;
-      MakeActiveTryReconnect(TAdoTable(aForm.Components[iCounter]), false);
-      SetConnection(aForm.Components[iCounter] as TAdoTable);
-      MakeActiveTryReconnect(TAdoTable(aForm.Components[iCounter]), bakActive);
+      bakActive := TADOTable(aForm.Components[iCounter]).active;
+      MakeActiveTryReconnect(TADOTable(aForm.Components[iCounter]), false);
+      SetConnection(aForm.Components[iCounter] as TADOTable);
+      MakeActiveTryReconnect(TADOTable(aForm.Components[iCounter]), bakActive);
     end;
-    if (aForm.Components[iCounter] is TAdoQuery) then
+    if (aForm.Components[iCounter] is TADOQuery) then
     begin
-      bakActive := TAdoQuery(aForm.Components[iCounter]).Active;
-      MakeActiveTryReconnect(TAdoQuery(aForm.Components[iCounter]), false);
-      SetConnection(aForm.Components[iCounter] as TAdoQuery);
-      MakeActiveTryReconnect(TAdoQuery(aForm.Components[iCounter]), bakActive);
+      bakActive := TADOQuery(aForm.Components[iCounter]).active;
+      MakeActiveTryReconnect(TADOQuery(aForm.Components[iCounter]), false);
+      SetConnection(aForm.Components[iCounter] as TADOQuery);
+      MakeActiveTryReconnect(TADOQuery(aForm.Components[iCounter]), bakActive);
     end;
     if (aForm.Components[iCounter] is THsDruckerConfig) then
     begin
-      THsDruckerConfig(aForm.Components[iCounter]).Connection := Self.Connection;
+      THsDruckerConfig(aForm.Components[iCounter]).Connection :=
+        self.Connection;
     end;
- end;
+  end;
 end;
 
 procedure ThlDatenbank.ConnectionsFuerFormKomponentenSetzen(aForm: TFrame);
@@ -723,31 +791,31 @@ var
   iCounter: integer;
   bakActive: boolean;
 begin
-  for iCounter := aForm.ComponentCount-1 downto 0 do
+  for iCounter := aForm.ComponentCount - 1 downto 0 do
   begin
-    if (aForm.Components[iCounter] is TAdoTable) then
+    if (aForm.Components[iCounter] is TADOTable) then
     begin
-      bakActive := TAdoTable(aForm.Components[iCounter]).Active;
-      MakeActiveTryReconnect(TAdoTable(aForm.Components[iCounter]), false);
-      SetConnection(aForm.Components[iCounter] as TAdoTable);
-      MakeActiveTryReconnect(TAdoTable(aForm.Components[iCounter]), bakActive);
+      bakActive := TADOTable(aForm.Components[iCounter]).active;
+      MakeActiveTryReconnect(TADOTable(aForm.Components[iCounter]), false);
+      SetConnection(aForm.Components[iCounter] as TADOTable);
+      MakeActiveTryReconnect(TADOTable(aForm.Components[iCounter]), bakActive);
     end;
-    if (aForm.Components[iCounter] is TAdoQuery) then
+    if (aForm.Components[iCounter] is TADOQuery) then
     begin
-      bakActive := TAdoQuery(aForm.Components[iCounter]).Active;
-      MakeActiveTryReconnect(TAdoQuery(aForm.Components[iCounter]), false);
-      SetConnection(aForm.Components[iCounter] as TAdoQuery);
-      MakeActiveTryReconnect(TAdoQuery(aForm.Components[iCounter]), bakActive);
+      bakActive := TADOQuery(aForm.Components[iCounter]).active;
+      MakeActiveTryReconnect(TADOQuery(aForm.Components[iCounter]), false);
+      SetConnection(aForm.Components[iCounter] as TADOQuery);
+      MakeActiveTryReconnect(TADOQuery(aForm.Components[iCounter]), bakActive);
     end;
- end;
+  end;
 end;
 
 // Die Funktion ist nicht gut, da das SA-Passwort nicht preserved wird!
 (*
-function ThlDatenbank.ConnectionString: string;
-begin
+  function ThlDatenbank.ConnectionString: string;
+  begin
   result := mConnection.ConnectionString;
-end;
+  end;
 *)
 
 {$ENDREGION}
@@ -758,24 +826,25 @@ var
   Y: TDataSource;
   Z: TADOTable;
 begin
-  x.Active := false; // MakeActiveTryReconnect(x, false);
-  x.Active := true; // MakeActiveTryReconnect(x, true);
-  for iCounter := aForm.ComponentCount-1 downto 0 do
+  x.active := false; // MakeActiveTryReconnect(x, false);
+  x.active := true; // MakeActiveTryReconnect(x, true);
+  for iCounter := aForm.ComponentCount - 1 downto 0 do
   begin
     // Schritt 1: Finde alle DataSources, die an das DataSet "X" gebunden sind
     if (aForm.Components[iCounter] is TDataSource) then
     begin
       Y := aForm.Components[iCounter] as TDataSource;
-      if Y.DataSet = X then
+      if Y.DataSet = x then
       begin
         // Schritt 2: Finde alle TADOTables, deren MasterSource unsere zuvor gefundene DataSource ist.
-        for iCounter2 := aForm.ComponentCount-1 downto 0 do
+        for iCounter2 := aForm.ComponentCount - 1 downto 0 do
         begin
           if (aForm.Components[iCounter2] is TADOTable) then
           begin
             Z := aForm.Components[iCounter2] as TADOTable;
             // Schritt 3: Verbinde diese neu (am besten Rekursiv).
-            if Z.MasterSource = Y then ReaktiviereVerbindung(Z, aForm);
+            if Z.MasterSource = Y then
+              ReaktiviereVerbindung(Z, aForm);
           end;
         end;
       end;
@@ -786,35 +855,29 @@ end;
 function ThlDatenbank.DbOwnerSid: string;
 begin
   // Achtung! "sa" Benutzer hat SID 0x01
-  result := GetScalar('select CONVERT([varchar](100), owner_sid, 1) from sys.databases where name = '+DatenbankName.toSQLString).AsString;
+  Result := GetScalar
+    ('select CONVERT([varchar](100), owner_sid, 1) from sys.databases where name = '
+    + Datenbankname.toSQLString).AsString;
 end;
 
 function ThlDatenbank.SqlServerMac: string;
 begin
-  ExecSQL('IF object_id(''SeqId'', ''P'') IS NOT NULL DROP PROCEDURE [dbo].[SeqId];');
+  ExecSql('IF object_id(''SeqId'', ''P'') IS NOT NULL DROP PROCEDURE [dbo].[SeqId];');
 
-  ExecSQL('CREATE PROCEDURE SeqId ' +
-          'AS ' +
-          'begin ' +
-          '  declare @t table ' +
-          '    ( ' +
-          '    i uniqueidentifier default newsequentialid(), ' +
-          '    m as cast(i as char(36)) ' +
-          '    ) ' +
-          ' ' +
-          '    insert into @t default values; ' +
-          ' ' +
-          '    select m FROM @t ' +
-          'end;');
+  ExecSql('CREATE PROCEDURE SeqId ' + 'AS ' + 'begin ' + '  declare @t table ' +
+    '    ( ' + '    i uniqueidentifier default newsequentialid(), ' +
+    '    m as cast(i as char(36)) ' + '    ) ' + ' ' +
+    '    insert into @t default values; ' + ' ' + '    select m FROM @t '
+    + 'end;');
 
-  result := Copy(GetScalar('exec SeqId').AsString,25,12);
+  Result := Copy(GetScalar('exec SeqId').AsString, 25, 12);
 
-  ExecSQL('DROP PROCEDURE [dbo].[SeqId];');
+  ExecSql('DROP PROCEDURE [dbo].[SeqId];');
 end;
 
 class function ThlDatenbank.DefaultCommandTimeout: integer;
 begin
-  result := 300;
+  Result := 300;
 end;
 
 procedure ThlDatenbank.DefragIndexes;
@@ -822,18 +885,15 @@ var
   q: ThlDataSet;
   SchemaName, TableName, IndexName: string;
 begin
-  q := GetTable(
-    'SELECT ' +
-    '  s.name AS SchemaName, ' +
-    '  t.name AS TableName, ' +
-    '  i.name AS IndexName, ' +
+  q := GetTable('SELECT ' + '  s.name AS SchemaName, ' +
+    '  t.name AS TableName, ' + '  i.name AS IndexName, ' +
     '  ips.index_type_desc AS IndexType, ' +
     '  ips.avg_fragmentation_in_percent ' +
-    'FROM sys.dm_db_index_physical_stats (DB_ID(), NULL, NULL, NULL, ''DETAILED'') ips ' +
-    'JOIN sys.tables t ON ips.object_id = t.object_id ' +
+    'FROM sys.dm_db_index_physical_stats (DB_ID(), NULL, NULL, NULL, ''DETAILED'') ips '
+    + 'JOIN sys.tables t ON ips.object_id = t.object_id ' +
     'JOIN sys.schemas s ON t.schema_id = s.schema_id ' +
-    'JOIN sys.indexes i ON ips.object_id = i.object_id AND ips.index_id = i.index_id ' +
-    'WHERE ips.index_level = 0 ' + //0=Leaf, 1=Intermediate, 2=Root
+    'JOIN sys.indexes i ON ips.object_id = i.object_id AND ips.index_id = i.index_id '
+    + 'WHERE ips.index_level = 0 ' + // 0=Leaf, 1=Intermediate, 2=Root
     'ORDER BY ips.avg_fragmentation_in_percent DESC');
   try
     while not q.Eof do
@@ -846,18 +906,23 @@ begin
       begin
         if q.FieldByName('IndexType').AsString = 'HEAP' then
         begin
-          ExecSQL(Format('ALTER TABLE [%s].[%s] REBUILD;', [SchemaName, TableName]));
+          ExecSql(Format('ALTER TABLE [%s].[%s] REBUILD;',
+            [SchemaName, TableName]));
         end
         else
         begin
           if q.FieldByName('avg_fragmentation_in_percent').AsInteger > 30 then
-            ExecSQL(Format('ALTER INDEX [%s] ON [%s].[%s] REBUILD;', [IndexName, SchemaName, TableName]))
-          else if q.FieldByName('avg_fragmentation_in_percent').AsInteger > 10 then
-            ExecSQL(Format('ALTER INDEX [%s] ON [%s].[%s] REORGANIZE;', [IndexName, SchemaName, TableName]));
+            ExecSql(Format('ALTER INDEX [%s] ON [%s].[%s] REBUILD;',
+              [IndexName, SchemaName, TableName]))
+          else if q.FieldByName('avg_fragmentation_in_percent').AsInteger > 10
+          then
+            ExecSql(Format('ALTER INDEX [%s] ON [%s].[%s] REORGANIZE;',
+              [IndexName, SchemaName, TableName]));
         end;
       end;
 
-      ExecSQL(Format('UPDATE STATISTICS [%s].[%s] WITH FULLSCAN;', [SchemaName, TableName]));
+      ExecSql(Format('UPDATE STATISTICS [%s].[%s] WITH FULLSCAN;',
+        [SchemaName, TableName]));
 
       q.Next;
     end;
@@ -866,34 +931,36 @@ begin
   end;
 
   q := GetTable('SELECT s.name as SchemaName, v.name as TableName ' +
-                'FROM sys.views v ' +
-                'JOIN sys.schemas s ON v.schema_id = s.schema_id;');
+    'FROM sys.views v ' + 'JOIN sys.schemas s ON v.schema_id = s.schema_id;');
   try
-    while not q.EOF do
+    while not q.Eof do
     begin
       SchemaName := q.FieldByName('SchemaName').AsString;
       TableName := q.FieldByName('TableName').AsString;
-      ExecSQL(Format('sp_recompile ''[%s].[%s]'';', [SchemaName, TableName]));
+      ExecSql(Format('sp_recompile ''[%s].[%s]'';', [SchemaName, TableName]));
       q.Next;
     end;
   finally
     FreeAndNil(q);
   end;
 
-  ExecSQL('DBCC FREEPROCCACHE;');
-  ExecSQL('exec sp_updatestats;');
+  ExecSql('DBCC FREEPROCCACHE;');
+  ExecSql('exec sp_updatestats;');
 end;
 
 destructor ThlDatenbank.Destroy;
 begin
-  if ownsConnection then mConnection.Connected := false;
+  if ownsConnection then
+    mConnection.Connected := false;
   FreeAndNil(mCommand);
-  if ownsConnection then FreeAndNil(mConnection);
+  if ownsConnection then
+    FreeAndNil(mConnection);
   FreeAndNil(mScalarTable);
   inherited;
 end;
 
-class procedure ThlDatenbank.DropTable(aTableName: hlString; adoCon: TADOConnection);
+class procedure ThlDatenbank.DropTable(aTableName: hlString;
+  adoCon: TAdoConnection);
 begin
   if ViewExists(aTableName, adoCon) then
   begin
@@ -909,11 +976,11 @@ procedure ThlDatenbank.BeginTransaction;
 begin
   Inc(mTransaktionsTiefe);
 
-  {$IFDEF TransaktionsTiefeAutomatik}
-  if mTransaktionsTiefe > 1 then exit;
-  {$ENDIF}
-
-  mConnection.Connected := True;
+{$IFDEF TransaktionsTiefeAutomatik}
+  if mTransaktionsTiefe > 1 then
+    exit;
+{$ENDIF}
+  mConnection.Connected := true;
 
   // Wir prüfen nicht, ob nicht schon eine Transaktion besteht, aus folgendem Grund:
   // 1. Sollte eine vorherige Transaktion nicht mittels Rollback im Fehlerfall beendet worden sein, dann wäre das erneute Öffnen einer Transaktion fatal, da vorherige inkonsistente Änderungen beim nächsten Commit gespeichert werden würden.
@@ -926,38 +993,43 @@ end;
 
 // Die Funktion ist nicht gut, da das SA-Passwort nicht preserved wird!
 (*
-function ThlDatenbank.Clone: ThlDatenbank;
-begin
+  function ThlDatenbank.Clone: ThlDatenbank;
+  begin
   result := ThlDatenbank.Create(mConnection.ConnectionString, mConnection.IsolationLevel=ilIsolated, mConnection.ConnectionTimeout);
-end;
+  end;
 *)
 
-function ThlDatenbank.ColumnExists(aTableName, aColumnName: hlstring): boolean;
+function ThlDatenbank.ColumnExists(aTableName, aColumnName: hlString): boolean;
 begin
-  result := GetScalar('select count (*) from sys.columns where Name = N'+aColumnName.toSQLString+' and Object_ID = Object_ID(N'+aTableName.toSQLString+')').AsInteger > 0;
+  Result := GetScalar('select count (*) from sys.columns where Name = N' +
+    aColumnName.toSQLString + ' and Object_ID = Object_ID(N' +
+    aTableName.toSQLString + ')').AsInteger > 0;
 end;
 
 procedure ThlDatenbank.DropColumn(aTableName, aColumnName: hlString);
 begin
   if ColumnExists(aTableName, aColumnName) then
   begin
-    ExecSQL('alter table ' + aTableName.toSQLObjectName + ' drop column ' + aColumnName.toString);
+    ExecSql('alter table ' + aTableName.toSQLObjectName + ' drop column ' +
+      aColumnName.toString);
   end;
 end;
 
-function ThlDatenbank.IndexExists(aTableName, aIndexName: hlstring): boolean;
+function ThlDatenbank.IndexExists(aTableName, aIndexName: hlString): boolean;
 begin
-  result := GetScalar('select count (*) from sys.indexes where name = N'+aIndexName.toSQLString+' and Object_ID = Object_ID(N'+aTableName.toSQLString+')').AsInteger > 0;
+  Result := GetScalar('select count (*) from sys.indexes where name = N' +
+    aIndexName.toSQLString + ' and Object_ID = Object_ID(N' +
+    aTableName.toSQLString + ')').AsInteger > 0;
 end;
 
 procedure ThlDatenbank.Commit;
 begin
   Dec(mTransaktionsTiefe);
 
-  {$IFDEF TransaktionsTiefeAutomatik}
-  if mTransaktionsTiefe > 0 then exit;
-  {$ENDIF}
-
+{$IFDEF TransaktionsTiefeAutomatik}
+  if mTransaktionsTiefe > 0 then
+    exit;
+{$ENDIF}
   if mConnection.InTransaction then
     mConnection.CommitTrans;
 end;
@@ -966,29 +1038,30 @@ procedure ThlDatenbank.Rollback;
 begin
   Dec(mTransaktionsTiefe);
 
-  {$IFDEF TransaktionsTiefeAutomatik}
-  if mTransaktionsTiefe > 0 then exit;
-  {$ENDIF}
-
+{$IFDEF TransaktionsTiefeAutomatik}
+  if mTransaktionsTiefe > 0 then
+    exit;
+{$ENDIF}
   if mConnection.InTransaction then
-    mconnection.RollbackTrans;
+    mConnection.RollbackTrans;
 end;
 
 class procedure ThlDatenbank.ExecSql(sQuery: string; aCon: TAdoConnection);
 var
-  command: TADOCommand;
+  command: TAdoCommand;
   OK: boolean;
 begin
   try
     // aCon.Execute(sQuery);
 
     // Wir machen das über einen TADOCommand, weil wir da den ParamCheck haben
-    command := TADOCommand.Create(nil);
+    command := TAdoCommand.Create(nil);
     try
       command.Connection := aCon;
       command.ParamCheck := false;
       command.CommandText := sQuery;
-      if Assigned(Debug) then _TimerStart;
+      if Assigned(Debug) then
+        _TimerStart;
 
       OK := false;
       repeat
@@ -1002,8 +1075,9 @@ begin
           end;
           on E: Exception do
           begin
-            if (Pos('Warten Sie, bis die Wiederherstellung beendet ist', E.Message) >= 1) or
-               (Pos('Waiting until recovery is finished', E.Message) >= 1) then
+            if (Pos('Warten Sie, bis die Wiederherstellung beendet ist',
+              E.Message) >= 1) or
+              (Pos('Waiting until recovery is finished', E.Message) >= 1) then
             begin
               // "Die LUTZ_1-Datenbank wird wiederhergestellt. Warten Sie, bis die Wiederherstellung beendet ist"
               // oder "Database 'LUTZ_1' is being recovered. Waiting until recovery is finished"
@@ -1011,63 +1085,75 @@ begin
             end
             else
             begin
-              raise Exception.CreateFmt('Fehler %s beim Ausführen der Query %s', [e.Message, sQuery]);
+              raise Exception.CreateFmt('Fehler %s beim Ausführen der Query %s',
+                [E.Message, sQuery]);
             end;
           end;
         end;
       until OK;
 
-      if Assigned(Debug) then Debug(sQuery, _TimerEnd);
+      if Assigned(Debug) then
+        Debug(sQuery, _TimerEnd);
     finally
       FreeAndNil(command);
     end;
   except
     on E: EAbort do
     begin
-      if aCon.InTransaction then aCon.RollbackTrans;
+      if aCon.InTransaction then
+        aCon.RollbackTrans;
       Abort;
     end;
     on E: Exception do
     begin
       // Ticket 29825, Punkt 2a, Szenario 1
       // Ticket 29729, Punkt 1
-      if aCon.InTransaction then aCon.RollbackTrans;
-      raise Exception.CreateFmt('Fehler %s beim Ausführen der Query %s', [e.Message, sQuery]);
+      if aCon.InTransaction then
+        aCon.RollbackTrans;
+      raise Exception.CreateFmt('Fehler %s beim Ausführen der Query %s',
+        [E.Message, sQuery]);
     end;
   end;
 end;
-procedure ThlDatenbank.ExecSql(sql: string='');
+
+procedure ThlDatenbank.ExecSql(sql: string = '');
 begin
   // Connection.Execute(sql);
   ExecSql(DefaultCommandTimeout, sql);
 
   if Assigned(Application) and
-     ((UpperCase(ExtractFileName(ParamStr(0))) = 'CORA_AUTOARCHIVIERUNG.EXE') or
-      (UpperCase(ExtractFileName(ParamStr(0))) = 'CORA_AUTOARCHIVIERUNG64.EXE')) then
+    ((UpperCase(ExtractFileName(ParamStr(0))) = 'CORA_AUTOARCHIVIERUNG.EXE') or
+    (UpperCase(ExtractFileName(ParamStr(0))) = 'CORA_AUTOARCHIVIERUNG64.EXE'))
+  then
   begin
     Application.ProcessMessages;
   end;
 end;
-procedure ThlDatenbank.ExecSql(timeOut: integer; sql: string='');
-//var
-//  oldCommandTimeout: integer;
+
+procedure ThlDatenbank.ExecSql(timeout: integer; sql: string = '');
+// var
+// oldCommandTimeout: integer;
 begin
   if not Assigned(mConnection) or not mConnection.Connected then
   begin
-    raise Exception.CreateFmt('Folgende SQL-Query konnte nicht an den Datenbank-Server gesendet werden, da die Verbindung bereits abgebaut wurde:'+#13#10#13#10+'%s', [sql]);
+    raise Exception.CreateFmt
+      ('Folgende SQL-Query konnte nicht an den Datenbank-Server gesendet werden, da die Verbindung bereits abgebaut wurde:'
+      + #13#10#13#10 + '%s', [sql]);
   end;
 
-  //oldCommandTimeout := mCommand.CommandTimeout;
-  mCommand.CommandTimeout := timeOut;
+  // oldCommandTimeout := mCommand.CommandTimeout;
+  mCommand.CommandTimeout := timeout;
 
   // aCon.Execute(sql);
   mCommand.ParamCheck := false;
   mCommand.CommandText := sql;
   try
     mCommand.ParamCheck := false;
-    if Assigned(Debug) then _TimerStart;
+    if Assigned(Debug) then
+      _TimerStart;
     mCommand.Execute;
-    if Assigned(Debug) then Debug(sql, _TimerEnd);
+    if Assigned(Debug) then
+      Debug(sql, _TimerEnd);
   except
     on E: EAbort do
     begin
@@ -1082,8 +1168,10 @@ begin
         Write('Query FEHLGESCHLAGEN: ' + E.Message + ' bei Query ' + sql);
         Free;
       end;
-      if mConnection.InTransaction then mConnection.RollbackTrans;
-      raise Exception.CreateFmt('Fehler %s beim Ausführen der Query %s', [e.Message, sql]);
+      if mConnection.InTransaction then
+        mConnection.RollbackTrans;
+      raise Exception.CreateFmt('Fehler %s beim Ausführen der Query %s',
+        [E.Message, sql]);
     end;
   end;
 
@@ -1091,68 +1179,75 @@ begin
   // Bedingungen:
   // - Es wird SQL-Provider MSOLEDBSQL (Generation 3) oder SQLNCLI11 (Generation 2) ausgeführt
   // - FMTOnly ist "off" (default bei Gen2 und Gen3).
-  //   Bei FMTOnly=On funktionieren andere Dinge nicht, z.B. sind die Result-Sets alle leer?!
+  // Bei FMTOnly=On funktionieren andere Dinge nicht, z.B. sind die Result-Sets alle leer?!
   // - Es wird ein Alter Table Statement verwendet
-  //     hclDBMandant.Datenbank.BeginTransaction;
-  //     hclDBMandant.Datenbank.ExecSQL('alter table [dbo].[DAUERAUFTRAG] add VORLAUFZEIT int;');
-  //     hclDBMandant.Datenbank.Rollback;
+  // hclDBMandant.Datenbank.BeginTransaction;
+  // hclDBMandant.Datenbank.ExecSQL('alter table [dbo].[DAUERAUFTRAG] add VORLAUFZEIT int;');
+  // hclDBMandant.Datenbank.Rollback;
   // - Es wird eine Transaktion verwendet (nicht ganz sicher, ob das Pflicht ist)
   // - CommandTimeout wird nach Execute nochmal geändert
-  //   => Dann ruft er aus irgendeinem Grund Metadaten ab, und führt innerlich AlterTable erneut aus?
+  // => Dann ruft er aus irgendeinem Grund Metadaten ab, und führt innerlich AlterTable erneut aus?
   // - Diese Änderung an CommandTimeout MUSS INNERHALB DES SELBEN FUNKTIONSAUFRUFS SEIN
-  //   Wenn die Funktion unmittelbar danach erneut aufgerufen wird (und selbst wenn Commandtimeout
-  //   der erste Befehl ist, dann macht dieses CommandTimeout keine Probleme?!?!?!
-  //   UND Execute muss ebenfalls in dieser Funktion drin sein!
+  // Wenn die Funktion unmittelbar danach erneut aufgerufen wird (und selbst wenn Commandtimeout
+  // der erste Befehl ist, dann macht dieses CommandTimeout keine Probleme?!?!?!
+  // UND Execute muss ebenfalls in dieser Funktion drin sein!
   // Wenn das alles erfüllt ist, dann kommt die Meldung, dass die Spalte bereits vorhanden ist,
   // obwohl sie das nicht ist!
   // siehe https://stackoverflow.com/questions/63597112/setting-commandtimeout-after-execution-causes-error-column-appears-multiple-tim?noredirect=1#comment112462368_63597112
   // mCommand.CommandTimeout := tmp;
 end;
+
 function ThlDatenbank.Any(const sql: string): boolean;
 var
   q: ThlDataSet;
 begin
   q := GetTable(sql);
   try
-    result := q.RecordCount > 0;
+    Result := q.RecordCount > 0;
   finally
     FreeAndNil(q);
   end;
 end;
 
-function ThlDatenbank.GetScalar(timeOut: integer; sql: string): ThlDatenbankFeld;
+function ThlDatenbank.GetScalar(timeout: integer; sql: string)
+  : ThlDatenbankFeld;
 var
   ds: ThlDataSet;
 begin
-  if sql = '' then raise Exception.Create('GetScalar mit leerem SQL String aufgerufen');
+  if sql = '' then
+    raise Exception.Create('GetScalar mit leerem SQL String aufgerufen');
   ds := GetTable(timeout, sql);
   try
     if ds.RecordCount = 0 then
     begin
-      result := ThlDatenbankFeld.Create('');
-      result.mIsNull := true;
+      Result := ThlDatenbankFeld.Create('');
+      Result.mIsNull := true;
     end
     else
-      result := ThlDatenbankFeld.Create(ds.Fields[0]);
+      Result := ThlDatenbankFeld.Create(ds.Fields[0]);
   finally
     FreeAndNil(ds);
   end;
 end;
+
 function ThlDatenbank.GetScalar(sql: string): ThlDatenbankFeld;
 begin
-  if sql = '' then raise Exception.Create('GetScalar mit leerem SQL String aufgerufen');
+  if sql = '' then
+    raise Exception.Create('GetScalar mit leerem SQL String aufgerufen');
   Result := GetScalar(DefaultCommandTimeout, sql);
 end;
 
-function ThlDatenbank.GetTable(sql: string=''; controlsEnabled: boolean=false): ThlDataSet;
+function ThlDatenbank.GetTable(sql: string = '';
+  controlsEnabled: boolean = false): ThlDataSet;
 begin
   Result := GetTable(DefaultCommandTimeout, sql, controlsEnabled);
 end;
 
-class procedure ThlDatenbank.MakeActiveTryReconnect(q: TCustomADODataSet; active: boolean=true);
+class procedure ThlDatenbank.MakeActiveTryReconnect(q: TCustomADODataSet;
+  active: boolean = true);
 begin
   try
-    q.Active := active;
+    q.active := active;
   except
     on E: EAbort do
     begin
@@ -1164,34 +1259,41 @@ begin
       begin
         q.Connection.Connected := false;
         q.Connection.Connected := true;
-        q.Active := active;
+        q.active := active;
       end
       else
       begin
-        raise Exception.CreateFmt('Fehler %s beim SQL-Verbindungsaufbau "MakeActiveTryReconnect"', [e.Message]);
+        raise Exception.CreateFmt
+          ('Fehler %s beim SQL-Verbindungsaufbau "MakeActiveTryReconnect"',
+          [E.Message]);
       end;
     end;
   end;
 end;
 
-function ThlDatenbank.GetTable(timeOut: integer; sql: string=''; controlsEnabled: boolean=false): ThlDataSet;
+function ThlDatenbank.GetTable(timeout: integer; sql: string = '';
+  controlsEnabled: boolean = false): ThlDataSet;
 begin
-  Result := ThlDataSet(CreateNewADODataset);
-  result.ParamCheck := false;
+  Result := ThlDataSet(CreateNewADODataSet);
+  Result.ParamCheck := false;
   Result.CommandText := sql;
-  Result.CommandTimeout := timeOut;
-  if Assigned(Debug) then _TimerStart;
+  Result.CommandTimeout := timeout;
+  if Assigned(Debug) then
+    _TimerStart;
   MakeActiveTryReconnect(Result, Trim(sql) <> '');
-  if Assigned(Debug) then Debug(sql, _TimerEnd);
+  if Assigned(Debug) then
+    Debug(sql, _TimerEnd);
   if not controlsEnabled then
   begin
-    Result.DisableControls; // Macht Iterationen viel schneller, *auch wenn keine GUI dran hängt*!
+    Result.DisableControls;
+    // Macht Iterationen viel schneller, *auch wenn keine GUI dran hängt*!
   end;
   // Kommentar von RH (ursprünglich in hcl_LohnmostKumulierung.pas)
   // "SCh.... Delphi: Das "q.first" muss bleiben, da sonst SPORADISCH der Cursor auf BOF steht und nicht auf dem 1. Datensatz!
-  //  Falls dies der Fall ist, knallts es unten, da die Instanz "q" keinen sauberen Cursor zurückliefert!"
+  // Falls dies der Fall ist, knallts es unten, da die Instanz "q" keinen sauberen Cursor zurückliefert!"
   // Zur Sicherheit bauen wir daher .First für alle GetTable() Aufrufe ein.
-  if result.Active then // DM 07.06.2021 : If-Condition hinzugefügt, weil man beim GoBD Export beispielsweise "GetTable" mit sql='' aufruft, um ein leeres Dataset zu bekommen
+  if Result.active then
+  // DM 07.06.2021 : If-Condition hinzugefügt, weil man beim GoBD Export beispielsweise "GetTable" mit sql='' aufruft, um ein leeres Dataset zu bekommen
     Result.First;
 end;
 
@@ -1209,13 +1311,14 @@ begin
     // q1 := GetTable('select @@IDENTITY as INSERT_ID;');
     q1 := GetTable('select SCOPE_IDENTITY() as INSERT_ID;');
     try
-      if (q1.RecordCount = 0) or (q1.{FieldByName('INSERT_ID')}Fields[0].AsInteger = 0) then
+      if (q1.RecordCount = 0) or
+        (q1.{ FieldByName('INSERT_ID') } Fields[0].AsInteger = 0) then
       begin
-        result := -1;
+        Result := -1;
         raise EHSCannotGetAutoInc.Create(LNG_NO_AUTOINC);
       end;
 
-      result := q1.{FieldByName('INSERT_ID')}Fields[0].AsInteger;
+      Result := q1.{ FieldByName('INSERT_ID') } Fields[0].AsInteger;
     finally
       FreeAndNil(q1);
     end;
@@ -1226,144 +1329,156 @@ end;
 
 function ThlDatenbank.InTransaction: boolean;
 begin
-  result := Transaktionstiefe > 0;
+  Result := Transaktionstiefe > 0;
 end;
 
 function ThlDatenbank.IstExpressEdition: boolean;
 begin
-  result :=
-    (Copy(GetScalar('select serverproperty(''Edition'')').AsString, 1, Length('Express')) = 'Express')
-    or
+  Result := (Copy(GetScalar('select serverproperty(''Edition'')').AsString, 1,
+    Length('Express')) = 'Express') or
     (AnsiPos('Express Edition', GetScalar('select @@version').AsString) > 0);
 end;
 
-procedure ThlDatenbank.DropTable (aTableName: string);
+procedure ThlDatenbank.DropTable(aTableName: string);
 begin
   DropTable(aTableName, mConnection);
 end;
 
-function ThlDatenbank.FieldCount (aTableName: string): integer;
+function ThlDatenbank.FieldCount(aTableName: string): integer;
 begin
-  result := GetScalar('select count (*) from syscolumns where id = (select id from sysobjects where name = ''' + aTableName + ''') ').AsInteger;
+  Result := GetScalar
+    ('select count (*) from syscolumns where id = (select id from sysobjects where name = '''
+    + aTableName + ''') ').AsInteger;
 end;
 
-function ThlDatenbank.IndexCount (aTableName: string): integer;
+function ThlDatenbank.IndexCount(aTableName: string): integer;
 begin
-  result := GetScalar('select max (ik.indid) from sysindexkeys ik left join sysindexes ind on ind.id = ik.id and ind.indid = ik.indid where ik.id = (select id from sysobjects ' +
-                     'where name = ''' + aTableName + ''') and ind.status < 10000000').AsInteger;
+  Result := GetScalar
+    ('select max (ik.indid) from sysindexkeys ik left join sysindexes ind on ind.id = ik.id and ind.indid = ik.indid where ik.id = (select id from sysobjects '
+    + 'where name = ''' + aTableName + ''') and ind.status < 10000000')
+    .AsInteger;
 end;
 
-class function ThlDatenbank.FileToStringlist(aFileName: string; aList: TStringlist): integer;
+class function ThlDatenbank.FileToStringlist(aFileName: string;
+  aList: Tstringlist): integer;
 var
-   ListFile: TStringlist;
-   BefehlsCount: integer;
-   Buffer: string;
+  ListFile: Tstringlist;
+  BefehlsCount: integer;
+  Buffer: string;
 
 begin
-   aList.Clear;
-   ListFile := TStringList.Create;
-   try
-     ListFile.LoadFromFile(aFileName);
-     Befehlscount := 0;
-     while Listfile.Count > 0 do
-     begin
-        Buffer := GetBefehlszeile (ListFile);
-        aList.Add (Buffer);
-        Befehlscount := Befehlscount +1;
-     end;
-   finally
-     FreeAndNil(ListFile);
-   end;
-   result := BefehlsCount;
+  aList.Clear;
+  ListFile := Tstringlist.Create;
+  try
+    ListFile.LoadFromFile(aFileName);
+    BefehlsCount := 0;
+    while ListFile.Count > 0 do
+    begin
+      Buffer := GetBefehlszeile(ListFile);
+      aList.Add(Buffer);
+      BefehlsCount := BefehlsCount + 1;
+    end;
+  finally
+    FreeAndNil(ListFile);
+  end;
+  Result := BefehlsCount;
 end;
 
 class function ThlDatenbank.ReorgExecList(aList: TStrings): integer;
 var
-   ListFile: TStringlist;
-   BefehlsCount: integer;
-   Buffer: string;
+  ListFile: Tstringlist;
+  BefehlsCount: integer;
+  Buffer: string;
 
 begin
-   ListFile := TStringList.Create;
-   try
-     ListFile.Assign(aList);
-     aList.Clear;
+  ListFile := Tstringlist.Create;
+  try
+    ListFile.Assign(aList);
+    aList.Clear;
 
-     Befehlscount := 0;
-     while Listfile.Count > 0 do
-     begin
-        Buffer := GetBefehlszeile (ListFile);
-        aList.Add (Buffer);
-        Inc(Befehlscount);
-     end;
-   finally
-     FreeAndNil(ListFile);
-   end;
+    BefehlsCount := 0;
+    while ListFile.Count > 0 do
+    begin
+      Buffer := GetBefehlszeile(ListFile);
+      aList.Add(Buffer);
+      Inc(BefehlsCount);
+    end;
+  finally
+    FreeAndNil(ListFile);
+  end;
 
-   result := BefehlsCount;
+  Result := BefehlsCount;
 end;
 
 class function ThlDatenbank.GetBefehlszeile(ListFile: Tstringlist): string;
 var
-   buffer: string;
-   posi: integer;
+  Buffer: string;
+  posi: integer;
 
 begin
-   result := '';
-   while Listfile.Count > 0 do
-   begin
-      posi := pos (';', Listfile [0]);
-      if posi <= 0 then posi := MaxChars;
-      buffer := copy (Listfile [0], 1, posi);
-      buffer := stringreplace (buffer, #9, '', [rfReplaceAll]);
-      if result <> '' then result := result + ' ' + buffer
-      else result := buffer;
-      buffer := copy (Listfile [0], posi, MaxChars);
-      Listfile.Delete(0);
-      if posi < MaxChars then break;
-   end;
+  Result := '';
+  while ListFile.Count > 0 do
+  begin
+    posi := Pos(';', ListFile[0]);
+    if posi <= 0 then
+      posi := MaxChars;
+    Buffer := Copy(ListFile[0], 1, posi);
+    Buffer := StringReplace(Buffer, #9, '', [rfReplaceAll]);
+    if Result <> '' then
+      Result := Result + ' ' + Buffer
+    else
+      Result := Buffer;
+    Buffer := Copy(ListFile[0], posi, MaxChars);
+    ListFile.Delete(0);
+    if posi < MaxChars then
+      break;
+  end;
 end;
 
 function ThlDatenbank.GetCommandTimeout: integer;
 begin
-  result := mConnection.CommandTimeout;
+  Result := mConnection.CommandTimeout;
 end;
 
-function ThlDatenbank.GetConnectionID: TGUID;
+function ThlDatenbank.GetConnectionID: TGuid;
 var
-  s : string;
+  s: string;
 
 begin
   s := GetScalar('select connection_id from sys.dm_exec_connections ec ' +
-             'left join sys.dm_exec_sessions se on ec.session_id = se.session_id ' +
-             'where se.session_id = @@SPID').AsString;
+    'left join sys.dm_exec_sessions se on ec.session_id = se.session_id ' +
+    'where se.session_id = @@SPID').AsString;
 
-  result := StringToGUID(s);
+  Result := StringToGUID(s);
 end;
 
 function ThlDatenbank.GetDatenbankName: hlString;
 begin
   // Hinweis: Das funktioniert auch, wenn man mit "use" eine andere Datenbank selektiert hat.
-  result := mConnection.DefaultDatabase;
+  Result := mConnection.DefaultDatabase;
 end;
 
-function ThlDatenbank.ExecSqlList(aList: TStrings; mode: TExecSQLListMode=lmFehlerAnzeigenUndAbbrechen;
-                                  WithTransaction: boolean=false; timeout: integer=600; slFehler: TStrings=nil): boolean;
+function ThlDatenbank.ExecSqlList(aList: TStrings;
+  mode: TExecSQLListMode = lmFehlerAnzeigenUndAbbrechen;
+  WithTransaction: boolean = false; timeout: integer = 600;
+  slFehler: TStrings = nil): boolean;
 var
   i: integer;
   line: string;
 begin
-  if (mode in [lmFehlerIgnorieren, lmFehlerAnzeigenUndWeitermachen]) and WithTransAction then
+  if (mode in [lmFehlerIgnorieren, lmFehlerAnzeigenUndWeitermachen]) and WithTransaction
+  then
   begin
-    raise Exception.Create('Interner Fehler in Sql_Scripts.ExecSqlList(): lmFehlerIgnorieren/lmFehlerAnzeigenUndWeitermachen und WithTransAction sind nicht vereinbar. Bitte melden Sie den Fehler an HickelSOFT.');
+    raise Exception.Create
+      ('Interner Fehler in Sql_Scripts.ExecSqlList(): lmFehlerIgnorieren/lmFehlerAnzeigenUndWeitermachen und WithTransAction sind nicht vereinbar. Bitte melden Sie den Fehler an HickelSOFT.');
   end;
 
-  if (WithTransAction = true) then
+  if (WithTransaction = true) then
     BeginTransaction;
 
   if mode in [lmFehlerIgnorieren, lmFehlerAnzeigenUndWeitermachen] then
   begin
-    result := true;
+    Result := true;
     for i := 0 to aList.Count - 1 do
     begin
       try
@@ -1380,7 +1495,8 @@ begin
             end;
             on E: Exception do
             begin
-              raise Exception.CreateFmt('Exception %s at query %s', [E.Message, line]);
+              raise Exception.CreateFmt('Exception %s at query %s',
+                [E.Message, line]);
             end;
           end;
         end;
@@ -1391,11 +1507,11 @@ begin
         end;
         on E: Exception do
         begin
-          result := false;
-          if WithTransAction then
+          Result := false;
+          if WithTransaction then
           begin
             Commit; // Wir führen den Commit früher aus, damit die Transaktion nicht unnötig lange läuft während der User die Fehlermeldung liest
-            WithTransAction := false; // nicht nochmal comitten
+            WithTransaction := false; // nicht nochmal comitten
           end;
           if mode = lmFehlerAnzeigenUndWeitermachen then
           begin
@@ -1426,30 +1542,31 @@ begin
             end;
             on E: Exception do
             begin
-              raise Exception.CreateFmt('Exception %s at query %s', [E.Message, line]);
+              raise Exception.CreateFmt('Exception %s at query %s',
+                [E.Message, line]);
             end;
           end;
         end;
       end;
-      result := true;
+      Result := true;
     except
       on E: EAbort do
       begin
-        result := false;
-        if WithTransAction then
+        Result := false;
+        if WithTransaction then
         begin
           Rollback;
-          WithTransAction := false; // nicht comitten
+          WithTransaction := false; // nicht comitten
         end;
         Abort;
       end;
       on E: Exception do
       begin
-        result := false;
-        if WithTransAction then
+        Result := false;
+        if WithTransaction then
         begin
           Rollback;
-          WithTransAction := false; // nicht comitten
+          WithTransaction := false; // nicht comitten
         end;
         if mode = lmFehlerAnzeigenUndAbbrechen then
         begin
@@ -1460,44 +1577,49 @@ begin
           slFehler.Add(E.ClassName + ': ' + E.Message);
         if mode = lmExceptionWerfen then
         begin
-          raise Exception.CreateFmt('Fehler %s beim Ausführen der Transaktion in ExecSqlList', [e.Message]);
+          raise Exception.CreateFmt
+            ('Fehler %s beim Ausführen der Transaktion in ExecSqlList',
+            [E.Message]);
         end;
       end;
     end;
   end;
 
-  if WithTransAction then
+  if WithTransaction then
     Commit;
 end;
 
-procedure THlDatenbank.GetTableNames(List: TStrings; SystemTables: Boolean=false);
+procedure ThlDatenbank.GetTableNames(List: TStrings;
+  SystemTables: boolean = false);
 begin
   mConnection.GetTableNames(List, SystemTables);
 end;
 
-class procedure ThlDatenbank.ttRefresh (aTable: TDataSet);
+class procedure ThlDatenbank.ttRefresh(aTable: TDataset);
 var
-   wasActive: Boolean;
+  wasActive: boolean;
 begin
-   wasActive := aTable.Active;
-   if wasActive = true then
-   begin
-      aTable.Active := false; // MakeActiveTryReconnect(aTable, False);
-      aTable.Active := true; // MakeActiveTryReconnect(aTable, True);
-   end;
+  wasActive := aTable.active;
+  if wasActive = true then
+  begin
+    aTable.active := false; // MakeActiveTryReconnect(aTable, False);
+    aTable.active := true; // MakeActiveTryReconnect(aTable, True);
+  end;
 end;
 
-class function ThlDatenbank.ViewExists(aViewName: hlstring; adoCon: TADOConnection): boolean;
+class function ThlDatenbank.ViewExists(aViewName: hlString;
+  adoCon: TAdoConnection): boolean;
 begin
-  result := GetScalar('select count (*) from sys.views where name = N'+aViewName.toSQLString+' and type = ''V''', adocon).AsInteger > 0;
+  Result := GetScalar('select count (*) from sys.views where name = N' +
+    aViewName.toSQLString + ' and type = ''V''', adoCon).AsInteger > 0;
 end;
 
-function ThlDatenbank.ViewExists(aViewName: hlstring): boolean;
+function ThlDatenbank.ViewExists(aViewName: hlString): boolean;
 begin
-  result := ViewExists(aViewName, mConnection);
+  Result := ViewExists(aViewName, mConnection);
 end;
 
-constructor ThlDatenbank.Create(ADOConnection: TADOConnection);
+constructor ThlDatenbank.Create(ADOConnection: TAdoConnection);
 begin
   inherited Create;
 
@@ -1505,16 +1627,16 @@ begin
 
   mCommand := TAdoCommand.Create(nil);
 
-  {$IFDEF UseBetterADO}
-  mScalarTable := ThlDataSet(TBetterAdoDataSet.Create(nil));
-  {$ELSE}
-  mScalarTable := ThlDataSet(TAdoDataSet.Create(nil));
-  {$ENDIF}
+{$IFDEF UseBetterADO}
+  mScalarTable := ThlDataSet(TBetterADODataSet.Create(nil));
+{$ELSE}
+  mScalarTable := ThlDataSet(TADODataSet.Create(nil));
+{$ENDIF}
   mScalarTable.Connection := mConnection;
 
   (*
-  mConnection.AfterConnect := ConnAfterConnect;
-  mConnection.BeforeDisconnect := ConnBeforeDisconnect;
+    mConnection.AfterConnect := ConnAfterConnect;
+    mConnection.BeforeDisconnect := ConnBeforeDisconnect;
   *)
 
   mCommand.Connection := mConnection;
@@ -1522,21 +1644,24 @@ begin
   ownsConnection := false;
 end;
 
-constructor ThlDatenbank.Create(ConnStr: string; Isolated: Boolean=false; AConnectionTimeout: integer=0);
+constructor ThlDatenbank.Create(ConnStr: string; Isolated: boolean = false;
+  AConnectionTimeout: integer = 0);
 begin
   inherited Create;
   CreateIndiv(ConnStr, AConnectionTimeout);
-  if (Isolated) then mConnection.IsolationLevel := ilIsolated;
+  if (Isolated) then
+    mConnection.IsolationLevel := ilIsolated;
 end;
 
-procedure ThlDatenbank.CreateIndiv(ConnStr: string; AConnectionTimeout: integer=0);
+procedure ThlDatenbank.CreateIndiv(ConnStr: string;
+  AConnectionTimeout: integer = 0);
 begin
   (*
-          So funktionierts 100%ig:
+    So funktionierts 100%ig:
 
-          AdoCon.ConnectionString := 'Provider='+SqlServerProvider+';Password=achtung;Persist Security Info=True;User ID=hickelsoft;' +
-              'Initial Catalog=FiVe;Data Source=SERVER;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;'+
-              'Workstation ID=LAPTOP-2;Use Encryption for Data=False;Tag with column collation when possible=False';
+    AdoCon.ConnectionString := 'Provider='+SqlServerProvider+';Password=achtung;Persist Security Info=True;User ID=hickelsoft;' +
+    'Initial Catalog=FiVe;Data Source=SERVER;Use Procedure for Prepare=1;Auto Translate=True;Packet Size=4096;'+
+    'Workstation ID=LAPTOP-2;Use Encryption for Data=False;Tag with column collation when possible=False';
   *)
 
   mConnection := TAdoConnection.Create(nil);
@@ -1547,11 +1672,11 @@ begin
     mConnection.LoginPrompt := false;
 
     mCommand := TAdoCommand.Create(nil);
-    {$IFDEF UseBetterADO}
-    mScalarTable := ThlDataSet(TBetterAdoDataSet.Create(nil));
-    {$ELSE}
-    mScalarTable := ThlDataSet(TAdoDataSet.Create(nil));
-    {$ENDIF}
+{$IFDEF UseBetterADO}
+    mScalarTable := ThlDataSet(TBetterADODataSet.Create(nil));
+{$ELSE}
+    mScalarTable := ThlDataSet(TADODataSet.Create(nil));
+{$ENDIF}
     mScalarTable.Connection := mConnection;
 
     mConnection.CommandTimeout := ThlDatenbank.DefaultCommandTimeout;
@@ -1575,12 +1700,14 @@ begin
       FreeAndNil(mConnection);
       FreeAndNil(mCommand);
       FreeAndNil(mScalarTable);
-      raise Exception.CreateFmt('Fehler %s beim SQL-Verbindungsaufbau in "CreateIndiv"', [e.Message]);
+      raise Exception.CreateFmt
+        ('Fehler %s beim SQL-Verbindungsaufbau in "CreateIndiv"', [E.Message]);
     end;
   end;
 end;
 
-class function ThlDatenbank.SQKKommentareUmwandeln(sql: TStrings; subquery: boolean=false): string;
+class function ThlDatenbank.SQKKommentareUmwandeln(sql: TStrings;
+  subquery: boolean = false): string;
 var
   i, p: integer;
   s: string;
@@ -1591,7 +1718,7 @@ begin
     s := Trim(sql.Text);
     if Copy(s, Length(s), 1) = ';' then
     begin
-      s := Copy(s, 1, Length(s)-1);
+      s := Copy(s, 1, Length(s) - 1);
     end;
     sql.Text := s;
   end;
@@ -1599,14 +1726,14 @@ begin
   for i := 0 to sql.Count - 1 do
   begin
     // TODO: Folgende Konstellation funktioniert nicht:    "-- /*   [Neue Zeile]   */"
-    //       Denn es wird dann zu "/* /* */  [Neue Zeile]  */"
+    // Denn es wird dann zu "/* /* */  [Neue Zeile]  */"
     p := Pos('--', sql.Strings[i]);
 
     if p > 0 then
     begin
       s := sql.Strings[i];
       s[p] := '/';
-      s[p+1] := '*';
+      s[p + 1] := '*';
       s := s + ' */';
 
       sql.Strings[i] := s;
@@ -1615,83 +1742,88 @@ begin
 end;
 
 {$REGION 'RowLock-Funktionen'}
-
 (*
-function THlDatenbank.NewLock(AUsername, ATableName, APK1, APK2, APK3, APK4, APK5, APK6: hlString): ThclRowLock;
-begin
+  function THlDatenbank.NewLock(AUsername, ATableName, APK1, APK2, APK3, APK4, APK5, APK6: hlString): ThclRowLock;
+  begin
   result := ThclRowLock.Create(Self, AUsername, ATableName, APK1, APK2, APK3, APK4, APK5, APK6);
-end;
+  end;
 
-function THlDatenbank.NewLockSpecial(AUsername, AModule, AIdentifier: hlString): ThclRowLock;
-begin
+  function THlDatenbank.NewLockSpecial(AUsername, AModule, AIdentifier: hlString): ThclRowLock;
+  begin
   result := ThclRowLock.CreateSpecial(Self, AUsername, AModule, AIdentifier);
-end;
+  end;
 
-procedure THlDatenbank.RemoveAllLocks;
-begin
+  procedure THlDatenbank.RemoveAllLocks;
+  begin
   ThclRowLock.RemoveAllLocks(Self);
-end;
+  end;
 
-procedure THlDatenbank.RemoveAllUserLocks(AUsername: hlString);
-begin
+  procedure THlDatenbank.RemoveAllUserLocks(AUsername: hlString);
+  begin
   ThclRowLock.RemoveAllUserLocks(Self, AUsername);
-end;
+  end;
 
-procedure THlDatenbank.RemoveInvalidLocks;
-begin
+  procedure THlDatenbank.RemoveInvalidLocks;
+  begin
   ThclRowLock.RemoveInvalidLocks(Self);
-end;
+  end;
 *)
 
 {$ENDREGION}
 
-function ConnStrReadAttr(attr, connStr: string): string;
+function ConnStrReadAttr(attr, ConnStr: string): string;
 var
   p, p2: integer;
 begin
   // connStr:      123456789
-  //               ..;abc=..
+  // ..;abc=..
   // ';'+connstr:  123456789
-  //               ;..;abc=..
-  p := Pos(';'+attr+'=', ';'+connStr);
+  // ;..;abc=..
+  p := Pos(';' + attr + '=', ';' + ConnStr);
   if p = 0 then
   begin
-    result := '';
-    Exit;
+    Result := '';
+    exit;
   end;
-  p2 := Pos(';', Copy(connStr,p)+';');
-  result := Copy(connStr,p+Length(attr)+1,p2-Length(attr)-2);
+  p2 := Pos(';', Copy(ConnStr, p) + ';');
+  Result := Copy(ConnStr, p + Length(attr) + 1, p2 - Length(attr) - 2);
 end;
 
-function ConnStrWriteAttr(attr, val, connStr: string): string;
+function ConnStrWriteAttr(attr, val, ConnStr: string): string;
 var
   tmp: string;
   len_tmp: integer;
 begin
   // 1. Alle Vorkommen von attr entf.
-  result := connStr;
+  Result := ConnStr;
   repeat
     len_tmp := Length(Result);
-    tmp := ConnStrReadAttr(attr, result);
-    result := ';' + StringReplace(result, ';'+attr+'='+tmp, '', [rfIgnoreCase]);
-    result := Copy(result, 2, Length(Result)-1); // ';' wieder entf. (war nur für das Ersetzen wichtig)
-  until len_tmp = Length(Result); // abbrechen wenn nix mehr ersetzt (oder nix gefunden)
+    tmp := ConnStrReadAttr(attr, Result);
+    Result := ';' + StringReplace(Result, ';' + attr + '=' + tmp, '',
+      [rfIgnoreCase]);
+    Result := Copy(Result, 2, Length(Result) - 1);
+    // ';' wieder entf. (war nur für das Ersetzen wichtig)
+  until len_tmp = Length(Result);
+  // abbrechen wenn nix mehr ersetzt (oder nix gefunden)
   // 2. Nun attr. mit neuem Value wieder hinzufügen (Provider muss an den Anfang)
   if SameText(attr, 'Provider') then
-    result := attr + '=' + val + ';' + result
+    Result := attr + '=' + val + ';' + Result
   else
-    result := result + ';' + attr + '=' + val;
+    Result := Result + ';' + attr + '=' + val;
   // 3. ';;' sorgen eventuell dafür dass irgendwann ';;;' rauskommt. Normalisieren auf ';'
   repeat
     len_tmp := Length(Result);
-    result := StringReplace(result, ';;', ';', [rfReplaceAll]);
+    Result := StringReplace(Result, ';;', ';', [rfReplaceAll]);
   until len_tmp = Length(Result);
 end;
 
 initialization
-  // Wird verwendet für ADO DB
-  CoInitialize(nil); // steht in uses:ActiveX
+
+// Wird verwendet für ADO DB
+CoInitialize(nil); // steht in uses:ActiveX
 
 finalization
-  CoUninitialize;
+
+CoUninitialize;
+
 end.

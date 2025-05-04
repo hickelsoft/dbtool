@@ -13,8 +13,9 @@ type
     // Wíchtig IniAttributes.Enabled muss false sein, da sonst LoadFromIniFile (das Unsichere) im FormCreate aufgerufen wird
     // Eigentlich wäre es bessern, man würde TwwDbGrid ABLEITEN und LoadFromIniFile überschreiben. Aber dann müsste man die Deklaration in JEDEM Delphi Form ändern...
     procedure SafeLoadFromIniFile;
-    procedure FeldAusblenden(feldname: string; keinFehler: boolean=false);
-    procedure FeldUmbenennen(feldname, neueBezeichnung: string; keinFehler: boolean=false);
+    procedure FeldAusblenden(feldname: string; keinFehler: boolean = false);
+    procedure FeldUmbenennen(feldname, neueBezeichnung: string;
+      keinFehler: boolean = false);
     function FeldVorhanden(sucheFeld: string): boolean;
     procedure ApplyRowSelectionAndFree(sl: TStringList);
     function RememberRowSelection: TStringList;
@@ -24,8 +25,9 @@ type
   private
     procedure FeldAendern(sucheFeld, neuerName: string; ausblenden: boolean);
   public
-    procedure FeldAusblenden(feldname: string; keinFehler: boolean=false);
-    procedure FeldUmbenennen(feldname, neueBezeichnung: string; keinFehler: boolean=false);
+    procedure FeldAusblenden(feldname: string; keinFehler: boolean = false);
+    procedure FeldUmbenennen(feldname, neueBezeichnung: string;
+      keinFehler: boolean = false);
     function FeldVorhanden(sucheFeld: string): boolean;
   end;
 
@@ -34,12 +36,12 @@ implementation
 uses
   IniFiles;
 
-procedure Explode(Delimiter: Char; Str: string; ListOfStrings: TStrings) ;
+procedure Explode(Delimiter: Char; Str: string; ListOfStrings: TStrings);
 begin
-   ListOfStrings.Clear;
-   ListOfStrings.Delimiter       := Delimiter;
-   ListOfStrings.StrictDelimiter := True; // Requires D2006 or newer.
-   ListOfStrings.DelimitedText   := Str;
+  ListOfStrings.Clear;
+  ListOfStrings.Delimiter := Delimiter;
+  ListOfStrings.StrictDelimiter := True; // Requires D2006 or newer.
+  ListOfStrings.DelimitedText := Str;
 end;
 
 function Implode(const cSeparator: String; const sl: TStrings): String;
@@ -47,7 +49,8 @@ var
   i: Integer;
 begin
   Result := '';
-  for i := 0 to sl.Count -1 do begin
+  for i := 0 to sl.Count - 1 do
+  begin
     Result := Result + cSeparator + sl[i];
   end;
   System.Delete(Result, 1, Length(cSeparator));
@@ -58,7 +61,7 @@ end;
 procedure TwwdbGridHelper.FeldAendern(sucheFeld, neuerName: string;
   ausblenden: boolean);
 var
-  i: integer;
+  i: Integer;
   outSL: TStrings;
 begin
   outSL := TStringList.Create;
@@ -75,7 +78,8 @@ begin
         else
         begin
           Assert(outSL.Count >= 3);
-          if neuerName <> '' then outSL.Strings[2] := neuerName;
+          if neuerName <> '' then
+            outSL.Strings[2] := neuerName;
           Selected.Strings[i] := Implode(#9, outSL);
         end;
         Exit;
@@ -89,8 +93,9 @@ end;
 
 procedure TwwdbGridHelper.FeldAusblenden(feldname: string; keinFehler: boolean);
 begin
-  if keinFehler and not FeldVorhanden(feldname) then exit;
-  FeldAendern(feldname, '', true);
+  if keinFehler and not FeldVorhanden(feldname) then
+    Exit;
+  FeldAendern(feldname, '', True);
 
   // TODO: Hier kommt "Listenindex überschreitet maximum (-1)" wenn keine tabelle geöffnet ist
   ApplySelected;
@@ -99,25 +104,26 @@ end;
 procedure TwwdbGridHelper.FeldUmbenennen(feldname, neueBezeichnung: string;
   keinFehler: boolean);
 begin
-  if keinFehler and not FeldVorhanden(feldname) then exit;
+  if keinFehler and not FeldVorhanden(feldname) then
+    Exit;
   FeldAendern(feldname, neueBezeichnung, false);
   ApplySelected;
 end;
 
 function TwwdbGridHelper.FeldVorhanden(sucheFeld: string): boolean;
 var
-  i: integer;
+  i: Integer;
   outSL: TStrings;
 begin
   outSL := TStringList.Create;
   try
-    result := false;
+    Result := false;
     for i := 0 to Selected.Count - 1 do
     begin
       Explode(#9, Selected.Strings[i], outSL);
       if (outSL.Count > 0) and (outSL.Strings[0] = sucheFeld) then
       begin
-        result := true;
+        Result := True;
       end;
     end;
   finally
@@ -130,7 +136,7 @@ procedure TwwdbGridHelper.SafeLoadFromIniFile;
   function _sltos(sl: TStrings): string;
   var
     slx: TStringList;
-    i, p: integer;
+    i, p: Integer;
     tmp: string;
   begin
     slx := TStringList.Create;
@@ -139,15 +145,18 @@ procedure TwwdbGridHelper.SafeLoadFromIniFile;
       for i := 0 to slx.Count - 1 do
       begin
         tmp := slx.Strings[i];
-        if trim(tmp) = '' then continue;
+        if trim(tmp) = '' then
+          continue;
         p := Pos('=', tmp);
-        if p = 0 then p := Pos(';', tmp);
-        if p = 0 then p := Pos(#9, tmp);
-        tmp := Copy(tmp, 1, p-1);
+        if p = 0 then
+          p := Pos(';', tmp);
+        if p = 0 then
+          p := Pos(#9, tmp);
+        tmp := Copy(tmp, 1, p - 1);
         slx.Strings[i] := tmp;
       end;
       slx.Sort;
-      result := Trim(slx.Text);
+      Result := trim(slx.Text);
     finally
       FreeAndNil(slx);
     end;
@@ -169,7 +178,7 @@ begin
 
     sGridFields := _sltos(Selected);
 
-    //showmessage(IniAttributes.SectionName + #13#10#13#10 + 'Ini Fields: ' + #13#10 + sIniFields + #13#10#13#10 + 'Grid Fields: ' + #13#10 + sGridFields);
+    // showmessage(IniAttributes.SectionName + #13#10#13#10 + 'Ini Fields: ' + #13#10 + sIniFields + #13#10#13#10 + 'Grid Fields: ' + #13#10 + sGridFields);
 
     if sIniFields = sGridFields then
     begin
@@ -187,23 +196,26 @@ end;
 function TwwdbGridHelper.RememberRowSelection: TStringList;
 var
   s: string;
-  i: integer;
-  grd: TwwDBGrid;
+  i: Integer;
+  grd: TwwdbGrid;
 begin
   grd := self;
-  result := nil;
-  if grd.DataSource = nil then exit;
-  if grd.DataSource.DataSet = nil then exit;
-  if not grd.DataSource.DataSet.Active then exit;
-  result := TStringList.Create;
+  Result := nil;
+  if grd.DataSource = nil then
+    Exit;
+  if grd.DataSource.DataSet = nil then
+    Exit;
+  if not grd.DataSource.DataSet.Active then
+    Exit;
+  Result := TStringList.Create;
 
   // Remember row with cursor
   s := '';
-  for i := 0 to grd.DataSource.DataSet.FieldCount-1 do
+  for i := 0 to grd.DataSource.DataSet.FieldCount - 1 do
   begin
     s := s + grd.DataSource.DataSet.Fields[i].AsString + ';';
   end;
-  result.Add('CurRow=' + s);
+  Result.Add('CurRow=' + s);
 
   // Remember other selected rows
   grd.DataSource.DataSet.First;
@@ -212,11 +224,11 @@ begin
     if grd.IsSelected then
     begin
       s := '';
-      for i := 0 to grd.DataSource.DataSet.FieldCount-1 do
+      for i := 0 to grd.DataSource.DataSet.FieldCount - 1 do
       begin
         s := s + grd.DataSource.DataSet.Fields[i].AsString + ';';
       end;
-      result.Add(s);
+      Result.Add(s);
     end;
     grd.DataSource.DataSet.Next;
   end;
@@ -226,11 +238,12 @@ begin
   while not grd.DataSource.DataSet.Eof do
   begin
     s := '';
-    for i := 0 to grd.DataSource.DataSet.FieldCount-1 do
+    for i := 0 to grd.DataSource.DataSet.FieldCount - 1 do
     begin
       s := s + grd.DataSource.DataSet.Fields[i].AsString + ';';
     end;
-    if result.IndexOf('CurRow=' + s) > -1 then break;
+    if Result.IndexOf('CurRow=' + s) > -1 then
+      break;
     grd.DataSource.DataSet.Next;
   end;
 end;
@@ -238,14 +251,18 @@ end;
 procedure TwwdbGridHelper.ApplyRowSelectionAndFree(sl: TStringList);
 var
   s: string;
-  i: integer;
-  grd: TwwDBGrid;
+  i: Integer;
+  grd: TwwdbGrid;
 begin
   grd := self;
-  if sl = nil then exit;
-  if grd.DataSource = nil then exit;
-  if grd.DataSource.DataSet = nil then exit;
-  if not grd.DataSource.DataSet.Active then exit;
+  if sl = nil then
+    Exit;
+  if grd.DataSource = nil then
+    Exit;
+  if grd.DataSource.DataSet = nil then
+    Exit;
+  if not grd.DataSource.DataSet.Active then
+    Exit;
 
   // Recover selected rows
   grd.UnselectAll;
@@ -253,7 +270,7 @@ begin
   while not grd.DataSource.DataSet.Eof do
   begin
     s := '';
-    for i := 0 to grd.DataSource.DataSet.FieldCount-1 do
+    for i := 0 to grd.DataSource.DataSet.FieldCount - 1 do
     begin
       s := s + grd.DataSource.DataSet.Fields[i].AsString + ';';
     end;
@@ -269,11 +286,12 @@ begin
   while not grd.DataSource.DataSet.Eof do
   begin
     s := '';
-    for i := 0 to grd.DataSource.DataSet.FieldCount-1 do
+    for i := 0 to grd.DataSource.DataSet.FieldCount - 1 do
     begin
       s := s + grd.DataSource.DataSet.Fields[i].AsString + ';';
     end;
-    if sl.IndexOf('CurRow=' + s) > -1 then break;
+    if sl.IndexOf('CurRow=' + s) > -1 then
+      break;
     grd.DataSource.DataSet.Next;
   end;
 end;
@@ -283,7 +301,7 @@ end;
 procedure TwwDBCustomLookupComboHelper.FeldAendern(sucheFeld, neuerName: string;
   ausblenden: boolean);
 var
-  i: integer;
+  i: Integer;
   outSL: TStrings;
 begin
   outSL := TStringList.Create;
@@ -300,7 +318,8 @@ begin
         else
         begin
           Assert(outSL.Count >= 3);
-          if neuerName <> '' then outSL.Strings[2] := neuerName;
+          if neuerName <> '' then
+            outSL.Strings[2] := neuerName;
           Selected.Strings[i] := Implode(#9, outSL);
         end;
         Exit;
@@ -312,37 +331,40 @@ begin
   end;
 end;
 
-procedure TwwDBCustomLookupComboHelper.FeldAusblenden(feldname: string; keinFehler: boolean);
-begin
-  if keinFehler and not FeldVorhanden(feldname) then exit;
-  FeldAendern(feldname, '', true);
-
-  // TODO: Hier kommt "Listenindex überschreitet maximum (-1)" wenn keine tabelle geöffnet ist
-//  ApplySelected;
-end;
-
-procedure TwwDBCustomLookupComboHelper.FeldUmbenennen(feldname, neueBezeichnung: string;
+procedure TwwDBCustomLookupComboHelper.FeldAusblenden(feldname: string;
   keinFehler: boolean);
 begin
-  if keinFehler and not FeldVorhanden(feldname) then exit;
+  if keinFehler and not FeldVorhanden(feldname) then
+    Exit;
+  FeldAendern(feldname, '', True);
+
+  // TODO: Hier kommt "Listenindex überschreitet maximum (-1)" wenn keine tabelle geöffnet ist
+  // ApplySelected;
+end;
+
+procedure TwwDBCustomLookupComboHelper.FeldUmbenennen(feldname, neueBezeichnung
+  : string; keinFehler: boolean);
+begin
+  if keinFehler and not FeldVorhanden(feldname) then
+    Exit;
   FeldAendern(feldname, neueBezeichnung, false);
-//  ApplySelected;
+  // ApplySelected;
 end;
 
 function TwwDBCustomLookupComboHelper.FeldVorhanden(sucheFeld: string): boolean;
 var
-  i: integer;
+  i: Integer;
   outSL: TStrings;
 begin
   outSL := TStringList.Create;
   try
-    result := false;
+    Result := false;
     for i := 0 to Selected.Count - 1 do
     begin
       Explode(#9, Selected.Strings[i], outSL);
       if (outSL.Count > 0) and (outSL.Strings[0] = sucheFeld) then
       begin
-        result := true;
+        Result := True;
       end;
     end;
   finally

@@ -30,10 +30,10 @@ begin
   Reg := TRegistry.Create;
   try
     Reg.RootKey := HKEY_CURRENT_USER;
-    if reg.OpenKeyReadOnly('Software\Microsoft\Windows\DWM') then
+    if Reg.OpenKeyReadOnly('Software\Microsoft\Windows\DWM') then
     begin
-      result := TColor(reg.ReadInteger('AccentColor') and $FFFFFF);
-      reg.CloseKey;
+      result := TColor(Reg.ReadInteger('AccentColor') and $FFFFFF);
+      Reg.CloseKey;
     end;
   finally
     FreeAndNil(Reg);
@@ -50,9 +50,12 @@ begin
   G := GetGValue(AColor) * 0.625;
   B := GetBValue(AColor) * 0.125;
 
-  if (R + G + B) > 128 then begin
+  if (R + G + B) > 128 then
+  begin
     result := clBlack;
-  end else begin
+  end
+  else
+  begin
     result := clWhite;
   end;
 end;
@@ -63,7 +66,7 @@ var
 begin
   c := ColorToRGB(c);
   ColorRGBToHLS(c, H, L, S);
-  Result := ColorHLSToRGB(H, Min(L+amount, $FF), S);
+  result := ColorHLSToRGB(H, Min(L + amount, $FF), S);
 end;
 
 function DecreaseColorLightness(c: TColor; amount: byte): TColor;
@@ -72,7 +75,7 @@ var
 begin
   c := ColorToRGB(c);
   ColorRGBToHLS(c, H, L, S);
-  Result := ColorHLSToRGB(H, Max(L-amount, $00), S);
+  result := ColorHLSToRGB(H, Max(L - amount, $00), S);
 end;
 
 function GetColorLightness(c: TColor): byte;

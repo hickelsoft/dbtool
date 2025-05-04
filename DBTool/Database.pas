@@ -5,7 +5,8 @@ unit Database;
 interface
 
 uses
-  SysUtils, Windows, Classes, Controls, StdCtrls, Forms, ExtCtrls, Menus, ComCtrls, Grids,
+  SysUtils, Windows, Classes, Controls, StdCtrls, Forms, ExtCtrls, Menus,
+  ComCtrls, Grids,
   DB, Dialogs, Buttons, C_Database, Wwdbgrid, Wwdbigrd, Graphics, ClipBrd,
   HsGradientPanel;
 
@@ -43,23 +44,26 @@ type
     procedure FormDestroy(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure Leeren1Click(Sender: TObject);
-    procedure lvTablesDragOver(Sender: TObject; Source: TObject; X, Y: integer; State: TDragState; var Accept: boolean);
+    procedure lvTablesDragOver(Sender: TObject; Source: TObject; X, Y: integer;
+      State: TDragState; var Accept: boolean);
     procedure lvTablesDragDrop(Sender: TObject; Source: TObject; X, Y: integer);
     procedure Loeschen1Click(Sender: TObject);
     procedure btnAktualisierenClick(Sender: TObject);
     procedure lvTablesEdited(Sender: TObject; Item: TListItem; var S: String);
     procedure Umbenennen1Click(Sender: TObject);
     procedure pmTablesPopup(Sender: TObject);
-    procedure lvTablesKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure lvTablesKeyDown(Sender: TObject; var Key: word;
+      Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
     procedure SpeedButton2Click(Sender: TObject);
     procedure NurStrukturzeigen1Click(Sender: TObject);
-    procedure lvTablesSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
+    procedure lvTablesSelectItem(Sender: TObject; Item: TListItem;
+      Selected: boolean);
     procedure abellenNamenkopieren1Click(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure ViewDefinitionanzeigen1Click(Sender: TObject);
     procedure lvTablesCustomDrawItem(Sender: TCustomListView; Item: TListItem;
-      State: TCustomDrawState; var DefaultDraw: Boolean);
+      State: TCustomDrawState; var DefaultDraw: boolean);
     procedure AnzahlZeilenzeigen1Click(Sender: TObject);
     procedure Erste100Zeilenzeigen1Click(Sender: TObject);
     procedure Strukturdrucken1Click(Sender: TObject);
@@ -74,7 +78,7 @@ type
     property Database: String read FDatabaseStr;
     property dbDatabase: TDbToolDatabase read FDatabaseObj;
     constructor Create(Owner: TComponent; DatabaseName: string); reintroduce;
-    procedure OpenTable(TableName: string; NurStruktur: boolean=false);
+    procedure OpenTable(TableName: string; NurStruktur: boolean = false);
   end;
 
 implementation
@@ -93,7 +97,8 @@ resourcestring
   SSqlServer_S = 'SQL Server: %s';
   SOn = 'auf';
 begin
-  inherited Create(Owner); // Aus irgendeinem Grund ruft diese Funktion das OnShow aus !!!
+  inherited Create(Owner);
+  // Aus irgendeinem Grund ruft diese Funktion das OnShow aus !!!
 
   FDatabaseObj := TDbToolDatabase.Create(DatabaseName);
   FDatabaseStr := DatabaseName;
@@ -101,10 +106,15 @@ begin
   if FDatabaseObj.DatabaseType = dtSqlServer then
   begin
     DatabaseName := DatabaseName + ';';
-    FDatabaseStr := ConnStrReadAttr('Initial Catalog', Copy(DatabaseName, Length('_SQLSRV:')+1)); // do not localize
+    FDatabaseStr := ConnStrReadAttr('Initial Catalog',
+      Copy(DatabaseName, Length('_SQLSRV:') + 1)); // do not localize
     tmpDbName := FDatabaseStr;
-    FDatabaseStr := FDatabaseStr+';Data Source='+ConnStrReadAttr('Data Source', Copy(DatabaseName, Length('_SQLSRV:')+1)); // do not localize
-    FDatabaseStr := Format(SSqlServer_S, [StringReplace(FDatabaseStr, ';Data Source=', ' '+SOn+' ', [])]); // do not localize
+    FDatabaseStr := FDatabaseStr + ';Data Source=' +
+      ConnStrReadAttr('Data Source', Copy(DatabaseName, Length('_SQLSRV:') + 1)
+      ); // do not localize
+    FDatabaseStr := Format(SSqlServer_S,
+      [StringReplace(FDatabaseStr, ';Data Source=', ' ' + SOn + ' ', [])]);
+    // do not localize
 
     // Ist es eine CORA- oder HSInfo2-Datenbank? Dann darf nur ein HickelSOFT-Mitarbeiter dran!
     if not FDatabaseObj.CheckDatabaseSecurityPassword then
@@ -117,37 +127,43 @@ begin
   begin
     FDatabaseStr := Copy(DatabaseName, 17);
     tmpDbName := FDatabaseStr;
-    FDatabaseStr := Format(SMySQL_S, [Copy(FDatabaseStr, 1, Length(FDatabaseStr)-1)]);
+    FDatabaseStr := Format(SMySQL_S,
+      [Copy(FDatabaseStr, 1, Length(FDatabaseStr) - 1)]);
   end;
 
   Caption := Format(SDatabase_S, [FDatabaseStr]);
   if (tmpDbName <> '') and (Pos(';', tmpDbName) >= 1) then
   begin
-    tmpDbName := Copy(tmpDbName, 1, Pos(';', tmpDbName)-1);
+    tmpDbName := Copy(tmpDbName, 1, Pos(';', tmpDbName) - 1);
     Panel3.Caption := ' ' + tmpDbName; // ' ' + Caption;
   end;
 
-  ReloadTabellenListe; // Müssen wir machen, weil das OnShow bereits oben ausgelöst wurde, aus welchem Grund auch immer!!!
+  ReloadTabellenListe;
+  // Müssen wir machen, weil das OnShow bereits oben ausgelöst wurde, aus welchem Grund auch immer!!!
 end;
 
 procedure TMDI_Database.Erste100Zeilenzeigen1Click(Sender: TObject);
 var
   QueryForm: TMDI_Query;
-  tableName: string;
-  i: Integer;
+  TableName: string;
+  i: integer;
 begin
-  for i := 0 to lvTables.Items.Count-1 do
+  for i := 0 to lvTables.Items.Count - 1 do
   begin
     if lvTables.Items.Item[i].Selected then
     begin
-      if (Integer(lvTables.Items.Item[i].Data) and 3) in [0{Table}, 1{View}] then
+      if (integer(lvTables.Items.Item[i].Data) and 3)
+        in [0 { Table } , 1 { View } ] then
       begin
-        tableName := lvTables.Items.Item[i].Caption;
+        TableName := lvTables.Items.Item[i].Caption;
         QueryForm := TMDI_Query.Create(Self, Self);
         if FDatabaseObj.DatabaseType = dtSqlServer then
-          QueryForm.Memo1.Text := 'select top 1000 * from ' + FDatabaseObj.SQL_Escape_TableName(tableName) // do not localize
+          QueryForm.Memo1.Text := 'select top 1000 * from ' +
+            FDatabaseObj.SQL_Escape_TableName(TableName) // do not localize
         else
-          QueryForm.Memo1.Text := 'select * from ' + FDatabaseObj.SQL_Escape_TableName(tableName) + ' limit 1000'; // do not localize
+          QueryForm.Memo1.Text := 'select * from ' +
+            FDatabaseObj.SQL_Escape_TableName(TableName) + ' limit 1000';
+        // do not localize
         QueryForm.Memo1.Modified := false;
         QueryForm.SpeedButton1.Click;
         QueryForm.BringToFront;
@@ -164,19 +180,19 @@ var
   slAllStoredProcedures: TStringList;
   slAllTriggers: TStringList;
 begin
-  if FDatabaseObj = nil then exit;
+  if FDatabaseObj = nil then
+    Exit;
 
   lvTables.Items.BeginUpdate;
   try
-    {$IF CompilerVersion < 20.0} // Version geraten
+{$IF CompilerVersion < 20.0} // Version geraten
     // Dieser "Hack" bewirkt, dass die Spalten nicht "zusammenschrumpfen", wenn man die Liste neu lädt.
     lvTables.ViewStyle := vsReport;
-    {$IFEND}
-
+{$IFEND}
     lvTables.Items.Clear;
 
     slTables := TStringList.Create;
-    slAllViews := TSTringList.Create;
+    slAllViews := TStringList.Create;
     slAllStoredProcedures := TStringList.Create;
     slAllTriggers := TStringList.Create;
     try
@@ -191,14 +207,14 @@ begin
         with lvTables.Items.Add do
         begin
           if slAllViews.IndexOf(slTables.Strings[i]) <> -1 then
-            Data := Pointer(1{View})
+            Data := Pointer(1 { View } )
           else if slAllStoredProcedures.IndexOf(slTables.Strings[i]) <> -1 then
-            Data := Pointer(2{SP})
+            Data := Pointer(2 { SP } )
           else
-            Data := Pointer(0{Table});
+            Data := Pointer(0 { Table } );
 
           if slAllTriggers.IndexOf(slTables.Strings[i]) <> -1 then
-            Data := Pointer(Integer(Data) or 4{Trigger});
+            Data := Pointer(integer(Data) or 4 { Trigger } );
 
           Caption := slTables.Strings[i];
         end;
@@ -214,31 +230,30 @@ begin
     lvTables.Items.EndUpdate;
   end;
 
-  {$IF CompilerVersion >= 20.0} // Version geraten
+{$IF CompilerVersion >= 20.0} // Version geraten
   // Dieser "Hack" bewirkt, dass die Spalten nicht "zusammenschrumpfen", wenn man die Liste neu lädt.
   lvTables.ViewStyle := vsReport;
   lvTables.ViewStyle := vsList;
-  {$IFEND}
-
+{$IFEND}
   UpdateCounterPanel;
 end;
 
 procedure TMDI_Database.Triggeranzeigen1Click(Sender: TObject);
 var
   sl: TStringList;
-  i, j: Integer;
+  i, j: integer;
   qw: TMDI_Query;
 begin
-  for i := 0 to lvTables.Items.Count-1 do
+  for i := 0 to lvTables.Items.Count - 1 do
   begin
     if lvTables.Items.Item[i].Selected then
     begin
-      if (Integer(lvTables.Items.Item[i].Data) and 4{Trigger}) <> 0 then
+      if (integer(lvTables.Items.Item[i].Data) and 4 { Trigger } ) <> 0 then
       begin
         sl := TStringList.Create;
         try
           FDatabaseObj.GetTriggers(lvTables.Items.Item[i].Caption, sl);
-          for j := 0 to sl.Count-1 do
+          for j := 0 to sl.Count - 1 do
           begin
             qw := TMDI_Query.Create(Self, Self);
             qw.Memo1.Text := sl.ValueFromIndex[j];
@@ -264,12 +279,13 @@ begin
   cnt := 0;
   for i := 0 to lvTables.Items.Count - 1 do
   begin
-    if lvTables.Items[i].Selected then Inc(cnt);
+    if lvTables.Items[i].Selected then
+      Inc(cnt);
   end;
 
   // TStatusBar hat einen Bug: Wenn man ein neues MDI-Fenster aufmacht, dann
   // verschwindet der SimpleText für immer.
-  Panel5.Caption := '  '+Format(SObjectsD, [lvTables.Items.Count/1.0]);
+  Panel5.Caption := '  ' + Format(SObjectsD, [lvTables.Items.Count / 1.0]);
   if cnt > 0 then
   begin
     Panel5.Caption := Format(SSSelected, [Panel5.Caption, cnt]);
@@ -280,13 +296,13 @@ procedure TMDI_Database.ViewDefinitionanzeigen1Click(Sender: TObject);
 var
   def: string;
   qw: TMDI_Query;
-  i: Integer;
+  i: integer;
 begin
-  for i := 0 to lvTables.Items.Count-1 do
+  for i := 0 to lvTables.Items.Count - 1 do
   begin
     if lvTables.Items.Item[i].Selected then
     begin
-      if (Integer(lvTables.Items.Item[i].Data) and 3) = 1{View} then
+      if (integer(lvTables.Items.Item[i].Data) and 3) = 1 { View } then
       begin
         def := FDatabaseObj.GetViewDefinition(lvTables.Items.Item[i].Caption);
         if def <> '' then
@@ -303,35 +319,39 @@ begin
   end;
 end;
 
-procedure TMDI_Database.OpenTable(TableName: string; NurStruktur: boolean=false);
+procedure TMDI_Database.OpenTable(TableName: string;
+  NurStruktur: boolean = false);
 var
   i: integer;
 begin
   // Prüfen: Ist die Tabelle schon offen?
   // Wenn ja: Fenster in den Vordergrund bringen und raus hier!
-  for i := 0 to DLG_Main.MDIChildCount-1 do
+  for i := 0 to DLG_Main.MDIChildCount - 1 do
   begin
-    if DLG_Main.MDIChildren[i].ClassNameIs('TMDI_Table') and  // do not localize
-       (TMDI_Table(DLG_Main.MDIChildren[i]).Table = TableName) and
-       (TMDI_Table(DLG_Main.MDIChildren[i]).frmDatabase = self) then
+    if DLG_Main.MDIChildren[i].ClassNameIs('TMDI_Table') and // do not localize
+      (TMDI_Table(DLG_Main.MDIChildren[i]).Table = TableName) and
+      (TMDI_Table(DLG_Main.MDIChildren[i]).frmDatabase = Self) then
     begin
-      if TMDI_Table(DLG_Main.MDIChildren[i]).NurStruktur and not NurStruktur then
+      if TMDI_Table(DLG_Main.MDIChildren[i]).NurStruktur and not NurStruktur
+      then
       begin
         // "Upgrade"
         DLG_Main.MDIChildren[i].Close;
         // KEIN EXIT. Wir öffnen das Fenster nun richtig
       end
-      else if not TMDI_Table(DLG_Main.MDIChildren[i]).NurStruktur and NurStruktur then
+      else if not TMDI_Table(DLG_Main.MDIChildren[i]).NurStruktur and NurStruktur
+      then
       begin
         TMDI_Table(DLG_Main.MDIChildren[i]).LbSpeedButton6.Down := true;
-        TMDI_Table(DLG_Main.MDIChildren[i]).BtnClick(TMDI_Table(DLG_Main.MDIChildren[i]).LbSpeedButton6);
+        TMDI_Table(DLG_Main.MDIChildren[i])
+          .BtnClick(TMDI_Table(DLG_Main.MDIChildren[i]).LbSpeedButton6);
         MDI_Form_BringToFront(DLG_Main.MDIChildren[i]);
-        exit;
+        Exit;
       end
       else
       begin
         MDI_Form_BringToFront(DLG_Main.MDIChildren[i]);
-        exit;
+        Exit;
       end;
     end;
   end;
@@ -341,37 +361,38 @@ end;
 
 procedure TMDI_Database.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-  if Assigned(OnDeactivate) then OnDeactivate(Sender);
+  if Assigned(OnDeactivate) then
+    OnDeactivate(Sender);
   Action := caFree;
 end;
 
 procedure TMDI_Database.FormCreate(Sender: TObject);
 begin
   (*
-  dbgTable.IniAttributes.SaveToRegistry := true;
-  dbgTable.IniAttributes.FileName := IncludeTrailingPathDelimiter(ConfigRegKey) + 'Layouts';  // do not localize
-  dbgTable.IniAttributes.Delimiter := ';;';
+    dbgTable.IniAttributes.SaveToRegistry := true;
+    dbgTable.IniAttributes.FileName := IncludeTrailingPathDelimiter(ConfigRegKey) + 'Layouts';  // do not localize
+    dbgTable.IniAttributes.Delimiter := ';;';
   *)
 end;
 
 procedure TMDI_Database.lvTablesCustomDrawItem(Sender: TCustomListView;
-  Item: TListItem; State: TCustomDrawState; var DefaultDraw: Boolean);
+  Item: TListItem; State: TCustomDrawState; var DefaultDraw: boolean);
 begin
   // Bit 0..1 Type = 0b00 (0) Table
-  //                 0b01 (1) View
-  //                 0b10 (2) Stored Procedure
-  //                 0b11 (3) Undefined
-  if (Integer(Item.Data) and 3) = 0{Table} then
+  // 0b01 (1) View
+  // 0b10 (2) Stored Procedure
+  // 0b11 (3) Undefined
+  if (integer(Item.Data) and 3) = 0 { Table } then
     Sender.Canvas.Font.Color := clWindowText
-  else if (Integer(Item.Data) and 3) = 1{View} then
+  else if (integer(Item.Data) and 3) = 1 { View } then
     Sender.Canvas.Font.Color := clGreen
-  else if (Integer(Item.Data) and 3) = 2{SP} then
+  else if (integer(Item.Data) and 3) = 2 { SP } then
     Sender.Canvas.Font.Color := clBlue
-  else if (Integer(Item.Data) and 3) = 3{Undefined} then
+  else if (integer(Item.Data) and 3) = 3 { Undefined } then
     Assert(false);
 
   // Bit 2 (4) = Trigger
-  if (Integer(Item.Data) and 4{Trigger}) <> 0 then
+  if (integer(Item.Data) and 4 { Trigger } ) <> 0 then
     Sender.Canvas.Font.Style := [TFontStyle.fsBold];
 end;
 
@@ -381,13 +402,14 @@ var
   qw: TMDI_Query;
   def: string;
 begin
-  for i := 0 to lvTables.Items.Count-1 do
+  for i := 0 to lvTables.Items.Count - 1 do
   begin
     if lvTables.Items.Item[i].Selected then
     begin
-      if (Integer(lvTables.Items.Item[i].Data) and 3) = 2{SP} then
+      if (integer(lvTables.Items.Item[i].Data) and 3) = 2 { SP } then
       begin
-        def := FDatabaseObj.GetStoredProcedureDefinition(lvTables.Items.Item[i].Caption);
+        def := FDatabaseObj.GetStoredProcedureDefinition
+          (lvTables.Items.Item[i].Caption);
         if def <> '' then
         begin
           qw := TMDI_Query.Create(Self, Self);
@@ -407,10 +429,12 @@ end;
 
 procedure TMDI_Database.FormDestroy(Sender: TObject);
 begin
-  if Assigned(FDatabaseObj) then FreeAndNil(FDatabaseObj);
+  if Assigned(FDatabaseObj) then
+    FreeAndNil(FDatabaseObj);
 end;
 
-procedure TMDI_Database.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+procedure TMDI_Database.FormKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
 begin
   if (Key = VK_F5) then
   begin
@@ -435,26 +459,32 @@ var
   viewsIgnoriert: integer;
   tabellenGeleert: integer;
 resourcestring
-  SDiscardAreYouSure = 'Sind Sie sicher, dass Sie die ausgewählten Tabellen leeren möchten?';
-  SNoDeleteOnViews1 = 'Aus Sicherheitsgründen ist diese Funktion bei Views nicht möglich!';
-  SNoDeleteOnViewsN = 'Aus Sicherheitsgründen ist diese Funktion bei Views nicht möglich! (%d Views)';
+  SDiscardAreYouSure =
+    'Sind Sie sicher, dass Sie die ausgewählten Tabellen leeren möchten?';
+  SNoDeleteOnViews1 =
+    'Aus Sicherheitsgründen ist diese Funktion bei Views nicht möglich!';
+  SNoDeleteOnViewsN =
+    'Aus Sicherheitsgründen ist diese Funktion bei Views nicht möglich! (%d Views)';
   SSelectedDObjectsTruncated = 'Die ausgewählten %d Tabelle(n) wurden geleert.';
 begin
-  if lvTables.SelCount = 0 then exit;
-  if Application.MessageBox(PChar(SDiscardAreYouSure), PChar(Application.Title), MB_ICONQUESTION + MB_YESNOCANCEL) = idYes then
+  if lvTables.SelCount = 0 then
+    Exit;
+  if Application.MessageBox(PChar(SDiscardAreYouSure), PChar(Application.Title),
+    MB_ICONQUESTION + MB_YESNOCANCEL) = idYes then
   begin
     viewsIgnoriert := 0;
     tabellenGeleert := 0;
-    for i := 0 to lvTables.Items.Count-1 do
+    for i := 0 to lvTables.Items.Count - 1 do
     begin
-      if not lvTables.Items.Item[i].Selected then continue;
+      if not lvTables.Items.Item[i].Selected then
+        continue;
       if FDatabaseObj.ViewDetectionImplemented then
       begin
-        if (Integer(lvTables.Items.Item[i].Data) and 3) = 2{SP} then
+        if (integer(lvTables.Items.Item[i].Data) and 3) = 2 { SP } then
         begin
           // Nix machen mit Stored Procedures
         end
-        else if (Integer(lvTables.Items.Item[i].Data) and 3) = 1{View} then
+        else if (integer(lvTables.Items.Item[i].Data) and 3) = 1 { View } then
         begin
           // Bei einem DELETE würden aus allen verknüpften Tabellen gelöscht werden
           Inc(viewsIgnoriert);
@@ -464,11 +494,15 @@ begin
           if FDatabaseObj.DatabaseType = dtSqlServer then
           begin
             // DELETE anstelle TRUNCATE, da man bei einer Tabelle mit Foreign Keys kein TRUNCATE machen kann (keine Ahnung warum)
-            FDatabaseObj.ExecSql('DELETE FROM ' + FDatabaseObj.SQL_Escape_TableName(lvTables.Items.Item[i].Caption) + ';'); // do not localize
+            FDatabaseObj.ExecSql('DELETE FROM ' +
+              FDatabaseObj.SQL_Escape_TableName(lvTables.Items.Item[i].Caption)
+              + ';'); // do not localize
           end
           else
           begin
-            FDatabaseObj.ExecSql('TRUNCATE TABLE ' + FDatabaseObj.SQL_Escape_TableName(lvTables.Items.Item[i].Caption) + ';'); // do not localize
+            FDatabaseObj.ExecSql('TRUNCATE TABLE ' +
+              FDatabaseObj.SQL_Escape_TableName(lvTables.Items.Item[i].Caption)
+              + ';'); // do not localize
           end;
           Inc(tabellenGeleert);
         end;
@@ -476,18 +510,22 @@ begin
       else
       begin
         // DM 03.05.2023 : DELETE FROM durch TRUNCATE TABLE ersetzt, da sonst bei Views ein Datenverlust entsteht!
-        //if(lvTables.Items.Item[i].Selected) then FDatabaseObj.ExecSql('DELETE FROM ' + FDatabaseObj.SQL_Escape_TableName(lvTables.Items.Item[i].Caption) + ';');
-        FDatabaseObj.ExecSql('TRUNCATE TABLE ' + FDatabaseObj.SQL_Escape_TableName(lvTables.Items.Item[i].Caption) + ';'); // do not localize
+        // if(lvTables.Items.Item[i].Selected) then FDatabaseObj.ExecSql('DELETE FROM ' + FDatabaseObj.SQL_Escape_TableName(lvTables.Items.Item[i].Caption) + ';');
+        FDatabaseObj.ExecSql('TRUNCATE TABLE ' +
+          FDatabaseObj.SQL_Escape_TableName(lvTables.Items.Item[i].Caption) +
+          ';'); // do not localize
         Inc(tabellenGeleert);
       end;
     end;
     if viewsIgnoriert = 1 then
-      Application.MessageBox(PChar(SNoDeleteOnViews1), PChar(Application.Title), MB_ICONSTOP + MB_OK)
+      Application.MessageBox(PChar(SNoDeleteOnViews1), PChar(Application.Title),
+        MB_ICONSTOP + MB_OK)
     else if viewsIgnoriert > 1 then
-      Application.MessageBox(PChar(Format(SNoDeleteOnViewsN, [viewsIgnoriert])), PChar(Application.Title), MB_ICONSTOP + MB_OK);
+      Application.MessageBox(PChar(Format(SNoDeleteOnViewsN, [viewsIgnoriert])),
+        PChar(Application.Title), MB_ICONSTOP + MB_OK);
 
-    //if tabellenGeleert >= 1 then
-    //  Application.MessageBox(PChar(Format(SSelectedDObjectsTruncated, [tabellenGeleert])), PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
+    // if tabellenGeleert >= 1 then
+    // Application.MessageBox(PChar(Format(SSelectedDObjectsTruncated, [tabellenGeleert])), PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
   end;
 end;
 
@@ -501,12 +539,15 @@ begin
   // TODO: Implement
 end;
 
-procedure TMDI_Database.lvTablesDragOver(Sender: TObject; Source: TObject; X, Y: integer; State: TDragState; var Accept: boolean);
+procedure TMDI_Database.lvTablesDragOver(Sender: TObject; Source: TObject;
+  X, Y: integer; State: TDragState; var Accept: boolean);
 begin
-  Accept := Source.ClassNameIs('TListView') and (TListView(Source) <> lvTables);  // do not localize
+  Accept := Source.ClassNameIs('TListView') and (TListView(Source) <> lvTables);
+  // do not localize
 end;
 
-procedure TMDI_Database.lvTablesDragDrop(Sender: TObject; Source: TObject; X, Y: integer);
+procedure TMDI_Database.lvTablesDragDrop(Sender: TObject; Source: TObject;
+  X, Y: integer);
 var
   lvSource: TListView;
   dbSource: TDbToolDatabase;
@@ -519,11 +560,12 @@ begin
 
   try
     // Den Rest der Arbeit soll gefälligst die Zieldatenbank übernehmen!
-    for i := 0 to lvSource.Items.Count-1 do
+    for i := 0 to lvSource.Items.Count - 1 do
     begin
-      if(lvSource.Items.Item[i].Selected) then
+      if (lvSource.Items.Item[i].Selected) then
       begin
-        FDatabaseObj.ImportFromDatabase(dbSource, lvSource.Items.Item[i].Caption);
+        FDatabaseObj.ImportFromDatabase(dbSource,
+          lvSource.Items.Item[i].Caption);
       end;
     end;
   finally
@@ -539,20 +581,23 @@ var
   i: integer;
   tabellenGeloescht: integer;
 resourcestring
-  SDeleteAreYouSure = 'Sind Sie sicher, dass Sie die ausgewählten Objekte löschen möchten?';
+  SDeleteAreYouSure =
+    'Sind Sie sicher, dass Sie die ausgewählten Objekte löschen möchten?';
   SSelectedDObjectsDeleted = 'Die ausgewählten %d Objekte wurden gelöscht.';
 begin
-  if lvTables.SelCount = 0 then exit;
-  if Application.MessageBox(PChar(SDeleteAreYouSure), PChar(Application.Title), MB_ICONQUESTION + MB_YESNOCANCEL) = IDYES then
+  if lvTables.SelCount = 0 then
+    Exit;
+  if Application.MessageBox(PChar(SDeleteAreYouSure), PChar(Application.Title),
+    MB_ICONQUESTION + MB_YESNOCANCEL) = idYes then
   begin
     try
       tabellenGeloescht := 0;
 
-      for i := 0 to lvTables.Items.Count-1 do
+      for i := 0 to lvTables.Items.Count - 1 do
       begin
-        if(lvTables.Items.Item[i].Selected) then
+        if (lvTables.Items.Item[i].Selected) then
         begin
-          if (Integer(lvTables.Items.Item[i].Data) and 3) = 2{SP} then
+          if (integer(lvTables.Items.Item[i].Data) and 3) = 2 { SP } then
             FDatabaseObj.DropStoredProcedure(lvTables.Items.Item[i].Caption)
           else
             FDatabaseObj.DropTable(lvTables.Items.Item[i].Caption);
@@ -560,8 +605,8 @@ begin
         end;
       end;
 
-      //if tabellenGeloescht >= 1 then
-      //  Application.MessageBox(PChar(Format(SSelectedDObjectsDeleted, [tabellenGeloescht])), PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
+      // if tabellenGeloescht >= 1 then
+      // Application.MessageBox(PChar(Format(SSelectedDObjectsDeleted, [tabellenGeloescht])), PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
     finally
       ReloadTabellenListe;
     end;
@@ -582,7 +627,7 @@ begin
     if lvTables.Items[i].Selected then
     begin
       outputStr := outputStr + #13#10 + lvTables.Items[i].Caption;
-      inc(cnt);
+      Inc(cnt);
     end;
   end;
   outputStr := Trim(outputStr);
@@ -601,18 +646,20 @@ end;
 procedure TMDI_Database.AnzahlZeilenzeigen1Click(Sender: TObject);
 var
   QueryForm: TMDI_Query;
-  tableName: string;
-  i: Integer;
+  TableName: string;
+  i: integer;
 begin
-  for i := 0 to lvTables.Items.Count-1 do
+  for i := 0 to lvTables.Items.Count - 1 do
   begin
     if lvTables.Items.Item[i].Selected then
     begin
-      if (Integer(lvTables.Items.Item[i].Data) and 3) in [0{Table}, 1{View}] then
+      if (integer(lvTables.Items.Item[i].Data) and 3)
+        in [0 { Table } , 1 { View } ] then
       begin
-        tableName := lvTables.Items.Item[i].Caption;
+        TableName := lvTables.Items.Item[i].Caption;
         QueryForm := TMDI_Query.Create(Self, Self);
-        QueryForm.Memo1.Text := 'select count(*) from ' + FDatabaseObj.SQL_Escape_TableName(tableName);  // do not localize
+        QueryForm.Memo1.Text := 'select count(*) from ' +
+          FDatabaseObj.SQL_Escape_TableName(TableName); // do not localize
         QueryForm.Memo1.Modified := false;
         QueryForm.SpeedButton1.Click;
         QueryForm.BringToFront;
@@ -626,7 +673,8 @@ begin
   ReloadTabellenListe;
 end;
 
-procedure TMDI_Database.lvTablesEdited(Sender: TObject; Item: TListItem; var S: string);
+procedure TMDI_Database.lvTablesEdited(Sender: TObject; Item: TListItem;
+  var S: string);
 begin
   // Tabelle umbenennen
   FDatabaseObj.RenameTable(Item.Caption, S);
@@ -635,30 +683,31 @@ end;
 procedure TMDI_Database.Umbenennen1Click(Sender: TObject);
 var
   i: integer;
-  tableName, tableNameOriginal: string;
+  TableName, tableNameOriginal: string;
 resourcestring
   SRenameTable = 'Tabelle umbenennen';
   SNewNameForTableS = 'Neuer Name für Tabelle %s:';
 begin
-  for i := 0 to lvTables.Items.Count-1 do
+  for i := 0 to lvTables.Items.Count - 1 do
   begin
     if lvTables.Items.Item[i].Selected then
     begin
-      tableName := lvTables.Items.Item[i].Caption;
-      tableNameOriginal := tableName;
-      InputQuery(SRenameTable, Format(SNewNameForTableS, [tableNameOriginal]), tableName);
+      TableName := lvTables.Items.Item[i].Caption;
+      tableNameOriginal := TableName;
+      InputQuery(SRenameTable, Format(SNewNameForTableS, [tableNameOriginal]),
+        TableName);
 
-      if tableName <> tableNameOriginal then
+      if TableName <> tableNameOriginal then
       begin
-        if (Integer(lvTables.Items.Item[i].Data) and 3) = 2{SP} then
+        if (integer(lvTables.Items.Item[i].Data) and 3) = 2 { SP } then
         begin
-          FDatabaseObj.RenameStoredProcedure(tableNameOriginal, tableName);
+          FDatabaseObj.RenameStoredProcedure(tableNameOriginal, TableName);
         end
         else
         begin
-          FDatabaseObj.RenameTable(tableNameOriginal, tableName);
+          FDatabaseObj.RenameTable(tableNameOriginal, TableName);
         end;
-        lvTables.Items.Item[i].Caption := tableName;
+        lvTables.Items.Item[i].Caption := TableName;
       end;
     end;
   end;
@@ -671,14 +720,14 @@ procedure TMDI_Database.pmTablesPopup(Sender: TObject);
     i: integer;
   begin
     result := false;
-    for i := 0 to lvTables.Items.Count-1 do
+    for i := 0 to lvTables.Items.Count - 1 do
     begin
       if lvTables.Items.Item[i].Selected then
       begin
         if FDatabaseObj.HasTriggers(lvTables.Items.Item[i].Caption) then
         begin
           result := true;
-          exit;
+          Exit;
         end;
       end;
     end;
@@ -689,14 +738,14 @@ procedure TMDI_Database.pmTablesPopup(Sender: TObject);
     i: integer;
   begin
     result := false;
-    for i := 0 to lvTables.Items.Count-1 do
+    for i := 0 to lvTables.Items.Count - 1 do
     begin
       if lvTables.Items.Item[i].Selected then
       begin
-        if (Integer(lvTables.Items.Item[i].Data) and 3) = 1{View} then
+        if (integer(lvTables.Items.Item[i].Data) and 3) = 1 { View } then
         begin
           result := true;
-          exit;
+          Exit;
         end;
       end;
     end;
@@ -707,14 +756,15 @@ procedure TMDI_Database.pmTablesPopup(Sender: TObject);
     i: integer;
   begin
     result := lvTables.Items.Count > 0;
-    for i := 0 to lvTables.Items.Count-1 do
+    for i := 0 to lvTables.Items.Count - 1 do
     begin
       if lvTables.Items.Item[i].Selected then
       begin
-        if (Integer(lvTables.Items.Item[i].Data) and 3) in [0{Table}, 1{View}] then
+        if (integer(lvTables.Items.Item[i].Data) and 3)
+          in [0 { Table } , 1 { View } ] then
         begin
           result := false;
-          exit;
+          Exit;
         end;
       end;
     end;
@@ -722,9 +772,10 @@ procedure TMDI_Database.pmTablesPopup(Sender: TObject);
 
 var
   anItem: TMenuItem;
-  i: Integer;
+  i: integer;
 begin
-  if lvTables.SelCount = 0 then Abort;
+  if lvTables.SelCount = 0 then
+    Abort;
 
   NurStrukturzeigen1.Enabled := not AusschliesslichStoredProceduresVorhanden;
 
@@ -748,14 +799,15 @@ begin
       FreeAndNil(anItem);
     end;
   end;
-  for i := 0 to DLG_Main.MDIChildCount-1 do
+  for i := 0 to DLG_Main.MDIChildCount - 1 do
   begin
     anItem := TMenuItem.Create(Self);
     if DLG_Main.MDIChildren[i].Tag = 0 then
       DLG_Main.MDIChildren[i].Tag := Random(999999999);
     anItem.Tag := DLG_Main.MDIChildren[i].Tag;
     anItem.OnClick := KopierenNachDBClick;
-    if DLG_Main.MDIChildren[i].ClassNameIs('TMDI_Database') and  // do not localize
+    if DLG_Main.MDIChildren[i].ClassNameIs('TMDI_Database') and
+    // do not localize
       (TMDI_Database(DLG_Main.MDIChildren[i]).Tag <> Self.Tag) then
     begin
       anItem.Caption := TMDI_Database(DLG_Main.MDIChildren[i]).Database;
@@ -770,18 +822,20 @@ var
   aForm: TForm;
   i: integer;
 begin
-  for i := 0 to DLG_Main.MDIChildCount-1 do
+  for i := 0 to DLG_Main.MDIChildCount - 1 do
   begin
-    if (DLG_Main.MDIChildren[i].Tag <> 0) and (DLG_Main.MDIChildren[i].Tag = TMenuItem(Sender).Tag) then
+    if (DLG_Main.MDIChildren[i].Tag <> 0) and
+      (DLG_Main.MDIChildren[i].Tag = TMenuItem(Sender).Tag) then
     begin
       aForm := TForm(DLG_Main.MDIChildren[i]);
       MDI_Form_BringToFront(aForm);
-      TMdi_DataBase(aForm).lvTablesDragDrop(aForm, lvTables, 0, 0);
+      TMDI_Database(aForm).lvTablesDragDrop(aForm, lvTables, 0, 0);
     end;
   end;
 end;
 
-procedure TMDI_Database.lvTablesKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+procedure TMDI_Database.lvTablesKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
 begin
   if (Key = 13) then
     lvTablesDblClick(Sender)
@@ -802,7 +856,8 @@ begin
   end;
 end;
 
-procedure TMDI_Database.lvTablesSelectItem(Sender: TObject; Item: TListItem; Selected: Boolean);
+procedure TMDI_Database.lvTablesSelectItem(Sender: TObject; Item: TListItem;
+  Selected: boolean);
 begin
   UpdateCounterPanel;
 end;
@@ -811,11 +866,12 @@ procedure TMDI_Database.NurStrukturzeigen1Click(Sender: TObject);
 var
   i: integer;
 begin
-  for i := 0 to lvTables.Items.Count-1 do
+  for i := 0 to lvTables.Items.Count - 1 do
   begin
     if lvTables.Items.Item[i].Selected then
     begin
-      if (Integer(lvTables.Items.Item[i].Data) and 3) in [0{Table}, 1{View}] then
+      if (integer(lvTables.Items.Item[i].Data) and 3)
+        in [0 { Table } , 1 { View } ] then
       begin
         OpenTable(lvTables.Items.Item[i].Caption, true);
       end;

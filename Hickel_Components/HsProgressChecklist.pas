@@ -9,12 +9,13 @@ uses
   Windows, SysUtils, Classes, Controls, ComCtrls, Graphics;
 
 // TODO: Kann man irgendwie eine TStringList geben, und diese irgendwie überwachen?
-//       Dann könnte man die Jobs nämlich auch im IDE Editor bearbeiten können
+// Dann könnte man die Jobs nämlich auch im IDE Editor bearbeiten können
 
 type
-  {$IF CompilerVersion > 20.0} // Version geraten
+{$IF CompilerVersion > 20.0} // Version geraten
   [ComponentPlatformsAttribute(pidWin32 or pidWin64)]
-  {$IFEND}
+{$IFEND}
+
   THsProgressChecklist = class(TCustomListView)
   private
     { Private-Deklarationen }
@@ -81,12 +82,12 @@ type
     property ShowColumnHeaders;
     property ShowWorkAreas;
     property ShowHint;
-    //property SmallImages;
-    //property SortType;
-    //property StateImages;
+    // property SmallImages;
+    // property SortType;
+    // property StateImages;
     property TabOrder;
-    property TabStop default False;//True;
-    //property ViewStyle;
+    property TabStop default False; // True;
+    // property ViewStyle;
     property Visible;
     property OnAdvancedCustomDraw;
     property OnAdvancedCustomDrawItem;
@@ -148,7 +149,7 @@ begin
 end;
 
 // http://stackoverflow.com/questions/3056889/delphi-populate-an-imagelist-with-icons-at-runtime-destroys-transparency
-function AddBitmapFromResource(ImageList: TImageList; ResName: string): Integer;
+function AddBitmapFromResource(ImageList: TImageList; ResName: string): integer;
 var
   Bitmap: TBitmap;
 begin
@@ -184,7 +185,7 @@ begin
 
   ViewStyle := vsReport;
   ReadOnly := true;
-  ShowColumnHeaders := false;
+  ShowColumnHeaders := False;
 
   with Columns.Add do
   begin
@@ -196,15 +197,17 @@ begin
   FProgress := -1;
 
   FImgList := TImageList.Create(self);
-  FImgIdxInProgress := AddBitmapFromResource(FImgList, 'HsProgressChecklist_InProgress');
-  FImgIdxFinished   := AddBitmapFromResource(FImgList, 'HsProgressChecklist_Finished');
+  FImgIdxInProgress := AddBitmapFromResource(FImgList,
+    'HsProgressChecklist_InProgress');
+  FImgIdxFinished := AddBitmapFromResource(FImgList,
+    'HsProgressChecklist_Finished');
   SmallImages := FImgList;
 end;
 
 destructor THsProgressChecklist.Destroy;
 begin
   FreeAndNil(FImgList);
-  
+
   inherited;
 end;
 

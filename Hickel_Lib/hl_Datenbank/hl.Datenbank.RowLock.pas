@@ -49,14 +49,15 @@ type
     procedure CheckLock;
   public
 
-    {$REGION 'Constructor'}
-    constructor Create(aHlDB: ThlDatenbank; AUserName, ATableName, APK1, APK2, APK3, APK4, APK5, APK6: hlString); overload;
+{$REGION 'Constructor'}
+    constructor Create(aHlDB: ThlDatenbank; AUserName, ATableName, APK1, APK2,
+      APK3, APK4, APK5, APK6: hlString); overload;
 
     /// <summary>Dieser Konstruktor wird bei Sperrobjekten verwendet, die keine Referenz auf eine Tabelle haben.</summary>
-    constructor CreateSpecial(aHlDB: ThlDatenbank; AUserName, AModule, AIdentifier: hlString); overload;
-    {$ENDREGION}
-
-    {$REGION 'Ergebnis'}
+    constructor CreateSpecial(aHlDB: ThlDatenbank;
+      AUserName, AModule, AIdentifier: hlString); overload;
+{$ENDREGION}
+{$REGION 'Ergebnis'}
     /// <summary>
     /// Ist true, wenn der Datensatz durch einen anderen Benutzer gesperrt ist.
     /// Ist gesetzt nach dem Aufruf von ApplyLock bzw. des Konstruktors mit dem Argument AAutomaticApply = true.
@@ -83,9 +84,8 @@ type
     /// Der Wert sollte nur verwendet werden, wenn LockedByOtherUser = true ist.
     /// </summary>
     property LockedSince: TDateTime read _LockedSince;
-    {$ENDREGION}
-
-    {$REGION 'Eingabeparameter'}
+{$ENDREGION}
+{$REGION 'Eingabeparameter'}
     // Eingabeparameter
     property Username: hlString read _Username;
     property Computername: hlString read _Computername;
@@ -98,8 +98,7 @@ type
     property PK6: hlString read _PK6;
     // property LockLFD: integer read FLockLFD;
     property RecheckTimer: integer read _RecheckTimer write _RecheckTimer;
-    {$ENDREGION}
-
+{$ENDREGION}
     /// <summary>
     /// Sperrt den Datensatz. Dies kann durchgeführt werden, wenn zuvor ein
     /// ReleaseLock stattgefunden hat oder wenn ein der Konstruktor ohne
@@ -107,7 +106,8 @@ type
     /// Achtung! Wirft keine Exception! Um eine Exception anzuzeigen,
     /// muss RaiseExceptionIfLocked aufgerufen werden.
     /// </summary>
-    procedure ApplyLock(AAutomaticException: boolean=true; AAllowOwnUser: boolean=false);
+    procedure ApplyLock(AAutomaticException: boolean = true;
+      AAllowOwnUser: boolean = false);
 
     /// <summary>
     /// Gibt die Datensatzsperre frei. Das Objekt kann weiterverwendet werden.
@@ -127,8 +127,9 @@ type
     /// Diese Funktion löscht alle Sperren eines anzugebenen Benutzers.
     /// </summary>
     /// <param name="AUsername">Der Benutzername, von dem alle Locks entfernt werden sollen.</param>
-    class procedure RemoveAllUserLocks(aHlDB: ThlDatenbank; AUsername: hlString); overload; static;
-    procedure RemoveAllUserLocks(AUsername: hlString); overload;
+    class procedure RemoveAllUserLocks(aHlDB: ThlDatenbank;
+      AUserName: hlString); overload; static;
+    procedure RemoveAllUserLocks(AUserName: hlString); overload;
 
     class procedure RemoveAllLocks(aHlDB: ThlDatenbank); overload; static;
     procedure RemoveAllLocks; overload;
@@ -148,7 +149,9 @@ uses
 { ThlRowLock }
 
 {$REGION 'Create and Destroy'}
-constructor ThlRowLock.Create(aHlDB: ThlDatenbank; AUserName, ATableName, APK1, APK2, APK3, APK4, APK5, APK6: hlString);
+
+constructor ThlRowLock.Create(aHlDB: ThlDatenbank;
+  AUserName, ATableName, APK1, APK2, APK3, APK4, APK5, APK6: hlString);
 begin
   _LockLFD := 0;
 
@@ -170,7 +173,8 @@ begin
   _LockedSince := 0;
 end;
 
-constructor ThlRowLock.CreateSpecial(aHlDB: ThlDatenbank; AUserName, AModule, AIdentifier: hlString);
+constructor ThlRowLock.CreateSpecial(aHlDB: ThlDatenbank;
+  AUserName, AModule, AIdentifier: hlString);
 begin
   Create(aHlDB, AUserName, '---', AModule, AIdentifier, '', '', '', '');
 end;
@@ -181,28 +185,23 @@ var
   query: string;
 begin
   query := 'insert into DATENSATZSPERRE ' +
-           '(TABLENAME, PK1, PK2, PK3, PK4, PK5, PK6, CONNECTION_ID, LOCKED_BY, LOCKED_ON_PC, LOCKED_SINCE) values ' +
-           '(' + TableName.toSQLString + ', ' +
-           pk1.toSQLString + ', ' +
-           pk2.toSQLString + ', ' +
-           pk3.toSQLString + ', ' +
-           pk4.toSQLString + ', ' +
-           pk5.toSQLString + ', ' +
-           pk6.toSQLString + ', ' +
-           '''' + GUIDToString(_hlDB.ConnectionID) + ''', ' +
-           Username.toSQLString + ', ' +
-           Computername.toSQLString +
-           ', GETDATE());';
+    '(TABLENAME, PK1, PK2, PK3, PK4, PK5, PK6, CONNECTION_ID, LOCKED_BY, LOCKED_ON_PC, LOCKED_SINCE) values '
+    + '(' + TableName.toSQLString + ', ' + PK1.toSQLString + ', ' +
+    PK2.toSQLString + ', ' + PK3.toSQLString + ', ' + PK4.toSQLString + ', ' +
+    PK5.toSQLString + ', ' + PK6.toSQLString + ', ' + '''' +
+    GUIDToString(_hlDB.ConnectionID) + ''', ' + Username.toSQLString + ', ' +
+    Computername.toSQLString + ', GETDATE());';
   result := _hlDB.InsertAndReturnID(query);
 end;
 
-procedure ThlRowLock.ApplyLock(AAutomaticException: boolean=true; AAllowOwnUser: boolean=false);
+procedure ThlRowLock.ApplyLock(AAutomaticException: boolean = true;
+  AAllowOwnUser: boolean = false);
 var
   q1: ThlDataSet;
   LowestInsertID: integer;
   query: string;
 begin
-  // Wenn das übertrieben oft aufgerufen wird, wird CORA langsam (Pinkert 59369, Kusche 59374, Bokmeier 59381)
+  // Wenn das übertrieben oft aufgerufen wird, wird CORA langsam (Ticket 59369, 59374, 59381)
   // Da der Rowlock aber unbedingt eine gültige Verbindung braucht, ist es OK, zumal Rowlocks nicht
   // übermäßig verwendet werden sollen, aufgrund der Performance
   _hlDB.RecheckConnectionStatus(nil);
@@ -211,7 +210,9 @@ begin
     if _LockLFD > 0 then
     begin
       // Zwei mal hintereinander ApplyLock aufrufen ist nix gut
-      raise Exception.CreateFmt('Interner Fehler! Es besteht bereits eine Datensatz-Sperre (ID=%d)', [_LockLFD]);
+      raise Exception.CreateFmt
+        ('Interner Fehler! Es besteht bereits eine Datensatz-Sperre (ID=%d)',
+        [_LockLFD]);
     end;
 
     CheckLock;
@@ -219,7 +220,8 @@ begin
     if LockedByOtherUser then
     begin
       // Prüfen: Sind WIR der "Other user"?
-      if (LockedBy = UserName) and (LockedOnPC = Computername) and AAllowOwnUser then
+      if (LockedBy = Username) and (LockedOnPC = Computername) and AAllowOwnUser
+      then
       begin
         // Der Datensatz ist von uns gesperrt. Wir lassen den Zugriff zu.
         _LockedByOtherUser := false;
@@ -239,27 +241,33 @@ begin
     _LockLFD := LockEintragen;
 
     // Double Check: Wir prüfen nun, ob wir auch der Erste waren
-    query := 'select top 1 dsp.LFD, dsp.LOCKED_BY, dsp.LOCKED_ON_PC, dsp.LOCKED_SINCE from DATENSATZSPERRE dsp ' +
-             'left join sys.dm_exec_connections sp ' +
-             '  on sp.connection_id = dsp.CONNECTION_ID ' +
-             'where dsp.TABLENAME = ' + TableName.toSQLString +
-             '  and dsp.CONNECTION_ID is not null ' +
-             '  and sp.connection_id is not null ' +
-             '  and dsp.LOCKED_BY = ' + Username.toSQLString +
-             '  and dsp.LOCKED_ON_PC = ' + Computername.toSQLString;
-    if pk1 <> '' then query := query + ' and dsp.PK1 = ' + pk1.toSQLString;
-    if pk2 <> '' then query := query + ' and dsp.PK2 = ' + pk2.toSQLString;
-    if pk3 <> '' then query := query + ' and dsp.PK3 = ' + pk3.toSQLString;
-    if pk4 <> '' then query := query + ' and dsp.PK4 = ' + pk4.toSQLString;
-    if pk5 <> '' then query := query + ' and dsp.PK5 = ' + pk5.toSQLString;
-    if pk6 <> '' then query := query + ' and dsp.PK6 = ' + pk6.toSQLString;
+    query := 'select top 1 dsp.LFD, dsp.LOCKED_BY, dsp.LOCKED_ON_PC, dsp.LOCKED_SINCE from DATENSATZSPERRE dsp '
+      + 'left join sys.dm_exec_connections sp ' +
+      '  on sp.connection_id = dsp.CONNECTION_ID ' + 'where dsp.TABLENAME = ' +
+      TableName.toSQLString + '  and dsp.CONNECTION_ID is not null ' +
+      '  and sp.connection_id is not null ' + '  and dsp.LOCKED_BY = ' +
+      Username.toSQLString + '  and dsp.LOCKED_ON_PC = ' +
+      Computername.toSQLString;
+    if PK1 <> '' then
+      query := query + ' and dsp.PK1 = ' + PK1.toSQLString;
+    if PK2 <> '' then
+      query := query + ' and dsp.PK2 = ' + PK2.toSQLString;
+    if PK3 <> '' then
+      query := query + ' and dsp.PK3 = ' + PK3.toSQLString;
+    if PK4 <> '' then
+      query := query + ' and dsp.PK4 = ' + PK4.toSQLString;
+    if PK5 <> '' then
+      query := query + ' and dsp.PK5 = ' + PK5.toSQLString;
+    if PK6 <> '' then
+      query := query + ' and dsp.PK6 = ' + PK6.toSQLString;
     query := query + ' order by dsp.LFD asc;';
     q1 := _hlDB.GetTable(query);
     try
-      lowestInsertID := q1.{FieldByName('LFD')}Fields[0].AsInteger;
-      if lowestInsertID = 0 then
+      LowestInsertID := q1.{ FieldByName('LFD') } Fields[0].AsInteger;
+      if LowestInsertID = 0 then
       begin
-        raise Exception.Create('Interner Fehler: "INSERT" in RowLock Tabelle hat nicht funktioniert!');
+        raise Exception.Create
+          ('Interner Fehler: "INSERT" in RowLock Tabelle hat nicht funktioniert!');
       end;
       if _LockLFD <> LowestInsertID then
       begin
@@ -269,9 +277,9 @@ begin
         DeleteLock; // unsere Eintragung rückgängig machen
 
         _LockedByOtherUser := true;
-        _LockedBy := q1.{FieldByName('LOCKED_BY')}Fields[1].AsString;
-        _LockedOnPC := q1.{FieldByName('LOCKED_ON_PC')}Fields[2].AsString;
-        _LockedSince := q1.{FieldByName('LOCKED_SINCE')}Fields[3].AsDateTime;
+        _LockedBy := q1.{ FieldByName('LOCKED_BY') } Fields[1].AsString;
+        _LockedOnPC := q1.{ FieldByName('LOCKED_ON_PC') } Fields[2].AsString;
+        _LockedSince := q1.{ FieldByName('LOCKED_SINCE') } Fields[3].AsDateTime;
         Exit;
       end;
     finally
@@ -281,7 +289,8 @@ begin
     // Wir lassen den Zugriff auf den Datensatz zu
     _LockedByOtherUser := false;
   finally
-    if AAutomaticException then RaiseExceptionIfLocked;
+    if AAutomaticException then
+      RaiseExceptionIfLocked;
   end;
 end;
 
@@ -298,18 +307,23 @@ var
   q1: ThlDataSet;
   query: string;
 begin
-  query := 'select top 1 dsp.LFD, dsp.LOCKED_BY, dsp.LOCKED_ON_PC, dsp.LOCKED_SINCE from DATENSATZSPERRE dsp ' +
-           'left join sys.dm_exec_connections sp ' +
-           '  on sp.connection_id = dsp.CONNECTION_ID ' +
-           'where dsp.TABLENAME = ' + TableName.toSQLString +
-           '  and dsp.CONNECTION_ID is not null ' +
-           '  and sp.connection_id is not null ';
-  if pk1 <> '' then query := query + ' and dsp.PK1 = ' + pk1.toSQLString;
-  if pk2 <> '' then query := query + ' and dsp.PK2 = ' + pk2.toSQLString;
-  if pk3 <> '' then query := query + ' and dsp.PK3 = ' + pk3.toSQLString;
-  if pk4 <> '' then query := query + ' and dsp.PK4 = ' + pk4.toSQLString;
-  if pk5 <> '' then query := query + ' and dsp.PK5 = ' + pk5.toSQLString;
-  if pk6 <> '' then query := query + ' and dsp.PK6 = ' + pk6.toSQLString;
+  query := 'select top 1 dsp.LFD, dsp.LOCKED_BY, dsp.LOCKED_ON_PC, dsp.LOCKED_SINCE from DATENSATZSPERRE dsp '
+    + 'left join sys.dm_exec_connections sp ' +
+    '  on sp.connection_id = dsp.CONNECTION_ID ' + 'where dsp.TABLENAME = ' +
+    TableName.toSQLString + '  and dsp.CONNECTION_ID is not null ' +
+    '  and sp.connection_id is not null ';
+  if PK1 <> '' then
+    query := query + ' and dsp.PK1 = ' + PK1.toSQLString;
+  if PK2 <> '' then
+    query := query + ' and dsp.PK2 = ' + PK2.toSQLString;
+  if PK3 <> '' then
+    query := query + ' and dsp.PK3 = ' + PK3.toSQLString;
+  if PK4 <> '' then
+    query := query + ' and dsp.PK4 = ' + PK4.toSQLString;
+  if PK5 <> '' then
+    query := query + ' and dsp.PK5 = ' + PK5.toSQLString;
+  if PK6 <> '' then
+    query := query + ' and dsp.PK6 = ' + PK6.toSQLString;
   query := query + ' order by dsp.LFD asc;';
   q1 := _hlDB.GetTable(query);
   try
@@ -336,10 +350,10 @@ begin
 
     // Der Datensatz ist gesperrt
     _LockedByOtherUser := true;
-    _LockLFD := q1.{FieldByName('LFD')}Fields[0].AsInteger;
-    _LockedBy := q1.{FieldByName('LOCKED_BY')}Fields[1].AsString;
-    _LockedOnPC := q1.{FieldByName('LOCKED_ON_PC')}Fields[2].AsString;
-    _LockedSince := q1.{FieldByName('LOCKED_SINCE')}Fields[3].AsDateTime;
+    _LockLFD := q1.{ FieldByName('LFD') } Fields[0].AsInteger;
+    _LockedBy := q1.{ FieldByName('LOCKED_BY') } Fields[1].AsString;
+    _LockedOnPC := q1.{ FieldByName('LOCKED_ON_PC') } Fields[2].AsString;
+    _LockedSince := q1.{ FieldByName('LOCKED_SINCE') } Fields[3].AsDateTime;
   finally
     FreeAndNil(q1);
   end;
@@ -351,7 +365,8 @@ var
 begin
   if _LockLFD > 0 then
   begin
-    query := 'delete from DATENSATZSPERRE where LFD = ' + IntToStr(_LockLFD) + ';';
+    query := 'delete from DATENSATZSPERRE where LFD = ' +
+      IntToStr(_LockLFD) + ';';
     _hlDB.ExecSql(query);
     _LockLFD := 0;
   end;
@@ -360,10 +375,9 @@ end;
 class procedure ThlRowLock.RemoveInvalidLocks(aHlDB: ThlDatenbank);
 begin
   aHlDB.ExecSql('delete DATENSATZSPERRE from DATENSATZSPERRE dsp ' +
-                                 'left join sys.dm_exec_connections sp ' +
-                                 '  on sp.connection_id = dsp.CONNECTION_ID ' +
-                                 'where dsp.CONNECTION_ID is null ' +
-                                 '   or sp.connection_id is null;');
+    'left join sys.dm_exec_connections sp ' +
+    '  on sp.connection_id = dsp.CONNECTION_ID ' +
+    'where dsp.CONNECTION_ID is null ' + '   or sp.connection_id is null;');
 end;
 
 procedure ThlRowLock.RemoveInvalidLocks;
@@ -373,20 +387,17 @@ end;
 
 procedure ThlRowLock.RaiseExceptionIfLocked;
 resourcestring
-  LNG_DATASET_LOCKED_BY_OTHER_USER = 'Der Datensatz ist seit %s durch den Benutzer %s an Arbeitsplatz %s gesperrt.' + #13#10#13#10 + 'Technische Information: %s';
+  LNG_DATASET_LOCKED_BY_OTHER_USER =
+    'Der Datensatz ist seit %s durch den Benutzer %s an Arbeitsplatz %s gesperrt.'
+    + #13#10#13#10 + 'Technische Information: %s';
 begin
   if LockedByOtherUser then
   begin
-    raise EHSDatasetLockedByOtherUser.CreateFmt(LNG_DATASET_LOCKED_BY_OTHER_USER,
-      [DateTimeToStr(LockedSince), LockedBy.toString, LockedOnPC.toString,
-      string(Self.TableName + ' : ' +
-      Self.PK1 + '/' +
-      Self.PK2 + '/' +
-      Self.PK3 + '/' +
-      Self.PK4 + '/' +
-      Self.PK5 + '/' +
-      Self.PK6)
-      ]);
+    raise EHSDatasetLockedByOtherUser.CreateFmt
+      (LNG_DATASET_LOCKED_BY_OTHER_USER, [DateTimeToStr(LockedSince),
+      LockedBy.toString, LockedOnPC.toString,
+      string(Self.TableName + ' : ' + Self.PK1 + '/' + Self.PK2 + '/' + Self.PK3
+      + '/' + Self.PK4 + '/' + Self.PK5 + '/' + Self.PK6)]);
   end;
 end;
 
@@ -408,17 +419,19 @@ begin
   RemoveAllLocks(_hlDB);
 end;
 
-class procedure ThlRowLock.RemoveAllUserLocks(aHlDB: ThlDatenbank; AUsername: hlString);
+class procedure ThlRowLock.RemoveAllUserLocks(aHlDB: ThlDatenbank;
+  AUserName: hlString);
 var
   query: string;
 begin
-  query := 'delete from DATENSATZSPERRE where LOCKED_BY = ' + AUsername.toSQLString + ';';
+  query := 'delete from DATENSATZSPERRE where LOCKED_BY = ' +
+    AUserName.toSQLString + ';';
   aHlDB.ExecSql(query);
 end;
 
-procedure ThlRowLock.RemoveAllUserLocks(AUsername: hlString);
+procedure ThlRowLock.RemoveAllUserLocks(AUserName: hlString);
 begin
-  RemoveAllUserLocks(_hlDB, AUsername);
+  RemoveAllUserLocks(_hlDB, AUserName);
 end;
 
 end.

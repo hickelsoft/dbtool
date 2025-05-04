@@ -9,9 +9,10 @@ uses
 type
   TEditDlgFormat = (fText, fDate);
 
-  {$IF CompilerVersion > 20.0} // Version geraten
+{$IF CompilerVersion > 20.0} // Version geraten
   [ComponentPlatformsAttribute(pidWin32 or pidWin64)]
-  {$IFEND}
+{$IFEND}
+
   TEditDlg = class(TComponent)
   private
     FVorgabe: string;
@@ -24,12 +25,16 @@ type
     Text: string;
     Checked: boolean;
     DLG_Texteingabe: TDLG_Texteingabe;
-    function Execute( ParentForm: TForm; MaxLen: integer=0; Caption: string='' ): boolean;
+    function Execute(ParentForm: TForm; MaxLen: integer = 0;
+      Caption: string = ''): boolean;
   published
     property Caption: string read FCaption write FCaption;
-    property CheckBoxCaption: string read FCheckBoxCaption write FCheckBoxCaption;
-    property Hintergrundfarbe: TColor read FHintergrundfarbe write FHintergrundfarbe;
-    property Vordergrundfarbe: TColor read FVordergrundfarbe write FVordergrundfarbe;
+    property CheckBoxCaption: string read FCheckBoxCaption
+      write FCheckBoxCaption;
+    property Hintergrundfarbe: TColor read FHintergrundfarbe
+      write FHintergrundfarbe;
+    property Vordergrundfarbe: TColor read FVordergrundfarbe
+      write FVordergrundfarbe;
     property Format: TEditDlgFormat read FFormat write FFormat;
     property Vorgabe: string read FVorgabe write FVorgabe;
   end;
@@ -40,16 +45,17 @@ implementation
 
 procedure Register;
 begin
-   RegisterComponents( 'HS', [TEditDlg] );
+  RegisterComponents('HS', [TEditDlg]);
 end;
 
-function TEditDlg.Execute( ParentForm: TForm; MaxLen: integer=0; Caption: string='' ): boolean;
+function TEditDlg.Execute(ParentForm: TForm; MaxLen: integer = 0;
+  Caption: string = ''): boolean;
 var
   bOK: boolean;
 begin
   bOK := False;
   Text := '';
-  DLG_Texteingabe := TDlg_TextEingabe.Create( ParentForm );
+  DLG_Texteingabe := TDLG_Texteingabe.Create(ParentForm);
   try
     DLG_Texteingabe.Edit.Text := FVorgabe;
     DLG_Texteingabe.Edit.MaxLength := MaxLen;
@@ -61,21 +67,21 @@ begin
     DLG_Texteingabe.FHintergrundfarbe := FHintergrundfarbe;
     if FCheckBoxCaption <> '' then
     begin
-      DLG_TextEingabe.CheckBox1.Visible := True;
-      DLG_TextEingabe.CheckBox1.Caption := FCheckBoxCaption;
+      DLG_Texteingabe.CheckBox1.Visible := True;
+      DLG_Texteingabe.CheckBox1.Caption := FCheckBoxCaption;
     end;
-    DLG_TextEingabe.Edit.Visible := FFormat = fText;
-    DLG_TextEingabe.DateTimePicker1.Visible := FFormat = fDate;
-    DLG_TextEingabe.DateTimePicker1.Date := Date;
-    if DLG_TextEingabe.ShowModal = mrOK then
+    DLG_Texteingabe.Edit.Visible := FFormat = fText;
+    DLG_Texteingabe.DateTimePicker1.Visible := FFormat = fDate;
+    DLG_Texteingabe.DateTimePicker1.Date := Date;
+    if DLG_Texteingabe.ShowModal = mrOK then
     begin
       bOK := True;
       if Format = fDate then
-        Text := DateToStr(DLG_TextEingabe.DateTimePicker1.Date)
+        Text := DateToStr(DLG_Texteingabe.DateTimePicker1.Date)
       else if Format = fText then
-        Text := DLG_TextEingabe.Edit.Text;
+        Text := DLG_Texteingabe.Edit.Text;
     end;
-    Checked := DLG_TextEingabe.Checkbox1.Checked;
+    Checked := DLG_Texteingabe.CheckBox1.Checked;
   finally
     FreeAndNil(DLG_Texteingabe);
   end;

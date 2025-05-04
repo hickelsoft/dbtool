@@ -230,6 +230,12 @@ $(PostBuildEvent)]]></PostBuildEvent>
             </Platforms>
             <Deployment Version="5">
                 <DeployFile LocalName="c:\HS-Service\DBTool32.exe" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="c:\HS-Service\DBTool32.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>DBTool32.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="c:\HS-Service\DBTool32.exe" Configuration="Release" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="OSX32">
@@ -1133,10 +1139,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         </DCCReference>
         <DCCReference Include="..\..\C_Database.pas"/>
         <DCCReference Include="..\..\Globals.pas"/>
-        <DCCReference Include="..\..\..\Hickel_Components\Statusan.pas">
-            <Form>DLG_Statusanzeige</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

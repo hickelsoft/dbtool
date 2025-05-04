@@ -343,6 +343,8 @@ object MDI_Table: TMDI_Table
         Left = 0
         Top = 0
         Caption = 'Formular'
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel4: TPanel
           Left = 0
           Top = 0
@@ -367,6 +369,8 @@ object MDI_Table: TMDI_Table
         Left = 0
         Top = 0
         Caption = 'Filter'
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel6: TPanel
           Left = 0
           Top = 0
@@ -467,6 +471,8 @@ object MDI_Table: TMDI_Table
         Left = 0
         Top = 0
         Caption = 'Felder'
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel7: TPanel
           Left = 0
           Top = 0
@@ -567,6 +573,8 @@ object MDI_Table: TMDI_Table
         Left = 0
         Top = 0
         Caption = 'Indizes'
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel5: TPanel
           Left = 0
           Top = 0

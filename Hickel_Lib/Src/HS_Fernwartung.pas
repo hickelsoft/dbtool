@@ -29,7 +29,7 @@ var
   downloadOrdner: string;
   AdminMode: integer;
   tmp: string;
-  zip: TZipFile;
+  Zip: TZipFile;
 begin
   AdminMode := AdminModeDefault;
 
@@ -40,11 +40,13 @@ begin
     exit;
   end;
 
-  {$REGION 'Download-Ordner bestimmen'}
-  if FileExists(IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)))+'..\config\Hickel.config.xml') then
+{$REGION 'Download-Ordner bestimmen'}
+  if FileExists(IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) +
+    '..\config\Hickel.config.xml') then
   begin
     // Ins CORAplus\Zusatz Verzeichnis rein
-    downloadOrdner := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))+'..\..\Zusatz');
+    downloadOrdner := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))
+      + '..\..\Zusatz');
   end
   else
   begin
@@ -70,69 +72,78 @@ begin
     tmp := SysUtils.GetEnvironmentVariable('APPDATA');
     if tmp <> '' then
     begin
-      downloadOrdner := IncludeTrailingPathDelimiter(tmp)+'..\Local\HickelSOFT'
+      downloadOrdner := IncludeTrailingPathDelimiter(tmp) +
+        '..\Local\HickelSOFT'
     end
     else
     begin
       downloadOrdner := GetTempDir; // ansonsten das Temp-Verzeichnis
     end;
   end;
-  downloadOrdner := IncludeTrailingPathDelimiter(downloadOrdner) + 'Fernwartung';
+  downloadOrdner := IncludeTrailingPathDelimiter(downloadOrdner) +
+    'Fernwartung';
   ForceDirectories(downloadOrdner);
-  {$ENDREGION}
-
-  downloadedZip := downloadOrdner + '\' + 'rustdesk-hickelsoft-win' + IntToStr(WindowsBits) + '.zip';
+{$ENDREGION}
+  downloadedZip := downloadOrdner + '\' + 'rustdesk-hickelsoft-win' +
+    IntToStr(WindowsBits) + '.zip';
   fehlerMeldung := '';
 
   if ContainsText(ExtractFileName(ParamStr(0)), 'Fernwartung') or
-     ContainsText(ExtractFileName(ParamStr(0)), 'CORA_') or
-     ContainsText(ExtractFileName(ParamStr(0)), 'HsInfo') or
-     ContainsText(ExtractFileName(ParamStr(0)), 'DbTool') then
+    ContainsText(ExtractFileName(ParamStr(0)), 'CORA_') or
+    ContainsText(ExtractFileName(ParamStr(0)), 'HsInfo') or
+    ContainsText(ExtractFileName(ParamStr(0)), 'DbTool') then
   begin
-    AnwendungsName := 'Fernwartungs-Software'; // Achtung: Substantiv muss weiblichen Artikel haben, damit es zur Meldung unten passt
+    AnwendungsName := 'Fernwartungs-Software';
+    // Achtung: Substantiv muss weiblichen Artikel haben, damit es zur Meldung unten passt
   end
   else if ContainsText(ExtractFileName(ParamStr(0)), 'Demo') or
-          ContainsText(ExtractFileName(ParamStr(0)), 'Presentation') or
-          ContainsText(ExtractFileName(ParamStr(0)), 'Präsentation') then
+    ContainsText(ExtractFileName(ParamStr(0)), 'Presentation') or
+    ContainsText(ExtractFileName(ParamStr(0)), 'Präsentation') then
   begin
-    AnwendungsName := 'Online-Präsentations-Software'; // Achtung: Substantiv muss weiblichen Artikel haben, damit es zur Meldung unten passt
-    adminMode := 0; // Interessenten auf keinen Fall eine "Diese Anwendung möchte Änderungen an Ihrem PC vornehmen" Meldung zeigen!!!
+    AnwendungsName := 'Online-Präsentations-Software';
+    // Achtung: Substantiv muss weiblichen Artikel haben, damit es zur Meldung unten passt
+    AdminMode := 0;
+    // Interessenten auf keinen Fall eine "Diese Anwendung möchte Änderungen an Ihrem PC vornehmen" Meldung zeigen!!!
   end
   else
   begin
-    AnwendungsName := 'Software-Aktualisierung'; // Achtung: Substantiv muss weiblichen Artikel haben, damit es zur Meldung unten passt
+    AnwendungsName := 'Software-Aktualisierung';
+    // Achtung: Substantiv muss weiblichen Artikel haben, damit es zur Meldung unten passt
   end;
 
   zipWasChanged := false;
 
   try
-    if not FileExists(downloadedZip) or
-       (zipMaxAge <= 0) or
-       (Now-GetFileModDate(downloadedZip) > zipMaxAge) then
+    if not FileExists(downloadedZip) or (zipMaxAge <= 0) or
+      (Now - GetFileModDate(downloadedZip) > zipMaxAge) then
     begin
       if WindowsBits = 32 then
       begin
-        zipUrlSigned := 'https://www.hickelsoft.de/fernwartung/v3/rustdesk-hickelsoft-win32.zip';
-        zipUrlUnsigned := 'https://github.com/hickelsoft/rustdesk/releases/download/nightly/rustdesk-hickelsoft-win32.zip';
+        zipUrlSigned :=
+          'https://www.hickelsoft.de/fernwartung/v3/rustdesk-hickelsoft-win32.zip';
+        zipUrlUnsigned :=
+          'https://github.com/hickelsoft/rustdesk/releases/download/nightly/rustdesk-hickelsoft-win32.zip';
       end
       else
       begin
-        zipUrlSigned := 'https://www.hickelsoft.de/fernwartung/v3/rustdesk-hickelsoft-win64.zip';;
-        zipUrlUnsigned := 'https://github.com/hickelsoft/rustdesk/releases/download/nightly/rustdesk-hickelsoft-win64.zip';
+        zipUrlSigned :=
+          'https://www.hickelsoft.de/fernwartung/v3/rustdesk-hickelsoft-win64.zip';;
+        zipUrlUnsigned :=
+          'https://github.com/hickelsoft/rustdesk/releases/download/nightly/rustdesk-hickelsoft-win64.zip';
       end;
 
       pgd := TProgressDlg.Create(nil);
       try
         if FileExists(downloadedZip) then
-          pgd.Text := AnwendungsName+' wird aktualisiert. Bitte warten.'
+          pgd.Text := AnwendungsName + ' wird aktualisiert. Bitte warten.'
         else
-          pgd.Text := AnwendungsName+' wird heruntergeladen. Bitte warten.';
+          pgd.Text := AnwendungsName + ' wird heruntergeladen. Bitte warten.';
         pgd.ShowStopButton := true;
         pgd.Open;
         try
-          DeleteFile(PChar(downloadedZip+'.tmp'));
+          DeleteFile(PChar(downloadedZip + '.tmp'));
           try
-            DownloadFile(zipUrlSigned, downloadedZip+'.tmp', pgd);
+            DownloadFile(zipUrlSigned, downloadedZip + '.tmp', pgd);
           except
             on E: EAbort do
             begin
@@ -140,18 +151,20 @@ begin
             end;
             on E: Exception do
             begin
-              DownloadFile(zipUrlUnsigned, downloadedZip+'.tmp', pgd);
+              DownloadFile(zipUrlUnsigned, downloadedZip + '.tmp', pgd);
             end;
           end;
-          if ThlUtils.GetFileSize(downloadedZip+'.tmp') >= 1024 then
+          if ThlUtils.GetFileSize(downloadedZip + '.tmp') >= 1024 then
           begin
             DeleteFile(PChar(downloadedZip));
-            MoveFile(PChar(downloadedZip+'.tmp'), PChar(downloadedZip));
+            MoveFile(PChar(downloadedZip + '.tmp'), PChar(downloadedZip));
             zipWasChanged := true;
           end
           else
           begin
-            fehlerMeldung := 'Fehler beim Herunterladen der '+AnwendungsName+'. Bitte noch einmal versuchen.' + #13#10#13#10 + 'Dateigröße ist nicht plausibel.';
+            fehlerMeldung := 'Fehler beim Herunterladen der ' + AnwendungsName +
+              '. Bitte noch einmal versuchen.' + #13#10#13#10 +
+              'Dateigröße ist nicht plausibel.';
           end;
         except
           on E: EAbort do
@@ -160,7 +173,8 @@ begin
           end;
           on E: Exception do
           begin
-            fehlerMeldung := 'Fehler beim Herunterladen der '+AnwendungsName+'. Bitte noch einmal versuchen.' + #13#10#13#10 + E.Message;
+            fehlerMeldung := 'Fehler beim Herunterladen der ' + AnwendungsName +
+              '. Bitte noch einmal versuchen.' + #13#10#13#10 + E.Message;
           end;
         end;
       finally
@@ -176,13 +190,13 @@ begin
       if zipWasChanged or not FileExists(downloadedExe) then
       begin
         try
-          zip := TZipFile.Create;
+          Zip := TZipFile.Create;
           try
-            zip.Open(downloadedZip, zmRead);
-            zip.ExtractAll(ExtractFilePath(downloadedZip));
-            zip.Close;
+            Zip.Open(downloadedZip, zmRead);
+            Zip.ExtractAll(ExtractFilePath(downloadedZip));
+            Zip.Close;
           finally
-            FreeAndNil(zip);
+            FreeAndNil(Zip);
           end;
         except
           on E: EAbort do
@@ -198,7 +212,7 @@ begin
             end
             else
             begin
-              try 
+              try
                 DeleteFile(downloadedZip);
               except
                 on E: EAbort do
@@ -210,13 +224,16 @@ begin
                   // ignore
                 end;
               end;
-              raise Exception.Create('Fehler beim Entpacken von '+downloadedZip+'. Bitte Internet-Verbindung prüfen und Programm nochmal neu starten. Genaue Fehlermeldung: '+E.Message);
+              raise Exception.Create('Fehler beim Entpacken von ' +
+                downloadedZip +
+                '. Bitte Internet-Verbindung prüfen und Programm nochmal neu starten. Genaue Fehlermeldung: '
+                + E.Message);
             end;
           end;
         end;
       end;
 
-      if adminMode = 0 then
+      if AdminMode = 0 then
       begin
         // AdminMode 0 = Run normally without UAC
         ShellExecute64(0, 'open', PChar(downloadedExe), '', '', SW_NORMAL);
@@ -225,9 +242,10 @@ begin
       begin
         // AdminMode 1 = Try to run as admin, otherwise run normally if UAC is denied
         // AdminMode 2 = Require admin UAC (fail if UAC is denied)
-        if ShellExecute64(0, 'runas', PChar(downloadedExe), '', '', SW_NORMAL) = SE_ERR_ACCESSDENIED then
+        if ShellExecute64(0, 'runas', PChar(downloadedExe), '', '', SW_NORMAL) = SE_ERR_ACCESSDENIED
+        then
         begin
-          if adminMode = 1 then
+          if AdminMode = 1 then
           begin
             ShellExecute64(0, 'open', PChar(downloadedExe), '', '', SW_NORMAL);
           end;

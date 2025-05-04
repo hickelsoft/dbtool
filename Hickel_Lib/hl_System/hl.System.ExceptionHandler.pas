@@ -14,7 +14,7 @@ type
   public
     class procedure ManualDoException(E: Exception);
     class procedure ErstelleStacktrace(E: Exception);
-    class procedure Init(AExceptionHandler: TExceptionEvent=nil);
+    class procedure Init(AExceptionHandler: TExceptionEvent = nil);
     class procedure Uninit;
   end;
 
@@ -33,8 +33,8 @@ begin
 
     // Dateiname, z.B. EXCEPTION__2016_04_08__08_00_00__123__CORA_Verwaltung__EOleException.txt
     logfile := 'EXCEPTION__' + formatdatetime('yyyy_mm_dd__hh_nn_ss__zzz', Now)
-                             + '__' + ChangeFileExt(ExtractFileName(ParamStr(0)), '')
-                             + '__' + e.ClassName + '.txt';
+      + '__' + ChangeFileExt(ExtractFileName(ParamStr(0)), '') + '__' +
+      E.ClassName + '.txt';
     hlExceptionLog := ThlLog.Create(logfile);
     try
       ThlExceptionLogger.LogException(E, hlExceptionLog);
@@ -57,7 +57,8 @@ begin
   end;
 end;
 
-class procedure ThlExceptionHandler.Init(AExceptionHandler: TExceptionEvent=nil);
+class procedure ThlExceptionHandler.Init(AExceptionHandler
+  : TExceptionEvent = nil);
 begin
   Application.OnException := DoException;
   FExceptionHandler := AExceptionHandler;
@@ -77,13 +78,13 @@ class procedure ThlExceptionHandler.DoException(Sender: TObject; E: Exception);
 begin
   // Application.ShowException(E);  // Das wäre die Standardbehandlung!
 
-
   // EAbort Exceptions verwenden wir, wenn wir z.B. eine laufende Auswertung oder
   // eine ausstehende Datenbankabfrage kontrolliert abbrechen möchten. Diese Exception
   // unterbricht den Programmablauf, aber sie soll dem Benutzer nicht angezeigt werden.
-  if E is EAbort then Exit;
+  if E is EAbort then
+    Exit;
 
-  if not (e is EHlBedienfehler) then
+  if not(E is EHlBedienfehler) then
     ErstelleStacktrace(E);
 
   if Assigned(FExceptionHandler) then
@@ -91,9 +92,11 @@ begin
   else if ContainsText(ExtractFileName(ParamStr(0)), 'CORA') then
     TMessageBox.ZeigeException(E)
   else if Assigned(Screen) and Assigned(Screen.ActiveForm) then
-    MessageBox(Screen.ActiveForm.Handle, PChar(E.Message), PChar(Application.Title), MB_ICONERROR or MB_OK)
+    MessageBox(Screen.ActiveForm.Handle, PChar(E.Message),
+      PChar(Application.Title), MB_ICONERROR or MB_OK)
   else
-    MessageBox(0, PChar(E.Message), PChar(Application.Title), MB_TASKMODAL or MB_ICONERROR or MB_OK);
+    MessageBox(0, PChar(E.Message), PChar(Application.Title), MB_TASKMODAL or
+      MB_ICONERROR or MB_OK);
 end;
 
 end.

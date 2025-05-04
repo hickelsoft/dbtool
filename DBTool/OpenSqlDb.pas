@@ -5,7 +5,8 @@ unit OpenSqlDb;
 interface
 
 uses
-  Windows, SysUtils, Classes, Controls, StdCtrls, Forms, ADODB, Registry, Buttons,
+  Windows, SysUtils, Classes, Controls, StdCtrls, Forms, ADODB, Registry,
+  Buttons,
   msxmldom, XMLDoc, xmldom, XMLIntf, DB, Vcl.Graphics, Vcl.ExtCtrls;
 
 type
@@ -68,23 +69,34 @@ begin
 
     if Modus_CORA_Verzeichnis then
     begin
-      CoraClientConfXML := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) + 'config\Hickel.Config.xml'; // do not localize
+      CoraClientConfXML := IncludeTrailingPathDelimiter
+        (ExtractFilePath(ParamStr(0))) + 'config\Hickel.Config.xml';
+      // do not localize
       if not FileExists(CoraClientConfXML) then
-        CoraClientConfXML := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) + '..\config\Hickel.Config.xml'; // do not localize
+        CoraClientConfXML := IncludeTrailingPathDelimiter
+          (ExtractFilePath(ParamStr(0))) + '..\config\Hickel.Config.xml';
+      // do not localize
       if FileExists(CoraClientConfXML) then
       begin
         // document := TXMLDocument.Create(DLG_OpenSqlDb); // Geht irgendwie nicht
         document := XMLDocument1;
         try
           document.LoadFromFile(CoraClientConfXML);
-          serverPath := document.ChildNodes.FindNode('Hickel').ChildNodes.FindNode('Config').ChildNodes.FindNode('Server').Text; // do not localize
+          serverPath := document.ChildNodes.FindNode('Hickel')
+            .ChildNodes.FindNode('Config').ChildNodes.FindNode('Server').Text;
+          // do not localize
 
-          serverConfigFile := IncludeTrailingPathDelimiter(serverPath) + 'Config\Cora.Config.xml'; // do not localize
+          serverConfigFile := IncludeTrailingPathDelimiter(serverPath) +
+            'Config\Cora.Config.xml'; // do not localize
           if FileExists(serverConfigFile) then
           begin
             document.LoadFromFile(serverConfigFile);
-            dbServer := document.ChildNodes.FindNode('Cora').ChildNodes.FindNode('Config').ChildNodes.FindNode('DatenbankServer').Text; // do not localize
-            selectDbName := document.ChildNodes.FindNode('Cora').ChildNodes.FindNode('Config').ChildNodes.FindNode('DatenbankName').Text;; // do not localize
+            dbServer := document.ChildNodes.FindNode('Cora')
+              .ChildNodes.FindNode('Config').ChildNodes.FindNode
+              ('DatenbankServer').Text; // do not localize
+            selectDbName := document.ChildNodes.FindNode('Cora')
+              .ChildNodes.FindNode('Config').ChildNodes.FindNode
+              ('DatenbankName').Text;; // do not localize
 
             eServer.Text := dbServer;
             FServerChanged := false;
@@ -104,7 +116,8 @@ begin
     // Letzten ausgewählten SQL-Server auslesen
     aReg := TRegIniFile.Create(ConfigRegKey);
     try
-      eServer.Text := aReg.ReadString('MRU', 'SqlServer', ''); // do not localize
+      eServer.Text := aReg.ReadString('MRU', 'SqlServer', '');
+      // do not localize
       FServerChanged := false;
     finally
       FreeAndNil(aReg);
@@ -118,14 +131,17 @@ begin
     if selectDbName <> '' then
     begin
       idx := lbDatabases.Items.IndexOf(selectDbName + '_1'); // do not localize
-      if idx = -1 then lbDatabases.Items.IndexOf(selectDbName + '_0'); // do not localize
-      if idx = -1 then lbDatabases.Items.IndexOf(selectDbName);
-      if idx <> -1 then lbDatabases.ItemIndex := idx;
+      if idx = -1 then
+        lbDatabases.Items.IndexOf(selectDbName + '_0'); // do not localize
+      if idx = -1 then
+        lbDatabases.Items.IndexOf(selectDbName);
+      if idx <> -1 then
+        lbDatabases.ItemIndex := idx;
     end;
   end;
 
   // DM 22.11.2016: Bin mir nicht sicher, ob das gut ist.
-  //lbDatabases.SetFocus;
+  // lbDatabases.SetFocus;
 end;
 
 procedure TDLG_OpenSqlDb.Image1Click(Sender: TObject);
@@ -134,7 +150,7 @@ var
   sl: TStringList;
 begin
   fileToOpen := GetSQLServerDBListFilename;
-  {$REGION 'Create empty file if required'}
+{$REGION 'Create empty file if required'}
   if not DirectoryExists(ExtractFilePath(fileToOpen)) then
   begin
     ForceDirectories(ExtractFilePath(fileToOpen));
@@ -148,7 +164,7 @@ begin
       FreeAndNil(sl);
     end;
   end;
-  {$ENDREGION}
+{$ENDREGION}
   ShellExecute(Handle, 'open', PChar(fileToOpen), '', '', SW_NORMAL);
 end;
 
@@ -166,13 +182,16 @@ var
 begin
   lbDatabases.Items.Clear;
 
-  if eServer.Text = '' then exit;
-  
+  if eServer.Text = '' then
+    exit;
 
-  X := TDbToolDatabase.Create('_SQLSRV:Initial Catalog=master;Data Source=' + eServer.Text + ';'); // do not localize
+  X := TDbToolDatabase.Create('_SQLSRV:Initial Catalog=master;Data Source=' +
+    eServer.Text + ';'); // do not localize
   Screen.Cursor := crHourGlass;
   try
-    aDS := X.Query('SELECT name FROM sysdatabases where not (name in (''master'', ''tempdb'', ''model'', ''msdb''));'); // do not localize
+    aDS := X.Query
+      ('SELECT name FROM sysdatabases where not (name in (''master'', ''tempdb'', ''model'', ''msdb''));');
+    // do not localize
     try
       while not aDS.Eof do
       begin
@@ -180,7 +199,7 @@ begin
         aDS.Next;
       end;
     finally
-      FreeAndNil(aDs);
+      FreeAndNil(aDS);
     end;
   finally
     Screen.Cursor := crDefault;
@@ -189,26 +208,26 @@ begin
 end;
 
 (*
-   DB_ADO := TADOConnection.Creaate(nil);
-   try
-      DB_ADO.ConnectionString := "Provider='+SqlServerProvider+';UID=sa;Pwd=;Initial Catalog=master;Data Source=" + eServer.Text + ";"; // do not localize
-      DB_ADO.LoginPrompt := false;
-      DB_ADO.Connected := true;
+  DB_ADO := TADOConnection.Creaate(nil);
+  try
+  DB_ADO.ConnectionString := "Provider='+SqlServerProvider+';UID=sa;Pwd=;Initial Catalog=master;Data Source=" + eServer.Text + ";"; // do not localize
+  DB_ADO.LoginPrompt := false;
+  DB_ADO.Connected := true;
 
-      aQuery := TADOQuery.Create(nil);
-      aQuery.Connection := DB_ADO;
-      aQuery.SQL.Add("SELECT name FROM sysdatabases where not (name in ('master', 'tempdb', 'model', 'msdb'));"); // do not localize
-      aQuery.Active := true;
+  aQuery := TADOQuery.Create(nil);
+  aQuery.Connection := DB_ADO;
+  aQuery.SQL.Add("SELECT name FROM sysdatabases where not (name in ('master', 'tempdb', 'model', 'msdb'));"); // do not localize
+  aQuery.Active := true;
 
-      while not aQuery.Eof do
-      begin
-         lbDatabases.Items.Add(aQuery.Fields.Fields[0].AsString);
-         aQuery.Next;
-      end;
-   finally
-      Screen.Cursor := crDefault;
-      FreeAndNil(DB_ADO);
-   end;
+  while not aQuery.Eof do
+  begin
+  lbDatabases.Items.Add(aQuery.Fields.Fields[0].AsString);
+  aQuery.Next;
+  end;
+  finally
+  Screen.Cursor := crDefault;
+  FreeAndNil(DB_ADO);
+  end;
 *)
 
 procedure TDLG_OpenSqlDb.LbButton1Click(Sender: TObject);
@@ -222,7 +241,7 @@ begin
     LbSpeedButton1.Click;
     lbDatabases.SetFocus;
     FServerChanged := false;
-    Exit;
+    exit;
   end;
 
   if lbDatabases.ItemIndex <> -1 then
@@ -234,15 +253,21 @@ begin
     finally
       FreeAndNil(aReg);
     end;
-    if fsModal in FormState then ModalResult := mrOk else Close;
+    if fsModal in FormState then
+      ModalResult := mrOk
+    else
+      Close;
   end
   else
   begin
-    Application.MessageBox(PChar(SNoDatabaseSelected), PChar(Application.Title), MB_ICONEXCLAMATION + MB_OK);
+    Application.MessageBox(PChar(SNoDatabaseSelected), PChar(Application.Title),
+      MB_ICONEXCLAMATION + MB_OK);
     lbDatabases.SetFocus;
   end;
 end;
 
 initialization
-  TDLG_OpenSqlDb.FirstRun := true;
+
+TDLG_OpenSqlDb.FirstRun := true;
+
 end.

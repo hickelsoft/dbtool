@@ -1,12 +1,12 @@
 (*
- * Diese Unit hackt TwwDBLookupComboDlg, um zu ermöglichen, dass OnCloseUp aufgerufen wird,
- * wenn kein Lookup-Dataset vorhanden ist. Dies ermöglicht uns, ein Eingabefeld mit den
- * schönen 3 Pünktchen zu haben, und trotzdem unseren gelben Suchdialog anstelle des
- * Schrott-Dialogs von InfoPower zu verwenden.
- * -- DM 16.12.2016
- *
- * Wichtig: Diese Unit MUSS im interface Uses-Abschnitt NACH wwdbdlg deklariert werden!
- *)
+  * Diese Unit hackt TwwDBLookupComboDlg, um zu ermöglichen, dass OnCloseUp aufgerufen wird,
+  * wenn kein Lookup-Dataset vorhanden ist. Dies ermöglicht uns, ein Eingabefeld mit den
+  * schönen 3 Pünktchen zu haben, und trotzdem unseren gelben Suchdialog anstelle des
+  * Schrott-Dialogs von InfoPower zu verwenden.
+  * -- DM 16.12.2016
+  *
+  * Wichtig: Diese Unit MUSS im interface Uses-Abschnitt NACH wwdbdlg deklariert werden!
+*)
 
 unit hl.Utils.DBLookupComboDlgHack;
 
@@ -41,18 +41,20 @@ begin
     FillTable := DataSource.DataSet
   else
     FillTable := nil;
-  if Assigned(OnCloseUp) then OnCloseUp(self, LookupTable, FillTable, modified);
+  if Assigned(OnCloseUp) then
+    OnCloseUp(self, LookupTable, FillTable, modified);
 
   // see wwdbdlg.TwwDBLookupComboDlg.DropDown
-  if (Style <> csDropDownList) or AutoDropDown then SelectAll;
-  FLastSearchKey:= '';
+  if (Style <> csDropDownList) or AutoDropDown then
+    SelectAll;
+  FLastSearchKey := '';
   RefreshButton;
-  SkipDataChange:= False;
-  if modified and LookupTable.active then begin { 5/12/98 check for active lookuptable }
-     LookupTable.updateCursorPos;
-     LookupTable.resync([]);
+  SkipDataChange := false;
+  if modified and LookupTable.active then
+  begin { 5/12/98 check for active lookuptable }
+    LookupTable.updateCursorPos;
+    LookupTable.resync([]);
   end;
 end;
 
 end.
-

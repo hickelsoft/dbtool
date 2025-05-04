@@ -40,7 +40,7 @@ var
 begin
   for i := 0 to ListView1.Items.Count - 1 do
   begin
-    if ListView1.Items.Item[i].ImageIndex = 1{Checked} then
+    if ListView1.Items.Item[i].ImageIndex = 1 { Checked } then
     begin
       Button2.Enabled := true;
       exit;
@@ -62,38 +62,39 @@ end;
 
 procedure TDLG_CheckboxVoransicht.Image1DblClick(Sender: TObject);
 var
-  i: integer;
+  i: Integer;
 begin
   for i := 0 to ListView1.Items.Count - 1 do
   begin
-    if ListView1.Items.Item[i].ImageIndex = 1{Checked} then
-      ListView1.Items.Item[i].ImageIndex := 0{Not checked};
+    if ListView1.Items.Item[i].ImageIndex = 1 { Checked } then
+      ListView1.Items.Item[i].ImageIndex := 0 { Not checked };
   end;
   CheckOkButtonEnabled;
 end;
 
 procedure TDLG_CheckboxVoransicht.Image2Click(Sender: TObject);
 var
-  i: integer;
+  i: Integer;
 begin
   for i := 0 to ListView1.Items.Count - 1 do
   begin
-    if ListView1.Items.Item[i].ImageIndex = 0{Not checked} then
-      ListView1.Items.Item[i].ImageIndex := 1{Checked};
+    if ListView1.Items.Item[i].ImageIndex = 0 { Not checked } then
+      ListView1.Items.Item[i].ImageIndex := 1 { Checked };
   end;
   CheckOkButtonEnabled;
 end;
 
 procedure TDLG_CheckboxVoransicht.ListView1DblClick(Sender: TObject);
 begin
-  if ListView1.Selected.ImageIndex = 1{Checked} then
-    ListView1.Selected.ImageIndex := 0{Not checked}
-  else if ListView1.Selected.ImageIndex = 0{Not checked} then
-    ListView1.Selected.ImageIndex := 1{Checked};
+  if ListView1.Selected.ImageIndex = 1 { Checked } then
+    ListView1.Selected.ImageIndex := 0 { Not checked }
+  else if ListView1.Selected.ImageIndex = 0 { Not checked } then
+    ListView1.Selected.ImageIndex := 1 { Checked };
   CheckOkButtonEnabled;
 end;
 
-procedure TDLG_CheckboxVoransicht.ListView1KeyPress(Sender: TObject; var Key: Char);
+procedure TDLG_CheckboxVoransicht.ListView1KeyPress(Sender: TObject;
+  var Key: Char);
 var
   i: Integer;
   tmp: boolean;
@@ -107,9 +108,9 @@ begin
     begin
       if ListView1.Items.Item[i].Selected then
       begin
-        if ListView1.Items.Item[i].ImageIndex <> 2{Disabled} then
+        if ListView1.Items.Item[i].ImageIndex <> 2 { Disabled } then
         begin
-          tmp := tmp or (ListView1.Items.Item[i].ImageIndex = 1{Checked});
+          tmp := tmp or (ListView1.Items.Item[i].ImageIndex = 1 { Checked } );
         end;
       end;
     end;
@@ -119,12 +120,12 @@ begin
     begin
       if ListView1.Items.Item[i].Selected then
       begin
-        if ListView1.Items.Item[i].ImageIndex <> 2{Disabled} then
+        if ListView1.Items.Item[i].ImageIndex <> 2 { Disabled } then
         begin
           if tmp then
-            ListView1.Items.Item[i].ImageIndex := 1{Checked}
+            ListView1.Items.Item[i].ImageIndex := 1 { Checked }
           else
-            ListView1.Items.Item[i].ImageIndex := 0{Not checked};
+            ListView1.Items.Item[i].ImageIndex := 0 { Not checked };
         end;
       end;
     end;

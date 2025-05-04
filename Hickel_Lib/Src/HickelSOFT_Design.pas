@@ -11,21 +11,30 @@ type
     DESIGN62_PANELCOLOR: TColor;
     DESIGN62_PANELCOLORHIGHLIGHT: TColor;
     DESIGN62_PANELCOLORTEXT: TColor;
-    DESIGN62_GRAYNESS: integer; // Um wie viel "heller" sollen deaktivierte Schriften werden?
+    DESIGN62_GRAYNESS: integer;
+    // Um wie viel "heller" sollen deaktivierte Schriften werden?
     Design62_MenuBrushHandle: THandle;
   strict private
-    class procedure MainMenuAdvancedDrawItem(Sender: TObject; ACanvas: TCanvas; ARect: TRect; State: TOwnerDrawState);
-    class procedure MainMenuMeasureItem(Sender: TObject; ACanvas: TCanvas; var Width, Height: Integer);
+    class procedure MainMenuAdvancedDrawItem(Sender: TObject; ACanvas: TCanvas;
+      ARect: TRect; State: TOwnerDrawState);
+    class procedure MainMenuMeasureItem(Sender: TObject; ACanvas: TCanvas;
+      var Width, Height: integer);
     class procedure TimerTick(Sender: TObject);
   strict protected
     class function FindMainMenu(frm: TForm): TMainMenu;
   public
-    class procedure HS_Design_Aktivieren(AllowDarkMode: boolean=True); // call at FormShow
-    class procedure PanelObenBearbeiten(PanelOben: THsGradientPanel); // call at FormShow, after HS_Design_Aktivieren
-    class procedure RefreshMainMenuColor(MainMenu1: TMainMenu); // call at FormCanResize
-    class procedure ZeichneHintergrundschrift(text1_normal, text2_kursiv: string; minScale: double); // call at FormPaint
-    class procedure WindowMenuItemClick(Sender: TObject); // use at OnClick of the "Window" menu item
-    class procedure MainMenuSetAdvancedDrawItem(AMenu: TMenuItem); // needs to be applied if submenu items have been added
+    class procedure HS_Design_Aktivieren(AllowDarkMode: boolean = True);
+    // call at FormShow
+    class procedure PanelObenBearbeiten(PanelOben: THsGradientPanel);
+    // call at FormShow, after HS_Design_Aktivieren
+    class procedure RefreshMainMenuColor(MainMenu1: TMainMenu);
+    // call at FormCanResize
+    class procedure ZeichneHintergrundschrift(text1_normal,
+      text2_kursiv: string; minScale: double); // call at FormPaint
+    class procedure WindowMenuItemClick(Sender: TObject);
+    // use at OnClick of the "Window" menu item
+    class procedure MainMenuSetAdvancedDrawItem(AMenu: TMenuItem);
+    // needs to be applied if submenu items have been added
   end;
 
 implementation
@@ -33,41 +42,42 @@ implementation
 uses
   hl.Utils, hl.Utils.Color, ProgrDlg, Classes, SysUtils;
 
-procedure ReplaceLineUnderMainMenu(frm: TForm; color: TColor);
+procedure ReplaceLineUnderMainMenu(frm: TForm; Color: TColor);
 var
   Ahwnd: HWND;
   mbifo: TMenuBarInfo;
   RW, r2: TRect;
   dc: HDC;
   br: HBRUSH;
-  windowtop: Integer;
+  windowtop: integer;
   inactiveborder: COLORREF;
 begin
   Ahwnd := frm.Handle;
-  inactiveborder := ColorToRGB(color);
-  fillchar(mbifo,sizeof(mbifo),#0);
-  mbifo.cbSize:=sizeof(mbifo);
-  {$RANGECHECKS OFF}
-  if GetMenuBarInfo(Ahwnd,OBJID_MENU,0,mbifo) then
+  inactiveborder := ColorToRGB(Color);
+  fillchar(mbifo, sizeof(mbifo), #0);
+  mbifo.cbSize := sizeof(mbifo);
+{$RANGECHECKS OFF}
+  if GetMenuBarInfo(Ahwnd, OBJID_MENU, 0, mbifo) then
   begin
     Ahwnd := 0;
-    windows.GetWindowRect(Ahwnd,RW);
-    windowtop:=0;//rw.top;
-    MapWindowPoints(0,Ahwnd,RW,2);
-    OffsetRect(RW,-RW.Left,-RW.Top);
+    Windows.GetWindowRect(Ahwnd, RW);
+    windowtop := 0; // rw.top;
+    MapWindowPoints(0, Ahwnd, RW, 2);
+    OffsetRect(RW, -RW.Left, -RW.Top);
     dc := GetWindowDC(Ahwnd);
-    br:=CreateSolidBrush(inactiveborder);
-    r2:=RW;
-    r2.top:=mbifo.rcBar.bottom-windowtop;
-    r2.bottom:=r2.top+1;
-    FillRect(dc,r2,br);
+    br := CreateSolidBrush(inactiveborder);
+    r2 := RW;
+    r2.Top := mbifo.rcBar.bottom - windowtop;
+    r2.bottom := r2.Top + 1;
+    FillRect(dc, r2, br);
     DeleteObject(br);
     ReleaseDC(Ahwnd, dc);
   end;
-  {$RANGECHECKS ON}
+{$RANGECHECKS ON}
 end;
 
-class procedure THickelSOFTDesign.ZeichneHintergrundschrift(text1_normal, text2_kursiv: string; minScale: double);
+class procedure THickelSOFTDesign.ZeichneHintergrundschrift(text1_normal,
+  text2_kursiv: string; minScale: double);
 var
   coraFontColor: TColor;
   frm: TForm;
@@ -91,7 +101,8 @@ var
 var
   x1, x2, y1, y2, w1, w2, h1, h2, size: Int64;
 begin
-  if OpenedProgressDlgs > 0 then exit; // wegen Performance sehr wichtig
+  if OpenedProgressDlgs > 0 then
+    exit; // wegen Performance sehr wichtig
 
   frm := Application.MainForm;
 
@@ -106,8 +117,9 @@ begin
       _ChangeToText2(size);
       w2 := frm.Canvas.TextWidth(text2_kursiv);
       Inc(size);
-      if size > 1000 then exit; // irgendwas läuft schief. Notbremse ziehen.
-    until (w1+w2)/frm.ClientWidth > minScale;
+      if size > 1000 then
+        exit; // irgendwas läuft schief. Notbremse ziehen.
+    until (w1 + w2) / frm.ClientWidth > minScale;
 
     _ChangeToText1(size);
     w1 := frm.Canvas.TextWidth(text1_normal);
@@ -117,7 +129,7 @@ begin
     w2 := frm.Canvas.TextWidth(text2_kursiv);
     h2 := frm.Canvas.TextHeight(text2_kursiv);
 
-    x1 := frm.ClientWidth div 2 - (w1+w2) div 2;
+    x1 := frm.ClientWidth div 2 - (w1 + w2) div 2;
     y1 := frm.ClientHeight div 2 - h1 div 2;
     x2 := x1 + w1;
     y2 := frm.ClientHeight div 2 - h2 div 2;
@@ -141,9 +153,9 @@ begin
   DeleteObject(Design62_MenuBrushHandle);
   Design62_MenuBrushHandle := CreateSolidBrush(ColorToRGB(lMenuColor));
 
-  FillChar(lMenuInfo, SizeOf(lMenuInfo), 0);
+  fillchar(lMenuInfo, sizeof(lMenuInfo), 0);
 
-  lMenuInfo.cbSize := SizeOf(lMenuInfo);
+  lMenuInfo.cbSize := sizeof(lMenuInfo);
   lMenuInfo.hbrBack := Design62_MenuBrushHandle;
   lMenuInfo.fMask := MIM_BACKGROUND;
   SetMenuInfo(MainMenu1.Handle, lMenuInfo);
@@ -155,7 +167,8 @@ begin
   ReplaceLineUnderMainMenu(Application.MainForm, DESIGN62_PANELCOLOR);
 end;
 
-class procedure THickelSOFTDesign.MainMenuAdvancedDrawItem(Sender: TObject; ACanvas: TCanvas; ARect: TRect; State: TOwnerDrawState);
+class procedure THickelSOFTDesign.MainMenuAdvancedDrawItem(Sender: TObject;
+  ACanvas: TCanvas; ARect: TRect; State: TOwnerDrawState);
 var
   text: string;
   attrMain: integer;
@@ -172,28 +185,31 @@ begin
   tmp := Sender;
   while TMenuItem(tmp).Parent is TMenuItem do
     tmp := TMenuItem(tmp).Parent;
-  if not (tmp is TMainMenu) then
+  if not(tmp is TMainMenu) then
     tmp := FindMainMenu(Application.MainForm); // should not happen
-  isRTL := not (TMainMenu(tmp).BidiMode = bdLeftToRight); // TODO: Do we need to do something about ParentBiDiMode?
+  isRTL := not(TMainMenu(tmp).BidiMode = bdLeftToRight);
+  // TODO: Do we need to do something about ParentBiDiMode?
 
-  if TMenuItem(Sender).Enabled and ((odHotLight in State) or (odSelected in State)) then
+  if TMenuItem(Sender).Enabled and
+    ((odHotLight in State) or (odSelected in State)) then
     ACanvas.Brush.Color := DESIGN62_PANELCOLORHIGHLIGHT
   else
     ACanvas.Brush.Color := DESIGN62_PANELCOLOR;
   ACanvas.FillRect(ARect);
 
-  IstUntermenue := Assigned(TMenuItem(Sender).Parent) and (TMenuItem(Sender).Parent.Caption <> '');
+  IstUntermenue := Assigned(TMenuItem(Sender).Parent) and
+    (TMenuItem(Sender).Parent.Caption <> '');
   if IstUntermenue then
   begin
     if isRTL then
     begin
-      Dec(ARect.Right,24);
-      Inc(ARect.Left,4);
+      Dec(ARect.Right, 24);
+      Inc(ARect.Left, 4);
     end
     else
     begin
-      Inc(ARect.Left,24);
-      Dec(ARect.Right,4);
+      Inc(ARect.Left, 24);
+      Dec(ARect.Right, 4);
     end;
     attrAdd := 0;
   end
@@ -204,13 +220,16 @@ begin
   if TMenuItem(Sender).Enabled then
     ACanvas.Font.Color := DESIGN62_PANELCOLORTEXT
   else
-    ACanvas.Font.Color := IncreaseColorLightness(GetSysColor(DESIGN62_PANELCOLORTEXT and $00FFFFFF), DESIGN62_GRAYNESS);
+    ACanvas.Font.Color := IncreaseColorLightness
+      (GetSysColor(DESIGN62_PANELCOLORTEXT and $00FFFFFF), DESIGN62_GRAYNESS);
 
   if TMenuItem(Sender).IsLine then
   begin
-    ACanvas.Pen.Color := IncreaseColorLightness(GetSysColor(DESIGN62_PANELCOLORTEXT and $00FFFFFF), DESIGN62_GRAYNESS);
-    ACanvas.MoveTo(ARect.Left,    ARect.Top + (ARect.Bottom-ARect.Top) div 2);
-    ACanvas.LineTo(ARect.Right-4, ARect.Top + (ARect.Bottom-ARect.Top) div 2);
+    ACanvas.Pen.Color := IncreaseColorLightness
+      (GetSysColor(DESIGN62_PANELCOLORTEXT and $00FFFFFF), DESIGN62_GRAYNESS);
+    ACanvas.MoveTo(ARect.Left, ARect.Top + (ARect.bottom - ARect.Top) div 2);
+    ACanvas.LineTo(ARect.Right - 4,
+      ARect.Top + (ARect.bottom - ARect.Top) div 2);
   end
   else
   begin
@@ -229,23 +248,27 @@ begin
     text := TMenuItem(Sender).Caption;
     if text <> '' then
     begin
-      DrawText(ACanvas.Handle, PChar(text),Length(text),ARect,attrMain or attrAdd or DT_SINGLELINE or DT_VCENTER);
+      DrawText(ACanvas.Handle, PChar(text), Length(text), ARect,
+        attrMain or attrAdd or DT_SINGLELINE or DT_VCENTER);
     end;
 
     text := ShortCutToText(TMenuItem(Sender).ShortCut);
     if (text <> '') and (IstUntermenue) then
     begin
-      ACanvas.Font.Color := IncreaseColorLightness(GetSysColor(DESIGN62_PANELCOLORTEXT and $00FFFFFF), DESIGN62_GRAYNESS);
+      ACanvas.Font.Color := IncreaseColorLightness
+        (GetSysColor(DESIGN62_PANELCOLORTEXT and $00FFFFFF), DESIGN62_GRAYNESS);
       ARect.Right := ARect.Right - 5; // damit es nicht so gequetscht ist
-      DrawText(ACanvas.Handle, PChar(text),Length(text),ARect,attrShortcut or attrAdd or DT_SINGLELINE or DT_VCENTER);
+      DrawText(ACanvas.Handle, PChar(text), Length(text), ARect, attrShortcut or
+        attrAdd or DT_SINGLELINE or DT_VCENTER);
     end;
 
     if TMenuItem(Sender).Checked and IstUntermenue then
     begin
       ACanvas.Font.Color := DESIGN62_PANELCOLORTEXT;
       ACanvas.Font.Name := 'Wingdings';
-      ACanvas.Font.Size := ACanvas.Font.Size + 2;
-      text := 'w'; // Haken   (TODO: wenn WingDings nicht existiert, kommt hier keine Raute, sondern ein 'w')
+      ACanvas.Font.size := ACanvas.Font.size + 2;
+      text := 'w';
+      // Haken   (TODO: wenn WingDings nicht existiert, kommt hier keine Raute, sondern ein 'w')
 
       if isRTL then
       begin
@@ -257,33 +280,38 @@ begin
         Dec(ARect.Left, 18);
         ARect.Right := 24;
       end;
-      ACanvas.Font.Charset := DEFAULT_CHARSET; // important, otherwise "Wingdings" won'T work
+      ACanvas.Font.Charset := DEFAULT_CHARSET;
+      // important, otherwise "Wingdings" won'T work
       if isRTL then
-        DrawText(ACanvas.Handle, PChar(text),Length(text),ARect,DT_RIGHT or DT_SINGLELINE or DT_VCENTER)
+        DrawText(ACanvas.Handle, PChar(text), Length(text), ARect,
+          DT_RIGHT or DT_SINGLELINE or DT_VCENTER)
       else
-        DrawText(ACanvas.Handle, PChar(text),Length(text),ARect,DT_LEFT or DT_SINGLELINE or DT_VCENTER);
+        DrawText(ACanvas.Handle, PChar(text), Length(text), ARect,
+          DT_LEFT or DT_SINGLELINE or DT_VCENTER);
     end;
   end;
 end;
 
-class procedure THickelSOFTDesign.MainMenuMeasureItem(Sender: TObject; ACanvas: TCanvas; var Width, Height: Integer);
+class procedure THickelSOFTDesign.MainMenuMeasureItem(Sender: TObject;
+  ACanvas: TCanvas; var Width, Height: integer);
 var
-  IstUntermenue: Boolean;
+  IstUntermenue: boolean;
 begin
-  IstUntermenue := Assigned(TMenuItem(Sender).Parent) and (TMenuItem(Sender).Parent.Caption <> '');
+  IstUntermenue := Assigned(TMenuItem(Sender).Parent) and
+    (TMenuItem(Sender).Parent.Caption <> '');
   if not IstUntermenue then
   begin
     // Workaround für einen Bug in Delphi: Wenn OwnerDraw eingeschaltet ist, dann sind die
     // Haupteinträge im MainMenu, die einen Shortcut haben, extrem breit (weil wohl der Shortcut mitgedruckt werden soll)
     // Deshalb muss Width explizit gesetzt werden.
     // Außerdem wird noch um 5% verschmälert, weil es sonst aus irgendeinem Grund viel zu breit ist. (TextWidth ist falsch?)
-    width := round(ACanvas.TextWidth(TMenuItem(Sender).Caption) * 0.95);
+    Width := round(ACanvas.TextWidth(TMenuItem(Sender).Caption) * 0.95);
   end
   else
   begin
     // damit es nicht so gequetscht ist
-    width := round(width * 1.1);
-    height := round(height * 1.1);
+    Width := round(Width * 1.1);
+    Height := round(Height * 1.1);
   end;
 end;
 
@@ -301,7 +329,8 @@ begin
   end;
 end;
 
-class procedure THickelSOFTDesign.PanelObenBearbeiten(PanelOben: THsGradientPanel);
+class procedure THickelSOFTDesign.PanelObenBearbeiten
+  (PanelOben: THsGradientPanel);
 begin
   PanelOben.BevelOuter := bvNone;
   PanelOben.BeginColor := DESIGN62_PANELCOLOR;
@@ -310,10 +339,10 @@ end;
 
 class function THickelSOFTDesign.FindMainMenu(frm: TForm): TMainMenu;
 var
-  i: Integer;
+  i: integer;
 begin
   result := nil;
-  for i := 0 to frm.ComponentCount-1 do
+  for i := 0 to frm.ComponentCount - 1 do
   begin
     if frm.Components[i] is TMainMenu then
     begin
@@ -323,20 +352,21 @@ begin
   end;
 end;
 
-class procedure THickelSOFTDesign.HS_Design_Aktivieren(AllowDarkMode: boolean=True);
+class procedure THickelSOFTDesign.HS_Design_Aktivieren(AllowDarkMode
+  : boolean = True);
 var
   MainMenu1: TMainMenu;
   frm: TForm;
-  //tm: TTimer;
+  // tm: TTimer;
 begin
   frm := Application.MainForm;
 
   // Das sieht einfach nicht gut aus! (TODO)
   (*
-  tm := TTimer.Create(frm);
-  tm.Interval := 10;
-  tm.OnTimer := TimerTick;
-  tm.Enabled := true;
+    tm := TTimer.Create(frm);
+    tm.Interval := 10;
+    tm.OnTimer := TimerTick;
+    tm.Enabled := true;
   *)
 
   MainMenu1 := FindMainMenu(frm);
@@ -346,30 +376,33 @@ begin
     DESIGN62_PANELCOLOR := $00333333;
     DESIGN62_PANELCOLORHIGHLIGHT := $00888888;
     DESIGN62_PANELCOLORTEXT := $00EEEEEE;
-    if frm.FormStyle = fsMDIForm then frm.Color := clBlack;
+    if frm.FormStyle = fsMDIForm then
+      frm.Color := clBlack;
   end
   else
   begin
     DESIGN62_PANELCOLOR := $00FFFFFF;
     DESIGN62_PANELCOLORHIGHLIGHT := $00FFE7C6;
     DESIGN62_PANELCOLORTEXT := $00222222;
-    if frm.FormStyle = fsMDIForm then frm.Color := clBlack{ $00C0AC97 };
+    if frm.FormStyle = fsMDIForm then
+      frm.Color := clBlack { $00C0AC97 };
   end;
 
-  DESIGN62_GRAYNESS := 120; // Um wie viel "heller" sollen deaktivierte Schriften werden?
+  DESIGN62_GRAYNESS := 120;
+  // Um wie viel "heller" sollen deaktivierte Schriften werden?
 
   if Assigned(MainMenu1) then
   begin
     MainMenuSetAdvancedDrawItem(MainMenu1.Items);
     RefreshMainMenuColor(MainMenu1);
-    MainMenu1.OwnerDraw := true;
+    MainMenu1.OwnerDraw := True;
 
     if MainMenu1.Items.Count > 0 then
     begin
       // Dieser seltsame Workaround ist notwendig, damit es funktioniert, wenn man OwnerDraw zur Laufzeit setzt.
       // (Getestet mit Delphi 2007)
       MainMenu1.Items[0].Visible := false;
-      MainMenu1.Items[0].Visible := true;
+      MainMenu1.Items[0].Visible := True;
     end;
   end;
 end;
@@ -384,8 +417,8 @@ begin
   frm := Application.MainForm;
   if TMenuItem(Sender).Tag >= 100 then
   begin
-    if Assigned(frm.MDIChildren[TMenuItem(Sender).Tag-100]) then
-      MDI_Form_BringToFront(frm.MDIChildren[TMenuItem(Sender).Tag-100]);
+    if Assigned(frm.MDIChildren[TMenuItem(Sender).Tag - 100]) then
+      MDI_Form_BringToFront(frm.MDIChildren[TMenuItem(Sender).Tag - 100]);
   end
   else
   begin
@@ -404,11 +437,11 @@ begin
         end
         else if TMenuItem(Sender).Items[i].Tag >= 100 then
         begin
-          {$IF CompilerVersion > 20.0} // Version geraten
+{$IF CompilerVersion > 20.0} // Version geraten
           FreeAndNil(TMenuItem(Sender).Items[i]);
-          {$ELSE}
+{$ELSE}
           TMenuItem(Sender).Items[i].Free;
-          {$IFEND}
+{$IFEND}
         end;
       end;
       for i := 0 to frm.MDIChildCount - 1 do
@@ -419,7 +452,7 @@ begin
           mi.Caption := frm.MDIChildren[i].Caption;
           mi.OnAdvancedDrawItem := Self.MainMenuAdvancedDrawItem;
           mi.OnMeasureItem := Self.MainMenuMeasureItem;
-          mi.Tag := 100+i;
+          mi.Tag := 100 + i;
           mi.Checked := frm.MDIChildren[i].Active;
           mi.OnClick := WindowMenuItemClick;
           sl.AddObject(frm.MDIChildren[i].Caption, mi);

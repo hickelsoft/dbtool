@@ -25,11 +25,11 @@ var
 begin
   idmd5 := TIdHashMessageDigest5.Create;
   try
-    {$IFDEF NewIndy}
+{$IFDEF NewIndy}
     result := idmd5.HashStreamAsHex(s);
-    {$ELSE}
+{$ELSE}
     result := idmd5.AsHex(idmd5.HashValue(s));
-    {$ENDIF}
+{$ENDIF}
   finally
     FreeAndNil(idmd5);
   end;
@@ -42,7 +42,7 @@ var
   idbytes: TIdBytes;
   i: integer;
 begin
-  SetLEngth(idbytes,Length(binary));
+  SetLEngth(idbytes, Length(binary));
   for i := 0 to Length(binary) - 1 do
     idbytes[i] := binary[i];
   idmd5 := TIdHashMessageDigest5.Create;
@@ -52,6 +52,7 @@ begin
     FreeAndNil(idmd5);
   end;
 {$ELSE}
+
 begin
   raise Exception.Create('MD5Binary nicht kompatibel mit altem Indy');
 {$ENDIF}
@@ -64,11 +65,12 @@ var
 begin
   idmd5 := TIdHashMessageDigest5.Create;
   try
-    result := idmd5.HashStringAsHex(str,IndyTextEncoding_OSDefault);
+    result := idmd5.HashStringAsHex(str, IndyTextEncoding_OSDefault);
   finally
     FreeAndNil(idmd5);
   end;
 {$ELSE}
+
 var
   ss: TStringStream;
 begin

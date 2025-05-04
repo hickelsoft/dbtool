@@ -12,7 +12,7 @@ type
     SaveCursor: TCursor;
     SaveCount: Integer;
     ActiveWindow: HWnd;
-    SaveHandle: HWND;
+    SaveHandle: HWnd;
     SaveStyle: TCustomStyleServices;
   end;
 
@@ -34,7 +34,8 @@ var
   TaskFirstWindow: HWnd = 0;
   TaskFirstTopMost: HWnd = 0;
 
-function DoFindWindow(Window: HWnd; Param: LPARAM): Bool; {$IFNDEF CLR}stdcall;{$ENDIF}
+function DoFindWindow(Window: HWnd; Param: LPARAM): Bool; {$IFNDEF CLR}stdcall;
+{$ENDIF}
 begin
   // Quelltext wurde von Delphi 12 Forms.pas entnommen
 
@@ -42,10 +43,13 @@ begin
     IsWindowVisible(Window) and IsWindowEnabled(Window) then
     if GetWindowLong(Window, GWL_EXSTYLE) and WS_EX_TOPMOST = 0 then
     begin
-      if TaskFirstWindow = 0 then TaskFirstWindow := Window;
-    end else
+      if TaskFirstWindow = 0 then
+        TaskFirstWindow := Window;
+    end
+    else
     begin
-      if TaskFirstTopMost = 0 then TaskFirstTopMost := Window;
+      if TaskFirstTopMost = 0 then
+        TaskFirstTopMost := Window;
     end;
   Result := True;
 end;
@@ -62,10 +66,10 @@ begin
   EnumProc := @DoFindWindow;
   EnumThreadWindows(GetCurrentThreadID, EnumProc, 0);
   if TaskFirstWindow <> 0 then
-    Result := TaskFirstWindow else
+    Result := TaskFirstWindow
+  else
     Result := TaskFirstTopMost;
 end;
-
 
 function TForm_.ShowModalStart: TModalContext;
 begin
@@ -75,31 +79,32 @@ begin
   if Visible or not Enabled or (fsModal in FFormState) or
     (FormStyle = fsMDIChild) then
     raise EInvalidOperation.Create(SCannotShowModal);
-  if GetCapture <> 0 then SendMessage(GetCapture, WM_CANCELMODE, 0, 0);
+  if GetCapture <> 0 then
+    SendMessage(GetCapture, WM_CANCELMODE, 0, 0);
   ReleaseCapture;
   Application.ModalStarted;
 
   { RecreateWnd could change the active window }
-  result.ActiveWindow := GetActiveWindow;
+  Result.ActiveWindow := GetActiveWindow;
   Include(FFormState, fsModal);
   if (PopupMode = pmNone) and (Application.ModalPopupMode <> pmNone) then
   begin
     RecreateWnd;
     HandleNeeded;
     { The active window might have become invalid, refresh it }
-    if (result.ActiveWindow = 0) or not IsWindow(result.ActiveWindow) then
-      result.ActiveWindow := GetActiveWindow;
+    if (Result.ActiveWindow = 0) or not IsWindow(Result.ActiveWindow) then
+      Result.ActiveWindow := GetActiveWindow;
   end;
-  result.LSaveFocusState := SaveFocusState;
-  result.LSaveFocusState := Forms.SaveFocusState;
+  Result.LSaveFocusState := SaveFocusState;
+  Result.LSaveFocusState := Forms.SaveFocusState;
   Screen.SaveFocusedList.Insert(0, Screen.FocusedForm);
   Screen.FocusedForm := Self;
-  result.SaveCursor := Screen.Cursor;
+  Result.SaveCursor := Screen.Cursor;
   Screen.Cursor := crDefault;
-  result.SaveCount := Screen.CursorCount;
-  result.WindowList := DisableTaskWindows(0);
-  result.SaveHandle := Handle;
-  result.SaveStyle := TStyleManager.ActiveStyle;
+  Result.SaveCount := Screen.CursorCount;
+  Result.WindowList := DisableTaskWindows(0);
+  Result.SaveHandle := Handle;
+  Result.SaveStyle := TStyleManager.ActiveStyle;
 
   Show;
 
@@ -113,44 +118,51 @@ function TForm_.ShowModalEnd(mc: TModalContext): TModalResult;
 begin
   // Quelltext wurde von Delphi 12 Forms.pas ShowModal() entnommen und modifiziert (aufgesplittet, und TModalContext hinzugefügt)
 
-//        repeat
-          if (mc.SaveHandle <> Handle) and (Screen.ActiveCustomForm = Self) and (mc.SaveStyle <> TStyleManager.ActiveStyle) then
-          begin
-            mc.SaveHandle := Handle;
-            mc.SaveStyle := TStyleManager.ActiveStyle;
-            Visible := False;
-            try
-              EnableTaskWindows(mc.WindowList);
-              try
-                Application.ProcessMessages;
-              finally
-                mc.WindowList := DisableTaskWindows(0);
-              end;
-            finally
-              Visible := True;
-            end;
-          end;
-          Application.HandleMessage;
-          if Application.Terminated then ModalResult := mrCancel else
-            if ModalResult <> 0 then CloseModal;
-//        until ModalResult <> 0;
+  // repeat
+  if (mc.SaveHandle <> Handle) and (Screen.ActiveCustomForm = Self) and
+    (mc.SaveStyle <> TStyleManager.ActiveStyle) then
+  begin
+    mc.SaveHandle := Handle;
+    mc.SaveStyle := TStyleManager.ActiveStyle;
+    Visible := False;
+    try
+      EnableTaskWindows(mc.WindowList);
+      try
+        Application.ProcessMessages;
+      finally
+        mc.WindowList := DisableTaskWindows(0);
+      end;
+    finally
+      Visible := True;
+    end;
+  end;
+  Application.HandleMessage;
+  if Application.Terminated then
+    ModalResult := mrCancel
+  else if ModalResult <> 0 then
+    CloseModal;
+  // until ModalResult <> 0;
 
-  result := ModalResult;
+  Result := ModalResult;
 
   SendMessage(Handle, CM_DEACTIVATE, 0, 0);
-  if GetActiveWindow <> Handle then mc.ActiveWindow := 0;
+  if GetActiveWindow <> Handle then
+    mc.ActiveWindow := 0;
 
   Hide;
 
   if Screen.CursorCount = mc.SaveCount then
-  Screen.Cursor := mc.SaveCursor
-  else Screen.Cursor := crDefault;
+    Screen.Cursor := mc.SaveCursor
+  else
+    Screen.Cursor := crDefault;
   EnableTaskWindows(mc.WindowList);
   if Screen.SaveFocusedList.Count > 0 then
   begin
     Screen.FocusedForm := TCustomForm(Screen.SaveFocusedList.First);
     Screen.SaveFocusedList.Remove(Screen.FocusedForm);
-  end else Screen.FocusedForm := nil;
+  end
+  else
+    Screen.FocusedForm := nil;
   { ActiveWindow might have been destroyed and using it as active window will
     force Windows to activate another application }
   if (mc.ActiveWindow <> 0) and not IsWindow(mc.ActiveWindow) then

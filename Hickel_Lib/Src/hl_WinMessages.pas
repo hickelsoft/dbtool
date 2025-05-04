@@ -12,7 +12,8 @@ type
     class procedure Send(awParam: WPARAM; alParam: LPARAM); virtual;
   end;
 
-  ThswmOpenAppEvent = procedure (AppCrc32: Cardinal) of object;
+  ThswmOpenAppEvent = procedure(AppCrc32: Cardinal) of object;
+
   ThswmOpenApp = class(THsWindowsMessage)
   strict private
     class var FMsg: integer;
@@ -53,7 +54,8 @@ end;
 type
   pWPARAM = ^WPARAM;
 
-class function ThswmOpenApp.Check(m: TMessage; Event: ThswmOpenAppEvent): boolean;
+class function ThswmOpenApp.Check(m: TMessage;
+  Event: ThswmOpenAppEvent): boolean;
 var
   AppCrc32: Cardinal;
   tmp1: pWPARAM;
@@ -63,15 +65,16 @@ begin
   begin
     if Assigned(Event) then
     begin
-      tmp1 := @m.WParam;
-      tmp2 := pCardinal(tmp1);
+      tmp1 := @m.WPARAM;
+      tmp2 := PCardinal(tmp1);
 
       AppCrc32 := tmp2^;
       Event(AppCrc32);
     end;
     result := true;
   end
-  else result := false;
+  else
+    result := false;
 end;
 
 class procedure ThswmOpenApp.Send(AppCrc32: Cardinal);

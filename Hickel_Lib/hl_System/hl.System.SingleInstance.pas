@@ -22,7 +22,8 @@ var
 
 procedure CloseSemaphoreHandleIfExists;
 begin
-  if mHandle <> 0 then CloseHandle(mHandle);
+  if mHandle <> 0 then
+    CloseHandle(mHandle);
 end;
 
 procedure HsSemaphoreCheck;
@@ -34,31 +35,32 @@ var
 begin
   if Application.Title = '' then
   begin
-    HsShowMessage('Interner Fehler! Application.Title muss gesetzt sein, um HsSemaphoreCheck verwenden zu können!');
+    HsShowMessage
+      ('Interner Fehler! Application.Title muss gesetzt sein, um HsSemaphoreCheck verwenden zu können!');
     Exit;
   end;
 
-  {$REGION 'Debug'}
+{$REGION 'Debug'}
   reg := TRegistry.Create;
   try
     reg.RootKey := HKEY_CURRENT_USER;
     if reg.OpenKeyReadOnly('Software\HickelSOFT\CORAplus\Debug') then
     begin
-      if reg.ValueExists('IgnoreMutex') and reg.ReadBool('IgnoreMutex') then exit;
+      if reg.ValueExists('IgnoreMutex') and reg.ReadBool('IgnoreMutex') then
+        Exit;
       reg.CloseKey;
     end;
   finally
     FreeAndNil(reg);
   end;
-  {$ENDREGION}
-
-  if Pos('CORA',UpperCase(ParamStr(0))) > 0 then
+{$ENDREGION}
+  if Pos('CORA', UpperCase(ParamStr(0))) > 0 then
   begin
-    {$REGION 'ThclCore.StandardMandant nachbauen'}
+{$REGION 'ThclCore.StandardMandant nachbauen'}
     Mandant := hl_GetParamValueByKey('MANDANT');
-    if Mandant = '' then Mandant := '1';
-    {$ENDREGION}
-
+    if Mandant = '' then
+      Mandant := '1';
+{$ENDREGION}
     Unique_AppTitle := Application.Title + ' Mandant ' + Mandant;
   end
   else
@@ -69,7 +71,8 @@ begin
   SetWindowText(Application.Handle, PChar(Unique_AppTitle));
 
   CloseSemaphoreHandleIfExists;
-  mHandle := CreateMutex(nil, True, PChar('urn:oid:1.3.6.1.4.1.56776.151.3:' + Unique_AppTitle));
+  mHandle := CreateMutex(nil, True, PChar('urn:oid:1.3.6.1.4.1.56776.151.3:' +
+    Unique_AppTitle));
   if GetLastError = ERROR_ALREADY_EXISTS then
   begin
     // Wir ändern unseren Application.Title, damit wir uns nicht selbst finden.
@@ -84,7 +87,7 @@ begin
     begin
       // Falls minimiert, wiederherstellen
       (*
-      if IsIconic(hWndAndereInstanz) then
+        if IsIconic(hWndAndereInstanz) then
         ShowWindow(hWndAndereInstanz, {SW_SHOW}SW_RESTORE);
       *)
       SendMessage(hWndAndereInstanz, WM_SYSCOMMAND, SC_RESTORE, 0);
@@ -100,11 +103,12 @@ begin
     begin
       // Dies passiert, wenn das Fenster der anderen Anwendung NICHT gefunden wurde.
       // Das sollte eigentlich nicht passieren, aber wir versuchen trotzdem, die Situation gekonnt zu überspielen.
-      HsShowMessage(Application.Title + ' ist bereits auf diesem PC gestartet.');
+      HsShowMessage(Application.Title +
+        ' ist bereits auf diesem PC gestartet.');
     end;
 
     // Uns selbst schließen
-    {$REGION 'Bitdefender-Besänftigung'}
+{$REGION 'Bitdefender-Besänftigung'}
     // Wir verwenden ein Dummy-Form, da Bitdefender bei der Verhaltensanalyse
     // einen Virus vermutet, wenn die Anwendung sich schließt, ohne vorher
     // eine GUI ausgegeben zu haben.
@@ -112,7 +116,7 @@ begin
     // akzeptiert Bitdefender das nicht als "richtiges" Fenster...
     Application.CreateForm(TDummyForm, DummyForm);
     Application.Run;
-    {$ENDREGION}
+{$ENDREGION}
     Halt;
   end;
 end;
@@ -120,5 +124,7 @@ end;
 initialization
 
 finalization
-  CloseSemaphoreHandleIfExists;
+
+CloseSemaphoreHandleIfExists;
+
 end.

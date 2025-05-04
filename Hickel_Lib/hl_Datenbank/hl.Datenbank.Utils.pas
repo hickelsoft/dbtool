@@ -8,7 +8,8 @@ uses
 type
   ThlDatenbankUtils = class(TObject)
   public
-    class procedure GetPrimaryKeyNames(con: TADOConnection; TableName: string; outsl: TStrings);
+    class procedure GetPrimaryKeyNames(con: TADOConnection; TableName: string;
+      outsl: TStrings);
   end;
 
   TFieldByNameCacher = class(TObject)
@@ -19,14 +20,15 @@ type
   public
     function MyFieldByName(fieldname: string): TField;
     destructor Destroy; override;
-    constructor Create(aquery: Tadoquery);
+    constructor Create(aquery: tadoquery);
   end;
 
 implementation
 
 { ThlDatenbankUtils }
 
-class procedure ThlDatenbankUtils.GetPrimaryKeyNames(con: TADOConnection; TableName: string; outsl: TStrings);
+class procedure ThlDatenbankUtils.GetPrimaryKeyNames(con: TADOConnection;
+  TableName: string; outsl: TStrings);
 var
   ds: TADODataSet;
 begin
@@ -49,7 +51,7 @@ end;
 
 { TFieldByNameCacher }
 
-constructor TFieldByNameCacher.Create(aquery: Tadoquery);
+constructor TFieldByNameCacher.Create(aquery: tadoquery);
 begin
   inherited Create;
   MyFieldByNameIndexes := TStringList.Create;
@@ -72,7 +74,7 @@ begin
     result := query.FieldByName(fieldname);
 
     len := Length(MyFieldByNameFields);
-    SetLength(MyFieldByNameFields,len+1);
+    SetLength(MyFieldByNameFields, len + 1);
     MyFieldByNameFields[len] := result;
 
     MyFieldByNameIndexes.Add(fieldname);

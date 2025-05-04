@@ -77,13 +77,15 @@ type
     HsGradientPanel1: THsGradientPanel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormActivate(Sender: TObject);
-    procedure dbgTableCalcCellColors(Sender: TObject; Field: TField; State: TGridDrawState; Highlight: boolean; AFont: TFont; ABrush: TBrush);
+    procedure dbgTableCalcCellColors(Sender: TObject; Field: TField;
+      State: TGridDrawState; Highlight: boolean; AFont: TFont; ABrush: TBrush);
     procedure dbgTableKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure BtnClick(Sender: TObject);
     procedure Spalteausblenden1Click(Sender: TObject);
     procedure LbSpeedButton8Click(Sender: TObject);
     procedure LbSpeedButton9Click(Sender: TObject);
-    procedure dbgTableMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: integer);
+    procedure dbgTableMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: integer);
     procedure AuswahlbasierterFilter1Click(Sender: TObject);
     procedure AuswahlausschlieenderFilter1Click(Sender: TObject);
     procedure Filterentfernen1Click(Sender: TObject);
@@ -100,7 +102,8 @@ type
     procedure Datenstzezhlen1Click(Sender: TObject);
     procedure FormDeactivate(Sender: TObject);
     procedure RTFbearbeiten1Click(Sender: TObject);
-    procedure mFilterKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+    procedure mFilterKeyDown(Sender: TObject; var Key: word;
+      Shift: TShiftState);
     procedure btnIndexClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure dsDataDataChange(Sender: TObject; Field: TField);
@@ -128,7 +131,8 @@ type
     FOwnsDataSet: boolean;
 
     function GetFilter(aField: TField; bInclude: boolean): string; overload;
-    function GetFilter(aField: TField; wert: string; bInclude: boolean): string; overload;
+    function GetFilter(aField: TField; wert: string; bInclude: boolean)
+      : string; overload;
     procedure ShowSqlFunction(sQuery, sText: string);
     function GetNextField(var iSearchField: integer): boolean;
 
@@ -141,7 +145,8 @@ type
     property frmDatabase: TMDI_Database read FDatabaseForm;
     property SelectString: string read GetSelectString;
 
-    constructor Create(Owner: TComponent; ADbFrm: TMDI_Database; ATableName: String; ANurStruktur: boolean=false); reintroduce;
+    constructor Create(Owner: TComponent; ADbFrm: TMDI_Database;
+      ATableName: String; ANurStruktur: boolean = false); reintroduce;
     procedure IndexMenuClick(Sender: TObject);
     procedure Find;
     procedure FindNext;
@@ -161,17 +166,18 @@ resourcestring
 procedure TMDI_Table.CreateIndexInfo;
 var
   aIndexDefs: TIndexDefs;
-  i: Integer;
+  i: integer;
   miNew: TMenuItem;
 begin
-  if lvIndexes.Tag = 1 then exit;
+  if lvIndexes.Tag = 1 then
+    exit;
   if FVerwendeQueryAnstelleTable then
     aIndexDefs := FDatabaseForm.dbDatabase.GetIndexDefs(FTableName)
   else
     aIndexDefs := FDatabaseForm.dbDatabase.GetIndexDefs(dsData.Dataset);
   if aIndexDefs.Count > 0 then
   begin
-    for i := 0 to aIndexDefs.Count-1 do
+    for i := 0 to aIndexDefs.Count - 1 do
     begin
       lvIndexes.Items.Add.Caption := aIndexDefs.Items[i].Fields;
       lvIndexes.Tag := 1; // Don't call CreateIndexInfo again
@@ -191,13 +197,15 @@ var
 begin
   if FOwnsDataSet then
   begin
-    dsData.DataSet.Free; dsData.DataSet := nil;
+    dsData.Dataset.Free;
+    dsData.Dataset := nil;
   end;
 
   if FVerwendeQueryAnstelleTable then
   begin
 
-    sql := 'select * from ' + DB.SQL_Escape_TableName(TableName); // do not localize
+    sql := 'select * from ' + DB.SQL_Escape_TableName(TableName);
+    // do not localize
 
     slPrimaryKeys := TStringList.Create;
     try
@@ -209,7 +217,7 @@ begin
         sql := sql + tmp + ',';
       end;
       if slPrimaryKeys.Count > 0 then
-        sql := Copy(sql, 1, Length(sql)-1);
+        sql := Copy(sql, 1, Length(sql) - 1);
     finally
       FreeAndNil(slPrimaryKeys);
     end;
@@ -226,7 +234,8 @@ begin
   FOwnsDataSet := true;
 end;
 
-constructor TMDI_Table.Create(Owner: TComponent; ADbFrm: TMDI_Database; ATableName: String; ANurStruktur: boolean=false);
+constructor TMDI_Table.Create(Owner: TComponent; ADbFrm: TMDI_Database;
+  ATableName: String; ANurStruktur: boolean = false);
 var
   aTable: TDataSet;
   slPrimaryKeys: TStringList;
@@ -241,7 +250,7 @@ begin
   inherited Create(Owner);
 
   // DM 06.02.2024 : Wir verwenden nun TAdoQuery, weil das schneller ist und es bei ADO dann auch case-sensitive gefiltert werden kann
-  //                 Dafür sind einige Workarounds und Hacks in C_Database.pas erforderlich, die durchgeführt wurden
+  // Dafür sind einige Workarounds und Hacks in C_Database.pas erforderlich, die durchgeführt wurden
   FVerwendeQueryAnstelleTable := true;
 
   FTableName := ATableName;
@@ -254,11 +263,16 @@ begin
   if ANurStruktur then
   begin
     if ADbFrm.dbDatabase.DatabaseType = dtSqlServer then
-      aTable := ADbFrm.dbDatabase.Query('select top 0 * from ' + ADbFrm.dbDatabase.SQL_Escape_TableName(ATableName)) // do not localize
+      aTable := ADbFrm.dbDatabase.Query('select top 0 * from ' +
+        ADbFrm.dbDatabase.SQL_Escape_TableName(ATableName)) // do not localize
     else if ADbFrm.dbDatabase.DatabaseType = dtMySql then
-      aTable := ADbFrm.dbDatabase.Query('select * from ' + ADbFrm.dbDatabase.SQL_Escape_TableName(ATableName) + ' limit 0') // do not localize
+      aTable := ADbFrm.dbDatabase.Query('select * from ' +
+        ADbFrm.dbDatabase.SQL_Escape_TableName(ATableName) + ' limit 0')
+      // do not localize
     else
-      aTable := ADbFrm.dbDatabase.Query('select * from ' + ADbFrm.dbDatabase.SQL_Escape_TableName(ATableName) + ' where 1=0'); // do not localize
+      aTable := ADbFrm.dbDatabase.Query('select * from ' +
+        ADbFrm.dbDatabase.SQL_Escape_TableName(ATableName) + ' where 1=0');
+    // do not localize
     FOwnsDataSet := true;
   end
   else
@@ -266,7 +280,7 @@ begin
     aTable := LoadTable(ADbFrm.dbDatabase, ATableName);
   end;
 
-  dsData.DataSet := aTable;
+  dsData.Dataset := aTable;
 
   slPrimaryKeys := TStringList.Create;
   slForeignKeys := TStringList.Create;
@@ -278,7 +292,9 @@ begin
     ADbFrm.dbDatabase.GetForeignKeys(slForeignKeys, ATableName);
 
     // In einer View das Löschen verbieten, weil das sehr gefährlich ist (wenn aus mehreren Tabellen gelöscht wird)
-    if ADbFrm.dbDatabase.IstHickelSoftProduktDb and ((Copy(ATableName,1,3)='vw_') or (Copy(ATableName,1,5)='X_vw_')) then // do not localize
+    if ADbFrm.dbDatabase.IstHickelSoftProduktDb and
+      ((Copy(ATableName, 1, 3) = 'vw_') or (Copy(ATableName, 1, 5) = 'X_vw_'))
+    then // do not localize
     begin
       dbgTable.KeyOptions := dbgTable.KeyOptions - [dgAllowDelete];
       dbgTable.KeyOptions := dbgTable.KeyOptions - [dgAllowInsert];
@@ -286,23 +302,27 @@ begin
 
     // Feldinfo erstellen
     aFieldDefs := ADbFrm.dbDatabase.GetFieldDefs(aTable);
-    for i := 0 to aTable.FieldCount-1 do
+    for i := 0 to aTable.FieldCount - 1 do
     begin
       anItem := lvFields.Items.Add;
       anItem.Caption := aFieldDefs.Items[i].Name;
-      anItem.SubItems.Add(IntToStr(i+1));
+      anItem.SubItems.Add(IntToStr(i + 1));
       datenTyp := FieldTypeNames[aFieldDefs.Items[i].DataType];
-      if datenTyp = 'Guid' then datenTyp := 'GUID'; // do not localize
+      if datenTyp = 'Guid' then
+        datenTyp := 'GUID'; // do not localize
       anItem.SubItems.Add(datenTyp);
       if aFieldDefs.Items[i].Precision > 0 then
-        anItem.SubItems.Add(IntToStr(aFieldDefs.Items[i].Precision)+','+IntToStr(aFieldDefs.Items[i].Size))
+        anItem.SubItems.Add(IntToStr(aFieldDefs.Items[i].Precision) + ',' +
+          IntToStr(aFieldDefs.Items[i].Size))
       else
         anItem.SubItems.Add(IntToStr(aFieldDefs.Items[i].Size));
 
-      if (aTable is TAdoTable) and ((((adFldIsNullable+adFldMayBeNull) and TAdoTable(aTable).Recordset.Fields[i].Attributes) = 0)) then
+      if (aTable is TAdoTable) and
+        ((((adFldIsNullable + adFldMayBeNull) and TAdoTable(aTable)
+        .Recordset.Fields[i].Attributes) = 0)) then
         // aFieldDefs.Items[i].Required geht nicht mit Delphi ADO! Nur mit TBetterAdoDataSet!
         anItem.SubItems.Add('NOT NULL') // do not localize
-      else if not (aTable is TAdoTable) and aFieldDefs.Items[i].Required then
+      else if not(aTable is TAdoTable) and aFieldDefs.Items[i].Required then
         anItem.SubItems.Add('NOT NULL') // do not localize
       else
         anItem.SubItems.Add('NULL'); // do not localize
@@ -343,7 +363,8 @@ begin
   FormDeactivate(Sender);
   if FOwnsDataSet then
   begin
-    dsData.DataSet.Free; dsData.DataSet := nil;
+    dsData.Dataset.Free;
+    dsData.Dataset := nil;
   end;
   Action := caFree;
 end;
@@ -351,7 +372,8 @@ end;
 procedure TMDI_Table.FormCreate(Sender: TObject);
 begin
   dbgTable.IniAttributes.SaveToRegistry := true;
-  dbgTable.IniAttributes.FileName := IncludeTrailingPathDelimiter(ConfigRegKey) + 'Layouts'; // do not localize
+  dbgTable.IniAttributes.FileName := IncludeTrailingPathDelimiter(ConfigRegKey)
+    + 'Layouts'; // do not localize
   dbgTable.IniAttributes.Delimiter := ';;';
 
   FInitialized := true;
@@ -359,39 +381,44 @@ end;
 
 procedure TMDI_Table.FormActivate(Sender: TObject);
 begin
-   dbgTable.Color := clTableBackground;
-   dbgTable.PaintOptions.AlternatingRowColor := clTableZebra;
-   dbgTable.PaintOptions.ActiveRecordColor := clActiveRecord;
-   DLG_Main.BearbeitenSuchen1.Enabled := true;
-   DLG_Main.BearbeitenWeitersuchen1.Enabled := true;
-   DLG_Main.ExtrasExport1.Enabled := not NurStruktur;
-   DLG_Main.ExtrasImport1.Enabled := not NurStruktur; // OK?
+  dbgTable.Color := clTableBackground;
+  dbgTable.PaintOptions.AlternatingRowColor := clTableZebra;
+  dbgTable.PaintOptions.ActiveRecordColor := clActiveRecord;
+  DLG_Main.BearbeitenSuchen1.Enabled := true;
+  DLG_Main.BearbeitenWeitersuchen1.Enabled := true;
+  DLG_Main.ExtrasExport1.Enabled := not NurStruktur;
+  DLG_Main.ExtrasImport1.Enabled := not NurStruktur; // OK?
 end;
 
 procedure TMDI_Table.FormDeactivate(Sender: TObject);
 begin
-   DLG_Main.BearbeitenSuchen1.Enabled := false;
-   DLG_Main.BearbeitenWeitersuchen1.Enabled := false;
-   DLG_Main.ExtrasExport1.Enabled := false;
-   DLG_Main.ExtrasImport1.Enabled := false;
+  DLG_Main.BearbeitenSuchen1.Enabled := false;
+  DLG_Main.BearbeitenWeitersuchen1.Enabled := false;
+  DLG_Main.ExtrasExport1.Enabled := false;
+  DLG_Main.ExtrasImport1.Enabled := false;
 end;
 
-procedure TMDI_Table.dbgTableCalcCellColors(Sender: TObject; Field: TField; State: TGridDrawState; Highlight: boolean; AFont: TFont; ABrush: TBrush);
+procedure TMDI_Table.dbgTableCalcCellColors(Sender: TObject; Field: TField;
+  State: TGridDrawState; Highlight: boolean; AFont: TFont; ABrush: TBrush);
 begin
-   if not Assigned(Field) then exit;
-   if Field.IsNull then
-     ABrush.Color := clNullField;
-   if not Highlight then exit;
-   if Field.FieldNo = dbgTable.GetActiveField.FieldNo then
-     ABrush.Color := clActiveField
-   else
-     ABrush.Color := clActiveRecord;
-   AFont.Color := clTableText;
+  if not Assigned(Field) then
+    exit;
+  if Field.IsNull then
+    ABrush.Color := clNullField;
+  if not Highlight then
+    exit;
+  if Field.FieldNo = dbgTable.GetActiveField.FieldNo then
+    ABrush.Color := clActiveField
+  else
+    ABrush.Color := clActiveRecord;
+  AFont.Color := clTableText;
 end;
 
-procedure TMDI_Table.dbgTableKeyUp(Sender: TObject; var Key: word; Shift: TShiftState);
+procedure TMDI_Table.dbgTableKeyUp(Sender: TObject; var Key: word;
+  Shift: TShiftState);
 begin
-  if Assigned(dbgTable.InplaceEditor) and dbgTable.InplaceEditor.ClassNameIs('TwwInplaceEdit') then // do not localize
+  if Assigned(dbgTable.InplaceEditor) and dbgTable.InplaceEditor.ClassNameIs
+    ('TwwInplaceEdit') then // do not localize
   begin
     TwwInplaceEdit(dbgTable.InplaceEditor).Color := clActiveField;
   end;
@@ -422,13 +449,16 @@ procedure TMDI_Table.BtnClick(Sender: TObject);
       Inc(iPos);
     end;
 
-    sInhaltOhneStrings := StringReplace(sInhaltOhneStrings, #9, ' ', [rfReplaceAll]);
-    sInhaltOhneStrings := StringReplace(sInhaltOhneStrings, #10, ' ', [rfReplaceAll]);
-    sInhaltOhneStrings := StringReplace(sInhaltOhneStrings, #13, ' ', [rfReplaceAll]);
+    sInhaltOhneStrings := StringReplace(sInhaltOhneStrings, #9, ' ',
+      [rfReplaceAll]);
+    sInhaltOhneStrings := StringReplace(sInhaltOhneStrings, #10, ' ',
+      [rfReplaceAll]);
+    sInhaltOhneStrings := StringReplace(sInhaltOhneStrings, #13, ' ',
+      [rfReplaceAll]);
     sInhaltOhneStrings := ' ' + sInhaltOhneStrings + ' ';
 
-    result :=
-      not ContainsText(sInhaltOhneStrings, ' select ') and // do not localize
+    result := not ContainsText(sInhaltOhneStrings, ' select ') and
+    // do not localize
       not ContainsText(sInhaltOhneStrings, ' order ') and // do not localize
       not ContainsText(sInhaltOhneStrings, ' join ') and // do not localize
       not ContainsText(sInhaltOhneStrings, ' having ') and // do not localize
@@ -445,45 +475,48 @@ begin
   if FInitialized then
   begin
     // Felder-Ansicht verlassen: Sichtbare Felder im Grid anpassen
-    if Notebook1.ActivePage = LbSpeedButton6.Caption{'Felder'} then
+    if Notebook1.ActivePage = LbSpeedButton6.Caption { 'Felder' } then
     begin
       // Das MUSS über FieldByName laufen! Vielleicht hat der Benutzer die Reihenfolge der Felder ja geändert...
-      for i := 0 to lvFields.Items.Count-1 do
+      for i := 0 to lvFields.Items.Count - 1 do
       begin
-        dsData.DataSet.Fields.FieldByName(lvFields.Items.Item[i].Caption).Visible := lvFields.Items.Item[i].Checked;
+        dsData.Dataset.Fields.FieldByName(lvFields.Items.Item[i].Caption)
+          .Visible := lvFields.Items.Item[i].Checked;
       end;
     end;
 
     // Filter-Ansicht verlassen: Filter der Tabelle anpassen
-    if Notebook1.ActivePage = LbSpeedButton4.Caption{'Filter'} then
+    if Notebook1.ActivePage = LbSpeedButton4.Caption { 'Filter' } then
     begin
       if FVerwendeQueryAnstelleTable and not _FilterValid(mFilter.Text) then
         raise Exception.Create(SFilterInvalid);
-      FDatabaseForm.dbDatabase.SetTableFilter(dsData.DataSet, Trim(mFilter.Text));
+      FDatabaseForm.dbDatabase.SetTableFilter(dsData.Dataset,
+        Trim(mFilter.Text));
     end;
   end;
 
   // Aktive Seite umstellen
-  TSpeedButton(Sender).Down := True;
-  Notebook1.ActivePage := TSpeedButton(Sender).Caption; // Attention: Translation must be correct, otherwise this results in failure
+  TSpeedButton(Sender).Down := true;
+  Notebook1.ActivePage := TSpeedButton(Sender).Caption;
+  // Attention: Translation must be correct, otherwise this results in failure
 
   // "Upgrade" notwendig? (Nur-Strukturansicht => Daten)
-  if (Notebook1.ActivePage = LbSpeedButton2.Caption{'Tabelle'}) or
-     (Notebook1.ActivePage = LbSpeedButton4.Caption{'Filter'}) or
-     (Notebook1.ActivePage = LbSpeedButton7.Caption{'Indizes'}) then
+  if (Notebook1.ActivePage = LbSpeedButton2.Caption { 'Tabelle' } ) or
+    (Notebook1.ActivePage = LbSpeedButton4.Caption { 'Filter' } ) or
+    (Notebook1.ActivePage = LbSpeedButton7.Caption { 'Indizes' } ) then
   begin
     if NurStruktur then
     begin
-      dsData.DataSet := LoadTable(FDatabaseForm.dbDatabase, FTableName);
-      if (Notebook1.ActivePage = LbSpeedButton7.Caption{'Indizes'}) then
+      dsData.Dataset := LoadTable(FDatabaseForm.dbDatabase, FTableName);
+      if (Notebook1.ActivePage = LbSpeedButton7.Caption { 'Indizes' } ) then
         CreateIndexInfo;
     end;
   end;
 
   // Jetzt auf Filter-Seite? Filter in Memo eintragen!
-  if Notebook1.ActivePage = LbSpeedButton4.Caption{'Filter'} then
+  if Notebook1.ActivePage = LbSpeedButton4.Caption { 'Filter' } then
   begin
-    mFilter.Text := FDatabaseForm.dbDatabase.GetTableFilter(dsData.DataSet);
+    mFilter.Text := FDatabaseForm.dbDatabase.GetTableFilter(dsData.Dataset);
   end;
 
   // Speedbutton Textfarben korrigieren
@@ -494,18 +527,18 @@ procedure TMDI_Table.Spalteausblenden1Click(Sender: TObject);
 var
   i: integer;
 begin
-   // Aktuelle Spalte im Feld-ListView suchen, "entkreuzen"
-   for i := 0 to lvFields.Items.Count-1 do
-   begin
-      if lvFields.Items.Item[i].Caption = dbgTable.GetActiveField.FieldName then
-      begin
-         lvFields.Items.Item[i].Checked := false;
-         break;
-      end;
-   end;
-   
-   // Das Feld selbst auch ausblenden
-   dbgTable.GetActiveField.Visible := false;
+  // Aktuelle Spalte im Feld-ListView suchen, "entkreuzen"
+  for i := 0 to lvFields.Items.Count - 1 do
+  begin
+    if lvFields.Items.Item[i].Caption = dbgTable.GetActiveField.FieldName then
+    begin
+      lvFields.Items.Item[i].Checked := false;
+      break;
+    end;
+  end;
+
+  // Das Feld selbst auch ausblenden
+  dbgTable.GetActiveField.Visible := false;
 end;
 
 procedure TMDI_Table.LbSpeedButton8Click(Sender: TObject);
@@ -513,7 +546,7 @@ var
   i: integer;
 begin
   // Alle Felder im ListView ankreuzen
-  for i := 0 to lvFields.Items.Count-1 do
+  for i := 0 to lvFields.Items.Count - 1 do
   begin
     lvFields.Items.Item[i].Checked := true;
   end;
@@ -524,22 +557,26 @@ var
   i: integer;
 begin
   // Alle Felder im ListView "entkreuzen"
-  for i := 0 to lvFields.Items.Count-1 do
+  for i := 0 to lvFields.Items.Count - 1 do
   begin
     lvFields.Items.Item[i].Checked := false;
   end;
 end;
 
-procedure TMDI_Table.dbgTableMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: integer);
+procedure TMDI_Table.dbgTableMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: integer);
 resourcestring
   SHideColumnS = 'Spalte "%s" ausblenden';
 begin
   if (Button = mbRight) and (Y > 17) then
   begin
-    Spalteausblenden1.Caption := Format(SHideColumnS, [dbgTable.GetActiveField.FieldName]);
-    RTFbearbeiten1.Visible := (dbgTable.GetActiveField.DataType = ftMemo) or (dbgTable.GetActiveField.DataType = ftFmtMemo);
+    Spalteausblenden1.Caption := Format(SHideColumnS,
+      [dbgTable.GetActiveField.FieldName]);
+    RTFbearbeiten1.Visible := (dbgTable.GetActiveField.DataType = ftMemo) or
+      (dbgTable.GetActiveField.DataType = ftFmtMemo);
     N3.Visible := RTFbearbeiten1.Visible;
-    PopupMenu1.Popup(dbgTable.ClientToScreen(Point(X, 0)).x, dbgTable.ClientToScreen(Point(0, Y)).y);
+    PopupMenu1.Popup(dbgTable.ClientToScreen(Point(X, 0)).X,
+      dbgTable.ClientToScreen(Point(0, Y)).Y);
   end;
 end;
 
@@ -549,7 +586,8 @@ resourcestring
 begin
   // TStatusBar hat einen Bug: Wenn man ein neues MDI-Fenster aufmacht, dann
   // verschwindet der SimpleText für immer.
-  QueryStatusPanel.Caption := '  ' + Format(SRowCountD, [TDataSource(Sender).DataSet.RecordCount/1.0]);
+  QueryStatusPanel.Caption := '  ' + Format(SRowCountD,
+    [TDataSource(Sender).Dataset.RecordCount / 1.0]);
 end;
 
 procedure TMDI_Table.EinfacheInsertAnweisungkopieren1Click(Sender: TObject);
@@ -564,8 +602,10 @@ resourcestring
 begin
   // TODO: "AutoInc" nicht einfügen
 
-  res := MessageDlg(SMultipleRowsWithComments, mtConfirmation, mbYesNoCancel, 0);
-  if res = mrCancel then exit;
+  res := MessageDlg(SMultipleRowsWithComments, mtConfirmation,
+    mbYesNoCancel, 0);
+  if res = mrCancel then
+    exit;
 
   if res = mrYes then
   begin
@@ -579,7 +619,8 @@ begin
   end;
   for i := 0 to lvFields.Items.Count - 1 do
   begin
-    if lvFields.Items[i].SubItems.Strings[3] = 'NOT NULL' then // do not localize
+    if lvFields.Items[i].SubItems.Strings[3] = 'NOT NULL' then
+    // do not localize
     begin
       s := s + lvFields.Items.Item[i].Caption;
 
@@ -594,12 +635,14 @@ begin
         if i < lvFields.Items.Count - 1 then
         begin
           s := s + ',' + #13#10;
-          s2 := s2 + ', -- ' + lvFields.Items.Item[i].Caption + #13#10; // do not localize
+          s2 := s2 + ', -- ' + lvFields.Items.Item[i].Caption + #13#10;
+          // do not localize
         end
         else
         begin
           s := s + #13#10;
-          s2 := s2 + ' -- ' + lvFields.Items.Item[i].Caption + #13#10; // do not localize
+          s2 := s2 + ' -- ' + lvFields.Items.Item[i].Caption + #13#10;
+          // do not localize
         end;
       end
       else
@@ -613,9 +656,10 @@ begin
     ShowMessage(SNothingAvailable)
   else
   begin
-    s  := Copy(s,  1, Length(s)-2);  // remove ', '
-    s2 := Copy(s2, 1, Length(s2)-2); // remove ', '
-    Clipboard.AsText := 'insert into '+Table+' ('+s+') values ('+s2+')'; // do not localize
+    s := Copy(s, 1, Length(s) - 2); // remove ', '
+    s2 := Copy(s2, 1, Length(s2) - 2); // remove ', '
+    Clipboard.AsText := 'insert into ' + Table + ' (' + s + ') values (' + s2 +
+      ')'; // do not localize
     // ShowMessage(SCopiedInClipboard);
   end;
 end;
@@ -632,8 +676,10 @@ resourcestring
 begin
   // TODO: "AutoInc" nicht einfügen
 
-  res := MessageDlg(SMultipleRowsWithComments2, mtConfirmation, mbYesNoCancel, 0);
-  if res = mrCancel then exit;
+  res := MessageDlg(SMultipleRowsWithComments2, mtConfirmation,
+    mbYesNoCancel, 0);
+  if res = mrCancel then
+    exit;
 
   if res = mrYes then
   begin
@@ -662,12 +708,14 @@ begin
       if i < lvFields.Items.Count - 1 then
       begin
         s := s + ',' + #13#10;
-        s2 := s2 + ', -- ' + lvFields.Items.Item[i].Caption + #13#10; // do not localize
+        s2 := s2 + ', -- ' + lvFields.Items.Item[i].Caption + #13#10;
+        // do not localize
       end
       else
       begin
         s := s + #13#10;
-        s2 := s2 + ' -- ' + lvFields.Items.Item[i].Caption + #13#10; // do not localize
+        s2 := s2 + ' -- ' + lvFields.Items.Item[i].Caption + #13#10;
+        // do not localize
       end;
     end
     else
@@ -683,160 +731,162 @@ begin
     ShowMessage(SNothingAvailable)
   else
   begin
-    Clipboard.AsText := 'insert into '+Table+' ('+s+') values ('+s2+')'; // do not localize
+    Clipboard.AsText := 'insert into ' + Table + ' (' + s + ') values (' + s2 +
+      ')'; // do not localize
     // ShowMessage(SCopiedInClipboard);
   end;
 end;
 
 function TMDI_Table.GetFilter(aField: TField; bInclude: boolean): string;
 resourcestring
-  SFieldTypeNotSupported = 'Dieser Feldtyp kann (noch) nicht automatisch gefiltert werden.';
+  SFieldTypeNotSupported =
+    'Dieser Feldtyp kann (noch) nicht automatisch gefiltert werden.';
 begin
   if aField.IsNull then
   begin
     if FVerwendeQueryAnstelleTable then
     begin
       if bInclude then
-        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' is null' // do not localize
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
+          (aField.FieldName) + ' is null' // do not localize
       else
-        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' is not null'; // do not localize
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
+          (aField.FieldName) + ' is not null'; // do not localize
     end
     else
     begin
       // Beim Filter muss man wirklich "= null" schreiben und nicht "is null"
       if bInclude then
-        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' = null' // do not localize
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
+          (aField.FieldName) + ' = null' // do not localize
       else
-        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' <> null'; // do not localize
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
+          (aField.FieldName) + ' <> null'; // do not localize
     end;
   end
   else
   begin
     if bInclude then
-      result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' = '
+      result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
+        (aField.FieldName) + ' = '
     else
-      result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' <> ';
+      result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
+        (aField.FieldName) + ' <> ';
 
-     case aField.DataType of
-        ftBoolean:
-           if aField.AsBoolean then
-             result := result + '1'
-           else
-             result := result + '0';
+    case aField.DataType of
+      ftBoolean:
+        if aField.AsBoolean then
+          result := result + '1'
+        else
+          result := result + '0';
 
-        ftInteger,
-        ftFloat,
-        ftSmallint,
-        ftAutoInc,
-        ftCurrency,
-        ftBCD,
-        ftFMTBcd,
-        ftLargeint,
-        ftWord:
-           result := result + StringReplace(aField.AsString, ',', '.', []);
+      ftInteger, ftFloat, ftSmallint, ftAutoInc, ftCurrency, ftBCD, ftFMTBcd,
+        ftLargeint, ftWord:
+        result := result + StringReplace(aField.AsString, ',', '.', []);
 
-        ftString,
-        ftFixedChar,
-        ftWideString,
-        ftDateTime: // DM 05.12.2023 : OK mit SQL Server
-           result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(aField.AsString) + '''';
+      ftString, ftFixedChar, ftWideString, ftDateTime:
+      // DM 05.12.2023 : OK mit SQL Server
+        result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String
+          (aField.AsString) + '''';
 
-     else
+    else
 
-           // Wir versuchen's einfach! Vielleicht geht es ja!
-           result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(aField.AsString) + '''';
+      // Wir versuchen's einfach! Vielleicht geht es ja!
+      result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String
+        (aField.AsString) + '''';
 
-           //result := '';
-           //Application.MessageBox(SFieldTypeNotSupported, PChar(Application.Title), MB_ICONEXCLAMATION + MB_OK);
-     end;
+      // result := '';
+      // Application.MessageBox(SFieldTypeNotSupported, PChar(Application.Title), MB_ICONEXCLAMATION + MB_OK);
+    end;
 
-     if FVerwendeQueryAnstelleTable then
-     begin
-       if bInclude then
-         result := Trim(result)
-       else
-         result := Trim(result) + ' or ' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' is null'; // https://github.com/hickelsoft/dbtool/issues/2
-     end
-     else
-     begin
-       // This does not work!
-       // (SUCHNAME <> '12345' or SUCHNAME is null) and (ADRESSART = 'LIE')
-       // because you cannot mix or/and for some reason
-     end;
+    if FVerwendeQueryAnstelleTable then
+    begin
+      if bInclude then
+        result := Trim(result)
+      else
+        result := Trim(result) + ' or ' +
+          FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) +
+          ' is null'; // https://github.com/hickelsoft/dbtool/issues/2
+    end
+    else
+    begin
+      // This does not work!
+      // (SUCHNAME <> '12345' or SUCHNAME is null) and (ADRESSART = 'LIE')
+      // because you cannot mix or/and for some reason
+    end;
   end;
 
 
-// ftDate, ftTime, ftDateTime, ftTimeStamp
-// ftGuid
+  // ftDate, ftTime, ftDateTime, ftTimeStamp
+  // ftGuid
 
-(*
-   ftBoolean:
+  (*
+    ftBoolean:
 
-   if TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString = '' then
-      result := '(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 1) and (' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 0)'
-   else
-      result := result + TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString;
-*)
+    if TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString = '' then
+    result := '(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 1) and (' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 0)'
+    else
+    result := result + TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString;
+  *)
 end;
 
-function TMDI_Table.GetFilter(aField: TField; wert: string; bInclude: boolean): string;
+function TMDI_Table.GetFilter(aField: TField; wert: string;
+  bInclude: boolean): string;
 resourcestring
-  SFieldTypeNotSupported = 'Dieser Feldtyp kann (noch) nicht automatisch gefiltert werden.';
+  SFieldTypeNotSupported =
+    'Dieser Feldtyp kann (noch) nicht automatisch gefiltert werden.';
 begin
   if bInclude then
-    result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' = '
+    result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
+      (aField.FieldName) + ' = '
   else
-    result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' <> ';
+    result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
+      (aField.FieldName) + ' <> ';
 
   case aField.DataType of
-      ftBoolean:
-         result := result + wert; // soll 1 oder 0 sein
+    ftBoolean:
+      result := result + wert; // soll 1 oder 0 sein
 
-      ftInteger,
-      ftFloat,
-      ftSmallint,
-      ftAutoInc,
-      ftCurrency,
-      ftBCD,
-      ftFMTBcd,
-      ftLargeint,
-      ftWord:
-         result := result + StringReplace(wert, ',', '.', []);
+    ftInteger, ftFloat, ftSmallint, ftAutoInc, ftCurrency, ftBCD, ftFMTBcd,
+      ftLargeint, ftWord:
+      result := result + StringReplace(wert, ',', '.', []);
 
-      ftString,
-      ftFixedChar,
-      ftWideString,
-      ftDateTime: // DM 05.12.2023 : OK mit SQL Server
-         result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(wert) + '''';
+    ftString, ftFixedChar, ftWideString, ftDateTime:
+    // DM 05.12.2023 : OK mit SQL Server
+      result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String
+        (wert) + '''';
 
   else
 
-         // Wir versuchen's einfach! Vielleicht geht es ja! Bei DateTime geht es.
-         result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(wert) + '''';
+    // Wir versuchen's einfach! Vielleicht geht es ja! Bei DateTime geht es.
+    result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String
+      (wert) + '''';
 
-         // result := '';
-         //Application.MessageBox(SFieldTypeNotSupported, PChar(Application.Title), MB_ICONEXCLAMATION + MB_OK);
+    // result := '';
+    // Application.MessageBox(SFieldTypeNotSupported, PChar(Application.Title), MB_ICONEXCLAMATION + MB_OK);
   end;
 
   if FVerwendeQueryAnstelleTable then
   begin
-       if bInclude then
-         result := Trim(result)
-       else
-         result := Trim(result) + ' or ' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' is null'; // https://github.com/hickelsoft/dbtool/issues/2
+    if bInclude then
+      result := Trim(result)
+    else
+      result := Trim(result) + ' or ' +
+        FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) +
+        ' is null'; // https://github.com/hickelsoft/dbtool/issues/2
   end;
 
-// ftDate, ftTime, ftDateTime, ftTimeStamp
-// ftGuid
+  // ftDate, ftTime, ftDateTime, ftTimeStamp
+  // ftGuid
 
-(*
-   ftBoolean:
+  (*
+    ftBoolean:
 
-   if TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString = '' then
-      result := '(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 1) and (' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 0)'
-   else
-      result := result + TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString;
-*)
+    if TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString = '' then
+    result := '(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 1) and (' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 0)'
+    else
+    result := result + TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString;
+  *)
 end;
 
 procedure TMDI_Table.AuswahlbasierterFilter1Click(Sender: TObject);
@@ -844,10 +894,13 @@ var
   sFilter, sNeu: string;
 begin
   sNeu := GetFilter(dbgTable.GetActiveField, true);
-  if(sNeu = '') then exit;
-  sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.DataSet);
-  if sFilter <> '' then sFilter := sFilter + ' and '; // do not localize
-  FDatabaseForm.dbDatabase.SetTableFilter(dsData.DataSet, sFilter + '(' + sNeu + ')');
+  if (sNeu = '') then
+    exit;
+  sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.Dataset);
+  if sFilter <> '' then
+    sFilter := sFilter + ' and '; // do not localize
+  FDatabaseForm.dbDatabase.SetTableFilter(dsData.Dataset,
+    sFilter + '(' + sNeu + ')');
 end;
 
 procedure TMDI_Table.abellennamekopieren1Click(Sender: TObject);
@@ -871,7 +924,7 @@ begin
     s := s + lvFields.Items.Item[i].Caption;
     s := s + ', ';
   end;
-  s := Copy(s, 1, Length(s)-2); // ', ' am Ende entf.
+  s := Copy(s, 1, Length(s) - 2); // ', ' am Ende entf.
   if s = '' then
     ShowMessage(SNothingAvailable)
   else
@@ -897,7 +950,7 @@ begin
       s := s + ', ';
     end;
   end;
-  s := Copy(s, 1, Length(s)-2); // ', ' am Ende entf.
+  s := Copy(s, 1, Length(s) - 2); // ', ' am Ende entf.
   if s = '' then
     ShowMessage(SNothingAvailable)
   else
@@ -911,32 +964,39 @@ procedure TMDI_Table.AnzahlunterschiedlicherWerte1Click(Sender: TObject);
 resourcestring
   SCountDifferentValues = 'Anzahl unterschiedliche Werte';
 begin
-   ShowSqlFunction('COUNT(DISTINCT ' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(dbgTable.GetActiveField.FieldName) + ')', SCountDifferentValues); // do not localize
+  ShowSqlFunction('COUNT(DISTINCT ' +
+    FDatabaseForm.dbDatabase.SQL_Escape_FieldName
+    (dbgTable.GetActiveField.FieldName) + ')', SCountDifferentValues);
+  // do not localize
 end;
 
 procedure TMDI_Table.AuswahlausschlieenderFilter1Click(Sender: TObject);
 var
   sFilter, sNeu: string;
 begin
-   sNeu := GetFilter(dbgTable.GetActiveField, false);
-   if(sNeu = '') then exit;
-   sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.DataSet);
-   if sFilter <> '' then sFilter := sFilter + ' and '; // do not localize
-   FDatabaseForm.dbDatabase.SetTableFilter(dsData.DataSet, sFilter + '(' + sNeu + ')'); // do not localize
+  sNeu := GetFilter(dbgTable.GetActiveField, false);
+  if (sNeu = '') then
+    exit;
+  sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.Dataset);
+  if sFilter <> '' then
+    sFilter := sFilter + ' and '; // do not localize
+  FDatabaseForm.dbDatabase.SetTableFilter(dsData.Dataset,
+    sFilter + '(' + sNeu + ')'); // do not localize
 end;
 
 procedure TMDI_Table.Feldnamekopieren1Click(Sender: TObject);
 resourcestring
   SCopiedInClipboard = 'In Zwischenablage kopiert';
 begin
-  if lvFields.SelCount = 0 then exit;
+  if lvFields.SelCount = 0 then
+    exit;
   Clipboard.AsText := lvFields.Selected.Caption;
   // ShowMessage(SCopiedInClipboard);
 end;
 
 procedure TMDI_Table.Filterentfernen1Click(Sender: TObject);
 begin
-   FDatabaseForm.dbDatabase.SetTableFilter(dsData.DataSet, '');
+  FDatabaseForm.dbDatabase.SetTableFilter(dsData.Dataset, '');
 end;
 
 procedure TMDI_Table.FilternnachEingabe1Click(Sender: TObject);
@@ -945,12 +1005,16 @@ var
 resourcestring
   SCopyByInputValue = 'Filtern nach Eingabewert';
 begin
-  if not ThgInputQry.InputQuery(SCopyByInputValue, wert) then exit;
+  if not ThgInputQry.InputQuery(SCopyByInputValue, wert) then
+    exit;
   sNeu := GetFilter(dbgTable.GetActiveField, wert, true);
-  if(sNeu = '') then exit;
-  sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.DataSet);
-  if sFilter <> '' then sFilter := sFilter + ' and '; // do not localize
-  FDatabaseForm.dbDatabase.SetTableFilter(dsData.DataSet, sFilter + '(' + sNeu + ')'); // do not localize
+  if (sNeu = '') then
+    exit;
+  sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.Dataset);
+  if sFilter <> '' then
+    sFilter := sFilter + ' and '; // do not localize
+  FDatabaseForm.dbDatabase.SetTableFilter(dsData.Dataset,
+    sFilter + '(' + sNeu + ')'); // do not localize
 end;
 
 procedure TMDI_Table.LbSpeedButton10Click(Sender: TObject);
@@ -963,49 +1027,56 @@ procedure TMDI_Table.FixierteSpalten1Click(Sender: TObject);
 resourcestring
   SCountFixedColumns = 'Anzahl fixierter Spalten:';
 begin
-   dbgTable.FixedCols := StrToInt(InputBox(Application.Title, SCountFixedColumns, IntToStr(dbgTable.FixedCols)));
+  dbgTable.FixedCols := StrToInt(InputBox(Application.Title, SCountFixedColumns,
+    IntToStr(dbgTable.FixedCols)));
 end;
 
 procedure TMDI_Table.ShowSqlFunction(sQuery, sText: string);
 var
-  x: TDataSet;
+  X: TDataSet;
   sSQL: string;
   sFilter: string;
   sResult: string;
 resourcestring
-  SCannotBeDeterminedMessageFromServer = '%s kann nicht ermittelt werden. Fehlermeldung des Servers: "%s"';
+  SCannotBeDeterminedMessageFromServer =
+    '%s kann nicht ermittelt werden. Fehlermeldung des Servers: "%s"';
   SResultLine = '%s: %s';
 begin
-   sSQL := 'SELECT ' + sQuery + ' FROM ' + frmDatabase.dbDatabase.SQL_Escape_TableName(FTableName); // do not localize
-   sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.DataSet);
-   if sFilter <> '' then sSQL := sSQL + ' WHERE (' + sFilter + ')'; // do not localize
-   sResult := sText;
+  sSQL := 'SELECT ' + sQuery + ' FROM ' +
+    frmDatabase.dbDatabase.SQL_Escape_TableName(FTableName); // do not localize
+  sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.Dataset);
+  if sFilter <> '' then
+    sSQL := sSQL + ' WHERE (' + sFilter + ')'; // do not localize
+  sResult := sText;
 
-   try
-      x := FDatabaseForm.dbDatabase.Query(sSQL + ';'); // do not localize
-      try
-        sResult := Format(SResultLine, [sResult, x.Fields.Fields[0].AsString]);
-      finally
-        FreeAndNil(x);
-      end;
-   except
-     on E: EAbort do
-     begin
-       Abort;
-     end;
-     on E: Exception do
-     begin
-       sResult := Format(SCannotBeDeterminedMessageFromServer, [sResult, e.Message]);
-     end;
-   end;
-   Application.MessageBox(PChar(sResult), PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
+  try
+    X := FDatabaseForm.dbDatabase.Query(sSQL + ';'); // do not localize
+    try
+      sResult := Format(SResultLine, [sResult, X.Fields.Fields[0].AsString]);
+    finally
+      FreeAndNil(X);
+    end;
+  except
+    on E: EAbort do
+    begin
+      Abort;
+    end;
+    on E: Exception do
+    begin
+      sResult := Format(SCannotBeDeterminedMessageFromServer,
+        [sResult, E.Message]);
+    end;
+  end;
+  Application.MessageBox(PChar(sResult), PChar(Application.Title),
+    MB_ICONINFORMATION + MB_OK);
 end;
 
 procedure TMDI_Table.Spaltensumme1Click(Sender: TObject);
 resourcestring
   SColumnSum = 'Spaltensumme';
 begin
-   ShowSqlFunction('SUM(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(dbgTable.GetActiveField.FieldName) + ')', SColumnSum); // do not localize
+  ShowSqlFunction('SUM(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName
+    (dbgTable.GetActiveField.FieldName) + ')', SColumnSum); // do not localize
 end;
 
 procedure TMDI_Table.SpeedButton1Click(Sender: TObject);
@@ -1013,7 +1084,8 @@ begin
   BtnClick(LbSpeedButton2);
 end;
 
-function CheckCase(s: string): integer; // 0=all lowercase, 1=mixed, 2=all uppercase
+function CheckCase(s: string): integer;
+// 0=all lowercase, 1=mixed, 2=all uppercase
 var
   i: integer;
   allLower, allUpper: boolean;
@@ -1022,8 +1094,10 @@ begin
   allUpper := true;
   for i := 1 to Length(s) do
   begin
-    if CharInSet(s[i], ['a'..'z']) then allUpper := false;
-    if CharInSet(s[i], ['A'..'Z']) then allLower := false;
+    if CharInSet(s[i], ['a' .. 'z']) then
+      allUpper := false;
+    if CharInSet(s[i], ['A' .. 'Z']) then
+      allLower := false;
   end;
 
   if allLower = allUpper then
@@ -1042,37 +1116,50 @@ var
 resourcestring
   SAmount = 'Anzahl';
 begin
-   case CheckCase(dbgTable.GetActiveField.FieldName) of
-     0: anzahlFieldName := AnsiLowerCase(SAmount);
-     1: anzahlFieldName := SAmount;
-     2: anzahlFieldName := AnsiUpperCase(SAmount);
-   end;
+  case CheckCase(dbgTable.GetActiveField.FieldName) of
+    0:
+      anzahlFieldName := AnsiLowerCase(SAmount);
+    1:
+      anzahlFieldName := SAmount;
+    2:
+      anzahlFieldName := AnsiUpperCase(SAmount);
+  end;
 
-   sSQL := 'SELECT DISTINCT ' + frmDatabase.dbDatabase.SQL_Escape_FieldName(dbgTable.GetActiveField.FieldName) + ', COUNT(*) as ' + frmDatabase.dbDatabase.SQL_Escape_FieldName(anzahlFieldName) + ' FROM ' + frmDatabase.dbDatabase.SQL_Escape_TableName(FTableName); // do not localize
-   sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.DataSet);
-   if sFilter <> '' then sSQL := sSQL + ' WHERE (' + sFilter + ')'; // do not localize
-   sSQL := sSQL + ' GROUP BY ' + frmDatabase.dbDatabase.SQL_Escape_FieldName(dbgTable.GetActiveField.FieldName); // do not localize
-   sSQL := sSQL + ' ORDER BY ' + frmDatabase.dbDatabase.SQL_Escape_FieldName(dbgTable.GetActiveField.FieldName) + ';'; // do not localize
+  sSQL := 'SELECT DISTINCT ' + frmDatabase.dbDatabase.SQL_Escape_FieldName
+    (dbgTable.GetActiveField.FieldName) + ', COUNT(*) as ' +
+    frmDatabase.dbDatabase.SQL_Escape_FieldName(anzahlFieldName) + ' FROM ' +
+    frmDatabase.dbDatabase.SQL_Escape_TableName(FTableName); // do not localize
+  sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.Dataset);
+  if sFilter <> '' then
+    sSQL := sSQL + ' WHERE (' + sFilter + ')'; // do not localize
+  sSQL := sSQL + ' GROUP BY ' + frmDatabase.dbDatabase.SQL_Escape_FieldName
+    (dbgTable.GetActiveField.FieldName); // do not localize
+  sSQL := sSQL + ' ORDER BY ' + frmDatabase.dbDatabase.SQL_Escape_FieldName
+    (dbgTable.GetActiveField.FieldName) + ';'; // do not localize
 
-   with TMDI_Query.Create(FDatabaseForm, FDatabaseForm) do
-   begin
-     Memo1.Lines.Text := sSQL;
-     SpeedButton1.Click;
-   end;
+  with TMDI_Query.Create(FDatabaseForm, FDatabaseForm) do
+  begin
+    Memo1.Lines.Text := sSQL;
+    SpeedButton1.Click;
+  end;
 end;
 
 procedure TMDI_Table.Minimalwert1Click(Sender: TObject);
 resourcestring
   SMinimumValue = 'Minimalwert';
 begin
-  ShowSqlFunction('MIN(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(dbgTable.GetActiveField.FieldName) + ')', SMinimumValue); // do not localize
+  ShowSqlFunction('MIN(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName
+    (dbgTable.GetActiveField.FieldName) + ')', SMinimumValue);
+  // do not localize
 end;
 
 procedure TMDI_Table.Maximalwert1Click(Sender: TObject);
 resourcestring
   SMaximumValue = 'Maximalwert';
 begin
-  ShowSqlFunction('MAX(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(dbgTable.GetActiveField.FieldName) + ')', SMaximumValue); // do not localize
+  ShowSqlFunction('MAX(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName
+    (dbgTable.GetActiveField.FieldName) + ')', SMaximumValue);
+  // do not localize
 end;
 
 procedure TMDI_Table.Datenstzezhlen1Click(Sender: TObject);
@@ -1084,7 +1171,7 @@ end;
 
 procedure TMDI_Table.LngsterWert1Click(Sender: TObject);
 var
-  x: TDataSet;
+  X: TDataSet;
   iMaxLen: integer;
   sMaxVal: string;
   sResult: string;
@@ -1092,74 +1179,88 @@ var
   sFilter: string;
 resourcestring
   SLongestValue = 'Längster Wert: "%s" (%d Zeichen)';
-  SLongestValueCannotBeDetermined = 'Längster Wert kann nicht ermittelt werden. Fehlermeldung des Servers: "%s"';
+  SLongestValueCannotBeDetermined =
+    'Längster Wert kann nicht ermittelt werden. Fehlermeldung des Servers: "%s"';
 begin
-  sSQL := 'SELECT ' + frmDatabase.dbDatabase.SQL_Escape_FieldName(dbgTable.GetActiveField.FieldName) + ' FROM ' + frmDatabase.dbDatabase.SQL_Escape_TableName(FTableName); // do not localize
-  sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.DataSet);
-  if sFilter <> '' then sSQL := sSQL + ' WHERE (' + sFilter + ')'; // do not localize
+  sSQL := 'SELECT ' + frmDatabase.dbDatabase.SQL_Escape_FieldName
+    (dbgTable.GetActiveField.FieldName) + ' FROM ' +
+    frmDatabase.dbDatabase.SQL_Escape_TableName(FTableName); // do not localize
+  sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.Dataset);
+  if sFilter <> '' then
+    sSQL := sSQL + ' WHERE (' + sFilter + ')'; // do not localize
 
-   try
-      x := FDatabaseForm.dbDatabase.Query(sSQL + ';');
-      try
-        iMaxLen := 0;
-        while not x.Eof do
+  try
+    X := FDatabaseForm.dbDatabase.Query(sSQL + ';');
+    try
+      iMaxLen := 0;
+      while not X.Eof do
+      begin
+        if Length(X.Fields.Fields[0].AsString) > iMaxLen then
         begin
-           if Length(x.Fields.Fields[0].AsString) > iMaxLen then
-           begin
-              sMaxVal := x.Fields.Fields[0].AsString;
-              iMaxLen := Length(sMaxVal);
-           end;
-           x.Next;
+          sMaxVal := X.Fields.Fields[0].AsString;
+          iMaxLen := Length(sMaxVal);
         end;
-
-        sResult := Format(SLongestValue, [sMaxVal, iMaxLen]);
-      finally
-        FreeAndNil(x);
+        X.Next;
       end;
-   except
-     on E: EAbort do
-     begin
-       Abort;
-     end;
-     on E: Exception do
-     begin
-       sResult := Format(SLongestValueCannotBeDetermined, [e.Message]);
-     end;
-   end;
-   Application.MessageBox(PChar(sResult), PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
+
+      sResult := Format(SLongestValue, [sMaxVal, iMaxLen]);
+    finally
+      FreeAndNil(X);
+    end;
+  except
+    on E: EAbort do
+    begin
+      Abort;
+    end;
+    on E: Exception do
+    begin
+      sResult := Format(SLongestValueCannotBeDetermined, [E.Message]);
+    end;
+  end;
+  Application.MessageBox(PChar(sResult), PChar(Application.Title),
+    MB_ICONINFORMATION + MB_OK);
 end;
 
 procedure TMDI_Table.LbSpeedButton11Click(Sender: TObject);
 resourcestring
   SLayoutSaved = 'Layout wurde gespeichert.';
 begin
-   dbgTable.IniAttributes.SectionName := StringReplace(FDatabaseForm.Database + '.' + FTableName, '\', '_', [rfReplaceAll]); // do not localize
-   dbgTable.SaveToIniFile;
-   Application.MessageBox(PChar(SLayoutSaved), PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
+  dbgTable.IniAttributes.SectionName :=
+    StringReplace(FDatabaseForm.Database + '.' + FTableName, '\', '_',
+    [rfReplaceAll]); // do not localize
+  dbgTable.SaveToIniFile;
+  Application.MessageBox(PChar(SLayoutSaved), PChar(Application.Title),
+    MB_ICONINFORMATION + MB_OK);
 end;
 
 procedure TMDI_Table.FormShow(Sender: TObject);
 begin
-   dbgTable.IniAttributes.SectionName := StringReplace(FDatabaseForm.Database + '.' + FTableName, '\', '_', [rfReplaceAll]); // do not localize
-   dbgTable.SafeLoadFromIniFile;
+  dbgTable.IniAttributes.SectionName :=
+    StringReplace(FDatabaseForm.Database + '.' + FTableName, '\', '_',
+    [rfReplaceAll]); // do not localize
+  dbgTable.SafeLoadFromIniFile;
 end;
 
 procedure TMDI_Table.btnAktualisierenClick(Sender: TObject);
 begin
-   FDatabaseForm.dbDatabase.RefreshTable(dsData.DataSet);
+  FDatabaseForm.dbDatabase.RefreshTable(dsData.Dataset);
 end;
 
-procedure TMDI_Table.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+procedure TMDI_Table.FormKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
 begin
   if ord(Key) = VK_F5 then
   begin
     Key := 0;
     btnAktualisierenClick(Sender);
   end;
-  if (Key = VK_ESCAPE) and (not Assigned(dbgTable.DataSource.DataSet) or not (dbgTable.DataSource.DataSet.State in [dsEdit,dsInsert]))
-     // TODO: Wenn man im Eingabemodus von einem Darumsfeld ist, dann wird ESC trotzdem dazu führen, dass man rausfliegt. InplaceEditor ist bei DateTime-Edit nicht gesetzt
-     and not (Assigned(dbgTable.InplaceEditor) and dbgTable.InplaceEditor.ClassNameIs('TwwInplaceEdit') and dbgTable.InplaceEditor.Visible) // do not localize
-     then
+  if (Key = VK_ESCAPE) and (not Assigned(dbgTable.DataSource.Dataset) or
+    not(dbgTable.DataSource.Dataset.State in [dsEdit, dsInsert]))
+  // TODO: Wenn man im Eingabemodus von einem Darumsfeld ist, dann wird ESC trotzdem dazu führen, dass man rausfliegt. InplaceEditor ist bei DateTime-Edit nicht gesetzt
+    and not(Assigned(dbgTable.InplaceEditor) and
+    dbgTable.InplaceEditor.ClassNameIs('TwwInplaceEdit') and
+    dbgTable.InplaceEditor.Visible) // do not localize
+  then
   begin
     Key := 0;
     Close;
@@ -1170,11 +1271,13 @@ procedure TMDI_Table.IndexMenuClick(Sender: TObject);
 var
   i: integer;
 begin
-  if FVerwendeQueryAnstelleTable then exit; // TODO: !!! Nicht implementiert (TODO: Implementieren mittels ORDER BY, aber dann muss SetTableFilter/GetTableFilter muss angepasst werden)
+  if FVerwendeQueryAnstelleTable then
+    exit; // TODO: !!! Nicht implementiert (TODO: Implementieren mittels ORDER BY, aber dann muss SetTableFilter/GetTableFilter muss angepasst werden)
 
-  FDatabaseForm.dbDatabase.SetTableIndex(dsData.DataSet, StringReplace(TMenuItem(Sender).Caption, '&', '', [rfReplaceAll]));
+  FDatabaseForm.dbDatabase.SetTableIndex(dsData.Dataset,
+    StringReplace(TMenuItem(Sender).Caption, '&', '', [rfReplaceAll]));
 
-  for i := 0 to pmIndex.Items.Count-1 do
+  for i := 0 to pmIndex.Items.Count - 1 do
   begin
     pmIndex.Items.Items[i].Checked := false;
   end;
@@ -1183,7 +1286,7 @@ end;
 
 procedure TMDI_Table.KrzesterWert11Click(Sender: TObject);
 var
-  x: TDataSet;
+  X: TDataSet;
   iMinLen: integer;
   sMinVal: string;
   sResult: string;
@@ -1191,41 +1294,46 @@ var
   sFilter: string;
 resourcestring
   SShortestNonEmptyValue = 'Kürzester nicht leerer Wert: "%s" (%d Zeichen)';
-  SShortestValueCannotBeDetermined = 'Kürzester Wert kann nicht ermittelt werden. Fehlermeldung des Servers: "%s"';
+  SShortestValueCannotBeDetermined =
+    'Kürzester Wert kann nicht ermittelt werden. Fehlermeldung des Servers: "%s"';
 begin
-  sSQL := 'SELECT ' + frmDatabase.dbDatabase.SQL_Escape_FieldName(dbgTable.GetActiveField.FieldName) + ' FROM ' + frmDatabase.dbDatabase.SQL_Escape_TableName(FTableName); // do not localize
-  sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.DataSet);
-  if sFilter <> '' then sSQL := sSQL + ' WHERE (' + sFilter + ')'; // do not localize
+  sSQL := 'SELECT ' + frmDatabase.dbDatabase.SQL_Escape_FieldName
+    (dbgTable.GetActiveField.FieldName) + ' FROM ' +
+    frmDatabase.dbDatabase.SQL_Escape_TableName(FTableName); // do not localize
+  sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.Dataset);
+  if sFilter <> '' then
+    sSQL := sSQL + ' WHERE (' + sFilter + ')'; // do not localize
 
-   try
-      x := FDatabaseForm.dbDatabase.Query(sSQL + ';');
-      try
-        iMinLen := 999999;
-        while not x.Eof do
+  try
+    X := FDatabaseForm.dbDatabase.Query(sSQL + ';');
+    try
+      iMinLen := 999999;
+      while not X.Eof do
+      begin
+        if Length(X.Fields.Fields[0].AsString) < iMinLen then
         begin
-           if Length(x.Fields.Fields[0].AsString) < iMinLen then
-           begin
-              sMinVal := x.Fields.Fields[0].AsString;
-              iMinLen := Length(sMinVal);
-           end;
-           x.Next;
+          sMinVal := X.Fields.Fields[0].AsString;
+          iMinLen := Length(sMinVal);
         end;
-
-        sResult := Format(SShortestNonEmptyValue, [sMinVal, iMinLen]);
-      finally
-        FreeAndNil(x);
+        X.Next;
       end;
-   except
-     on E: EAbort do
-     begin
-       Abort;
-     end;
-     on E: Exception do
-     begin
-       sResult := Format(SShortestValueCannotBeDetermined, [e.Message]);
-     end;
-   end;
-   Application.MessageBox(PChar(sResult), PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
+
+      sResult := Format(SShortestNonEmptyValue, [sMinVal, iMinLen]);
+    finally
+      FreeAndNil(X);
+    end;
+  except
+    on E: EAbort do
+    begin
+      Abort;
+    end;
+    on E: Exception do
+    begin
+      sResult := Format(SShortestValueCannotBeDetermined, [E.Message]);
+    end;
+  end;
+  Application.MessageBox(PChar(sResult), PChar(Application.Title),
+    MB_ICONINFORMATION + MB_OK);
 end;
 
 procedure TMDI_Table.Find;
@@ -1237,30 +1345,39 @@ function TMDI_Table.GetNextField(var iSearchField: integer): boolean;
 var
   bResult: boolean;
 resourcestring
-  SEndOfTableReached = 'Tabellen-Ende erreicht. Es wurden keine weiteren Vorkommen des Suchtexts gefunden.';
+  SEndOfTableReached =
+    'Tabellen-Ende erreicht. Es wurden keine weiteren Vorkommen des Suchtexts gefunden.';
 begin
-   bResult := true;
-   Inc(iSearchField);
+  bResult := true;
+  Inc(iSearchField);
 
-   while (iSearchField < dsData.DataSet.FieldCount) and not dsData.DataSet.Fields.Fields[iSearchField].Visible do Inc(iSearchField);
+  while (iSearchField < dsData.Dataset.FieldCount) and
+    not dsData.Dataset.Fields.Fields[iSearchField].Visible do
+    Inc(iSearchField);
 
-   if iSearchField = dsData.DataSet.FieldCount then
-   begin
-      iSearchField := 0;
+  if iSearchField = dsData.Dataset.FieldCount then
+  begin
+    iSearchField := 0;
 
-      while (iSearchField < dsData.DataSet.FieldCount) and not dsData.DataSet.Fields.Fields[iSearchField].Visible do Inc(iSearchField);
-      dsData.DataSet.Next;
+    while (iSearchField < dsData.Dataset.FieldCount) and
+      not dsData.Dataset.Fields.Fields[iSearchField].Visible do
+      Inc(iSearchField);
+    dsData.Dataset.Next;
 
-      if dsData.DataSet.Eof then
-      begin
-         iSearchField := dsData.DataSet.FieldCount-1;
-         while(iSearchField > 0) and not dsData.DataSet.Fields.Fields[iSearchField].Visible do Dec(iSearchField);
-         dbgTable.SetActiveField(dsData.DataSet.Fields.Fields[iSearchField].FieldName);
-         Application.MessageBox(PChar(SEndOfTableReached), PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
-         bResult := false;
-      end;
-   end;
-   result := bResult;
+    if dsData.Dataset.Eof then
+    begin
+      iSearchField := dsData.Dataset.FieldCount - 1;
+      while (iSearchField > 0) and not dsData.Dataset.Fields.Fields
+        [iSearchField].Visible do
+        Dec(iSearchField);
+      dbgTable.SetActiveField(dsData.Dataset.Fields.Fields[iSearchField]
+        .FieldName);
+      Application.MessageBox(PChar(SEndOfTableReached),
+        PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
+      bResult := false;
+    end;
+  end;
+  result := bResult;
 end;
 
 procedure TMDI_Table.FindNext;
@@ -1268,36 +1385,43 @@ var
   iPos, iSearchField: integer;
   sUpper: string;
 begin
-   iSearchField := dbgTable.GetActiveField.FieldNo-1;
-   if not GetNextField(iSearchField) then exit;
-   if FFindStr = '' then Find;
-   if FFindStr = '' then exit;
+  iSearchField := dbgTable.GetActiveField.FieldNo - 1;
+  if not GetNextField(iSearchField) then
+    exit;
+  if FFindStr = '' then
+    Find;
+  if FFindStr = '' then
+    exit;
 
-   sUpper := UpperCase(FFindStr);
+  sUpper := UpperCase(FFindStr);
 
-   while true do
-   begin
-      try
-         if FFindCaseInsensitive then
-           iPos := Pos(sUpper, UpperCase(dsData.DataSet.Fields.Fields[iSearchField].AsString))
-         else
-           iPos := Pos(FFindStr, dsData.DataSet.Fields.Fields[iSearchField].AsString);
-      except
-        on E: EAbort do
-        begin
-          Abort;
-        end;
-        on E: Exception do
-        begin
-          iPos := 0;
-        end;
+  while true do
+  begin
+    try
+      if FFindCaseInsensitive then
+        iPos := Pos(sUpper, UpperCase(dsData.Dataset.Fields.Fields[iSearchField]
+          .AsString))
+      else
+        iPos := Pos(FFindStr, dsData.Dataset.Fields.Fields[iSearchField]
+          .AsString);
+    except
+      on E: EAbort do
+      begin
+        Abort;
       end;
+      on E: Exception do
+      begin
+        iPos := 0;
+      end;
+    end;
 
-      if iPos > 0 then break;
-      if not GetNextField(iSearchField) then break;
-   end;
+    if iPos > 0 then
+      break;
+    if not GetNextField(iSearchField) then
+      break;
+  end;
 
-   dbgTable.SetActiveField(dsData.DataSet.Fields.Fields[iSearchField].FieldName);
+  dbgTable.SetActiveField(dsData.Dataset.Fields.Fields[iSearchField].FieldName);
 end;
 
 function TMDI_Table.GetSelectString: string;
@@ -1309,19 +1433,23 @@ var
 begin
   sSQL := 'SELECT '; // do not localize
   bAddComma := false;
-  for i := 0 to lvFields.Items.Count-1 do
+  for i := 0 to lvFields.Items.Count - 1 do
   begin
-    if(lvFields.Items.Item[i].Checked) then
+    if (lvFields.Items.Item[i].Checked) then
     begin
-      if bAddComma then sSQL := sSQL + ', ';
-      sSQL := sSQL + frmDatabase.dbDatabase.SQL_Escape_FieldName(lvFields.Items.Item[i].Caption);
+      if bAddComma then
+        sSQL := sSQL + ', ';
+      sSQL := sSQL + frmDatabase.dbDatabase.SQL_Escape_FieldName
+        (lvFields.Items.Item[i].Caption);
       bAddComma := true;
     end;
   end;
 
-  sSQL := sSQL + ' FROM ' + frmDatabase.dbDatabase.SQL_Escape_TableName(FTableName); // do not localize
-  sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.DataSet);
-  if sFilter <> '' then sSQL := sSQL + ' WHERE (' + sFilter + ')'; // do not localize
+  sSQL := sSQL + ' FROM ' + frmDatabase.dbDatabase.SQL_Escape_TableName
+    (FTableName); // do not localize
+  sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.Dataset);
+  if sFilter <> '' then
+    sSQL := sSQL + ' WHERE (' + sFilter + ')'; // do not localize
 
   result := sSQL;
 end;
@@ -1341,7 +1469,8 @@ begin
   end;
 end;
 
-procedure TMDI_Table.mFilterKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+procedure TMDI_Table.mFilterKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
 begin
   if (ssCtrl in Shift) and (ord(Key) = ord('A')) then // Ctrl+A
   begin
@@ -1372,7 +1501,7 @@ end;
 procedure TMDI_Table.FindDialog1Find(Sender: TObject);
 begin
   FFindStr := FindDialog1.FindText;
-  FFindCaseInsensitive := not (frMatchCase in FindDialog1.Options);
+  FFindCaseInsensitive := not(frMatchCase in FindDialog1.Options);
   FindNext;
 end;
 

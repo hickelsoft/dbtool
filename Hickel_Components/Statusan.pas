@@ -20,19 +20,21 @@ type
     btnStop: TButton;
     LblExactPosition: TLabel;
     procedure TimerRestzeitTimer(Sender: TObject);
-    procedure DoMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+    procedure DoMouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     procedure FormCreate(Sender: TObject);
-    procedure btnStopKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure btnStopKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
     bShowTime: boolean;
     lastTimerUpd: TDateTime;
     lastExactPosUpd: TDateTime;
     function GetShowStopButton: boolean;
     procedure SetShowStopButton(const Value: boolean);
-    function GetMaxValue: integer;
-    procedure SetMaxValue(const Value: integer);
-    function GetPosition: integer;
-    procedure SetPosition(const Value: integer);
+    function GetMaxValue: Integer;
+    procedure SetMaxValue(const Value: Integer);
+    function GetPosition: Integer;
+    procedure SetPosition(const Value: Integer);
     procedure UpdateExactPosition;
     procedure SetShowTime(bNew: boolean);
     function GetShowExactPosition: boolean;
@@ -42,10 +44,12 @@ type
   public
     dStartzeit: TDateTime;
     property ShowTime: boolean read bShowTime write SetShowTime;
-    property ShowStopButton: boolean read GetShowStopButton write SetShowStopButton;
-    property MaxValue: integer read GetMaxValue write SetMaxValue;
-    property Position: integer read GetPosition write SetPosition;
-    property ShowExactPosition: boolean read GetShowExactPosition write SetShowExactPosition;
+    property ShowStopButton: boolean read GetShowStopButton
+      write SetShowStopButton;
+    property MaxValue: Integer read GetMaxValue write SetMaxValue;
+    property Position: Integer read GetPosition write SetPosition;
+    property ShowExactPosition: boolean read GetShowExactPosition
+      write SetShowExactPosition;
     property Text: string read GetText write SetText;
   end;
 
@@ -59,7 +63,8 @@ implementation
 uses
   DateUtils, Math;
 
-procedure TDLG_Statusanzeige.btnStopKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+procedure TDLG_Statusanzeige.btnStopKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
 begin
   if Key = VK_ESCAPE then
   begin
@@ -68,27 +73,29 @@ begin
   end;
 end;
 
-procedure TDLG_Statusanzeige.DoMouseDown(Sender: TObject; Button: TMouseButton; Shift: TShiftState; X, Y: Integer);
+procedure TDLG_Statusanzeige.DoMouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
 begin
-   ReleaseCapture;
-   SendMessage(Handle, WM_NCLBUTTONDOWN, 2, 0);
+  ReleaseCapture;
+  SendMessage(Handle, WM_NCLBUTTONDOWN, 2, 0);
 end;
 
 procedure TDLG_Statusanzeige.FormCreate(Sender: TObject);
 begin
-  if Assigned(Application) and Assigned(Application.MainForm) and IsWindowVisible(Application.MainForm.Handle) then
+  if Assigned(Application) and Assigned(Application.MainForm) and
+    IsWindowVisible(Application.MainForm.Handle) then
     inherited Position := poMainFormCenter
   else
     inherited Position := poScreenCenter;
   SetShowTime(false);
 end;
 
-function TDLG_Statusanzeige.GetMaxValue: integer;
+function TDLG_Statusanzeige.GetMaxValue: Integer;
 begin
   result := ProgressBar1.MaxValue;
 end;
 
-function TDLG_Statusanzeige.GetPosition: integer;
+function TDLG_Statusanzeige.GetPosition: Integer;
 begin
   result := ProgressBar1.Progress;
 end;
@@ -108,7 +115,7 @@ begin
   result := StatusText.Caption;
 end;
 
-procedure TDLG_Statusanzeige.SetMaxValue(const Value: integer);
+procedure TDLG_Statusanzeige.SetMaxValue(const Value: Integer);
 begin
   if Value = 0 then
   begin
@@ -141,7 +148,8 @@ begin
     // und es darf nichts verschluckt werden.
     if MaxValue > 1000 then
     begin
-      if MilliSecondsBetween(Now, lastExactPosUpd) < 250{ms} then Exit;
+      if MilliSecondsBetween(Now, lastExactPosUpd) < 250 { ms } then
+        Exit;
       lastExactPosUpd := Now;
     end;
 
@@ -149,19 +157,19 @@ begin
   end;
 end;
 
-procedure TDLG_Statusanzeige.SetPosition(const Value: integer);
+procedure TDLG_Statusanzeige.SetPosition(const Value: Integer);
 begin
   ProgressBar1.Progress := Value;
 
-  if Progressbar1.Progress > (Progressbar1.MaxValue shr 1) then
+  if ProgressBar1.Progress > (ProgressBar1.MaxValue shr 1) then
   begin
-    if Progressbar1.Font.Color <> clWhite then
-      Progressbar1.Font.Color := clWhite;
+    if ProgressBar1.Font.Color <> clWhite then
+      ProgressBar1.Font.Color := clWhite;
   end
   else
   begin
-    if Progressbar1.Font.Color <> clBlack then
-      Progressbar1.Font.Color := clBlack;
+    if ProgressBar1.Font.Color <> clBlack then
+      ProgressBar1.Font.Color := clBlack;
   end;
 
   UpdateExactPosition;
@@ -196,21 +204,21 @@ end;
 
 procedure TDLG_Statusanzeige.SetShowTime(bNew: boolean);
 begin
-   bShowTime := bNew;
-   if bShowTime then
-   begin
-     Panel3.Width := 248;
-     LabelRestzeit.Caption := 'Restzeit (ca.): xx:xx';
-     dStartzeit := time;
-     TimerRestzeit.Enabled := true;
-     LabelRestzeit.Visible := true;
-   end
-   else
-   begin
-     TimerRestzeit.Enabled := false;
-     LabelRestzeit.Visible := false;
-     Panel3.Width := 348;
-   end;
+  bShowTime := bNew;
+  if bShowTime then
+  begin
+    Panel3.Width := 248;
+    LabelRestzeit.Caption := 'Restzeit (ca.): xx:xx';
+    dStartzeit := time;
+    TimerRestzeit.Enabled := true;
+    LabelRestzeit.Visible := true;
+  end
+  else
+  begin
+    TimerRestzeit.Enabled := false;
+    LabelRestzeit.Visible := false;
+    Panel3.Width := 348;
+  end;
 end;
 
 procedure TDLG_Statusanzeige.SetText(const Value: string);
@@ -229,33 +237,35 @@ var
   secFehlen: Integer;
 
 begin
-   if ProgressBar1.Progress = 0 then exit;
+  if ProgressBar1.Progress = 0 then
+    Exit;
 
-   // Das ist notwendig, da wir in ProgrDlg kein ProcessMessages verwenden dürfen.
-   // Daher müssen wir in ProgrDlg.pas diese Funktion bei jedem Tick manuell anschupsen.
-   // TODO: Problematisch: Wenn jeder Tick länger als 1 Sekunde dauert, dann ist es auch nicht optimal...
-   if MilliSecondsBetween(Now, lastTimerUpd) < TimerRestzeit.Interval then Exit;
+  // Das ist notwendig, da wir in ProgrDlg kein ProcessMessages verwenden dürfen.
+  // Daher müssen wir in ProgrDlg.pas diese Funktion bei jedem Tick manuell anschupsen.
+  // TODO: Problematisch: Wenn jeder Tick länger als 1 Sekunde dauert, dann ist es auch nicht optimal...
+  if MilliSecondsBetween(Now, lastTimerUpd) < TimerRestzeit.Interval then
+    Exit;
 
-   {$REGION 'Zeitbestimmung'}
-   if (ProgressBar1.Progress = 0) or (ProgressBar1.MaxValue = 0) then
-   begin
-     // DIV0 verhindern
-     LabelRestzeit.Caption := 'Restzeit ca. xx:xx';
-   end
-   else
-   begin
-     secZeitverstrichen := (Time - dStartzeit) * (60*60*24);
-     prozentFortschritt := ProgressBar1.Progress/ProgressBar1.MaxValue*100;
-     secGesamtzeit := secZeitverstrichen/prozentFortschritt*100;
-     secFehlen := Ceil(secGesamtzeit - secZeitverstrichen);
+{$REGION 'Zeitbestimmung'}
+  if (ProgressBar1.Progress = 0) or (ProgressBar1.MaxValue = 0) then
+  begin
+    // DIV0 verhindern
+    LabelRestzeit.Caption := 'Restzeit ca. xx:xx';
+  end
+  else
+  begin
+    secZeitverstrichen := (time - dStartzeit) * (60 * 60 * 24);
+    prozentFortschritt := ProgressBar1.Progress / ProgressBar1.MaxValue * 100;
+    secGesamtzeit := secZeitverstrichen / prozentFortschritt * 100;
+    secFehlen := Ceil(secGesamtzeit - secZeitverstrichen);
 
-     iMinuten := secFehlen div 60;
-     iSekunden := secFehlen mod 60;
-     LabelRestzeit.Caption := format('Restzeit ca. %2.2d:%2.2d', [iMinuten, iSekunden]);
-   end;
-   {$ENDREGION}
-
-   lastTimerUpd := Now;
+    iMinuten := secFehlen div 60;
+    iSekunden := secFehlen mod 60;
+    LabelRestzeit.Caption := format('Restzeit ca. %2.2d:%2.2d',
+      [iMinuten, iSekunden]);
+  end;
+{$ENDREGION}
+  lastTimerUpd := Now;
 end;
 
 end.

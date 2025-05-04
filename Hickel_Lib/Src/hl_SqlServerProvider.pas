@@ -2,8 +2,10 @@ unit hl_SqlServerProvider;
 
 interface
 
-function SqlServerProvider(NoCache: boolean=false): string; // gibt den NEUSTEN SQL-Provider zurück oder den Debug-Hartkodierten Provider
-function SqlServerProviderCompat(NoCache: boolean=false): string; // gibt den ÄLTESTEN SQL-Provider zurück
+function SqlServerProvider(NoCache: boolean = false): string;
+// gibt den NEUSTEN SQL-Provider zurück oder den Debug-Hartkodierten Provider
+function SqlServerProviderCompat(NoCache: boolean = false): string;
+// gibt den ÄLTESTEN SQL-Provider zurück
 function ProviderIsInstalled(Provider: string): boolean;
 
 implementation
@@ -11,10 +13,9 @@ implementation
 uses
   Registry, Windows, SysUtils;
 
-threadvar
-  _SqlServerProvider_Cache: string;
+threadvar _SqlServerProvider_Cache: string;
 
-function SqlServerProvider(NoCache: boolean=false): string;
+function SqlServerProvider(NoCache: boolean = false): string;
 var
   reg: TRegistry;
 begin
@@ -72,7 +73,7 @@ end;
 var
   _SqlServerProviderCompat_Cache: string = '';
 
-function SqlServerProviderCompat(NoCache: boolean=false): string;
+function SqlServerProviderCompat(NoCache: boolean = false): string;
 var
   reg: TRegistry;
 begin
@@ -137,27 +138,32 @@ begin
   reg := TRegistry.Create;
   try
     reg.RootKey := HKEY_CLASSES_ROOT;
-    if (Provider='SQLOLEDB') and reg.KeyExists('CLSID\{0C7FF16C-38E3-11d0-97AB-00C04FC2AD98}') then
+    if (Provider = 'SQLOLEDB') and
+      reg.KeyExists('CLSID\{0C7FF16C-38E3-11d0-97AB-00C04FC2AD98}') then
     begin
       result := true; // Generation 1
       exit;
     end;
-    if (Provider='SQLNCLI10') and reg.KeyExists('CLSID\{8F4A6B68-4F36-4e3c-BE81-BC7CA4E9C45C}') then
+    if (Provider = 'SQLNCLI10') and
+      reg.KeyExists('CLSID\{8F4A6B68-4F36-4e3c-BE81-BC7CA4E9C45C}') then
     begin
       result := true; // Generation 2, Version 10
       exit;
     end;
-    if (Provider='SQLNCLI11') and reg.KeyExists('CLSID\{397C2819-8272-4532-AD3A-FB5E43BEAA39}') then
+    if (Provider = 'SQLNCLI11') and
+      reg.KeyExists('CLSID\{397C2819-8272-4532-AD3A-FB5E43BEAA39}') then
     begin
       result := true; // Generation 2, Version 11
       exit;
     end;
-    if (Provider='MSOLEDBSQL') and reg.KeyExists('CLSID\{5A23DE84-1D7B-4A16-8DED-B29C09CB648D}') then
+    if (Provider = 'MSOLEDBSQL') and
+      reg.KeyExists('CLSID\{5A23DE84-1D7B-4A16-8DED-B29C09CB648D}') then
     begin
       result := true; // Generation 3
       exit;
     end;
-    if (Provider='MSOLEDBSQL19') and reg.KeyExists('CLSID\{EE5DE99A-4453-4C96-861C-F8832A7F59FE}') then
+    if (Provider = 'MSOLEDBSQL19') and
+      reg.KeyExists('CLSID\{EE5DE99A-4453-4C96-861C-F8832A7F59FE}') then
     begin
       result := true; // Generation 3, Version 19+
       exit;

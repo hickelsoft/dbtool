@@ -3,7 +3,8 @@ unit OpenMySqlDb;
 interface
 
 uses
-  Windows, Classes, Controls, StdCtrls, Forms, ADODB, Registry, Buttons, SysUtils,
+  Windows, Classes, Controls, StdCtrls, Forms, ADODB, Registry, Buttons,
+  SysUtils,
   Vcl.Graphics, Vcl.ExtCtrls;
 
 type
@@ -51,7 +52,8 @@ begin
   // Letzten ausgewählten SQL-Server auslesen
   aReg := TRegIniFile.Create(ConfigRegKey);
   try
-    eServer.Text := aReg.ReadString('MRU', 'MySql', 'localhost'); // do not localize
+    eServer.Text := aReg.ReadString('MRU', 'MySql', 'localhost');
+    // do not localize
     FServerChanged := false;
   finally
     FreeAndNil(aReg);
@@ -66,7 +68,7 @@ var
   sl: TStringList;
 begin
   fileToOpen := GetMySQLDBListFilename;
-  {$REGION 'Create empty file if required'}
+{$REGION 'Create empty file if required'}
   if not DirectoryExists(ExtractFilePath(fileToOpen)) then
   begin
     ForceDirectories(ExtractFilePath(fileToOpen));
@@ -80,7 +82,7 @@ begin
       FreeAndNil(sl);
     end;
   end;
-  {$ENDREGION}
+{$ENDREGION}
   ShellExecute(Handle, 'open', PChar(fileToOpen), '', '', SW_NORMAL);
 end;
 
@@ -99,7 +101,9 @@ begin
   lbDatabases.Items.Clear;
   DB_ADO := TADOConnection.Create(nil);
   try
-    DB_ADO.ConnectionString := 'Provider=MSDASQL.1;Persist Security Info=False;Extended Properties=\"driver={mysql};database=mysql;server=' + eServer.Text + ';"'; // do not localize
+    DB_ADO.ConnectionString :=
+      'Provider=MSDASQL.1;Persist Security Info=False;Extended Properties=\"driver={mysql};database=mysql;server='
+      + eServer.Text + ';"'; // do not localize
     DB_ADO.LoginPrompt := false;
     DB_ADO.Connected := true;
 
@@ -111,7 +115,8 @@ begin
     while not aQuery.Eof do
     begin
       sBuf := aQuery.Fields.Fields[0].AsString;
-      if sBuf <> 'mysql' then lbDatabases.Items.Add(sBuf); // do not localize
+      if sBuf <> 'mysql' then
+        lbDatabases.Items.Add(sBuf); // do not localize
       aQuery.Next;
     end;
   finally
@@ -143,11 +148,15 @@ begin
     finally
       FreeAndNil(aReg);
     end;
-    if fsModal in FormState then ModalResult := mrOk else Close;
+    if fsModal in FormState then
+      ModalResult := mrOk
+    else
+      Close;
   end
   else
   begin
-    Application.MessageBox(PChar(SNoDatabaseSelected), PChar(Application.Title), MB_ICONEXCLAMATION + MB_OK);
+    Application.MessageBox(PChar(SNoDatabaseSelected), PChar(Application.Title),
+      MB_ICONEXCLAMATION + MB_OK);
     lbDatabases.SetFocus;
   end;
 end;

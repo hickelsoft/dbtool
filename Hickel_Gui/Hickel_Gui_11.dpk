@@ -38,7 +38,8 @@ requires
   Hickel_Lib_11;
 
 contains
-  hg_InputQuery in 'Src\hg_InputQuery.pas' {hgInputQry},
-  hg_CheckboxVoransicht in 'Src\hg_CheckboxVoransicht.pas' {DLG_CheckboxVoransicht};
+  hg_InputQuery in 'Src\hg_InputQuery.pas' { hgInputQry } ,
+  hg_CheckboxVoransicht
+    in 'Src\hg_CheckboxVoransicht.pas' { DLG_CheckboxVoransicht };
 
 end.

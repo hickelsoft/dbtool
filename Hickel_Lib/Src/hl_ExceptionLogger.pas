@@ -1,7 +1,7 @@
 unit hl_ExceptionLogger;
 
 // TODO: Eine API zur Verfügung stellen, mit der Anwendungen eigene Felder
-//       zum Stacktrace hinzufügen können (z.B. MandantNr etc).
+// zum Stacktrace hinzufügen können (z.B. MandantNr etc).
 
 interface
 
@@ -9,33 +9,36 @@ uses
   Classes, SysUtils, hl_Log, hl.Utils, hl_Exceptions;
 
 type
-  EHlBedienfehler = class(ThlException); // für diese Exceptions wird kein Stacktrace erstellt
+  EHlBedienfehler = class(ThlException);
+  // für diese Exceptions wird kein Stacktrace erstellt
 
   ThlExceptionLogger = record
     /// <summary>Speichert alle notwendigen Informationen über eine Exception, inklusive CallStack (benötigt JEDI).</summary>
     /// <remarks>Damit der Call-Stack funktioniert, muss "Mapping" in den Linker-Einstellungen auf Detailliert gestellt werden. Weitere Informationen im Ordner "Dokumentation Entwicklung".</remarks>
     /// <author>Daniel Marschall</author>
-    class procedure LogException(e: Exception; hlExceptionLog: ThlLog=nil); static;
+    class procedure LogException(e: Exception;
+      hlExceptionLog: ThlLog = nil); static;
   end;
 
 implementation
 
 uses
-// Delphi 2007:
-// Für die Unit JclDebug muss JEDI Installiert sein (VCL_JEDI\Install.bat ausführen und Anweisungen folgen).
-// Manchmal, wenn er hier hängt, muss auch einfach nur Delphi neu gestartet werden.
-// Delphi 11:
-// JEDI über GetIt PackageManager installieren,
-// danach install.bat aufrufen über c:\Users\dmarschall.HICKELSOFT\Documents\Embarcadero\Studio\22.0\CatalogRepository\JEDICodeLibraryJCL-2022.02\
+  // Delphi 2007:
+  // Für die Unit JclDebug muss JEDI Installiert sein (VCL_JEDI\Install.bat ausführen und Anweisungen folgen).
+  // Manchmal, wenn er hier hängt, muss auch einfach nur Delphi neu gestartet werden.
+  // Delphi 11:
+  // JEDI über GetIt PackageManager installieren,
+  // danach install.bat aufrufen über c:\Users\dmarschall.HICKELSOFT\Documents\Embarcadero\Studio\22.0\CatalogRepository\JEDICodeLibraryJCL-2022.02\
   JclDebug, Windows, Dateutils;
 
 var
   UniqueProcessGUID: TGUID;
   StartTime: TDateTime;
 
-{ ThlExceptionLogger }
+  { ThlExceptionLogger }
 
-class procedure ThlExceptionLogger.LogException(e: Exception; hlExceptionLog: ThlLog=nil);
+class procedure ThlExceptionLogger.LogException(e: Exception;
+  hlExceptionLog: ThlLog = nil);
 var
   slCallStack: TStringList;
   i: integer;
@@ -46,8 +49,10 @@ var
   dateidatum: TDateTime;
   sDateiDatum: string;
 begin
-  if e is EAbort then exit;
-  if e is EHlBedienfehler then exit;
+  if e is EAbort then
+    exit;
+  if e is EHlBedienfehler then
+    exit;
 
   tempAssign := not Assigned(hlExceptionLog);
   if tempAssign then
@@ -59,19 +64,21 @@ begin
 
     if FileAge(ParamStr(0), dateidatum) then
     begin
-      sDateiDatum := DateTimeToStr(DateiDatum);
+      sDateiDatum := DateTimeToStr(dateidatum);
     end
     else
     begin
       sDateiDatum := '???';
     end;
 
-    hlExceptionLog.Write('------------------------------------ A U S N A H M E F E H L E R ----------------------------------');
+    hlExceptionLog.
+      Write('------------------------------------ A U S N A H M E F E H L E R ----------------------------------');
     // TODO: Stacktrace-Dateiname auch mitangeben
     hlExceptionLog.Write('Fehlerzeitp.: ' + DateTimeToStr(Now));
     hlExceptionLog.Write('');
     hlExceptionLog.Write('Anwendung:    ' + ParamStr(0));
-    hlExceptionLog.Write('Dateiversion: ' + ThlUtils.GetFileVersion(ParamStr(0)));
+    hlExceptionLog.Write('Dateiversion: ' + ThlUtils.GetFileVersion
+      (ParamStr(0)));
     hlExceptionLog.Write('Dateidatum:   ' + sDateiDatum);
     hlExceptionLog.Write('');
     hlExceptionLog.Write('Prozess ID:   ' + IntToStr(GetCurrentProcessId));
@@ -81,7 +88,8 @@ begin
     hlExceptionLog.Write('');
 
     m := SecondsBetween(Now, StartTime);
-    hlExceptionLog.Write('Laufzeit:     ' + Format('%2.2d:%2.2d:%2.2d',[m div 3600, m mod 3600 div 60,m mod 60]));
+    hlExceptionLog.Write('Laufzeit:     ' + Format('%2.2d:%2.2d:%2.2d',
+      [m div 3600, m mod 3600 div 60, m mod 60]));
 
     for i := 1 to ParamCount do
     begin
@@ -118,7 +126,8 @@ begin
     finally
       FreeAndNil(slCallStack);
     end;
-    hlExceptionLog.Write('---------------------------------------------------------------------------------------------------');
+    hlExceptionLog.
+      Write('---------------------------------------------------------------------------------------------------');
     hlExceptionLog.Write('');
   finally
     if tempAssign then
@@ -129,13 +138,16 @@ begin
 end;
 
 initialization
-  Include(JclStackTrackingOptions, stRawMode); // TODO: mehr Optionen?
-  Include(JclStackTrackingOptions, stStaticModuleList);
-  JclStartExceptionTracking;
 
-  CreateGUID(UniqueProcessGUID);
-  StartTime := Now;
+Include(JclStackTrackingOptions, stRawMode); // TODO: mehr Optionen?
+Include(JclStackTrackingOptions, stStaticModuleList);
+JclStartExceptionTracking;
+
+CreateGUID(UniqueProcessGUID);
+StartTime := Now;
 
 finalization
-  JclStopExceptionTracking;
+
+JclStopExceptionTracking;
+
 end.

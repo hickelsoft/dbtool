@@ -5,49 +5,50 @@ interface
 uses
   Types, Math, SysUtils;
 
-  {$REGION 'Operatoren Vorlage'}
-  // http://docwiki.embarcadero.com/RADStudio/Seattle/de/%C3%9Cberladene_Operatoren_%28Delphi%29
-  (*
-    class operator Add(const Left, Right: Decimal): Decimal;
-    class operator Dec(const D: Decimal): Decimal;
-    class operator Divide(const Left, Right: Decimal): Decimal;
-    class operator Equal(const Left, Right: Decimal): Boolean;
-    class operator GreaterThan(const Left, Right: Decimal): Boolean;
-    class operator GreaterThanOrEqual(const Left, Right: Decimal): Boolean;
-    class operator Implicit(const C: Cardinal): Decimal;
-    class operator Implicit(const c: Currency): Decimal;
-    class operator Implicit(const D: Decimal): Currency;
-    class operator Implicit(const D: Decimal): Extended;
-    class operator Implicit(const D: Decimal): Int64;
-    class operator Implicit(const D: Decimal): Longint;
-    class operator Implicit(const D: Decimal): Longword;
-    class operator Implicit(const D: Decimal): string;
-    class operator Implicit(const D: Decimal): UInt64;
-    class operator Implicit(const D: Double): Decimal;
-    class operator Implicit(const E: Extended): Decimal;
-    class operator Implicit(const I: Integer): Decimal;
-    class operator Implicit(const I64: Int64): Decimal;
-    class operator Implicit(const S: Single): Decimal;
-    class operator Implicit(const S: string): Decimal;
-    class operator Implicit(const UI64: UInt64): Decimal;
-    class operator Inc(const D: Decimal): Decimal;
-    class operator LessThan(const Left, Right: Decimal): Boolean;
-    class operator LessThanOrEqual(const Left, Right: Decimal): Boolean;
-    class operator Modulus(const Dividend, Divisor: Decimal): Decimal;
-    class operator Multiply(const Left, Right: Decimal): Decimal;
-    class operator Negative(const D: Decimal): Decimal;
-    class operator NotEqual(const Left, Right: Decimal): Boolean;
-    class operator Positive(const D: Decimal): Decimal;
-    class operator Round(const D: Decimal): Decimal;
-    class operator Subtract(const Left, Right: Decimal): Decimal;
-    class operator Trunc(const D: Decimal): Decimal;
-  *)
-  {$ENDREGION}
+{$REGION 'Operatoren Vorlage'}
+// http://docwiki.embarcadero.com/RADStudio/Seattle/de/%C3%9Cberladene_Operatoren_%28Delphi%29
+(*
+  class operator Add(const Left, Right: Decimal): Decimal;
+  class operator Dec(const D: Decimal): Decimal;
+  class operator Divide(const Left, Right: Decimal): Decimal;
+  class operator Equal(const Left, Right: Decimal): Boolean;
+  class operator GreaterThan(const Left, Right: Decimal): Boolean;
+  class operator GreaterThanOrEqual(const Left, Right: Decimal): Boolean;
+  class operator Implicit(const C: Cardinal): Decimal;
+  class operator Implicit(const c: Currency): Decimal;
+  class operator Implicit(const D: Decimal): Currency;
+  class operator Implicit(const D: Decimal): Extended;
+  class operator Implicit(const D: Decimal): Int64;
+  class operator Implicit(const D: Decimal): Longint;
+  class operator Implicit(const D: Decimal): Longword;
+  class operator Implicit(const D: Decimal): string;
+  class operator Implicit(const D: Decimal): UInt64;
+  class operator Implicit(const D: Double): Decimal;
+  class operator Implicit(const E: Extended): Decimal;
+  class operator Implicit(const I: Integer): Decimal;
+  class operator Implicit(const I64: Int64): Decimal;
+  class operator Implicit(const S: Single): Decimal;
+  class operator Implicit(const S: string): Decimal;
+  class operator Implicit(const UI64: UInt64): Decimal;
+  class operator Inc(const D: Decimal): Decimal;
+  class operator LessThan(const Left, Right: Decimal): Boolean;
+  class operator LessThanOrEqual(const Left, Right: Decimal): Boolean;
+  class operator Modulus(const Dividend, Divisor: Decimal): Decimal;
+  class operator Multiply(const Left, Right: Decimal): Decimal;
+  class operator Negative(const D: Decimal): Decimal;
+  class operator NotEqual(const Left, Right: Decimal): Boolean;
+  class operator Positive(const D: Decimal): Decimal;
+  class operator Round(const D: Decimal): Decimal;
+  class operator Subtract(const Left, Right: Decimal): Decimal;
+  class operator Trunc(const D: Decimal): Decimal;
+*)
+{$ENDREGION}
 
 type
   TIntegerArray = array of Integer;
 
-  {$REGION 'Interface hlString'}
+{$REGION 'Interface hlString'}
+
 type
   hlString = record
   strict private
@@ -65,43 +66,44 @@ type
     // -- DM 17.03.2016
     dummy: byte;
   public
-    function Length: integer;
+    function Length: Integer;
     function toString: string;
-    function toInteger(werfeException: boolean = false): integer;
+    function toInteger(werfeException: boolean = false): Integer;
     function toSQLString: string;
-    function toSQLObjectName(withoutDBO: boolean=false): string;
+    function toSQLObjectName(withoutDBO: boolean = false): string;
     function toFileName: string;
     function endsWith(ending: hlString; ignoreCase: boolean = false): boolean;
-    function beginsWith(beginning: hlString; ignoreCase: boolean = false): boolean;
+    function beginsWith(beginning: hlString;
+      ignoreCase: boolean = false): boolean;
     function toUpperCase: hlString;
     function toLowerCase: hlString;
-    function Trunc(len: integer): hlString;
+    function Trunc(len: Integer): hlString;
     function isEmpty: boolean;
     function trim: hlString;
-    function contains(substr: hlString; caseSensitive: boolean=true): boolean;
-    function Replace(search, replace: hlString): hlString;
+    function contains(substr: hlString; caseSensitive: boolean = true): boolean;
+    function Replace(search, Replace: hlString): hlString;
     function IncludeTrailingPathDelimiter: hlString;
-    function LeftPad(howMany: integer; padChar: char): hlString;
-    function RightPad(howMany: integer; padChar: char): hlString;
+    function LeftPad(howMany: Integer; padChar: char): hlString;
+    function RightPad(howMany: Integer; padChar: char): hlString;
 
     /// <summary>Führt die Copy Funktion durch</summary>
-    ///  <param name="offset">1-basierender Index im String</param>
-    ///  <param name="length">Wie lange soll der Ausgabestring sein?</param>
-    ///  <returns>Geschnittener String</returns>
-    function SubString(offset, length: integer): hlString;
+    /// <param name="offset">1-basierender Index im String</param>
+    /// <param name="length">Wie lange soll der Ausgabestring sein?</param>
+    /// <returns>Geschnittener String</returns>
+    function SubString(offset, Length: Integer): hlString;
 
     class operator Add(const Left: hlString; Right: hlString): hlString;
     class operator Implicit(const s: string): hlString;
     class operator Implicit(const s: hlString): string;
     class operator Implicit(const s: hlString): WideString;
-    class operator Implicit(const i: integer): hlString;
+    class operator Implicit(const i: Integer): hlString;
     class operator Equal(const Left, Right: hlString): boolean;
     class operator NotEqual(const Left, Right: hlString): boolean;
     constructor Create(const aWert: string);
   end;
-  {$ENDREGION}
+{$ENDREGION}
+{$REGION 'Interface hlInteger'}
 
-  {$REGION 'Interface hlInteger'}
 type
   hlInteger = record
   strict private
@@ -110,17 +112,18 @@ type
     max: int64;
     function EnsureInRange(i: int64): int64;
   public
-    function toInteger: integer;
+    function toInteger: Integer;
     function toString: string;
     function toDouble: double;
     function toSQLString: string;
-    function CompareTo(i: integer): TValueRelationship;
+    function CompareTo(i: Integer): TValueRelationship;
     function TryParse(const s: string): boolean;
-    function Between(lo, hi: hlInteger; einschliesslich: boolean=true): boolean;
+    function Between(lo, hi: hlInteger;
+      einschliesslich: boolean = true): boolean;
     function LowerLimit(limit: hlInteger): hlInteger;
     function UpperLimit(limit: hlInteger): hlInteger;
     class operator Implicit(const i: int64): hlInteger;
-    class operator Implicit(const i: integer): hlInteger;
+    class operator Implicit(const i: Integer): hlInteger;
     class operator Implicit(const i: hlInteger): int64;
     class operator Implicit(const i: hlInteger): string;
     class operator Implicit(const s: string): hlInteger;
@@ -129,22 +132,22 @@ type
     class operator Add(const Left: hlInteger; Right: int64): hlInteger;
     class operator Add(const Left: hlString; Right: hlInteger): hlString;
     class operator Subtract(const Left: hlInteger; Right: int64): hlInteger;
-    class operator NotEqual(const Left, Right: hlInteger): Boolean;
-    class operator LessThan(const Left, Right: hlInteger): Boolean;
-    class operator LessThanOrEqual(const Left, Right: hlInteger): Boolean;
-    class operator GreaterThan(const Left, Right: hlInteger): Boolean;
-    class operator GreaterThanOrEqual(const Left, Right: hlInteger): Boolean;
+    class operator NotEqual(const Left, Right: hlInteger): boolean;
+    class operator LessThan(const Left, Right: hlInteger): boolean;
+    class operator LessThanOrEqual(const Left, Right: hlInteger): boolean;
+    class operator GreaterThan(const Left, Right: hlInteger): boolean;
+    class operator GreaterThanOrEqual(const Left, Right: hlInteger): boolean;
     class operator Negative(x: hlInteger): hlInteger;
     function IntMod(teiler: hlInteger): hlInteger;
     constructor Create(wert: int64); overload;
     constructor Create(wert, min, max: int64); overload;
     constructor Create(min, max: int64); overload;
-    constructor CreateUInt32(dummy: integer);
-    constructor CreateInt64(dummy: integer);
+    constructor CreateUInt32(dummy: Integer);
+    constructor CreateInt64(dummy: Integer);
   end;
-  {$ENDREGION}
+{$ENDREGION}
+{$REGION 'Interface hlDecimal'}
 
-  {$REGION 'Interface hlDecimal'}
 type
   hlDecimal = record
   strict private
@@ -154,41 +157,43 @@ type
     function toDouble: double;
     function toSQLString: string;
     function toString: string; overload;
-    function toString(gesamtlänge, nachkommastellen: integer): string; overload;
-    function toString(gesamtlänge, nachkommastellen: integer; fillchar: char): string; overload;
+    function toString(gesamtlänge, nachkommastellen: Integer): string; overload;
+    function toString(gesamtlänge, nachkommastellen: Integer; fillchar: char)
+      : string; overload;
     function CompareTo(d: double): TValueRelationship;
-    function RundeToStelle(stelle: integer): hlDecimal;
+    function RundeToStelle(stelle: Integer): hlDecimal;
     function TryParse(const s: string): boolean;
-    function Between(lo, hi: hlDecimal; einschliesslich: boolean=true): boolean;
+    function Between(lo, hi: hlDecimal;
+      einschliesslich: boolean = true): boolean;
     function LowerLimit(limit: hlDecimal): hlDecimal;
     function UpperLimit(limit: hlDecimal): hlDecimal;
-    class operator Implicit(const d: Double): hlDecimal;
-    class operator Implicit(const d: hlDecimal): Double;
+    class operator Implicit(const d: double): hlDecimal;
+    class operator Implicit(const d: hlDecimal): double;
     class operator Implicit(const i: hlInteger): hlDecimal;
     class operator Implicit(const s: string): hlDecimal;
     class operator Implicit(const s: hlString): hlDecimal;
     class operator Equal(const Left, Right: hlDecimal): boolean;
-    class operator NotEqual(const Left, Right: hlDecimal): Boolean;
-    class operator LessThan(const Left, Right: hlDecimal): Boolean;
-    class operator LessThanOrEqual(const Left, Right: hlDecimal): Boolean;
-    class operator GreaterThan(const Left, Right: hlDecimal): Boolean;
-    class operator GreaterThanOrEqual(const Left, Right: hlDecimal): Boolean;
+    class operator NotEqual(const Left, Right: hlDecimal): boolean;
+    class operator LessThan(const Left, Right: hlDecimal): boolean;
+    class operator LessThanOrEqual(const Left, Right: hlDecimal): boolean;
+    class operator GreaterThan(const Left, Right: hlDecimal): boolean;
+    class operator GreaterThanOrEqual(const Left, Right: hlDecimal): boolean;
     class operator Multiply(const Left, Right: hlDecimal): hlDecimal;
     class operator Modulus(const Dividend, Divisor: hlDecimal): hlDecimal;
-    class operator Trunc(const D: hlDecimal): hlDecimal;
+    class operator Trunc(const d: hlDecimal): hlDecimal;
     class operator Divide(const Left, Right: hlDecimal): hlDecimal;
     class operator Add(const Left, Right: hlDecimal): hlDecimal;
     class operator Subtract(const Left, Right: hlDecimal): hlDecimal;
     class operator Negative(x: hlDecimal): hlDecimal;
-    constructor Create(AWert: double; AEpsilon: Extended);
+    constructor Create(aWert: double; AEpsilon: Extended);
   end;
-  {$ENDREGION}
+{$ENDREGION}
+{$REGION 'Interface hlBoolean'}
 
-  {$REGION 'Interface hlBoolean'}
 type
   hlBoolean = record
   strict private
-    wert: Boolean;
+    wert: boolean;
     class function StrToBool(s: hlString): boolean; static;
   public
     function toString: string;
@@ -199,12 +204,12 @@ type
     class operator Implicit(const s: hlString): hlBoolean;
     class operator Implicit(const b: boolean): hlBoolean;
     class operator Implicit(const b: hlBoolean): boolean;
-    class operator Equal(const Left: hlBoolean; const Right: Boolean): boolean;
+    class operator Equal(const Left: hlBoolean; const Right: boolean): boolean;
     constructor Create(aWert: boolean);
   end;
-  {$ENDREGION}
+{$ENDREGION}
+{$REGION 'Interface hlDateTime'}
 
-  {$REGION 'Interface hlDateTime'}
 type
   hlDateTime = record
   strict private
@@ -228,14 +233,15 @@ type
     class operator Implicit(const b: TDateTime): hlDateTime;
     class operator Implicit(const b: hlDateTime): TDateTime;
     class operator Implicit(const b: hlDateTime): string;
-    //class operator Equal(const Left: TDateTime; const Right: TDateTime): boolean;
-    class operator Equal(const Left: hlDateTime; const Right: hlDateTime): boolean;
-    constructor Create(awert: string); overload;
-    constructor Create(awert: TDateTime); overload;
+    // class operator Equal(const Left: TDateTime; const Right: TDateTime): boolean;
+    class operator Equal(const Left: hlDateTime;
+      const Right: hlDateTime): boolean;
+    constructor Create(aWert: string); overload;
+    constructor Create(aWert: TDateTime); overload;
   end;
-  {$ENDREGION}
+{$ENDREGION}
+{$REGION 'Interface hlGUID'}
 
-  {$REGION 'Interface hlGUID'}
 type
   /// <summary>Eine GUID (auch manchmal UUID genannt) ist eine zufällig generierte 128-Bit Zahl, die als weltweit einzigartig angesehen wird, da eine Kollissionswahrscheinlichkeit gegen 0 läuft.</summary>
   hlGUID = record
@@ -244,7 +250,7 @@ type
   public
     /// <remarks>Das Ausgabeformat ist ohne geschweifte Klammern und groß geschrieben</remarks>
     function toString: string;
-    function IsEmpty: boolean;
+    function isEmpty: boolean;
 
     /// <remarks>Das Ausgabeformat ist ohne geschweifte Klammern und groß geschrieben</remarks>
     function toSQLString: string;
@@ -254,18 +260,18 @@ type
     class operator Implicit(const b: TGUID): hlGUID;
     class operator Implicit(const b: hlGUID): TGUID;
     class operator Implicit(const b: hlGUID): string;
-    //class operator Equal(const Left: TGUID; const Right: TGUID): boolean;
+    // class operator Equal(const Left: TGUID; const Right: TGUID): boolean;
     class operator Equal(const Left: hlGUID; const Right: hlGUID): boolean;
-    constructor Create(awert: string); overload;
-    constructor Create(awert: TGUID); overload;
+    constructor Create(aWert: string); overload;
+    constructor Create(aWert: TGUID); overload;
 
     /// <summary>Generiert eine neue zufällige GUID.</summary>
-    constructor CreateNew(dummy: integer);
+    constructor CreateNew(dummy: Integer);
 
     /// <summary>Erstellt eine GUID, die mit Nullen gefüllt ist. Es ist eine GUID_NULL bzw. Nil UUID IETF RFC 4122, Abschnitt 4.1.7. Siehe auch http://oid-info.com/get/2.25.0; Diese GUID ist für Ausnahmen gedacht und unterliegt keinem Schema der Recommendation ITU-T X.667 | ISO/IEC 9834-8.</summary>
-    constructor CreateNull(dummy: integer);
+    constructor CreateNull(dummy: Integer);
   end;
-  {$ENDREGION}
+{$ENDREGION}
 
 implementation
 
@@ -273,18 +279,19 @@ uses
   FormatSettingsCompat, StrUtils, hl.Utils;
 
 {$REGION 'hlDecimal'}
-constructor hlDecimal.Create(AWert: double; AEpsilon: Extended);
+
+constructor hlDecimal.Create(aWert: double; AEpsilon: Extended);
 begin
-  self.wert := AWert;
+  self.wert := aWert;
   self.epsilon := AEpsilon;
 end;
 
-class operator hlDecimal.Implicit(const d: Double): hlDecimal;
+class operator hlDecimal.Implicit(const d: double): hlDecimal;
 begin
   result := hlDecimal.Create(d, 0);
 end;
 
-class operator hlDecimal.Implicit(const d: hlDecimal): Double;
+class operator hlDecimal.Implicit(const d: hlDecimal): double;
 begin
   result := d.wert;
 end;
@@ -304,15 +311,16 @@ begin
   result := hlDecimal.Create(i.toDouble, 0);
 end;
 
-function hlDecimal.Between(lo, hi: hlDecimal; einschliesslich: boolean=true): boolean;
+function hlDecimal.Between(lo, hi: hlDecimal;
+  einschliesslich: boolean = true): boolean;
 begin
   if einschliesslich then
   begin
-    Result := (Self >= lo) and (Self <= hi);
+    result := (self >= lo) and (self <= hi);
   end
   else
   begin
-    Result := (Self > lo) and (Self < hi);
+    result := (self > lo) and (self < hi);
   end;
 end;
 
@@ -329,27 +337,28 @@ end;
 
 class operator hlDecimal.Equal(const Left, Right: hlDecimal): boolean;
 begin
-  result := Left.compareTo(Right.wert) = 0;
+  result := Left.CompareTo(Right.wert) = 0;
 end;
 
-class operator hlDecimal.GreaterThan(const Left, Right: hlDecimal): Boolean;
+class operator hlDecimal.GreaterThan(const Left, Right: hlDecimal): boolean;
 begin
-  result := Left.compareTo(Right.wert) > 0;
+  result := Left.CompareTo(Right.wert) > 0;
 end;
 
 class operator hlDecimal.GreaterThanOrEqual(const Left,
-  Right: hlDecimal): Boolean;
+  Right: hlDecimal): boolean;
 begin
-  result := Left.compareTo(Right.wert) >= 0;
-end;
-class operator hlDecimal.LessThan(const Left, Right: hlDecimal): Boolean;
-begin
-  result := Left.compareTo(Right.wert) < 0;
+  result := Left.CompareTo(Right.wert) >= 0;
 end;
 
-class operator hlDecimal.LessThanOrEqual(const Left, Right: hlDecimal): Boolean;
+class operator hlDecimal.LessThan(const Left, Right: hlDecimal): boolean;
 begin
-  result := Left.compareTo(Right.wert) <= 0;
+  result := Left.CompareTo(Right.wert) < 0;
+end;
+
+class operator hlDecimal.LessThanOrEqual(const Left, Right: hlDecimal): boolean;
+begin
+  result := Left.CompareTo(Right.wert) <= 0;
 end;
 
 function hlDecimal.LowerLimit(limit: hlDecimal): hlDecimal;
@@ -385,18 +394,19 @@ begin
   result := -x.toDouble;
 end;
 
-class operator hlDecimal.NotEqual(const Left, Right: hlDecimal): Boolean;
+class operator hlDecimal.NotEqual(const Left, Right: hlDecimal): boolean;
 begin
-  result := Left.compareTo(Right.wert) <> 0;
+  result := Left.CompareTo(Right.wert) <> 0;
 end;
 
-function hlDecimal.RundeToStelle(stelle: integer): hlDecimal;
+function hlDecimal.RundeToStelle(stelle: Integer): hlDecimal;
 var
   multi: double;
 begin
   result := hlDecimal.Create(wert, epsilon);
   multi := IntPower(10, stelle);
-  result := round(result.wert*multi)/multi; // Round() = Kaufmännisches Runden
+  result := round(result.wert * multi) / multi;
+  // Round() = Kaufmännisches Runden
 end;
 
 class operator hlDecimal.Subtract(const Left, Right: hlDecimal): hlDecimal;
@@ -410,30 +420,32 @@ begin
   result := wert;
 end;
 
-function hlDecimal.toString(gesamtlänge, nachkommastellen: integer): string;
+function hlDecimal.toString(gesamtlänge, nachkommastellen: Integer): string;
 begin
   result := Format('%*.*f', [gesamtlänge, nachkommastellen, wert])
 end;
 
 function hlDecimal.toSQLString: string;
 begin
-  result := StringReplace(toString, FormatSettings.DecimalSeparator, '.', [rfReplaceAll]);
+  result := StringReplace(toString, FormatSettings.DecimalSeparator, '.',
+    [rfReplaceAll]);
 end;
 
-function hlDecimal.toString(gesamtlänge, nachkommastellen: integer; fillchar: char): string;
+function hlDecimal.toString(gesamtlänge, nachkommastellen: Integer;
+  fillchar: char): string;
 begin
   result := Format('%*.*f', [gesamtlänge, nachkommastellen, wert]);
   result := StringReplace(result, ' ', fillchar, [rfReplaceAll]);
 end;
 
-class operator hlDecimal.Trunc(const D: hlDecimal): hlDecimal;
+class operator hlDecimal.Trunc(const d: hlDecimal): hlDecimal;
 begin
-  result := hlDecimal.Create(System.Trunc(D.wert), D.epsilon);
+  result := hlDecimal.Create(System.Trunc(d.wert), d.epsilon);
 end;
 
 function hlDecimal.TryParse(const s: string): boolean;
 begin
-  Result := TryStrToFloat(s, wert);
+  result := TryStrToFloat(s, wert);
 end;
 
 function hlDecimal.toString: string;
@@ -441,14 +453,15 @@ begin
   result := FloatToStr(wert);
 end;
 {$ENDREGION}
-
 {$REGION 'hlString'}
+
 class operator hlString.Add(const Left: hlString; Right: hlString): hlString;
 begin
   result := hlString.Create(Left.wert + Right.wert);
 end;
 
-function hlString.beginsWith(beginning: hlString; ignoreCase: boolean = false): boolean;
+function hlString.beginsWith(beginning: hlString;
+  ignoreCase: boolean = false): boolean;
 begin
   if ignoreCase then
     result := AnsiStartsText(beginning, wert)
@@ -456,7 +469,8 @@ begin
     result := AnsiStartsStr(beginning, wert)
 end;
 
-function hlString.contains(substr: hlString; caseSensitive: boolean=true): boolean;
+function hlString.contains(substr: hlString;
+  caseSensitive: boolean = true): boolean;
 begin
   if caseSensitive then
   begin
@@ -470,12 +484,14 @@ end;
 
 constructor hlString.Create(const aWert: string);
 begin
-  dummy := dummy; // Die dummy-Variable nutzen, damit die Dumme Compilerwarnung weg geht.
+  dummy := dummy;
+  // Die dummy-Variable nutzen, damit die Dumme Compilerwarnung weg geht.
   self.wert := aWert;
   UniqueString(self.wert);
 end;
 
-function hlString.endsWith(ending: hlString; ignoreCase: boolean = false): boolean;
+function hlString.endsWith(ending: hlString;
+  ignoreCase: boolean = false): boolean;
 begin
   if ignoreCase then
     result := AnsiEndsText(ending, wert)
@@ -498,9 +514,9 @@ begin
   result := s.toString;
 end;
 
-class operator hlString.Implicit(const i: integer): hlString;
+class operator hlString.Implicit(const i: Integer): hlString;
 begin
-  Result := hlString.Create(IntToStr(i));
+  result := hlString.Create(IntToStr(i));
 end;
 
 function hlString.IncludeTrailingPathDelimiter: hlString;
@@ -510,38 +526,38 @@ end;
 
 function hlString.isEmpty: boolean;
 begin
-  result := self.Trim = '';
+  result := self.trim = '';
 end;
 
-function hlString.LeftPad(howMany: integer; padChar: char): hlString;
+function hlString.LeftPad(howMany: Integer; padChar: char): hlString;
 var
-  Counter: integer;
-  x: integer;
+  Counter: Integer;
+  x: Integer;
   NewString: string;
 begin
-  Counter := HowMany - System.Length(wert);
+  Counter := howMany - System.Length(wert);
   for x := 1 to Counter do
   begin
     NewString := NewString + padChar;
   end;
-  Result := hlString(NewString + wert);
+  result := hlString(NewString + wert);
 end;
 
-function hlString.RightPad(howMany: integer; padChar: char): hlString;
+function hlString.RightPad(howMany: Integer; padChar: char): hlString;
 var
-  Counter: integer;
-  x: integer;
+  Counter: Integer;
+  x: Integer;
   NewString: string;
 begin
-  Counter := HowMany - System.Length(wert);
+  Counter := howMany - System.Length(wert);
   for x := 1 to Counter do
   begin
     NewString := NewString + padChar;
   end;
-  Result := hlString(wert + NewString);
+  result := hlString(wert + NewString);
 end;
 
-function hlString.Length: integer;
+function hlString.Length: Integer;
 begin
   result := System.Length(wert);
 end;
@@ -551,19 +567,19 @@ begin
   result := Left.wert <> Right.wert;
 end;
 
-function hlString.Replace(search, replace: hlString): hlString;
+function hlString.Replace(search, Replace: hlString): hlString;
 begin
-  result := StringReplace(wert, search, replace, [rfReplaceAll]);
+  result := StringReplace(wert, search, Replace, [rfReplaceAll]);
 end;
 
-function hlString.SubString(offset, length: integer): hlString;
+function hlString.SubString(offset, Length: Integer): hlString;
 begin
-  result := Copy(wert, offset, length);
+  result := Copy(wert, offset, Length);
 end;
 
 class operator hlString.Implicit(const s: string): hlString;
 begin
-  Result := hlString.Create(s);
+  result := hlString.Create(s);
 end;
 
 function hlString.toFileName: string;
@@ -580,9 +596,9 @@ begin
   result := StringReplace(result, '|', '_', [rfReplaceAll]);
 end;
 
-function hlString.toInteger(werfeException: boolean = false): integer;
+function hlString.toInteger(werfeException: boolean = false): Integer;
 var
-  ec: integer;
+  ec: Integer;
 begin
   if werfeException then
     result := StrToInt(wert)
@@ -592,10 +608,10 @@ end;
 
 function hlString.toLowerCase: hlString;
 begin
-  Result := AnsiLowerCase(wert);
+  result := AnsiLowerCase(wert);
 end;
 
-function hlString.toSQLObjectName(withoutDBO: boolean=false): string;
+function hlString.toSQLObjectName(withoutDBO: boolean = false): string;
 begin
   if withoutDBO then
     result := '[' + wert + ']'
@@ -609,11 +625,11 @@ begin
 
   // Escape SQL-Argument
   (*
-  result := StringReplace(result, '\', '\\', [rfReplaceAll]);
-  result := StringReplace(result, '_', '\_', [rfReplaceAll]);
-  result := StringReplace(result, '%', '\%', [rfReplaceAll]);
-  result := StringReplace(result, '[', '\[', [rfReplaceAll]);
-  result := StringReplace(result, '''', '\''', [rfReplaceAll]);
+    result := StringReplace(result, '\', '\\', [rfReplaceAll]);
+    result := StringReplace(result, '_', '\_', [rfReplaceAll]);
+    result := StringReplace(result, '%', '\%', [rfReplaceAll]);
+    result := StringReplace(result, '[', '\[', [rfReplaceAll]);
+    result := StringReplace(result, '''', '\''', [rfReplaceAll]);
   *)
 
   // DM 29.02.2016 Irgendwie versteh ich das nicht...
@@ -623,15 +639,18 @@ begin
 
   // Verhindern, dass SQL Server denkt, es sei ein Parameterobjekt
   // Brauchen wir nur, wenn die abfrage ParamCheck=true hat.
-  // Wir haben aber in hl_Datenbank.pas das immer auf false. 
+  // Wir haben aber in hl_Datenbank.pas das immer auf false.
   // result := StringReplace(result, ':', '::', [rfReplaceAll]);
 
   // New lines
-  result := StringReplace(result, #13#10, '''+Char(13)+Char(10)+''', [rfReplaceAll]);
+  result := StringReplace(result, #13#10, '''+Char(13)+Char(10)+''',
+    [rfReplaceAll]);
   result := StringReplace(result, #13, '''+Char(13)+''', [rfReplaceAll]);
   result := StringReplace(result, #10, '''+Char(10)+''', [rfReplaceAll]);
-  result := StringReplace(result, 'Char(10)+''''+Char(', 'Char(10)+Char(', [rfReplaceAll]);
-  result := StringReplace(result, 'Char(13)+''''+Char(', 'Char(13)+Char(', [rfReplaceAll]);
+  result := StringReplace(result, 'Char(10)+''''+Char(', 'Char(10)+Char(',
+    [rfReplaceAll]);
+  result := StringReplace(result, 'Char(13)+''''+Char(', 'Char(13)+Char(',
+    [rfReplaceAll]);
 
   result := '''' + result + '''';
 end;
@@ -652,14 +671,14 @@ begin
   result := hlString.Create(SysUtils.trim(wert));
 end;
 
-function hlString.Trunc(len: integer): hlString;
+function hlString.Trunc(len: Integer): hlString;
 begin
   result := hlString.Create(Copy(wert, 1, len));
 end;
 
 {$ENDREGION}
-
 {$REGION 'hlInteger'}
+
 constructor hlInteger.Create(wert, min, max: int64);
 begin
   self.wert := wert;
@@ -674,22 +693,23 @@ end;
 
 class operator hlInteger.Add(const Left: hlString; Right: hlInteger): hlString;
 begin
-  result := Left + Right.toString;  
+  result := Left + Right.toString;
 end;
 
-function hlInteger.Between(lo, hi: hlInteger; einschliesslich: boolean): boolean;
+function hlInteger.Between(lo, hi: hlInteger; einschliesslich: boolean)
+  : boolean;
 begin
   if einschliesslich then
   begin
-    Result := (Self >= lo) and (Self <= hi);
+    result := (self >= lo) and (self <= hi);
   end
   else
   begin
-    Result := (Self > lo) and (Self < hi);
+    result := (self > lo) and (self < hi);
   end;
 end;
 
-function hlInteger.CompareTo(i: integer): TValueRelationship;
+function hlInteger.CompareTo(i: Integer): TValueRelationship;
 begin
   result := CompareValue(wert, i);
 end;
@@ -699,19 +719,20 @@ begin
   Create(0, min, max);
 end;
 
-constructor hlInteger.CreateUInt32(dummy: integer);
+constructor hlInteger.CreateUInt32(dummy: Integer);
 begin
   Create(0, 0, High(Cardinal));
 end;
 
-constructor hlInteger.CreateInt64(dummy: integer);
+constructor hlInteger.CreateInt64(dummy: Integer);
 begin
   Create(0, 0, High(int64));
 end;
 
 function hlInteger.EnsureInRange(i: int64): int64;
 resourcestring
-  LNG_RANGE_ERROR = 'Zuzuweisender Wert liegt außerhalb des gültigen Wertebereichs';
+  LNG_RANGE_ERROR =
+    'Zuzuweisender Wert liegt außerhalb des gültigen Wertebereichs';
 begin
   if (i < min) or (i > max) then
     raise ERangeError.Create(LNG_RANGE_ERROR)
@@ -721,12 +742,15 @@ end;
 
 class operator hlInteger.Add(const Left: hlInteger; Right: int64): hlInteger;
 begin
-  result := hlInteger.Create(Left.EnsureInRange(Left.wert + Right), Left.min, Left.max);
+  result := hlInteger.Create(Left.EnsureInRange(Left.wert + Right), Left.min,
+    Left.max);
 end;
 
-class operator hlInteger.Subtract(const Left: hlInteger; Right: int64): hlInteger;
+class operator hlInteger.Subtract(const Left: hlInteger; Right: int64)
+  : hlInteger;
 begin
-  result := hlInteger.Create(Left.EnsureInRange(Left.wert - Right), Left.min, Left.max);
+  result := hlInteger.Create(Left.EnsureInRange(Left.wert - Right), Left.min,
+    Left.max);
 end;
 
 class operator hlInteger.Equal(const Left: hlInteger;
@@ -735,15 +759,15 @@ begin
   result := Left.wert = Right;
 end;
 
-class operator hlInteger.GreaterThan(const Left, Right: hlInteger): Boolean;
+class operator hlInteger.GreaterThan(const Left, Right: hlInteger): boolean;
 begin
-  result := Left.compareTo(Right.wert) > 0;
+  result := Left.CompareTo(Right.wert) > 0;
 end;
 
 class operator hlInteger.GreaterThanOrEqual(const Left,
-  Right: hlInteger): Boolean;
+  Right: hlInteger): boolean;
 begin
-  result := Left.compareTo(Right.wert) >= 0;
+  result := Left.CompareTo(Right.wert) >= 0;
 end;
 
 class operator hlInteger.Implicit(const i: hlInteger): string;
@@ -768,10 +792,10 @@ end;
 
 function hlInteger.IntMod(teiler: hlInteger): hlInteger;
 begin
-  Result := (wert mod teiler.wert + teiler.wert) mod teiler.wert;
+  result := (wert mod teiler.wert + teiler.wert) mod teiler.wert;
 end;
 
-class operator hlInteger.Implicit(const i: integer): hlInteger;
+class operator hlInteger.Implicit(const i: Integer): hlInteger;
 begin
   result := hlInteger.Create(i);
 end;
@@ -781,14 +805,14 @@ begin
   result := hlInteger.Create(i); // EnsureInRange(i);
 end;
 
-class operator hlInteger.LessThan(const Left, Right: hlInteger): Boolean;
+class operator hlInteger.LessThan(const Left, Right: hlInteger): boolean;
 begin
-  result := Left.compareTo(Right.wert) < 0;
+  result := Left.CompareTo(Right.wert) < 0;
 end;
 
-class operator hlInteger.LessThanOrEqual(const Left, Right: hlInteger): Boolean;
+class operator hlInteger.LessThanOrEqual(const Left, Right: hlInteger): boolean;
 begin
-  result := Left.compareTo(Right.wert) <= 0;
+  result := Left.CompareTo(Right.wert) <= 0;
 end;
 
 function hlInteger.LowerLimit(limit: hlInteger): hlInteger;
@@ -806,9 +830,9 @@ begin
   result := -x.toInteger;
 end;
 
-class operator hlInteger.NotEqual(const Left, Right: hlInteger): Boolean;
+class operator hlInteger.NotEqual(const Left, Right: hlInteger): boolean;
 begin
-  result := Left.compareTo(Right.wert) <> 0;
+  result := Left.CompareTo(Right.wert) <> 0;
 end;
 
 function hlInteger.toDouble: double;
@@ -816,7 +840,7 @@ begin
   result := wert;
 end;
 
-function hlInteger.toInteger: integer;
+function hlInteger.toInteger: Integer;
 begin
   result := wert;
 end;
@@ -833,19 +857,19 @@ end;
 
 function hlInteger.TryParse(const s: string): boolean;
 begin
-  Result := TryStrToInt64(s, wert);
+  result := TryStrToInt64(s, wert);
 end;
 
 {$ENDREGION}
-
 {$REGION 'hlBoolean'}
+
 constructor hlBoolean.Create(aWert: boolean);
 begin
   self.wert := aWert;
 end;
 
 class operator hlBoolean.Equal(const Left: hlBoolean;
-  const Right: Boolean): boolean;
+  const Right: boolean): boolean;
 begin
   result := Left.wert = Right;
 end;
@@ -874,9 +898,13 @@ class function hlBoolean.StrToBool(s: hlString): boolean;
 resourcestring
   LNG_CONV_ERROR = '"%s" ist kein gültiger Boolean-String';
 begin
-  if (s.toLowerCase = 'true') or (s.toLowerCase = 'wahr') or (s.toLowerCase = 'ja') or (s.toLowerCase = 'yes') or (s.toLowerCase = '1')  then
+  if (s.toLowerCase = 'true') or (s.toLowerCase = 'wahr') or
+    (s.toLowerCase = 'ja') or (s.toLowerCase = 'yes') or (s.toLowerCase = '1')
+  then
     result := true
-  else if (s.toLowerCase = 'false') or (s.toLowerCase = 'falsch') or (s.toLowerCase = 'nein') or (s.toLowerCase = 'no') or (s.toLowerCase = '0')  then
+  else if (s.toLowerCase = 'false') or (s.toLowerCase = 'falsch') or
+    (s.toLowerCase = 'nein') or (s.toLowerCase = 'no') or (s.toLowerCase = '0')
+  then
     result := false
   else
     raise EConvertError.CreateFmt(LNG_CONV_ERROR, [s.toString]);
@@ -911,11 +939,11 @@ begin
     result := 'false';
 end;
 {$ENDREGION}
-
 {$REGION 'hlDateTime'}
-constructor hlDateTime.Create(awert: TDateTime);
+
+constructor hlDateTime.Create(aWert: TDateTime);
 begin
-  wert := awert;
+  wert := aWert;
 end;
 
 function hlDateTime.Date: hlDateTime;
@@ -928,9 +956,9 @@ begin
   result := wert <> 0;
 end;
 
-constructor hlDateTime.Create(awert: string);
+constructor hlDateTime.Create(aWert: string);
 begin
-  wert := StrToDateTime(awert);
+  wert := StrToDateTime(aWert);
 end;
 
 class operator hlDateTime.Equal(const Left, Right: hlDateTime): boolean;
@@ -939,10 +967,10 @@ begin
 end;
 
 (*
-class operator hlDateTime.Equal(const Left, Right: TDateTime): boolean;
-begin
+  class operator hlDateTime.Equal(const Left, Right: TDateTime): boolean;
+  begin
   result := Left = Right;
-end;
+  end;
 *)
 
 class operator hlDateTime.Implicit(const s: string): hlDateTime;
@@ -977,8 +1005,9 @@ end;
 
 function hlDateTime.toSQLString: string;
 begin
-  //result := hlString.Create(toString).toSQLString;
-  result := 'CONVERT(DATETIME, '''+toString+''', 104)'; // Format 104 = "23.08.2019"
+  // result := hlString.Create(toString).toSQLString;
+  result := 'CONVERT(DATETIME, ''' + toString + ''', 104)';
+  // Format 104 = "23.08.2019"
 end;
 
 function hlDateTime.toString: string;
@@ -986,8 +1015,9 @@ var
   datum: string;
   zeit: string;
 begin
-  datum := FormatDateTime('dd.mm.yyyy', wert); // Jahreszahl muss 4-stellig sein (Ticket 53630)
-  zeit  := FormatDateTime('hh:nn:ss', wert);
+  datum := FormatDateTime('dd.mm.yyyy', wert);
+  // Jahreszahl muss 4-stellig sein (Ticket 53630)
+  zeit := FormatDateTime('hh:nn:ss', wert);
   if zeit <> '00:00:00' then
     result := datum + ' ' + zeit
   else
@@ -1005,24 +1035,24 @@ begin
 end;
 
 {$ENDREGION}
-
 {$REGION 'hlGUID'}
-constructor hlGUID.Create(awert: TGUID);
+
+constructor hlGUID.Create(aWert: TGUID);
 begin
-  wert := awert;
+  wert := aWert;
 end;
 
-constructor hlGUID.Create(awert: string);
+constructor hlGUID.Create(aWert: string);
 begin
-  wert := StringToGUID(awert);
+  wert := StringToGUID(aWert);
 end;
 
-constructor hlGUID.CreateNew(dummy: integer);
+constructor hlGUID.CreateNew(dummy: Integer);
 begin
   CreateGUID(wert);
 end;
 
-constructor hlGUID.CreateNull(dummy: integer);
+constructor hlGUID.CreateNull(dummy: Integer);
 begin
   Create('{00000000-0000-0000-0000-000000000000}');
 end;
@@ -1033,10 +1063,10 @@ begin
 end;
 
 (*
-class operator hlGUID.Equal(const Left, Right: TGUID): boolean;
-begin
+  class operator hlGUID.Equal(const Left, Right: TGUID): boolean;
+  begin
   result := IsEqualGUID(Left, Right);
-end;
+  end;
 *)
 
 class operator hlGUID.Implicit(const s: string): hlGUID;
@@ -1072,13 +1102,13 @@ end;
 function hlGUID.toString: string;
 begin
   result := GUIDToString(wert);
-  result := Copy(result, 2, Length(result)-2); // { und } entfernen
+  result := Copy(result, 2, Length(result) - 2); // { und } entfernen
   result := AnsiUpperCase(result);
 end;
 
-function hlGUID.IsEmpty: boolean;
+function hlGUID.isEmpty: boolean;
 begin
-  result := IsEmptyGuidString(ToString);
+  result := IsEmptyGuidString(toString);
 end;
 
 {$ENDREGION}

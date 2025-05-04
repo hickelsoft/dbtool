@@ -23,11 +23,11 @@ begin
     RaiseLastOSError;
   if not VerQueryValue(Buffer, '\', Pointer(FixedPtr), Size) then
     RaiseLastOSError;
-  Result := Format('%d.%d.%d.%d',
-    [LongRec(FixedPtr.dwFileVersionMS).Hi,   //major
-     LongRec(FixedPtr.dwFileVersionMS).Lo,   //minor
-     LongRec(FixedPtr.dwFileVersionLS).Hi,   //release
-     LongRec(FixedPtr.dwFileVersionLS).Lo]); //build
+  Result := Format('%d.%d.%d.%d', [LongRec(FixedPtr.dwFileVersionMS).Hi,
+    // major
+    LongRec(FixedPtr.dwFileVersionMS).Lo, // minor
+    LongRec(FixedPtr.dwFileVersionLS).Hi, // release
+    LongRec(FixedPtr.dwFileVersionLS).Lo]); // build
 end;
 
 end.

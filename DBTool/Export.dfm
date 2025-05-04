@@ -100,6 +100,8 @@ object DLG_Export: TDLG_Export
       Left = 0
       Top = 0
       Caption = '0'
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Shape1: TShape
         Left = 164
         Top = 0
@@ -5512,6 +5514,8 @@ object DLG_Export: TDLG_Export
       Left = 0
       Top = 0
       Caption = '2'
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object SrcLabel: TLabel
         Left = 32
         Top = 80

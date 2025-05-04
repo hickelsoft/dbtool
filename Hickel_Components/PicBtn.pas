@@ -8,9 +8,10 @@ uses
 type
   THsButtonState = (bsDown, bsUp, bsFlat);
 
-  {$IF CompilerVersion > 20.0} // Version geraten
+{$IF CompilerVersion > 20.0} // Version geraten
   [ComponentPlatformsAttribute(pidWin32 or pidWin64)]
-  {$IFEND}
+{$IFEND}
+
   THsPictBtn = class(TGraphicControl)
   private
     FOwner: TComponent;
@@ -22,18 +23,18 @@ type
     FAlignment: TAlignment;
     FOffice97Look: boolean;
     bCapturing: boolean;
-      bCursorOnButton: boolean;
+    bCursorOnButton: boolean;
     FOnMouseMove: TMouseMoveEvent;
     FOnMouseDown: TMouseEvent;
     FOnMouseUp: TMouseEvent;
     FOnMouseEnter: TNotifyEvent;
     FOnMouseExit: TNotifyEvent;
     FOnClick: TNotifyEvent;
-      FState: THsButtonState;
+    FState: THsButtonState;
     bLoaded: boolean;
-      FTransparent: boolean;
+    FTransparent: boolean;
   public
-    constructor Create( AOwner: TComponent ); override;
+    constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   protected
     FLabelLeft: integer;
@@ -45,39 +46,42 @@ type
     FImageTop: integer;
     FImageWidth: integer;
 
-    procedure SetPictureEnabled( pNew: TPicture );
-    procedure SetPictureDisabled( pNew: TPicture );
-    procedure SetCaption( sNew: string );
-    procedure SetColor( cNew: TColor );
-    procedure SetEnabled( bNew: boolean ); override;
-    procedure SetLabelLeft( iNew: integer );
-    procedure SetLabelHeight( iNew: integer );
-    procedure SetLabelTop( iNew: integer );
-    procedure SetLabelWidth( iNew: integer );
-    procedure SetImageLeft( iNew: integer );
-    procedure SetImageHeight( iNew: integer );
-    procedure SetImageTop( iNew: integer );
-    procedure SetImageWidth( iNew: integer );
-    procedure SetAlignment( aNew: TAlignment );
-    procedure SetOffice97Look( bNew: boolean );
-      procedure SetTransparent( bNew: boolean );
-    procedure MouseMove( Shift: TShiftState; X, Y: Integer ); override;
-    procedure MouseDown( Button: TMouseButton; Shift: TShiftState; X, Y: Integer ); override;
-    procedure MouseUp( Button: TMouseButton; Shift: TShiftState; X, Y: Integer ); override;
-    procedure MouseHandler( Shift: TShiftState; X, Y: Integer );
+    procedure SetPictureEnabled(pNew: TPicture);
+    procedure SetPictureDisabled(pNew: TPicture);
+    procedure SetCaption(sNew: string);
+    procedure SetColor(cNew: TColor);
+    procedure SetEnabled(bNew: boolean); override;
+    procedure SetLabelLeft(iNew: integer);
+    procedure SetLabelHeight(iNew: integer);
+    procedure SetLabelTop(iNew: integer);
+    procedure SetLabelWidth(iNew: integer);
+    procedure SetImageLeft(iNew: integer);
+    procedure SetImageHeight(iNew: integer);
+    procedure SetImageTop(iNew: integer);
+    procedure SetImageWidth(iNew: integer);
+    procedure SetAlignment(aNew: TAlignment);
+    procedure SetOffice97Look(bNew: boolean);
+    procedure SetTransparent(bNew: boolean);
+    procedure MouseMove(Shift: TShiftState; X, Y: integer); override;
+    procedure MouseDown(Button: TMouseButton; Shift: TShiftState;
+      X, Y: integer); override;
+    procedure MouseUp(Button: TMouseButton; Shift: TShiftState;
+      X, Y: integer); override;
+    procedure MouseHandler(Shift: TShiftState; X, Y: integer);
     procedure Loaded; override;
-    procedure ChangeScale( M, D: Integer ); override;
-    procedure ModifyPanelBorder( bCursorOnButton: boolean; bButtonDown: boolean );
+    procedure ChangeScale(M, D: integer); override;
+    procedure ModifyPanelBorder(bCursorOnButton: boolean; bButtonDown: boolean);
     procedure CMMouseLeave(var Message: TMessage); message CM_MOUSELEAVE;
     procedure CMMouseEnter(var Message: TMessage); message CM_MOUSEENTER;
-      procedure Paint; override;
-    procedure DrawTransparentBitmap (ahdc: HDC; Image: TBitmap; xStart, yStart: Word);
+    procedure Paint; override;
+    procedure DrawTransparentBitmap(ahdc: HDC; Image: TBitmap;
+      xStart, yStart: Word);
   published
     property Anchors;
     property Alignment: TAlignment read FAlignment write SetAlignment;
     property Caption: string read FCaption write SetCaption;
     property Color: TColor read FColor write SetColor;
-      property DragCursor;
+    property DragCursor;
     property Enabled: boolean read FEnabled write SetEnabled;
     property Font;
     property LabelPos_Left: integer read FLabelLeft write SetLabelLeft;
@@ -89,12 +93,14 @@ type
     property ImagePos_Top: integer read FImageTop write SetImageTop;
     property ImagePos_Width: integer read FImageWidth write SetImageWidth;
     property Office97Look: boolean read FOffice97Look write SetOffice97Look;
-      property IsTransparent: boolean read FTransparent write SetTransparent;
+    property IsTransparent: boolean read FTransparent write SetTransparent;
     property OnDragDrop;
     property OnDragOver;
     property OnEndDrag;
-    property PictureEnabled: TPicture read FPictureEnabled write SetPictureEnabled;
-    property PictureDisabled: TPicture read FPictureDisabled write SetPictureDisabled;
+    property PictureEnabled: TPicture read FPictureEnabled
+      write SetPictureEnabled;
+    property PictureDisabled: TPicture read FPictureDisabled
+      write SetPictureDisabled;
     property ShowHint;
     property Visible;
     property PopupMenu;
@@ -116,405 +122,440 @@ begin
   RegisterComponents('Hs', [THsPictBtn]);
 end;
 
-constructor THsPictBtn.Create( AOwner: TComponent );
+constructor THsPictBtn.Create(AOwner: TComponent);
 begin
-   inherited Create( AOwner );
+  inherited Create(AOwner);
 
   bLoaded := False;
-   FOwner := AOwner;
-   ControlStyle := ControlStyle + [csSetCaption, csCaptureMouse];
-   ControlStyle := ControlStyle - [csOpaque];
+  FOwner := AOwner;
+  ControlStyle := ControlStyle + [csSetCaption, csCaptureMouse];
+  ControlStyle := ControlStyle - [csOpaque];
 
-   FPictureEnabled := TPicture.Create;
-   FPictureDisabled := TPicture.Create;
+  FPictureEnabled := TPicture.Create;
+  FPictureDisabled := TPicture.Create;
 
-   SetAlignment( taRightJustify );
+  SetAlignment(taRightJustify);
 
-   FImageLeft := 4;
-   FImageTop := 4;
-   FImageWidth := 32;
-   FImageHeight := 32;
+  FImageLeft := 4;
+  FImageTop := 4;
+  FImageWidth := 32;
+  FImageHeight := 32;
 
-   FLabelLeft := 5;
-   FLabelWidth := 90;
-   FLabelTop := 34;
-   FLabelHeight := 18;
+  FLabelLeft := 5;
+  FLabelWidth := 90;
+  FLabelTop := 34;
+  FLabelHeight := 18;
 
-   Height := 50;
-   Width := 100;
+  Height := 50;
+  Width := 100;
 
-   FEnabled := True;
-   Color := clBtnFace;
-   FState := bsUp;
+  FEnabled := True;
+  Color := clBtnFace;
+  FState := bsUp;
 
-   bCapturing := False;
+  bCapturing := False;
 end;
 
 destructor THsPictBtn.Destroy;
 begin
-   FreeAndNil(FPictureEnabled);
-   FreeAndNil(FPictureDisabled);
-   inherited Destroy;
+  FreeAndNil(FPictureEnabled);
+  FreeAndNil(FPictureDisabled);
+  inherited Destroy;
 end;
 
 procedure THsPictBtn.Paint;
 var
-   aRect1, aRect2: TRect;
-   iOffset: integer;
-   iBuffer: LongInt;
-   aBitmap: TBitmap;
-   bPaint: boolean;
-   Stretch: Extended;
+  aRect1, aRect2: TRect;
+  iOffset: integer;
+  iBuffer: LongInt;
+  aBitmap: TBitmap;
+  bPaint: boolean;
+  Stretch: Extended;
 
 begin
-  if csDestroying in ComponentState then exit;
+  if csDestroying in ComponentState then
+    exit;
 
   Canvas.Pen.Style := psClear;
   Canvas.Brush.Color := FColor;
-  if FTransparent = False then Canvas.Rectangle( 0, 0, Width+1, Height+1 );
+  if FTransparent = False then
+    Canvas.Rectangle(0, 0, Width + 1, Height + 1);
   Canvas.Pen.Style := psSolid;
 
   iOffset := 0;
-  if FState = bsDown then iOffset := 1;
+  if FState = bsDown then
+    iOffset := 1;
 
-   { Bild zeichnen, falls eins vorhanden ist }
-   if Enabled = True then bPaint := not (FPictureEnabled.Bitmap.Empty)
-  else bPaint := not (FPictureDisabled.Bitmap.Empty);
+  { Bild zeichnen, falls eins vorhanden ist }
+  if Enabled = True then
+    bPaint := not(FPictureEnabled.Bitmap.Empty)
+  else
+    bPaint := not(FPictureDisabled.Bitmap.Empty);
 
-   if bPaint = True then
-   begin
-      Stretch := Screen.PixelsPerInch / 96;
+  if bPaint = True then
+  begin
+    Stretch := Screen.PixelsPerInch / 96;
 
-      aRect1.Left               := FImageLeft + iOffset;
-      aRect1.Top                := FImageTop + iOffset;
-      aRect1.Right      := round(FImageWidth * Stretch) + FImageLeft + iOffset;
-      aRect1.Bottom     := round(FImageHeight * Stretch) + FImageTop + iOffset;
-      aRect2.Left               := 0;
-      aRect2.Top                := 0;
-      aRect2.Right      := round(FImageWidth * Stretch);
-      aRect2.Bottom     := round(FImageHeight * Stretch);
+    aRect1.Left := FImageLeft + iOffset;
+    aRect1.Top := FImageTop + iOffset;
+    aRect1.Right := round(FImageWidth * Stretch) + FImageLeft + iOffset;
+    aRect1.Bottom := round(FImageHeight * Stretch) + FImageTop + iOffset;
+    aRect2.Left := 0;
+    aRect2.Top := 0;
+    aRect2.Right := round(FImageWidth * Stretch);
+    aRect2.Bottom := round(FImageHeight * Stretch);
 
-      aBitmap := TBitmap.Create;
+    aBitmap := TBitmap.Create;
+    try
+      aBitmap.Height := round(FImageHeight * Stretch);
+      aBitmap.Width := round(FImageWidth * Stretch);
+
       try
-        aBitmap.Height := round(FImageHeight * Stretch);
-        aBitmap.Width := round(FImageWidth * Stretch);
+        if Enabled = True then
+          aBitmap.Canvas.StretchDraw(aRect2, FPictureEnabled.Bitmap)
+        else
+          aBitmap.Canvas.StretchDraw(aRect2, FPictureDisabled.Bitmap);
 
-        try
-           if Enabled = True then aBitmap.Canvas.StretchDraw(aRect2, FPictureEnabled.Bitmap)
-           else aBitmap.Canvas.StretchDraw(aRect2, FPictureDisabled.Bitmap);
-
-           if FTransparent = True then DrawTransparentBitmap(Canvas.Handle, aBitmap, aRect1.Left, aRect1.Top)
-           else Canvas.CopyRect(aRect1, aBitmap.Canvas, aRect2);
-        except
-          on E: EAbort do
-          begin
-            Abort;
-          end;
-          on E: Exception do
-          begin
-            // ignore
-          end;
+        if FTransparent = True then
+          DrawTransparentBitmap(Canvas.Handle, aBitmap, aRect1.Left, aRect1.Top)
+        else
+          Canvas.CopyRect(aRect1, aBitmap.Canvas, aRect2);
+      except
+        on E: EAbort do
+        begin
+          Abort;
         end;
-      finally
-        FreeAndNil(aBitmap);
+        on E: Exception do
+        begin
+          // ignore
+        end;
       end;
+    finally
+      FreeAndNil(aBitmap);
+    end;
   end;
 
-   { Caption zeichnen }
+  { Caption zeichnen }
   Canvas.Font := Font;
-  SetBkMode( Canvas.Handle, TRANSPARENT );
-  if Enabled = False then Canvas.Font.Color := clGray;
-   aRect1.Left          := FLabelLeft + iOffset;
-   aRect1.Top           := FLabelTop + iOffset;
-   aRect1.Right := FLabelWidth + FLabelLeft + iOffset;
-   aRect1.Bottom        := FLabelHeight + FLabelTop + iOffset;
+  SetBkMode(Canvas.Handle, TRANSPARENT);
+  if Enabled = False then
+    Canvas.Font.Color := clGray;
+  aRect1.Left := FLabelLeft + iOffset;
+  aRect1.Top := FLabelTop + iOffset;
+  aRect1.Right := FLabelWidth + FLabelLeft + iOffset;
+  aRect1.Bottom := FLabelHeight + FLabelTop + iOffset;
   iBuffer := DT_WORDBREAK;
-  if FAlignment = taRightJustify then iBuffer := iBuffer or DT_RIGHT;
-  if FAlignment = taCenter then iBuffer := iBuffer or DT_CENTER;
-  DrawText( Canvas.Handle, pCHAR( FCaption ), Length( FCaption ), aRect1, iBuffer );
+  if FAlignment = taRightJustify then
+    iBuffer := iBuffer or DT_RIGHT;
+  if FAlignment = taCenter then
+    iBuffer := iBuffer or DT_CENTER;
+  DrawText(Canvas.Handle, pCHAR(FCaption), Length(FCaption), aRect1, iBuffer);
 
-
-   { Rahmen zeichnen }
+  { Rahmen zeichnen }
   aRect1 := ClientRect;
-  if FState = bsUp then Frame3D(Canvas, aRect1, clWhite, clBlack, 1);
-  if FState = bsDown then Frame3D(Canvas, aRect1, clBlack, clWhite, 1);
+  if FState = bsUp then
+    Frame3D(Canvas, aRect1, clWhite, clBlack, 1);
+  if FState = bsDown then
+    Frame3D(Canvas, aRect1, clBlack, clWhite, 1);
 end;
 
-procedure THsPictBtn.SetCaption( sNew: string );
+procedure THsPictBtn.SetCaption(sNew: string);
 begin
-   FCaption := sNew;
-   Invalidate;
+  FCaption := sNew;
+  Invalidate;
 end;
 
-procedure THsPictBtn.SetTransparent( bNew: boolean );
+procedure THsPictBtn.SetTransparent(bNew: boolean);
 begin
   FTransparent := bNew;
   Invalidate;
 end;
 
-procedure THsPictBtn.SetImageLeft( iNew: integer );
+procedure THsPictBtn.SetImageLeft(iNew: integer);
 begin
-   FImageLeft := iNew;
-   Invalidate;
+  FImageLeft := iNew;
+  Invalidate;
 end;
 
-procedure THsPictBtn.SetImageHeight( iNew: integer );
+procedure THsPictBtn.SetImageHeight(iNew: integer);
 begin
-   FImageHeight := iNew;
-   Invalidate;
+  FImageHeight := iNew;
+  Invalidate;
 end;
 
-procedure THsPictBtn.SetImageTop( iNew: integer );
+procedure THsPictBtn.SetImageTop(iNew: integer);
 begin
-   FImageTop := iNew;
-   Invalidate;
+  FImageTop := iNew;
+  Invalidate;
 end;
 
-procedure THsPictBtn.SetImageWidth( iNew: integer );
+procedure THsPictBtn.SetImageWidth(iNew: integer);
 begin
-   FImageWidth := iNew;
-   Invalidate;
+  FImageWidth := iNew;
+  Invalidate;
 end;
 
-procedure THsPictBtn.SetLabelLeft( iNew: integer );
+procedure THsPictBtn.SetLabelLeft(iNew: integer);
 begin
-   FLabelLeft := iNew;
-   Invalidate;
+  FLabelLeft := iNew;
+  Invalidate;
 end;
 
-procedure THsPictBtn.SetLabelHeight( iNew: integer );
+procedure THsPictBtn.SetLabelHeight(iNew: integer);
 begin
-   FLabelHeight := iNew;
-   Invalidate;
+  FLabelHeight := iNew;
+  Invalidate;
 end;
 
-procedure THsPictBtn.SetLabelTop( iNew: integer );
+procedure THsPictBtn.SetLabelTop(iNew: integer);
 begin
-   FLabelTop := iNew;
-   Invalidate;
+  FLabelTop := iNew;
+  Invalidate;
 end;
 
-procedure THsPictBtn.SetLabelWidth( iNew: integer );
+procedure THsPictBtn.SetLabelWidth(iNew: integer);
 begin
-   FLabelWidth := iNew;
-   Invalidate;
+  FLabelWidth := iNew;
+  Invalidate;
 end;
 
-procedure THsPictBtn.SetPictureEnabled( pNew: TPicture );
+procedure THsPictBtn.SetPictureEnabled(pNew: TPicture);
 begin
-  FPictureEnabled.Assign( pNew );
-   Invalidate;
+  FPictureEnabled.Assign(pNew);
+  Invalidate;
 end;
 
-procedure THsPictBtn.SetPictureDisabled( pNew: TPicture );
+procedure THsPictBtn.SetPictureDisabled(pNew: TPicture);
 begin
-   FPictureDisabled.Assign( pNew );
-   Invalidate;
+  FPictureDisabled.Assign(pNew);
+  Invalidate;
 end;
 
-procedure THsPictBtn.SetColor( cNew: TColor );
+procedure THsPictBtn.SetColor(cNew: TColor);
 begin
-   FColor := cNew;
-   Invalidate;
+  FColor := cNew;
+  Invalidate;
 end;
 
-procedure THsPictBtn.SetEnabled( bNew: boolean );
+procedure THsPictBtn.SetEnabled(bNew: boolean);
 begin
-   FEnabled := bNew;
-   Invalidate;
+  FEnabled := bNew;
+  Invalidate;
 end;
 
-procedure THsPictBtn.SetAlignment( aNew: TAlignment );
+procedure THsPictBtn.SetAlignment(aNew: TAlignment);
 begin
-   FAlignment := aNew;
-   Invalidate;
+  FAlignment := aNew;
+  Invalidate;
 end;
 
 procedure THsPictBtn.CMMouseEnter(var Message: TMessage);
 begin
-   if csDesigning in ComponentState then exit;
-   bCursorOnButton := True;
-   if assigned( FOnMouseEnter ) then FOnMouseEnter( self );
+  if csDesigning in ComponentState then
+    exit;
+  bCursorOnButton := True;
+  if assigned(FOnMouseEnter) then
+    FOnMouseEnter(self);
 end;
 
 procedure THsPictBtn.CMMouseLeave(var Message: TMessage);
 begin
-   if csDesigning in ComponentState then exit;
-  ModifyPanelBorder( not FOffice97Look, False );
-   bCursorOnButton := False;
-   if assigned( FOnMouseExit ) then FOnMouseExit( self );
+  if csDesigning in ComponentState then
+    exit;
+  ModifyPanelBorder(not FOffice97Look, False);
+  bCursorOnButton := False;
+  if assigned(FOnMouseExit) then
+    FOnMouseExit(self);
 end;
 
-procedure THsPictBtn.MouseHandler( Shift: TShiftState; X, Y: Integer );
+procedure THsPictBtn.MouseHandler(Shift: TShiftState; X, Y: integer);
 begin
-   if csDesigning in ComponentState then exit;
+  if csDesigning in ComponentState then
+    exit;
 
-   ModifyPanelBorder( bCursorOnButton, ssLeft in Shift );
+  ModifyPanelBorder(bCursorOnButton, ssLeft in Shift);
 
-   if ssLeft in Shift then bCapturing := True;
+  if ssLeft in Shift then
+    bCapturing := True;
 
-   if not (ssLeft in Shift) and (bCapturing = True) then
-   begin
-      bCapturing := False;
-      if (bCursorOnButton = True) and (Assigned( FOnClick )) then
-      begin
-   ModifyPanelBorder( False, False );
-   FOnClick( self );
-      end;
-   end;
+  if not(ssLeft in Shift) and (bCapturing = True) then
+  begin
+    bCapturing := False;
+    if (bCursorOnButton = True) and (assigned(FOnClick)) then
+    begin
+      ModifyPanelBorder(False, False);
+      FOnClick(self);
+    end;
+  end;
 end;
 
-procedure THsPictBtn.ModifyPanelBorder( bCursorOnButton: boolean; bButtonDown: boolean );
+procedure THsPictBtn.ModifyPanelBorder(bCursorOnButton: boolean;
+  bButtonDown: boolean);
 begin
-  if csDesigning in ComponentState then exit;
+  if csDesigning in ComponentState then
+    exit;
 
-   if bCursorOnButton = True then
-   begin
-      if (bButtonDown = True) and (FState <> bsDown) then
-      begin
+  if bCursorOnButton = True then
+  begin
+    if (bButtonDown = True) and (FState <> bsDown) then
+    begin
       FState := bsDown;
-       Invalidate;
-      end;
-      if (bButtonDown = False) and (FState <> bsUp) then
-      begin
+      Invalidate;
+    end;
+    if (bButtonDown = False) and (FState <> bsUp) then
+    begin
       FState := bsUp;
-       Invalidate;
-      end;
-   end;
+      Invalidate;
+    end;
+  end;
 
-   if bCursorOnButton = False then
-   begin
-      if FOffice97Look = True then
+  if bCursorOnButton = False then
+  begin
+    if FOffice97Look = True then
+    begin
+      if FState <> bsFlat then
       begin
-   if FState <> bsFlat then
-   begin
         FState := bsFlat;
-         Invalidate;
-   end;
-      end
-      else
-      begin
-   if FState <> bsUp then
-   begin
-        FState := bsUp;
-         Invalidate;
-   end;
+        Invalidate;
       end;
-   end;
+    end
+    else
+    begin
+      if FState <> bsUp then
+      begin
+        FState := bsUp;
+        Invalidate;
+      end;
+    end;
+  end;
 end;
 
-procedure THsPictBtn.MouseMove( Shift: TShiftState; X, Y: Integer );
+procedure THsPictBtn.MouseMove(Shift: TShiftState; X, Y: integer);
 begin
-   if csDesigning in ComponentState then exit;
-   if FEnabled = False then exit;
-   bCursorOnButton := False;
-   if (X>=0) and (X<=Width) and (Y>=0) and (Y<=Height) then bCursorOnButton := True;
-   MouseHandler( Shift, X, Y );
-   if assigned( FOnMouseMove ) then FOnMouseMove( self, Shift, X, Y );
+  if csDesigning in ComponentState then
+    exit;
+  if FEnabled = False then
+    exit;
+  bCursorOnButton := False;
+  if (X >= 0) and (X <= Width) and (Y >= 0) and (Y <= Height) then
+    bCursorOnButton := True;
+  MouseHandler(Shift, X, Y);
+  if assigned(FOnMouseMove) then
+    FOnMouseMove(self, Shift, X, Y);
 end;
 
-procedure THsPictBtn.MouseDown( Button: TMouseButton; Shift: TShiftState; X, Y: Integer );
+procedure THsPictBtn.MouseDown(Button: TMouseButton; Shift: TShiftState;
+  X, Y: integer);
 begin
-   if csDesigning in ComponentState then exit;
-   if FEnabled = False then exit;
-   MouseHandler( Shift, X, Y );
-   if assigned( FOnMouseDown ) then FOnMouseDown( self, Button, Shift, X, Y );
+  if csDesigning in ComponentState then
+    exit;
+  if FEnabled = False then
+    exit;
+  MouseHandler(Shift, X, Y);
+  if assigned(FOnMouseDown) then
+    FOnMouseDown(self, Button, Shift, X, Y);
 end;
 
-procedure THsPictBtn.MouseUp( Button: TMouseButton; Shift: TShiftState; X, Y: Integer );
+procedure THsPictBtn.MouseUp(Button: TMouseButton; Shift: TShiftState;
+  X, Y: integer);
 begin
-   if csDesigning in ComponentState then exit;
-   if FEnabled = False then exit;
-   MouseHandler( Shift, X, Y );
-   if assigned( FOnMouseUp ) then FOnMouseUp( self, Button, Shift, X, Y );
+  if csDesigning in ComponentState then
+    exit;
+  if FEnabled = False then
+    exit;
+  MouseHandler(Shift, X, Y);
+  if assigned(FOnMouseUp) then
+    FOnMouseUp(self, Button, Shift, X, Y);
 end;
 
-procedure THsPictBtn.SetOffice97Look( bNew: boolean );
+procedure THsPictBtn.SetOffice97Look(bNew: boolean);
 begin
-   FOffice97Look := bNew;
-   ModifyPanelBorder( False, False );
-   Invalidate;
+  FOffice97Look := bNew;
+  ModifyPanelBorder(False, False);
+  Invalidate;
 end;
 
 procedure THsPictBtn.Loaded;
 begin
   bLoaded := True;
-   ModifyPanelBorder( False, False );
+  ModifyPanelBorder(False, False);
 end;
 
-procedure THsPictBtn.ChangeScale( M, D: Integer );
+procedure THsPictBtn.ChangeScale(M, D: integer);
 begin
-   Width    := Width * M div D;
-   Height   := Height * M div D;
-   Top      := Top * M div D;
-   Left     := Left * M div D;
+  Width := Width * M div D;
+  Height := Height * M div D;
+  Top := Top * M div D;
+  Left := Left * M div D;
 
-   FImageWidth    := FImageWidth * M div D;
-   FImageHeight   := FImageHeight * M div D;
-   FImageTop      := FImageTop * M div D;
-   FImageLeft     := FImageLeft * M div D;
+  FImageWidth := FImageWidth * M div D;
+  FImageHeight := FImageHeight * M div D;
+  FImageTop := FImageTop * M div D;
+  FImageLeft := FImageLeft * M div D;
 
-   FLabelWidth    := FLabelWidth * M div D;
-   FLabelHeight   := FLabelHeight * M div D;
-   FLabelTop      := FLabelTop * M div D;
-   FLabelLeft     := FLabelLeft * M div D;
+  FLabelWidth := FLabelWidth * M div D;
+  FLabelHeight := FLabelHeight * M div D;
+  FLabelTop := FLabelTop * M div D;
+  FLabelLeft := FLabelLeft * M div D;
 
-   Font.Size := Font.Size * M div D;
-   Invalidate;
+  Font.Size := Font.Size * M div D;
+  Invalidate;
 end;
 
-procedure THsPictBtn.DrawTransparentBitmap (ahdc: HDC; Image: TBitmap; xStart, yStart: Word);
+procedure THsPictBtn.DrawTransparentBitmap(ahdc: HDC; Image: TBitmap;
+  xStart, yStart: Word);
 var
   cColor: TColorRef;
-  bmAndBack, bmAndObject, bmAndMem, bmSave, bmBackOld, bmObjectOld, bmMemOld, bmSaveOld: HBitmap;
+  bmAndBack, bmAndObject, bmAndMem, bmSave, bmBackOld, bmObjectOld, bmMemOld,
+    bmSaveOld: HBitmap;
   hdcMem, hdcBack, hdcObject, hdcTemp, hdcSave: HDC;
   ptSize: TPoint;
 
 begin
-  hdcTemp := CreateCompatibleDC( aHdc );
-  SelectObject( HdcTemp, Image.Handle );
-  ptSize.x := Image.Width;
-  ptSize.y := Image.Height;
-  DPtoLP( HdcTemp, ptSize, 1 );
-  hdcBack := CreateCompatibleDC( aHdc );
-  hdcObject := CreateCompatibleDC( aHdc );
-  hdcMem := CreateCompatibleDC( aHdc );
-  hdcSave := CreateCompatibleDC( aHdc );
+  hdcTemp := CreateCompatibleDC(ahdc);
+  SelectObject(hdcTemp, Image.Handle);
+  ptSize.X := Image.Width;
+  ptSize.Y := Image.Height;
+  DPtoLP(hdcTemp, ptSize, 1);
+  hdcBack := CreateCompatibleDC(ahdc);
+  hdcObject := CreateCompatibleDC(ahdc);
+  hdcMem := CreateCompatibleDC(ahdc);
+  hdcSave := CreateCompatibleDC(ahdc);
 
-  bmAndBack := CreateBitmap( ptSize.x, ptSize.y, 1, 1, nil );
-  bmAndObject := CreateBitmap( ptSize.x, ptSize.y, 1, 1, nil );
+  bmAndBack := CreateBitmap(ptSize.X, ptSize.Y, 1, 1, nil);
+  bmAndObject := CreateBitmap(ptSize.X, ptSize.Y, 1, 1, nil);
 
-  bmAndMem := CreateCompatibleBitmap( aHdc, ptSize.x, ptSize.y );
-  bmSave := CreateCompatibleBitmap( aHdc, ptSize.x, ptSize.y );
+  bmAndMem := CreateCompatibleBitmap(ahdc, ptSize.X, ptSize.Y);
+  bmSave := CreateCompatibleBitmap(ahdc, ptSize.X, ptSize.Y);
 
-  bmBackOld   := SelectObject( hdcBack, bmAndBack);
-  bmObjectOld := SelectObject( hdcObject, bmAndObject);
-  bmMemOld    := SelectObject( hdcMem, bmAndMem);
-  bmSaveOld   := SelectObject( hdcSave, bmSave);
+  bmBackOld := SelectObject(hdcBack, bmAndBack);
+  bmObjectOld := SelectObject(hdcObject, bmAndObject);
+  bmMemOld := SelectObject(hdcMem, bmAndMem);
+  bmSaveOld := SelectObject(hdcSave, bmSave);
 
-  SetMapMode( hdcTemp, GetMapMode (ahdc) );
-  BitBlt( hdcSave, 0, 0, ptSize.x, ptSize.y, hdcTemp, 0, 0, SRCCOPY );
-  cColor := SetBkColor( hdcTemp, FColor or $02000000 );
-  BitBlt( hdcObject, 0, 0, ptSize.x, ptSize.y, hdcTemp, 0, 0, SRCCOPY );
+  SetMapMode(hdcTemp, GetMapMode(ahdc));
+  BitBlt(hdcSave, 0, 0, ptSize.X, ptSize.Y, hdcTemp, 0, 0, SRCCOPY);
+  cColor := SetBkColor(hdcTemp, FColor or $02000000);
+  BitBlt(hdcObject, 0, 0, ptSize.X, ptSize.Y, hdcTemp, 0, 0, SRCCOPY);
 
-  SetBkColor( hdcTemp, cColor );
-  BitBlt( hdcBack, 0, 0, ptSize.x, ptSize.y, hdcObject, 0, 0, NOTSRCCOPY );
+  SetBkColor(hdcTemp, cColor);
+  BitBlt(hdcBack, 0, 0, ptSize.X, ptSize.Y, hdcObject, 0, 0, NOTSRCCOPY);
 
-  BitBlt( HdcMem, 0, 0, ptSize.x, ptSize.y, aHdc, xStart, yStart, SRCCOPY );
-  BitBlt( HdcMem, 0, 0, ptSize.x, ptSize.y, HdcObject, 0, 0, SRCAND );
-  BitBlt( HdcTemp, 0, 0, ptSize.x, ptSize.y, HdcBack, 0, 0, SRCAND );
-  BitBlt( HdcMem, 0, 0, ptSize.x, ptSize.y, HdcTemp, 0, 0, SRCPAINT );
-  BitBlt( aHdc, xStart, yStart, ptSize.x, ptSize.y, HdcMem, 0, 0, SRCCOPY );
-  BitBlt( HdcTemp, 0, 0, ptSize.x, ptSize.y, HdcSave, 0, 0, SRCCOPY );
-  DeleteObject( SelectObject ( hdcBack, bmBackOld ) );
-  DeleteObject( SelectObject ( hdcObject, bmObjectOld ) );
-  DeleteObject( SelectObject ( hdcMem, bmMemOld ) );
-  DeleteObject( SelectObject ( hdcSave, bmSaveOld ) );
-  DeleteDC( hdcMem );
-  DeleteDC( hdcBack );
-  DeleteDC( hdcObject );
-  DeleteDC( hdcSave );
-  DeleteDC( hdcTemp );
+  BitBlt(hdcMem, 0, 0, ptSize.X, ptSize.Y, ahdc, xStart, yStart, SRCCOPY);
+  BitBlt(hdcMem, 0, 0, ptSize.X, ptSize.Y, hdcObject, 0, 0, SRCAND);
+  BitBlt(hdcTemp, 0, 0, ptSize.X, ptSize.Y, hdcBack, 0, 0, SRCAND);
+  BitBlt(hdcMem, 0, 0, ptSize.X, ptSize.Y, hdcTemp, 0, 0, SRCPAINT);
+  BitBlt(ahdc, xStart, yStart, ptSize.X, ptSize.Y, hdcMem, 0, 0, SRCCOPY);
+  BitBlt(hdcTemp, 0, 0, ptSize.X, ptSize.Y, hdcSave, 0, 0, SRCCOPY);
+  DeleteObject(SelectObject(hdcBack, bmBackOld));
+  DeleteObject(SelectObject(hdcObject, bmObjectOld));
+  DeleteObject(SelectObject(hdcMem, bmMemOld));
+  DeleteObject(SelectObject(hdcSave, bmSaveOld));
+  DeleteDC(hdcMem);
+  DeleteDC(hdcBack);
+  DeleteDC(hdcObject);
+  DeleteDC(hdcSave);
+  DeleteDC(hdcTemp);
 end;
 
 end.

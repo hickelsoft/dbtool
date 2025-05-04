@@ -21,20 +21,21 @@ implementation
 
 {$R *.DFM}
 
-procedure TDLG_IbDatabaseName.FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
+procedure TDLG_IbDatabaseName.FormKeyDown(Sender: TObject; var Key: word;
+  Shift: TShiftState);
 begin
   case Key of
     13:
-    begin
-      Key := 0;
-      LbButton1.Click;
-    end;
-      
+      begin
+        Key := 0;
+        LbButton1.Click;
+      end;
+
     27:
-    begin
-      Key := 0;
-      LbButton2.Click;
-    end;
+      begin
+        Key := 0;
+        LbButton2.Click;
+      end;
   end;
 end;
 

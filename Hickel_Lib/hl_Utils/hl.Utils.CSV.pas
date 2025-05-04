@@ -7,7 +7,8 @@ uses
 
 type
   ThsCSVUtils = record
-    class function ExportCSVField_Str(s: string; quoteEmpty: boolean=false): string; static;
+    class function ExportCSVField_Str(s: string; quoteEmpty: boolean = false)
+      : string; static;
     class function ExportCSVField_Bool(b: boolean): string; static;
     class function ExportCSVField_Int(i: integer): string; static;
     class function ExportCSVField_Float(f: double): string; static;
@@ -25,7 +26,8 @@ implementation
 uses
   FormatSettingsCompat;
 
-class function ThsCSVUtils.ExportCSVField_Str(s: string; quoteEmpty: boolean=false): string;
+class function ThsCSVUtils.ExportCSVField_Str(s: string;
+  quoteEmpty: boolean = false): string;
 begin
   if (s = '') and not quoteEmpty then
     result := ''
@@ -43,16 +45,17 @@ var
   fs: TFormatSettings;
 begin
   result := 0;
-  if Length(s) < 10 then exit;
+  if Length(s) < 10 then
+    exit;
 
   if (s[3] = '.') and (s[6] = '.') then
   begin
-    fs.ShortDateFormat := 'dd.mm.yyyy';  // 31.12.2017
+    fs.ShortDateFormat := 'dd.mm.yyyy'; // 31.12.2017
     fs.DateSeparator := '.';
   end
   else if (s[5] = '-') and (s[8] = '-') then
   begin
-    fs.ShortDateFormat := 'yyyy-mm-dd';  // 2017-12-31
+    fs.ShortDateFormat := 'yyyy-mm-dd'; // 2017-12-31
     fs.DateSeparator := '-';
   end;
 
@@ -65,8 +68,10 @@ class function ThsCSVUtils.ImportCSVField_Float(s: string): double;
 var
   bakDs, bakTs: Char;
 begin
-  bakTs := FormatSettings.ThousandSeparator; FormatSettings.ThousandSeparator := #0;
-  bakDs := FormatSettings.DecimalSeparator; FormatSettings.DecimalSeparator := ',';
+  bakTs := FormatSettings.ThousandSeparator;
+  FormatSettings.ThousandSeparator := #0;
+  bakDs := FormatSettings.DecimalSeparator;
+  FormatSettings.DecimalSeparator := ',';
   try
     result := StrToFloat(s);
   finally
@@ -84,7 +89,7 @@ class function ThsCSVUtils.ImportCSVField_Str(s: string): string;
 
   function _Decode(s: string): string;
   begin
-    result := Copy(s, 2, Length(s)-2); // " vorne und hinten entfernen
+    result := Copy(s, 2, Length(s) - 2); // " vorne und hinten entfernen
     result := StringReplace(result, '""', '"', [rfReplaceAll]);
   end;
 
@@ -113,12 +118,16 @@ end;
 class function ThsCSVUtils.ExportCSVField_DateTime(dt: TDateTime): string;
 var
   bakDf, bakTf: string;
-  bakDs, bakTs: char;
+  bakDs, bakTs: Char;
 begin
-  bakDf := FormatSettings.ShortDateFormat; FormatSettings.ShortDateFormat := 'dd.mm.yyyy';
-  bakTf := FormatSettings.ShortTimeFormat; FormatSettings.ShortTimeFormat := 'hh:nn:ss';
-  bakDs := FormatSettings.DateSeparator; FormatSettings.DateSeparator := '.';
-  bakTs := FormatSettings.TimeSeparator; FormatSettings.TimeSeparator := ':';
+  bakDf := FormatSettings.ShortDateFormat;
+  FormatSettings.ShortDateFormat := 'dd.mm.yyyy';
+  bakTf := FormatSettings.ShortTimeFormat;
+  FormatSettings.ShortTimeFormat := 'hh:nn:ss';
+  bakDs := FormatSettings.DateSeparator;
+  FormatSettings.DateSeparator := '.';
+  bakTs := FormatSettings.TimeSeparator;
+  FormatSettings.TimeSeparator := ':';
   try
     result := DateTimeToStr(dt)
   finally
@@ -148,10 +157,11 @@ begin
   bakS := s + ';';
   for i := 1 to Length(bakS) do
   begin
-    if bakS[i] = ';' then  // TODO: Problem: Hier werden Strichpunkt in Anführungszeichen nicht ausgeschlossen?
+    if bakS[i] = ';' then
+    // TODO: Problem: Hier werden Strichpunkt in Anführungszeichen nicht ausgeschlossen?
     begin
-      result := ImportCSVField_Str(Copy(bakS, 1, i-1));
-      s      := Copy(bakS, i+1, Length(bakS)-i);
+      result := ImportCSVField_Str(Copy(bakS, 1, i - 1));
+      s := Copy(bakS, i + 1, Length(bakS) - i);
       exit;
     end;
   end;

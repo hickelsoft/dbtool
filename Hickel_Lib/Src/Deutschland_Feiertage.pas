@@ -10,7 +10,7 @@ unit Deutschland_Feiertage;
 // Hinweise:
 // - Diese Unit arbeitet mit Jahreszahlen nach 1584
 // - Die Verwendung dieses Codes erfolgt unter Ausschluss jeglicher Gewährleistung!
-//   Es kann einige wenige Gemeinden oder Ortsteile geben, bei denen Feiertage anders behandelt werden
+// Es kann einige wenige Gemeinden oder Ortsteile geben, bei denen Feiertage anders behandelt werden
 
 interface
 
@@ -22,6 +22,7 @@ type
     Date: TDateTime;
     Name: string;
   end;
+
   TFeiertagTable = array of TFeiertag;
 
 function IstDeutscherFeiertag(tag: TDateTime; plz: integer): boolean;
@@ -33,24 +34,22 @@ uses
   DateUtils;
 
 {$REGION 'Bundesländer'}
-
 // Wie wurden die Bundesländer extrahiert?
 // 1. Spalten von https://cebus.net/de/plz-bundesland.htm in Plaintext-Datei kopiert
 // 2. Whitespace mit Tab ersetzen, mit TextPad RegEx:
-//    Suche:   " "
-//    Ersetze: "\t"
+// Suche:   " "
+// Ersetze: "\t"
 // 3. In Excel einfügen
 // 4. In Excel sortieren nach Name (Spalte 2), Markierung erweitern
 // 5. PLZ-Range (erste Spalte) aus Excel in TextPad kopieren
 // 6. Delphi Code mit folgendem TextPad RegEx erzeugen:
-//    Suche:   "(.+)\-(.+)"
-//    Ersetze: "    \(\(plz >= \1\) and \(plz <= \2\)\) or // \1-\2"
+// Suche:   "(.+)\-(.+)"
+// Ersetze: "    \(\(plz >= \1\) and \(plz <= \2\)\) or // \1-\2"
 
 function IstBadenWuerttemberg(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 63928) and (plz <= 63928)) or // 63928-63928
+  result := ((plz >= 63928) and (plz <= 63928)) or // 63928-63928
     ((plz >= 64754) and (plz <= 64754)) or // 64754-64754
     ((plz >= 68001) and (plz <= 68312)) or // 68001-68312
     ((plz >= 68520) and (plz <= 68549)) or // 68520-68549
@@ -72,14 +71,13 @@ begin
     ((plz >= 97861) and (plz <= 97877)) or // 97861-97877
     ((plz >= 97893) and (plz <= 97896)) or // 97893-97896
     ((plz >= 97897) and (plz <= 97900)) or // 97897-97900
-    ((plz >= 97911) and (plz <= 97999));   // 97911-97999
+    ((plz >= 97911) and (plz <= 97999)); // 97911-97999
 end;
 
 function IstBayern(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 63701) and (plz <= 63774)) or // 63701-63774
+  result := ((plz >= 63701) and (plz <= 63774)) or // 63701-63774
     ((plz >= 63776) and (plz <= 63928)) or // 63776-63928
     ((plz >= 63930) and (plz <= 63939)) or // 63930-63939
     ((plz >= 74594) and (plz <= 74594)) or // 74594-74594
@@ -95,21 +93,19 @@ begin
     ((plz >= 97001) and (plz <= 97859)) or // 97001-97859
     ((plz >= 97888) and (plz <= 97892)) or // 97888-97892
     ((plz >= 97896) and (plz <= 97896)) or // 97896-97896
-    ((plz >= 97901) and (plz <= 97909));   // 97901-97909
+    ((plz >= 97901) and (plz <= 97909)); // 97901-97909
 end;
 
 function IstBerlin(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 10001) and (plz <= 14330)); // 10001-14330
+  result := ((plz >= 10001) and (plz <= 14330)); // 10001-14330
 end;
 
 function IstBrandenburg(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 01941) and (plz <= 01998)) or // 01941-01998
+  result := ((plz >= 01941) and (plz <= 01998)) or // 01941-01998
     ((plz >= 03001) and (plz <= 03253)) or // 03001-03253
     ((plz >= 04891) and (plz <= 04938)) or // 04891-04938
     ((plz >= 14401) and (plz <= 14715)) or // 14401-14715
@@ -121,35 +117,32 @@ begin
     ((plz >= 17326) and (plz <= 17326)) or // 17326-17326
     ((plz >= 17335) and (plz <= 17335)) or // 17335-17335
     ((plz >= 17337) and (plz <= 17337)) or // 17337-17337
-    ((plz >= 19307) and (plz <= 19357));   // 19307-19357
+    ((plz >= 19307) and (plz <= 19357)); // 19307-19357
 end;
 
 function IstBremen(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 27501) and (plz <= 27580)) or // 27501-27580
-    ((plz >= 28001) and (plz <= 28779));   // 28001-28779
+  result := ((plz >= 27501) and (plz <= 27580)) or // 27501-27580
+    ((plz >= 28001) and (plz <= 28779)); // 28001-28779
 end;
 
 function IstHamburg(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 20001) and (plz <= 21037)) or // 20001-21037
+  result := ((plz >= 20001) and (plz <= 21037)) or // 20001-21037
     ((plz >= 21039) and (plz <= 21170)) or // 21039-21170
     ((plz >= 22001) and (plz <= 22113)) or // 22001-22113
     ((plz >= 22115) and (plz <= 22143)) or // 22115-22143
     ((plz >= 22145) and (plz <= 22145)) or // 22145-22145
     ((plz >= 22147) and (plz <= 22786)) or // 22147-22786
-    ((plz >= 27499) and (plz <= 27499));   // 27499-27499
+    ((plz >= 27499) and (plz <= 27499)); // 27499-27499
 end;
 
 function IstHessen(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 34001) and (plz <= 34329)) or // 34001-34329
+  result := ((plz >= 34001) and (plz <= 34329)) or // 34001-34329
     ((plz >= 34355) and (plz <= 34355)) or // 34355-34355
     ((plz >= 34356) and (plz <= 34399)) or // 34356-34399
     ((plz >= 34441) and (plz <= 36399)) or // 34441-36399
@@ -173,14 +166,13 @@ begin
     ((plz >= 69434) and (plz <= 69434)) or // 69434-69434
     ((plz >= 69479) and (plz <= 69488)) or // 69479-69488
     ((plz >= 69503) and (plz <= 69509)) or // 69503-69509
-    ((plz >= 69515) and (plz <= 69518));   // 69515-69518
+    ((plz >= 69515) and (plz <= 69518)); // 69515-69518
 end;
 
 function IstMecklenburgVorpommern(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 17001) and (plz <= 17256)) or // 17001-17256
+  result := ((plz >= 17001) and (plz <= 17256)) or // 17001-17256
     ((plz >= 17258) and (plz <= 17259)) or // 17258-17259
     ((plz >= 17301) and (plz <= 17309)) or // 17301-17309
     ((plz >= 17309) and (plz <= 17321)) or // 17309-17321
@@ -197,8 +189,7 @@ end;
 function IstNiedersachsen(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 19271) and (plz <= 19273)) or // 19271-19273
+  result := ((plz >= 19271) and (plz <= 19273)) or // 19271-19273
     ((plz >= 21202) and (plz <= 21449)) or // 21202-21449
     ((plz >= 21522) and (plz <= 21522)) or // 21522-21522
     ((plz >= 21601) and (plz <= 21789)) or // 21601-21789
@@ -219,14 +210,13 @@ begin
     ((plz >= 48486) and (plz <= 48488)) or // 48486-48488
     ((plz >= 48497) and (plz <= 48531)) or // 48497-48531
     ((plz >= 49001) and (plz <= 49459)) or // 49001-49459
-    ((plz >= 49551) and (plz <= 49849));   // 49551-49849
+    ((plz >= 49551) and (plz <= 49849)); // 49551-49849
 end;
 
 function IstNordrheinWestfalen(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 32001) and (plz <= 33829)) or // 32001-33829
+  result := ((plz >= 32001) and (plz <= 33829)) or // 32001-33829
     ((plz >= 34401) and (plz <= 34439)) or // 34401-34439
     ((plz >= 37651) and (plz <= 37688)) or // 37651-37688
     ((plz >= 37692) and (plz <= 37696)) or // 37692-37696
@@ -242,14 +232,13 @@ begin
     ((plz >= 53621) and (plz <= 53949)) or // 53621-53949
     ((plz >= 57001) and (plz <= 57489)) or // 57001-57489
     ((plz >= 58001) and (plz <= 59966)) or // 58001-59966
-    ((plz >= 59969) and (plz <= 59969));   // 59969-59969
+    ((plz >= 59969) and (plz <= 59969)); // 59969-59969
 end;
 
 function IstRheinlandPfalz(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 51598) and (plz <= 51598)) or // 51598-51598
+  result := ((plz >= 51598) and (plz <= 51598)) or // 51598-51598
     ((plz >= 53401) and (plz <= 53579)) or // 53401-53579
     ((plz >= 53614) and (plz <= 53619)) or // 53614-53619
     ((plz >= 54181) and (plz <= 55239)) or // 54181-55239
@@ -262,22 +251,20 @@ begin
     ((plz >= 65629) and (plz <= 65629)) or // 65629-65629
     ((plz >= 66461) and (plz <= 66509)) or // 66461-66509
     ((plz >= 66841) and (plz <= 67829)) or // 66841-67829
-    ((plz >= 76711) and (plz <= 76891));   // 76711-76891
+    ((plz >= 76711) and (plz <= 76891)); // 76711-76891
 end;
 
 function IstSaarland(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 66001) and (plz <= 66459)) or // 66001-66459
-    ((plz >= 66511) and (plz <= 66839));   // 66511-66839
+  result := ((plz >= 66001) and (plz <= 66459)) or // 66001-66459
+    ((plz >= 66511) and (plz <= 66839)); // 66511-66839
 end;
 
 function IstSachsen(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 01001) and (plz <= 01936)) or // 01001-01936
+  result := ((plz >= 01001) and (plz <= 01936)) or // 01001-01936
     ((plz >= 02601) and (plz <= 02999)) or // 02601-02999
     ((plz >= 04001) and (plz <= 04579)) or // 04001-04579
     ((plz >= 04641) and (plz <= 04889)) or // 04641-04889
@@ -287,26 +274,24 @@ begin
     ((plz >= 07952) and (plz <= 07952)) or // 07952-07952
     ((plz >= 07982) and (plz <= 07982)) or // 07982-07982
     ((plz >= 07985) and (plz <= 07985)) or // 07985-07985
-    ((plz >= 08001) and (plz <= 09669));   // 08001-09669
+    ((plz >= 08001) and (plz <= 09669)); // 08001-09669
 end;
 
 function IstSachsenAnhalt(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 06001) and (plz <= 06548)) or // 06001-06548
+  result := ((plz >= 06001) and (plz <= 06548)) or // 06001-06548
     ((plz >= 06601) and (plz <= 06928)) or // 06601-06928
     ((plz >= 14715) and (plz <= 14715)) or // 14715-14715
     ((plz >= 29401) and (plz <= 29416)) or // 29401-29416
     ((plz >= 38481) and (plz <= 38489)) or // 38481-38489
-    ((plz >= 38801) and (plz <= 39649));   // 38801-39649
+    ((plz >= 38801) and (plz <= 39649)); // 38801-39649
 end;
 
 function IstSchleswigHolstein(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 21039) and (plz <= 21039)) or // 21039-21039
+  result := ((plz >= 21039) and (plz <= 21039)) or // 21039-21039
     ((plz >= 21451) and (plz <= 21521)) or // 21451-21521
     ((plz >= 21524) and (plz <= 21529)) or // 21524-21529
     ((plz >= 22113) and (plz <= 22113)) or // 22113-22113
@@ -314,14 +299,13 @@ begin
     ((plz >= 22145) and (plz <= 22145)) or // 22145-22145
     ((plz >= 22801) and (plz <= 23919)) or // 22801-23919
     ((plz >= 24001) and (plz <= 25999)) or // 24001-25999
-    ((plz >= 27483) and (plz <= 27498));   // 27483-27498
+    ((plz >= 27483) and (plz <= 27498)); // 27483-27498
 end;
 
 function IstThueringen(plz: integer): boolean;
 begin
   // Extrahiert von https://cebus.net/de/plz-bundesland.htm
-  result :=
-    ((plz >= 04581) and (plz <= 04639)) or // 04581-04639
+  result := ((plz >= 04581) and (plz <= 04639)) or // 04581-04639
     ((plz >= 06551) and (plz <= 06578)) or // 06551-06578
     ((plz >= 07301) and (plz <= 07919)) or // 07301-07919
     ((plz >= 07919) and (plz <= 07919)) or // 07919-07919
@@ -333,22 +317,20 @@ begin
     ((plz >= 36401) and (plz <= 36469)) or // 36401-36469
     ((plz >= 37301) and (plz <= 37359)) or // 37301-37359
     ((plz >= 96501) and (plz <= 96529)) or // 96501-96529
-    ((plz >= 98501) and (plz <= 99998));   // 98501-99998
+    ((plz >= 98501) and (plz <= 99998)); // 98501-99998
 end;
 
 {$ENDREGION}
-
 {$REGION 'Feiertage in Bundesländern in vereinzelten Teilen'}
 
 function BayernHatMariaeHimmelfahrt(plz: integer): boolean;
 begin
   // Daten extrahiert aus
   // - https://www.statistik.bayern.de/statistik/gebiet_bevoelkerung/zensus/himmelfahrt/index.php
-  //   (1704 Gemeinden mit Feiertag und 352 Gemeinden ohne Feiertag)
+  // (1704 Gemeinden mit Feiertag und 352 Gemeinden ohne Feiertag)
   // und
   // - https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/_inhalt.html#124272
-  result :=
-    (plz <> 92262) and // Birgland
+  result := (plz <> 92262) and // Birgland
     (plz <> 92265) and // Edelsfeld
     (plz <> 92275) and // Hirschbach
     (plz <> 92278) and // Illschwang
@@ -699,30 +681,30 @@ begin
     (plz <> 86753) and // Möttingen
     (plz <> 86720) and // Nördlingen, GKSt
     (plz <> 86732) and // Oettingen i.Bay., St
-    (plz <> 86759);    // Wechingen
+    (plz <> 86759); // Wechingen
 end;
 
 function ThueringenHatFronleichnam(plz: integer): boolean;
 begin
   (*
-  Laut https://www.dgb.de/gesetzliche-feiertage-deutschland :
-  In Thüringen nur im im Landkreis Eichsfeld
-  sowie in folgenden Gemeinden des Unstrut-Hainich-Kreises und des Wartburgkreises:
-  Anrode (nur in den Ortsteilen Bickenriede und Zella),
-  Brunnhartshausen (nur in den Ortsteilen Föhlritz und Steinberg),
-  Buttlar,
-  Dünwald (nur in den Ortsteilen Beberstedt und Hüpstedt),
-  Geisa,
-  Rodeberg (nur im Ortsteil Struth),
-  Schleid,
-  Südeichsfeld und
-  Zella/Rhön.
+    Laut https://www.dgb.de/gesetzliche-feiertage-deutschland :
+    In Thüringen nur im im Landkreis Eichsfeld
+    sowie in folgenden Gemeinden des Unstrut-Hainich-Kreises und des Wartburgkreises:
+    Anrode (nur in den Ortsteilen Bickenriede und Zella),
+    Brunnhartshausen (nur in den Ortsteilen Föhlritz und Steinberg),
+    Buttlar,
+    Dünwald (nur in den Ortsteilen Beberstedt und Hüpstedt),
+    Geisa,
+    Rodeberg (nur im Ortsteil Struth),
+    Schleid,
+    Südeichsfeld und
+    Zella/Rhön.
   *)
 
   result :=
 
-    // Landkreis Eichsfeld
-    // https://home.meinestadt.de/kreis-eichsfeld/postleitzahlen
+  // Landkreis Eichsfeld
+  // https://home.meinestadt.de/kreis-eichsfeld/postleitzahlen
     (plz = 37318) or // Wüstheuterode, Kreis Eichsfeld, Thüringen
     (plz = 37308) or // Volkerode, Kreis Eichsfeld, Thüringen
     (plz = 37339) or // Ferna, Kreis Eichsfeld, Thüringen
@@ -738,49 +720,49 @@ begin
     (plz = 37355) or // Kleinbartloff, Kreis Eichsfeld, Thüringen
     (plz = 37345) or // Am Ohmberg, Kreis Eichsfeld, Thüringen
 
-    // Gemeinden des Unstrut-Hainich-Kreises und des Wartburgkreises (PLZ von Google, Wikipedia, etc.):
-                     // TODO: Anrode (nur in den Ortsteilen Bickenriede und Zella),
-                     // TODO: Brunnhartshausen (nur in den Ortsteilen Föhlritz und Steinberg),
+  // Gemeinden des Unstrut-Hainich-Kreises und des Wartburgkreises (PLZ von Google, Wikipedia, etc.):
+  // TODO: Anrode (nur in den Ortsteilen Bickenriede und Zella),
+  // TODO: Brunnhartshausen (nur in den Ortsteilen Föhlritz und Steinberg),
     (plz = 36419) or // Buttlar
-                     // TODO: Dünwald (nur in den Ortsteilen Beberstedt und Hüpstedt)
+  // TODO: Dünwald (nur in den Ortsteilen Beberstedt und Hüpstedt)
     (plz = 36419) or // Geisa
-                     // TODO: Rodeberg (nur im Ortsteil Struth)
+  // TODO: Rodeberg (nur im Ortsteil Struth)
     (plz = 36419) or // Schleid
     (plz = 99988) or // Südeichsfeld
-    (plz = 36452);   // Zella/Rhön
+    (plz = 36452); // Zella/Rhön
 end;
 
 function SachsenHatFronleichnam(plz: integer): boolean;
 begin
   (*
-  Laut https://www.dgb.de/gesetzliche-feiertage-deutschland:
-  In Sachsen nur in folgenden katholisch geprägten Gemeinden des sorbischen Siedlungsgebietes im Landkreis Bautzen:
-  Bautzen (nur in den Ortsteilen Bolbritz und Salzenforst),
-  Crostwitz,
-  Göda (nur im Ortsteil Prischwitz),
-  Großdubrau (nur im Ortsteil Sdier),
-  Hoyerswerda (nur im Ortsteil Dörgenhausen),
-  Königswartha (nicht im Ortsteil Wartha),
-  Nebelschütz,
-  Neschwitz (nur in den Ortsteilen Neschwitz und Saritsch),
-  Panschwitz-Kuckau,
-  Puschwitz,
-  Räckelwitz,
-  Radibor,
-  Ralbitz-Rosenthal,
-  Wittichenau
+    Laut https://www.dgb.de/gesetzliche-feiertage-deutschland:
+    In Sachsen nur in folgenden katholisch geprägten Gemeinden des sorbischen Siedlungsgebietes im Landkreis Bautzen:
+    Bautzen (nur in den Ortsteilen Bolbritz und Salzenforst),
+    Crostwitz,
+    Göda (nur im Ortsteil Prischwitz),
+    Großdubrau (nur im Ortsteil Sdier),
+    Hoyerswerda (nur im Ortsteil Dörgenhausen),
+    Königswartha (nicht im Ortsteil Wartha),
+    Nebelschütz,
+    Neschwitz (nur in den Ortsteilen Neschwitz und Saritsch),
+    Panschwitz-Kuckau,
+    Puschwitz,
+    Räckelwitz,
+    Radibor,
+    Ralbitz-Rosenthal,
+    Wittichenau
   *)
 
   result :=
-    // (PLZ von Google, Wikipedia, etc.)
-                     // TODO: Bautzen (nur in den Ortsteilen Bolbritz und Salzenforst)
+  // (PLZ von Google, Wikipedia, etc.)
+  // TODO: Bautzen (nur in den Ortsteilen Bolbritz und Salzenforst)
     (plz = 01920) or // Crostwitz
-                     // TODO: Göda (nur im Ortsteil Prischwitz)
-                     // TODO: Großdubrau (nur im Ortsteil Sdier)
-                     // TODO: Hoyerswerda (nur im Ortsteil Dörgenhausen)
-                     // TODO: Königswartha (nicht im Ortsteil Wartha)
+  // TODO: Göda (nur im Ortsteil Prischwitz)
+  // TODO: Großdubrau (nur im Ortsteil Sdier)
+  // TODO: Hoyerswerda (nur im Ortsteil Dörgenhausen)
+  // TODO: Königswartha (nicht im Ortsteil Wartha)
     (plz = 01920) or // Nebelschütz
-                     // TODO: Neschwitz (nur in den Ortsteilen Neschwitz und Saritsch)
+  // TODO: Neschwitz (nur in den Ortsteilen Neschwitz und Saritsch)
     (plz = 01906) or // Panschwitz-Kuckau
     (plz = 01920) or // (ebenso)
     (plz = 02699) or // Puschwitz
@@ -788,22 +770,20 @@ begin
     (plz = 02627) or // Radibor
     (plz = 02694) or // (ebenso)
     (plz = 01920) or // Ralbitz-Rosenthal
-    (plz = 02997);   // Wittichenau
+    (plz = 02997); // Wittichenau
 end;
 
 function IstAugsburgStadtgebiet(plz: integer): boolean;
 begin
   // Extrahiert von https://www.suche-postleitzahl.org/augsburg-plz-86150-86199.35f2
-  result :=
-    (plz = 86159) or // Antonsviertel
+  result := (plz = 86159) or // Antonsviertel
     (plz = 86199) or // Bergheim
     (plz = 86156) or // Bärenkeller
     (plz = 86169) or // Firnhaberau
     (plz = 86199) or // Göggingen
     (plz = 86169) or // Hammerschmiede
     (plz = 86179) or // Haunstetten-Siebenbrunn
-    (plz = 86199) or
-    (plz = 86159) or // Hochfeld
+    (plz = 86199) or (plz = 86159) or // Hochfeld
     (plz = 86161) or //
     (plz = 86163) or // Hochzoll
     (plz = 86150) or // Innenstadt
@@ -812,22 +792,21 @@ begin
     (plz = 86159) or //
     (plz = 86161) or //
     (plz = 86199) or // Inningen
-    (plz = 86156) or // Kriegshaber     
+    (plz = 86156) or // Kriegshaber
     (plz = 86157) or //
-    (plz = 86165) or // Lechhausen     
+    (plz = 86165) or // Lechhausen
     (plz = 86167) or //
     (plz = 86169) or //
-    (plz = 86154) or // Oberhausen     
+    (plz = 86154) or // Oberhausen
     (plz = 86156) or //
     (plz = 86156) or // Pfersee
     (plz = 86157) or //
-    (plz = 86161) or // Spickel-Herrenbach     
+    (plz = 86161) or // Spickel-Herrenbach
     (plz = 86159) or // Universitätsviertel
     (plz = 86161);
 end;
 
 {$ENDREGION}
-
 {$REGION 'Spezielle Datumsberechnungen'}
 
 function DritterMittwochImNovember(Jahr: integer): TDateTime;
@@ -839,25 +818,25 @@ end;
 function Ostersonntag(Jahr: integer): TDateTime;
 var
   A, B, C, D, E, F, G, H, I, K, L, M, N, P: Word;
-  Tag, Monat: Word;
+  tag, Monat: Word;
 begin
-  a := Jahr mod 19;
-  b := Jahr div 100;
-  c := Jahr mod 100;
-  d := b div 4;
-  e := b mod 4;
-  f := (b + 8) div 25;
-  g := (b - f + 1) div 3;
-  h := (19 * a + b - d - g + 15) mod 30;
-  i := c div 4;
-  k := c mod 4;
-  l := (32 + 2 * e + 2 * i - h - k) mod 7;
-  m := (a + 11 * h + 22 * l) div 451;
-  n := (h + l - 7 * m + 114) div 31;
-  p := (h + l - 7 * m + 114) mod 31 + 1;
-  Tag := p;
-  Monat := n;
-  Result := EncodeDate(Jahr, Monat, Tag);
+  A := Jahr mod 19;
+  B := Jahr div 100;
+  C := Jahr mod 100;
+  D := B div 4;
+  E := B mod 4;
+  F := (B + 8) div 25;
+  G := (B - F + 1) div 3;
+  H := (19 * A + B - D - G + 15) mod 30;
+  I := C div 4;
+  K := C mod 4;
+  L := (32 + 2 * E + 2 * I - H - K) mod 7;
+  M := (A + 11 * H + 22 * L) div 451;
+  N := (H + L - 7 * M + 114) div 31;
+  P := (H + L - 7 * M + 114) mod 31 + 1;
+  tag := P;
+  Monat := N;
+  result := EncodeDate(Jahr, Monat, tag);
 end;
 
 {$ENDREGION}
@@ -865,12 +844,12 @@ end;
 function IstDeutscherFeiertag(tag: TDateTime; plz: integer): boolean;
 var
   ht: TFeiertagTable;
-  h: TFeiertag;
+  H: TFeiertag;
 begin
   ht := DeutschlandFeiertage(YearOf(tag), plz);
-  for h in ht do
+  for H in ht do
   begin
-    if SameDate(tag, h.Date) then
+    if SameDate(tag, H.Date) then
     begin
       result := true;
       exit;
@@ -881,22 +860,22 @@ end;
 
 function DeutschlandFeiertage(Jahr: Word; plz: integer): TFeiertagTable;
 
-  // Funktion, um einen Feiertag über seinen Tag\Monat hinzuzufügen
+// Funktion, um einen Feiertag über seinen Tag\Monat hinzuzufügen
   procedure AddFeiertag(DD, MM: Word; HDName: string); overload;
   begin
-    SetLength(Result, High(Result) + 2);
-    with Result[High(Result)] do
+    SetLength(result, High(result) + 2);
+    with result[High(result)] do
     begin
       Date := EncodeDate(Jahr, MM, DD);
       Name := HDName;
     end;
   end;
 
-  //Funktion, um den Feiertag über die Datumsseriennummer hinzuzufügen
+// Funktion, um den Feiertag über die Datumsseriennummer hinzuzufügen
   procedure AddFeiertag(HDDate: TDateTime; HDName: string); overload;
   begin
-    SetLength(Result, High(Result) + 2);
-    with Result[High(Result)] do
+    SetLength(result, High(result) + 2);
+    with result[High(result)] do
     begin
       Date := HDDate;
       Name := HDName;
@@ -908,9 +887,7 @@ begin
 
   AddFeiertag(1, 1, 'Neujahr');
 
-  if IstBadenWuerttemberg(plz) or
-     IstBayern(plz) or
-     IstSachsenAnhalt(plz) then
+  if IstBadenWuerttemberg(plz) or IstBayern(plz) or IstSachsenAnhalt(plz) then
   begin
     AddFeiertag(6, 1, 'Heilige Drei Könige');
   end;
@@ -920,49 +897,45 @@ begin
     AddFeiertag(8, 3, 'Internationaler Frauentag');
   end;
 
-  AddFeiertag(OsterSonntag(Jahr) - 2, 'Karfreitag');
+  AddFeiertag(Ostersonntag(Jahr) - 2, 'Karfreitag');
 
   if IstBrandenburg(plz) then
   begin
-    AddFeiertag(OsterSonntag(Jahr), 'Ostersonntag');
+    AddFeiertag(Ostersonntag(Jahr), 'Ostersonntag');
   end;
 
-  AddFeiertag(OsterSonntag(Jahr) + 1, 'Ostermontag');
+  AddFeiertag(Ostersonntag(Jahr) + 1, 'Ostermontag');
 
   AddFeiertag(1, 5, 'Tag der Arbeit');
 
-  AddFeiertag(OsterSonntag(Jahr) + 39, 'Christi Himmelfahrt');
+  AddFeiertag(Ostersonntag(Jahr) + 39, 'Christi Himmelfahrt');
 
   if IstBrandenburg(plz) then
   begin
-    AddFeiertag(OsterSonntag(Jahr) + 49, 'Pfingstsonntag');
+    AddFeiertag(Ostersonntag(Jahr) + 49, 'Pfingstsonntag');
   end;
 
-  AddFeiertag(OsterSonntag(Jahr) + 50, 'Pfingstmontag');
+  AddFeiertag(Ostersonntag(Jahr) + 50, 'Pfingstmontag');
 
-  if IstBadenWuerttemberg(plz) or
-     IstBayern(plz) or
-     IstHessen(plz) or
-     IstNordrheinWestfalen(plz) or
-     IstRheinlandPfalz(plz) or
-     IstSaarland(plz) or
-     (IstSachsen(plz) and SachsenHatFronleichnam(plz)) or
-     (IstThueringen(plz) and ThueringenHatFronleichnam(plz)) then
+  if IstBadenWuerttemberg(plz) or IstBayern(plz) or IstHessen(plz) or
+    IstNordrheinWestfalen(plz) or IstRheinlandPfalz(plz) or IstSaarland(plz) or
+    (IstSachsen(plz) and SachsenHatFronleichnam(plz)) or
+    (IstThueringen(plz) and ThueringenHatFronleichnam(plz)) then
   begin
-    AddFeiertag(OsterSonntag(Jahr) + 60, 'Fronleichnam');
+    AddFeiertag(Ostersonntag(Jahr) + 60, 'Fronleichnam');
   end;
 
   if IstAugsburgStadtgebiet(plz) then
   begin
     (*
-    Laut https://www.dgb.de/gesetzliche-feiertage-deutschland:
-    - Nur im Stadtgebiet von Augsburg (nicht jedoch im angrenzenden Umland).
+      Laut https://www.dgb.de/gesetzliche-feiertage-deutschland:
+      - Nur im Stadtgebiet von Augsburg (nicht jedoch im angrenzenden Umland).
     *)
     AddFeiertag(8, 8, 'Augsburger Friedensfest');
   end;
 
-  if IstSaarland(plz) or
-     (IstBayern(plz) and BayernHatMariaeHimmelfahrt(plz)) then
+  if IstSaarland(plz) or (IstBayern(plz) and BayernHatMariaeHimmelfahrt(plz))
+  then
   begin
     AddFeiertag(15, 8, 'Mariä Himmelfahrt');
   end;
@@ -974,24 +947,16 @@ begin
 
   AddFeiertag(3, 10, 'Tag der deutschen Einheit');
 
-  if IstBrandenburg(plz) or
-     IstBremen(plz) or
-     IstHamburg(plz) or
-     IstMecklenburgVorpommern(plz) or
-     IstNiedersachsen(plz) or
-     IstSachsen(plz) or
-     IstSachsenAnhalt(plz) or
-     IstSchleswigHolstein(plz) or
-     IstThueringen(plz) then
+  if IstBrandenburg(plz) or IstBremen(plz) or IstHamburg(plz) or
+    IstMecklenburgVorpommern(plz) or IstNiedersachsen(plz) or IstSachsen(plz) or
+    IstSachsenAnhalt(plz) or IstSchleswigHolstein(plz) or IstThueringen(plz)
+  then
   begin
     AddFeiertag(31, 10, 'Reformationstag');
   end;
 
-  if IstBadenWuerttemberg(plz) or
-     IstBayern(plz) or
-     IstNordrheinWestfalen(plz) or
-     IstRheinlandPfalz(plz) or
-     IstSaarland(plz) then
+  if IstBadenWuerttemberg(plz) or IstBayern(plz) or IstNordrheinWestfalen(plz)
+    or IstRheinlandPfalz(plz) or IstSaarland(plz) then
   begin
     AddFeiertag(1, 11, 'Allerheiligen');
   end;

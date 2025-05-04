@@ -20,40 +20,44 @@ uses
 // - .Free -> FreeAndNil()
 
 {$IF NOT DEFINED(CLR)}
+
 var
   CurrentKeyboardLayout: HKL = 0;
   IsAltGRKeyLayout: Boolean = False;
 
 function IsAltGRPressed_New: Boolean;
 
-  // Original
+// Original
 (*
   function IsWOW64: BOOL;
   begin
-    Result := False;
-    if GetProcAddress(GetModuleHandle(kernel32), 'IsWow64Process') <> nil then
-      IsWow64Process(GetCurrentProcess, Result);
+  Result := False;
+  if GetProcAddress(GetModuleHandle(kernel32), 'IsWow64Process') <> nil then
+  IsWow64Process(GetCurrentProcess, Result);
   end;
 *)
-  // Ersetzt https://www.delphipraxis.net/192951-laeuft-programm-unter-32-bit-oder-64-bit-ab-2.html
+// Ersetzt https://www.delphipraxis.net/192951-laeuft-programm-unter-32-bit-oder-64-bit-ab-2.html
   function IsWOW64: BOOL;
   type
     TIsWow64Process = function( // Type of IsWow64Process API fn
-      Handle: Windows.THandle; var Res: Windows.BOOL ): Windows.BOOL; stdcall;
+      Handle: Windows.THandle; var Res: Windows.BOOL): Windows.BOOL; stdcall;
   var
     IsWow64Result: Windows.BOOL; // Result from IsWow64Process
     IsWow64Process: TIsWow64Process; // IsWow64Process fn reference
   begin
     // Try to load required function from kernel32
-    IsWow64Process := Windows.GetProcAddress(Windows.GetModuleHandle('kernel32'), 'IsWow64Process');
+    IsWow64Process := Windows.GetProcAddress
+      (Windows.GetModuleHandle('kernel32'), 'IsWow64Process');
 
-    if Assigned(IsWow64Process) then begin
+    if Assigned(IsWow64Process) then
+    begin
       // Function is implemented: call it
       if not IsWow64Process(Windows.GetCurrentProcess, IsWow64Result) then
         raise Exception.Create('IsWow64: bad process handle');
 
       Result := IsWow64Result; // Return result of function
-    end else
+    end
+    else
       // Function not implemented: can't be running on Wow64
       Result := False;
   end;
@@ -61,23 +65,26 @@ function IsAltGRPressed_New: Boolean;
   procedure GetAltGRStatus;
   type
     PKBDTABLES = ^TKBDTABLES;
+
     TKBDTABLES = record
       pCharModifiers: pointer;
       pVkToWcharTable: pointer;
       pDeadKey: pointer;
-      pKeyNames: Pointer;
-      pKeyNamesExt: Pointer;
+      pKeyNames: pointer;
+      pKeyNamesExt: pointer;
       pKeyNamesDead: PWideChar;
-      pusVSCtoVK: Pointer;
+      pusVSCtoVK: pointer;
       bMaxVSCtoVK: BYTE;
-      pVSCtoVK_E0: Pointer;
-      pVSCtoVK_E1: Pointer;
+      pVSCtoVK_E0: pointer;
+      pVSCtoVK_E1: pointer;
       fLocaleFlags: DWORD;
-      nLgMax: Byte;
-      cbLgEntry: Byte;
-      pLigature: Pointer;
+      nLgMax: BYTE;
+      cbLgEntry: BYTE;
+      pLigature: pointer;
     end;
+
     PKBDTABLESWOW64 = ^TKBDTABLESWOW64;
+
     TKBDTABLESWOW64 = record
       pCharModifiers: UInt64;
       pVkToWcharTable: UInt64;
@@ -90,11 +97,12 @@ function IsAltGRPressed_New: Boolean;
       pVSCtoVK_E0: UInt64;
       pVSCtoVK_E1: UInt64;
       fLocaleFlags: DWORD;
-      nLgMax: Byte;
-      cbLgEntry: Byte;
+      nLgMax: BYTE;
+      cbLgEntry: BYTE;
       pLigature: UInt64;
     end;
-    TFNKbdLayerDescriptor = function: Pointer;
+
+    TFNKbdLayerDescriptor = function: pointer;
   const
     KLLF_ALTGR = $0001;
     LayoutsListRegKey = '\SYSTEM\CurrentControlSet\Control\Keyboard Layouts\';
@@ -102,9 +110,9 @@ function IsAltGRPressed_New: Boolean;
     DLLName: string;
     DLLHandle: HModule;
     R: TRegistry;
-    LayoutName: array[0..KL_NAMELENGTH] of char;
+    LayoutName: array [0 .. KL_NAMELENGTH] of char;
     LocaleFlags: DWORD;
-    KbdTablePtr: Pointer;
+    KbdTablePtr: pointer;
     KbdLayerDescriptor: TFNKbdLayerDescriptor;
   begin
     IsAltGRKeyLayout := False;
@@ -119,7 +127,8 @@ function IsAltGRPressed_New: Boolean;
         DLLHandle := SafeLoadLibrary(DLLName);
         if DLLHandle <> 0 then
           try
-            KbdLayerDescriptor := GetProcAddress(DLLHandle, 'KbdLayerDescriptor');
+            KbdLayerDescriptor := GetProcAddress(DLLHandle,
+              'KbdLayerDescriptor');
             if Assigned(KbdLayerDescriptor) then
             begin
               KbdTablePtr := KbdLayerDescriptor;
@@ -157,13 +166,12 @@ begin
   end;
 end;
 {$IFEND}
-
 // Ende vom Delphi 12.3 Code
 
 // Der folgende Code kommt von
 // https://stackoverflow.com/questions/8978177/patch-routine-call-in-delphi
 
-procedure PatchCode(Address: Pointer; const NewCode; Size: Integer);
+procedure PatchCode(Address: pointer; const NewCode; Size: Integer);
 var
   OldProtect: DWORD;
 begin
@@ -177,32 +185,37 @@ end;
 
 type
   PInstruction = ^TInstruction;
+
   TInstruction = packed record
-    Opcode: Byte;
+    Opcode: BYTE;
     Offset: Integer;
   end;
 
-procedure RedirectProcedure(OldAddress, NewAddress: Pointer);
+procedure RedirectProcedure(OldAddress, NewAddress: pointer);
 var
   NewCode: TInstruction;
 begin
-  NewCode.Opcode := $E9;//jump relative
-  NewCode.Offset := NativeInt(NewAddress)-NativeInt(OldAddress)-SizeOf(NewCode);
+  NewCode.Opcode := $E9; // jump relative
+  NewCode.Offset := NativeInt(NewAddress) - NativeInt(OldAddress) -
+    SizeOf(NewCode);
   PatchCode(OldAddress, NewCode, SizeOf(NewCode));
 end;
 
 var
-  AlreadyFixed: boolean = false;
+  AlreadyFixed: Boolean = False;
 
 procedure PatchAltGrBug;
 begin
-  {$IF CompilerVersion < 20.0} // Version geraten
-  if AlreadyFixed then exit;
+{$IF CompilerVersion < 20.0} // Version geraten
+  if AlreadyFixed then
+    exit;
   RedirectProcedure(@IsAltGRPressed, @IsAltGRPressed_New);
   AlreadyFixed := true;
-  {$IFEND}
+{$IFEND}
 end;
 
 initialization
-  PatchAltGrBug;
+
+PatchAltGrBug;
+
 end.

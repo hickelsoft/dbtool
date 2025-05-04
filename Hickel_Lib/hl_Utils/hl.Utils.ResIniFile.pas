@@ -8,12 +8,14 @@ uses
 type
   TResIniFile = class(TMemIniFile)
   public
-    constructor Create(Instance: THandle; ResourceType: PChar; ResourceName: string);
+    constructor Create(Instance: THandle; ResourceType: PChar;
+      ResourceName: string);
   end;
 
 implementation
 
-constructor TResIniFile.Create(Instance: THandle; ResourceType: PChar; ResourceName: string);
+constructor TResIniFile.Create(Instance: THandle; ResourceType: PChar;
+  ResourceName: string);
 var
   RS: TResourceStream;
   sl: TStrings;
@@ -23,11 +25,11 @@ begin
   RS := TResourceStream.Create(Instance, ResourceName, ResourceType);
   sl := TStringList.Create;
   try
-    SL.LoadFromStream(RS);
+    sl.LoadFromStream(RS);
     SetStrings(sl);
   finally
-    FreeAndNil(rs);
-    FreeAndnil(sl);
+    FreeAndNil(RS);
+    FreeAndNil(sl);
   end;
 end;
 

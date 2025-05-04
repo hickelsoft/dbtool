@@ -9,6 +9,7 @@ unit FormatSettingsCompat;
 {$IF CompilerVersion >= 22.0}
 
 interface
+
 implementation
 
 {$ELSE}
@@ -23,14 +24,14 @@ type
     class function GetCurrencyString: string;
     class function GetDateSeparator: Char;
     class function GetDecimalSeparator: Char;
-    //class function GetEraInfo: array of TEraInfo;
+    // class function GetEraInfo: array of TEraInfo;
     class function GetListSeparator: Char;
     class function GetLongDateFormat: string;
     class function GetLongDayNames(i: integer): string;
     class function GetLongMonthNames(i: integer): string;
     class function GetLongTimeFormat: string;
     class function GetNegCurrFormat: Byte;
-    //class function GetNormalizedLocaleName: string;
+    // class function GetNormalizedLocaleName: string;
     class function GetShortDateFormat: string;
     class function GetShortDayNames(i: integer): string;
     class function GetShortMonthNames(i: integer): string;
@@ -45,14 +46,14 @@ type
     class procedure SetCurrencyString(const Value: string);
     class procedure SetDateSeparator(const Value: Char);
     class procedure SetDecimalSeparator(const Value: Char);
-    //class procedure SetEraInfo(const Value: array of TEraInfo);
+    // class procedure SetEraInfo(const Value: array of TEraInfo);
     class procedure SetListSeparator(const Value: Char);
     class procedure SetLongDateFormat(const Value: string);
     class procedure SetLongDayNames(i: integer; const Value: string);
     class procedure SetLongMonthNames(i: integer; const Value: string);
     class procedure SetLongTimeFormat(const Value: string);
     class procedure SetNegCurrFormat(const Value: Byte);
-    //class procedure SetNormalizedLocaleName(const Value: string);
+    // class procedure SetNormalizedLocaleName(const Value: string);
     class procedure SetShortDateFormat(const Value: string);
     class procedure SetShortDayNames(i: integer; const Value: string);
     class procedure SetShortMonthNames(i: integer; const Value: string);
@@ -63,28 +64,42 @@ type
     class procedure SetTimeSeparator(const Value: Char);
     class procedure SetTwoDigitYearCenturyWindow(const Value: Word);
   public
-    property CurrencyString: string read GetCurrencyString write SetCurrencyString;
-    property CurrencyFormat: Byte read GetCurrencyFormat write SetCurrencyFormat;
-    property CurrencyDecimals: Byte read GetCurrencyDecimals write SetCurrencyDecimals;
+    property CurrencyString: string read GetCurrencyString
+      write SetCurrencyString;
+    property CurrencyFormat: Byte read GetCurrencyFormat
+      write SetCurrencyFormat;
+    property CurrencyDecimals: Byte read GetCurrencyDecimals
+      write SetCurrencyDecimals;
     property DateSeparator: Char read GetDateSeparator write SetDateSeparator;
     property TimeSeparator: Char read GetTimeSeparator write SetTimeSeparator;
     property ListSeparator: Char read GetListSeparator write SetListSeparator;
-    property ShortDateFormat: string read GetShortDateFormat write SetShortDateFormat;
-    property LongDateFormat: string read GetLongDateFormat write SetLongDateFormat;
+    property ShortDateFormat: string read GetShortDateFormat
+      write SetShortDateFormat;
+    property LongDateFormat: string read GetLongDateFormat
+      write SetLongDateFormat;
     property TimeAMString: string read GetTimeAMString write SetTimeAMString;
     property TimePMString: string read GetTimePMString write SetTimePMString;
-    property ShortTimeFormat: string read GetShortTimeFormat write SetShortTimeFormat;
-    property LongTimeFormat: string read GetLongTimeFormat write SetLongTimeFormat;
-    property ShortMonthNames[i: integer]: string read GetShortMonthNames write SetShortMonthNames;
-    property LongMonthNames[i: integer]: string read GetLongMonthNames write SetLongMonthNames;
-    property ShortDayNames[i: integer]: string read GetShortDayNames write SetShortDayNames;
-    property LongDayNames[i: integer]: string read GetLongDayNames write SetLongDayNames;
-    //property EraInfo: array of TEraInfo read GetEraInfo write SetEraInfo;
-    property ThousandSeparator: Char read GetThousandSeparator write SetThousandSeparator;
-    property DecimalSeparator: Char read GetDecimalSeparator write SetDecimalSeparator;
-    property TwoDigitYearCenturyWindow: Word read GetTwoDigitYearCenturyWindow write SetTwoDigitYearCenturyWindow;
+    property ShortTimeFormat: string read GetShortTimeFormat
+      write SetShortTimeFormat;
+    property LongTimeFormat: string read GetLongTimeFormat
+      write SetLongTimeFormat;
+    property ShortMonthNames[i: integer]: string read GetShortMonthNames
+      write SetShortMonthNames;
+    property LongMonthNames[i: integer]: string read GetLongMonthNames
+      write SetLongMonthNames;
+    property ShortDayNames[i: integer]: string read GetShortDayNames
+      write SetShortDayNames;
+    property LongDayNames[i: integer]: string read GetLongDayNames
+      write SetLongDayNames;
+    // property EraInfo: array of TEraInfo read GetEraInfo write SetEraInfo;
+    property ThousandSeparator: Char read GetThousandSeparator
+      write SetThousandSeparator;
+    property DecimalSeparator: Char read GetDecimalSeparator
+      write SetDecimalSeparator;
+    property TwoDigitYearCenturyWindow: Word read GetTwoDigitYearCenturyWindow
+      write SetTwoDigitYearCenturyWindow;
     property NegCurrFormat: Byte read GetNegCurrFormat write SetNegCurrFormat;
-    //property NormalizedLocaleName: string read GetNormalizedLocaleName write SetNormalizedLocaleName;
+    // property NormalizedLocaleName: string read GetNormalizedLocaleName write SetNormalizedLocaleName;
   end;
 
 var
@@ -232,12 +247,14 @@ begin
   SysUtils.LongDateFormat := Value;
 end;
 
-class procedure TFormatSettingsPolyfill.SetLongDayNames(i: integer; const Value: string);
+class procedure TFormatSettingsPolyfill.SetLongDayNames(i: integer;
+  const Value: string);
 begin
   SysUtils.LongDayNames[i] := Value;
 end;
 
-class procedure TFormatSettingsPolyfill.SetLongMonthNames(i: integer; const Value: string);
+class procedure TFormatSettingsPolyfill.SetLongMonthNames(i: integer;
+  const Value: string);
 begin
   SysUtils.LongMonthNames[i] := Value;
 end;
@@ -257,12 +274,14 @@ begin
   SysUtils.ShortDateFormat := Value;
 end;
 
-class procedure TFormatSettingsPolyfill.SetShortDayNames(i: integer; const Value: string);
+class procedure TFormatSettingsPolyfill.SetShortDayNames(i: integer;
+  const Value: string);
 begin
   SysUtils.ShortDayNames[i] := Value;
 end;
 
-class procedure TFormatSettingsPolyfill.SetShortMonthNames(i: integer; const Value: string);
+class procedure TFormatSettingsPolyfill.SetShortMonthNames(i: integer;
+  const Value: string);
 begin
   SysUtils.ShortMonthNames[i] := Value;
 end;
@@ -292,15 +311,19 @@ begin
   SysUtils.TimeSeparator := Value;
 end;
 
-class procedure TFormatSettingsPolyfill.SetTwoDigitYearCenturyWindow(const Value: Word);
+class procedure TFormatSettingsPolyfill.SetTwoDigitYearCenturyWindow
+  (const Value: Word);
 begin
   SysUtils.TwoDigitYearCenturyWindow := Value;
 end;
 
 initialization
-  FormatSettings := TFormatSettingsPolyfill.Create;
+
+FormatSettings := TFormatSettingsPolyfill.Create;
+
 finalization
-  FreeAndNil(FormatSettings);
+
+FreeAndNil(FormatSettings);
 
 {$IFEND}
 

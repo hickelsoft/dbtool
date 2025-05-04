@@ -16,7 +16,7 @@ type
     constructor Create; overload;
     constructor Create(const s: string); overload;
     procedure LoadFromFile(const Filename: string);
-    procedure SaveToFile(const Filename: string; FileMode: Word=fmCreate);
+    procedure SaveToFile(const Filename: string; FileMode: Word = fmCreate);
     procedure Clear;
   end;
 
@@ -26,13 +26,13 @@ implementation
 
 procedure TStreamEx.Add(const data: string);
 var
-   len: cardinal;
-   oString: UTF8String;
+  len: cardinal;
+  oString: UTF8String;
 begin
-   oString := UTF8String(data + #13#10);
-   len := length(oString);
-   if len > 0 then
-      self.WriteBuffer(oString[1], len);
+  oString := UTF8String(data + #13#10);
+  len := length(oString);
+  if len > 0 then
+    self.WriteBuffer(oString[1], len);
 end;
 
 { TStringStreamEx }
@@ -72,7 +72,8 @@ begin
   end;
 end;
 
-procedure TStringStreamEx.SaveToFile(const Filename: string; FileMode: Word=fmCreate);
+procedure TStringStreamEx.SaveToFile(const Filename: string;
+  FileMode: Word = fmCreate);
 var
   fs: TFileStream;
   bakPos: Int64;

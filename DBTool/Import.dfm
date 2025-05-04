@@ -5734,8 +5734,6 @@ object DLG_Import: TDLG_Import
       Left = 0
       Top = 0
       Caption = '3'
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object SrcLabel: TLabel
         Left = 24
         Top = 80

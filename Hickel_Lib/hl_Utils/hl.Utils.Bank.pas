@@ -24,7 +24,7 @@ type
 
     /// <remarks>Bearbeitet</remarks>
     /// <see>Quelle: http://www.delphipraxis.net/176530-pruefziffer-fuer-iban-berechnen.html</see>
-    class function CreateGermanIBAN(KontoNr,BLZ: String): String; static;
+    class function CreateGermanIBAN(KontoNr, blz: String): String; static;
   end;
 
 implementation
@@ -33,7 +33,7 @@ uses
   hl.Utils;
 
 class function ThlBankUtils.ChangeAlpha(input: string): string;
-  // A -> 10, B -> 11, C -> 12 ...
+// A -> 10, B -> 11, C -> 12 ...
 var
   a: Char;
 begin
@@ -89,12 +89,12 @@ end;
 class function ThlBankUtils.CheckBIC(bic: string): Boolean;
 begin
   // TODO: bessere validierungs-routine, siehe http://bank-code.net/swift-code/DEMMUS31XXX.html
-  result := (Length(bic) = 8) or (Length(bic) = 11);
+  Result := (Length(bic) = 8) or (Length(bic) = 11);
 end;
 
 class function ThlBankUtils.CheckBLZ(blz: string): Boolean;
 begin
-  result := Length(blz) = 8;
+  Result := Length(blz) = 8;
 end;
 
 class function ThlBankUtils.CheckIBAN(iban: string): Boolean;
@@ -112,49 +112,51 @@ end;
 class function ThlBankUtils.CheckKTO(kto: string): Boolean;
 var
   v: int64;
-  ec: integer;
+  ec: Integer;
 begin
   Val(kto, v, ec);
-  result := (ec = 0) and (v > -1); // ec=0 heißt, dass es ein gültiger Integer ist
+  Result := (ec = 0) and (v > -1);
+  // ec=0 heißt, dass es ein gültiger Integer ist
 end;
 
-class function ThlBankUtils.CreateGermanIBAN(KontoNr, BLZ:String):String;
+class function ThlBankUtils.CreateGermanIBAN(KontoNr, blz: String): String;
 var
-  cs, i,cc:integer;
-  s:string;
+  cs, i, cc: Integer;
+  s: string;
 begin
   if Length(KontoNr) < 10 then
   begin
     KontoNr := ThlUtils.AddLeadingZeroes(StrToInt(KontoNr), 10);
   end;
-  if (Length(BLZ) <> 8) or (Length(KontoNr) > 10)then
+  if (Length(blz) <> 8) or (Length(KontoNr) > 10) then
   begin
-    result := '';
+    Result := '';
     Exit;
   end;
-  s := BLZ + KontoNr + '131400'; // 131400 = 'DE00'
+  s := blz + KontoNr + '131400'; // 131400 = 'DE00'
   cs := 0;
   for i := 1 to Length(s) do
   begin
-     cs := (cs*10+Ord(s[i])-Ord('0')) mod 97;
+    cs := (cs * 10 + Ord(s[i]) - Ord('0')) mod 97;
   end;
   cc := 98 - cs;
-  if cc < 2 then inc(cc,97); // 00-->97, 01--> 98
-  result := 'DE00';
-  result[3] := Chr(cc div 10 + Ord('0'));
-  result[4] := Chr(cc mod 10 + Ord('0'));
-  result := result + BLZ + KontoNr;
+  if cc < 2 then
+    inc(cc, 97); // 00-->97, 01--> 98
+  Result := 'DE00';
+  Result[3] := Chr(cc div 10 + Ord('0'));
+  Result[4] := Chr(cc mod 10 + Ord('0'));
+  Result := Result + blz + KontoNr;
 end;
 
 class function ThlBankUtils.FormatIBAN(iban: string): string;
 begin
-  result := ThlUtils.InBlöckeAufspalten(iban, 4);
+  Result := ThlUtils.InBlöckeAufspalten(iban, 4);
 end;
 
 class function ThlBankUtils.FormatBLZ(blz: string): string;
 begin
   // 390 601 90
-  result := Copy(blz, 1, 3) + ' ' + copy(blz, 4, 3) + ' ' + copy(blz, 7, 2);
+  Result := Copy(blz, 1, 3) + ' ' + Copy(blz, 4, 3) + ' ' + Copy(blz, 7, 2);
 end;
 
 end.

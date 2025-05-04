@@ -12,9 +12,7 @@ object DLG_Texteingabe: TDLG_Texteingabe
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
-  OldCreateOrder = True
   Position = poScreenCenter
-  PixelsPerInch = 96
   TextHeight = 13
   object Panel1: TPanel
     Left = 0
@@ -61,8 +59,9 @@ object DLG_Texteingabe: TDLG_Texteingabe
       Width = 100
       Height = 25
       Caption = '&OK'
-      TabOrder = 1
       Kind = bkOK
+      NumGlyphs = 2
+      TabOrder = 1
     end
     object BitBtn2: TBitBtn
       Left = 303
@@ -70,8 +69,9 @@ object DLG_Texteingabe: TDLG_Texteingabe
       Width = 100
       Height = 25
       Caption = '&Abbrechen'
-      TabOrder = 2
       Kind = bkCancel
+      NumGlyphs = 2
+      TabOrder = 2
     end
     object CheckBox1: TCheckBox
       Left = 4

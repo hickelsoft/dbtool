@@ -20,9 +20,7 @@ uses
   EditRTF in '..\..\EditRTF.pas' {DLG_EditRTF},
   Query in '..\..\Query.pas' {MDI_Query},
   C_Database in '..\..\C_Database.pas',
-  Globals in '..\..\Globals.pas',
-  // Statusan.pas is included in order to make translation possible. Otherwise, the DFM would be missing in the *.enu file
-  Statusan in '..\..\..\Hickel_Components\Statusan.pas' {DLG_Statusanzeige};
+  Globals in '..\..\Globals.pas';
 
 {$R *.res}
 
@@ -37,7 +35,7 @@ begin
 
   Application.Title := SDBToolTitle;
   Application.CreateForm(TDLG_Main, DLG_Main);
-//Application.CreateForm(TMDI_Database, MDI_Database);
+  //Application.CreateForm(TMDI_Database, MDI_Database);
 //Application.CreateForm(TMDI_Table, MDI_Table);
   Application.CreateForm(TDLG_Info, DLG_Info);
   Application.CreateForm(TDLG_OpenMySqlDb, DLG_OpenMySqlDb);

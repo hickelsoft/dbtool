@@ -4,77 +4,77 @@ unit hl.Utils.AsciiTable;
 // https://github.com/danielmarschall/delphiutils/blob/master/Units/AsciiTable.pas
 
 (*
- * ASCII Table and CSV Generator Delphi Unit
- * Revision 2024-02-08
- *
- * (C) 2022-2024 Daniel Marschall, HickelSOFT, ViaThinkSoft
- * Licensed under the terms of Apache 2.0
- *)
+  * ASCII Table and CSV Generator Delphi Unit
+  * Revision 2024-02-08
+  *
+  * (C) 2022-2024 Daniel Marschall, HickelSOFT, ViaThinkSoft
+  * Licensed under the terms of Apache 2.0
+*)
 
 {
 
-Example usage:
+  Example usage:
 
-uses
+  uses
   AsciiTable, ContNrs;
 
-procedure TForm1.Button1Click(Sender: TObject);
-var
+  procedure TForm1.Button1Click(Sender: TObject);
+  var
   VirtTable: TVtsAsciiTable;
   objLine: TVtsAsciiTableLine;
-begin
+  begin
   VirtTable := TVtsAsciiTable.Create(true);
   try
-    VirtTable.Clear;
+  VirtTable.Clear;
 
-    // Create Test data
-    objLine := TVtsAsciiTableLine.Create;
-    objLine.SetVal(0, 'Fruit', taCenter);
-    objLine.SetVal(1, 'Amount', taCenter);
-    VirtTable.Add(objLine);
+  // Create Test data
+  objLine := TVtsAsciiTableLine.Create;
+  objLine.SetVal(0, 'Fruit', taCenter);
+  objLine.SetVal(1, 'Amount', taCenter);
+  VirtTable.Add(objLine);
 
-    VirtTable.AddSeparator;
+  VirtTable.AddSeparator;
 
-    objLine := TVtsAsciiTableLine.Create;
-    objLine.SetVal(0, 'Apple', taLeftJustify);
-    objLine.SetVal(1, '123', taRightJustify);
-    VirtTable.Add(objLine);
+  objLine := TVtsAsciiTableLine.Create;
+  objLine.SetVal(0, 'Apple', taLeftJustify);
+  objLine.SetVal(1, '123', taRightJustify);
+  VirtTable.Add(objLine);
 
-    objLine := TVtsAsciiTableLine.Create;
-    objLine.SetVal(0, 'Kiwi', taLeftJustify);
-    objLine.SetVal(1, '1', taRightJustify);
-    VirtTable.Add(objLine);
+  objLine := TVtsAsciiTableLine.Create;
+  objLine.SetVal(0, 'Kiwi', taLeftJustify);
+  objLine.SetVal(1, '1', taRightJustify);
+  VirtTable.Add(objLine);
 
-    objLine := TVtsAsciiTableLine.Create;
-    objLine.SetVal(0, 'Asparagus (green)', taLeftJustify);
-    objLine.SetVal(1, '9999', taRightJustify);
-    VirtTable.Add(objLine);
+  objLine := TVtsAsciiTableLine.Create;
+  objLine.SetVal(0, 'Asparagus (green)', taLeftJustify);
+  objLine.SetVal(1, '9999', taRightJustify);
+  VirtTable.Add(objLine);
 
-    objLine := TVtsAsciiTableLine.Create;
-    objLine.SetVal(0, 'Asparagus (white)', taLeftJustify);
-    objLine.SetVal(1, '999', taRightJustify);
-    VirtTable.Add(objLine);
+  objLine := TVtsAsciiTableLine.Create;
+  objLine.SetVal(0, 'Asparagus (white)', taLeftJustify);
+  objLine.SetVal(1, '999', taRightJustify);
+  VirtTable.Add(objLine);
 
-    VirtTable.AddSeparator;
-    VirtTable.AddSumLine;
+  VirtTable.AddSeparator;
+  VirtTable.AddSumLine;
 
-    // Create ASCII table
-    Memo1.Clear;
-    VirtTable.GetASCIITable(Memo1.Lines);
+  // Create ASCII table
+  Memo1.Clear;
+  VirtTable.GetASCIITable(Memo1.Lines);
 
-    // Save ASCII table
-    VirtTable.SaveASCIITable('Order.txt');
+  // Save ASCII table
+  VirtTable.SaveASCIITable('Order.txt');
 
-    // Create CSV
-    Memo2.Clear;
-    VirtTable.GetCSV(Memo2.Lines);
+  // Create CSV
+  Memo2.Clear;
+  VirtTable.GetCSV(Memo2.Lines);
 
-    // Save CSV
-    VirtTable.SaveCSV('Order.csv');
+  // Save CSV
+  VirtTable.SaveCSV('Order.csv');
   finally
-    FreeAndNil(VirtTable);
+  FreeAndNil(VirtTable);
   end;
-end;
+  end;
 
 }
 
@@ -90,32 +90,33 @@ type
   TVtsAsciiTableLine = class(TObject)
   private
     IsSumLine: boolean;
-    //IsSeparator: boolean;
+    // IsSeparator: boolean;
   public
-    Cont: array[0..VTS_ASCII_TABLE_COLS-1] of string;
-    Align: array[0..VTS_ASCII_TABLE_COLS-1] of TAlignment;
-    PadChar: array[0..VTS_ASCII_TABLE_COLS-1] of char;
-    DoSum: array[0..VTS_ASCII_TABLE_COLS-1] of boolean;
+    Cont: array [0 .. VTS_ASCII_TABLE_COLS - 1] of string;
+    Align: array [0 .. VTS_ASCII_TABLE_COLS - 1] of TAlignment;
+    PadChar: array [0 .. VTS_ASCII_TABLE_COLS - 1] of char;
+    DoSum: array [0 .. VTS_ASCII_TABLE_COLS - 1] of boolean;
     procedure Clear;
-    procedure SetVal(index: integer; ACont: string; AAlign: TAlignment=taLeftJustify;
-      APadChar: char=' '; ADoSum: boolean=false);
+    procedure SetVal(index: integer; ACont: string;
+      AAlign: TAlignment = taLeftJustify; APadChar: char = ' ';
+      ADoSum: boolean = false);
   end;
 
   TVtsAsciiTableAnalysis = record
-    MaxLen: array[0..VTS_ASCII_TABLE_COLS-1] of integer;
-    Used: array[0..VTS_ASCII_TABLE_COLS-1] of boolean;
-    Sum: array[0..VTS_ASCII_TABLE_COLS-1] of extended;
+    MaxLen: array [0 .. VTS_ASCII_TABLE_COLS - 1] of integer;
+    Used: array [0 .. VTS_ASCII_TABLE_COLS - 1] of boolean;
+    Sum: array [0 .. VTS_ASCII_TABLE_COLS - 1] of extended;
   end;
 
-  TVtsAsciiTable = class(TObjectList{<TVtsAsciiTableLine>})
+  TVtsAsciiTable = class(TObjectList { <TVtsAsciiTableLine> } )
   private
-    function GetItem(Index: Integer): TVtsAsciiTableLine;
-    procedure SetItem(Index: Integer; const Value: TVtsAsciiTableLine);
+    function GetItem(index: integer): TVtsAsciiTableLine;
+    procedure SetItem(index: integer; const Value: TVtsAsciiTableLine);
   public
     function GetAnalysis: TVtsAsciiTableAnalysis;
-    procedure GetASCIITable(sl: TStrings; spaceBetween: integer=3); overload;
-    function GetASCIITable(spaceBetween: integer=3): string; overload;
-    procedure SaveASCIITable(filename: string; spaceBetween: integer=3);
+    procedure GetASCIITable(sl: TStrings; spaceBetween: integer = 3); overload;
+    function GetASCIITable(spaceBetween: integer = 3): string; overload;
+    procedure SaveASCIITable(filename: string; spaceBetween: integer = 3);
     procedure GetCSV(sl: TStrings);
     procedure SaveCSV(filename: string);
 
@@ -123,9 +124,10 @@ type
     procedure AddSumLine;
 
     // Just a little bit type-safe... The rest stays TObject for now
-    function Add(AObject: TVtsAsciiTableLine): Integer; reintroduce;
-    property Items[Index: Integer]: TVtsAsciiTableLine read GetItem write SetItem;
-    procedure Insert(Index: Integer; AObject: TVtsAsciiTableLine); reintroduce;
+    function Add(AObject: TVtsAsciiTableLine): integer; reintroduce;
+    property Items[Index: integer]: TVtsAsciiTableLine read GetItem
+      write SetItem;
+    procedure Insert(index: integer; AObject: TVtsAsciiTableLine); reintroduce;
   end;
 
 implementation
@@ -135,7 +137,7 @@ uses
 
 { TVtsAsciiTable }
 
-function TVtsAsciiTable.Add(AObject: TVtsAsciiTableLine): Integer;
+function TVtsAsciiTable.Add(AObject: TVtsAsciiTableLine): integer;
 begin
   result := Inherited Add(AObject);
 end;
@@ -148,7 +150,7 @@ end;
 procedure TVtsAsciiTable.AddSumLine;
 var
   objLine: TVtsAsciiTableLine;
-  j: Integer;
+  j: integer;
   analysis: TVtsAsciiTableAnalysis;
   found: boolean;
 begin
@@ -156,11 +158,12 @@ begin
   objLine.IsSumLine := true;
   analysis := GetAnalysis;
   found := false;
-  for j := 0 to VTS_ASCII_TABLE_COLS-1 do
+  for j := 0 to VTS_ASCII_TABLE_COLS - 1 do
   begin
     if analysis.Sum[j] <> 0 then
     begin
-      objLine.SetVal(j, FloatToStr(RoundTo(analysis.Sum[j], -2)), taRightJustify, ' ');
+      objLine.SetVal(j, FloatToStr(RoundTo(analysis.Sum[j], -2)),
+        taRightJustify, ' ');
       found := true;
     end;
   end;
@@ -172,24 +175,24 @@ end;
 
 function TVtsAsciiTable.GetAnalysis: TVtsAsciiTableAnalysis;
 var
-  j: Integer;
-  i: Integer;
+  j: integer;
+  i: integer;
   objLine: TVtsAsciiTableLine;
-  len: Integer;
+  len: integer;
   itmp: extended;
 begin
-  for j := 0 to VTS_ASCII_TABLE_COLS-1 do
+  for j := 0 to VTS_ASCII_TABLE_COLS - 1 do
   begin
     result.MaxLen[j] := 0;
     result.Used[j] := false;
     result.Sum[j] := 0;
   end;
-  for i := 0 to Self.Count-1 do
+  for i := 0 to Self.Count - 1 do
   begin
-    objLine := Self.items[i] as TVtsAsciiTableLine;
+    objLine := Self.Items[i] as TVtsAsciiTableLine;
     if objLine <> nil then
     begin
-      for j := 0 to VTS_ASCII_TABLE_COLS-1 do
+      for j := 0 to VTS_ASCII_TABLE_COLS - 1 do
       begin
         len := Length(objLine.Cont[j]);
         if objLine.DoSum[j] and TryStrToFloat(objLine.Cont[j], itmp) then
@@ -216,33 +219,35 @@ begin
   end;
 end;
 
-procedure TVtsAsciiTable.GetASCIITable(sl: TStrings; spaceBetween: integer=3);
+procedure TVtsAsciiTable.GetASCIITable(sl: TStrings; spaceBetween: integer = 3);
 var
   analysis: TVtsAsciiTableAnalysis;
   objLine: TVtsAsciiTableLine;
-  i: Integer;
+  i: integer;
   sLine: string;
-  j: Integer;
-  itmp: Integer;
-  padchar: Char;
+  j: integer;
+  itmp: integer;
+  PadChar: char;
   firstcol: boolean;
-  width: Integer;
+  width: integer;
 begin
   analysis := GetAnalysis;
-  //sl.Clear;
-  for i := 0 to Self.Count-1 do
+  // sl.Clear;
+  for i := 0 to Self.Count - 1 do
   begin
-    objLine := Self.items[i] as TVtsAsciiTableLine;
+    objLine := Self.Items[i] as TVtsAsciiTableLine;
     sLine := '';
     if objLine <> nil then
     begin
       firstcol := true;
-      for j := 0 to VTS_ASCII_TABLE_COLS-1 do
+      for j := 0 to VTS_ASCII_TABLE_COLS - 1 do
       begin
-        if not analysis.Used[j] then continue;
+        if not analysis.Used[j] then
+          continue;
 
-        padchar := objLine.PadChar[j];
-        if padchar = #0 then padchar := ' ';
+        PadChar := objLine.PadChar[j];
+        if PadChar = #0 then
+          PadChar := ' ';
 
         if firstcol then
           firstcol := false
@@ -251,20 +256,27 @@ begin
 
         if objLine.Align[j] = taRightJustify then
         begin
-          sLine := sLine + StringOfChar(padchar, analysis.MaxLen[j]-Length(objLine.Cont[j]));
+          sLine := sLine + StringOfChar(PadChar, analysis.MaxLen[j] -
+            Length(objLine.Cont[j]));
           sLine := sLine + objLine.Cont[j];
         end
         else if objLine.Align[j] = taLeftJustify then
         begin
           sLine := sLine + objLine.Cont[j];
-          sLine := sLine + StringOfChar(padchar, analysis.MaxLen[j]-Length(objLine.Cont[j]));
+          sLine := sLine + StringOfChar(PadChar, analysis.MaxLen[j] -
+            Length(objLine.Cont[j]));
         end
         else if objLine.Align[j] = taCenter then
         begin
-          if Odd(analysis.MaxLen[j]-Length(objLine.Cont[j])) then itmp := 1 else itmp := 0;
-          sLine := sLine + StringOfChar(padchar, (analysis.MaxLen[j]-Length(objLine.Cont[j])) div 2);
+          if Odd(analysis.MaxLen[j] - Length(objLine.Cont[j])) then
+            itmp := 1
+          else
+            itmp := 0;
+          sLine := sLine + StringOfChar(PadChar,
+            (analysis.MaxLen[j] - Length(objLine.Cont[j])) div 2);
           sLine := sLine + objLine.Cont[j];
-          sLine := sLine + StringOfChar(padchar, (analysis.MaxLen[j]-Length(objLine.Cont[j])) div 2 + itmp);
+          sLine := sLine + StringOfChar(PadChar,
+            (analysis.MaxLen[j] - Length(objLine.Cont[j])) div 2 + itmp);
         end
         else
           Assert(false);
@@ -274,9 +286,10 @@ begin
     begin
       firstcol := true;
       width := 0;
-      for j := 0 to VTS_ASCII_TABLE_COLS-1 do
+      for j := 0 to VTS_ASCII_TABLE_COLS - 1 do
       begin
-        if not analysis.Used[j] then continue;
+        if not analysis.Used[j] then
+          continue;
         if firstcol then
           firstcol := false
         else
@@ -284,7 +297,7 @@ begin
         width := width + analysis.MaxLen[j];
       end;
 
-      sLine := sLine + StringOfChar('-', Width);
+      sLine := sLine + StringOfChar('-', width);
     end;
     sl.Add(TrimRight(sLine));
   end;
@@ -297,8 +310,8 @@ begin
   s := StringReplace(s, #10, ' ', [rfReplaceAll]);
   if s = '' then
     result := ''
-  else if (AnsiPos('"', s)>0) or (AnsiPos('''', s)>0) or (AnsiPos(';', s)>0) or
-          (AnsiPos(#9, s)>0) or (AnsiPos(' ', s)>0) then
+  else if (AnsiPos('"', s) > 0) or (AnsiPos('''', s) > 0) or
+    (AnsiPos(';', s) > 0) or (AnsiPos(#9, s) > 0) or (AnsiPos(' ', s) > 0) then
     result := '"' + StringReplace(s, '"', '""', [rfReplaceAll]) + '"'
   else
     result := s;
@@ -308,23 +321,26 @@ procedure TVtsAsciiTable.GetCSV(sl: TStrings);
 var
   analysis: TVtsAsciiTableAnalysis;
   objLine: TVtsAsciiTableLine;
-  i: Integer;
+  i: integer;
   sLine: string;
-  j: Integer;
+  j: integer;
   firstcol: boolean;
 begin
   analysis := GetAnalysis;
-  //sl.Clear;
-  for i := 0 to Self.Count-1 do
+  // sl.Clear;
+  for i := 0 to Self.Count - 1 do
   begin
-    objLine := Self.items[i] as TVtsAsciiTableLine;
-    if objLine = nil then continue;
-    if objLine.IsSumLine then continue;
+    objLine := Self.Items[i] as TVtsAsciiTableLine;
+    if objLine = nil then
+      continue;
+    if objLine.IsSumLine then
+      continue;
     sLine := '';
     firstcol := true;
-    for j := 0 to VTS_ASCII_TABLE_COLS-1 do
+    for j := 0 to VTS_ASCII_TABLE_COLS - 1 do
     begin
-      if not analysis.Used[j] then continue;
+      if not analysis.Used[j] then
+        continue;
       if firstcol then
         firstcol := false
       else
@@ -335,12 +351,12 @@ begin
   end;
 end;
 
-function TVtsAsciiTable.GetItem(Index: Integer): TVtsAsciiTableLine;
+function TVtsAsciiTable.GetItem(index: integer): TVtsAsciiTableLine;
 begin
   result := (Inherited Items[Index]) as TVtsAsciiTableLine;
 end;
 
-procedure TVtsAsciiTable.Insert(Index: Integer; AObject: TVtsAsciiTableLine);
+procedure TVtsAsciiTable.Insert(index: integer; AObject: TVtsAsciiTableLine);
 begin
   Inherited Insert(Index, AObject);
 end;
@@ -372,7 +388,8 @@ begin
   end;
 end;
 
-procedure TVtsAsciiTable.SetItem(Index: Integer; const Value: TVtsAsciiTableLine);
+procedure TVtsAsciiTable.SetItem(index: integer;
+  const Value: TVtsAsciiTableLine);
 begin
   Inherited Items[Index] := Value;
 end;
@@ -381,9 +398,9 @@ end;
 
 procedure TVtsAsciiTableLine.Clear;
 var
-  i: Integer;
+  i: integer;
 begin
-  for i := 0 to VTS_ASCII_TABLE_COLS-1 do
+  for i := 0 to VTS_ASCII_TABLE_COLS - 1 do
   begin
     PadChar[i] := #0;
     Align[i] := taLeftJustify;
@@ -392,7 +409,8 @@ begin
 end;
 
 procedure TVtsAsciiTableLine.SetVal(index: integer; ACont: string;
-  AAlign: TAlignment=taLeftJustify; APadChar: char=' '; ADoSum: boolean=false);
+  AAlign: TAlignment = taLeftJustify; APadChar: char = ' ';
+  ADoSum: boolean = false);
 begin
   Self.Cont[index] := ACont;
   Self.Align[index] := AAlign;

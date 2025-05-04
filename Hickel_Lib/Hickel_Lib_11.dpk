@@ -70,7 +70,8 @@ contains
   hl.Utils.MD5 in 'hl_Utils\hl.Utils.MD5.pas',
   hl.Utils.AsciiTable in 'hl_Utils\hl.Utils.AsciiTable.pas',
   hl.Utils.StringStreamEx in 'hl_Utils\hl.Utils.StringStreamEx.pas',
-  hl.System.SingleInstance.DummyForm in 'hl_System\hl.System.SingleInstance.DummyForm.pas' {DummyForm},
+  hl.System.SingleInstance.DummyForm
+    in 'hl_System\hl.System.SingleInstance.DummyForm.pas' { DummyForm } ,
   hl.Utils.SetFocusFix in 'hl_Utils\hl.Utils.SetFocusFix.pas',
   hl.Utils.FormSerialize in 'hl_Utils\hl.Utils.FormSerialize.pas',
   hl.Utils.DbGridUtils in 'hl_Utils\hl.Utils.DbGridUtils.pas',
@@ -109,5 +110,3 @@ contains
   VCL_Hotfix_AltGr in 'Src\VCL_Hotfix_AltGr.pas';
 
 end.
-
-

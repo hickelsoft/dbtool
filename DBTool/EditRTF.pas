@@ -49,7 +49,7 @@ type
     ToolButton16: TToolButton;
     procedure FormKeyPress(Sender: TObject; var Key: char);
   end;
-  
+
 var
   DLG_EditRTF: TDLG_EditRTF;
 
@@ -59,7 +59,8 @@ implementation
 
 procedure TDLG_EditRTF.FormKeyPress(Sender: TObject; var Key: char);
 begin
-  if ord(Key) = VK_ESCAPE then Close;
+  if ord(Key) = VK_ESCAPE then
+    Close;
 end;
 
 end.

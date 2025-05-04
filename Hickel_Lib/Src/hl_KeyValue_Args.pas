@@ -21,13 +21,14 @@ var
 begin
   for i := 0 to ParamCount do
   begin
-    s := ParamStr(i+1);
+    s := ParamStr(i + 1);
     p := Pos('=', s);
     if p > 0 then
     begin
-      sName := UpperCase(Copy(s, 1, p-1));
-      sValue := Copy(s, p+1, Length(s)-p);
-      if Copy(sName,1,1) = '/' then Delete(sName,1,1);
+      sName := UpperCase(Copy(s, 1, p - 1));
+      sValue := Copy(s, p + 1, Length(s) - p);
+      if Copy(sName, 1, 1) = '/' then
+        Delete(sName, 1, 1);
       sl.Values[sName] := sValue;
     end;
   end;

@@ -11,10 +11,8 @@ object DLG_EditRTF: TDLG_EditRTF
   Font.Name = 'MS Sans Serif'
   Font.Style = []
   KeyPreview = True
-  OldCreateOrder = False
   Position = poScreenCenter
   OnKeyPress = FormKeyPress
-  PixelsPerInch = 96
   TextHeight = 13
   object DBRichEdit1: TDBRichEdit
     Left = 0
@@ -22,6 +20,11 @@ object DLG_EditRTF: TDLG_EditRTF
     Width = 548
     Height = 358
     Align = alClient
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'MS Sans Serif'
+    Font.Style = []
     HideScrollBars = False
     ScrollBars = ssVertical
     TabOrder = 0
@@ -154,7 +157,7 @@ object DLG_EditRTF: TDLG_EditRTF
     Left = 108
     Top = 84
     Bitmap = {
-      494C01010F0013000C0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C01010F001300040010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000004000000001002000000000000040
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

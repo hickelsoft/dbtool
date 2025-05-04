@@ -6,9 +6,10 @@ uses
   Classes;
 
 type
-  {$IF CompilerVersion > 20.0} // Version geraten
+{$IF CompilerVersion > 20.0} // Version geraten
   [ComponentPlatformsAttribute(pidWin32 or pidWin64)]
-  {$IFEND}
+{$IFEND}
+
   TSerializationMetaObj = class(TComponent)
   private
     FData: string;
@@ -32,6 +33,5 @@ procedure Register;
 begin
   RegisterComponents('Hs', [TSerializationMetaObj]);
 end;
-
 
 end.

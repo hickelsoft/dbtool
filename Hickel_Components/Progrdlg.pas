@@ -10,9 +10,10 @@ var
   OpenedProgressDlgs: integer = 0;
 
 type
-  {$IF CompilerVersion > 20.0} // Version geraten
+{$IF CompilerVersion > 20.0} // Version geraten
   [ComponentPlatformsAttribute(pidWin32 or pidWin64)]
-  {$IFEND}
+{$IFEND}
+
   TProgressDlg = class(TComponent)
   private
     mOwner: TComponent;
@@ -20,11 +21,10 @@ type
     FMax: Int64;
     FShowTime: boolean;
 
-    {$REGION 'Werte für das aktuell geöffnete Fenster, sonfern vorhanden'}
+{$REGION 'Werte für das aktuell geöffnete Fenster, sonfern vorhanden'}
     FCurWindowOpenedHalfModal: boolean;
     mc: TModalContext; // nur wenn FHalfModal=true
-    {$ENDREGION}
-
+{$ENDREGION}
     FCurWindowOpen: boolean;
     FShowStopButton: boolean;
     FOnStopButtonClick: TNotifyEvent;
@@ -45,12 +45,12 @@ type
     procedure SetShowTime(const Value: boolean);
 
   protected
-    procedure SetText (aValue: string);
+    procedure SetText(aValue: string);
 
   public
     DLG_Statusanzeige: TDLG_Statusanzeige;
 
-    constructor Create (aOwner: TComponent); override;
+    constructor Create(aOwner: TComponent); override;
     destructor Destroy; override;
 
     procedure Open;
@@ -67,9 +67,12 @@ type
     property MaxValue: Int64 read FMax write SetMax default 0;
     property Position: Int64 read FPosition write SetPosition default 0;
     property ShowTime: boolean read FShowTime write SetShowTime default false;
-    property ShowStopButton: boolean read FShowStopButton write SetStopButton default false;
-    property OnStopButtonClick: TNotifyEvent read FOnStopButtonClick write FOnStopButtonClick;
-    property ShowExactPosition: boolean read FExactPosition write SetExactPosition default false;
+    property ShowStopButton: boolean read FShowStopButton write SetStopButton
+      default false;
+    property OnStopButtonClick: TNotifyEvent read FOnStopButtonClick
+      write FOnStopButtonClick;
+    property ShowExactPosition: boolean read FExactPosition
+      write SetExactPosition default false;
     property Enabled: boolean read FEnabled write FEnabled default true;
     property HalfModal: boolean read FHalfModal write FHalfModal default true;
   end;
@@ -80,16 +83,17 @@ implementation
 
 procedure Register;
 begin
-   RegisterComponents( 'HS', [TProgressDlg] );
+  RegisterComponents('HS', [TProgressDlg]);
 end;
 
-constructor TProgressDlg.Create (aOwner: TComponent);
+constructor TProgressDlg.Create(aOwner: TComponent);
 begin
   mOwner := aOwner;
   FEnabled := true;
   FHalfModal := true;
-  inherited Create (aOwner);
+  inherited Create(aOwner);
 end;
+
 destructor TProgressDlg.Destroy;
 begin
   Close;
@@ -117,12 +121,14 @@ end;
 
 procedure TProgressDlg.Open;
 begin
-  if not Enabled then exit;
-  if FCurWindowOpen then exit;
+  if not Enabled then
+    exit;
+  if FCurWindowOpen then
+    exit;
 
   if not Assigned(DLG_Statusanzeige) then
   begin
-    DLG_Statusanzeige := TDLG_Statusanzeige.Create( mOwner );
+    DLG_Statusanzeige := TDLG_Statusanzeige.Create(mOwner);
   end;
   Reset;
   DLG_Statusanzeige.MaxValue := FMax;
@@ -142,10 +148,13 @@ begin
 
   DLG_Statusanzeige.Update;
 end;
+
 procedure TProgressDlg.Close;
 begin
-  if not Assigned(DLG_Statusanzeige) then exit;
-  if not FCurWindowOpen then exit;
+  if not Assigned(DLG_Statusanzeige) then
+    exit;
+  if not FCurWindowOpen then
+    exit;
 
   FCurWindowOpen := false;
   if FCurWindowOpenedHalfModal then
@@ -159,25 +168,27 @@ begin
 
   // TODO: Design62_ZeichneHintergrundschrift wird nicht ausgeführt... warum?!
   (*
-  if Assigned(Application) and Assigned(Application.MainForm) then
-  begin
+    if Assigned(Application) and Assigned(Application.MainForm) then
+    begin
     Application.MainForm.Invalidate;
     Application.MainForm.Repaint;
-  end;
+    end;
   *)
 end;
+
 procedure TProgressDlg.IncPos;
 begin
   Position := Position + 1;
   // TestStop;
 end;
+
 procedure TProgressDlg.Reset;
 begin
   FPosition := 0;
 
   if Assigned(DLG_Statusanzeige) then
   begin
-    DLG_Statusanzeige.TimerRestzeit.Enabled := False;
+    DLG_Statusanzeige.TimerRestzeit.Enabled := false;
     DLG_Statusanzeige.Text := FText;
     DLG_Statusanzeige.ShowTime := ShowTime;
     DLG_Statusanzeige.MaxValue := FMax;
@@ -228,8 +239,8 @@ begin
   // FPosition := Value mod (FMax + 1);
   if Value > FMax then
     FPosition := FMax
-  else if Value < 0{FMin} then
-    FPosition := 0{FMin}
+  else if Value < 0 { FMin } then
+    FPosition := 0 { FMin }
   else
     FPosition := Value;
 
@@ -238,22 +249,22 @@ begin
     DLG_Statusanzeige.Position := FPosition;
 
     (*
-    Dieser Code sorgt dafür, dass die Restzeit-Anzeige aktualisiert wird.
-    Der Timer funktioniert leider NICHT eigenständig, da der Mainthread (in dem auch der
-    Warten-Dialog untergebracht ist) normalerweise ausgelastet ist (es sei denn, man
-    macht Thread-Programmierung).
-    Das Aktivieren von ProcessMessages würde das Problem lösen, und man könnte auch
-    das Warten-Fenter dann per Drag'n'Drop verschieben, ABER der Nachteil ist, dass
-    man mit CORA arbeiten könnte und Dinge verstellen kann, weswegen z.B. eine
-    Auswertung fehlschlagen würde.
-    Daher verwenden wir kein ProcessMessages, sondern stupsen den Timer automatisch an.
-    -- DM 30.03.2016
+      Dieser Code sorgt dafür, dass die Restzeit-Anzeige aktualisiert wird.
+      Der Timer funktioniert leider NICHT eigenständig, da der Mainthread (in dem auch der
+      Warten-Dialog untergebracht ist) normalerweise ausgelastet ist (es sei denn, man
+      macht Thread-Programmierung).
+      Das Aktivieren von ProcessMessages würde das Problem lösen, und man könnte auch
+      das Warten-Fenter dann per Drag'n'Drop verschieben, ABER der Nachteil ist, dass
+      man mit CORA arbeiten könnte und Dinge verstellen kann, weswegen z.B. eine
+      Auswertung fehlschlagen würde.
+      Daher verwenden wir kein ProcessMessages, sondern stupsen den Timer automatisch an.
+      -- DM 30.03.2016
 
-    TODO: Hier gibt es aber trotzdem noch Probleme:
-          1. Wenn ein Tick länger dauert als der TimerRestzeit, wird die Zeit nicht im korrekten Interval aktualisiert
-          2. Da kein ProcessMessages gemacht wird, wird das Fenster milchig, da Windows davon ausgeht, dass die Anwendung nicht reagiert
-          ==> Besser wäre also ProcessMessages, aber dann den Dialog in einen ModalDialog ändern!
-          ==> Wurde mit dem HalfModalMode zum Teil erreicht...
+      TODO: Hier gibt es aber trotzdem noch Probleme:
+      1. Wenn ein Tick länger dauert als der TimerRestzeit, wird die Zeit nicht im korrekten Interval aktualisiert
+      2. Da kein ProcessMessages gemacht wird, wird das Fenster milchig, da Windows davon ausgeht, dass die Anwendung nicht reagiert
+      ==> Besser wäre also ProcessMessages, aber dann den Dialog in einen ModalDialog ändern!
+      ==> Wurde mit dem HalfModalMode zum Teil erreicht...
     *)
 
     if FCurWindowOpenedHalfModal then
@@ -287,11 +298,12 @@ begin
   Application.ProcessMessages;
 end;
 
-procedure TProgressDlg.SetText (aValue: string);
+procedure TProgressDlg.SetText(aValue: string);
 begin
-  if aValue = FText then exit;
+  if aValue = FText then
+    exit;
   FText := aValue;
-  
+
   if Assigned(DLG_Statusanzeige) then
   begin
     DLG_Statusanzeige.Text := FText;
@@ -302,7 +314,8 @@ end;
 
 procedure TProgressDlg.TestStop;
 begin
-  if Application.Terminated or FStopButtonSignal then Abort;
+  if Application.Terminated or FStopButtonSignal then
+    Abort;
 end;
 
 end.

@@ -31,20 +31,25 @@ begin
   result := ModalResult;
 
   SendMessage(Handle, CM_DEACTIVATE, 0, 0);
-  if GetActiveWindow <> Handle then mc.ActiveWindow := 0;
+  if GetActiveWindow <> Handle then
+    mc.ActiveWindow := 0;
 
   Hide;
 
   if Screen.CursorCount = mc.SaveCount then
-  Screen.Cursor := mc.SaveCursor
-  else Screen.Cursor := crDefault;
+    Screen.Cursor := mc.SaveCursor
+  else
+    Screen.Cursor := crDefault;
   EnableTaskWindows(mc.WindowList);
   if Screen.SaveFocusedList.Count > 0 then
   begin
     Screen.FocusedForm := Screen.SaveFocusedList.First;
     Screen.SaveFocusedList.Remove(Screen.FocusedForm);
-  end else Screen.FocusedForm := nil;
-  if mc.ActiveWindow <> 0 then SetActiveWindow(mc.ActiveWindow);
+  end
+  else
+    Screen.FocusedForm := nil;
+  if mc.ActiveWindow <> 0 then
+    SetActiveWindow(mc.ActiveWindow);
   RestoreFocusState(mc.SaveFocusState);
   Exclude(FFormState, fsModal);
 
@@ -54,12 +59,13 @@ end;
 function TForm_.ShowModalStart: TModalContext;
 begin
   // Quelltext wurde von Delphi 2007 Forms.pas entnommen und modifiziert (aufgesplittet um TModalContext hinzugefügt)
-  
+
   CancelDrag;
   if Visible or not Enabled or (fsModal in FFormState) or
     (FormStyle = fsMDIChild) then
     raise EInvalidOperation.Create(SCannotShowModal);
-  if GetCapture <> 0 then SendMessage(GetCapture, WM_CANCELMODE, 0, 0);
+  if GetCapture <> 0 then
+    SendMessage(GetCapture, WM_CANCELMODE, 0, 0);
   ReleaseCapture;
   Application.ModalStarted;
 

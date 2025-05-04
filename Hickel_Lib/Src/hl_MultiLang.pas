@@ -16,7 +16,7 @@ var
   oldHInst: hInst;
   newHInst: hInst;
   bakOverride: string;
-  FileName: array [0..MAX_PATH] of Char;
+  FileName: array [0 .. MAX_PATH] of Char;
   Module: PLibModule;
 begin
   Module := LibModuleList;
@@ -29,7 +29,8 @@ begin
     // Note: SetLocaleOverride() alone does not work, because LibModuleList.ResInstance
     // is already set and won't be re-set by the FindResourceHInstance()!
     newHInst := LoadResourceModule(FileName);
-    if newHInst = 0 then newHInst := Module.Instance;
+    if newHInst = 0 then
+      newHInst := Module.Instance;
 
     oldHInst := Module.ResInstance;
     Module.ResInstance := newHInst;
@@ -60,7 +61,7 @@ begin
   // But much more people are speaking English than German. So we need to force the system to use ENU instead of DE,
   // if the system is not DE.
   if (GetLocaleOverride('') = '') and
-     ((GetUserDefaultUILanguage and $FF) <> BaseLanguage) then
+    ((GetUserDefaultUILanguage and $FF) <> BaseLanguage) then
   begin
     SwitchLanguage(DesiredFallbackLanguage);
   end;

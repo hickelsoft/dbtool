@@ -11,10 +11,8 @@ object hgInputQry: ThgInputQry
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   Position = poMainFormCenter
   OnShow = FormShow
-  PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
     Left = 56
@@ -56,7 +54,6 @@ object hgInputQry: ThgInputQry
     Top = 27
     Width = 273
     Height = 21
-    ItemHeight = 13
     TabOrder = 3
     Text = 'ComboBox1'
   end
