@@ -1,8 +1,5 @@
 unit HsProgressChecklist;
 
-// Daniel Marschall
-// 20.09.2016
-
 interface
 
 uses

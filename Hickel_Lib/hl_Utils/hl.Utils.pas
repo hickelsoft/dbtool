@@ -273,6 +273,25 @@ uses
   Registry, ComObj, DateUtils,
   hl.Utils.WmiUtils, WinSock, PngImage, Graphics;
 
+resourcestring
+  StrUngültigeBlockgröße = 'Ungültige Blockgröße';
+  StrKonnteDateiSNich = 'Konnte Datei %s nicht löschen!';
+  StrPrüfsummenDatei = 'Prüfsummen-Datei';
+  StrErstelltMitS = 'erstellt mit %s';
+  StrJA = 'JA';
+  StrNEIN = 'NEIN';
+  StrKomprimierungStimmt = 'Komprimierung stimmt nicht überein.';
+  StrIsWow64BadProcess = 'IsWow64: bad process handle';
+  StrGetBuildTimestamps = 'GetBuildTimestamp(%s) fehlgeschlagen';
+  StrRTFToTextIstFehl = 'RTF-To-Text ist fehlgeschlagen!';
+  StrPortDKonnteNicht = 'Port %d konnte nicht freigeschaltet werden!';
+  StrDJahren = '%d Jahren';
+  Str1Jahr = '1 Jahr';
+  StrDMonaten = '%d Monaten';
+  Str1Monat = '1 Monat';
+  StrDTagen = '%d Tagen';
+  Str1Tag = '1 Tag';
+
 class function ThlUtils.processExists(exeFileName: string): boolean;
 var
   ContinueLoop: BOOL;
@@ -454,7 +473,7 @@ var
 begin
   if blockgröße <= 0 then
   begin
-    raise Exception.Create('Ungültige Blockgröße');
+    raise Exception.Create(StrUngültigeBlockgröße);
   end;
   Result := '';
   I := 1;
@@ -797,17 +816,18 @@ begin
   begin
     if not DeleteFile(sOutFile) then
     begin
-      raise Exception.CreateFmt('Konnte Datei %s nicht löschen!', [sOutFile]);
+      raise Exception.CreateFmt(StrKonnteDateiSNich, [sOutFile]);
     end;
   end;
   AssignFile(fOut, sOutFile);
   slFiles := TStringList.Create;
   try
     Rewrite(fOut);
-    sComment := '; Prüfsummen-Datei';
+    sComment := '; ' + StrPrüfsummenDatei;
     if Assigned(Application) then
     begin
-      sComment := sComment + ', erstellt mit ' + Application.Title;
+      sComment := sComment + ', ' + Format(StrErstelltMitS,
+        [Application.Title]);
     end;
     Writeln(fOut, sChkFile, sComment);
     ThlUtils.ListFiles(DirName, slFiles, True);
@@ -840,17 +860,18 @@ begin
   begin
     if not DeleteFile(sOutFile) then
     begin
-      raise Exception.CreateFmt('Konnte Datei %s nicht löschen!', [sOutFile]);
+      raise Exception.CreateFmt(StrKonnteDateiSNich, [sOutFile]);
     end;
   end;
   AssignFile(fOut, sOutFile);
   slFiles := TStringList.Create;
   try
     Rewrite(fOut);
-    sComment := '; Prüfsummen-Datei';
+    sComment := '; ' + StrPrüfsummenDatei;
     if Assigned(Application) then
     begin
-      sComment := sComment + ', erstellt mit ' + Application.Title;
+      sComment := sComment + ', ' + Format(StrErstelltMitS,
+        [Application.Title]);
     end;
     Writeln(fOut, sChkFile, sComment);
     ThlUtils.ListFiles(DirName, slFiles, True);
@@ -968,6 +989,8 @@ begin
 end;
 
 class procedure ThlUtils.TryFreeDiskSpace(level: integer = 0);
+var
+  tmp: string;
 begin
   if level >= 0 then
   begin
@@ -979,7 +1002,13 @@ begin
   else if level >= 1 then
   begin
     DeleteFiles('C:\windows\temp\*.*');
-    // TODO: auch %appdata%\..\Local\Temp löschen
+    tmp := SysUtils.GetEnvironmentVariable('APPDATA');
+    if tmp <> '' then
+    begin
+      tmp := IncludeTrailingPathDelimiter(tmp) + '..\Local\Temp\*.*';
+      tmp := StringReplace(tmp, 'Roaming\..\', '', [rfIgnoreCase]);
+      DeleteFiles(tmp);
+    end;
   end;
 end;
 
@@ -1230,9 +1259,9 @@ end;
 function hclBoolToStr(aValue: boolean): string;
 begin
   if aValue = True then
-    Result := 'JA'
+    Result := StrJA
   else
-    Result := 'NEIN';
+    Result := StrNEIN;
 end;
 
 class function ThlUtils.GetFileVersion(filename: string): string;
@@ -1393,7 +1422,7 @@ begin
   end;
 {$IFEND}
   if DeCompressAnsiString(Result) <> Input then
-    raise Exception.Create('Komprimierung stimmt nicht überein.');
+    raise Exception.Create(StrKomprimierungStimmt);
 end;
 
 Function DeCompressAnsiString(const Input: ansistring): ansistring;
@@ -2282,7 +2311,7 @@ begin
   begin
     // Function is implemented: call it
     if not IsWow64Process(Windows.GetCurrentProcess, IsWow64Result) then
-      raise SysUtils.Exception.Create('IsWow64: bad process handle');
+      raise SysUtils.Exception.Create(StrIsWow64BadProcess);
     // Return result of function
     Result := IsWow64Result;
   end
@@ -2508,7 +2537,7 @@ begin
     if not SystemTimeToFileTime(SystemTime, FileTime) then
       RaiseLastOSError;
     if not SetFileTime(Handle, @FileTime, @FileTime, @FileTime) then
-    // Modification + AccessTime hinzugefügt, nicht nur Create
+      // Modification + AccessTime hinzugefügt, nicht nur Create
       RaiseLastOSError;
   finally
     CloseHandle(Handle);
@@ -2757,8 +2786,7 @@ begin
     begin
       // Sollte nicht passieren
       if not FileAge(ExeFile, Result) then
-        raise Exception.CreateFmt('GetBuildTimestamp(%s) fehlgeschlagen',
-          [ExeFile]);
+        raise Exception.CreateFmt(StrGetBuildTimestamps, [ExeFile]);
     end;
   end;
 end;
@@ -2804,7 +2832,7 @@ begin
   end;
   if copy(Result, 1, 5) = '{\rtf' then
   begin
-    ShowMessage('RTF-To-Text ist fehlgeschlagen!');
+    ShowMessage(StrRTFToTextIstFehl);
   end;
 end;
 
@@ -3035,8 +3063,7 @@ begin
   if Firewall_IstPortFreigeschaltet(port) then
     exit;
 {$ENDREGION}
-  raise Exception.CreateFmt
-    ('Port %d konnte nicht freigeschaltet werden!', [port]);
+  raise Exception.CreateFmt(StrPortDKonnteNicht, [port]);
 end;
 
 procedure DateiUndDruckerFreigabeAktivieren(Enable: boolean);
@@ -3345,7 +3372,7 @@ begin
       else if ec = ERROR_NOT_SUPPORTED then
         serr := 'ERROR_NOT_SUPPORTED'
       else if ec = ERROR_NETWORK_UNREACHABLE then
-      // not documented in MSDN WinApi
+        // not documented in MSDN WinApi
         serr := 'ERROR_NETWORK_UNREACHABLE'
       else if ec <> S_OK then
         serr := 'ERROR_' + intToStr(ec);
@@ -3577,19 +3604,19 @@ end;
 function DaysHumanReadable(days: integer): string;
 begin
   if days >= 2 * 12 * 30 then
-    Result := intToStr(days div (30 * 12)) + ' Jahren'
+    Result := Format(StrDJahren, [days div (30 * 12)])
   else if days >= 12 * 30 then
-    Result := '1 Jahr'
+    Result := Str1Jahr
 
   else if days >= 2 * 30 then
-    Result := intToStr(days div 30) + ' Monaten'
+    Result := Format(StrDMonaten, [days div 30])
   else if days >= 2 * 30 then
-    Result := '1 Monat'
+    Result := Str1Monat
 
   else if days >= 2 then
-    Result := intToStr(days) + ' Tagen'
+    Result := Format(StrDTagen, [days])
   else
-    Result := '1 Tag';
+    Result := Str1Tag;
 end;
 
 function WindowsBits: integer;

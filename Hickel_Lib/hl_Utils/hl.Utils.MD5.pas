@@ -15,6 +15,9 @@ implementation
 uses
   IdHashMessageDigest, idHash, idGlobal;
 
+resourcestring
+  StrMD5BinaryNichtKomp = 'MD5Binary nicht kompatibel mit altem Indy';
+
 {$IF gsIdVersion <> '10.1.5'} // Delphi 2007 built-in Indy10; gsIdVersion requires idGlobal.pas
 {$DEFINE NewIndy}
 {$IFEND}
@@ -54,7 +57,7 @@ begin
 {$ELSE}
 
 begin
-  raise Exception.Create('MD5Binary nicht kompatibel mit altem Indy');
+  raise Exception.Create(StrMD5BinaryNichtKomp);
 {$ENDIF}
 end;
 

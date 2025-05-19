@@ -34,6 +34,16 @@ uses
   WinInet, System.Net.URLClient, System.NetEncoding,
   hl.Utils;
 
+resourcestring
+  StrBitteJavaScriptEin =
+    'Bitte JavaScript einschalten, um die E-Mail-Adresse anzuzeigen.';
+  StrErrorTooManyRedi = 'Fehler: Zu viele Umleitungen';
+  StrHTTPErrorDWithG = 'HTTP-Fehler %d bei GET-Anfrage %s';
+  StrErrorOpeningReques = 'Fehler beim Öffnen der HTTP-Anfrage: %s';
+  StrErrorInitializingW = 'Fehler beim initialisieren von WinInet: %s';
+  StrErrorConnectingTo = 'Fehler beim Verbinden zum Server: %s';
+  StrErrorSendingReques = 'Fehler beim Senden der HTTP-Anfrage: %s';
+
 function secure_email(email, linktext: string; crypt_linktext: boolean): string;
   function alas_js_crypt(text: string): string;
   var
@@ -77,8 +87,7 @@ begin
     aus := aus + alas_js_write('</a>') + '// --></script>';
   end;
 
-  result := aus +
-    '<noscript>Bitte JavaScript einschalten, um die E-Mail-Adresse anzuzeigen.</noscript>';
+  result := aus + '<noscript>' + StrBitteJavaScriptEin + '</noscript>';
 end;
 
 function htmlEntities(s: string): string;
@@ -446,8 +455,8 @@ begin
   hSession := InternetOpen(USER_AGENT, INTERNET_OPEN_TYPE_PRECONFIG,
     nil, nil, 0);
   if not Assigned(hSession) then
-    raise Exception.Create('Error initializing WinInet: ' +
-      SysErrorMessage(GetLastError));
+    raise Exception.CreateFmt(StrErrorInitializingW,
+      [SysErrorMessage(GetLastError)]);
   try
     RedirectCount := 0;
     while True do
@@ -458,14 +467,14 @@ begin
       hConnect := InternetConnect(hSession, PChar(Host), Port, nil, nil,
         INTERNET_SERVICE_HTTP, 0, 0);
       if not Assigned(hConnect) then
-        raise Exception.Create('Error connecting to server: ' +
-          SysErrorMessage(GetLastError));
+        raise Exception.CreateFmt(StrErrorConnectingTo,
+          [SysErrorMessage(GetLastError)]);
       try
         hRequest := HttpOpenRequest(hConnect, 'POST', PChar(Path), nil, nil,
           nil, INTERNET_FLAG_SECURE, 0);
         if not Assigned(hRequest) then
-          raise Exception.Create('Error opening request: ' +
-            SysErrorMessage(GetLastError));
+          raise Exception.CreateFmt(StrErrorOpeningReques,
+            [SysErrorMessage(GetLastError)]);
         try
           // Set headers.
           Headers := 'Content-Type: ' + ContentType + #13#10;
@@ -477,8 +486,8 @@ begin
           // Send the request with POST data.
           if not HttpSendRequest(hRequest, PChar(Headers), Length(Headers),
             PAnsiChar(PostData), PostDataLength) then
-            raise Exception.Create('Error sending request: ' +
-              SysErrorMessage(GetLastError));
+            raise Exception.CreateFmt(StrErrorSendingReques,
+              [SysErrorMessage(GetLastError)]);
 
           StatusCode := GetStatusCode(hRequest);
 
@@ -489,7 +498,7 @@ begin
             // Stop following redirects if we exceed the maximum number of allowed redirects.
             if RedirectCount > MaxRedirects then
             begin
-              raise Exception.Create('Error: Too many redirects');
+              raise Exception.Create(StrErrorTooManyRedi);
             end;
 
             // Get the "Location" header for the new URL
@@ -513,8 +522,7 @@ begin
             break;
           end
           else
-            raise Exception.CreateFmt('HTTP Error %d with GET request %s',
-              [StatusCode, AURL]);
+            raise Exception.CreateFmt(StrHTTPErrorDWithG, [StatusCode, AURL]);
         finally
           InternetCloseHandle(hRequest);
         end;
@@ -544,8 +552,8 @@ begin
   hSession := InternetOpen(USER_AGENT, INTERNET_OPEN_TYPE_PRECONFIG,
     nil, nil, 0);
   if not Assigned(hSession) then
-    raise Exception.Create('Error initializing WinInet: ' +
-      SysErrorMessage(GetLastError));
+    raise Exception.CreateFmt(StrErrorInitializingW,
+      [SysErrorMessage(GetLastError)]);
   try
     RedirectCount := 0;
     while True do
@@ -555,8 +563,8 @@ begin
       hRequest := InternetOpenUrl(hSession, PChar(AURL), nil, 0,
         INTERNET_FLAG_RELOAD, 0);
       if not Assigned(hRequest) then
-        raise Exception.Create('Error opening request: ' +
-          SysErrorMessage(GetLastError));
+        raise Exception.CreateFmt(StrErrorOpeningReques,
+          [SysErrorMessage(GetLastError)]);
       try
         StatusCode := GetStatusCode(hRequest);
         if (StatusCode >= 300) and (StatusCode < 400) then
@@ -566,7 +574,7 @@ begin
           // Stop following redirects if we exceed the maximum number of allowed redirects.
           if RedirectCount > MaxRedirects then
           begin
-            raise Exception.Create('Error: Too many redirects');
+            raise Exception.Create(StrErrorTooManyRedi);
           end;
 
           // Get the "Location" header for the new URL
@@ -592,8 +600,7 @@ begin
           break;
         end
         else
-          raise Exception.CreateFmt('HTTP Error %d with GET request %s',
-            [StatusCode, AURL]);
+          raise Exception.CreateFmt(StrHTTPErrorDWithG, [StatusCode, AURL]);
       finally
         InternetCloseHandle(hRequest);
       end;
@@ -622,8 +629,8 @@ begin
   hSession := InternetOpen(USER_AGENT, INTERNET_OPEN_TYPE_PRECONFIG,
     nil, nil, 0);
   if not Assigned(hSession) then
-    raise Exception.Create('Error initializing WinInet: ' +
-      SysErrorMessage(GetLastError));
+    raise Exception.CreateFmt(StrErrorInitializingW,
+      [SysErrorMessage(GetLastError)]);
   try
     RedirectCount := 0;
     while True do
@@ -633,8 +640,8 @@ begin
       hRequest := InternetOpenUrl(hSession, PChar(AURL), nil, 0,
         INTERNET_FLAG_RELOAD or INTERNET_FLAG_NO_CACHE_WRITE, 0);
       if not Assigned(hRequest) then
-        raise Exception.Create('Error opening request: ' +
-          SysErrorMessage(GetLastError));
+        raise Exception.CreateFmt(StrErrorOpeningReques,
+          [SysErrorMessage(GetLastError)]);
       try
         StatusCode := GetStatusCode(hRequest);
         if (StatusCode >= 300) and (StatusCode < 400) then
@@ -644,7 +651,7 @@ begin
           // Stop following redirects if we exceed the maximum number of allowed redirects.
           if RedirectCount > MaxRedirects then
           begin
-            raise Exception.Create('Error: Too many redirects');
+            raise Exception.Create(StrErrorTooManyRedi);
           end;
 
           // Get the "Location" header for the new URL
@@ -690,8 +697,7 @@ begin
           break;
         end
         else
-          raise Exception.CreateFmt('HTTP Error %d with GET request %s',
-            [StatusCode, AURL]);
+          raise Exception.CreateFmt(StrHTTPErrorDWithG, [StatusCode, AURL]);
       finally
         InternetCloseHandle(hRequest);
       end;

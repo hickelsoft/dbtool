@@ -79,12 +79,12 @@
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <Icon_MainIcon>Hickel_Lib_Icon.ico</Icon_MainIcon>
+        <Icon_MainIcon>Hickel_Lib_11_Icon.ico</Icon_MainIcon>
         <VerInfo_MajorVer>1</VerInfo_MajorVer>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <Icon_MainIcon>Hickel_Lib_Icon.ico</Icon_MainIcon>
+        <Icon_MainIcon>Hickel_Lib_11_Icon.ico</Icon_MainIcon>
         <DCC_Namespace>Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
@@ -1105,7 +1105,6 @@
         <DCCReference Include="hl_Utils\hl.Utils.StreamEx.pas"/>
         <DCCReference Include="Src\hl_WinMessages.pas"/>
         <DCCReference Include="Src\HS_Fernwartung.pas"/>
-        <DCCReference Include="hl_Utils\hl_PopupMenuHelper.pas"/>
         <DCCReference Include="Src\HS_MidVer.pas"/>
         <DCCReference Include="hl_Utils\hl.Utils.SteuerNr.pas"/>
         <DCCReference Include="hl_Utils\hl.Utils.July22Crypt.pas"/>
@@ -1122,6 +1121,8 @@
         <DCCReference Include="Src\HS_Mitteilung.pas"/>
         <DCCReference Include="Src\hl_SqlServerProvider.pas"/>
         <DCCReference Include="Src\VCL_Hotfix_AltGr.pas"/>
+        <DCCReference Include="Src\hl_PopupMenuHelper.pas"/>
+        <DCCReference Include="hl_Utils\ShareFolderUnit.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

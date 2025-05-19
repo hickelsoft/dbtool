@@ -104,6 +104,16 @@ implementation
 uses
   Consts, hl_Exceptions, Drucker;
 
+resourcestring
+  StrDuplexKein = 'Kein';
+  StrDuplexHorizontal = 'Horizontal';
+  StrDuplexVertikal = 'Vertikal';
+  StrCORAplus = 'CORAplus';
+  StrDuplexModusSNich = 'Duplex-Modus %s nicht gefunden';
+  StrPapiergrößeSNicht = 'Papiergröße %s nicht gefunden';
+  StrDruckerSNichtG = 'Drucker "%s" nicht gefunden';
+  StrPapierquelleSNich = 'Papierquelle %s nicht gefunden';
+
 threadvar _hlPrinterNeu: ThlPrinterNeu;
 
 function ThlPrinterNeu.Win_GetDefaultSource: SmallInt;
@@ -177,14 +187,14 @@ constructor ThlPrinterNeu.Create;
 begin
   inherited;
 
-  Title := 'CORAplus';
+  Title := StrCORAplus;
   FPaperSizeIndex := -1;
   FPaperSourceIndex := -1;
 
   FDuplexTextListe := TStringList.Create;
-  FDuplexTextListe.Add('Kein');
-  FDuplexTextListe.Add('Horizontal');
-  FDuplexTextListe.Add('Vertikal');
+  FDuplexTextListe.Add(StrDuplexKein);
+  FDuplexTextListe.Add(StrDuplexHorizontal);
+  FDuplexTextListe.Add(StrDuplexVertikal);
 end;
 
 function ThlPrinterNeu.GetDefaultPapersize: string;
@@ -577,7 +587,7 @@ begin
   if i >= 0 then
     DuplexModus := i
   else
-    raise ThlException.CreateFmt('Duplex-Modus %s nicht gefunden', [Value]);
+    raise ThlException.CreateFmt(StrDuplexModusSNich, [Value]);
 end;
 
 procedure ThlPrinterNeu.SetPaperSizeIndex(Value: integer);
@@ -647,7 +657,7 @@ begin
   if i >= 0 then
     PaperSizeIndex := i
   else
-    raise ThlException.CreateFmt('Papiergröße %s nicht gefunden', [Value]);
+    raise ThlException.CreateFmt(StrPapiergrößeSNicht, [Value]);
 end;
 
 procedure ThlPrinterNeu.SetPaperSourceIndex(Value: integer);
@@ -730,7 +740,7 @@ begin
   if i >= 0 then
     PrinterIndex := i
   else
-    raise ThlException.CreateFmt('Drucker "%s" nicht gefunden', [Value]);
+    raise ThlException.CreateFmt(StrDruckerSNichtG, [Value]);
 end;
 
 procedure ThlPrinterNeu.SetSchachtName(const Value: string);
@@ -741,7 +751,7 @@ begin
   if i >= 0 then
     PaperSourceIndex := i
   else
-    raise ThlException.CreateFmt('Papierquelle %s nicht gefunden', [Value]);
+    raise ThlException.CreateFmt(StrPapierquelleSNich, [Value]);
 end;
 
 function hlPrinterNeu: ThlPrinterNeu;

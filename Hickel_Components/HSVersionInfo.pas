@@ -24,9 +24,7 @@ type
 {$IF CompilerVersion > 20.0} // Version geraten
     [ComponentPlatformsAttribute(pidWin32 or pidWin64)]
 {$IFEND}
-      THSVersionInfo = class(TComponent)private
-    { Private declarations }
-      FAutoGetInfo: Boolean;
+      THSVersionInfo = class(TComponent)private FAutoGetInfo: Boolean;
     FHaveVersionInfo: Boolean;
     FhZero: DWORD;
     FVersionInfoSize: Integer;
@@ -41,15 +39,12 @@ type
     FCharSetStr: String { [4] };
     FFixedFileInfo: VS_FIXEDFILEINFO;
   protected
-    { Protected declarations }
     function GetFileName: String;
     procedure SetFileName(Name: String);
   public
-    { Public declarations }
     constructor Create(AOwner: TComponent); override;
     destructor Destroy; override;
   published
-    { Published declarations }
     procedure GetFileInfo(FileName: String);
     procedure SetAutoGetInfo(Value: Boolean);
 
@@ -79,6 +74,9 @@ type
 procedure Register;
 
 implementation
+
+resourcestring
+  StrKeineSolcheVersion = 'Keine solche VersionsInfo';
 
 procedure Register;
 begin
@@ -174,7 +172,7 @@ begin
     FParameterLength) then
     Result := StrPas(PChar(FParam))
   else
-    Result := 'Keine solche VersionsInfo';
+    Result := StrKeineSolcheVersion;
 end;
 
 end.

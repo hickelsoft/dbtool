@@ -285,15 +285,29 @@ uses
   MessaBox, hl.System.ExceptionHandler, HsDruckerConfig, hl_SqlServerProvider,
   HS_Auth;
 
-{ Timer für Debugging }
+resourcestring
+  StrGetScalarMitLeerem = 'GetScalar mit leerem SQL String aufgerufen';
+  StrFehlerSBeimAusfü = 'Fehler %s beim Ausführen der Query %s';
+  StrFehlerSBeimSQLV = 'Fehler %s beim SQL-Verbindungsaufbau in "%s"';
+  StrHighResolutionTime = 'High resolution timer not availalbe!';
+  StrFolgendeSQLQueryK =
+    'Folgende SQL-Query konnte nicht an den Datenbank-Server gesendet werden, da die Verbindung bereits abgebaut wurde:';
+  StrQueryFEHLGESCHLAGEN = 'Query FEHLGESCHLAGEN: %s bei Query %s';
+  StrExceptionSAtQuer = 'Ausnahmefehler %s bei Datenbankabfrage %s';
+  StrFehlerSBeimAusfüTransaktion =
+    'Fehler %s beim Ausführen der Transaktion in ExecSqlList';
+  StrAutoIncFehler = 'Kann keinen AutoIncrement-Wert feststellen!';
+  StrInternerFehlerInS =
+    'Interner Fehler in Sql_Scripts.ExecSqlList(): lmFehlerIgnorieren/lmFehlerAnzeigenUndWeitermachen und WithTransAction sind nicht vereinbar. Bitte melden Sie den Fehler an HickelSOFT.';
 
 var
+  { Timer für Debugging }
   iFrequency, iTimerStart, iTimerEnd: int64;
 
 procedure _TimerStart;
 begin
   if NOT QueryPerformanceFrequency(iFrequency) then
-    raise Exception.Create('High resolution timer not availalbe!');
+    raise Exception.Create(StrHighResolutionTime);
   QueryPerformanceCounter(iTimerStart);
 end;
 
@@ -457,7 +471,7 @@ var
   q: ThlDataSet;
 begin
   if sql = '' then
-    raise Exception.Create('GetScalar mit leerem SQL String aufgerufen');
+    raise Exception.Create(StrGetScalarMitLeerem);
   q := GetTableWithCon(sql, adoCon, timeout, controlsEnabled);
   try
     if q.RecordCount = 0 then
@@ -513,9 +527,9 @@ begin
   if SqlServerProvider = 'MSOLEDBSQL19' then
     sqlConnStr := sqlConnStr + 'Use Encryption for Data=False;';
 
+  // DataTypeCompatibility=80, ansonsten funktionieren "time" Datentypen nicht! (sind im Fields[] und FieldDefs[] nicht da und dbGrid verursacht AccessViolation)
   if SqlServerProvider <> 'SQLOLEDB' then
     sqlConnStr := sqlConnStr + 'DataTypeCompatibility=80;';
-  // ansonsten funktionieren "time" Datentypen nicht! (sind im Fields[] und FieldDefs[] nicht da und dbGrid kackt ab)
 
   sqlConnStr := sqlConnStr + 'Initial Catalog=' + Datenbank + ';';
   sqlConnStr := sqlConnStr + 'Data Source=' + Server;
@@ -1085,7 +1099,7 @@ begin
             end
             else
             begin
-              raise Exception.CreateFmt('Fehler %s beim Ausführen der Query %s',
+              raise Exception.CreateFmt(StrFehlerSBeimAusfü,
                 [E.Message, sQuery]);
             end;
           end;
@@ -1110,8 +1124,7 @@ begin
       // Ticket 29729, Punkt 1
       if aCon.InTransaction then
         aCon.RollbackTrans;
-      raise Exception.CreateFmt('Fehler %s beim Ausführen der Query %s',
-        [E.Message, sQuery]);
+      raise Exception.CreateFmt(StrFehlerSBeimAusfü, [E.Message, sQuery]);
     end;
   end;
 end;
@@ -1136,9 +1149,8 @@ procedure ThlDatenbank.ExecSql(timeout: integer; sql: string = '');
 begin
   if not Assigned(mConnection) or not mConnection.Connected then
   begin
-    raise Exception.CreateFmt
-      ('Folgende SQL-Query konnte nicht an den Datenbank-Server gesendet werden, da die Verbindung bereits abgebaut wurde:'
-      + #13#10#13#10 + '%s', [sql]);
+    raise Exception.CreateFmt(StrFolgendeSQLQueryK + #13#10#13#10 +
+      '%s', [sql]);
   end;
 
   // oldCommandTimeout := mCommand.CommandTimeout;
@@ -1165,13 +1177,12 @@ begin
       // Ticket 29729, Punkt 1
       with ThlLog.Create do
       begin
-        Write('Query FEHLGESCHLAGEN: ' + E.Message + ' bei Query ' + sql);
+        Write(Format(StrQueryFEHLGESCHLAGEN, [E.Message, sql]));
         Free;
       end;
       if mConnection.InTransaction then
         mConnection.RollbackTrans;
-      raise Exception.CreateFmt('Fehler %s beim Ausführen der Query %s',
-        [E.Message, sql]);
+      raise Exception.CreateFmt(StrFehlerSBeimAusfü, [E.Message, sql]);
     end;
   end;
 
@@ -1215,7 +1226,7 @@ var
   ds: ThlDataSet;
 begin
   if sql = '' then
-    raise Exception.Create('GetScalar mit leerem SQL String aufgerufen');
+    raise Exception.Create(StrGetScalarMitLeerem);
   ds := GetTable(timeout, sql);
   try
     if ds.RecordCount = 0 then
@@ -1233,7 +1244,7 @@ end;
 function ThlDatenbank.GetScalar(sql: string): ThlDatenbankFeld;
 begin
   if sql = '' then
-    raise Exception.Create('GetScalar mit leerem SQL String aufgerufen');
+    raise Exception.Create(StrGetScalarMitLeerem);
   Result := GetScalar(DefaultCommandTimeout, sql);
 end;
 
@@ -1263,9 +1274,8 @@ begin
       end
       else
       begin
-        raise Exception.CreateFmt
-          ('Fehler %s beim SQL-Verbindungsaufbau "MakeActiveTryReconnect"',
-          [E.Message]);
+        raise Exception.CreateFmt(StrFehlerSBeimSQLV,
+          [E.Message, 'MakeActiveTryReconnect']);
       end;
     end;
   end;
@@ -1293,13 +1303,11 @@ begin
   // Falls dies der Fall ist, knallts es unten, da die Instanz "q" keinen sauberen Cursor zurückliefert!"
   // Zur Sicherheit bauen wir daher .First für alle GetTable() Aufrufe ein.
   if Result.active then
-  // DM 07.06.2021 : If-Condition hinzugefügt, weil man beim GoBD Export beispielsweise "GetTable" mit sql='' aufruft, um ein leeres Dataset zu bekommen
+    // DM 07.06.2021 : If-Condition hinzugefügt, weil man beim GoBD Export beispielsweise "GetTable" mit sql='' aufruft, um ein leeres Dataset zu bekommen
     Result.First;
 end;
 
 function ThlDatenbank.InsertAndReturnID(query: string): integer;
-resourcestring
-  LNG_NO_AUTOINC = 'Kann keinen AutoIncrement-Wert feststellen!';
 var
   q1: ThlDataSet;
 begin
@@ -1315,7 +1323,7 @@ begin
         (q1.{ FieldByName('INSERT_ID') } Fields[0].AsInteger = 0) then
       begin
         Result := -1;
-        raise EHSCannotGetAutoInc.Create(LNG_NO_AUTOINC);
+        raise EHSCannotGetAutoInc.Create(StrAutoIncFehler);
       end;
 
       Result := q1.{ FieldByName('INSERT_ID') } Fields[0].AsInteger;
@@ -1469,8 +1477,7 @@ begin
   if (mode in [lmFehlerIgnorieren, lmFehlerAnzeigenUndWeitermachen]) and WithTransaction
   then
   begin
-    raise Exception.Create
-      ('Interner Fehler in Sql_Scripts.ExecSqlList(): lmFehlerIgnorieren/lmFehlerAnzeigenUndWeitermachen und WithTransAction sind nicht vereinbar. Bitte melden Sie den Fehler an HickelSOFT.');
+    raise Exception.Create(StrInternerFehlerInS);
   end;
 
   if (WithTransaction = true) then
@@ -1495,8 +1502,7 @@ begin
             end;
             on E: Exception do
             begin
-              raise Exception.CreateFmt('Exception %s at query %s',
-                [E.Message, line]);
+              raise Exception.CreateFmt(StrExceptionSAtQuer, [E.Message, line]);
             end;
           end;
         end;
@@ -1542,8 +1548,7 @@ begin
             end;
             on E: Exception do
             begin
-              raise Exception.CreateFmt('Exception %s at query %s',
-                [E.Message, line]);
+              raise Exception.CreateFmt(StrExceptionSAtQuer, [E.Message, line]);
             end;
           end;
         end;
@@ -1577,8 +1582,7 @@ begin
           slFehler.Add(E.ClassName + ': ' + E.Message);
         if mode = lmExceptionWerfen then
         begin
-          raise Exception.CreateFmt
-            ('Fehler %s beim Ausführen der Transaktion in ExecSqlList',
+          raise Exception.CreateFmt(StrFehlerSBeimAusfüTransaktion,
             [E.Message]);
         end;
       end;
@@ -1700,8 +1704,7 @@ begin
       FreeAndNil(mConnection);
       FreeAndNil(mCommand);
       FreeAndNil(mScalarTable);
-      raise Exception.CreateFmt
-        ('Fehler %s beim SQL-Verbindungsaufbau in "CreateIndiv"', [E.Message]);
+      raise Exception.CreateFmt(StrFehlerSBeimSQLV, [E.Message, 'CreateIndiv']);
     end;
   end;
 end;

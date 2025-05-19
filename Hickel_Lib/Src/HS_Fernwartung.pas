@@ -10,7 +10,21 @@ uses
   Windows, SysUtils, ProgrDlg, hl.Utils, hl.Utils.Web, MessaBox, Classes,
   ShellAPI, StrUtils, Zip;
 
-// HickelSOFT customized RustDesk Download+Launch (without portable EXE)
+resourcestring
+  StrFehlerBeimHerunter = 'Fehler beim Herunterladen der %s.';
+  StrOnlinePräsentations = 'Online-Präsentations-Software';
+  StrFernwartungsSoftwar = 'Fernwartungs-Software';
+  StrSoftwareAktualisier = 'Software-Aktualisierung';
+  StrSWirdAktualisiert = '%s wird aktualisiert. Bitte warten.';
+  StrSWirdHeruntergela = '%s wird heruntergeladen. Bitte warten.';
+  StrDateigrößeIstNicht = 'Dateigröße ist nicht plausibel.';
+  StrBitteNochEinmalVe = 'Bitte noch einmal versuchen.';
+  StrFehlerBeimEntpacke = 'Fehler beim Entpacken der Datei %s.';
+  StrBitteInternetVerbi =
+    'Bitte Internet-Verbindung prüfen und Programm nochmal neu starten.';
+  StrGenaueFehlermeldung = 'Genaue Fehlermeldung: %s';
+
+  // HickelSOFT customized RustDesk Download+Launch (without portable EXE)
 procedure HS_FernwartungStarten;
 const
   zipMaxAge = 30; // days
@@ -72,8 +86,9 @@ begin
     tmp := SysUtils.GetEnvironmentVariable('APPDATA');
     if tmp <> '' then
     begin
-      downloadOrdner := IncludeTrailingPathDelimiter(tmp) +
-        '..\Local\HickelSOFT'
+      tmp := IncludeTrailingPathDelimiter(tmp) + '..\Local\HickelSOFT';
+      tmp := StringReplace(tmp, 'Roaming\..\', '', [rfIgnoreCase]);
+      downloadOrdner := tmp;
     end
     else
     begin
@@ -93,21 +108,21 @@ begin
     ContainsText(ExtractFileName(ParamStr(0)), 'HsInfo') or
     ContainsText(ExtractFileName(ParamStr(0)), 'DbTool') then
   begin
-    AnwendungsName := 'Fernwartungs-Software';
+    AnwendungsName := StrFernwartungsSoftwar;
     // Achtung: Substantiv muss weiblichen Artikel haben, damit es zur Meldung unten passt
   end
   else if ContainsText(ExtractFileName(ParamStr(0)), 'Demo') or
     ContainsText(ExtractFileName(ParamStr(0)), 'Presentation') or
     ContainsText(ExtractFileName(ParamStr(0)), 'Präsentation') then
   begin
-    AnwendungsName := 'Online-Präsentations-Software';
+    AnwendungsName := StrOnlinePräsentations;
     // Achtung: Substantiv muss weiblichen Artikel haben, damit es zur Meldung unten passt
     AdminMode := 0;
     // Interessenten auf keinen Fall eine "Diese Anwendung möchte Änderungen an Ihrem PC vornehmen" Meldung zeigen!!!
   end
   else
   begin
-    AnwendungsName := 'Software-Aktualisierung';
+    AnwendungsName := StrSoftwareAktualisier;
     // Achtung: Substantiv muss weiblichen Artikel haben, damit es zur Meldung unten passt
   end;
 
@@ -135,9 +150,9 @@ begin
       pgd := TProgressDlg.Create(nil);
       try
         if FileExists(downloadedZip) then
-          pgd.Text := AnwendungsName + ' wird aktualisiert. Bitte warten.'
+          pgd.Text := Format(StrSWirdAktualisiert, [AnwendungsName])
         else
-          pgd.Text := AnwendungsName + ' wird heruntergeladen. Bitte warten.';
+          pgd.Text := Format(StrSWirdHeruntergela, [AnwendungsName]);
         pgd.ShowStopButton := true;
         pgd.Open;
         try
@@ -162,9 +177,8 @@ begin
           end
           else
           begin
-            fehlerMeldung := 'Fehler beim Herunterladen der ' + AnwendungsName +
-              '. Bitte noch einmal versuchen.' + #13#10#13#10 +
-              'Dateigröße ist nicht plausibel.';
+            fehlerMeldung := Format(StrFehlerBeimHerunter, [AnwendungsName]) +
+              ' ' + StrBitteNochEinmalVe + #13#10#13#10 + StrDateigrößeIstNicht;
           end;
         except
           on E: EAbort do
@@ -173,8 +187,8 @@ begin
           end;
           on E: Exception do
           begin
-            fehlerMeldung := 'Fehler beim Herunterladen der ' + AnwendungsName +
-              '. Bitte noch einmal versuchen.' + #13#10#13#10 + E.Message;
+            fehlerMeldung := Format(StrFehlerBeimHerunter, [AnwendungsName]) +
+              ' ' + StrBitteNochEinmalVe + #13#10#13#10 + E.Message;
           end;
         end;
       finally
@@ -224,10 +238,9 @@ begin
                   // ignore
                 end;
               end;
-              raise Exception.Create('Fehler beim Entpacken von ' +
-                downloadedZip +
-                '. Bitte Internet-Verbindung prüfen und Programm nochmal neu starten. Genaue Fehlermeldung: '
-                + E.Message);
+              raise Exception.Create(Format(StrFehlerBeimEntpacke,
+                [downloadedZip]) + ' ' + StrBitteInternetVerbi + ' ' +
+                Format(StrGenaueFehlermeldung, [E.Message]));
             end;
           end;
         end;

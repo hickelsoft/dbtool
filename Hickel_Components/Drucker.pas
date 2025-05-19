@@ -139,10 +139,18 @@ procedure Register;
 procedure SetPrinterDataKopien(PDNew: TPrinterData);
 procedure SetPrinterData(PDNew: TPrinterData);
 
+resourcestring
+  StrBildschirm = 'Bildschirm';
+
 implementation
 
 uses
   DateUtils;
+
+resourcestring
+  StrDuplexKein = 'Kein';
+  StrDuplexHorizontal = 'Horizontal';
+  StrDuplexVertikal = 'Vertikal';
 
 procedure Register;
 begin
@@ -574,9 +582,9 @@ begin
   with FcbDuplex.Items do
   begin
     Clear;
-    Add('Kein');
-    Add('Horizontal');
-    Add('Vertikal');
+    Add(StrDuplexKein);
+    Add(StrDuplexHorizontal);
+    Add(StrDuplexVertikal);
   end;
   FcbDuplex.ItemIndex := -1;
   FcbDuplex.enabled := False;
@@ -694,7 +702,7 @@ begin
       Items.Assign(TPrinterData.CachedPrinterList);
       if FBildschirm = True then
       begin
-        Items.Insert(0, 'Bildschirm');
+        Items.Insert(0, StrBildschirm);
         if FPrinterIndex <> -1 then
           FPrinterIndex := -1;
       end

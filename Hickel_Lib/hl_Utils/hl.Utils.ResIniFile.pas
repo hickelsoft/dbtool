@@ -14,6 +14,8 @@ type
 
 implementation
 
+{ TResIniFile }
+
 constructor TResIniFile.Create(Instance: THandle; ResourceType: PChar;
   ResourceName: string);
 var

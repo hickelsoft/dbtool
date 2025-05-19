@@ -146,7 +146,16 @@ implementation
 uses
   hl.Utils;
 
-{ ThlRowLock }
+resourcestring
+  StrInternerFehlerEs = 'Interner Fehler! Es besteht bereits eine Datensatz-' +
+    'Sperre (ID=%d)';
+  StrInternerFehlerIN = 'Interner Fehler: "INSERT" in RowLock Tabelle hat ni' +
+    'cht funktioniert!';
+  StrDatasetLockedByOtherUser =
+    'Der Datensatz ist seit %s durch den Benutzer %s an Arbeitsplatz %s gesperrt.'
+    + #13#10#13#10 + 'Technische Information: %s';
+
+  { ThlRowLock }
 
 {$REGION 'Create and Destroy'}
 
@@ -210,9 +219,7 @@ begin
     if _LockLFD > 0 then
     begin
       // Zwei mal hintereinander ApplyLock aufrufen ist nix gut
-      raise Exception.CreateFmt
-        ('Interner Fehler! Es besteht bereits eine Datensatz-Sperre (ID=%d)',
-        [_LockLFD]);
+      raise Exception.CreateFmt(StrInternerFehlerEs, [_LockLFD]);
     end;
 
     CheckLock;
@@ -266,8 +273,7 @@ begin
       LowestInsertID := q1.{ FieldByName('LFD') } Fields[0].AsInteger;
       if LowestInsertID = 0 then
       begin
-        raise Exception.Create
-          ('Interner Fehler: "INSERT" in RowLock Tabelle hat nicht funktioniert!');
+        raise Exception.Create(StrInternerFehlerIN);
       end;
       if _LockLFD <> LowestInsertID then
       begin
@@ -386,16 +392,11 @@ begin
 end;
 
 procedure ThlRowLock.RaiseExceptionIfLocked;
-resourcestring
-  LNG_DATASET_LOCKED_BY_OTHER_USER =
-    'Der Datensatz ist seit %s durch den Benutzer %s an Arbeitsplatz %s gesperrt.'
-    + #13#10#13#10 + 'Technische Information: %s';
 begin
   if LockedByOtherUser then
   begin
-    raise EHSDatasetLockedByOtherUser.CreateFmt
-      (LNG_DATASET_LOCKED_BY_OTHER_USER, [DateTimeToStr(LockedSince),
-      LockedBy.toString, LockedOnPC.toString,
+    raise EHSDatasetLockedByOtherUser.CreateFmt(StrDatasetLockedByOtherUser,
+      [DateTimeToStr(LockedSince), LockedBy.toString, LockedOnPC.toString,
       string(Self.TableName + ' : ' + Self.PK1 + '/' + Self.PK2 + '/' + Self.PK3
       + '/' + Self.PK4 + '/' + Self.PK5 + '/' + Self.PK6)]);
   end;

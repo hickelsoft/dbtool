@@ -40,6 +40,12 @@ implementation
 
 uses IniFiles, printers, MessaBox;
 
+resourcestring
+  StrDruckerEinstellungenLadenDBFehler = 'Drucker-Einstellungen konnten nich' +
+    't geladen bzw. gespeichert werden, da keine Datenbankverbindung besteht. '
+    + '(%s-%d%s)';
+  StrDruckerKonfiguration = 'Drucker-Konfiguration';
+
 procedure Register;
 begin
   RegisterComponents('HS', [THsDruckerConfig]);
@@ -65,9 +71,8 @@ end;
 procedure THsDruckerConfig.WarnConnectionMissing;
 begin
   // TODO: Loggen
-  HsShowMessage
-    (Format('Drucker-Einstellungen konnten nicht geladen bzw. gespeichert werden, da keine Datenbankverbindung besteht. (%s-%d%s)',
-    [FFormularArt, FFormularNr, FDruckerArt]), 'Drucker-Konfiguration',
+  HsShowMessage(Format(StrDruckerEinstellungenLadenDBFehler,
+    [FFormularArt, FFormularNr, FDruckerArt]), StrDruckerKonfiguration,
     mbsExclamation, mbbOk);
 end;
 
@@ -110,7 +115,7 @@ function THsDruckerConfig.WritePrinter: boolean;
         if PrinterData.PrinterIndex >= 0 then
           ds.FieldByName('DRUCKERNAME').AsString := PrinterData.PrinterName
         else
-          ds.FieldByName('DRUCKERNAME').AsString := 'Bildschirm';
+          ds.FieldByName('DRUCKERNAME').AsString := StrBildschirm;
 
         if PrinterData.Zufuhrliste <> nil then
           ds.FieldByName('ZUFUHRINDEX').AsInteger :=

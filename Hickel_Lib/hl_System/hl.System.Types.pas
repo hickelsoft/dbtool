@@ -278,6 +278,13 @@ implementation
 uses
   FormatSettingsCompat, StrUtils, hl.Utils;
 
+resourcestring
+  LNG_RANGE_ERROR =
+    'Zuzuweisender Wert liegt außerhalb des gültigen Wertebereichs';
+  LNG_CONV_ERROR = '"%s" ist kein gültiger Boolean-String';
+  StrWahr = 'Wahr';
+  StrFalsch = 'Falsch';
+
 {$REGION 'hlDecimal'}
 
 constructor hlDecimal.Create(aWert: double; AEpsilon: Extended);
@@ -730,9 +737,6 @@ begin
 end;
 
 function hlInteger.EnsureInRange(i: int64): int64;
-resourcestring
-  LNG_RANGE_ERROR =
-    'Zuzuweisender Wert liegt außerhalb des gültigen Wertebereichs';
 begin
   if (i < min) or (i > max) then
     raise ERangeError.Create(LNG_RANGE_ERROR)
@@ -895,8 +899,6 @@ begin
 end;
 
 class function hlBoolean.StrToBool(s: hlString): boolean;
-resourcestring
-  LNG_CONV_ERROR = '"%s" ist kein gültiger Boolean-String';
 begin
   if (s.toLowerCase = 'true') or (s.toLowerCase = 'wahr') or
     (s.toLowerCase = 'ja') or (s.toLowerCase = 'yes') or (s.toLowerCase = '1')
@@ -918,9 +920,9 @@ end;
 function hlBoolean.toGermanString: string;
 begin
   if wert then
-    result := 'Wahr'
+    result := StrWahr
   else
-    result := 'Falsch';
+    result := StrFalsch;
 end;
 
 function hlBoolean.toSQLString: string;

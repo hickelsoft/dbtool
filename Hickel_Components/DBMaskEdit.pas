@@ -51,44 +51,41 @@ begin
   RegisterComponents('Data Controls', [TDBMaskEdit]);
 end;
 
-// *************************
-// TDBMaskEdit Private
-// *************************
+{ TDBMaskEdit }
 
 function TDBMaskEdit.GetDataField: string;
 begin
   result := fDataLink.FieldName;
-end; // GetDataField
+end;
 
 function TDBMaskEdit.GetDataSource: TDataSource;
 begin
   result := fDataLink.DataSource;
-end; // GetDataSource
+end;
 
 procedure TDBMaskEdit.SetDataField(const Value: string);
 begin
   fDataLink.FieldName := Value;
-end; // SetDataField
+end;
 
 procedure TDBMaskEdit.SetDataSource(Value: TDataSource);
 begin
   fDataLink.DataSource := Value;
-end; // SetDataSource
+end;
 
 procedure TDBMaskEdit.DataChange(Sender: TObject);
 begin
-
   // if (fDataLink.Field = nil) or (FDataLink.Field.asVariant = NULL) then
   if (fDataLink.Field = nil) or VarIsNull(fDataLink.Field.asVariant) then
     Text := ''
   else
     Text := fDataLink.Field.asVariant;
-end; // DataChange
+end;
 
 procedure TDBMaskEdit.UpdateData(Sender: TObject);
 begin
   fDataLink.Field.asVariant := Text;
-end; // UpdateData
+end;
 
 procedure TDBMaskEdit.CMExit(var Message: TWMNoParams);
 begin
@@ -99,13 +96,9 @@ begin
       Abort;
     on E: Exception do
       SetFocus;
-  end; // try
+  end;
   inherited;
-end; // CMExit
-
-// *************************
-// TDBMaskEdit Protected
-// *************************
+end;
 
 procedure TDBMaskEdit.MouseDown(Button: TMouseButton; Shift: TShiftState;
   X, Y: Integer);
@@ -119,7 +112,7 @@ begin
     MyMouseDown := OnMouseDown;
     if Assigned(MyMouseDown) then
       MyMouseDown(Self, Button, Shift, X, Y);
-  end; // if
+  end;
 end;
 
 procedure TDBMaskEdit.KeyDown(var Key: Word; Shift: TShiftState);
@@ -133,18 +126,14 @@ begin
     MyKeyDown := OnKeyDown;
     if Assigned(MyKeyDown) then
       MyKeyDown(Self, Key, Shift);
-  end; // if
-end; // KeyDown
+  end;
+end;
 
 procedure TDBMaskEdit.Change;
 begin
   fDataLink.Modified;
   inherited Change;
-end; // Change
-
-// *************************
-// TDBMaskEdit Public
-// *************************
+end;
 
 constructor TDBMaskEdit.Create(AOwner: TComponent);
 begin
@@ -152,13 +141,13 @@ begin
   fDataLink := TFieldDataLink.Create;
   fDataLink.OnDataChange := DataChange;
   fDataLink.OnUpdateData := UpdateData;
-end; // Create
+end;
 
 destructor TDBMaskEdit.Destroy;
 begin
   fDataLink.OnDataChange := nil;
   FreeAndNil(fDataLink);
   inherited Destroy;
-end; // Destroy
+end;
 
 end.

@@ -36,6 +36,9 @@ implementation
 uses
   IniFiles;
 
+resourcestring
+  StrFeldSNichtGefund = 'Feld %s nicht gefunden';
+
 procedure Explode(Delimiter: Char; Str: string; ListOfStrings: TStrings);
 begin
   ListOfStrings.Clear;
@@ -85,7 +88,7 @@ begin
         Exit;
       end;
     end;
-    raise Exception.CreateFmt('Feld %s nicht gefunden', [sucheFeld]);
+    raise Exception.CreateFmt(StrFeldSNichtGefund, [sucheFeld]);
   finally
     FreeAndNil(outSL);
   end;
@@ -325,7 +328,7 @@ begin
         Exit;
       end;
     end;
-    raise Exception.CreateFmt('Feld %s nicht gefunden', [sucheFeld]);
+    raise Exception.CreateFmt(StrFeldSNichtGefund, [sucheFeld]);
   finally
     FreeAndNil(outSL);
   end;

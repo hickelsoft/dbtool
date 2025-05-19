@@ -23,6 +23,10 @@ implementation
 uses
   SyncObjs, Classes;
 
+resourcestring
+  StrWichtigerHinweisL = 'Wichtiger Hinweis: Logs werden ab sofort pro Windo' +
+    'ws User gespeichert unter:';
+
 var
   CSLog: TCriticalSection;
 
@@ -68,9 +72,8 @@ begin
     try
       slTmp := TStringList.Create;
       try
-        slTmp.text :=
-          'Wichtiger Hinweis: Logs werden ab sofort pro Windows User gespeichert unter: '
-          + #13#10 + 'C:\Users\...\AppData\Local\HickelSOFT\Logs\';
+        slTmp.text := StrWichtigerHinweisL + ' ' + #13#10 +
+          'C:\Users\...\AppData\Local\HickelSOFT\Logs\';
         slTmp.SaveToFile(result + HINWEIS_TXT);
       finally
         FreeAndNil(slTmp);
@@ -92,6 +95,7 @@ begin
   begin
     result := IncludeTrailingPathDelimiter(result) +
       '..\Local\HickelSOFT\Logs\';
+    result := StringReplace(result, 'Roaming\..\', '', [rfIgnoreCase]);
     ForceDirectories(result);
   end
   else

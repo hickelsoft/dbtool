@@ -24,6 +24,9 @@ uses
   SysUtils, Windows, Forms, Mapi, Registry, ComObj, hl.Utils.Web, Classes,
   MessaBox, hl.Utils, hl_Log;
 
+resourcestring
+  StrFehlerBeimSendenD = 'Fehler beim Senden der E-Mail (%d)';
+
 class function ThlEMail.IsOutlook: boolean;
 var
   reg: TRegistry;
@@ -388,7 +391,7 @@ begin
 
   if result <> 0 then
   begin
-    raise Exception.CreateFmt('Fehler beim Senden der E-Mail (%d)', [result]);
+    raise Exception.CreateFmt(StrFehlerBeimSendenD, [result]);
   end;
 end;
 

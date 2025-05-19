@@ -36,7 +36,12 @@ function SethlPrinterBon(NewPrinter: ThlPrinterBon): ThlPrinterBon;
 implementation
 
 uses
-  StrUtils;
+  StrUtils, Drucker;
+
+resourcestring
+  StrCORAplusKassenlade = 'CORAplus Kassenlade öffnen';
+  StrCORAplusBonSchneid = 'CORAplus Bon schneiden';
+  StrCORAplusBondrucker = 'CORAplus Bondrucker Befehl';
 
 threadvar _hlPrinterBon: ThlPrinterBon;
 
@@ -47,18 +52,18 @@ var
 begin
   if aPrinterName = '' then
     exit;
-  if aPrinterName = 'Bildschirm' then
+  if aPrinterName = StrBildschirm then
     exit; // Bildschirmdruck. Nichts machen
 
   Refresh; // Muss sein, da sonst nach dem CRPE1-Druck des kassenbons diese Funktionen nicht mehr laufen......
   PrinterName := aPrinterName;
 
   if aCommand in ['a' .. 'e', 'A' .. 'E'] then
-    Title := 'CORAplus Kassenlade öffnen'
+    Title := StrCORAplusKassenlade
   else if aCommand = 'P' then
-    Title := 'CORAplus Bon schneiden'
+    Title := StrCORAplusBonSchneid
   else
-    Title := 'CORAplus Bondrucker Befehl';
+    Title := StrCORAplusBondrucker;
 
   iNoFeedNoCutSchachtIndex := PaperSources.IndexOf('Document[NoFeed,NoCut]');
   // ACHTUNG! DIESE SCHÄCHTE GIBT AB TREIBER VERSION 5 NICHT MEHR!!!

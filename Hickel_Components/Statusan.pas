@@ -63,6 +63,10 @@ implementation
 uses
   DateUtils, Math;
 
+resourcestring
+  StrRestzeitCaXxx = 'Restzeit (ca.): xx:xx';
+  StrRestzeitCa22d = 'Restzeit ca. %2.2d:%2.2d';
+
 procedure TDLG_Statusanzeige.btnStopKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
@@ -208,7 +212,7 @@ begin
   if bShowTime then
   begin
     Panel3.Width := 248;
-    LabelRestzeit.Caption := 'Restzeit (ca.): xx:xx';
+    LabelRestzeit.Caption := StrRestzeitCaXxx;
     dStartzeit := time;
     TimerRestzeit.Enabled := true;
     LabelRestzeit.Visible := true;
@@ -250,7 +254,7 @@ begin
   if (ProgressBar1.Progress = 0) or (ProgressBar1.MaxValue = 0) then
   begin
     // DIV0 verhindern
-    LabelRestzeit.Caption := 'Restzeit ca. xx:xx';
+    LabelRestzeit.Caption := StrRestzeitCaXxx;
   end
   else
   begin
@@ -261,8 +265,7 @@ begin
 
     iMinuten := secFehlen div 60;
     iSekunden := secFehlen mod 60;
-    LabelRestzeit.Caption := format('Restzeit ca. %2.2d:%2.2d',
-      [iMinuten, iSekunden]);
+    LabelRestzeit.Caption := format(StrRestzeitCa22d, [iMinuten, iSekunden]);
   end;
 {$ENDREGION}
   lastTimerUpd := Now;

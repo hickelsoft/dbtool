@@ -21,6 +21,9 @@ uses
 
 {$IF NOT DEFINED(CLR)}
 
+resourcestring
+  StrIsWow64BadProcess = 'IsWow64: Schlechtes Prozess-Handle';
+
 var
   CurrentKeyboardLayout: HKL = 0;
   IsAltGRKeyLayout: Boolean = False;
@@ -53,7 +56,7 @@ function IsAltGRPressed_New: Boolean;
     begin
       // Function is implemented: call it
       if not IsWow64Process(Windows.GetCurrentProcess, IsWow64Result) then
-        raise Exception.Create('IsWow64: bad process handle');
+        raise Exception.Create(StrIsWow64BadProcess);
 
       Result := IsWow64Result; // Return result of function
     end

@@ -24,6 +24,10 @@ implementation
 uses
   ActiveX, Windows, Classes;
 
+resourcestring
+  StrErrorDAtS = 'Fehler %d bei %s';
+  StrUnbekanntesDateifor = 'Unbekanntes Dateiformat';
+
 type
   // https://learn.microsoft.com/en-us/windows/win32/api/gdiplusinit/ns-gdiplusinit-gdiplusstartupinput
   TGDIStartup = packed record
@@ -90,20 +94,20 @@ begin
     if Err = 7 then
       RaiseLastOSError;
     if Err <> 0 then
-      raise Exception.CreateFmt('Error %d at GdipLoadImageFromFile', [Err]);
+      raise Exception.CreateFmt(StrErrorDAtS, [Err, 'GdipLoadImageFromFile']);
 
     sa := TStreamAdapter.Create(ms);
     Err := GdipSaveImageToStream(GdiImage, sa, @GuidBMP, nil);
     if Err = 7 then
       RaiseLastOSError;
     if Err <> 0 then
-      raise Exception.CreateFmt('Error %d at GdipSaveImageToStream', [Err]);
+      raise Exception.CreateFmt(StrErrorDAtS, [Err, 'GdipSaveImageToStream']);
 
     Err := GdipDisposeImage(GdiImage);
     if Err = 7 then
       RaiseLastOSError;
     if Err <> 0 then
-      raise Exception.CreateFmt('Error %d at GdipDisposeImage', [Err]);
+      raise Exception.CreateFmt(StrErrorDAtS, [Err, 'GdipDisposeImage']);
 
     ms.Position := 0;
     blobField.LoadFromStream(ms);
@@ -136,7 +140,7 @@ begin
   else if (ext = '.tif') or (ext = '.tiff') then
     desiredFormat := GuidTIFF
   else
-    raise Exception.Create('Unbekanntes Dateiformat');
+    raise Exception.Create(StrUnbekanntesDateifor);
 
   ms := TMemoryStream.Create;
   try
@@ -152,20 +156,20 @@ begin
     if Err = 7 then
       RaiseLastOSError;
     if Err <> 0 then
-      raise Exception.CreateFmt('Error %d at GdipLoadImageFromStream', [Err]);
+      raise Exception.CreateFmt(StrErrorDAtS, [Err, 'GdipLoadImageFromStream']);
 
     Err := GdipSaveImageToFile(GdiImage, PWideChar(WideString(filename)),
       @desiredFormat, nil);
     if Err = 7 then
       RaiseLastOSError;
     if Err <> 0 then
-      raise Exception.CreateFmt('Error %d at GdipSaveImageToFile', [Err]);
+      raise Exception.CreateFmt(StrErrorDAtS, [Err, 'GdipSaveImageToFile']);
 
     Err := GdipDisposeImage(GdiImage);
     if Err = 7 then
       RaiseLastOSError;
     if Err <> 0 then
-      raise Exception.CreateFmt('Error %d at GdipDisposeImage', [Err]);
+      raise Exception.CreateFmt(StrErrorDAtS, [Err, 'GdipDisposeImage']);
   finally
     sa := nil;
     FreeAndNil(ms);
@@ -225,17 +229,17 @@ begin
 
     Err := GdipLoadImageFromStream(sa, GdiImage);
     if Err <> 0 then
-      raise Exception.CreateFmt('Error %d at GdipLoadImageFromFile', [Err]);
+      raise Exception.CreateFmt(StrErrorDAtS, [Err, 'GdipLoadImageFromFile']);
 
     ms.Size := 0;
 
     Err := GdipSaveImageToStream(GdiImage, sa, @desiredFormat, nil);
     if Err <> 0 then
-      raise Exception.CreateFmt('Error %d at GdipSaveImageToFile', [Err]);
+      raise Exception.CreateFmt(StrErrorDAtS, [Err, 'GdipSaveImageToFile']);
 
     Err := GdipDisposeImage(GdiImage);
     if Err <> 0 then
-      raise Exception.CreateFmt('Error %d at GdipDisposeImage', [Err]);
+      raise Exception.CreateFmt(StrErrorDAtS, [Err, 'GdipDisposeImage']);
 {$ENDREGION}
 {$REGION 'Memory Stream -> Blob string'}
     Result := '0x';
@@ -266,16 +270,16 @@ begin
 
   Err := GdipLoadImageFromFile(PWideChar(WideString(filenameIn)), GdiImage);
   if Err <> 0 then
-    raise Exception.CreateFmt('Error %d at GdipLoadImageFromFile', [Err]);
+    raise Exception.CreateFmt(StrErrorDAtS, [Err, 'GdipLoadImageFromFile']);
 
   Err := GdipSaveImageToFile(GdiImage, PWideChar(WideString(filenameOut)),
     @desiredFormat, nil);
   if Err <> 0 then
-    raise Exception.CreateFmt('Error %d at GdipSaveImageToFile', [Err]);
+    raise Exception.CreateFmt(StrErrorDAtS, [Err, 'GdipSaveImageToFile']);
 
   Err := GdipDisposeImage(GdiImage);
   if Err <> 0 then
-    raise Exception.CreateFmt('Error %d at GdipDisposeImage', [Err]);
+    raise Exception.CreateFmt(StrErrorDAtS, [Err, 'GdipDisposeImage']);
 end;
 
 end.

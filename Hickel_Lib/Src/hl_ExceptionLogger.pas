@@ -71,6 +71,8 @@ begin
       sDateiDatum := '???';
     end;
 
+    // TODO: Lokalisieren mit ResourceStrings
+
     hlExceptionLog.
       Write('------------------------------------ A U S N A H M E F E H L E R ----------------------------------');
     // TODO: Stacktrace-Dateiname auch mitangeben

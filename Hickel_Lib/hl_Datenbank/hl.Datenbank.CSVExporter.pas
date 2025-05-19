@@ -77,10 +77,15 @@ implementation
 uses
   Math, Gauges, ProgrDlg, Forms, hl.Utils.StringStreamEx;
 
-// TODO: CODE DUPLIKATE
-// hl.Utils.pas (RichTextToPlainText)
-// hl.Datenbank.CSVExporter.pas (RichTextToPlainText)
-// hcl.Utils.Rtf.pas (ThclUtilsRtf.RtfToPlainText)
+resourcestring
+  StrJa = 'Ja';
+  StrNein = 'Nein';
+  StrZeilenumbruch = 'Zeilenumbruch';
+
+  // TODO: CODE DUPLIKATE
+  // hl.Utils.pas (RichTextToPlainText)
+  // hl.Datenbank.CSVExporter.pas (RichTextToPlainText)
+  // hcl.Utils.Rtf.pas (ThclUtilsRtf.RtfToPlainText)
 function RichTextToPlainText(richText: string): string;
 var
   RichEdit1: TRichEdit;
@@ -166,9 +171,9 @@ end;
 function ThlCSVExporter.JaNein(b: boolean): string;
 begin
   if b then
-    result := 'Ja'
+    result := StrJa
   else
-    result := 'Nein';
+    result := StrNein;
 end;
 
 function ThlCSVExporter.FeldAlsString(feld: TField; DateTimeFormat: string = '';
@@ -261,6 +266,7 @@ begin
 end;
 
 {$IF CompilerVersion > 20.0}
+
 // Version geraten
 class operator ThlCSVExporter.Finalize(var Dest: ThlCSVExporter);
 begin
@@ -268,6 +274,7 @@ begin
 end;
 {$IFEND}
 {$IF CompilerVersion > 20.0}
+
 // Version geraten
 class operator ThlCSVExporter.Initialize(out Dest: ThlCSVExporter);
 begin
@@ -336,7 +343,8 @@ var
     // RechnungenBelegKopf2015 hat ein Feld, das mehrere Zeilen lang ist, und macht damit die CSV kaputt
     value := StringReplace(value, #10, '', [rfReplaceAll]);
     // Achtung: Statt #13#10 gibt es in der Datenbank an einigen Stellen auch #10#13 (ungültig)!
-    value := StringReplace(value, #13, '  [Zeilenumbruch]  ', [rfReplaceAll]);
+    value := StringReplace(value, #13, '  [' + StrZeilenumbruch + ']  ',
+      [rfReplaceAll]);
 
     line := line + value + ';';
   end;

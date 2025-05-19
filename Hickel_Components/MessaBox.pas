@@ -86,6 +86,24 @@ implementation
 // JEDI ¸ber GetIt PackageManager installieren. Im nachfolgenden Installer nicht vergessen "Only install selected" zu klicken, damit nur Delphi 12 bearbeitet wird.
 uses Dialogs, ShellAPI, Math, JclDebug;
 
+resourcestring
+  StrTextInDieZwischen = 'Text in die Zwischenablage &kopieren';
+  StrMehrInformationenA = 'Mehr Informationen anzeigen';
+  StrWeitereInformatione = 'Weitere Informationen';
+  StrKopierenInZwischen = 'Kopieren in Zwischenablage';
+  StrDruckenSpeichern = 'Drucken / Speichern';
+  StrSchlieﬂen = 'Schlieﬂen';
+  StrInformation = 'Information';
+  StrFehler = 'Fehler';
+  StrFrage = 'Frage';
+  StrAchtung = 'Achtung';
+  StrStacktraceIntro1 = 'Nachfolgend sehen Sie den Aufruf-Stapel, der einem ' +
+    'HickelSOFT-Mitarbeiter';
+  StrStacktraceIntro2 = 'beim Lokalisieren des Problems helfen kann:';
+  StrAusnahmebehandlung = 'Ausnahmebehandlung';
+  StrFehlerklasseS = 'Fehlerklasse: %s';
+  StrFehlermeldungS = 'Fehlermeldung: %s';
+
 {$R MsgBox.Res}
 
 type
@@ -149,7 +167,7 @@ begin
 
   pmPopupMenu := TPopupMenu.Create(self);
   aMenuItem := TMenuItem.Create(self);
-  aMenuItem.Caption := 'Text in die Zwischenablage &kopieren';
+  aMenuItem.Caption := StrTextInDieZwischen;
   aMenuItem.OnClick := PopupMenuClick;
   pmPopupMenu.Items.Add(aMenuItem);
 end;
@@ -308,13 +326,13 @@ begin
       begin
         case FStyle of
           mbsInformation:
-            Caption := Application.Title + ' - Information';
+            Caption := Application.Title + ' - ' + StrInformation;
           mbsStop:
-            Caption := Application.Title + ' - Fehler';
+            Caption := Application.Title + ' - ' + StrFehler;
           mbsQuestion:
-            Caption := Application.Title + ' - Frage';
+            Caption := Application.Title + ' - ' + StrFrage;
           mbsExclamation:
-            Caption := Application.Title + ' - Achtung';
+            Caption := Application.Title + ' - ' + StrAchtung;
         else
           Caption := Application.Title;
         end;
@@ -556,7 +574,7 @@ begin
       begin
         Parent := aPanel;
         AutoSize := True;
-        Caption := 'Mehr Informationen anzeigen';
+        Caption := StrMehrInformationenA;
         Top := aPanel.ClientHeight - Height - 8;
         Left := 8;
         Transparent := True;
@@ -590,7 +608,7 @@ begin
     DLG_MoreInfoForm.ClientHeight := 450;
     DLG_MoreInfoForm.ClientWidth := 725;
     DLG_MoreInfoForm.Position := poMainFormCenter;
-    DLG_MoreInfoForm.Caption := 'Weitere Informationen';
+    DLG_MoreInfoForm.Caption := StrWeitereInformatione;
 
     DLG_MoreInfoForm.Memo1 := TMemo.Create(DLG_MoreInfoForm);
     DLG_MoreInfoForm.Memo1.Parent := DLG_MoreInfoForm;
@@ -612,7 +630,7 @@ begin
     DLG_MoreInfoForm.DruckenSpeichern.Parent := DLG_MoreInfoForm.Panel1;
     DLG_MoreInfoForm.DruckenSpeichern.Align := alRight;
     DLG_MoreInfoForm.DruckenSpeichern.Width := 160;
-    DLG_MoreInfoForm.DruckenSpeichern.Caption := 'Kopieren in Zwischenablage';
+    DLG_MoreInfoForm.DruckenSpeichern.Caption := StrKopierenInZwischen;
     DLG_MoreInfoForm.DruckenSpeichern.OnClick :=
       DLG_MoreInfoForm.ZwischenablageKopieKlick;
 
@@ -620,7 +638,7 @@ begin
     DLG_MoreInfoForm.DruckenSpeichern.Parent := DLG_MoreInfoForm.Panel1;
     DLG_MoreInfoForm.DruckenSpeichern.Align := alRight;
     DLG_MoreInfoForm.DruckenSpeichern.Width := 130;
-    DLG_MoreInfoForm.DruckenSpeichern.Caption := 'Drucken / Speichern';
+    DLG_MoreInfoForm.DruckenSpeichern.Caption := StrDruckenSpeichern;
     DLG_MoreInfoForm.DruckenSpeichern.OnClick :=
       DLG_MoreInfoForm.DruckenSpeichernKlick;
 
@@ -628,7 +646,7 @@ begin
     DLG_MoreInfoForm.DruckenSpeichern.Parent := DLG_MoreInfoForm.Panel1;
     DLG_MoreInfoForm.DruckenSpeichern.Align := alLeft;
     DLG_MoreInfoForm.DruckenSpeichern.Width := 130;
-    DLG_MoreInfoForm.DruckenSpeichern.Caption := 'Schlieﬂen';
+    DLG_MoreInfoForm.DruckenSpeichern.Caption := StrSchlieﬂen;
     DLG_MoreInfoForm.DruckenSpeichern.OnClick :=
       DLG_MoreInfoForm.SchliessenKlick;
 
@@ -738,20 +756,19 @@ begin
   slCallStack := TStringList.Create;
   try
     slCallStack.Add('');
-    slCallStack.Add('Fehlerklasse: ' + E.ClassName);
-    slCallStack.Add('Fehlermeldung: ' + E.Message);
+    slCallStack.Add(Format(StrFehlerklasseS, [E.ClassName]));
+    slCallStack.Add(Format(StrFehlermeldungS, [E.Message]));
     slCallStack.Add('');
-    slCallStack.Add
-      ('Nachfolgend sehen Sie den Aufruf-Stapel, der einem HickelSOFT-Mitarbeiter');
-    slCallStack.Add('beim Lokalisieren des Problems helfen kann:');
+    slCallStack.Add(StrStacktraceIntro1);
+    slCallStack.Add(StrStacktraceIntro2);
     slCallStack.Add('');
     JclLastExceptStackListToStrings(slCallStack, False, True, True, False);
     // Siehe Beschreibung im "Dokumentation Entwicklung" Verzeichnis
-    Caption := 'Ausnahmebehandlung';
+    Caption := StrAusnahmebehandlung;
     if Assigned(Application) then
       Caption := Application.Title + ' - ' + Caption;
-    HsShowMessage(E.Message + #13#10#13#10 + 'Fehlerklasse: ' + E.ClassName,
-      Caption, mbsStop, mbbOk, slCallStack);
+    HsShowMessage(E.Message + #13#10#13#10 + Format(StrFehlerklasseS,
+      [E.ClassName]), Caption, mbsStop, mbbOk, slCallStack);
   finally
     FreeAndNil(slCallStack);
   end;

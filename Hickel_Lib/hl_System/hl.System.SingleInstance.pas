@@ -17,6 +17,12 @@ uses
   hl.System.SingleInstance.DummyForm, Registry, SysUtils, MessaBox,
   hl_KeyValue_Args, hl_WinMessages, hl.Utils.Crc32;
 
+resourcestring
+  StrInternerFehlerApp = 'Interner Fehler! Application.Title muss gesetzt se' +
+    'in, um HsSemaphoreCheck verwenden zu können!';
+  StrSIstBereitsAufD = '%s ist bereits auf diesem PC gestartet.';
+  StrMandant = 'Mandant';
+
 var
   mHandle: THandle;
 
@@ -35,8 +41,7 @@ var
 begin
   if Application.Title = '' then
   begin
-    HsShowMessage
-      ('Interner Fehler! Application.Title muss gesetzt sein, um HsSemaphoreCheck verwenden zu können!');
+    HsShowMessage(StrInternerFehlerApp);
     Exit;
   end;
 
@@ -61,7 +66,7 @@ begin
     if Mandant = '' then
       Mandant := '1';
 {$ENDREGION}
-    Unique_AppTitle := Application.Title + ' Mandant ' + Mandant;
+    Unique_AppTitle := Application.Title + ' ' + StrMandant + ' ' + Mandant;
   end
   else
   begin
@@ -103,8 +108,7 @@ begin
     begin
       // Dies passiert, wenn das Fenster der anderen Anwendung NICHT gefunden wurde.
       // Das sollte eigentlich nicht passieren, aber wir versuchen trotzdem, die Situation gekonnt zu überspielen.
-      HsShowMessage(Application.Title +
-        ' ist bereits auf diesem PC gestartet.');
+      HsShowMessage(Format(StrSIstBereitsAufD, [Application.Title]));
     end;
 
     // Uns selbst schließen

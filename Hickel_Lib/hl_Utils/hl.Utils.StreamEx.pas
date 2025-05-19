@@ -15,6 +15,8 @@ type
 
 implementation
 
+{ TStreamEx }
+
 procedure TStreamEx.WriteString(const data: string);
 var
   len: cardinal;

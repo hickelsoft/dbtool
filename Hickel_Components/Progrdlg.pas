@@ -81,6 +81,9 @@ procedure Register;
 
 implementation
 
+resourcestring
+  StrBitteWarten = 'Bitte warten...';
+
 procedure Register;
 begin
   RegisterComponents('HS', [TProgressDlg]);
@@ -114,7 +117,7 @@ end;
 function TProgressDlg.GetText: String;
 begin
   if Trim(FText) = '' then
-    result := 'Bitte warten...'
+    result := StrBitteWarten
   else
     result := FText;
 end;
