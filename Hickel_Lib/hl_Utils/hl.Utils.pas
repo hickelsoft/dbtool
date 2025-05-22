@@ -161,6 +161,8 @@ function IsWindows11: boolean;
 
 function Crw11_IstInstalliert: boolean;
 function Crw13_IstInstalliert: boolean;
+
+function IsVCRuntime2022_32Bit_Installed: boolean;
 function IsVCRuntime2022_64Bit_Installed: boolean;
 
 function IsWow64: boolean;
@@ -262,6 +264,8 @@ function IsOdbcDriverInstalled(const DriverName: string): boolean;
 
 function Make_EditDisplayFormat(nachkommastellen: integer;
   istEditFormat: boolean): string;
+
+function WindowsVersionString: string;
 
 type
   TSenderlessNotifyEvent = procedure of object;
@@ -2232,9 +2236,10 @@ begin
     end;
     if FileDateToDateTime(FileAge(testFile)) < Encodedate(2020, 1, 1) then
     begin
+      // Runtime aus 2014 verursacht Probleme (Ticket 60253)
       Result := False;
       exit;
-    end; // Runtime aus 2014 verursacht Probleme (Ticket 60253)
+    end;
     // sic! Die 64 Bit crpe32.dll liegt wirklich in "Program Files (x86)" !
     testFile :=
       'C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win64_x64\crpe32.dll';
@@ -2245,9 +2250,10 @@ begin
     end;
     if FileDateToDateTime(FileAge(testFile)) < Encodedate(2020, 1, 1) then
     begin
+      // Runtime aus 2014 verursacht Probleme (Ticket 60253)
       Result := False;
       exit;
-    end; // Runtime aus 2014 verursacht Probleme (Ticket 60253)
+    end;
     Result := True;
   end
   else
@@ -2261,10 +2267,43 @@ begin
     end;
     if FileDateToDateTime(FileAge(testFile)) < Encodedate(2020, 1, 1) then
     begin
+      // Runtime aus 2014 verursacht Probleme (Ticket 60253)
       Result := False;
       exit;
-    end; // Runtime aus 2014 verursacht Probleme (Ticket 60253)
+    end;
     Result := True;
+  end;
+end;
+
+function IsVCRuntime2022_32Bit_Installed: boolean;
+var
+  reg: TRegistry;
+begin
+  Result := False;
+  reg := TRegistry.Create(KEY_READ);
+  try
+    reg.RootKey := HKEY_LOCAL_MACHINE;
+
+    // Prüfe den Standardpfad für 32-Bit Runtime
+    if reg.OpenKeyReadOnly
+      ('SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x86') then
+    begin
+      Result := reg.ValueExists('Installed') and
+        (reg.ReadInteger('Installed') = 1);
+      reg.CloseKey;
+    end;
+
+    // Prüfe den WOW6432Node-Pfad für 32-Bit Programme unter 64-Bit Windows
+    if not Result and reg.OpenKeyReadOnly
+      ('SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\x86') then
+    begin
+      Result := reg.ValueExists('Installed') and
+        (reg.ReadInteger('Installed') = 1);
+      reg.CloseKey;
+    end;
+
+  finally
+    reg.Free;
   end;
 end;
 
@@ -3827,6 +3866,56 @@ begin
     Result := Result + ',';
   end;
   Result := Result + '##0.' + StringOfChar('0', nachkommastellen);
+end;
+
+function WindowsVersionString: string;
+var
+  reg: TRegistry;
+  s1, s2: string;
+begin
+  try
+    s1 := GetWMIstring('.', 'root\CIMV2', 'Win32_OperatingSystem', 'Caption');
+    s2 := GetWMIstring('.', 'root\CIMV2', 'Win32_OperatingSystem',
+      'OSArchitecture');
+    Result := Format('%s (%s)', [s1, s2]);
+  except
+    on E: EAbort do
+    begin
+      Abort;
+    end;
+    on E: Exception do
+    begin
+      if IsWindows11 then
+      begin
+        Result := 'Windows 11';
+        exit;
+      end;
+
+      if IsWow64 then
+        reg := TRegistry.Create(KEY_READ OR KEY_WOW64_64KEY)
+      else
+        reg := TRegistry.Create(KEY_READ);
+      try
+        reg.RootKey := HKEY_LOCAL_MACHINE;
+        if reg.OpenKeyReadOnly('Software\Microsoft\Windows NT\CurrentVersion')
+        then
+        begin
+          Result := reg.ReadString('ProductName') + ', Build ' +
+            reg.ReadString('CurrentBuild');
+          reg.CloseKey;
+        end
+        else
+          Result := 'Windows ???';
+      finally
+        FreeAndNil(reg);
+      end;
+
+      if IsWow64 then
+        Result := Result + ' (64-Bit)'
+      else
+        Result := Result + ' (32-Bit)';
+    end;
+  end;
 end;
 
 end.
