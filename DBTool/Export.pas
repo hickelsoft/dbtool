@@ -618,7 +618,7 @@ var
         result := '0';
     end
     else
-      result := F.AsString;
+      result := F.AsWideString;
   end;
 
 resourcestring

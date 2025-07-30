@@ -195,7 +195,7 @@ begin
     try
       while not aDS.Eof do
       begin
-        lbDatabases.Items.Add(aDS.Fields.Fields[0].AsString);
+        lbDatabases.Items.Add(aDS.Fields.Fields[0].AsWideString);
         aDS.Next;
       end;
     finally
@@ -221,7 +221,7 @@ end;
 
   while not aQuery.Eof do
   begin
-  lbDatabases.Items.Add(aQuery.Fields.Fields[0].AsString);
+  lbDatabases.Items.Add(aQuery.Fields.Fields[0].AsWideString);
   aQuery.Next;
   end;
   finally

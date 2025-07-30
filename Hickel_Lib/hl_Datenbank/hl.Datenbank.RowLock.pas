@@ -283,8 +283,8 @@ begin
         DeleteLock; // unsere Eintragung rückgängig machen
 
         _LockedByOtherUser := true;
-        _LockedBy := q1.{ FieldByName('LOCKED_BY') } Fields[1].AsString;
-        _LockedOnPC := q1.{ FieldByName('LOCKED_ON_PC') } Fields[2].AsString;
+        _LockedBy := q1.{ FieldByName('LOCKED_BY') } Fields[1].AsWideString;
+        _LockedOnPC := q1.{ FieldByName('LOCKED_ON_PC') } Fields[2].AsWideString;
         _LockedSince := q1.{ FieldByName('LOCKED_SINCE') } Fields[3].AsDateTime;
         Exit;
       end;
@@ -357,8 +357,8 @@ begin
     // Der Datensatz ist gesperrt
     _LockedByOtherUser := true;
     _LockLFD := q1.{ FieldByName('LFD') } Fields[0].AsInteger;
-    _LockedBy := q1.{ FieldByName('LOCKED_BY') } Fields[1].AsString;
-    _LockedOnPC := q1.{ FieldByName('LOCKED_ON_PC') } Fields[2].AsString;
+    _LockedBy := q1.{ FieldByName('LOCKED_BY') } Fields[1].AsWideString;
+    _LockedOnPC := q1.{ FieldByName('LOCKED_ON_PC') } Fields[2].AsWideString;
     _LockedSince := q1.{ FieldByName('LOCKED_SINCE') } Fields[3].AsDateTime;
   finally
     FreeAndNil(q1);

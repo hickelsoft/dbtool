@@ -3,7 +3,7 @@ unit hl.System.Types;
 interface
 
 uses
-  Types, Math, SysUtils;
+  System.Types, System.Math, System.SysUtils;
 
 {$REGION 'Operatoren Vorlage'}
 // http://docwiki.embarcadero.com/RADStudio/Seattle/de/%C3%9Cberladene_Operatoren_%28Delphi%29
@@ -276,7 +276,7 @@ type
 implementation
 
 uses
-  FormatSettingsCompat, StrUtils, hl.Utils;
+  FormatSettingsCompat, System.StrUtils, hl.Utils;
 
 resourcestring
   LNG_RANGE_ERROR =
@@ -370,12 +370,12 @@ end;
 
 function hlDecimal.LowerLimit(limit: hlDecimal): hlDecimal;
 begin
-  result := Math.max(limit, wert);
+  result := System.Math.max(limit, wert);
 end;
 
 function hlDecimal.UpperLimit(limit: hlDecimal): hlDecimal;
 begin
-  result := Math.min(limit, wert);
+  result := System.Math.min(limit, wert);
 end;
 
 class operator hlDecimal.Modulus(const Dividend, Divisor: hlDecimal): hlDecimal;
@@ -528,7 +528,7 @@ end;
 
 function hlString.IncludeTrailingPathDelimiter: hlString;
 begin
-  result := hlString.Create(SysUtils.IncludeTrailingPathDelimiter(wert));
+  result := hlString.Create(System.SysUtils.IncludeTrailingPathDelimiter(wert));
 end;
 
 function hlString.isEmpty: boolean;
@@ -630,6 +630,14 @@ function hlString.toSQLString: string;
 begin
   result := wert;
 
+  // Die ehemalige Funktion hclStrToStr sah mal so aus:
+  //if copy(s, Length(s), 1) = ':' then
+  //  s := copy(s, 1, Length(s) - 1);
+  //if copy(s, Length(s), 1) = '''' then
+  //  s := copy(s, 1, Length(s) - 1);
+  //s := StringReplace(s, ':', '::', [rfReplaceAll]);
+  //s := StringReplace(s, '''', '''''', [rfReplaceAll]);
+
   // Escape SQL-Argument
   (*
     result := StringReplace(result, '\', '\\', [rfReplaceAll]);
@@ -675,7 +683,7 @@ end;
 
 function hlString.trim: hlString;
 begin
-  result := hlString.Create(SysUtils.trim(wert));
+  result := hlString.Create(System.SysUtils.trim(wert));
 end;
 
 function hlString.Trunc(len: Integer): hlString;
@@ -821,12 +829,12 @@ end;
 
 function hlInteger.LowerLimit(limit: hlInteger): hlInteger;
 begin
-  result := Math.max(limit, wert);
+  result := System.Math.max(limit, wert);
 end;
 
 function hlInteger.UpperLimit(limit: hlInteger): hlInteger;
 begin
-  result := Math.min(limit, wert);
+  result := System.Math.min(limit, wert);
 end;
 
 class operator hlInteger.Negative(x: hlInteger): hlInteger;

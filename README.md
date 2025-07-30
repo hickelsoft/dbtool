@@ -73,7 +73,7 @@ To use and compile the source code, you need:
 
 - BDE for Delphi (to support Paradox and dBase)
 
-- HickelSOFT VCL Components (included in this repository)
+- HickelSOFT VCL and RTL (included in this repository)
 
 - [Better Translation Manager](https://github.com/andersmelander/better-translation-manager)
 

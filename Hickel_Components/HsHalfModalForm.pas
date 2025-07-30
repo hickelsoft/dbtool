@@ -3,7 +3,7 @@ unit HsHalfModalForm;
 interface
 
 uses
-  Windows, Messages, Classes, Controls, Forms, Consts;
+  Windows, Messages, Classes, Controls, Forms, Consts, Types;
 
 type
   TModalContext = record

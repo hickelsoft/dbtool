@@ -3,7 +3,7 @@ unit HsGauge;
 interface
 
 uses
-  Windows, Gauges, Classes, Graphics, SysUtils, Forms;
+  Windows, Gauges, Classes, Graphics, SysUtils, Forms, Types;
 
 type
   THsGaugeKind = (gkHorizontalBar, gkVerticalBar);

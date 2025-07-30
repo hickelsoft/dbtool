@@ -216,7 +216,7 @@ begin
   s := '';
   for i := 0 to grd.DataSource.DataSet.FieldCount - 1 do
   begin
-    s := s + grd.DataSource.DataSet.Fields[i].AsString + ';';
+    s := s + grd.DataSource.DataSet.Fields[i].AsWideString + ';';
   end;
   Result.Add('CurRow=' + s);
 
@@ -229,7 +229,7 @@ begin
       s := '';
       for i := 0 to grd.DataSource.DataSet.FieldCount - 1 do
       begin
-        s := s + grd.DataSource.DataSet.Fields[i].AsString + ';';
+        s := s + grd.DataSource.DataSet.Fields[i].AsWideString + ';';
       end;
       Result.Add(s);
     end;
@@ -243,7 +243,7 @@ begin
     s := '';
     for i := 0 to grd.DataSource.DataSet.FieldCount - 1 do
     begin
-      s := s + grd.DataSource.DataSet.Fields[i].AsString + ';';
+      s := s + grd.DataSource.DataSet.Fields[i].AsWideString + ';';
     end;
     if Result.IndexOf('CurRow=' + s) > -1 then
       break;
@@ -275,7 +275,7 @@ begin
     s := '';
     for i := 0 to grd.DataSource.DataSet.FieldCount - 1 do
     begin
-      s := s + grd.DataSource.DataSet.Fields[i].AsString + ';';
+      s := s + grd.DataSource.DataSet.Fields[i].AsWideString + ';';
     end;
     if sl.IndexOf(s) = -1 then
       grd.UnselectRecord
@@ -291,7 +291,7 @@ begin
     s := '';
     for i := 0 to grd.DataSource.DataSet.FieldCount - 1 do
     begin
-      s := s + grd.DataSource.DataSet.Fields[i].AsString + ';';
+      s := s + grd.DataSource.DataSet.Fields[i].AsWideString + ';';
     end;
     if sl.IndexOf('CurRow=' + s) > -1 then
       break;

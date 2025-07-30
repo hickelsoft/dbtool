@@ -40,7 +40,7 @@ resourcestring
   StrErrorTooManyRedi = 'Fehler: Zu viele Umleitungen';
   StrHTTPErrorDWithG = 'HTTP-Fehler %d bei GET-Anfrage %s';
   StrErrorOpeningReques = 'Fehler beim Öffnen der HTTP-Anfrage: %s';
-  StrErrorInitializingW = 'Fehler beim initialisieren von WinInet: %s';
+  StrErrorInitializingW = 'Fehler beim Initialisieren von WinInet: %s';
   StrErrorConnectingTo = 'Fehler beim Verbinden zum Server: %s';
   StrErrorSendingReques = 'Fehler beim Senden der HTTP-Anfrage: %s';
 

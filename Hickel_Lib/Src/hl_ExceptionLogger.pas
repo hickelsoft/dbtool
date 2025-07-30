@@ -62,12 +62,9 @@ begin
   try
     CreateGUID(UniqueExceptionGUID);
 
-    if FileAge(ParamStr(0), dateidatum) then
-    begin
-      sDateiDatum := DateTimeToStr(dateidatum);
-    end
-    else
-    begin
+    try
+      sDateiDatum := DateTimeToStr(GetBuildTimestamp(ParamStr(0)));
+    except
       sDateiDatum := '???';
     end;
 

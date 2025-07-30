@@ -782,18 +782,18 @@ begin
 
       ftInteger, ftFloat, ftSmallint, ftAutoInc, ftCurrency, ftBCD, ftFMTBcd,
         ftLargeint, ftWord:
-        result := result + StringReplace(aField.AsString, ',', '.', []);
+        result := result + StringReplace(aField.AsWideString, ',', '.', []);
 
       ftString, ftFixedChar, ftWideString, ftDateTime:
       // DM 05.12.2023 : OK mit SQL Server
         result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String
-          (aField.AsString) + '''';
+          (aField.AsWideString) + '''';
 
     else
 
       // Wir versuchen's einfach! Vielleicht geht es ja!
       result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String
-        (aField.AsString) + '''';
+        (aField.AsWideString) + '''';
 
       // result := '';
       // Application.MessageBox(SFieldTypeNotSupported, PChar(Application.Title), MB_ICONEXCLAMATION + MB_OK);
@@ -823,10 +823,10 @@ begin
   (*
     ftBoolean:
 
-    if TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString = '' then
+    if TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsWideString = '' then
     result := '(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 1) and (' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 0)'
     else
-    result := result + TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString;
+    result := result + TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsWideString;
   *)
 end;
 
@@ -882,10 +882,10 @@ begin
   (*
     ftBoolean:
 
-    if TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString = '' then
+    if TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsWideString = '' then
     result := '(' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 1) and (' + FDatabaseForm.dbDatabase.SQL_Escape_FieldName(wwDBGrid1.GetActiveField.FieldName) + ' <> 0)'
     else
-    result := result + TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsString;
+    result := result + TTable(dsData.DataSet).FieldByName(wwDBGrid1.GetActiveField.FieldName).AsWideString;
   *)
 end;
 
@@ -1052,7 +1052,7 @@ begin
   try
     X := FDatabaseForm.dbDatabase.Query(sSQL + ';'); // do not localize
     try
-      sResult := Format(SResultLine, [sResult, X.Fields.Fields[0].AsString]);
+      sResult := Format(SResultLine, [sResult, X.Fields.Fields[0].AsWideString]);
     finally
       FreeAndNil(X);
     end;
@@ -1195,9 +1195,9 @@ begin
       iMaxLen := 0;
       while not X.Eof do
       begin
-        if Length(X.Fields.Fields[0].AsString) > iMaxLen then
+        if Length(X.Fields.Fields[0].AsWideString) > iMaxLen then
         begin
-          sMaxVal := X.Fields.Fields[0].AsString;
+          sMaxVal := X.Fields.Fields[0].AsWideString;
           iMaxLen := Length(sMaxVal);
         end;
         X.Next;
@@ -1310,9 +1310,9 @@ begin
       iMinLen := 999999;
       while not X.Eof do
       begin
-        if Length(X.Fields.Fields[0].AsString) < iMinLen then
+        if Length(X.Fields.Fields[0].AsWideString) < iMinLen then
         begin
-          sMinVal := X.Fields.Fields[0].AsString;
+          sMinVal := X.Fields.Fields[0].AsWideString;
           iMinLen := Length(sMinVal);
         end;
         X.Next;
@@ -1400,10 +1400,10 @@ begin
     try
       if FFindCaseInsensitive then
         iPos := Pos(sUpper, UpperCase(dsData.Dataset.Fields.Fields[iSearchField]
-          .AsString))
+          .AsWideString))
       else
         iPos := Pos(FFindStr, dsData.Dataset.Fields.Fields[iSearchField]
-          .AsString);
+          .AsWideString);
     except
       on E: EAbort do
       begin

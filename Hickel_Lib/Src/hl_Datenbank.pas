@@ -510,31 +510,50 @@ end;
 
 procedure ThlDatenbank.CreateStandard(Datenbank, Server: string;
   AnmeldungAlsBenutzer: boolean; AConnectionTimeout: integer = 0);
-var
-  sqlConnStr: string;
+
+  procedure _Versuchen;
+  var
+    sqlConnStr: string;
+  begin
+    sqlConnStr := 'Provider=' + SqlServerProvider + ';';
+    sqlConnStr := sqlConnStr + 'Application Name=' + ExtractFileName(ParamStr(0))
+      + ' hl_Datenbank;';
+
+    if not(AnmeldungAlsBenutzer) then
+      sqlConnStr := sqlConnStr +
+        'Integrated Security=SSPI;Persist Security Info=False;'
+    else
+      sqlConnStr := sqlConnStr + 'User ID=' + HS_SA_DB_USER + ';Password=' +
+        HS_SA_DB_PASSWORD + ';Persist Security Info=True;';
+
+    if SqlServerProvider = 'MSOLEDBSQL19' then
+      sqlConnStr := sqlConnStr + 'Use Encryption for Data=False;';
+
+    // DataTypeCompatibility=80, ansonsten funktionieren "time" Datentypen nicht! (sind im Fields[] und FieldDefs[] nicht da und dbGrid verursacht AccessViolation)
+    if SqlServerProvider <> 'SQLOLEDB' then
+      sqlConnStr := sqlConnStr + 'DataTypeCompatibility=80;';
+
+    sqlConnStr := sqlConnStr + 'Initial Catalog=' + Datenbank + ';';
+    sqlConnStr := sqlConnStr + 'Data Source=' + Server;
+
+    CreateIndiv(sqlConnStr, AConnectionTimeout);
+  end;
+
 begin
-  sqlConnStr := 'Provider=' + SqlServerProvider + ';';
-  sqlConnStr := sqlConnStr + 'Application Name=' + ExtractFileName(ParamStr(0))
-    + ' hl_Datenbank;';
-
-  if not(AnmeldungAlsBenutzer) then
-    sqlConnStr := sqlConnStr +
-      'Integrated Security=SSPI;Persist Security Info=False;'
-  else
-    sqlConnStr := sqlConnStr + 'User ID=' + HS_SA_DB_USER + ';Password=' +
-      HS_SA_DB_PASSWORD + ';Persist Security Info=True;';
-
-  if SqlServerProvider = 'MSOLEDBSQL19' then
-    sqlConnStr := sqlConnStr + 'Use Encryption for Data=False;';
-
-  // DataTypeCompatibility=80, ansonsten funktionieren "time" Datentypen nicht! (sind im Fields[] und FieldDefs[] nicht da und dbGrid verursacht AccessViolation)
-  if SqlServerProvider <> 'SQLOLEDB' then
-    sqlConnStr := sqlConnStr + 'DataTypeCompatibility=80;';
-
-  sqlConnStr := sqlConnStr + 'Initial Catalog=' + Datenbank + ';';
-  sqlConnStr := sqlConnStr + 'Data Source=' + Server;
-
-  CreateIndiv(sqlConnStr, AConnectionTimeout);
+  try
+    HS_SA_DB_OLD := false; // "cora-client" Auth für die Zeit nach dem Anlegen
+    _Versuchen;
+  except
+    on E: EAbort do
+    begin
+      Abort;
+    end;
+    on E: Exception do
+    begin
+      HS_SA_DB_OLD := true;
+      _Versuchen;
+    end;
+  end;
 end;
 
 constructor ThlDatenbank.Create(Datenbank, Server: string;
@@ -658,7 +677,7 @@ begin
   try
     while not q.Eof do
     begin
-      ExecSql(3600, 'DBCC SHRINKFILE (N''' + q.Fields[0].AsString + ''' , 0)');
+      ExecSql(3600, 'DBCC SHRINKFILE (N''' + q.Fields[0].AsWideString + ''' , 0)');
       q.Next;
     end;
   finally
@@ -871,7 +890,7 @@ begin
   // Achtung! "sa" Benutzer hat SID 0x01
   Result := GetScalar
     ('select CONVERT([varchar](100), owner_sid, 1) from sys.databases where name = '
-    + Datenbankname.toSQLString).AsString;
+    + Datenbankname.toSQLString).AsWideString;
 end;
 
 function ThlDatenbank.SqlServerMac: string;
@@ -884,7 +903,7 @@ begin
     '    insert into @t default values; ' + ' ' + '    select m FROM @t '
     + 'end;');
 
-  Result := Copy(GetScalar('exec SeqId').AsString, 25, 12);
+  Result := Copy(GetScalar('exec SeqId').AsWideString, 25, 12);
 
   ExecSql('DROP PROCEDURE [dbo].[SeqId];');
 end;
@@ -912,13 +931,13 @@ begin
   try
     while not q.Eof do
     begin
-      SchemaName := q.FieldByName('SchemaName').AsString;
-      TableName := q.FieldByName('TableName').AsString;
-      IndexName := q.FieldByName('IndexName').AsString;
+      SchemaName := q.FieldByName('SchemaName').AsWideString;
+      TableName := q.FieldByName('TableName').AsWideString;
+      IndexName := q.FieldByName('IndexName').AsWideString;
 
-      if q.FieldByName('IndexType').AsString <> 'HASH' then
+      if q.FieldByName('IndexType').AsWideString <> 'HASH' then
       begin
-        if q.FieldByName('IndexType').AsString = 'HEAP' then
+        if q.FieldByName('IndexType').AsWideString = 'HEAP' then
         begin
           ExecSql(Format('ALTER TABLE [%s].[%s] REBUILD;',
             [SchemaName, TableName]));
@@ -949,8 +968,8 @@ begin
   try
     while not q.Eof do
     begin
-      SchemaName := q.FieldByName('SchemaName').AsString;
-      TableName := q.FieldByName('TableName').AsString;
+      SchemaName := q.FieldByName('SchemaName').AsWideString;
+      TableName := q.FieldByName('TableName').AsWideString;
       ExecSql(Format('sp_recompile ''[%s].[%s]'';', [SchemaName, TableName]));
       q.Next;
     end;
@@ -959,7 +978,8 @@ begin
   end;
 
   ExecSql('DBCC FREEPROCCACHE;');
-  ExecSql('exec sp_updatestats;');
+  // geht nicht ohne sysadmin Rechte, obwohl die Dokumentation sagt, dass man nur db_owner sein muss...
+  //ExecSql('exec sp_updatestats;');
 end;
 
 destructor ThlDatenbank.Destroy;
@@ -1342,9 +1362,9 @@ end;
 
 function ThlDatenbank.IstExpressEdition: boolean;
 begin
-  Result := (Copy(GetScalar('select serverproperty(''Edition'')').AsString, 1,
+  Result := (Copy(GetScalar('select serverproperty(''Edition'')').AsWideString, 1,
     Length('Express')) = 'Express') or
-    (AnsiPos('Express Edition', GetScalar('select @@version').AsString) > 0);
+    (AnsiPos('Express Edition', GetScalar('select @@version').AsWideString) > 0);
 end;
 
 procedure ThlDatenbank.DropTable(aTableName: string);
@@ -1455,7 +1475,7 @@ var
 begin
   s := GetScalar('select connection_id from sys.dm_exec_connections ec ' +
     'left join sys.dm_exec_sessions se on ec.session_id = se.session_id ' +
-    'where se.session_id = @@SPID').AsString;
+    'where se.session_id = @@SPID').AsWideString;
 
   Result := StringToGUID(s);
 end;

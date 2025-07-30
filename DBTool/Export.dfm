@@ -13,7 +13,6 @@ object DLG_Export: TDLG_Export
   Font.Style = []
   KeyPreview = True
   Position = poScreenCenter
-  Scaled = False
   OnKeyDown = FormKeyDown
   OnShow = FormShow
   TextHeight = 13
@@ -100,8 +99,6 @@ object DLG_Export: TDLG_Export
       Left = 0
       Top = 0
       Caption = '0'
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Shape1: TShape
         Left = 164
         Top = 0
@@ -5514,8 +5511,6 @@ object DLG_Export: TDLG_Export
       Left = 0
       Top = 0
       Caption = '2'
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object SrcLabel: TLabel
         Left = 32
         Top = 80

@@ -31,7 +31,7 @@ type
   end;
 
 function hlPrinterBon: ThlPrinterBon;
-function SethlPrinterBon(NewPrinter: ThlPrinterBon): ThlPrinterBon;
+function SetHlPrinterBon(NewPrinter: ThlPrinterBon): ThlPrinterBon;
 
 implementation
 
@@ -102,7 +102,7 @@ begin
   Result := _hlPrinterBon;
 end;
 
-function SethlPrinterBon(NewPrinter: ThlPrinterBon): ThlPrinterBon;
+function SetHlPrinterBon(NewPrinter: ThlPrinterBon): ThlPrinterBon;
 begin
   Result := _hlPrinterBon;
   _hlPrinterBon := NewPrinter;

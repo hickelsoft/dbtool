@@ -29,7 +29,6 @@ type
     DB_IB_Trans: TIBTransaction;
     DB_ADO: TADOConnection;
     FDatabaseName: string;
-    FIstHickelSoftProduktDb_Cache: TProductDbType;
     FConnWasOk: boolean;
     function GetSupportsCommit: boolean;
     function GetSqlFieldType(FieldType: TFieldType;
@@ -149,6 +148,7 @@ var
   i: integer;
   connStrPrefix: string;
   GivenProvider: string;
+  sTmp: string;
 resourcestring
   SAccessProviderLoadError =
     'Access DB Provider konnte nicht geladen werden: %s';
@@ -225,13 +225,29 @@ begin
       begin
         try
           // SA Auth probieren
-          DB_ADO.ConnectionString := connStrPrefix +
+          sTmp := connStrPrefix +
             Copy(DatabaseName, Length('_SQLSRV:') + 1) + ';Application Name=' +
             ExtractFileName(ParamStr(0)); // do not localize
-          DB_ADO.ConnectionString := StringReplace(DB_ADO.ConnectionString,
-            'Integrated Security=SSPI;', 'User ID=' + HS_SA_DB_USER +
-            ';Password=' + HS_SA_DB_PASSWORD + ';', []); // do not localize
-          DB_ADO.Connected := true;
+          try
+            HS_SA_DB_OLD := false; // User "cora-admin"
+            DB_ADO.ConnectionString := StringReplace(sTmp,
+              'Integrated Security=SSPI;', 'User ID=' + HS_SA_DB_USER +
+              ';Password=' + HS_SA_DB_PASSWORD + ';', []); // do not localize
+            DB_ADO.Connected := true;
+          except
+            on E: EAbort do
+            begin
+              Abort;
+            end;
+            on E: Exception do
+            begin
+              HS_SA_DB_OLD := true; // User "sa"
+              DB_ADO.ConnectionString := StringReplace(sTmp,
+                'Integrated Security=SSPI;', 'User ID=' + HS_SA_DB_USER +
+                ';Password=' + HS_SA_DB_PASSWORD + ';', []); // do not localize
+              DB_ADO.Connected := true;
+            end;
+          end;
         except
           on E: EAbort do
           begin
@@ -661,7 +677,7 @@ begin
   try
     while not q.Eof do
     begin
-      sl.Add(q.Fields[0].AsString);
+      sl.Add(q.Fields[0].AsWideString);
       q.Next;
     end;
   finally
@@ -682,7 +698,7 @@ begin
   try
     while not q.Eof do
     begin
-      sl.Add(q.Fields[0].AsString);
+      sl.Add(q.Fields[0].AsWideString);
       q.Next;
     end;
   finally
@@ -717,16 +733,16 @@ begin
   try
     if q.RecordCount = 0 then
       exit;
-    if Trim(q.Fields[0].AsString) = '' then
+    if Trim(q.Fields[0].AsWideString) = '' then
       exit;
     if IstHickelSoftProduktDb then
       result := '-- ' + SExecuteStoredProcedureWith_ + ' ''exec ' +
         SQL_Escape_String(procedureName) + '''' + #13#10 +
-        Trim(q.Fields[0].AsString) // do not localize
+        Trim(q.Fields[0].AsWideString) // do not localize
     else
       result := '-- ' + SExecuteStoredProcedureWith_ + ' ''EXEC ' +
         SQL_Escape_String(procedureName) + '''' + #13#10 +
-        Trim(q.Fields[0].AsString); // do not localize
+        Trim(q.Fields[0].AsWideString); // do not localize
   finally
     FreeAndNil(q);
   end;
@@ -774,7 +790,7 @@ begin
   try
     if q.RecordCount = 0 then
       exit;
-    result := q.Fields[0].AsString;
+    result := q.Fields[0].AsWideString;
     if Trim(result) = '' then
       exit;
     p := Pos(' as', LowerCase(result));
@@ -915,7 +931,7 @@ begin
       tmpTbl.Active := true;
       while not tmpTbl.Eof do
       begin
-        slPrimaryKeys.Add(tmpTbl.FieldByName('COLUMN_NAME').AsString);
+        slPrimaryKeys.Add(tmpTbl.FieldByName('COLUMN_NAME').AsWideString);
         // do not localize
         tmpTbl.Next;
       end;
@@ -933,10 +949,10 @@ begin
         TADODataSet(tmpTbl));
       while not tmpTbl.Eof do
       begin
-        if SQL_Escape_TableName(tmpTbl.FieldByName('TABLE_NAME').AsString) = Tablename
+        if SQL_Escape_TableName(tmpTbl.FieldByName('TABLE_NAME').AsWideString) = Tablename
         then // do not localize
         begin
-          slPrimaryKeys.Add(tmpTbl.FieldByName('COLUMN_NAME').AsString);
+          slPrimaryKeys.Add(tmpTbl.FieldByName('COLUMN_NAME').AsWideString);
           // do not localize
         end;
         tmpTbl.Next;
@@ -967,7 +983,7 @@ begin
       tmpTbl.Active := true;
       while not tmpTbl.Eof do
       begin
-        slForeignKeys.Add(tmpTbl.FieldByName('COLUMN_NAME').AsString);
+        slForeignKeys.Add(tmpTbl.FieldByName('COLUMN_NAME').AsWideString);
         // do not localize
         tmpTbl.Next;
       end;
@@ -985,10 +1001,10 @@ begin
         TADODataSet(tmpTbl));
       while not tmpTbl.Eof do
       begin
-        if SQL_Escape_TableName(tmpTbl.FieldByName('FK_TABLE_NAME').AsString) = Tablename
+        if SQL_Escape_TableName(tmpTbl.FieldByName('FK_TABLE_NAME').AsWideString) = Tablename
         then // do not localize
         begin
-          slForeignKeys.Add(tmpTbl.FieldByName('FK_COLUMN_NAME').AsString);
+          slForeignKeys.Add(tmpTbl.FieldByName('FK_COLUMN_NAME').AsWideString);
           // do not localize
         end;
         tmpTbl.Next;
@@ -1029,16 +1045,16 @@ begin
       List.Clear;
       while not DataSet.Eof do
       begin
-        TableType := TypeField.AsString;
+        TableType := TypeField.AsWideString;
         if (TableType = 'TABLE') or (TableType = 'VIEW') or { do not localize }
           (SystemTables and (TableType = 'SYSTEM TABLE'))
         then { do not localize }
         begin
-          if Assigned(SchemaField) and (SchemaField.AsString <> '') and
-            (SchemaField.AsString <> 'dbo') then { do not localize }
-            List.Add(SchemaField.AsString + '.' + NameField.AsString)
+          if Assigned(SchemaField) and (SchemaField.AsWideString <> '') and
+            (SchemaField.AsWideString <> 'dbo') then { do not localize }
+            List.Add(SchemaField.AsWideString + '.' + NameField.AsWideString)
           else
-            List.Add(NameField.AsString);
+            List.Add(NameField.AsWideString);
         end;
         DataSet.Next;
       end;
@@ -2298,8 +2314,8 @@ begin
                     dsSource.Fields.Fields[i].AsInteger
                 else if dsDest.Fields.Fields[aiFeldIndizes[i]].DataType <> ftAutoInc
                 then
-                  dsDest.Fields.Fields[aiFeldIndizes[i]].AsString :=
-                    dsSource.Fields.Fields[i].AsString;
+                  dsDest.Fields.Fields[aiFeldIndizes[i]].AsWideString :=
+                    dsSource.Fields.Fields[i].AsWideString;
                 // this is also good for most of other types (even integer types)
               end;
               dsDest.Post;
@@ -2420,12 +2436,16 @@ end;
 
 var
   HickelSOFTEinmaligBestaetigt: boolean = false;
-  CmDb2EinmaligBestaetigt: boolean = false;
+  FIstHickelSoftProduktDb_Cache: TProductDbType;
 
 function TDbToolDatabase.CheckDatabaseSecurityPassword: boolean;
 
 resourcestring
-  SPasswordQuery = 'Passwortabfrage';
+  SDbPasswordQueryCaption = 'Passwortabfrage';
+  SDbPasswordQueryText = 'Für diese Datenbank ist ein Passwort erforderlich';
+
+type
+  TAcceptDbPasswords = set of (apHickelEmployee, apHickelPC, apCmDbAdmin);
 
   function VerifyCmDb2Password(s: string): boolean;
   var
@@ -2435,7 +2455,7 @@ resourcestring
     q := Query('select VALUE from CONFIG where NAME = ''PASSWORD_HASHED'';');
     // do not localize
     try
-      hashedPassword := q.Fields[0].AsString;
+      hashedPassword := q.Fields[0].AsWideString;
     finally
       FreeAndNil(q);
     end;
@@ -2448,7 +2468,7 @@ resourcestring
       q := Query('select VALUE from CONFIG where NAME = ''INSTALL_ID'';');
       // do not localize
       try
-        salt := q.Fields[0].AsString;
+        salt := q.Fields[0].AsWideString;
       finally
         FreeAndNil(q);
       end;
@@ -2462,14 +2482,13 @@ resourcestring
     result := PruefeHickelSoftPassword(s);
   end;
 
-  function CheckHsMitarbeiterPassword: boolean;
+  function RequireDatabasePassword(accepted: TAcceptDbPasswords): boolean;
   var
     s: string;
-  resourcestring
-    SAuthAsHickelSoftHelpDesk =
-      'Bitte als HickelSOFT-Mitarbeiter authentifizieren';
   begin
-    if HickelSOFTEinmaligBestaetigt or IstHickelSoftTestPC then
+    if ((apHickelEmployee in accepted) and HickelSOFTEinmaligBestaetigt) or
+       ((apHickelPC in accepted) and IstHickelSoftTestPC) or
+       ((apCmDbAdmin in accepted) and VerifyCmDb2Password(''{Not protected})) then
     begin
       result := true;
       exit;
@@ -2479,46 +2498,27 @@ resourcestring
     begin
       // Das "#0" sorgt dafür, dass es ein Passwort-Eingabefeld ist!
       s := '';
-      if not InputQuery(SPasswordQuery, #0 + SAuthAsHickelSoftHelpDesk, s) then
+      if not InputQuery(SDbPasswordQueryCaption, #0 + SDbPasswordQueryText, s) then
       begin
         result := false;
         exit;
       end;
-      result := VerifyHickelSOFTPassword(s);
-      if result then
+      if apHickelEmployee in accepted then
       begin
-        HickelSOFTEinmaligBestaetigt := true;
-        exit;
+        result := VerifyHickelSOFTPassword(s);
+        if result then
+        begin
+          HickelSOFTEinmaligBestaetigt := true;
+          exit;
+        end;
       end;
-    end;
-  end;
-
-  function CheckCmDb2OrHsMitarbeiterPassword: boolean;
-  var
-    s: string;
-  resourcestring
-    SAuthAsCmDb2 = 'Bitte das CMDB2-Passwort eingeben';
-  begin
-    if CmDb2EinmaligBestaetigt or VerifyCmDb2Password('') then
-    begin
-      result := true;
-      exit;
-    end;
-
-    while true do
-    begin
-      // Das "#0" sorgt dafür, dass es ein Passwort-Eingabefeld ist!
-      s := '';
-      if not InputQuery(SPasswordQuery, #0 + SAuthAsCmDb2, s) then
+      if apCmDbAdmin in accepted then
       begin
-        result := false;
-        exit;
-      end;
-      result := VerifyHickelSOFTPassword(s) or VerifyCmDb2Password(s);
-      if result then
-      begin
-        CmDb2EinmaligBestaetigt := true;
-        exit;
+        result := VerifyCmDb2Password(s);
+        if result then
+        begin
+          exit;
+        end;
       end;
     end;
   end;
@@ -2530,11 +2530,11 @@ begin
     if (FIstHickelSoftProduktDb_Cache = ptCORAplus) or
       (FIstHickelSoftProduktDb_Cache = ptHsInfo2) then
     begin
-      result := CheckHsMitarbeiterPassword;
+      RequireDatabasePassword([apHickelEmployee, apHickelPC]);
     end
     else if FIstHickelSoftProduktDb_Cache = ptCmDb2 then
     begin
-      result := CheckCmDb2OrHsMitarbeiterPassword;
+      RequireDatabasePassword([apHickelEmployee, apHickelPC, apCmDbAdmin]);
     end;
   end;
 end;

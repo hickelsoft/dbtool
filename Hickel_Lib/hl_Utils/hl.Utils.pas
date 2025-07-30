@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, Forms, Classes, SysUtils, Math, Controls, ShellAPI, ShlObj,
-  ActiveX,
+  ActiveX, DB,
 {$IF CompilerVersion >= 20.0}IOUtils, {$IFEND}
   StdCtrls, ZLib, DBCtrls, ADODB, SHFolder, ComCtrls, Dialogs;
 
@@ -97,11 +97,10 @@ type
     class procedure RequeryAndGotoSameSpot(ds: TAdoQuery);
   end;
 
-function hclStrToStr(aValue: string): string;
-// TODO: ersetzen durch hlString.toSQLString
 function FloatToStrForSQL(aValue: extended; NKStellen: integer)
   : string; overload;
 function FloatToStrForSQL(aValue: extended): string; overload;
+
 function BoolToStrForSQL(aValue: boolean): string;
 function hclBoolToStr(aValue: boolean): string;
 
@@ -163,7 +162,10 @@ function Crw11_IstInstalliert: boolean;
 function Crw13_IstInstalliert: boolean;
 
 function IsVCRuntime2022_32Bit_Installed: boolean;
+function IsVCRuntime2022_32Bit_Version: string;
+
 function IsVCRuntime2022_64Bit_Installed: boolean;
+function IsVCRuntime2022_64Bit_Version: string;
 
 function IsWow64: boolean;
 function ChangeFSRedirection(bDisable: boolean): boolean;
@@ -266,6 +268,9 @@ function Make_EditDisplayFormat(nachkommastellen: integer;
   istEditFormat: boolean): string;
 
 function WindowsVersionString: string;
+
+function HasReadAccessToFile(const FileName: string): Boolean;
+function HasWriteAccessToFile(const FileName: string): Boolean;
 
 type
   TSenderlessNotifyEvent = procedure of object;
@@ -912,6 +917,7 @@ begin
     except
       on E: EAbort do
       begin
+        Result := 0;
         Abort;
       end;
       on E: Exception do
@@ -1126,7 +1132,15 @@ begin
   if pos(',', Result) > 0 then
     Result[pos(',', Result)] := '.';
   if SameText(Result, 'NAN') then
-    Result := 'NULL'; // Ticket 55743
+  begin
+    Result := 'NULL' // Ticket 55743
+  end
+  else
+  begin
+    // Das ist wichtig, denn bei folgendem Ausdruck wird der SQL Server zur Diva:
+    // "SELECT ROUND(0.996, 2)"  => Arithmetischer Überlauf... (Fein 60998)
+    Result := 'cast(' + Result + ' as float)';
+  end;
 end;
 
 function FloatToStrForSQL(aValue: extended): string;
@@ -1135,7 +1149,15 @@ begin
   if pos(',', Result) > 0 then
     Result[pos(',', Result)] := '.';
   if SameText(Result, 'NAN') then
-    Result := 'NULL'; // Ticket 55743
+  begin
+    Result := 'NULL' // Ticket 55743
+  end
+  else
+  begin
+    // Das ist wichtig, denn bei folgendem Ausdruck wird der SQL Server zur Diva:
+    // "SELECT ROUND(0.996, 2)"  => Arithmetischer Überlauf... (Fein 60998)
+    Result := 'cast(' + Result + ' as float)';
+  end;
 end;
 
 function BoolToStrForSQL(aValue: boolean): string;
@@ -1244,20 +1266,6 @@ begin
       r := r + upcase(c);
   end;
   Result := r;
-end;
-
-function hclStrToStr(aValue: string): string;
-var
-  s: string;
-begin
-  s := aValue;
-  if copy(s, Length(s), 1) = ':' then
-    s := copy(s, 1, Length(s) - 1);
-  if copy(s, Length(s), 1) = '''' then
-    s := copy(s, 1, Length(s) - 1);
-  s := StringReplace(s, ':', '::', [rfReplaceAll]);
-  s := StringReplace(s, '''', '''''', [rfReplaceAll]);
-  Result := s;
 end;
 
 function hclBoolToStr(aValue: boolean): string;
@@ -1590,6 +1598,7 @@ begin
   except
     on E: EAbort do
     begin
+      Result := False;
       Abort;
     end;
     on E: Exception do
@@ -2184,8 +2193,9 @@ begin
   reg := TRegistry.Create;
   try
     reg.RootKey := HKEY_LOCAL_MACHINE;
-    if WindowsBits = 64 then
+    if (WindowsBits = 64) and not IsWow64 then
     begin
+      // CRW11 ist IMMER 64 Bit, deshalb brauchen wir in SOFTWARE\Business Objects\Suite 11.0\Crystal Reports gar nicht erst zu suchen
       key := 'SOFTWARE\WOW6432Node\Business Objects\Suite 11.0\Crystal Reports';
       // testFile := 'C:\Program Files (x86)\Common Files\Business Objects\3.0\bin\crpe32.dll';
     end
@@ -2294,11 +2304,45 @@ begin
     end;
 
     // Prüfe den WOW6432Node-Pfad für 32-Bit Programme unter 64-Bit Windows
-    if not Result and reg.OpenKeyReadOnly
+    if not Result and (WindowsBits = 64) and not IsWow64 and
+      reg.OpenKeyReadOnly
       ('SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\x86') then
     begin
       Result := reg.ValueExists('Installed') and
         (reg.ReadInteger('Installed') = 1);
+      reg.CloseKey;
+    end;
+
+  finally
+    reg.Free;
+  end;
+end;
+
+function IsVCRuntime2022_32Bit_Version: string;
+var
+  reg: TRegistry;
+begin
+  Result := '';
+  reg := TRegistry.Create(KEY_READ);
+  try
+    reg.RootKey := HKEY_LOCAL_MACHINE;
+
+    // Prüfe den Standardpfad für 32-Bit Runtime
+    if reg.OpenKeyReadOnly
+      ('SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x86') then
+    begin
+      if reg.ValueExists('Version') then
+        Result := reg.ReadString('Version');
+      reg.CloseKey;
+    end;
+
+    // Prüfe den WOW6432Node-Pfad für 32-Bit Programme unter 64-Bit Windows
+    if (Result = '') and (WindowsBits = 64) and not IsWow64 and
+      reg.OpenKeyReadOnly
+      ('SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\x86') then
+    begin
+      if reg.ValueExists('Version') then
+        Result := reg.ReadString('Version');
       reg.CloseKey;
     end;
 
@@ -2325,6 +2369,51 @@ begin
       reg.CloseKey;
     end;
 
+    // Prüfe den WOW6432Node-Pfad für 32-Bit Programme unter 64-Bit Windows
+    // JA! Die Info, ob 64 Bit installiert ist, steht wirklich im Wow64 Node!
+    // Computer\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\X64
+    if not Result and (WindowsBits = 64) and not IsWow64 and
+      reg.OpenKeyReadOnly
+      ('SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\x64') then
+    begin
+      Result := reg.ValueExists('Installed') and
+        (reg.ReadInteger('Installed') = 1);
+      reg.CloseKey;
+    end;
+  finally
+    reg.Free;
+  end;
+end;
+
+function IsVCRuntime2022_64Bit_Version: string;
+var
+  reg: TRegistry;
+begin
+  Result := '';
+  reg := TRegistry.Create(KEY_READ);
+  try
+    reg.RootKey := HKEY_LOCAL_MACHINE;
+
+    // Prüfe den Standardpfad für 64-Bit Runtime
+    if reg.OpenKeyReadOnly
+      ('SOFTWARE\Microsoft\VisualStudio\14.0\VC\Runtimes\x64') then
+    begin
+      if reg.ValueExists('Version') then
+        Result := reg.ReadString('Version');
+      reg.CloseKey;
+    end;
+
+    // Prüfe den WOW6432Node-Pfad für 32-Bit Programme unter 64-Bit Windows
+    // JA! Die Info, ob 64 Bit installiert ist, steht wirklich im Wow64 Node!
+    // Computer\HKEY_LOCAL_MACHINE\SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\X64
+    if (Result = '') and (WindowsBits = 64) and not IsWow64 and
+      reg.OpenKeyReadOnly
+      ('SOFTWARE\WOW6432Node\Microsoft\VisualStudio\14.0\VC\Runtimes\X64') then
+    begin
+      if reg.ValueExists('Version') then
+        Result := reg.ReadString('Version');
+      reg.CloseKey;
+    end;
   finally
     reg.Free;
   end;
@@ -3822,31 +3911,44 @@ begin
   Result := UTCToLocalDateTime(UTC);
 end;
 
+// Prüft 32- und 64-Bit
 function IsOdbcDriverInstalled(const DriverName: string): boolean;
-const
-  RootKeys: array [0 .. 1] of string =
-    ('SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers', // 64-Bit Treiber
-    'SOFTWARE\WOW6432Node\ODBC\ODBCINST.INI\ODBC Drivers'
-    // 32-Bit Treiber (auf 64-Bit Windows)
-    );
 var
   reg: TRegistry;
-  I: integer;
+  found: integer;
+  Expected: integer;
 begin
-  Result := False;
+  found := 0;
+  Expected := 0;
   reg := TRegistry.Create(KEY_READ);
   try
     reg.RootKey := HKEY_LOCAL_MACHINE;
 
-    // Prüfe beide Pfade (64-Bit und 32-Bit)
-    for I := 0 to High(RootKeys) do
+    // 64-Bit-Treiber in 64-Bit Prozess
+    // oder 32-Bit-Treiber in 32-Bit-Prozess
+    inc(Expected);
+    if reg.OpenKeyReadOnly('SOFTWARE\ODBC\ODBCINST.INI\ODBC Drivers') then
     begin
-      if reg.OpenKeyReadOnly(RootKeys[I]) then
+      if reg.ValueExists(DriverName) and
+        (reg.ReadString(DriverName) = 'Installed') then
       begin
-        if reg.ValueExists(DriverName) then
+        inc(found);
+      end;
+      reg.CloseKey;
+    end;
+
+    // IsWow64=true, wenn es ein 32-Bit Prozess auf einem 64-Bit OS ist
+    if (WindowsBits = 64) and not IsWow64 then
+    begin
+      // 32-Bit Treiber in 64-Bit-Prozess
+      inc(Expected);
+      if reg.OpenKeyReadOnly
+        ('SOFTWARE\WOW6432Node\ODBC\ODBCINST.INI\ODBC Drivers') then
+      begin
+        if reg.ValueExists(DriverName) and
+          (reg.ReadString(DriverName) = 'Installed') then
         begin
-          Result := True;
-          exit; // Falls gefunden, sofort beenden
+          inc(found);
         end;
         reg.CloseKey;
       end;
@@ -3854,6 +3956,8 @@ begin
   finally
     reg.Free;
   end;
+
+  Result := found = Expected;
 end;
 
 function Make_EditDisplayFormat(nachkommastellen: integer;
@@ -3915,6 +4019,81 @@ begin
       else
         Result := Result + ' (32-Bit)';
     end;
+  end;
+end;
+
+function HasReadAccessToFile(const FileName: string): Boolean;
+var
+  hFile: THandle;
+  SecurityAttr: TSecurityAttributes;
+begin
+  Result := False;
+
+  // Datei muss existieren
+  if not FileExists(FileName) then
+    Exit;
+
+  // Sicherheitsattribute für Zugriff ohne Vererbung
+  SecurityAttr.nLength := SizeOf(TSecurityAttributes);
+  SecurityAttr.bInheritHandle := False;
+  SecurityAttr.lpSecurityDescriptor := nil;
+
+  // Versuch, die Datei mit GENERIC_READ zu öffnen
+  hFile := CreateFile(PChar(FileName),
+                      GENERIC_READ,
+                      FILE_SHARE_READ or FILE_SHARE_WRITE or FILE_SHARE_DELETE,
+                      @SecurityAttr,
+                      OPEN_EXISTING,
+                      FILE_ATTRIBUTE_NORMAL,
+                      0);
+
+  if hFile <> INVALID_HANDLE_VALUE then
+  begin
+    Result := True;
+    CloseHandle(hFile);
+  end;
+end;
+
+function HasWriteAccessToFile(const FileName: string): Boolean;
+var
+  hFile: THandle;
+  SecurityAttr: TSecurityAttributes;
+  TempFileName: string;
+begin
+  Result := False;
+
+  // Sicherheitsattribute für Zugriff ohne Vererbung
+  SecurityAttr.nLength := SizeOf(TSecurityAttributes);
+  SecurityAttr.bInheritHandle := False;
+  SecurityAttr.lpSecurityDescriptor := nil;
+
+  if FileExists(FileName) then
+  begin
+    // Datei existiert: versuchen mit GENERIC_WRITE zu öffnen
+    hFile := CreateFile(PChar(FileName),
+                        GENERIC_WRITE,
+                        FILE_SHARE_READ or FILE_SHARE_WRITE,
+                        @SecurityAttr,
+                        OPEN_EXISTING,
+                        FILE_ATTRIBUTE_NORMAL,
+                        0);
+  end
+  else
+  begin
+    // Datei existiert nicht: versuchen sie neu zu erstellen
+    hFile := CreateFile(PChar(FileName),
+                        GENERIC_WRITE,
+                        FILE_SHARE_READ or FILE_SHARE_WRITE,
+                        @SecurityAttr,
+                        CREATE_NEW,
+                        FILE_ATTRIBUTE_NORMAL or FILE_FLAG_DELETE_ON_CLOSE,
+                        0);
+  end;
+
+  if hFile <> INVALID_HANDLE_VALUE then
+  begin
+    Result := True;
+    CloseHandle(hFile);
   end;
 end;
 

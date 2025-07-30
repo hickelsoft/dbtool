@@ -13,7 +13,6 @@ object DLG_Main: TDLG_Main
   FormStyle = fsMDIForm
   Menu = MainMenu1
   Position = poDefault
-  Scaled = False
   WindowState = wsMaximized
   OnCanResize = FormCanResize
   OnCloseQuery = FormCloseQuery

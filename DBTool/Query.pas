@@ -338,10 +338,10 @@ begin
     try
       if (FFindCaseInsensitive) then
         iPos := Pos(sUpper, UpperCase(DataSource1.DataSet.Fields.Fields
-          [iSearchField].AsString))
+          [iSearchField].AsWideString))
       else
         iPos := Pos(FFindStr, DataSource1.DataSet.Fields.Fields[iSearchField]
-          .AsString);
+          .AsWideString);
     except
       on E: EAbort do
       begin

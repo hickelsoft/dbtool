@@ -25,7 +25,9 @@ type
   public
     class procedure HS_Design_Aktivieren(AllowDarkMode: boolean = True);
     // call at FormShow
+(*
     class procedure PanelObenBearbeiten(PanelOben: THsGradientPanel);
+*)
     // call at FormShow, after HS_Design_Aktivieren
     class procedure RefreshMainMenuColor(MainMenu1: TMainMenu);
     // call at FormCanResize
@@ -329,6 +331,7 @@ begin
   end;
 end;
 
+(*
 class procedure THickelSOFTDesign.PanelObenBearbeiten
   (PanelOben: THsGradientPanel);
 begin
@@ -336,6 +339,7 @@ begin
   PanelOben.BeginColor := DESIGN62_PANELCOLOR;
   PanelOben.EndColor := DESIGN62_PANELCOLORHIGHLIGHT;
 end;
+*)
 
 class function THickelSOFTDesign.FindMainMenu(frm: TForm): TMainMenu;
 var

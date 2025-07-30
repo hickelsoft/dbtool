@@ -393,7 +393,7 @@ begin
       Top := 8;
       Width := 400; // Ursprünglich 300
       Height := 92;
-      Caption := FText;
+      Caption := StringReplace(FText, '&', '&&', [rfReplaceAll]);
       PopupMenu := pmPopupMenu;
       Font.Color := clBlack;
     end;

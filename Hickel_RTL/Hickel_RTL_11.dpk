@@ -1,0 +1,115 @@
+package Hickel_RTL_11;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS ON}
+{$RANGECHECKS ON}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$DESCRIPTION 'HICKEL RTL'}
+{$RUNONLY}
+{$IMPLICITBUILD OFF}
+
+requires
+  vcl,
+  rtl,
+  dbrtl,
+  dsnap,
+  xmlrtl,
+  Hickel_Components_11,
+  VclSmp,
+  vclx,
+  vclactnband,
+  designide,
+  Jcl,
+  adortl,
+  ipstudiowin,
+  vclie,
+  soaprtl,
+  inet,
+  vcldb,
+  IndySystem,
+  IndyProtocols,
+  IndyCore;
+
+contains
+  hl_IntegerList in '..\Hickel_Lib\Src\hl_IntegerList.pas',
+  hl_Printer_Neu in '..\Hickel_Lib\Src\hl_Printer_Neu.pas',
+  hl_Suche in '..\Hickel_Lib\Src\hl_Suche.pas',
+  hl.Utils in '..\Hickel_Lib\hl_Utils\hl.Utils.pas',
+  hl.Utils.Bank in '..\Hickel_Lib\hl_Utils\hl.Utils.Bank.pas',
+  hl.System.SingleInstance in '..\Hickel_Lib\hl_System\hl.System.SingleInstance.pas',
+  hl_ExceptionLogger in '..\Hickel_Lib\Src\hl_ExceptionLogger.pas',
+  hl.Datenbank.CSVExporter in '..\Hickel_Lib\hl_Datenbank\hl.Datenbank.CSVExporter.pas',
+  hl_Exceptions in '..\Hickel_Lib\Src\hl_Exceptions.pas',
+  hl.System.Types in '..\Hickel_Lib\hl_System\hl.System.Types.pas',
+  hl_Datenbank in '..\Hickel_Lib\Src\hl_Datenbank.pas',
+  hl_Log in '..\Hickel_Lib\Src\hl_Log.pas',
+  hl.Datenbank.Utils in '..\Hickel_Lib\hl_Datenbank\hl.Datenbank.Utils.pas',
+  hl.System.ExceptionHandler in '..\Hickel_Lib\hl_System\hl.System.ExceptionHandler.pas',
+  hl.Utils.ResIniFile in '..\Hickel_Lib\hl_Utils\hl.Utils.ResIniFile.pas',
+  hl.Utils.CRC32 in '..\Hickel_Lib\hl_Utils\hl.Utils.CRC32.pas',
+  hl.Utils.MD5 in '..\Hickel_Lib\hl_Utils\hl.Utils.MD5.pas',
+  hl.Utils.AsciiTable in '..\Hickel_Lib\hl_Utils\hl.Utils.AsciiTable.pas',
+  hl.Utils.StringStreamEx in '..\Hickel_Lib\hl_Utils\hl.Utils.StringStreamEx.pas',
+  hl.System.SingleInstance.DummyForm in '..\Hickel_Lib\hl_System\hl.System.SingleInstance.DummyForm.pas' {DummyForm},
+  hl.Utils.SetFocusFix in '..\Hickel_Lib\hl_Utils\hl.Utils.SetFocusFix.pas',
+  hl.Utils.FormSerialize in '..\Hickel_Lib\hl_Utils\hl.Utils.FormSerialize.pas',
+  hl.Utils.DbGridUtils in '..\Hickel_Lib\hl_Utils\hl.Utils.DbGridUtils.pas',
+  hl.Utils.DBLookupComboDlgHack in '..\Hickel_Lib\hl_Utils\hl.Utils.DBLookupComboDlgHack.pas',
+  hl.Utils.ImageConvert in '..\Hickel_Lib\hl_Utils\hl.Utils.ImageConvert.pas',
+  hl.Utils.IndyMemoryHack in '..\Hickel_Lib\hl_Utils\hl.Utils.IndyMemoryHack.pas',
+  hl.Utils.Web in '..\Hickel_Lib\hl_Utils\hl.Utils.Web.pas',
+  hl.Utils.Color in '..\Hickel_Lib\hl_Utils\hl.Utils.Color.pas',
+  hl.Datenbank.RowLock in '..\Hickel_Lib\hl_Datenbank\hl.Datenbank.RowLock.pas',
+  hl.Utils.CSV in '..\Hickel_Lib\hl_Utils\hl.Utils.CSV.pas',
+  hl_Printer_Bon in '..\Hickel_Lib\Src\hl_Printer_Bon.pas',
+  hl.Utils.FingerPrint in '..\Hickel_Lib\hl_Utils\hl.Utils.FingerPrint.pas',
+  hl.Utils.VerInfoUtils in '..\Hickel_Lib\hl_Utils\hl.Utils.VerInfoUtils.pas',
+  hl.Utils.WmiUtils in '..\Hickel_Lib\hl_Utils\hl.Utils.WmiUtils.pas',
+  hl_KeyValue_Args in '..\Hickel_Lib\Src\hl_KeyValue_Args.pas',
+  AdoQueryHelper in '..\Hickel_Lib\hl_Datenbank\AdoQueryHelper.pas',
+  hl.Utils.StreamEx in '..\Hickel_Lib\hl_Utils\hl.Utils.StreamEx.pas',
+  hl_WinMessages in '..\Hickel_Lib\Src\hl_WinMessages.pas',
+  HS_Fernwartung in '..\Hickel_Lib\Src\HS_Fernwartung.pas',
+  HS_MidVer in '..\Hickel_Lib\Src\HS_MidVer.pas',
+  hl.Utils.SteuerNr in '..\Hickel_Lib\hl_Utils\hl.Utils.SteuerNr.pas',
+  hl.Utils.July22Crypt in '..\Hickel_Lib\hl_Utils\hl.Utils.July22Crypt.pas',
+  Deutschland_Feiertage in '..\Hickel_Lib\Src\Deutschland_Feiertage.pas',
+  FormatSettingsCompat in '..\Hickel_Lib\hl_Utils\FormatSettingsCompat.pas',
+  hl_Adresse in '..\Hickel_Lib\Src\hl_Adresse.pas',
+  hl_Lizenz in '..\Hickel_Lib\Src\hl_Lizenz.pas',
+  hl_Consts in '..\Hickel_Lib\Src\hl_Consts.pas',
+  hl.Utils.AutoSnippingTool in '..\Hickel_Lib\hl_Utils\hl.Utils.AutoSnippingTool.pas',
+  hl.Utils.Mapi in '..\Hickel_Lib\hl_Utils\hl.Utils.Mapi.pas',
+  HickelSOFT_Design in '..\Hickel_Lib\Src\HickelSOFT_Design.pas',
+  HS_Auth in '..\Hickel_Lib\Src\HS_Auth.pas',
+  hl_MultiLang in '..\Hickel_Lib\Src\hl_MultiLang.pas',
+  HS_Mitteilung in '..\Hickel_Lib\Src\HS_Mitteilung.pas',
+  hl_SqlServerProvider in '..\Hickel_Lib\Src\hl_SqlServerProvider.pas',
+  VCL_Hotfix_AltGr in '..\Hickel_Lib\Src\VCL_Hotfix_AltGr.pas',
+  hl_PopupMenuHelper in '..\Hickel_Lib\Src\hl_PopupMenuHelper.pas',
+  ShareFolderUnit in '..\Hickel_Lib\hl_Utils\ShareFolderUnit.pas',
+  hg_InputQuery in '..\Hickel_Gui\Src\hg_InputQuery.pas' {hgInputQry},
+  hg_CheckboxVoransicht in '..\Hickel_Gui\Src\hg_CheckboxVoransicht.pas' {DLG_CheckboxVoransicht};
+
+end.

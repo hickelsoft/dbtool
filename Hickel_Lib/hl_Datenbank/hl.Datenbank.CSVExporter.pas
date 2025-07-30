@@ -226,7 +226,7 @@ begin
       begin
         if DateTimeFormat = '' then
         begin
-          result := feld.AsString;
+          result := feld.AsWideString;
         end
         else
         begin
@@ -236,7 +236,7 @@ begin
 
     ftString, ftWideString, ftFixedWideChar, ftMemo, ftWideMemo:
       begin
-        result := feld.AsString;
+        result := feld.AsWideString;
         if richTextUmwandeln then
         begin
           result := RichTextToPlainText(result);
@@ -260,7 +260,7 @@ begin
       end
   else
     begin
-      result := feld.AsString;
+      result := feld.AsWideString;
     end;
   end;
 end;

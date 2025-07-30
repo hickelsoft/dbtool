@@ -46,7 +46,7 @@ begin
   // aufspalten, deren phonetische Codes berechnen und merken
   buffer := '';
   for i := 0 to dataRow.FieldCount - 1 do
-    buffer := buffer + dataRow.Fields[i].AsString + ' ';
+    buffer := buffer + dataRow.Fields[i].AsWideString + ' ';
 
   buffer := AnsiReplaceStr(buffer, '''', '');
 

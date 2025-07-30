@@ -114,7 +114,7 @@ begin
 
     while not aQuery.Eof do
     begin
-      sBuf := aQuery.Fields.Fields[0].AsString;
+      sBuf := aQuery.Fields.Fields[0].AsWideString;
       if sBuf <> 'mysql' then
         lbDatabases.Items.Add(sBuf); // do not localize
       aQuery.Next;

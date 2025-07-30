@@ -37,9 +37,9 @@ begin
     con.OpenSchema(siPrimaryKeys, Unassigned, EmptyParam, ds);
     while not ds.Eof do
     begin
-      if ds.FieldByName('TABLE_NAME').AsString = TableName then
+      if ds.FieldByName('TABLE_NAME').AsWideString = TableName then
       begin
-        outsl.Add(ds.FieldByName('COLUMN_NAME').AsString);
+        outsl.Add(ds.FieldByName('COLUMN_NAME').AsWideString);
       end;
       ds.Next;
     end;

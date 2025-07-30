@@ -106,16 +106,16 @@ function THsDruckerConfig.WritePrinter: boolean;
         ds.DisableControls;
 
         ds.Insert;
-        ds.FieldByName('FORMULARART').AsString := FFormularArt;
+        ds.FieldByName('FORMULARART').AsWideString := FFormularArt;
         ds.FieldByName('FORMULARNR').AsInteger := FFormularNr;
-        ds.FieldByName('DRUCKERART').AsString := FDruckerArt;
+        ds.FieldByName('DRUCKERART').AsWideString := FDruckerArt;
         ds.FieldByName('LFD_DRUCKNR').AsInteger := DruckerNr;
-        ds.FieldByName('BAP').AsString := GetComputerName;
+        ds.FieldByName('BAP').AsWideString := GetComputerName;
 
         if PrinterData.PrinterIndex >= 0 then
-          ds.FieldByName('DRUCKERNAME').AsString := PrinterData.PrinterName
+          ds.FieldByName('DRUCKERNAME').AsWideString := PrinterData.PrinterName
         else
-          ds.FieldByName('DRUCKERNAME').AsString := StrBildschirm;
+          ds.FieldByName('DRUCKERNAME').AsWideString := StrBildschirm;
 
         if PrinterData.Zufuhrliste <> nil then
           ds.FieldByName('ZUFUHRINDEX').AsInteger :=
@@ -208,7 +208,7 @@ function THsDruckerConfig.ReadPrinter: boolean;
       if ds.RecordCount > 0 then
       begin
         PrinterData.PrinterIndex := TPrinterData.CachedPrinterList.IndexOf
-          (ds.FieldByName('DRUCKERNAME').AsString);
+          (ds.FieldByName('DRUCKERNAME').AsWideString);
 
         if (PrinterData.PrinterIndex > -1) then
         // DM 20.03.2024 : Das war auskommentiert. Warum? Hab die Zeile jetzt wieder aktiviert...

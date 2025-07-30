@@ -2,7 +2,7 @@
 <xlat>
   <meta>
     <version>3</version>
-    <created>2025-05-19T17:41:13.660+02:00</created>
+    <created>2025-06-04T12:03:44.346+02:00</created>
     <tool>amTranslationManager</tool>
     <toolversion>2.3.9199.24584</toolversion>
   </meta>
@@ -12,13 +12,13 @@
     <sorted>True</sorted>
     <omitnewstate>True</omitnewstate>
   </options>
-  <project sourcefile="..\..\..\HS-Service\DBTool32.exe" stringsymbolfile=".\DBTool32.drc" language="de-DE" properties="1876">
+  <project sourcefile="..\..\..\HS-Service\DBTool32.exe" stringsymbolfile=".\DBTool32.drc" language="de-DE" properties="1873">
     <targetlanguages>
-      <language language="en-US" translated="1016"/>
       <language language="de-DE" translated="0"/>
+      <language language="en-US" translated="1030"/>
     </targetlanguages>
     <modules>
-      <module name="resourcestrings" type="strings" properties="1532">
+      <module name="resourcestrings" type="strings" properties="1529">
         <items>
           <item name="Bde_Bdeconst_SAutoSessionActive">
             <properties>
@@ -146,7 +146,7 @@
           </item>
           <item name="Bde_Bdeconst_SIDAPILangID">
             <properties>
-              <property>
+              <property status="hold">
                 <value>0007</value>
               </property>
             </properties>
@@ -341,7 +341,7 @@
               </property>
             </properties>
           </item>
-          <item name="C_Database_SAuthAsCmDb2">
+          <item name="C_Database_SAuthAsCmDb2" state="unused">
             <properties>
               <property>
                 <value>Bitte das CMDB2-Passwort eingeben</value>
@@ -351,7 +351,7 @@
               </property>
             </properties>
           </item>
-          <item name="C_Database_SAuthAsHickelSoftHelpDesk">
+          <item name="C_Database_SAuthAsHickelSoftHelpDesk" state="unused">
             <properties>
               <property>
                 <value>Bitte als HickelSOFT-Mitarbeiter authentifizieren</value>
@@ -397,6 +397,26 @@
                 <value>Die Datenbank konnte nicht geöffnet werden.</value>
                 <translations>
                   <translation language="en-US">The database could not be opened.</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="C_Database_SDbPasswordQueryCaption">
+            <properties>
+              <property>
+                <value>Passwortabfrage</value>
+                <translations>
+                  <translation language="en-US">Password query</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="C_Database_SDbPasswordQueryText">
+            <properties>
+              <property>
+                <value>Für diese Datenbank ist ein Passwort erforderlich</value>
+                <translations>
+                  <translation language="en-US">This database requires a password</translation>
                 </translations>
               </property>
             </properties>
@@ -491,7 +511,7 @@
               </property>
             </properties>
           </item>
-          <item name="C_Database_SPasswordQuery">
+          <item name="C_Database_SPasswordQuery" state="unused">
             <properties>
               <property>
                 <value>Passwortabfrage</value>
@@ -1872,6 +1892,9 @@
             <properties>
               <property>
                 <value>Wichtiger Hinweis: Logs werden ab sofort pro Windows User gespeichert unter:</value>
+                <translations>
+                  <translation language="en-US">Important notice: Log files will now be saved in this location:</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -1879,6 +1902,9 @@
             <properties>
               <property>
                 <value>erstellt mit %s</value>
+                <translations>
+                  <translation language="en-US">created with %s</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -1886,12 +1912,15 @@
             <properties>
               <property>
                 <value>GetBuildTimestamp(%s) fehlgeschlagen</value>
+                <translations>
+                  <translation language="en-US">GetBuildTimestamp(%s) failed</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="hl_Utils_StrIsWow64BadProcess">
             <properties>
-              <property>
+              <property status="hold">
                 <value>IsWow64: bad process handle</value>
               </property>
             </properties>
@@ -1900,6 +1929,9 @@
             <properties>
               <property>
                 <value>Konnte Datei %s nicht löschen!</value>
+                <translations>
+                  <translation language="en-US">Could not delete %s!</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -1907,6 +1939,9 @@
             <properties>
               <property>
                 <value>Prüfsummen-Datei</value>
+                <translations>
+                  <translation language="en-US">Checksum file</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -1914,6 +1949,9 @@
             <properties>
               <property>
                 <value>Ungültige Blockgröße</value>
+                <translations>
+                  <translation language="en-US">Invalid block size</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -1921,13 +1959,19 @@
             <properties>
               <property>
                 <value>Fehler beim Verbinden zum Server: %s</value>
+                <translations>
+                  <translation language="en-US">Error while connecting to server: %s</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="hl_Utils_Web_StrErrorInitializingW">
             <properties>
               <property>
-                <value>Fehler beim initialisieren von WinInet: %s</value>
+                <value>Fehler beim Initialisieren von WinInet: %s</value>
+                <translations>
+                  <translation language="en-US">Error during initialization of WinInet: %s</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -1935,6 +1979,9 @@
             <properties>
               <property>
                 <value>Fehler beim Öffnen der HTTP-Anfrage: %s</value>
+                <translations>
+                  <translation language="en-US">Error during opening of HTTP request: %s</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -1942,6 +1989,9 @@
             <properties>
               <property>
                 <value>Fehler beim Senden der HTTP-Anfrage: %s</value>
+                <translations>
+                  <translation language="en-US">Error during sending of HTTP request: %s</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -1949,6 +1999,9 @@
             <properties>
               <property>
                 <value>Fehler: Zu viele Umleitungen</value>
+                <translations>
+                  <translation language="en-US">Error: Too many redirects</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -1956,6 +2009,9 @@
             <properties>
               <property>
                 <value>HTTP-Fehler %d bei GET-Anfrage %s</value>
+                <translations>
+                  <translation language="en-US">HTTP error %d at GET request %s</translation>
+                </translations>
               </property>
             </properties>
           </item>

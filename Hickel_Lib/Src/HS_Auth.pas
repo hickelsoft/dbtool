@@ -2,11 +2,18 @@ unit HS_Auth;
 
 interface
 
+function HS_SA_DB_USER: string;
 function HS_SA_DB_PASSWORD: string;
 function IstHickelSoftTestPC: boolean;
 function PruefeHickelSoftPassword(const pwd: string): boolean;
 
 implementation
+
+function HS_SA_DB_USER: string;
+begin
+  // REDACTED IN OPEN SOURCE RELEASE
+  result := '';
+end;
 
 function HS_SA_DB_PASSWORD: string;
 begin
