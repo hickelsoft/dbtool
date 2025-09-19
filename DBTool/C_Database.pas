@@ -224,7 +224,7 @@ begin
       if Modus_CORA_Verzeichnis then
       begin
         try
-          // SA Auth probieren
+          // Benutzer-Auth probieren
           sTmp := connStrPrefix +
             Copy(DatabaseName, Length('_SQLSRV:') + 1) + ';Application Name=' +
             ExtractFileName(ParamStr(0)); // do not localize
@@ -1062,7 +1062,7 @@ begin
       List.EndUpdate;
     end;
   finally
-    DataSet.Free;
+    FreeAndNil(DataSet);
   end;
 end;
 

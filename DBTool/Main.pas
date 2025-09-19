@@ -212,8 +212,7 @@ begin
         (IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) +
         CONFIG_INI);
       try
-        sSQLServerPath := iniServer.ReadString(CONFIG_HEADER, 'SQLConnStr', '');
-        // do not localize
+        sSQLServerPath := iniServer.ReadString(CONFIG_HEADER, 'SQLConnStr', ''); // do not localize
         result := sSQLServerPath;
       finally
         FreeAndNil(iniServer);

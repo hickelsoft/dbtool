@@ -97,9 +97,11 @@ type
     class procedure RequeryAndGotoSameSpot(ds: TAdoQuery);
   end;
 
-function FloatToStrForSQL(aValue: extended; NKStellen: integer)
-  : string; overload;
+function FloatToStrForSQL(aValue: extended; NKStellen: integer): string; overload;
 function FloatToStrForSQL(aValue: extended): string; overload;
+
+function FloatToStrForCRW(aValue: extended; NKStellen: integer): string; overload;
+function FloatToStrForCRW(aValue: extended): string; overload;
 
 function BoolToStrForSQL(aValue: boolean): string;
 function hclBoolToStr(aValue: boolean): string;
@@ -1123,6 +1125,28 @@ begin
   finally
     FreeMem(pcResult);
     FreeMem(pcBuffer);
+  end;
+end;
+
+function FloatToStrForCRW(aValue: extended; NKStellen: integer): string;
+begin
+  Result := Format('%.' + intToStr(NKStellen) + 'f', [aValue]);
+  if pos(',', Result) > 0 then
+    Result[pos(',', Result)] := '.';
+  if SameText(Result, 'NAN') then
+  begin
+    Result := 'NULL' // Ticket 55743
+  end;
+end;
+
+function FloatToStrForCRW(aValue: extended): string;
+begin
+  Result := FloatToStr(aValue);
+  if pos(',', Result) > 0 then
+    Result[pos(',', Result)] := '.';
+  if SameText(Result, 'NAN') then
+  begin
+    Result := 'NULL' // Ticket 55743
   end;
 end;
 
@@ -2312,9 +2336,8 @@ begin
         (reg.ReadInteger('Installed') = 1);
       reg.CloseKey;
     end;
-
   finally
-    reg.Free;
+    FreeAndNil(reg);
   end;
 end;
 
@@ -2345,9 +2368,8 @@ begin
         Result := reg.ReadString('Version');
       reg.CloseKey;
     end;
-
   finally
-    reg.Free;
+    FreeAndNil(reg);
   end;
 end;
 
@@ -2381,7 +2403,7 @@ begin
       reg.CloseKey;
     end;
   finally
-    reg.Free;
+    FreeAndNil(reg);
   end;
 end;
 
@@ -2415,7 +2437,7 @@ begin
       reg.CloseKey;
     end;
   finally
-    reg.Free;
+    FreeAndNil(reg);
   end;
 end;
 
@@ -3954,7 +3976,7 @@ begin
       end;
     end;
   finally
-    reg.Free;
+    FreeAndNil(reg);
   end;
 
   Result := found = Expected;
@@ -4058,7 +4080,6 @@ function HasWriteAccessToFile(const FileName: string): Boolean;
 var
   hFile: THandle;
   SecurityAttr: TSecurityAttributes;
-  TempFileName: string;
 begin
   Result := False;
 

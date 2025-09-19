@@ -78,6 +78,7 @@
         <Icon_MainIcon>Hickel_Components_11_Icon.ico</Icon_MainIcon>
         <DCC_UsePackage>vcl;rtl;xmlrtl;vclactnband;vclx;dbrtl;vclie;vcldb;VclSmp;adortl;Jcl;Hickel_Components;vclwinx;$(DCC_UsePackage)</DCC_UsePackage>
         <VerInfo_MajorVer>1</VerInfo_MajorVer>
+        <DCC_DcuOutput>..\..\..\..\..\..\..\..\..\CORAplus\BAP\bin\dcu32</DCC_DcuOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
@@ -100,7 +101,6 @@
         <DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
-        <DCC_BplOutput>..\..\..\..\..\..\..\..\..\CORA2012\BAP\bin</DCC_BplOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <VerInfo_MajorVer>1</VerInfo_MajorVer>
@@ -109,6 +109,7 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Version>7.0</Version>
+        <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <VerInfo_MajorVer>1</VerInfo_MajorVer>
@@ -156,7 +157,8 @@
                     <Source Name="MainSource">Hickel_Components_11.dpk</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k270.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Beispiele für gekapselte Komponenten für Automation Server</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>

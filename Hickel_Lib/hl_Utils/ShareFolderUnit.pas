@@ -2,6 +2,8 @@ unit ShareFolderUnit;
 // This is for the NT platform.
 // https://groups.google.com/g/borland.public.delphi.nativeapi.win32/c/YJK3xpPA_XM
 
+// Extended with: FolderShareExists
+
 interface
 
 uses
@@ -9,6 +11,9 @@ uses
 
 function FolderShareAdd(Path, NetName, Remark: WideString): Boolean;
 function FolderShareDel(NetName: WideString): Boolean;
+
+// -- Extension --
+function FolderShareExists(const ShareName: string): Boolean;
 
 implementation
 
@@ -87,6 +92,55 @@ begin
     Str := Buf;
     StrDispose(Buf);
     //ShowMessage(Str);
+  end;
+end;
+
+// -- Extension --
+
+type
+  SHARE_INFO_1 = record
+    shi1_netname: PWideChar;
+    shi1_type: DWORD;
+    shi1_remark: PWideChar;
+  end;
+  PSHARE_INFO_1 = ^SHARE_INFO_1;
+
+function NetShareEnum(ServerName: PWideChar; Level: DWORD; var BufPtr: Pointer;
+  PrefMaxLen: DWORD; var EntriesRead, TotalEntries, ResumeHandle: DWORD): DWORD; stdcall;
+  external 'NetApi32.dll';
+
+function NetApiBufferFree(Buffer: Pointer): DWORD; stdcall;
+  external 'NetApi32.dll';
+
+function FolderShareExists(const ShareName: string): Boolean;
+var
+  pBuf: Pointer;
+  entriesRead, totalEntries, resumeHandle: DWORD;
+  i: Integer;
+  pInfo: PSHARE_INFO_1;
+begin
+  Result := False;
+  pBuf := nil;
+  entriesRead := 0;
+  totalEntries := 0;
+  resumeHandle := 0;
+
+  if NetShareEnum(nil, 1, pBuf, $FFFFFFFF, entriesRead, totalEntries, resumeHandle) = 0 then
+  begin
+    try
+      pInfo := PSHARE_INFO_1(pBuf);
+      for i := 0 to entriesRead - 1 do
+      begin
+        if SameText(pInfo^.shi1_netname, ShareName) then
+        begin
+          Result := True;
+          Break;
+        end;
+        Inc(pInfo);
+      end;
+    finally
+      NetApiBufferFree(pBuf);
+    end;
   end;
 end;
 

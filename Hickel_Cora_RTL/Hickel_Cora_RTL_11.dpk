@@ -344,6 +344,7 @@ contains
   Druck_LagerBuchungJournal in '..\Hickel_CORA_Gui\Drucken\Druck_LagerBuchungJournal.pas' {DruckLagerbuchungJournal: TFrame},
   hcg_Generic_SQL_Query in '..\Hickel_CORA_Gui\Src\hcg_Generic_SQL_Query.pas' {MDI_QUERY: TFrame},
   hcg_MahnkopfSuche in '..\Hickel_CORA_Gui\Suche\hcg_MahnkopfSuche.pas',
-  hcg_AdresseSuche in '..\Hickel_CORA_Gui\Suche\hcg_AdresseSuche.pas';
+  hcg_AdresseSuche in '..\Hickel_CORA_Gui\Suche\hcg_AdresseSuche.pas',
+  hcl_EinfachArchivUtils in '..\Hickel_Cora_Lib\Schnittstellen\EinfachArchiv\hcl_EinfachArchivUtils.pas';
 
 end.

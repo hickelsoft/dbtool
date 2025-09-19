@@ -10,7 +10,7 @@ const
   HSROWLOCK_DEFAULT_RECHECK_TIMER = 200;
 
 type
-  EHSDatasetLockedByOtherUser = class(EHlBedienfehler);
+  EhlDatasetLockedByOtherUser = class(EHlBedienfehler);
 
 type
   // Achtung: Das ist der HL-RowLock . Er unterscheidet sich zum HCL-RowLock insofern,
@@ -118,7 +118,7 @@ type
 
     /// <summary>
     /// Prüft ob die Eigenschaft LockedByOtherUser wahr ist und gibt in diesem
-    /// Falle eine Exception des Typs EHSDatasetLockedByOtherUser aus, die den
+    /// Falle eine Exception des Typs EhlDatasetLockedByOtherUser aus, die den
     /// Benutzernamen LockedBy und das Sperrdatum LockedSince enthält.
     /// </summary>
     procedure RaiseExceptionIfLocked;
@@ -395,7 +395,7 @@ procedure ThlRowLock.RaiseExceptionIfLocked;
 begin
   if LockedByOtherUser then
   begin
-    raise EHSDatasetLockedByOtherUser.CreateFmt(StrDatasetLockedByOtherUser,
+    raise EhlDatasetLockedByOtherUser.CreateFmt(StrDatasetLockedByOtherUser,
       [DateTimeToStr(LockedSince), LockedBy.toString, LockedOnPC.toString,
       string(Self.TableName + ' : ' + Self.PK1 + '/' + Self.PK2 + '/' + Self.PK3
       + '/' + Self.PK4 + '/' + Self.PK5 + '/' + Self.PK6)]);

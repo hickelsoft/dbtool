@@ -4,7 +4,7 @@
         <MainSource>DBTool64.dpr</MainSource>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-        <DCC_DependencyCheckOutputName>..\..\..\..\..\..\CORA2012\BAP\bin\DBTool64.exe</DCC_DependencyCheckOutputName>
+        <DCC_DependencyCheckOutputName>..\..\..\..\..\..\CORAplus\BAP\bin\DBTool64.exe</DCC_DependencyCheckOutputName>
         <FrameworkType>VCL</FrameworkType>
         <ProjectVersion>20.3</ProjectVersion>
         <Base>True</Base>
@@ -65,11 +65,10 @@
         <SanitizedProjectName>DBTool64</SanitizedProjectName>
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Bde;Xml.Win;IBX;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_AutoGenVersion>False</VerInfo_AutoGenVersion>
-        <VerInfo_MajorVer>1</VerInfo_MajorVer>
-        <VerInfo_Build>0</VerInfo_Build>
         <VerInfo_Locale>1031</VerInfo_Locale>
+        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Gui\Src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_Keys>CompanyName=HickelSoft Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1992-2023 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool64.exe;ProductName=DBTool;ProductVersion=8.0;Comments=</VerInfo_Keys>
+        <DCC_ExeOutput>..\..\..\..\..\..\..\..\..\CORAplus\BAP\bin</DCC_ExeOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_Namespace>Datasnap.Win;Web.Win;Soap.Win;$(DCC_Namespace)</DCC_Namespace>
@@ -83,7 +82,7 @@
         <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Cora_Lib\_Basis;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Cora_Lib\Belege\;..\..\..\Hickel_Cora_Lib\Stamm\;..\..\..\Hickel_Cora_Lib\Touren\;..\..\..\Hickel_Cora_Lib\Lohnmost\;..\..\..\Hickel_Cora_Lib\AW\;..\..\..\Hickel_Cora_Lib\LMIV\;..\..\..\Hickel_Cora_Lib\ImEx\;..\..\..\Hickel_Cora_Gui\Src\;..\..\..\Hickel_Cora_Gui\Suche\;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Cora_Gui\Src\LMIV\;..\..\..\Hickel_Cora_Gui\Suche\LMIV\;..\_APro\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Cora_Lib\hcl_Datenbank;..\..\..\Hickel_Cora_Lib\hcl_System;..\..\..\Hickel_Cora_Lib\hcl_Kern;..\..\..\Hickel_Cora_Lib\hcl_Utils;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Cora_Gui\drucken\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_AutoGenVersion>False</VerInfo_AutoGenVersion>
         <VerInfo_Build>0</VerInfo_Build>
-        <DCC_ExeOutput>..\..\..\..\..\..\CORA2012\BAP\bin\</DCC_ExeOutput>
+        <DCC_ExeOutput>..\..\..\..\..\..\CORAplus\BAP\bin\</DCC_ExeOutput>
         <DCC_Define>CORA_MODE;$(DCC_Define)</DCC_Define>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
@@ -94,16 +93,15 @@
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1999-2002 Leif Bruder, 2016-2024 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool64.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=CORAplus;ProductVersion=8.0;Comments=</VerInfo_Keys>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <DCC_ExeOutput>..\..\..\..\..\..\CORA2012\BAP\bin\</DCC_ExeOutput>
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
-        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Gui\Src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <PreBuildEvent><![CDATA[ResCompile.bat DBTool64
 $(PreBuildEvent)]]></PreBuildEvent>
         <VerInfo_IncludeVerInfo>false</VerInfo_IncludeVerInfo>
-        <PostBuildEvent><![CDATA[..\..\..\DevTools\MakeJclDbg -e ..\..\..\..\..\..\CORA2012\BAP\bin\DbTool64.map
-del ..\..\..\..\..\..\CORA2012\BAP\bin\DbTool64.map
+        <PostBuildEvent><![CDATA[..\..\..\DevTools\MakeJclDbg -e ..\..\..\..\..\..\CORAplus\BAP\bin\DbTool64.map
+del ..\..\..\..\..\..\CORAplus\BAP\bin\DbTool64.map
 $(PostBuildEvent)]]></PostBuildEvent>
+        <DCC_DcuOutput>..\..\..\..\..\..\..\..\..\CORAplus\BAP\bin\dcu64</DCC_DcuOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <Version>7.0</Version>
@@ -129,7 +127,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Version>7.0</Version>
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
-        <DCC_ExeOutput>..\..\..\..\..\..\CORA2012\BAP\bin\</DCC_ExeOutput>
         <DCC_ResourcePath>..\VCL_JEDI\lib\d11\debug;..\..\..\Hickel_Components;..\..\..\Hickel_Cora_Lib\_Basis;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Cora_Lib\Belege\;..\..\..\Hickel_Cora_Lib\Stamm\;..\..\..\Hickel_Cora_Lib\Touren\;..\..\..\Hickel_Cora_Lib\Lohnmost\;..\..\..\Hickel_Cora_Lib\AW\;..\..\..\Hickel_Cora_Lib\LMIV\;..\..\..\Hickel_Cora_Lib\ImEx\;..\..\..\Hickel_Cora_Gui\Src\;..\..\..\Hickel_Cora_Gui\Suche\;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Cora_Gui\Src\LMIV\;..\..\..\Hickel_Cora_Gui\Suche\LMIV\;..\_APro\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Cora_Lib\hcl_Datenbank;..\..\..\Hickel_Cora_Lib\hcl_System;..\..\..\Hickel_Cora_Lib\hcl_Kern;..\..\..\Hickel_Cora_Lib\hcl_Utils;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;..\BetterADO;..\..\..\Hickel_Cora_Gui\drucken\;..\BetterADO;c:\Program Files (x86)\Woll2Woll\ipstudio2007\source\windows;c:\Program Files (x86)\Woll2Woll\fcstudio2007\source\windows;..\vcl_hbtapi;..\VCL_Indy_Head\trunk\Lib\SuperCore;..\VCL_Indy_Head\trunk\Lib\Core;..\VCL_Indy_Head\trunk\Lib\System;..\VCL_Indy_Head\trunk\Lib\Protocols;..\VCL_Indy_Head\trunk\Lib\Security;..\VCL_Indy_Head\trunk\Lib\Design;$(DCC_ResourcePath)</DCC_ResourcePath>
         <DCC_ObjPath>..\VCL_JEDI\lib\d11\debug;..\..\..\Hickel_Components;..\..\..\Hickel_Cora_Lib\_Basis;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Cora_Lib\Belege\;..\..\..\Hickel_Cora_Lib\Stamm\;..\..\..\Hickel_Cora_Lib\Touren\;..\..\..\Hickel_Cora_Lib\Lohnmost\;..\..\..\Hickel_Cora_Lib\AW\;..\..\..\Hickel_Cora_Lib\LMIV\;..\..\..\Hickel_Cora_Lib\ImEx\;..\..\..\Hickel_Cora_Gui\Src\;..\..\..\Hickel_Cora_Gui\Suche\;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Cora_Gui\Src\LMIV\;..\..\..\Hickel_Cora_Gui\Suche\LMIV\;..\_APro\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Cora_Lib\hcl_Datenbank;..\..\..\Hickel_Cora_Lib\hcl_System;..\..\..\Hickel_Cora_Lib\hcl_Kern;..\..\..\Hickel_Cora_Lib\hcl_Utils;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;..\BetterADO;..\..\..\Hickel_Cora_Gui\drucken\;..\BetterADO;c:\Program Files (x86)\Woll2Woll\ipstudio2007\source\windows;c:\Program Files (x86)\Woll2Woll\fcstudio2007\source\windows;..\vcl_hbtapi;..\VCL_Indy_Head\trunk\Lib\SuperCore;..\VCL_Indy_Head\trunk\Lib\Core;..\VCL_Indy_Head\trunk\Lib\System;..\VCL_Indy_Head\trunk\Lib\Protocols;..\VCL_Indy_Head\trunk\Lib\Security;..\VCL_Indy_Head\trunk\Lib\Design;$(DCC_ObjPath)</DCC_ObjPath>
         <DCC_IncludePath>..\VCL_JEDI\lib\d11\debug;..\..\..\Hickel_Components;..\..\..\Hickel_Cora_Lib\_Basis;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Cora_Lib\Belege\;..\..\..\Hickel_Cora_Lib\Stamm\;..\..\..\Hickel_Cora_Lib\Touren\;..\..\..\Hickel_Cora_Lib\Lohnmost\;..\..\..\Hickel_Cora_Lib\AW\;..\..\..\Hickel_Cora_Lib\LMIV\;..\..\..\Hickel_Cora_Lib\ImEx\;..\..\..\Hickel_Cora_Gui\Src\;..\..\..\Hickel_Cora_Gui\Suche\;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Cora_Gui\Src\LMIV\;..\..\..\Hickel_Cora_Gui\Suche\LMIV\;..\_APro\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Cora_Lib\hcl_Datenbank;..\..\..\Hickel_Cora_Lib\hcl_System;..\..\..\Hickel_Cora_Lib\hcl_Kern;..\..\..\Hickel_Cora_Lib\hcl_Utils;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;..\BetterADO;..\..\..\Hickel_Cora_Gui\drucken\;..\BetterADO;c:\Program Files (x86)\Woll2Woll\ipstudio2007\source\windows;c:\Program Files (x86)\Woll2Woll\fcstudio2007\source\windows;..\vcl_hbtapi;..\VCL_Indy_Head\trunk\Lib\SuperCore;..\VCL_Indy_Head\trunk\Lib\Core;..\VCL_Indy_Head\trunk\Lib\System;..\VCL_Indy_Head\trunk\Lib\Protocols;..\VCL_Indy_Head\trunk\Lib\Security;..\VCL_Indy_Head\trunk\Lib\Design;$(DCC_IncludePath)</DCC_IncludePath>
@@ -145,7 +142,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1999-2002 Leif Bruder, 2016-2024 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool64.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=CORAplus;ProductVersion=8.0;Comments=</VerInfo_Keys>
         <VerInfo_Debug>true</VerInfo_Debug>
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
-        <DCC_ExeOutput>..\..\..\..\..\..\CORA2012\BAP\bin\</DCC_ExeOutput>
         <VerInfo_IncludeVerInfo>false</VerInfo_IncludeVerInfo>
         <DCC_MapFile>3</DCC_MapFile>
         <DCC_DebugDCUs>true</DCC_DebugDCUs>
@@ -201,8 +197,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
                 <Platform value="Win64">True</Platform>
             </Platforms>
             <Deployment Version="5">
-                <DeployFile LocalName="..\..\..\..\..\..\CORA2012\BAP\bin\DBTool64.exe" Configuration="Debug" Class="ProjectOutput"/>
-                <DeployFile LocalName="..\..\..\..\..\..\CORA2012\BAP\bin\DBTool64.exe" Configuration="Release" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\..\..\..\..\..\CORAplus\BAP\bin\DBTool64.exe" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="..\..\..\..\..\..\CORAplus\BAP\bin\DBTool64.exe" Configuration="Release" Class="ProjectOutput"/>
                 <DeployFile LocalName="C:\CORA2012\BAP\bin\DBTool64.exe" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="OSX32">
@@ -1126,7 +1122,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>..\..\..\DevTools\MakeJclDbg -e ..\..\..\..\..\..\CORA2012\BAP\bin\DbTool64.map&amp;&amp;del ..\..\..\..\..\..\CORA2012\BAP\bin\DbTool64.map</PostBuildEvent>
+        <PostBuildEvent>..\..\..\DevTools\MakeJclDbg -e ..\..\..\..\..\..\CORAplus\BAP\bin\DbTool64.map&amp;&amp;del ..\..\..\..\..\..\CORAplus\BAP\bin\DbTool64.map</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64'">
@@ -1134,7 +1130,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
-        <PostBuildEvent>..\..\..\DevTools\MakeJclDbg -e ..\..\..\..\..\..\CORA2012\BAP\bin\DbTool64.map&amp;&amp;del ..\..\..\..\..\..\CORA2012\BAP\bin\DbTool64.map</PostBuildEvent>
+        <PostBuildEvent>..\..\..\DevTools\MakeJclDbg -e ..\..\..\..\..\..\CORAplus\BAP\bin\DbTool64.map&amp;&amp;del ..\..\..\..\..\..\CORAplus\BAP\bin\DbTool64.map</PostBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
 </Project>

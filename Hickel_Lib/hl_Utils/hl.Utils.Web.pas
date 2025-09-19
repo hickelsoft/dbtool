@@ -691,7 +691,7 @@ begin
                 Abort;
             until BufferLen = 0;
           finally
-            FileStream.Free;
+            FreeAndNil(FileStream);
           end;
 
           break;
