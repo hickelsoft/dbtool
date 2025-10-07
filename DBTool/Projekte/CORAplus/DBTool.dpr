@@ -1,5 +1,28 @@
 program DBTool;
 
+{$INCLUDE '..\..\CORA.inc'}
+
+{$IFDEF HICKELSOFT_DISABLE_32BIT}
+uses
+  SysUtils, ShellAPI;
+var
+  i: Integer;
+  ParamsWithQuotes, ParamEscaped, Exe64Bit: string;
+begin
+  ParamsWithQuotes := '';
+  for i := 1 to ParamCount do
+  begin
+    ParamEscaped := StringReplace(ParamStr(i), '\"', #1, [rfReplaceAll]);
+    ParamEscaped := StringReplace(ParamEscaped, '"', '\"', [rfReplaceAll]);
+    ParamEscaped := StringReplace(ParamEscaped, #1, '\\\"', [rfReplaceAll]);
+    if ParamEscaped.EndsWith('\') then ParamEscaped := ParamEscaped + '\';
+    ParamsWithQuotes := ParamsWithQuotes + '"' + ParamEscaped + '"';
+    if i < ParamCount then ParamsWithQuotes := ParamsWithQuotes + ' ';
+  end;
+  Exe64Bit := ChangeFileExt(ParamStr(0),'')+'64'+ExtractFileExt(ParamStr(0));
+  ShellExecute(0, 'open', PChar(Exe64Bit), PChar(ParamsWithQuotes), PChar(GetCurrentDir), 1{SW_NORMAL});
+end.
+{$ELSE}
 uses
   Forms,
   VCL_Hotfix_AltGr,
@@ -41,4 +64,4 @@ begin
 //  Application.CreateForm(TMDI_Query, MDI_Query);
   Application.Run;
 end.
-
+{$ENDIF}

@@ -2,7 +2,7 @@
 <xlat>
   <meta>
     <version>3</version>
-    <created>2025-06-04T12:03:47.628+02:00</created>
+    <created>2025-10-07T14:58:41.252+02:00</created>
     <tool>amTranslationManager</tool>
     <toolversion>2.3.9199.24584</toolversion>
   </meta>
@@ -12,13 +12,13 @@
     <sorted>True</sorted>
     <omitnewstate>True</omitnewstate>
   </options>
-  <project sourcefile="..\..\..\HS-Service\DBTool64.exe" stringsymbolfile=".\DBTool64.drc" language="de-DE" properties="1819">
+  <project sourcefile="..\..\..\HS-Service\DBTool64.exe" stringsymbolfile=".\DBTool64.drc" language="de-DE" properties="2149">
     <targetlanguages>
-      <language language="en-US" translated="974"/>
+      <language language="en-US" translated="1016"/>
       <language language="de-DE" translated="0"/>
     </targetlanguages>
     <modules>
-      <module name="resourcestrings" type="strings" properties="1475">
+      <module name="resourcestrings" type="strings" properties="1803">
         <items>
           <item name="C_Database_SAccessProviderLoadError">
             <properties>
@@ -83,7 +83,7 @@
           <item name="C_Database_SDatabaseCouldNotBeOpened">
             <properties>
               <property>
-                <value>Die Datenbank konnte nicht geöffnet werden.</value>
+                <value>Die Datenbank konnte nicht geöffnet werden: %s</value>
                 <translations>
                   <translation language="en-US">The database could not be opened.</translation>
                 </translations>
@@ -120,12 +120,42 @@
               </property>
             </properties>
           </item>
+          <item name="C_Database_SFbError">
+            <properties>
+              <property>
+                <value>Firebird-Fehler</value>
+                <translations>
+                  <translation language="en-US">Firebird error</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
           <item name="C_Database_SFieldTypeNotSupportedCopy">
             <properties>
               <property>
                 <value>Feldtyp "%s" ist nicht implementiert und wird beim Kopieren von Tabellen nicht unterstützt!</value>
                 <translations>
                   <translation language="en-US">Field Type "%s" is not implemented and is not supported for copying tables!</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="C_Database_SFirebirdNotPossible">
+            <properties>
+              <property>
+                <value>Firebird-Datenbanken können derzeit nicht erstellt werden</value>
+                <translations>
+                  <translation language="en-US">Firebird databases cannot be created (yet)</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="C_Database_SIbError">
+            <properties>
+              <property>
+                <value>InterBase-Fehler</value>
+                <translations>
+                  <translation language="en-US">InterBase error</translation>
                 </translations>
               </property>
             </properties>
@@ -170,12 +200,22 @@
               </property>
             </properties>
           </item>
-          <item name="C_Database_SNoRenamingInMsAccess">
+          <item name="C_Database_SNoRenamingInDbMs">
             <properties>
               <property>
-                <value>Tabellen können in Microsoft Access per SQL-Befehl nicht umbenannt werden.</value>
+                <value>Tabellen können mit diesem Datenbanksystem per SQL-Befehl nicht umbenannt werden.</value>
                 <translations>
-                  <translation language="en-US">Tables cannot be renamed in Microsoft Access using an SQL command.</translation>
+                  <translation language="en-US">Tables cannot be renamed using an SQL command with this DBMS.</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="C_Database_SNoRenamingInMsAccess" state="unused">
+            <properties>
+              <property>
+                <value>Tabellen können mit diesem Datenbanksystem per SQL-Befehl nicht umbenannt werden.</value>
+                <translations>
+                  <translation language="en-US">Tables cannot be renamed using an SQL command with this DBMS.</translation>
                 </translations>
               </property>
             </properties>
@@ -660,6 +700,16 @@
               </property>
             </properties>
           </item>
+          <item name="Data_DBConsts_SNoFieldIndexes">
+            <properties>
+              <property>
+                <value>Es ist momentan kein Index aktiv</value>
+                <translations>
+                  <translation language="en-US">No index is active at this moment</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
           <item name="Data_DBConsts_SNoIndexForFields">
             <properties>
               <property>
@@ -676,6 +726,16 @@
                 <value>Datenmenge weder im Editier- noch im Einfügemodus</value>
                 <translations>
                   <translation language="en-US">Dataset not in edit or insert mode</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="Data_DBConsts_SNotIndexField">
+            <properties>
+              <property>
+                <value>Feld '%s' ist nicht indiziert und kann nicht verändert werden</value>
+                <translations>
+                  <translation language="en-US">Field '%s' is not indexed and cannot be modified</translation>
                 </translations>
               </property>
             </properties>
@@ -1080,6 +1140,16 @@
               </property>
             </properties>
           </item>
+          <item name="DateiNeu_SFirebirdDatabases">
+            <properties>
+              <property>
+                <value>Firebird-Datenbanken</value>
+                <translations>
+                  <translation language="en-US">Firebird databases</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
           <item name="DateiNeu_SInterbaseDatabases">
             <properties>
               <property>
@@ -1314,6 +1384,2267 @@
                 <translations>
                   <translation language="en-US">XML is the new standard for data exchange on the Internet. More and more programs support this format.&lt;BR&gt;&lt;BR&gt;However, no graphics or memos can be exported.</translation>
                 </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccArrayDMLWithIntStr">
+            <properties>
+              <property>
+                <value>Interne Streams dürfen in Array DML nicht verwendet werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccAsyncOperInProgress">
+            <properties>
+              <property>
+                <value>Ausführen der Aktion nicht möglich, weil die vorherige Aktion noch nicht abgeschlossen ist</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccCannotReleaseDrv">
+            <properties>
+              <property>
+                <value>Freigeben des Treibers [%s] nicht möglich. Hinweis: Schließen Sie alle TFDConnection-Objekte, und geben Sie die Pools frei</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccCantAssignTxIntf">
+            <properties>
+              <property>
+                <value>Festlegen der Standardtransaktion nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccCantChngCommandState">
+            <properties>
+              <property>
+                <value>Ändern des Anweisungsstatus nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccCantExecCmdWithRowSet">
+            <properties>
+              <property>
+                <value>Anweisung, die Ergebnismengen zurückgibt, kann nicht ausgeführt werden. Hinweis: Verwenden Sie die "Open"-Methode für SELECT-ähnliche Anweisungen</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccCantGetLibraryEntry">
+            <properties>
+              <property>
+                <value>Abrufen der Eintrittspunkte für Herstellerbibliothek nicht möglich. [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccCantLoadLibrary">
+            <properties>
+              <property>
+                <value>Laden der Herstellerbibliothek [%s] nicht möglich. %s</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccCantLoadLibraryHint">
+            <properties>
+              <property>
+                <value>Hinweis: Überprüfen Sie, ob sie sich im PATH oder in Anwendungs-EXE-Verzeichnissen befindet und eine Bitanzahl von %s hat.</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccCapabilityNotSup">
+            <properties>
+              <property>
+                <value>Funktionalität wird nicht unterstützt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccClassNotRegistered">
+            <properties>
+              <property>
+                <value>Erforderlicher OLEDB-Provider fehlt auf dem Client-Computer. Hinweis: Setzen Sie den genauen DBVersion-Wert, bzw. installieren Sie die MS Access Database-Engine: Access 2003 oder früher: http://support.microsoft.com/kb/239114 Access 2007: http://www.microsoft.com/download/en/details.aspx?displaylang=en&amp;id=23734 Access 2010: http://www.microsoft.com/download/en/details.aspx?id=13255</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccCmdMBOpen4Fetch">
+            <properties>
+              <property>
+                <value>Anweisung muss für das Abrufen geöffnet sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccCmdMBPrepared">
+            <properties>
+              <property>
+                <value>Anweisung muss vorbereitet sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccCmdMHRowSet">
+            <properties>
+              <property>
+                <value>Anweisung, die keine Ergebnismengen zurückgibt, kann nicht geöffnet/definiert werden. Hinweis: Verwenden Sie die Methode "Execute/ExecSQL" für Nicht-SELECT-Anweisungen</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccCommandMBFilled">
+            <properties>
+              <property>
+                <value>Anweisungstext [%s] darf nicht leer sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccDataToLarge">
+            <properties>
+              <property>
+                <value>Daten zu groß für Variable [%s]. Maximale Länge = [%d], tatsächliche Länge = [%d] Hinweis: Setzen Sie TFDParam.Size auf einen größeren Wert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccDbNotExists">
+            <properties>
+              <property>
+                <value>Datenbank [%s] ist nicht vorhanden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccDrvMngrMB">
+            <properties>
+              <property>
+                <value>Zum Durchführen der Operation muss der Treiber-Manager [%s] sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccEscapeBadSyntax">
+            <properties>
+              <property>
+                <value>Syntaxfehler in Escape-Funktion [%s]. %s</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccEscapeEmptyName">
+            <properties>
+              <property>
+                <value>Der Name der Escape-Funktion darf nicht leer sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccEscapeIsnotSupported">
+            <properties>
+              <property>
+                <value>Escape-Funktion [%s] wird nicht unterstützt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccExactMismatch">
+            <properties>
+              <property>
+                <value>Genau %s [%d] Zeilen, [%d] wurden angefordert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccLongDataStream">
+            <properties>
+              <property>
+                <value>%s-Stream für Variable [%s] nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccMetaInfoMismatch">
+            <properties>
+              <property>
+                <value>Metainformationen stimmen nicht überein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccMetaInfoNotDefined">
+            <properties>
+              <property>
+                <value>Ein Wert für das Metadatenargument [%s] muss angegeben werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccMetaInfoReset">
+            <properties>
+              <property>
+                <value>Define(mmReset) wird nur beim Abrufen von Metainfos unterstützt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccNameHasErrors">
+            <properties>
+              <property>
+                <value>Objektname kann nicht analysiert werden - [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccNotValidPassword">
+            <properties>
+              <property>
+                <value>Angegebenes Datenbankpasswort ist ungültig</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccParamArrayMismatch">
+            <properties>
+              <property>
+                <value>ArraySize von Parameter ist kleiner als ATimes (Parameter: [%s], ArraySize: [%d], ATimes: [%d])</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccParDataMapNotSup">
+            <properties>
+              <property>
+                <value>Datentyp des Parameters [%s] wird nicht unterstützt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccParDefChanged">
+            <properties>
+              <property>
+                <value>Typ des Parameters [%s] von [ft%s] in [ft%s] geändert. Abfrage muss erneut vorbereitet werden. Mögliche Ursache: Durch eine Zuweisung zu einer TFDParam.AsXXX-Eigenschaft wurde der Datentyp des Parameters implizit geändert. Hinweis: Verwenden Sie TFDParam.Value oder eine geeignete TFDParam.AsXXX-Eigenschaft</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccParSetChanged">
+            <properties>
+              <property>
+                <value>Die Parametermenge wurde geändert. Abfrage muss erneut vorbereitet werden. Erwartete Anzahl an Parametern ist [%d], aber die tatsächliche Anzahl beträgt [%d]. Mögliche Ursache: Ein Parameter wurde hinzugefügt oder gelöscht</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccParTypeUnknown">
+            <properties>
+              <property>
+                <value>Datentyp des Parameters [%s] ist unbekannt. Hinweis: Geben Sie TFDParam.DataType an, oder weisen Sie den TFDParam-Wert vor dem "Prepare"/"Execute"-Aufruf zu</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccPrepMissed">
+            <properties>
+              <property>
+                <value>Zeichen [%s] fehlt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccPrepTooLongIdent">
+            <properties>
+              <property>
+                <value>Bezeichner zu lang (&gt; 255)</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccSecCommandKindNotAllowed">
+            <properties>
+              <property>
+                <value>Befehlsart [%s] ist für [%s] nicht zulässig</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccSecMultiCommandNotAllowed">
+            <properties>
+              <property>
+                <value>Mehrere Befehle sind für [%s] nicht zulässig</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccSecSQLChangeNotAllowed">
+            <properties>
+              <property>
+                <value>Änderung von SQL-Befehlen ist für [%s] nicht zulässig</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccShutdownTO">
+            <properties>
+              <property>
+                <value>Zeitüberschreitung beim Schließen von FDPhysManager. Mögliche Ursache: Die Anwendung hat nicht alle Verbindungs-Interfaces freigegeben</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccSrcNotFoundExists">
+            <properties>
+              <property>
+                <value>Sie können eine [TFDPhys%sDriverLink]-Komponente in Ihr Projekt aufnehmen, um sie zu registrieren</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccSrcNotFoundNotExists">
+            <properties>
+              <property>
+                <value>Korrigieren Sie die Treiber-ID, oder legen Sie den virtuellen Treiber [%s] in %s fest</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccSrvMBConnected">
+            <properties>
+              <property>
+                <value>Verbindung muss aktiv sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccSrvMBDisConnected">
+            <properties>
+              <property>
+                <value>Verbindung muss inaktiv sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccSrvNotDefined">
+            <properties>
+              <property>
+                <value>Treiber-ID ist nicht festgelegt. Setzen Sie TFDConnection.DriverName, oder fügen Sie Ihrer Verbindungsdefinition DriverID hinzu</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccSrvNotFound">
+            <properties>
+              <property>
+                <value>Treiber [%s] ist nicht registriert. %s</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccSysClassNotRegistered">
+            <properties>
+              <property>
+                <value>Die Klasse JRO.JetEngine fehlt auf dem Client-Computer. Hinweis: Installieren Sie die neueste Engine von: http://support.microsoft.com/kb/239114</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccToManyLogins">
+            <properties>
+              <property>
+                <value>Zu viele Anmeldeversuche. Zulässig sind [%d] Versuche</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccTxMBActive">
+            <properties>
+              <property>
+                <value>Transaktion [%s] muss aktiv sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccTxMBInActive">
+            <properties>
+              <property>
+                <value>Transaktion [%s] muss inaktiv sein Verschachtelte Transaktionen sind deaktiviert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccUnknownOleError">
+            <properties>
+              <property>
+                <value>Unbekannter OLE-Fehler [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccUnrecognizedDbFormat">
+            <properties>
+              <property>
+                <value>Datenbankformat wurde nicht erkannt. Mögliche Ursache: DBVersion-Wert stimmt nicht mit der Datenbankversion überein.</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccUnsupColumnType">
+            <properties>
+              <property>
+                <value>Spalte [%s] hat einen nicht unterstützten Datentyp [dt%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccUnsupParamObjValue">
+            <properties>
+              <property>
+                <value>Objektwert für Parameter [%s] mit dem Typ [ft%s] wird nicht unterstützt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccUpdateTabUndefined">
+            <properties>
+              <property>
+                <value>Erzeugen der Aktualisierungsabfrage nicht möglich. Aktualisierungstabelle nicht festgelegt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_AccWhereIsEmpty">
+            <properties>
+              <property>
+                <value>Erzeugen der Aktualisierungsabfrage nicht möglich. WHERE-Bedingung ist leer</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ASADBToolNotFound">
+            <properties>
+              <property>
+                <value>Durchführen der Aktion nicht möglich. DBTOOLn.DLL wurde nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_BadForeignKey">
+            <properties>
+              <property>
+                <value>Ungültiger Fremdschlüssel [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_BadRelation">
+            <properties>
+              <property>
+                <value>Ungültige Beziehung [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_BadUniqueKey">
+            <properties>
+              <property>
+                <value>Ungültiger eindeutiger Schlüssel [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_CantBeginEdit">
+            <properties>
+              <property>
+                <value>Bearbeitung der Zeile kann nicht begonnen werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_CantChangeTableStruct">
+            <properties>
+              <property>
+                <value>Ändern der Struktur von Tabelle [%s] nicht möglich, wenn die Tabelle Zeilen enthält</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_CantChngColType">
+            <properties>
+              <property>
+                <value>Ändern des Datentyps der Spalte [%s] nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_CantCompareRows">
+            <properties>
+              <property>
+                <value>Vergleichen von Zeilen nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_CantCreateChildView">
+            <properties>
+              <property>
+                <value>Erstellen der untergeordneten Ansicht nicht möglich. Beziehung [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_CantCreateParentView">
+            <properties>
+              <property>
+                <value>Erstellen der übergeordneten Ansicht nicht möglich. Beziehung [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_CantMerge">
+            <properties>
+              <property>
+                <value>Zusammenführen nicht möglich, weil [%s] %s</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_CantOperateInvObj">
+            <properties>
+              <property>
+                <value>Daten können nicht aus der invarianten Spalte [%s] gelesen oder in diese geschrieben werden. Hinweis: Verwenden Sie Eigenschaften und Methoden, wie NestedTable</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_CantSetParentRow">
+            <properties>
+              <property>
+                <value>Festlegen der übergeordneten Zeile nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_CantSetUpdReg">
+            <properties>
+              <property>
+                <value>Ändern der Aktualisierungsregistrierung für DatS-Manager [%s] nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_CheckViolated">
+            <properties>
+              <property>
+                <value>Verletzung der Prüfbedingung. Bedingung [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntAdaptMBActive">
+            <properties>
+              <property>
+                <value>Anweisung [%s] muss sich im aktiven Status befinden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntAdaptMBInactive">
+            <properties>
+              <property>
+                <value>Anweisung [%s] muss sich im inaktiven Status befinden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntCantShareAdapt">
+            <properties>
+              <property>
+                <value>Tabellenadapter [%s] kann [%s] nicht zugewiesen werden, weil er bereits [%s] zugewiesen ist und nicht von Datenmengen gemeinsam benutzt werden kann</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntCheckingSession">
+            <properties>
+              <property>
+                <value>Sitzung wird überprüft...</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntClientInfo">
+            <properties>
+              <property>
+                <value>Client-Info</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntConnDefParams">
+            <properties>
+              <property>
+                <value>Verbindungsdefinitionsparameter</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntConnNotMatch">
+            <properties>
+              <property>
+                <value>Datenmengenverbindung stimmt nicht mit aufgerufener Verbindung überein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntDataSetParamIncompat">
+            <properties>
+              <property>
+                <value>Dataset-Parameterwert muss den Typ TFDDataSet oder TFDDatSTable haben</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntDbCantConnPooled">
+            <properties>
+              <property>
+                <value>Verbindung [%s] kann nicht in den Pool gestellt werden. Mögliche Ursache: Die Verbindungsdefinition befindet sich nicht in der FDManager.ConnectionDefs-Liste, oder TFDConnection.Params hat zusätzliche Parameter</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntDbDupName">
+            <properties>
+              <property>
+                <value>Verbindungsname [%s] muss eindeutig sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntDbLoginAborted">
+            <properties>
+              <property>
+                <value>Einrichten der Verbindung [%s] wurde abgebrochen</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntDbMBActive">
+            <properties>
+              <property>
+                <value>Verbindung [%s] muss aktiv sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntDbMBInactive">
+            <properties>
+              <property>
+                <value>Verbindung [%s] muss inaktiv sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntDbMBOnline">
+            <properties>
+              <property>
+                <value>Verbindung [%s] muss online sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntDbNotDefined">
+            <properties>
+              <property>
+                <value>Verbindung ist nicht für [%s] festgelegt. Mögliche Ursache: Die Eigenschaftswerte von Connection und ConnectionName sind beide leer</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntDBNotFound">
+            <properties>
+              <property>
+                <value>Verbindung [%s] nicht gefunden. Mögliche Ursache: [%s] ConnectionName-Eigenschaft ist falsch geschrieben oder verweist auf eine nicht vorhandene Verbindung</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntDSNameEmpty">
+            <properties>
+              <property>
+                <value>Datenmengenname darf nicht leer sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntDSNameNotUnique">
+            <properties>
+              <property>
+                <value>Datenmengenname [%s] muss in den [%s]-Datenmengen von Local SQL eindeutig sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntFailedToConnect">
+            <properties>
+              <property>
+                <value>Verbindung zu DBMS fehlgeschlagen!</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntFailedToLoad">
+            <properties>
+              <property>
+                <value>Laden des DBMS-Clients fehlgeschlagen!</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntLocalSQLMisuse">
+            <properties>
+              <property>
+                <value>Falsche Anwendung der Local SQL-Engine durch [%s]. Hinweis: Aktivieren Sie die Verbindung vor der Aktivierung der Datenmenge</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntNotAccessible">
+            <properties>
+              <property>
+                <value>Nicht verfügbar.</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntNotCachedUpdates">
+            <properties>
+              <property>
+                <value>Datenmenge [%s] muss sich im Modus "Zwischengespeicherte Aktualisierung" befinden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntNotConnected">
+            <properties>
+              <property>
+                <value>Nicht mit DBMS verbunden.</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntPKNotFound">
+            <properties>
+              <property>
+                <value>Tabelle [%s] muss einen Primärschlüssel haben</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntSessionInfo">
+            <properties>
+              <property>
+                <value>Sitzungs-Info</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntSessMBActive">
+            <properties>
+              <property>
+                <value>FDManager muss aktiv sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntSessMBInactive">
+            <properties>
+              <property>
+                <value>FDManager muss inaktiv sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntSessMBSingle">
+            <properties>
+              <property>
+                <value>Anwendung darf nur einen FDManager haben</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ClntWrongIndex">
+            <properties>
+              <property>
+                <value>Index der Tabelle muss ein vorhandener Nicht-Ausdrucksindex sein (Tabelle: [%s], Index: [%s])</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ColIsNotSearchable">
+            <properties>
+              <property>
+                <value>Spalte [%s] kann nicht durchsucht werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ColIsReadOnly">
+            <properties>
+              <property>
+                <value>Spalte [%s] ist schreibgeschützt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ColMBBLob">
+            <properties>
+              <property>
+                <value>Spalte [%s] muss einen Blob-Wert haben</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ColTypeUndefined">
+            <properties>
+              <property>
+                <value>Typ der Spalte [%s] ist unbekannt oder nicht definiert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ColumnDoesnotFound">
+            <properties>
+              <property>
+                <value>Spalte oder Funktion [%s] nicht gefunden. Hinweis: Fügen Sie der uses-Klausel FireDAC.Stan.ExprFuncs hinzu, wenn der Name ein Funktionsname ist</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ColumnIsNotRef">
+            <properties>
+              <property>
+                <value>Spalte [%s] ist keine Referenz auf eine andere Zeile</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ColumnIsNotSetRef">
+            <properties>
+              <property>
+                <value>Spalte [%s] ist keine Referenz auf einen anderen Zeilensatz</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ConvIsNotSupported">
+            <properties>
+              <property>
+                <value>Datentypkonvertierung wird nicht unterstützt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DAptApplyUpdateFailed">
+            <properties>
+              <property>
+                <value>Aktualisierungseintragung fehlgeschlagen</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DAptCantDelete">
+            <properties>
+              <property>
+                <value>Löschen von Zeilen deaktiviert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DAptCantEdit">
+            <properties>
+              <property>
+                <value>Bearbeiten von Zeilen deaktiviert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DAptCantInsert">
+            <properties>
+              <property>
+                <value>Einfügen von Zeilen deaktiviert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DAptNoSelectCmd">
+            <properties>
+              <property>
+                <value>Vorgang kann ohne zugewiesenem SelectCommand nicht durchgeführt werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DAptRecordIsDeleted">
+            <properties>
+              <property>
+                <value>%s-Anweisung %s [%d] anstelle von [1] Datensatz. Mögliche Ursachen: %s</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DAptRecordIsDeletedReasons">
+            <properties>
+              <property>
+                <value>Aktualisierungstabelle hat keinen Primärschlüssel oder Zeilenbezeichner, Datensatz wurde von einem anderen Benutzer geändert/gelöscht</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DBXNoDriverCfg">
+            <properties>
+              <property>
+                <value>dbExpress-Treiberkonfigurationsdatei [%s] nicht gefunden. Mögliche Ursache: dbExpress ist auf diesem Computer nicht ordnungsgemäß installiert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DBXParMBNotEmpty">
+            <properties>
+              <property>
+                <value>Verbindungsparameter [%s] darf nicht leer sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DefAlreadyLoaded">
+            <properties>
+              <property>
+                <value>Laden der Definitionsliste nicht möglich, weil sie bereits geladen ist</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DefCantMakePers">
+            <properties>
+              <property>
+                <value>Definition kann nicht als persistent festgelegt werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DefCircular">
+            <properties>
+              <property>
+                <value>Zirkuläre Referenz für Definition [%s] kann nicht festgelegt werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DefDupName">
+            <properties>
+              <property>
+                <value>Definitionsname [%s] ist doppelt vorhanden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DefNotExists">
+            <properties>
+              <property>
+                <value>Definition [%s] in [%s] nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DefRO">
+            <properties>
+              <property>
+                <value>%s von Definition [%s] nicht möglich. Es ist eine zugeordnete Verbindung vorhanden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPBadFixedSize">
+            <properties>
+              <property>
+                <value>Größe des Textfeldes [%s] ist im Format "Feste Datensatzgröße" nicht definiert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPBadTextFmt">
+            <properties>
+              <property>
+                <value>Falsches Format des Textwertes [%s] für Zuordnung des Eintrags [%s]. %s</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPDestNoKeyFields">
+            <properties>
+              <property>
+                <value>Keine Schlüsselfelder definiert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPJsonFldDup">
+            <properties>
+              <property>
+                <value>Name des JSON-Feldes [%s] ist doppelt vorhanden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPMapUndefined">
+            <properties>
+              <property>
+                <value>Zuordnung von Quell- zu Zielfeldern ist nicht definiert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPNoDestDS">
+            <properties>
+              <property>
+                <value>Zieldatenmenge nicht festgelegt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPNoJsonDest">
+            <properties>
+              <property>
+                <value>Ziel für JSON-Ausgabe muss angegeben werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPNoJsonFld">
+            <properties>
+              <property>
+                <value>JSON-Feld [%s] nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPNoJsonSrc">
+            <properties>
+              <property>
+                <value>Quelle für JSON-Eingabe muss angegeben werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPNoSQLBatch">
+            <properties>
+              <property>
+                <value>CommitCount muss größer als null sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPNoSQLTab">
+            <properties>
+              <property>
+                <value>SQL-Tabelle ist nicht definiert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPNoSrcDS">
+            <properties>
+              <property>
+                <value>Quelldatenmenge nicht festgelegt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPNoTxtDest">
+            <properties>
+              <property>
+                <value>Dateiname oder Stream für Zieltextdaten muss angegeben werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPNoTxtFld">
+            <properties>
+              <property>
+                <value>Textfeld [%s] nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPNoTxtFlds">
+            <properties>
+              <property>
+                <value>Keine Textfelder definiert. Hinweis: Verwenden Sie TFDBatchMove.Analyze</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPNoTxtSrc">
+            <properties>
+              <property>
+                <value>Dateiname oder Stream für Quelltextdaten muss angegeben werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPSrcUndefined">
+            <properties>
+              <property>
+                <value>Nicht festgelegtes Quellfeld oder nicht festgelegter Ausdruck für Zielfeld [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DPTxtFldDup">
+            <properties>
+              <property>
+                <value>Name des Textfeldes [%s] ist doppelt vorhanden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSAggNotComplete">
+            <properties>
+              <property>
+                <value>Definition des Aggregats [%s] ist für Datenmenge [%s] nicht vollständig</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSAggNotFound">
+            <properties>
+              <property>
+                <value>Aggregat [%s] für Datenmenge [%s] nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSCantDelete">
+            <properties>
+              <property>
+                <value>Löschen von Datensätzen ist für Datenmenge [%s] deaktiviert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSCantEdit">
+            <properties>
+              <property>
+                <value>Bearbeiten von Datensätzen ist für Datenmenge [%s] deaktiviert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSCantInsert">
+            <properties>
+              <property>
+                <value>Einfügen von Datensätzen ist für Datenmenge [%s] deaktiviert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSCantOffCachedUpdates">
+            <properties>
+              <property>
+                <value>Deaktivieren des Modus "Zwischengespeicherte Aktualisierungen" für Datenmenge [%s] nicht möglich. Hinweis: Datenmenge hat aktualisierte Zeilen, brechen Sie Aktualisierungen vor der Aktion ab, oder übernehmen Sie sie</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSCantOffline">
+            <properties>
+              <property>
+                <value>Setzen der Datenmenge [%s] in den Offline-Modus nicht möglich. Hinweis: Stellen Sie sicher, dass FetchOptions.AutoFetchAll nicht auf afDisable gesetzt ist</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSCantUnidir">
+            <properties>
+              <property>
+                <value>Durchführen der Operation für unidirektionale Datenmenge [%s] nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSCircularDataLink">
+            <properties>
+              <property>
+                <value>Setzen von MasterSource für Datenmenge [%s] nicht möglich. Zirkuläre Datenverknüpfungen sind nicht zulässig</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSFFStreamerNotReg">
+            <properties>
+              <property>
+                <value>Streamer für [%s] ist nicht registriert. Hinweis: Sie können die Unit [%s] in Ihr Projekt einbeziehen, um sie zu registrieren</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSFieldNotFound">
+            <properties>
+              <property>
+                <value>Feld [%s], das in %s der Datenmenge [%s] angegeben ist, ist nicht vorhanden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSIncompatBmkFields">
+            <properties>
+              <property>
+                <value>Positionsmarkenschlüsselfelder [%s] sind mit den in der Datenmenge [%s] vorhandenen Schlüsselfeldern [%s] nicht kompatibel</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSIndNotComplete">
+            <properties>
+              <property>
+                <value>Definition des Index [%s] ist für Datenmenge [%s] nicht vollständig</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSIndNotFound">
+            <properties>
+              <property>
+                <value>Index [%s] für Datenmenge [%s] nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSNoAdapter">
+            <properties>
+              <property>
+                <value>Adapter-Interface muss angegeben werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSNoBookmark">
+            <properties>
+              <property>
+                <value>Positionsmarke für Datenmenge [%s] nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSNoDataTable">
+            <properties>
+              <property>
+                <value>Öffnen der Datenmenge [%s] nicht möglich. Ein DataTable- oder DataView-Objekt muss angegeben werden. Hinweis: Verwenden Sie für TFDMemTable zum Öffnen der Datenmenge CreateDataSet oder CloneCursor</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSNoNestedMasterSource">
+            <properties>
+              <property>
+                <value>Setzen von MasterSource für Datenmenge [%s] nicht möglich. Bei verschachtelten Datenmengen ist MasterSource nicht zulässig</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSRefreshError">
+            <properties>
+              <property>
+                <value>Aktualisieren der Datenmenge [%s] nicht möglich. Zwischengespeicherte Aktualisierungen müssen vor der Aktualisierung übergeben oder abgebrochen und der Stapelmodus beendet werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DSViewNotSorted">
+            <properties>
+              <property>
+                <value>Sicht [%s] ist keine sortierte Sicht</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DuplicatedName">
+            <properties>
+              <property>
+                <value>Name [%s] ist in der Liste doppelt vorhanden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_DuplicateRows">
+            <properties>
+              <property>
+                <value>Doppelte Zeile für eindeutigen Index gefunden. Einschränkung [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_Error">
+            <properties>
+              <property>
+                <value>Fehler:</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprBadScope">
+            <properties>
+              <property>
+                <value>Die Operation kann keine Aggregatwerte mit wechselnden Datensatzwerten mischen</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprCantAgg">
+            <properties>
+              <property>
+                <value>Ausdruck kann nicht aggregiert werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprEmpty">
+            <properties>
+              <property>
+                <value>Leerer Ausdruck</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprEmptyInList">
+            <properties>
+              <property>
+                <value>Die IN-Prädikatliste darf nicht leer sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprEvalError">
+            <properties>
+              <property>
+                <value>Fehler beim Auswerten des Ausdrucks. %s</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprExpected">
+            <properties>
+              <property>
+                <value>Erwartet [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprIncorrect">
+            <properties>
+              <property>
+                <value>Ausdruck ist nicht korrekt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprInvalidChar">
+            <properties>
+              <property>
+                <value>Ungültiges Zeichen gefunden [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprMBAgg">
+            <properties>
+              <property>
+                <value>Ausdruck muss aggregiert sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprNameError">
+            <properties>
+              <property>
+                <value>Name ist nicht ordnungsgemäß abgeschlossen</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprNoArith">
+            <properties>
+              <property>
+                <value>Arithmetik in Filterausdrücken wird nicht unterstützt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprNoLParen">
+            <properties>
+              <property>
+                <value>'(' erwartet, aber [%s] gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprNoRParen">
+            <properties>
+              <property>
+                <value>')' erwartet, aber [%s] gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprNoRParenOrComma">
+            <properties>
+              <property>
+                <value>')' oder ',' erwartet, aber [%s] gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprStringError">
+            <properties>
+              <property>
+                <value>String-Konstante ist nicht korrekt abgeschlossen oder zu lang</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprTermination">
+            <properties>
+              <property>
+                <value>Ausdruck unerwartet beendet</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ExprTypeMis">
+            <properties>
+              <property>
+                <value>Keine Typübereinstimmung im Ausdruck</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_FBWarnNotFBClnt">
+            <properties>
+              <property>
+                <value>Warnung: Verwenden Sie fbclient.dll mit dem Firebird-Treiber </value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_FBWarnNotFBSrv">
+            <properties>
+              <property>
+                <value>Warnung: Verwenden Sie den Firebird-Treiber für die Verbindung mit dem Firebird-Server</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_FixedLenDataMismatch">
+            <properties>
+              <property>
+                <value>Datenlänge passt nicht für Spalte [%s] mit fester Länge. Wertlänge - [%d], feste Länge der Spalte - [%d]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_FoundCascadeLoop">
+            <properties>
+              <property>
+                <value>Beim Überprüfen des Fremdschlüssels [%s] Schleife mit überlappenden Aktionen gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_GrpLvlExceeds">
+            <properties>
+              <property>
+                <value>Gruppierungsebene überschreitet maximal zulässige Ebenen für Aggregat [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_HasChildRows">
+            <properties>
+              <property>
+                <value>Verarbeitung nicht möglich - untergeordnete Zeilen gefunden. Einschränkung [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_IBBWarnFBCIB">
+            <properties>
+              <property>
+                <value>Warnung: Verwenden Sie für InterBase die DLL gds32.dll</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_IBBWarnGDSFB">
+            <properties>
+              <property>
+                <value>Warnung: Verwenden Sie für Firebird die DLL fbclient.dll</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_IBTraceIsActive">
+            <properties>
+              <property>
+                <value>Starten einer Ablaufverfolgungssitzung nicht möglich, wenn bereits eine aktiv ist</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_InvalidKeywordUse">
+            <properties>
+              <property>
+                <value>Ungültige Verwendung eines Schlüsselworts</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_LoginDialogDefCaption">
+            <properties>
+              <property>
+                <value>FireDAC-Anmeldung</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MongoAlertToMany">
+            <properties>
+              <property>
+                <value>Tail-Ereigniswarnung unterstützt nur einzelne Ereignisnamen</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MongoBadURI">
+            <properties>
+              <property>
+                <value>Analyse des URI fehlgeschlagen</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MongoBulkError">
+            <properties>
+              <property>
+                <value>Verwaltung der Massenoperation fehlgeschlagen</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MongoCannotOpenDataSet">
+            <properties>
+              <property>
+                <value>Öffnen der Datenmenge [%s] nicht möglich. %s muss zugewiesen sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MongoCursorError">
+            <properties>
+              <property>
+                <value>Cursor kann von diesem Objekt nicht abgerufen werden. Verwenden Sie eine andere [%s] überladene Methode</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MongoDBRefInvalid">
+            <properties>
+              <property>
+                <value>DBRef [%s] ist ungültig</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MongoDBRefNotFound">
+            <properties>
+              <property>
+                <value>DBRef [%s] wurde nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MongoDocReadOnly">
+            <properties>
+              <property>
+                <value>Schreibgeschütztes Dokument kann nicht bearbeitet werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MongoError">
+            <properties>
+              <property>
+                <value>Methode [%s] fehlgeschlagen</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MongoExecuteError">
+            <properties>
+              <property>
+                <value>Dieses Objekt kann nicht ausgeführt werden. Verwenden Sie eine andere [%s] überladene Methode</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MongoFailedInitBSON">
+            <properties>
+              <property>
+                <value>Abrufen von BSON für das Dokument fehlgeschlagen</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MongoFieldIsNotFound">
+            <properties>
+              <property>
+                <value>Feld [%s] nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MongoFieldTypeMismatch">
+            <properties>
+              <property>
+                <value>Nicht übereinstimmender Datentyp von Eintrag [%s]. Aktueller Typ [%s], neuer Typ [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MSSQLFSIOError">
+            <properties>
+              <property>
+                <value>FileStream-Zugriffsfehler. %s</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MSSQLFSNoPath">
+            <properties>
+              <property>
+                <value>Ein FileStream kann nicht mit einem leeren Pfad geöffnet werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MSSQLFSNoTx">
+            <properties>
+              <property>
+                <value>Ein FileStream kann ohne eine Transaktion nicht geöffnet werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MSSQLQNSubError">
+            <properties>
+              <property>
+                <value>Abonnementfehler bei Abfragebenachrichtigung. Info [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MySQLBadParams">
+            <properties>
+              <property>
+                <value>Fehler in Definition von Parameter [%s]. %s</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MySQLBadVersion">
+            <properties>
+              <property>
+                <value>Nicht unterstützte MySQL-Version [%d]. Unterstützt werden Client und Server der Version 3.20</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MySQLCantInitEmbeddedServer">
+            <properties>
+              <property>
+                <value>Fehler bei der Initialisierung des eingebetteten Servers. Einzelheiten finden Sie in den MySQL-Protokolldateien</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MySQLCantSetPort">
+            <properties>
+              <property>
+                <value>Port-Nummer kann nicht geändert werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_MySQLFieldDataTypeUnsup">
+            <properties>
+              <property>
+                <value>Feld [%d], Datentyp [%d] wird nicht unterstützt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_NameNotFound">
+            <properties>
+              <property>
+                <value>Objekt [%s] nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_NoColsDefined">
+            <properties>
+              <property>
+                <value>Keine Spalten definiert für Tabelle</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_NoMasterRow">
+            <properties>
+              <property>
+                <value>Verarbeitung nicht möglich - keine übergeordnete Zeile gefunden. Einschränkung [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_NotFound">
+            <properties>
+              <property>
+                <value>&lt;nicht gefunden&gt;</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OdbcVarDataTypeUnsup">
+            <properties>
+              <property>
+                <value>C-Datentyp der Variable wird nicht unterstützt (Variable: [%s], C-Datentyp: [%d])</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OperCNBPerfInState">
+            <properties>
+              <property>
+                <value>Durchführen der Operation für Zeilenstatus nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraBadTableType">
+            <properties>
+              <property>
+                <value>Parameter mit dem Typ TABLE OF BOOLEAN/RECORD wird nicht unterstützt (verwenden Sie TFDQuery) (NOE135/SP)</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraBadVarType">
+            <properties>
+              <property>
+                <value>Falscher oder nicht definierter Variablenparametertyp (NOE12/VAR)</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraBadVersion">
+            <properties>
+              <property>
+                <value>Nicht unterstützte Version der OCI-Bibliothek (OCI-Bibliothek: [%s], Version: [%s]) Es ist mindestens Version 8.0.3 erforderlich (NOE2/INIT)</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraCantAssFILE">
+            <properties>
+              <property>
+                <value>Zuweisen eines Wertes zum BFILE/CFILE-Parameter [%s] nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraCantConvNum">
+            <properties>
+              <property>
+                <value>Konvertieren von Oracle Number [%s] in TBcd nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraCantSetCharset">
+            <properties>
+              <property>
+                <value>Initialisieren von OCI mit Zeichensatz [%s] nicht möglich. Mögliche Ursache: %s</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraCantUseToken">
+            <properties>
+              <property>
+                <value>Für die Verwendung der OAuth-Authentifizierung muss OCI Version 19.13 oder höher sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraDBTNManyClBraces">
+            <properties>
+              <property>
+                <value>Zu viele schließende geschweifte Klammern in Namensdatei nach Alias [%s] (NOE105/DB)</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraNoCursor">
+            <properties>
+              <property>
+                <value>Keine Cursors verfügbar</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraNoCursorParams">
+            <properties>
+              <property>
+                <value>Keine Cursorparameter definiert. Beziehen Sie fiMeta in FetchOptions.Items ein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraNotInstalled">
+            <properties>
+              <property>
+                <value>OCI ist auf diesem Computer nicht ordnungsgemäß installiert (NOE1/INIT)</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraNotPackageProc">
+            <properties>
+              <property>
+                <value>[%s, #%d] in Package [%s] nicht gefunden (NOE134/SP)</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraNotPLSQLObj">
+            <properties>
+              <property>
+                <value>[%s] ist kein aufrufbares PL/SQL-Objekt (NOE130/SP)</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraPipeAlertToMany">
+            <properties>
+              <property>
+                <value>DBMS_PIPE-Ereigniswarnung unterstützt nur einzelne Ereignisnamen</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraTooLongBQUAL">
+            <properties>
+              <property>
+                <value>Maximale Länge (%d) von BQUAL überschritten - %d (NOE19/TX)</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraTooLongGTRID">
+            <properties>
+              <property>
+                <value>Maximale Länge (%d) von GTRID überschritten - %d (NOE18/TX)</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraTooLongTXName">
+            <properties>
+              <property>
+                <value>Maximale Länge (%d) des Transaktionsnamens überschritten - %d (NOE20/TX)</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_OraUnNamedRecParam">
+            <properties>
+              <property>
+                <value>Parameter mit dem Typ RECORD muss einen benannten Typ haben (verwenden Sie TFDQuery) (NOE142/SP)</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_PgArrIndexOutOfBound">
+            <properties>
+              <property>
+                <value>Index des Eintrags in Array-Variable ist außerhalb des gültigen Bereichs (Array-Variable: [%s], Index: [%d], Bereich: [%d, %d])</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_PgCannotDescribeType">
+            <properties>
+              <property>
+                <value>Beschreibung des Typs [%s] nicht möglich. %s</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_PgIsNotArray">
+            <properties>
+              <property>
+                <value>Variable [%s] ist kein Array</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_PgMultiDimArrNotSup">
+            <properties>
+              <property>
+                <value>Dimensionen der Array-Variable werden nicht unterstützt (Array-Variable: [%s], Dimensionen: [%d]). Nur eindimensionale einfache Typ-Arrays werden unterstützt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_PgProcCantResult">
+            <properties>
+              <property>
+                <value>Stored Procedure [%s] kann keinen Ergebnisparameter haben</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_PgProcNotFound">
+            <properties>
+              <property>
+                <value>Gespeicherte Prozedur [%s] nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_PgUnsupArrValueTypeNotSup">
+            <properties>
+              <property>
+                <value>Nicht unterstützter Elementtyp der Array-Variable (Array-Variable: [%s], Elementtyp: [%d]). Nur eindimensionale einfache Typ-Arrays werden unterstützt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_PhysWarnMajVerDiff">
+            <properties>
+              <property>
+                <value>Warnung: Der Unterschied zwischen der Client- und der Server-Hauptversion ([%s], [%s]) ist &gt; 1.</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_QBEBadExp">
+            <properties>
+              <property>
+                <value>Ungültiger QBE-Ausdruck [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_QBEBadOperator">
+            <properties>
+              <property>
+                <value>Ungültiger QBE-Operator [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_QBEExpectedEOM">
+            <properties>
+              <property>
+                <value>Unerwartetes Ende des QBE-Makros für Feld [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_QBEInvalidOrderBy">
+            <properties>
+              <property>
+                <value>Ungültiger Operatorwert für QBE-Sortierung [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_QBEInvalidPropertySet">
+            <properties>
+              <property>
+                <value>QBE kann nicht bearbeitet werden. Möglicher Grund: inkompatible Kombination von TFDQBE und/oder %s-Eigenschaften</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_QBEMacNotFound">
+            <properties>
+              <property>
+                <value>QBE-Makro [%s] nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_QBEMustBeInactive">
+            <properties>
+              <property>
+                <value>QBE muss inaktiv sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_QBEMustBeSingleField">
+            <properties>
+              <property>
+                <value>String [%s] muss einen einzelnen Feldnamen enthalten</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_QBENeedDataSource">
+            <properties>
+              <property>
+                <value>QBE kann nicht bearbeitet werden. Mögliche Gründe: Datenquelle oder Datenmenge ist nicht angegeben oder Datenmenge ist kein TFDDataSet</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_QBENoMacTbl4Filter">
+            <properties>
+              <property>
+                <value>Weitere Tabellen werden für das Feld [%s] im QBE qlFilter-Modus nicht unterstützt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_QBEOperationDisabled">
+            <properties>
+              <property>
+                <value>QBE-Operator [%s] wird für Feld [%s] nicht unterstützt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_QBEQBENotDefined">
+            <properties>
+              <property>
+                <value>Leere QBE kann nicht ausgeführt werden. Hinweis: erst bearbeiten und QBE angeben</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_QBERParExpected">
+            <properties>
+              <property>
+                <value>Fehlende rechte Klammer, stattdessen wurde ein QBE-Token gefunden [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_QBEUnsupportedFld">
+            <properties>
+              <property>
+                <value>Feld [%s] kann nicht abgefragt werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_QBEValueExpected">
+            <properties>
+              <property>
+                <value>Ungültiges QBE-Token [%s] anstatt eines Werts gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_RecLocked">
+            <properties>
+              <property>
+                <value>Datensatz ist bereits gesperrt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_RecNotLocked">
+            <properties>
+              <property>
+                <value>Datensatz ist nicht gesperrt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_RowCantBeDeleted">
+            <properties>
+              <property>
+                <value>Löschen der Zeile nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_RowCantBeInserted">
+            <properties>
+              <property>
+                <value>Einfügen der Zeile in die Tabelle nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_RowColMBNotNull">
+            <properties>
+              <property>
+                <value>Wert der Spalte [%s] darf nicht null sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_RowIsNotNested">
+            <properties>
+              <property>
+                <value>Zeile ist nicht verschachtelt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_RowMayHaveSingleParent">
+            <properties>
+              <property>
+                <value>Zeile darf nur eine einzelne Spalte mit dem Datentyp [dtParentRowRef] haben</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_RowNotInEditableState">
+            <properties>
+              <property>
+                <value>Zeile befindet sich nicht im Bearbeitungsstatus</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ScrAccMustSpecVar">
+            <properties>
+              <property>
+                <value>ACCEPT-Anweisung muss einen Variablennamen angeben</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ScrCantExecHostCmd">
+            <properties>
+              <property>
+                <value>Ausführen der Host-Anweisung [%s] nicht möglich. %s</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ScrDefReqValue">
+            <properties>
+              <property>
+                <value>DEFINE erfordert einen Wert nach dem Gleichheitszeichen</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ScrInvalidSyntax">
+            <properties>
+              <property>
+                <value>Ungültige Syntax für Anweisung [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ScrNoCmds">
+            <properties>
+              <property>
+                <value>Keine Skriptanweisungen registriert. Mögliche Ursache: Unit FireDAC.Comp.ScriptCommands ist nicht mit der Anwendung verknüpft</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ScrNoScript">
+            <properties>
+              <property>
+                <value>Kein Skript zum Ausführen für [%s]. Mögliche Ursache: SQLScriptFileName und SQLScripts sind beide leer</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ScrNotLogged">
+            <properties>
+              <property>
+                <value>Ausführen der Anweisung nicht möglich. Nicht angemeldet</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ScrSetArgInvalid">
+            <properties>
+              <property>
+                <value>Ungültiges SET-Anweisungsargument</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ScrStrNotAlphaNum">
+            <properties>
+              <property>
+                <value>Zeichen darf nicht alphanumerisch oder Whitespace sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ScrStrSize1">
+            <properties>
+              <property>
+                <value>String muss 1 Zeichen lang sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ScrVarMissedCloseBrace">
+            <properties>
+              <property>
+                <value>Bei VARIABLE fehlt rechte geschweifte Klammer</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ScrVarUnsupType">
+            <properties>
+              <property>
+                <value>VARIABLE hat einen nicht unterstützten Datentyp</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLiteDBNotFound">
+            <properties>
+              <property>
+                <value>Durch Handle [%p] angegebene Datenbank nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLiteInitFailed">
+            <properties>
+              <property>
+                <value>Initialisierung der SQLite-Bibliothek fehlgeschlagen. Hauptcode [%d], erweiterter Code [%d]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLiteLinkageNotSupported">
+            <properties>
+              <property>
+                <value>SQLite-Bibliotheksverknüpfung [%s] nicht gefunden. Hinweis: Wenn eine statische Verknüpfung erforderlich ist und unterstützt wird, schließen Sie [FireDAC.Phys.SQLiteWrapper.%s] in Ihr Projekt ein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLitePwdInvalid">
+            <properties>
+              <property>
+                <value>Ungültiges Passwort angegeben</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLiteVTabCannotAttach">
+            <properties>
+              <property>
+                <value>TFDLocalSQL muss einer aktiven SQLite-Verbindung hinzugefügt werden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLiteVTabDataSetBusy">
+            <properties>
+              <property>
+                <value>VTab: Datenmenge [%s] ist von einer anderen Ergebnismenge belegt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLiteVTabDSChangedOrFreed">
+            <properties>
+              <property>
+                <value>VTab: Datenmengenstatus wurde geändert. Durchführen der Operation nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLiteVTabDSCursorInvalid">
+            <properties>
+              <property>
+                <value>VTab: Ungültiger Cursor</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLiteVTabDSDataModFailed">
+            <properties>
+              <property>
+                <value>VTab: Datenmengenänderung fehlgeschlagen</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLiteVTabDSNoRowExists">
+            <properties>
+              <property>
+                <value>VTab: Angegebene Zeile ist nicht vorhanden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLiteVTabDSNotFoundOrEmpty">
+            <properties>
+              <property>
+                <value>VTab: Datenmenge [%s] nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLiteVTabDSNotSupported">
+            <properties>
+              <property>
+                <value>VTab: Operation wird nicht unterstützt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLiteVTabDSRowidInvalid">
+            <properties>
+              <property>
+                <value>VTab: Explizite ROWID bei INSERT wird nicht unterstützt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLiteVTabDSSPNotFound">
+            <properties>
+              <property>
+                <value>VTab: Speicherpunkt [%s] nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLiteVTabInvalidArgs">
+            <properties>
+              <property>
+                <value>VTab: Ungültige Anzahl von Argumenten bei VTabCreate. Erwartet [%d], erhalten [%d]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanBadParRowIndex">
+            <properties>
+              <property>
+                <value>Index des Parameterwertes ist außerhalb des gültigen Bereichs (Parameter: [%s], Index: [%d], Bereich: [0..%d])</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanCantGetBlob">
+            <properties>
+              <property>
+                <value>Zugriff auf BLOB-Rohdaten nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanCantNonblocking">
+            <properties>
+              <property>
+                <value>Durchführen der nicht blockierenden Aktion nicht möglich, während ein andere nicht blockierende Aktion ausgeführt wird</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanHowToInc">
+            <properties>
+              <property>
+                <value>Sie können die Unit [%s] in Ihr Projekt einbeziehen, um sie zu registrieren</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanHowToReg">
+            <properties>
+              <property>
+                <value>Sie können eine [%s]-Komponente in Ihr Projekt aufnehmen, um sie zu registrieren</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanMacroNotFound">
+            <properties>
+              <property>
+                <value>Makro [%s] nicht gefunden</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanPoolTooManyItems">
+            <properties>
+              <property>
+                <value>Abrufen des Elements (Verbindung) aus dem Pool nicht möglich. Maximalanzahl [%d] von gleichzeitigen Elementen (Verbindungen) erreicht.</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanStrgCantReadCDATA">
+            <properties>
+              <property>
+                <value>Lesen der RAW-Daten des Objekts [%s] nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanStrgCantReadObj">
+            <properties>
+              <property>
+                <value>Lesen des Objekts [%s] nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanStrgCantReadProp">
+            <properties>
+              <property>
+                <value>Lesen der Eigenschaft [%s] nicht möglich</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanStrgClassUnknown">
+            <properties>
+              <property>
+                <value>Klasse [%s] ist nicht registriert</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanStrgDictOverflow">
+            <properties>
+              <property>
+                <value>Dictionary-Überlauf</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanStrgFileError">
+            <properties>
+              <property>
+                <value>Verschieben der Datei [%s] nach [%s] nicht möglich. %s</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanStrgInvBinFmt">
+            <properties>
+              <property>
+                <value>Ungültiges binäres Speicherformat</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanStrgInvDIntFmt">
+            <properties>
+              <property>
+                <value>Ungültiges Format für Datumsintervall [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanStrgInvJSONFmt">
+            <properties>
+              <property>
+                <value>Ungültiges JSON-Speicherformat. Position [%d]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanStrgUnknownFmt">
+            <properties>
+              <property>
+                <value>Unbekanntes Speicherformat [%s]. Hinweis: Sie können eine [TFDStanStorageXxxLink]-Komponente in Ihr Projekt aufnehmen, um das Speicherformat zu registrieren</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_StanTimeout">
+            <properties>
+              <property>
+                <value>Zeitlimit abgelaufen</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SvcCannotUninstall">
+            <properties>
+              <property>
+                <value>Deinstallation einer SQLite-Sortierung nicht möglich, wenn aktive Verbindungen vorhanden sind</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SvcLinkMBSet">
+            <properties>
+              <property>
+                <value>Zum Durchführen der Operation muss DriverLink angegeben sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SvcMBActive">
+            <properties>
+              <property>
+                <value>Zum Durchführen der Operation muss der Dienst aktiv sein</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_TooManyAggs">
+            <properties>
+              <property>
+                <value>Zu viele Aggregatwerte pro Sicht</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_TypeIncompat">
+            <properties>
+              <property>
+                <value>Zuweisen des Wertes [%s] ist nicht kompatibel mit Datentyp der Spalte [%s]. %s</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_Unnamed">
+            <properties>
+              <property>
+                <value>Unbenannt</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_ValueOutOfRange">
+            <properties>
+              <property>
+                <value>Wert [%s] ist außerhalb des gültigen Bereichs des Datentyps [%s]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_VarLenDataMismatch">
+            <properties>
+              <property>
+                <value>Überlauf der Spalte [%s] mit variabler Länge. Wertlänge - [%d], Maximallänge der Spalte - [%d]</value>
+              </property>
+            </properties>
+          </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_Warning">
+            <properties>
+              <property>
+                <value>Warnung:</value>
               </property>
             </properties>
           </item>
@@ -6689,6 +9020,9 @@
             <properties>
               <property>
                 <value>Weitere Informationen</value>
+                <translations>
+                  <translation language="en-US">More information</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -6792,6 +9126,26 @@
               </property>
             </properties>
           </item>
+          <item name="Optionen_SFirebirdDatabase">
+            <properties>
+              <property>
+                <value>Firebird-Datenbank</value>
+                <translations>
+                  <translation language="en-US">Firebird database</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="Optionen_SFirebirdDatabases">
+            <properties>
+              <property>
+                <value>Firebird-Datenbanken</value>
+                <translations>
+                  <translation language="en-US">Firebird databases</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
           <item name="Optionen_SInterbaseDatabase">
             <properties>
               <property>
@@ -6836,6 +9190,9 @@
             <properties>
               <property>
                 <value>Bitte warten...</value>
+                <translations>
+                  <translation language="en-US">Please wait...</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -8111,6 +10468,13 @@
               </property>
             </properties>
           </item>
+          <item name="System_RTLConsts_SWindowsServer2025">
+            <properties>
+              <property>
+                <value>Windows Server 2025</value>
+              </property>
+            </properties>
+          </item>
           <item name="System_RTLConsts_SWindowsVista">
             <properties>
               <property>
@@ -8748,6 +11112,9 @@
             <properties>
               <property>
                 <value>April</value>
+                <translations>
+                  <translation language="en-US">April</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -8755,6 +11122,9 @@
             <properties>
               <property>
                 <value>August</value>
+                <translations>
+                  <translation language="en-US">August</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -8832,6 +11202,9 @@
             <properties>
               <property>
                 <value>November</value>
+                <translations>
+                  <translation language="en-US">November</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -8849,6 +11222,9 @@
             <properties>
               <property>
                 <value>September</value>
+                <translations>
+                  <translation language="en-US">September</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9054,6 +11430,9 @@
             <properties>
               <property>
                 <value>Apr</value>
+                <translations>
+                  <translation language="en-US">Apr</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9061,6 +11440,9 @@
             <properties>
               <property>
                 <value>Aug</value>
+                <translations>
+                  <translation language="en-US">Aug</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9078,6 +11460,9 @@
             <properties>
               <property>
                 <value>Feb</value>
+                <translations>
+                  <translation language="en-US">Feb</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9085,6 +11470,9 @@
             <properties>
               <property>
                 <value>Jan</value>
+                <translations>
+                  <translation language="en-US">Jan</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9092,6 +11480,9 @@
             <properties>
               <property>
                 <value>Jul</value>
+                <translations>
+                  <translation language="en-US">Jul</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9099,6 +11490,9 @@
             <properties>
               <property>
                 <value>Jun</value>
+                <translations>
+                  <translation language="en-US">Jun</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9126,6 +11520,9 @@
             <properties>
               <property>
                 <value>Nov</value>
+                <translations>
+                  <translation language="en-US">Nov</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9143,6 +11540,9 @@
             <properties>
               <property>
                 <value>Sep</value>
+                <translations>
+                  <translation language="en-US">Sep</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9590,6 +11990,9 @@
             <properties>
               <property>
                 <value>%s: %s</value>
+                <translations>
+                  <translation language="en-US">%s: %s</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9868,6 +12271,9 @@
             <properties>
               <property>
                 <value>ANSI</value>
+                <translations>
+                  <translation language="en-US">ANSI</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9875,6 +12281,9 @@
             <properties>
               <property>
                 <value>ASCII</value>
+                <translations>
+                  <translation language="en-US">ASCII</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10519,6 +12928,9 @@
             <properties>
               <property>
                 <value>Anmelden</value>
+                <translations>
+                  <translation language="en-US">Login</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10593,6 +13005,9 @@
             <properties>
               <property>
                 <value>Alt+</value>
+                <translations>
+                  <translation language="en-US">Alt+</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10660,6 +13075,9 @@
             <properties>
               <property>
                 <value>Esc</value>
+                <translations>
+                  <translation language="en-US">Esc</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10747,6 +13165,9 @@
             <properties>
               <property>
                 <value>Tab</value>
+                <translations>
+                  <translation language="en-US">Tab</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11089,6 +13510,9 @@
             <properties>
               <property>
                 <value>&amp;Passwort</value>
+                <translations>
+                  <translation language="en-US">&amp;Password</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11388,7 +13812,7 @@
           </item>
           <item name="Vcl_Consts_SUnicodeEncoding">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Unicode</value>
               </property>
             </properties>
@@ -11397,6 +13821,9 @@
             <properties>
               <property>
                 <value>Nicht unterstütztes Zwischenablagenformat</value>
+                <translations>
+                  <translation language="en-US">Unsupported clipboard format</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11414,6 +13841,9 @@
             <properties>
               <property>
                 <value>Nicht unterstütztes Stream-Format</value>
+                <translations>
+                  <translation language="en-US">Unsupported stream format</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11421,19 +13851,22 @@
             <properties>
               <property>
                 <value>&amp;Benutzername</value>
+                <translations>
+                  <translation language="en-US">&amp;User name</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="Vcl_Consts_SUTF7Encoding">
             <properties>
-              <property>
+              <property status="skip">
                 <value>UTF-7</value>
               </property>
             </properties>
           </item>
           <item name="Vcl_Consts_SUTF8Encoding">
             <properties>
-              <property>
+              <property status="skip">
                 <value>UTF-8</value>
               </property>
             </properties>
@@ -11442,6 +13875,9 @@
             <properties>
               <property>
                 <value>Bitmaps</value>
+                <translations>
+                  <translation language="en-US">Bitmaps</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11489,6 +13925,9 @@
             <properties>
               <property>
                 <value>TIFF-Grafiken</value>
+                <translations>
+                  <translation language="en-US">TIFF graphics</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11891,6 +14330,9 @@
             <properties>
               <property>
                 <value>Aktualisierungen abbrechen</value>
+                <translations>
+                  <translation language="en-US">Cancel refresh</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -12168,6 +14610,9 @@
             <properties>
               <property>
                 <value>Kein DOM-Anbieter ausgewählt</value>
+                <translations>
+                  <translation language="en-US">No DOM provider selected</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -12205,19 +14650,22 @@
             <properties>
               <property>
                 <value>Element "%s" enthält keinen einzelnen Textknoten</value>
+                <translations>
+                  <translation language="en-US">Element "%s" does not contain a single text node</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="Xml_XMLConst_SUrl">
             <properties>
-              <property>
+              <property status="skip">
                 <value>URL</value>
               </property>
             </properties>
           </item>
         </items>
       </module>
-      <module name="TDLG_DATEINEU" type="form" properties="12">
+      <module name="TDLG_DATEINEU" type="form" properties="13">
         <items>
           <item name="DLG_DateiNeu" type="TDLG_DateiNeu">
             <properties>
@@ -12328,6 +14776,12 @@
                 <value>SQL-Server</value>
                 <translations>
                   <translation language="en-US">SQL-Server</translation>
+                </translations>
+              </property>
+              <property name="Items.Strings[4]">
+                <value>Firebird</value>
+                <translations>
+                  <translation language="en-US">Firebird</translation>
                 </translations>
               </property>
             </properties>
@@ -13264,11 +15718,11 @@
           </item>
         </items>
       </module>
-      <module name="TDLG_IBDATABASENAME" type="form" properties="4">
+      <module name="TDLG_IBDATABASENAME" type="form" properties="3">
         <items>
           <item name="DLG_IbDatabaseName" type="TDLG_IbDatabaseName">
             <properties>
-              <property name="Caption">
+              <property name="Caption" state="unused">
                 <value>InterBase-Fehler</value>
                 <translations>
                   <translation language="en-US">InterBase Error</translation>
@@ -14206,9 +16660,9 @@
                 <value>gdb</value>
               </property>
               <property name="Dialog.Filter">
-                <value>Alle bekannten Dateien (*.gdb;*.db;*.dbf;*.mdb;*.accdb)|*.gdb;*.db;*.dbf;*.mdb;*.accdb|Microsoft Jet-Datenbank (*.mdb)|*.mdb|Access-Datenbank (*.accdb)|*.accdb|dBase-Dateien (*.dbf)|*.dbf|Paradox-Dateien (*.db)|*.db|InterBase-Dateien (*.gdb)|*.gdb|Alle Dateien (*.*)|*.*</value>
+                <value>Alle bekannten Dateien (*.gdb;*.ib;*.fdb;*.db;*.dbf;*.mdb;*.accdb)|*.gdb;*.ib;*.fdb;*.db;*.dbf;*.mdb;*.accdb|Microsoft Jet-Datenbank (*.mdb)|*.mdb|Access-Datenbank (*.accdb)|*.accdb|dBase-Dateien (*.dbf)|*.dbf|Paradox-Dateien (*.db)|*.db|InterBase-Dateien (*.gdb;*.ib)|*.gdb;*.ib|Firebird-Datieen (*.fdb)|*.fdb|Alle Dateien (*.*)|*.*</value>
                 <translations>
-                  <translation language="en-US">Known file types (*.gdb;*.db;*.dbf;*.mdb;*.accdb)|*.gdb;*.db;*.dbf;*.mdb;*.accdb|Microsoft Jet Database (*.mdb)|*.mdb|Access Database (*.accdb)|*.accdb|dBase files (*.dbf)|*.dbf|Paradox files (*.db)|*.db|InterBase files (*.gdb)|*.gdb|All files (*.*)|*.*</translation>
+                  <translation language="en-US">Known file types (*.gdb;*.ib;*.db;*.dbf;*.mdb;*.accdb)|*.gdb;*.ib;*.fdb;*.db;*.dbf;*.mdb;*.accdb|Microsoft Jet database (*.mdb)|*.mdb|Access database (*.accdb)|*.accdb|dBase files (*.dbf)|*.dbf|Paradox files (*.db)|*.db|InterBase files (*.gdb;*.ib)|*.gdb;*.ib|Firebird files (*.fdb)|*.fdb|All files (*.*)|*.*</translation>
                 </translations>
               </property>
               <property name="Hint">
@@ -14831,7 +17285,7 @@
           </item>
         </items>
       </module>
-      <module name="TDLG_OPTIONEN" type="form" properties="20">
+      <module name="TDLG_OPTIONEN" type="form" properties="22">
         <items>
           <item name="DLG_Optionen" type="TDLG_Optionen">
             <properties>
@@ -14859,9 +17313,9 @@
           <item name="DLG_Optionen.GroupBox1.btnStandardAccDb" type="TSpeedButton">
             <properties>
               <property name="Caption">
-                <value> Access-Datenbanken (*.accdb)</value>
+                <value>Access-Datenbanken (*.accdb)</value>
                 <translations>
-                  <translation language="en-US"> Access databases (*.accdb)</translation>
+                  <translation language="en-US">Access databases (*.accdb)</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">
@@ -14878,9 +17332,9 @@
           <item name="DLG_Optionen.GroupBox1.btnStandardDB" type="TSpeedButton">
             <properties>
               <property name="Caption">
-                <value> Paradox-Tabellen (*.db)</value>
+                <value>Paradox-Tabellen (*.db)</value>
                 <translations>
-                  <translation language="en-US"> Paradox tables (*.db)</translation>
+                  <translation language="en-US">Paradox tables (*.db)</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">
@@ -14897,9 +17351,28 @@
           <item name="DLG_Optionen.GroupBox1.btnStandardDBF" type="TSpeedButton">
             <properties>
               <property name="Caption">
-                <value> dBase-Tabellen (*.dbf)</value>
+                <value>dBase-Tabellen (*.dbf)</value>
                 <translations>
-                  <translation language="en-US"> dBase tables (*.dbf)</translation>
+                  <translation language="en-US">dBase tables (*.dbf)</translation>
+                </translations>
+              </property>
+              <property name="Font.Name" status="skip">
+                <value>Tahoma</value>
+              </property>
+              <property name="Hint">
+                <value>DBTool als Standard-Anwendung für Datenbanken einrichten</value>
+                <translations>
+                  <translation language="en-US">Set up DBTool as the default application for databases</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="DLG_Optionen.GroupBox1.btnStandardFDB" type="TSpeedButton">
+            <properties>
+              <property name="Caption">
+                <value>Firebird-Datenbanken (*.fdb)</value>
+                <translations>
+                  <translation language="en-US">Firebird databases (*.fdb)</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">
@@ -14916,9 +17389,9 @@
           <item name="DLG_Optionen.GroupBox1.btnStandardGDB" type="TSpeedButton">
             <properties>
               <property name="Caption">
-                <value> InterBase-Datenbanken (*.gdb)</value>
+                <value>InterBase-Datenbanken (*.gdb)</value>
                 <translations>
-                  <translation language="en-US"> InterBase databases (*.gdb)</translation>
+                  <translation language="en-US">InterBase databases (*.gdb;*.ib)</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">
@@ -14935,9 +17408,9 @@
           <item name="DLG_Optionen.GroupBox1.btnStandardMDB" type="TSpeedButton">
             <properties>
               <property name="Caption">
-                <value> Access 97-Datenbanken (*.mdb)</value>
+                <value>Access 97-Datenbanken (*.mdb)</value>
                 <translations>
-                  <translation language="en-US"> Access 97 databases (*.mdb)</translation>
+                  <translation language="en-US">Access 97 databases (*.mdb)</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">

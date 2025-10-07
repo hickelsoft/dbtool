@@ -22,7 +22,8 @@
 	* MySQL
  	* Access97/Jet (.mdb)
 	* Access (.accdb)
-	* Interbase
+	* InterBase (.gdb;*.ib)
+	* Firebird (.fdb)
 	* Paradox (.db), only 32 bit
 	* dBase (.dbf), only 32 bit
 

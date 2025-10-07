@@ -7,7 +7,7 @@ interface
 uses
   Windows, SysUtils, Classes, Controls, StdCtrls, Forms, ComCtrls, ToolWin,
   Menus, ActnList,
-  ActnMan, ImgList, StdActns, ActnCtrls, ActnMenus, ExtCtrls, DdeMan {, XPMan} ,
+  ActnMan, ImgList, StdActns, ActnCtrls, ActnMenus, ExtCtrls, DdeMan,
   Graphics,
   ShellAPI, Messages, System.ImageList, System.Actions;
 

@@ -28,6 +28,7 @@ type
     btnStandardMDB: TSpeedButton;
     btnStandardGDB: TSpeedButton;
     btnStandardAccDb: TSpeedButton;
+    btnStandardFDB: TSpeedButton;
     procedure FormShow(Sender: TObject);
     procedure LbButton1Click(Sender: TObject);
     procedure btnStandardDBClick(Sender: TObject);
@@ -37,6 +38,7 @@ type
     procedure btnStandardGDBClick(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: word; Shift: TShiftState);
     procedure btnStandardAccDbClick(Sender: TObject);
+    procedure btnStandardFDBClick(Sender: TObject);
   private
     procedure MakeStandard(Ext, Type_, DisplayName, MessageName: string);
   end;
@@ -85,16 +87,11 @@ begin
 
   aReg := TRegIniFile.Create(ConfigRegKey);
   try
-    aReg.WriteString('Colors', 'ActiveField', ColorToString(clActiveField));
-    // do not localize
-    aReg.WriteString('Colors', 'ActiveRecord', ColorToString(clActiveRecord));
-    // do not localize
-    aReg.WriteString('Colors', 'Background', ColorToString(clTableBackground));
-    // do not localize
-    aReg.WriteString('Colors', 'Text', ColorToString(clTableText));
-    // do not localize
-    aReg.WriteString('Colors', 'Zebra', ColorToString(clTableZebra));
-    // do not localize
+    aReg.WriteString('Colors', 'ActiveField', ColorToString(clActiveField)); // do not localize
+    aReg.WriteString('Colors', 'ActiveRecord', ColorToString(clActiveRecord)); // do not localize
+    aReg.WriteString('Colors', 'Background', ColorToString(clTableBackground)); // do not localize
+    aReg.WriteString('Colors', 'Text', ColorToString(clTableText)); // do not localize
+    aReg.WriteString('Colors', 'Zebra', ColorToString(clTableZebra)); // do not localize
   finally
     FreeAndNil(aReg);
   end;
@@ -126,37 +123,36 @@ begin
       begin
         aReg.WriteString('', Type_);
         aReg.CloseKey;
-      end; // do not localize
+      end;
       if aReg.OpenKey(Type_, true) then
       begin
         aReg.WriteString('', DisplayName);
         aReg.CloseKey;
-      end; // do not localize
+      end;
       if aReg.OpenKey(Type_ + '\shell\open\command', true) then
       begin
         aReg.WriteString('', ParamStr(0));
         aReg.CloseKey;
-      end; // do not localize
+      end;
       if aReg.OpenKey(Type_ + '\shell\open\ddeexec', true) then
       begin
         aReg.WriteString('', '[open("%1")]');
         aReg.CloseKey;
-      end; // do not localize
+      end;
       if aReg.OpenKey(Type_ + '\shell\open\ddeexec\Application', true) then
       begin
         aReg.WriteString('', 'dbtool');
         aReg.CloseKey;
-      end; // do not localize
+      end;
       if aReg.OpenKey(Type_ + '\shell\open\ddeexec\Topic', true) then
       begin
         aReg.WriteString('', 'System');
         aReg.CloseKey;
-      end; // do not localize
+      end;
     finally
       FreeAndNil(aReg);
     end;
-    Application.MessageBox(PChar(Format(SDBToolDefaultInstalled, [MessageName])
-      ), PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
+    Application.MessageBox(PChar(Format(SDBToolDefaultInstalled, [MessageName])), PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
   except
     on E: EAbort do
     begin
@@ -175,8 +171,7 @@ resourcestring
   SAccessDatabase = 'Access-Datenbank';
   SAccessDatabases = 'Access-Datenbanken';
 begin
-  MakeStandard('.accdb', 'ACCDBFILE', SAccessDatabase, SAccessDatabases);
-  // do not localize
+  MakeStandard('.accdb', 'ACCDBFILE', SAccessDatabase, SAccessDatabases); // do not localize
 end;
 
 procedure TDLG_Optionen.btnStandardDBClick(Sender: TObject);
@@ -184,8 +179,7 @@ resourcestring
   SParadoxTable = 'Paradox-Tabelle';
   SParadoxTables = 'Paradox-Tabellen';
 begin
-  MakeStandard('.db', 'DBFILE', SParadoxTable, SParadoxTables);
-  // do not localize
+  MakeStandard('.db', 'DBFILE', SParadoxTable, SParadoxTables); // do not localize
 end;
 
 procedure TDLG_Optionen.btnStandardDBFClick(Sender: TObject);
@@ -196,13 +190,20 @@ begin
   MakeStandard('.dbf', 'DBFFILE', SDBaseTable, SDBaseTables); // do not localize
 end;
 
+procedure TDLG_Optionen.btnStandardFDBClick(Sender: TObject);
+resourcestring
+  SFirebirdDatabase = 'Firebird-Datenbank';
+  SFirebirdDatabases = 'Firebird-Datenbanken';
+begin
+  MakeStandard('.fdb', 'FDBFILE', SFirebirdDatabase, SFirebirdDatabases); // do not localize
+end;
+
 procedure TDLG_Optionen.btnStandardMDBClick(Sender: TObject);
 resourcestring
   SAccess97Database = 'Access97-Datenbank';
   SAccess97Databases = 'Access97-Datenbanken';
 begin
-  MakeStandard('.mdb', 'MDBFILE', SAccess97Database, SAccess97Databases);
-  // do not localize
+  MakeStandard('.mdb', 'MDBFILE', SAccess97Database, SAccess97Databases); // do not localize
 end;
 
 procedure TDLG_Optionen.btnStandardGDBClick(Sender: TObject);
@@ -210,8 +211,8 @@ resourcestring
   SInterbaseDatabase = 'Interbase-Datenbank';
   SInterbaseDatabases = 'Interbase-Datenbanken';
 begin
-  MakeStandard('.gdb', 'GDBFILE', SInterbaseDatabase, SInterbaseDatabases);
-  // do not localize
+  MakeStandard('.gdb', 'GDBFILE', SInterbaseDatabase, SInterbaseDatabases); // do not localize
+  MakeStandard('.ib', 'GDBFILE', SInterbaseDatabase, SInterbaseDatabases); // do not localize
 end;
 
 procedure TDLG_Optionen.FormKeyDown(Sender: TObject; var Key: word;

@@ -39,22 +39,25 @@ uses
 procedure TDLG_DateiNeu.btnDateiClick(Sender: TObject);
 resourcestring
   SInterbaseDatabases = 'InterBase-Datenbanken';
+  SFirebirdDatabases = 'Firebird-Datenbanken';
   SAccessDatabases = 'Access/Jet-Datenbanken';
   SAllFiles = 'Alle Dateien';
 begin
   case rgTyp.ItemIndex of
     0:
       begin
-        SaveDialog1.Filter := SInterbaseDatabases + ' (*.gdb)|*.gdb|' +
-          SAllFiles + ' (*.*)|*.*'; // do not localize
-        SaveDialog1.DefaultExt := '.gdb'; // do not localize
+        SaveDialog1.Filter := SInterbaseDatabases + ' (*.gdb;*.ib)|*.gdb;*.ib|' + SAllFiles + ' (*.*)|*.*'; // do not localize
+        SaveDialog1.DefaultExt := 'gdb'; // do not localize
       end;
     1:
       begin
-        SaveDialog1.Filter := SAccessDatabases +
-          ' (*.mdb;*.accdb)|*.mdb;*.accdb|' + SAllFiles + ' (*.*)|*.*';
-        // do not localize
-        SaveDialog1.DefaultExt := '.mdb'; // do not localize
+        SaveDialog1.Filter := SAccessDatabases + ' (*.mdb;*.accdb)|*.mdb;*.accdb|' + SAllFiles + ' (*.*)|*.*'; // do not localize
+        SaveDialog1.DefaultExt := 'mdb'; // do not localize
+      end;
+    4:
+      begin
+        SaveDialog1.Filter := SFirebirdDatabases + ' (*.fdb)|*.fdb|' + SAllFiles + ' (*.*)|*.*'; // do not localize
+        SaveDialog1.DefaultExt := 'fdb'; // do not localize
       end;
   end;
   SaveDialog1.FileName := eDateiname.Text;
@@ -79,16 +82,14 @@ begin
     0:
       begin
         lDateiname.Caption := SFileName + ':';
-        eDateiname.Text := IncludeTrailingPathDelimiter(GetDesktopFolder) + SNew
-          + '.gdb'; // do not localize
+        eDateiname.Text := IncludeTrailingPathDelimiter(GetDesktopFolder) + SNew + '.gdb'; // do not localize
         btnDatei.Visible := true;
         lServer.Visible := false;
       end;
     1:
       begin
         lDateiname.Caption := SFileName + ':';
-        eDateiname.Text := IncludeTrailingPathDelimiter(GetDesktopFolder) + SNew
-          + '.accdb'; // do not localize
+        eDateiname.Text := IncludeTrailingPathDelimiter(GetDesktopFolder) + SNew + '.accdb'; // do not localize
         btnDatei.Visible := true;
         lServer.Visible := false;
       end;
@@ -107,6 +108,13 @@ begin
         eDateiname.Text := SNew;
         btnDatei.Visible := false;
         lServer.Visible := true;
+      end;
+    4:
+      begin
+        lDateiname.Caption := SFileName + ':';
+        eDateiname.Text := IncludeTrailingPathDelimiter(GetDesktopFolder) + SNew + '.fdb'; // do not localize
+        btnDatei.Visible := true;
+        lServer.Visible := false;
       end;
   end;
   if btnDatei.Visible then

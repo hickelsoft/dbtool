@@ -491,9 +491,10 @@ begin
         end
         else
         begin
-          if FDatabaseObj.DatabaseType = dtSqlServer then
+          if FDatabaseObj.DatabaseType in [dtSqlServer, dtInterbase, dtFirebird] then
           begin
-            // DELETE anstelle TRUNCATE, da man bei einer Tabelle mit Foreign Keys kein TRUNCATE machen kann (keine Ahnung warum)
+            // SQL Server: DELETE anstelle TRUNCATE, da man bei einer Tabelle mit Foreign Keys kein TRUNCATE machen kann (keine Ahnung warum)
+            // Firebird (und InterBase?): Truncate gibt es dort nicht
             FDatabaseObj.ExecSql('DELETE FROM ' +
               FDatabaseObj.SQL_Escape_TableName(lvTables.Items.Item[i].Caption)
               + ';'); // do not localize
@@ -509,7 +510,7 @@ begin
       end
       else
       begin
-        // DM 03.05.2023 : DELETE FROM durch TRUNCATE TABLE ersetzt, da sonst bei Views ein Datenverlust entsteht!
+        // DM 03.05.2023 : DELETE FROM durch TRUNCATE TABLE ersetzt, da sonst bei Views ein Datenverlust entstehen würde, und wir bei diesem DBMS nicht wissen, ob es eine View ist!
         // if(lvTables.Items.Item[i].Selected) then FDatabaseObj.ExecSql('DELETE FROM ' + FDatabaseObj.SQL_Escape_TableName(lvTables.Items.Item[i].Caption) + ';');
         FDatabaseObj.ExecSql('TRUNCATE TABLE ' +
           FDatabaseObj.SQL_Escape_TableName(lvTables.Items.Item[i].Caption) +

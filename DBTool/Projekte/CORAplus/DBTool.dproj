@@ -66,7 +66,7 @@
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Bde;Xml.Win;IBX;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1031</VerInfo_Locale>
-        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Gui\Src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Gui\Src;C:\hbTapi Components\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_Keys>CompanyName=HickelSoft Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1992-2023 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool.exe;ProductName=DBTool;ProductVersion=8.0;Comments=</VerInfo_Keys>
         <DCC_ExeOutput>..\..\..\..\..\..\..\..\..\CORAplus\BAP\bin</DCC_ExeOutput>
     </PropertyGroup>
@@ -96,13 +96,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCC_Namespace>Datasnap.Win;Web.Win;Soap.Win;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Locale>1031</VerInfo_Locale>
+        <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <VerInfo_MajorVer>1</VerInfo_MajorVer>
-        <VerInfo_Build>0</VerInfo_Build>
-        <DCC_Define>CORA_MODE;$(DCC_Define)</DCC_Define>
-        <DCC_ExeOutput>..\..\..\..\..\..\CORAplus\BAP\bin\</DCC_ExeOutput>
-        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Cora_Lib\_Basis;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Cora_Lib\Belege\;..\..\..\Hickel_Cora_Lib\Stamm\;..\..\..\Hickel_Cora_Lib\Touren\;..\..\..\Hickel_Cora_Lib\Lohnmost\;..\..\..\Hickel_Cora_Lib\AW\;..\..\..\Hickel_Cora_Lib\LMIV\;..\..\..\Hickel_Cora_Lib\ImEx\;..\..\..\Hickel_Cora_Gui\Src\;..\..\..\Hickel_Cora_Gui\Suche\;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Cora_Gui\Src\LMIV\;..\..\..\Hickel_Cora_Gui\Suche\LMIV\;..\_APro\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Cora_Lib\hcl_Datenbank;..\..\..\Hickel_Cora_Lib\hcl_System;..\..\..\Hickel_Cora_Lib\hcl_Kern;..\..\..\Hickel_Cora_Lib\hcl_Utils;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Cora_Gui\drucken\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <Version>7.0</Version>
@@ -143,11 +139,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCC_DebugDCUs>true</DCC_DebugDCUs>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <VerInfo_MajorVer>1</VerInfo_MajorVer>
-        <VerInfo_Build>0</VerInfo_Build>
-        <VerInfo_Locale>1031</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ProjectExtensions>
@@ -192,8 +184,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <Source Name="MainSource">DBTool.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Beispiele für gekapselte Komponenten für Automation Server</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k370.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp370.bpl">Microsoft Office XP Beispiele für gekapselte Komponenten für Automation Server</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>

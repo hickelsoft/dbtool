@@ -54,7 +54,8 @@ object DLG_DateiNeu: TDLG_DateiNeu
       'InterBase'
       'Jet / Access'
       'MySQL (ODBC)'
-      'SQL-Server')
+      'SQL-Server'
+      'Firebird')
     TabOrder = 0
     OnClick = rgTypClick
   end

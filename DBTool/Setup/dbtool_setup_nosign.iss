@@ -54,7 +54,19 @@ Source: "\\Win11Dev\DBToolCompile$\DBTool32.exe"; DestDir: "{app}"; DestName: "D
 Source: "\\Win11Dev\DBToolCompile$\DBTool64.exe"; DestDir: "{app}"; DestName: "DBTool64.exe"; Flags: ignoreversion; Check: Is64BitInstallMode
 Source: "\\Win11Dev\DBToolCompile$\DBTool32.enu"; DestDir: "{app}"; DestName: "DBTool32.enu"; Flags: ignoreversion
 Source: "\\Win11Dev\DBToolCompile$\DBTool64.enu"; DestDir: "{app}"; DestName: "DBTool64.enu"; Flags: ignoreversion; Check: Is64BitInstallMode
-                                           
+
+; https://www.firebirdsql.org/en/firebird-3-0
+Source: "\\Win11Dev\DBToolCompile$\FB30_32\*.*";  DestDir: "{app}\FB30_32"; Flags: ignoreversion recursesubdirs
+Source: "\\Win11Dev\DBToolCompile$\FB30_64\*.*";  DestDir: "{app}\FB30_64"; Flags: ignoreversion recursesubdirs; Check: Is64BitInstallMode
+
+; https://www.firebirdsql.org/en/firebird-4-0
+Source: "\\Win11Dev\DBToolCompile$\FB40_32\*.*";  DestDir: "{app}\FB40_32"; Flags: ignoreversion recursesubdirs
+Source: "\\Win11Dev\DBToolCompile$\FB40_64\*.*";  DestDir: "{app}\FB40_64"; Flags: ignoreversion recursesubdirs; Check: Is64BitInstallMode
+
+; https://www.firebirdsql.org/en/firebird-5-0
+Source: "\\Win11Dev\DBToolCompile$\FB50_32\*.*";  DestDir: "{app}\FB50_32"; Flags: ignoreversion recursesubdirs
+Source: "\\Win11Dev\DBToolCompile$\FB50_64\*.*";  DestDir: "{app}\FB50_64"; Flags: ignoreversion recursesubdirs; Check: Is64BitInstallMode
+
 ; Restliche Dateien liegen hier im Setup-Verzeichnis
 Source: "lizenzbedingungen.rtf"; DestDir: "{app}"; Flags: ignoreversion
 

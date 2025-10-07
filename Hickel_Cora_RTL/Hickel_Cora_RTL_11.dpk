@@ -49,7 +49,7 @@ requires
   ipstudiowinwordxp,
   ipstudiowin,
   Jcl,
-  hbTapi29,
+  hbTapi37,
   vclie,
   inet,
   soaprtl;

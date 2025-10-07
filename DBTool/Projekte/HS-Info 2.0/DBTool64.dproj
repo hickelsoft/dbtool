@@ -74,17 +74,14 @@
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_Namespace>Datasnap.Win;Web.Win;Soap.Win;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
-        <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=Datenbank-Oberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1999-2002 Leif Bruder, 2016-2024 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool64.exe;ProductName=DBTool;ProductVersion=8.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <Debugger_RunParams>&quot;_SQLSRV:Provider=MSOLEDBSQL;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=HSINFO;Data Source=SHS\HSGMBH,49011&quot;</Debugger_RunParams>
         <Icon_MainIcon>DBTool64_Icon.ico</Icon_MainIcon>
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
-        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Cora_Lib\_Basis;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Cora_Lib\Belege\;..\..\..\Hickel_Cora_Lib\Stamm\;..\..\..\Hickel_Cora_Lib\Touren\;..\..\..\Hickel_Cora_Lib\Lohnmost\;..\..\..\Hickel_Cora_Lib\AW\;..\..\..\Hickel_Cora_Lib\LMIV\;..\..\..\Hickel_Cora_Lib\ImEx\;..\..\..\Hickel_Cora_Gui\Src\;..\..\..\Hickel_Cora_Gui\Suche\;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Cora_Gui\Src\LMIV\;..\..\..\Hickel_Cora_Gui\Suche\LMIV\;..\_APro\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Cora_Lib\hcl_Datenbank;..\..\..\Hickel_Cora_Lib\hcl_System;..\..\..\Hickel_Cora_Lib\hcl_Kern;..\..\..\Hickel_Cora_Lib\hcl_Utils;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Cora_Gui\drucken\;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <VerInfo_Build>0</VerInfo_Build>
-        <VerInfo_AutoGenVersion>False</VerInfo_AutoGenVersion>
-        <DCC_ExeOutput>c:\HS-Service\Dev\</DCC_ExeOutput>
-        <DCC_Define>HSINFO2_MODE;$(DCC_Define)</DCC_Define>
+        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
+        <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <Icon_MainIcon>DBTool64_Icon.ico</Icon_MainIcon>
@@ -96,7 +93,7 @@
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
         <DCC_ExeOutput>c:\HS-Service\Dev\</DCC_ExeOutput>
-        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Gui\Src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Gui\Src;C:\hbTapi Components\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <PreBuildEvent><![CDATA[ResCompile.bat DBTool64
 $(PreBuildEvent)]]></PreBuildEvent>
@@ -136,10 +133,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <VerInfo_MajorVer>8</VerInfo_MajorVer>
+        <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=Datenbank-Oberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1999-2002 Leif Bruder, 2016-2024 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool64.exe;ProductName=$(MSBuildProjectName);ProductVersion=8.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
-        <VerInfo_AutoGenVersion>False</VerInfo_AutoGenVersion>
-        <VerInfo_Build>0</VerInfo_Build>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
@@ -192,8 +187,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <Source Name="MainSource">DBTool64.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Beispiele für gekapselte Komponenten für Automation Server</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k370.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp370.bpl">Microsoft Office XP Beispiele für gekapselte Komponenten für Automation Server</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>

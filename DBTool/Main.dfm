@@ -136,11 +136,11 @@ object DLG_Main: TDLG_Main
       Caption = #214'&ffnen...'
       Dialog.DefaultExt = 'gdb'
       Dialog.Filter = 
-        'Alle bekannten Dateien (*.gdb;*.db;*.dbf;*.mdb;*.accdb)|*.gdb;*.' +
-        'db;*.dbf;*.mdb;*.accdb|Microsoft Jet-Datenbank (*.mdb)|*.mdb|Acc' +
-        'ess-Datenbank (*.accdb)|*.accdb|dBase-Dateien (*.dbf)|*.dbf|Para' +
-        'dox-Dateien (*.db)|*.db|InterBase-Dateien (*.gdb)|*.gdb|Alle Dat' +
-        'eien (*.*)|*.*'
+        'Alle bekannten Dateien (*.gdb;*.ib;*.fdb;*.db;*.dbf;*.mdb;*.accdb)|*.gdb;*.ib;*.' +
+        'fdb;*.db;*.dbf;*.mdb;*.accdb|Microsoft Jet-Datenbank (*.mdb)|*.m' +
+        'db|Access-Datenbank (*.accdb)|*.accdb|dBase-Dateien (*.dbf)|*.db' +
+        'f|Paradox-Dateien (*.db)|*.db|InterBase-Dateien (*.gdb;*.ib)|*.gdb;*.ib|Fi' +
+        'rebird-Datieen (*.fdb)|*.fdb|Alle Dateien (*.*)|*.*'
       Dialog.Options = [ofAllowMultiSelect, ofPathMustExist, ofFileMustExist, ofEnableSizing]
       Hint = #214'ffnen|Vorhandene Datei '#246'ffnen'
       ImageIndex = 0

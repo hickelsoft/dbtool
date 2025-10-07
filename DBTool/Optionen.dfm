@@ -3,7 +3,7 @@ object DLG_Optionen: TDLG_Optionen
   Top = 118
   BorderStyle = bsDialog
   Caption = 'Optionen'
-  ClientHeight = 378
+  ClientHeight = 414
   ClientWidth = 356
   Color = clBtnFace
   Font.Charset = ANSI_CHARSET
@@ -20,16 +20,16 @@ object DLG_Optionen: TDLG_Optionen
     Left = 8
     Top = 8
     Width = 237
-    Height = 178
+    Height = 210
     Caption = 'Als Standard-Anwendung einrichten'
     TabOrder = 0
     object btnStandardDB: TSpeedButton
-      Left = 16
-      Top = 142
+      Left = 17
+      Top = 174
       Width = 205
       Height = 25
       Hint = 'DBTool als Standard-Anwendung f'#252'r Datenbanken einrichten'
-      Caption = ' Paradox-Tabellen (*.db)'
+      Caption = 'Paradox-Tabellen (*.db)'
       Font.Charset = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -11
@@ -46,7 +46,7 @@ object DLG_Optionen: TDLG_Optionen
       Width = 205
       Height = 25
       Hint = 'DBTool als Standard-Anwendung f'#252'r Datenbanken einrichten'
-      Caption = ' dBase-Tabellen (*.dbf)'
+      Caption = 'dBase-Tabellen (*.dbf)'
       Font.Charset = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -11
@@ -63,7 +63,7 @@ object DLG_Optionen: TDLG_Optionen
       Width = 205
       Height = 25
       Hint = 'DBTool als Standard-Anwendung f'#252'r Datenbanken einrichten'
-      Caption = ' Access 97-Datenbanken (*.mdb)'
+      Caption = 'Access 97-Datenbanken (*.mdb)'
       Font.Charset = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -11
@@ -80,7 +80,7 @@ object DLG_Optionen: TDLG_Optionen
       Width = 205
       Height = 25
       Hint = 'DBTool als Standard-Anwendung f'#252'r Datenbanken einrichten'
-      Caption = ' InterBase-Datenbanken (*.gdb)'
+      Caption = 'InterBase-Datenbanken (*.gdb)'
       Font.Charset = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -11
@@ -97,7 +97,7 @@ object DLG_Optionen: TDLG_Optionen
       Width = 205
       Height = 25
       Hint = 'DBTool als Standard-Anwendung f'#252'r Datenbanken einrichten'
-      Caption = ' Access-Datenbanken (*.accdb)'
+      Caption = 'Access-Datenbanken (*.accdb)'
       Font.Charset = ANSI_CHARSET
       Font.Color = clBlack
       Font.Height = -11
@@ -108,10 +108,27 @@ object DLG_Optionen: TDLG_Optionen
       ShowHint = True
       OnClick = btnStandardAccDbClick
     end
+    object btnStandardFDB: TSpeedButton
+      Left = 16
+      Top = 145
+      Width = 205
+      Height = 25
+      Hint = 'DBTool als Standard-Anwendung f'#252'r Datenbanken einrichten'
+      Caption = 'Firebird-Datenbanken (*.fdb)'
+      Font.Charset = ANSI_CHARSET
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      OnClick = btnStandardFDBClick
+    end
   end
   object GroupBox2: TGroupBox
     Left = 8
-    Top = 192
+    Top = 224
     Width = 237
     Height = 169
     Caption = 'Farben'
@@ -224,6 +241,6 @@ object DLG_Optionen: TDLG_Optionen
   object ColorDialog1: TColorDialog
     Options = [cdSolidColor]
     Left = 264
-    Top = 244
+    Top = 276
   end
 end

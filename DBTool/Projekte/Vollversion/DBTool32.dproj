@@ -78,7 +78,7 @@
         <Icon_MainIcon>DBTool32_Icon.ico</Icon_MainIcon>
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
-        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Gui\Src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Gui\Src;C:\hbTapi Components\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
         <DCC_ExeOutput>c:\HS-Service\</DCC_ExeOutput>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -99,13 +99,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCC_Namespace>Datasnap.Win;Web.Win;Soap.Win;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
-        <VerInfo_Locale>1031</VerInfo_Locale>
+        <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <VerInfo_MajorVer>1</VerInfo_MajorVer>
-        <VerInfo_Build>0</VerInfo_Build>
-        <DCC_Define>HSINFO_VOLLVERSION;$(DCC_Define)</DCC_Define>
-        <DCC_ExeOutput>c:\HS-Service\</DCC_ExeOutput>
-        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\_APro\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <Version>7.0</Version>
@@ -145,13 +141,10 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <VerInfo_Debug>true</VerInfo_Debug>
         <VerInfo_IncludeVerInfo>false</VerInfo_IncludeVerInfo>
         <DCC_DebugDCUs>true</DCC_DebugDCUs>
+        <Debugger_RunParams>C:\Users\dmarschall\Desktop\ZMI_CLIENT15.FDB</Debugger_RunParams>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
-        <VerInfo_MajorVer>1</VerInfo_MajorVer>
-        <VerInfo_Build>0</VerInfo_Build>
-        <VerInfo_Locale>1031</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ProjectExtensions>
@@ -196,8 +189,8 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <Source Name="MainSource">DBTool32.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Beispiele für gekapselte Komponenten für Automation Server</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k370.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp370.bpl">Microsoft Office XP Beispiele für gekapselte Komponenten für Automation Server</Excluded_Packages>
                 </Excluded_Packages>
                 <Language>
                     <Language Name="ProjectLang">$00000407</Language>

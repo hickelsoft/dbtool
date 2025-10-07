@@ -92,10 +92,10 @@ begin
   begin
 {$IFNDEF WIN64}
     Label5.Caption := S32Bits +
-      '  [Access, dBase, InterBase, Paradox, MySQL, SqlServer]';
+      '  [Access, dBase, InterBase, Firebird, Paradox, MySQL, SqlServer]';
     // do not localize
 {$ELSE}
-    Label5.Caption := S64Bits + '  [Access, InterBase, MySQL, SqlServer]';
+    Label5.Caption := S64Bits + '  [Access, InterBase, Firebird, MySQL, SqlServer]';
     // do not localize
 {$ENDIF}
     // Die "Vollversion" von DBTool ist kostenlos und OpenSource!

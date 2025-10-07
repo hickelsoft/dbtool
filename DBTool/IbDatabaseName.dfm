@@ -2,7 +2,6 @@ object DLG_IbDatabaseName: TDLG_IbDatabaseName
   Left = 284
   Top = 107
   BorderStyle = bsDialog
-  Caption = 'InterBase-Fehler'
   ClientHeight = 109
   ClientWidth = 464
   Color = clBtnFace

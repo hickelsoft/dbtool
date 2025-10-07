@@ -6,14 +6,29 @@ interface
 
 uses
   Windows, Classes, Forms, DB, {$IFNDEF WIN64}DBTables, bdeconst, {$ENDIF} IBDatabase, IBTable, IBQuery, ADODB, Registry,
-  OleCtrls, Variants, ComObj, dialogs, ib, adoconst;
+  OleCtrls, Variants, ComObj, dialogs, ib, adoconst,
+  FireDAC.Stan.Intf,
+  FireDAC.Stan.Option,
+  FireDAC.Stan.Error,
+  FireDAC.UI.Intf,
+  FireDAC.Phys.Intf,
+  FireDAC.Stan.Def,
+  FireDAC.Stan.Pool,
+  FireDAC.Stan.Async,
+  FireDAC.Phys,
+  FireDAC.Phys.FB,
+  FireDAC.Phys.FBDef,
+  FireDAC.VCLUI.Wait,
+  FireDAC.Comp.Client,
+  FireDAC.Phys.IBBase,
+  FireDAC.DApt;
 
 type
   TDatabaseType = (
 {$IFNDEF WIN64}
     dtLocal,
 {$ENDIF}
-    dtInterbase, dtAccess, dtSqlServer, dtMySql);
+    dtInterbase, dtFirebird, dtAccess, dtSqlServer, dtMySql);
 
 type
   TProductDbType = (ptNotChecked, ptCORAplus, ptHsInfo2, ptCmDb2, ptOther);
@@ -27,12 +42,13 @@ type
 {$ENDIF}
     DB_IB: TIBDatabase;
     DB_IB_Trans: TIBTransaction;
+    DB_FB: TFDConnection;
+    DB_FB_Trans: TFDTransaction;
     DB_ADO: TADOConnection;
     FDatabaseName: string;
     FConnWasOk: boolean;
     function GetSupportsCommit: boolean;
-    function GetSqlFieldType(FieldType: TFieldType;
-      Precision, FieldSize: integer): string;
+    function GetSqlFieldType(FieldType: TFieldType; Precision, FieldSize: integer): string;
     // function UmlauteRaus(Sql: String): string;
     procedure BeforeDelete(DataSet: TDataSet);
   protected
@@ -41,38 +57,29 @@ type
     constructor Create(DatabaseName: string);
     destructor Destroy; override;
 
-    class procedure CreateDataBase(dt: TDatabaseType;
-      const sName, sServer: string);
+    class procedure CreateDataBase(dt: TDatabaseType; const sName, sServer: string);
 
     function GetTable(Tablename: string): TDataSet;
     function Query(Sql: string): TDataSet;
 
     function GetViewDefinition_Implemented: boolean;
-    function GetViewDefinition(viewName: string): string;
-    // requires GetViewDefinition_Implemented=true
+    function GetViewDefinition(viewName: string): string; // requires GetViewDefinition_Implemented=true
 
     function ViewDetectionImplemented: boolean;
-    function IsView(viewName: string): boolean;
-    // requires ViewDetectionImplemented=true
-    procedure GetAllViews(sl: TStringList);
-    // requires ViewDetectionImplemented=true
+    function IsView(viewName: string): boolean; // requires ViewDetectionImplemented=true
+    procedure GetAllViews(sl: TStringList); // requires ViewDetectionImplemented=true
 
     function GetAllStoredProcedures_Implemented: boolean;
-    procedure GetAllStoredProcedures(sl: TStringList);
-    // requires GetAllStoredProcedures_Implemented=true
-    function IsStoredProcedure(procedureName: string): boolean;
-    // requires GetAllStoredProcedures_Implemented=true
+    procedure GetAllStoredProcedures(sl: TStringList); // requires GetAllStoredProcedures_Implemented=true
+    function IsStoredProcedure(procedureName: string): boolean; // requires GetAllStoredProcedures_Implemented=true
 
     function GetStoredProcedureDefinition_Implemented: boolean;
-    function GetStoredProcedureDefinition(procedureName: string): string;
-    // requires GetStoredProcedureDefinition_Implemented=true
+    function GetStoredProcedureDefinition(procedureName: string): string; // requires GetStoredProcedureDefinition_Implemented=true
 
     procedure GetAllTablesWithTriggers(sl: TStringList);
     function GetTriggers_Implemented: boolean;
-    function HasTriggers(Tablename: string): boolean;
-    // requires GetTriggers_Implemented=true
-    procedure GetTriggers(Tablename: string; sl: TStringList);
-    // requires GetTriggers_Implemented=true
+    function HasTriggers(Tablename: string): boolean; // requires GetTriggers_Implemented=true
+    procedure GetTriggers(Tablename: string; sl: TStringList); // requires GetTriggers_Implemented=true
 
     procedure ExecSql(Sql: String);
     procedure CommitRetaining;
@@ -118,6 +125,38 @@ uses
 resourcestring
   SInternalError = 'Interner Fehler';
 
+type
+  TFirebirdODSVersion = record
+    Major: Word;
+    Minor: Word;
+  end;
+
+function GetFirebirdODSVersion(const AFileName: string): TFirebirdODSVersion;
+var
+  FS: TFileStream;
+  Buf: array[0..1] of Byte;
+begin
+  // https://www.firebirdsql.org/file/documentation/html/en/firebirddocs/firebirdinternals/firebird-internals.html
+  Result.Major := 0;
+  Result.Minor := 0;
+
+  if not FileExists(AFileName) then
+    Exit;
+
+  FS := TFileStream.Create(AFileName, fmOpenRead or fmShareDenyNone);
+  try
+    FS.Position := $12;
+    FS.ReadBuffer(Buf, 2);
+    Result.Major := (Buf[0] + Buf[1] * 256) - $8000;
+
+    FS.Position := $40;
+    FS.ReadBuffer(Buf, 2);
+    Result.Minor := Buf[0] + Buf[1] * 256;
+  finally
+    FreeAndNil(FS);
+  end;
+end;
+
 constructor TDbToolDatabase.Create(DatabaseName: string);
 
   procedure TryAccessDb(ProvName: string);
@@ -149,12 +188,17 @@ var
   connStrPrefix: string;
   GivenProvider: string;
   sTmp: string;
+  FDPhysFBDriverLink1: TFDPhysFBDriverLink;
+  FbClientPath: string;
+  FbVersion: TFirebirdODSVersion;
 resourcestring
   SAccessProviderLoadError =
     'Access DB Provider konnte nicht geladen werden: %s';
   SUnknownDatabaseType = 'Unbekannter Datenbanktyp: %s';
-  SDatabaseCouldNotBeOpened = 'Die Datenbank konnte nicht geöffnet werden.';
+  SDatabaseCouldNotBeOpened = 'Die Datenbank konnte nicht geöffnet werden: %s';
   SNoAceOleDbProviderRegistered = 'Kein ACE OLEDB Provider registriert!';
+  SIbError = 'InterBase-Fehler';
+  SFbError = 'Firebird-Fehler';
 begin
   inherited Create;
 
@@ -167,6 +211,8 @@ begin
 {$ENDIF}
   DB_IB := nil;
   DB_IB_Trans := nil;
+  DB_FB := nil;
+  DB_FB_Trans := nil;
   DB_ADO := nil;
 
   if Copy(DatabaseName, 1, 7) = '_MYSQL:' then // do not localize
@@ -290,7 +336,7 @@ begin
     end
   end
 {$ENDIF}
-  else if sExt = '.GDB' then // Interbase-Datenbank // do not localize
+  else if (sExt = '.GDB') or (sExt = '.IB') then // Interbase-Datenbank // do not localize
   begin
     Screen.Cursor := crHourGlass;
     try
@@ -322,6 +368,7 @@ begin
           begin
             aDlg := TDLG_IbDatabaseName.Create(nil);
             try
+              aDlg.Caption := SIbError;
               // Combobox füllen...
               aReg := TRegIniFile.Create(ConfigRegKey);
               try
@@ -339,8 +386,7 @@ begin
                   aDlg.Edit1.Items.Add(aDlg.Edit1.Text);
                   aReg := TRegIniFile.Create(ConfigRegKey);
                   try
-                    aReg.WriteString('MRU', 'InterBase',
-                      aDlg.Edit1.Items.CommaText); // do not localize
+                    aReg.WriteString('MRU', 'InterBase', aDlg.Edit1.Items.CommaText); // do not localize
                   finally
                     FreeAndNil(aReg);
                   end;
@@ -354,19 +400,137 @@ begin
                   DB_IB_Trans.Active := true;
                   bFehler := false;
                 except
-                  on E: EAbort do
+                  on E2: EAbort do
                   begin
                     Abort;
                   end;
-                  on E: Exception do
+                  on E2: Exception do
                   begin
-                    // ignore
+                    raise Exception.CreateFmt(SDatabaseCouldNotBeOpened, [E2.Message]);
                   end;
                 end;
               end
               else
               begin
-                raise Exception.Create(SDatabaseCouldNotBeOpened);
+                raise Exception.CreateFmt(SDatabaseCouldNotBeOpened, [E.Message]);
+              end;
+            finally
+              FreeAndNil(aDlg);
+            end;
+          end;
+        end;
+      end;
+    finally
+      Screen.Cursor := crDefault;
+    end;
+  end
+  else if sExt = '.FDB' then // Firebird-Datenbank // do not localize
+  begin
+    Screen.Cursor := crHourGlass;
+    try
+      FDatabaseType := dtFirebird;
+      DB_FB := TFDConnection.Create(nil);
+
+      {$REGION 'Try to load built-in FB Client'}
+      if FileExists(DatabaseName) then
+      begin
+        // https://ib-aid.com/en/articles/all-firebird-and-interbase-on-disk-structure-ods-versions/
+        FbClientPath := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0)))+'FB';
+        FbVersion := GetFirebirdODSVersion(DatabaseName);
+        if      (FbVersion.Major = 12) and (FbVersion.Minor = 0) then FbClientPath := FbClientPath + '30'
+        else if (FbVersion.Major = 13) and (FbVersion.Minor = 0) then FbClientPath := FbClientPath + '40'
+        else if (FbVersion.Major = 13) and (FbVersion.Minor = 1) then FbClientPath := FbClientPath + '50'
+        else FbClientPath := '__NON_EXISTING__'; // make sure DirectoryExists will fail
+        {$IFDEF WIN64}
+        FbClientPath := FbClientPath + '_64';
+        {$ELSE}
+        FbClientPath := FbClientPath + '_32';
+        {$ENDIF}
+        if DirectoryExists(FbClientPath) then
+        begin
+          FDPhysFBDriverLink1 := TFDPhysFBDriverLink.Create(nil);
+          FDPhysFBDriverLink1.VendorHome := FbClientPath;
+          FDPhysFBDriverLink1.VendorLib := 'fbclient.dll';
+          FDPhysFBDriverLink1.Embedded := True;
+        end;
+      end;
+      {$ENDREGION}
+
+      DB_FB.DriverName := 'FB'; // do not localize
+
+      DB_FB.Params.Values['Server'] := '';
+      DB_FB.Params.Values['Protocol'] := 'Local'; // do not localize
+
+      DB_FB.Params.Values['Database'] := DatabaseName;
+      DB_FB.Params.Values['User_Name'] := 'SYSDBA'; // do not localize
+      DB_FB.Params.Values['Password'] := 'masterkey'; // do not localize
+      DB_FB.Params.Values['CharacterSet'] := 'UTF8'; // TODO: configurable?
+
+      DB_FB_Trans := TFDTransaction.Create(nil);
+      DB_FB_Trans.Connection := DB_FB;
+      DB_FB.Transaction := DB_FB_Trans;
+
+      try
+        DB_FB.Open;
+        //DB_FB_Trans.Active := true;
+      except
+        on E: EAbort do
+        begin
+          Abort;
+        end;
+        on E: Exception do
+        begin
+          bFehler := true;
+
+          while bFehler do
+          begin
+            aDlg := TDLG_IbDatabaseName.Create(nil);
+            try
+              aDlg.Caption := SFbError;
+              // Combobox füllen...
+              aReg := TRegIniFile.Create(ConfigRegKey);
+              try
+                aDlg.Edit1.Items.CommaText :=
+                  aReg.ReadString('MRU', 'Firebird', ''); // do not localize
+              finally
+                FreeAndNil(aReg);
+              end;
+
+              if aDlg.ShowModal = mrOk then
+              begin
+                // ggf. Datenbank-MRU speichern...
+                if aDlg.Edit1.Items.IndexOf(aDlg.Edit1.Text) = -1 then
+                begin
+                  aDlg.Edit1.Items.Add(aDlg.Edit1.Text);
+                  aReg := TRegIniFile.Create(ConfigRegKey);
+                  try
+                    aReg.WriteString('MRU', 'Firebird', aDlg.Edit1.Items.CommaText); // do not localize
+                  finally
+                    FreeAndNil(aReg);
+                  end;
+                end;
+
+                DatabaseName := aDlg.Edit1.Text;
+                DB_FB.Params.Values['Database'] := DatabaseName;
+
+                try
+                  DB_FB.Connected := true;
+                  //DB_FB_Trans.Active := true;
+                  bFehler := false;
+                except
+                  on E2: EAbort do
+                  begin
+                    Abort;
+                  end;
+                  on E2: Exception do
+                  begin
+                    raise Exception.CreateFmt(SDatabaseCouldNotBeOpened, [E2.Message]);
+                  end;
+                end;
+              end
+              else
+              begin
+                raise Exception.CreateFmt(SDatabaseCouldNotBeOpened, [E.Message]);
               end;
             finally
               FreeAndNil(aDlg);
@@ -450,6 +614,7 @@ resourcestring
     'Local File Create Database nicht unterstützt';
   SInterbaseNotPossible =
     'InterBase-Datenbanken können aufgrund von Einschränkungen der InterBase-API (noch) nicht erstellt werden.';
+  SFirebirdNotPossible = 'Firebird-Datenbanken können derzeit nicht erstellt werden';
   SJetServerNameNotAllowed = 'Servername in JET CreateDatabase nicht erlaubt';
   SInterbaseServerNameNotAllowed =
     'Servername in Interbase CreateDatabase nicht erlaubt';
@@ -478,6 +643,10 @@ begin
       isc_commit_transaction(status, &trans);
       isc_detach_database(status, &newdb);
     }
+  end;
+  if dt = dtFirebird then
+  begin
+    raise Exception.Create(SFirebirdNotPossible);
   end;
   if dt = dtAccess then
   begin
@@ -515,6 +684,10 @@ begin
     FreeAndNil(DB_IB);
   if Assigned(DB_IB_Trans) then
     FreeAndNil(DB_IB_Trans);
+  if Assigned(DB_FB) then
+    FreeAndNil(DB_FB);
+  if Assigned(DB_FB_Trans) then
+    FreeAndNil(DB_FB_Trans);
   if Assigned(DB_ADO) then
   begin
     try
@@ -546,6 +719,7 @@ var
 {$ENDIF}
   adoReturn: TADOTable;
   ibReturn: TIBTable;
+  fbReturn: TFDTable;
 begin
   case FDatabaseType of
 {$IFNDEF WIN64}
@@ -579,6 +753,21 @@ begin
         end;
       end;
 
+    dtFirebird:
+      begin
+        Screen.Cursor := crHourGlass;
+        try
+          fbReturn := TFDTable.Create(DB_FB);
+          fbReturn.Connection := DB_FB;
+          fbReturn.Tablename := SQL_Escape_TableName(Tablename);
+          fbReturn.Open;
+          result := fbReturn;
+          exit;
+        finally
+          Screen.Cursor := crDefault;
+        end;
+      end;
+
     dtAccess, dtSqlServer, dtMySql:
       begin
         Screen.Cursor := crHourGlass;
@@ -602,6 +791,7 @@ end;
 procedure TDbToolDatabase.ExecSql(Sql: string);
 var
   IBQuery: TIBQuery;
+  FBQuery: TFDQuery;
 {$IFNDEF WIN64}
   bdeQuery: TQuery;
 {$ENDIF}
@@ -642,6 +832,20 @@ begin
           end;
         end;
 
+      dtFirebird:
+        begin
+          FBQuery := TFDQuery.Create(DB_FB);
+          try
+            FBQuery.Connection := DB_FB;
+            FBQuery.Transaction := DB_FB_Trans;
+            FBQuery.Sql.Clear;
+            FBQuery.Sql.Add(Sql);
+            FBQuery.ExecSql;
+          finally
+            FreeAndNil(FBQuery);
+          end;
+        end;
+
       dtAccess, dtSqlServer, dtMySql:
         begin
           adoQuery := TADOQuery.Create(DB_ADO);
@@ -672,16 +876,32 @@ begin
   if not ViewDetectionImplemented then
     exit;
 
-  q := Query('SELECT v.name ' + // do not localize
-    'FROM sys.views v'); // do not localize
-  try
-    while not q.Eof do
-    begin
-      sl.Add(q.Fields[0].AsWideString);
-      q.Next;
+  if DatabaseType = dtSqlServer then
+  begin
+    q := Query('SELECT v.name FROM sys.views v'); // do not localize
+    try
+      while not q.Eof do
+      begin
+        sl.Add(q.Fields[0].AsWideString);
+        q.Next;
+      end;
+    finally
+      FreeAndNil(q);
     end;
-  finally
-    FreeAndNil(q);
+  end;
+
+  if DatabaseType in [dtInterbase, dtFirebird] then
+  begin
+    q := Query('SELECT rdb$relation_name FROM rdb$relations WHERE rdb$relation_type = 1'); // do not localize
+    try
+      while not q.Eof do
+      begin
+        sl.Add(q.Fields[0].AsWideString);
+        q.Next;
+      end;
+    finally
+      FreeAndNil(q);
+    end;
   end;
 end;
 
@@ -692,17 +912,34 @@ begin
   if not GetAllStoredProcedures_Implemented then
     exit;
 
-  q := Query('select * ' + // do not localize
-    'from dbo.sysobjects ' + // do not localize
-    'where xtype = ''P'' and name not like ''dt_%'';'); // do not localize
-  try
-    while not q.Eof do
-    begin
-      sl.Add(q.Fields[0].AsWideString);
-      q.Next;
+  if DatabaseType = dtSqlServer then
+  begin
+    q := Query('select name ' + // do not localize
+               'from dbo.sysobjects ' + // do not localize
+               'where xtype = ''P'' and name not like ''dt_%'';'); // do not localize
+    try
+      while not q.Eof do
+      begin
+        sl.Add(q.Fields[0].AsWideString);
+        q.Next;
+      end;
+    finally
+      FreeAndNil(q);
     end;
-  finally
-    FreeAndNil(q);
+  end;
+
+  if DatabaseType in [dtInterbase, dtFirebird] then
+  begin
+    q := Query('select RDB$PROCEDURE_NAME from RDB$PROCEDURES'); // do not localize
+    try
+      while not q.Eof do
+      begin
+        sl.Add(q.Fields[0].AsWideString);
+        q.Next;
+      end;
+    finally
+      FreeAndNil(q);
+    end;
   end;
 end;
 
@@ -728,23 +965,25 @@ begin
   if not GetStoredProcedureDefinition_Implemented then
     exit;
 
-  q := Query('SELECT OBJECT_DEFINITION (OBJECT_ID(N''' + procedureName +
-    '''))'); // do not localize
-  try
-    if q.RecordCount = 0 then
-      exit;
-    if Trim(q.Fields[0].AsWideString) = '' then
-      exit;
-    if IstHickelSoftProduktDb then
-      result := '-- ' + SExecuteStoredProcedureWith_ + ' ''exec ' +
-        SQL_Escape_String(procedureName) + '''' + #13#10 +
-        Trim(q.Fields[0].AsWideString) // do not localize
-    else
-      result := '-- ' + SExecuteStoredProcedureWith_ + ' ''EXEC ' +
-        SQL_Escape_String(procedureName) + '''' + #13#10 +
-        Trim(q.Fields[0].AsWideString); // do not localize
-  finally
-    FreeAndNil(q);
+  if DatabaseType = dtSqlServer then
+  begin
+    q := Query('SELECT OBJECT_DEFINITION (OBJECT_ID(N''' + procedureName + '''))'); // do not localize
+    try
+      if q.RecordCount = 0 then
+        exit;
+      if Trim(q.Fields[0].AsWideString) = '' then
+        exit;
+      if IstHickelSoftProduktDb then
+        result := '-- ' + SExecuteStoredProcedureWith_ + ' ''exec ' +
+          SQL_Escape_String(procedureName) + '''' + #13#10 +
+          Trim(q.Fields[0].AsWideString) // do not localize
+      else
+        result := '-- ' + SExecuteStoredProcedureWith_ + ' ''EXEC ' +
+          SQL_Escape_String(procedureName) + '''' + #13#10 +
+          Trim(q.Fields[0].AsWideString); // do not localize
+    finally
+      FreeAndNil(q);
+    end;
   end;
 end;
 
@@ -756,19 +995,34 @@ begin
   if not ViewDetectionImplemented then
     exit;
 
-  q := Query('SELECT top 1 v.name ' + // do not localize
-    'FROM sys.views v ' + // do not localize
-    'WHERE v.name = ''' + viewName + ''''); // do not localize
-  try
-    result := q.RecordCount > 0;
-  finally
-    FreeAndNil(q);
+  if DatabaseType = dtSqlServer then
+  begin
+    q := Query('SELECT top 1 v.name ' + // do not localize
+               'FROM sys.views v ' + // do not localize
+               'WHERE v.name = ''' + SQL_Escape_String(viewName) + ''''); // do not localize
+    try
+      result := q.RecordCount > 0;
+    finally
+      FreeAndNil(q);
+    end;
+  end;
+
+  if DatabaseType in [dtInterbase, dtFirebird] then
+  begin
+    q := Query('SELECT * FROM rdb$relations ' + // do not localize
+               'WHERE rdb$relation_type = 1 AND ' + // do not localize
+               '      rdb$relation_name = ''' + SQL_Escape_String(viewName) + ''''); // do not localize
+    try
+      result := q.RecordCount > 0;
+    finally
+      FreeAndNil(q);
+    end;
   end;
 end;
 
 function TDbToolDatabase.GetViewDefinition_Implemented: boolean;
 begin
-  result := DatabaseType = dtSqlServer;
+  result := DatabaseType in [dtSqlServer, dtInterbase, dtFirebird];
   // TODO: Also implement other DBMS in the future
 end;
 
@@ -781,28 +1035,49 @@ begin
   if not GetViewDefinition_Implemented then
     exit;
 
-  q := Query('SELECT ' + // do not localize
-    '    m.definition ' + // do not localize
-    'FROM sys.views v ' + // do not localize
-    'INNER JOIN sys.sql_modules m ON m.object_id = v.object_id ' +
-    // do not localize
-    'WHERE v.name = ''' + viewName + ''''); // do not localize
-  try
-    if q.RecordCount = 0 then
-      exit;
-    result := q.Fields[0].AsWideString;
-    if Trim(result) = '' then
-      exit;
-    p := Pos(' as', LowerCase(result));
-    if p > 0 then
-      result := Copy(result, p + 4, Length(result) - (p + 4) + 1);
-    result := Trim(result);
-    if result = '' then
-      exit;
-    result := '-- ALTER VIEW ' + SQL_Escape_TableName(viewName) + ' AS' + #13#10
-      + result; // do not localize
-  finally
-    FreeAndNil(q);
+  if DatabaseType = dtSqlServer then
+  begin
+    q := Query('SELECT m.definition ' + // do not localize
+               'FROM sys.views v ' + // do not localize
+               'INNER JOIN sys.sql_modules m ON m.object_id = v.object_id ' + // do not localize
+               'WHERE v.name = ''' + SQL_Escape_String(viewName) + ''''); // do not localize
+    try
+      if q.RecordCount = 0 then
+        exit;
+      result := q.Fields[0].AsWideString;
+      if Trim(result) = '' then
+        exit;
+      p := Pos(' as', LowerCase(result));
+      if p > 0 then
+        result := Copy(result, p + 4, Length(result) - (p + 4) + 1);
+      result := Trim(result);
+      if result = '' then
+        exit;
+      result := '-- ALTER VIEW ' + SQL_Escape_TableName(viewName) + ' AS' + #13#10
+        + result; // do not localize
+    finally
+      FreeAndNil(q);
+    end;
+  end;
+
+  if DatabaseType in [dtInterbase, dtFirebird] then
+  begin
+    q := Query('SELECT rdb$view_source ' + // do not localize
+               'FROM rdb$relations ' + // do not localize
+               'WHERE rdb$relation_type = 1 and rdb$relation_name = ''' + SQL_Escape_String(viewName) + ''''); // do not localize
+    try
+      if q.RecordCount = 0 then
+        exit;
+      result := q.Fields[0].AsWideString;
+
+      result := StringReplace(result, #13#10, #10, [rfReplaceall]);
+      result := StringReplace(result, #10, #13#10, [rfReplaceall]);
+
+      result := '-- ALTER VIEW ' + SQL_Escape_TableName(viewName) + ' AS' + #13#10
+        + result; // do not localize
+    finally
+      FreeAndNil(q);
+    end;
   end;
 end;
 
@@ -810,6 +1085,7 @@ function TDbToolDatabase.Query(Sql: String): TDataSet;
 // Achtung: Ergebnis muss mit Free() freigegeben werden
 var
   IBQuery: TIBQuery;
+  FBQuery: TFDQuery;
 {$IFNDEF WIN64}
   bdeQuery: TQuery;
 {$ENDIF}
@@ -852,30 +1128,69 @@ begin
 {$ENDIF}
       dtInterbase:
         begin
-          IBQuery := TIBQuery.Create(DB_IB);
-          IBQuery.Database := DB_IB;
-          IBQuery.Transaction := DB_IB_Trans;
-          IBQuery.BeforeDelete := BeforeDelete;
-          IBQuery.Sql.Clear;
-          IBQuery.Sql.Add(Sql);
-          try
-            IBQuery.Active := true;
-            result := IBQuery;
-          except
-            on E: EAbort do
-            begin
-              Abort;
-            end;
-            on E: EIBError do
-            begin
-              if E.SQLCode = Ord(ibxeEmptySQLStatement) then
-                result := nil
-              else
+          if not StartsText('SELECT', Trim(Sql)) then // TODO: There could be comments at the beginning!!!
+          begin
+            DB_IB.ExecuteImmediate(Sql, DB_IB_Trans);
+            result := nil;
+          end
+          else
+          begin
+            IBQuery := TIBQuery.Create(DB_IB);
+            IBQuery.Database := DB_IB;
+            IBQuery.Transaction := DB_IB_Trans;
+            IBQuery.BeforeDelete := BeforeDelete;
+            IBQuery.Sql.Clear;
+            IBQuery.Sql.Add(Sql);
+            try
+              IBQuery.Active := true;
+              result := IBQuery;
+            except
+              on E: EAbort do
+              begin
+                Abort;
+              end;
+              on E: EIBError do
+              begin
+                if E.SQLCode = Ord(ibxeEmptySQLStatement) then
+                  result := nil
+                else
+                  raise;
+              end;
+              on E: Exception do
+              begin
                 raise;
+              end;
             end;
-            on E: Exception do
-            begin
-              raise;
+          end;
+        end;
+
+      dtFirebird:
+        begin
+          if not StartsText('SELECT', Trim(Sql)) then // TODO: There could be comments at the beginning!!!
+          begin
+            DB_FB.ExecSQL(Sql);
+            result := nil;
+          end
+          else
+          begin
+            FBQuery := TFDQuery.Create(DB_FB);
+            FBQuery.Connection := DB_FB;
+            FBQuery.Transaction := DB_FB_Trans;
+            FBQuery.BeforeDelete := BeforeDelete;
+            FBQuery.Sql.Clear;
+            FBQuery.Sql.Add(Sql);
+            try
+              FBQuery.Active := true;
+              result := FBQuery;
+            except
+              on E: EAbort do
+              begin
+                Abort;
+              end;
+              on E: Exception do
+              begin
+                raise;
+              end;
             end;
           end;
         end;
@@ -1107,6 +1422,11 @@ begin
         DB_IB.GetTableNames(Dest);
       end;
 
+    dtFirebird:
+      begin
+        DB_FB.GetTableNames('', 'DBO', '%', Dest, [osMy, osSystem, osOther], [tkTable, tkView]);
+      end;
+
     dtAccess, dtSqlServer, dtMySql:
       begin
         DB_ADO.GetTableNames_WithSchemaName(Dest);
@@ -1130,6 +1450,7 @@ var
 {$ENDIF}
   adoReturn: TADOTable;
   ibReturn: TIBTable;
+  fbReturn: TFDTable;
 begin
   case FDatabaseType of
 {$IFNDEF WIN64}
@@ -1159,6 +1480,22 @@ begin
           ibReturn.DisableControls; // Performance?
           ibReturn.Open;
           result := TIBTable(ibReturn).IndexDefs;
+          exit;
+        finally
+          Screen.Cursor := crDefault;
+        end;
+      end;
+
+    dtFirebird:
+      begin
+        Screen.Cursor := crHourGlass;
+        try
+          fbReturn := TFDTable.Create(DB_FB);
+          fbReturn.Connection := DB_FB;
+          fbReturn.Tablename := SQL_Escape_TableName(aTableName);
+          fbReturn.DisableControls; // Performance?
+          fbReturn.Open;
+          result := TFDTable(fbReturn).IndexDefs;
           exit;
         finally
           Screen.Cursor := crDefault;
@@ -1195,6 +1532,8 @@ begin
 {$ENDIF}
     if aTable.ClassNameIs('TIBTable') then // do not localize
       result := TIBTable(aTable).IndexDefs
+    else if aTable.ClassNameIs('TFDTable') then // do not localize
+      result := TFDTable(aTable).IndexDefs
     else if aTable.ClassNameIs('TADOTable') then // do not localize
       result := TADOTable(aTable).IndexDefs
     else
@@ -1224,6 +1563,15 @@ begin
     begin
       TIBQuery(aTable).Active := false;
       TIBQuery(aTable).Active := true;
+    end
+    else if aTable.ClassNameIs('TFDTable') then // do not localize
+    begin
+      TFDTable(aTable).Refresh;
+    end
+    else if aTable.ClassNameIs('TFDQuery') then // do not localize
+    begin
+      TFDQuery(aTable).Active := false;
+      TFDQuery(aTable).Active := true;
     end
     else if aTable.ClassNameIs('TADOTable') then // do not localize
     begin
@@ -1308,6 +1656,36 @@ begin
         sFilter := ' where ' + sFilter + sOrder; // do not localize
       TIBQuery(aTable).Sql.Text := sTmp + sFilter;
       TIBQuery(aTable).Active := true;
+    end
+    else if (aTable.ClassNameIs('TFDTable')) then // do not localize
+    begin
+      TFDTable(aTable).Filter := sFilter;
+      TFDTable(aTable).Filtered := sFilter <> '';
+    end
+    else if (aTable.ClassNameIs('TFDQuery')) then // do not localize
+    begin
+      sTmp := TFDQuery(aTable).Sql.Text;
+      p := Pos(' order by ', LowerCase(sTmp)); // do not localize
+      if p > 0 then
+      begin
+        sOrder := ' order by ' + Copy(sTmp, p + Length(' order by '));
+        // do not localize
+        sTmp := Copy(sTmp, 1, p - 1);
+      end
+      else
+      begin
+        sOrder := '';
+      end;
+      p := Pos(' where ', LowerCase(sTmp)); // do not localize
+      if p > 0 then
+      begin
+        sTmp := Copy(sTmp, 1, p - 1);
+      end;
+      TFDQuery(aTable).Active := false;
+      if Trim(sFilter) <> '' then
+        sFilter := ' where ' + sFilter + sOrder; // do not localize
+      TFDQuery(aTable).Sql.Text := sTmp + sFilter;
+      TFDQuery(aTable).Active := true;
     end
     else if (aTable.ClassNameIs('TADOTable')) then // do not localize
     begin
@@ -1398,6 +1776,29 @@ begin
         result := Copy(sTmp, p);
       end;
     end
+    else if aTable.ClassNameIs('TFDTable') then // do not localize
+    begin
+      result := TFDTable(aTable).Filter;
+    end
+    else if aTable.ClassNameIs('TFDQuery') then // do not localize
+    begin
+      sTmp := TFDQuery(aTable).Sql.Text;
+      p := Pos(' order by ', LowerCase(sTmp)); // do not localize
+      if p > 0 then
+      begin
+        sTmp := Copy(sTmp, 1, p - 1);
+      end;
+      p := Pos(' where ', LowerCase(sTmp)); // do not localize
+      if p = 0 then
+      begin
+        result := '';
+      end
+      else
+      begin
+        p := p + Length(' where '); // do not localize
+        result := Copy(sTmp, p);
+      end;
+    end
     else if aTable.ClassNameIs('TADOTable') then // do not localize
     begin
       result := TADOTable(aTable).Filter;
@@ -1435,6 +1836,8 @@ begin
 {$ENDIF}
     if aTable.ClassNameIs('TIBTable') then // do not localize
       TIBTable(aTable).IndexFieldNames := sIndex
+    else if aTable.ClassNameIs('TFDTable') then // do not localize
+      TFDTable(aTable).IndexFieldNames := sIndex
     else if aTable.ClassNameIs('TADOTable') then // do not localize
       TADOTable(aTable).IndexFieldNames := sIndex
     else
@@ -1495,6 +1898,10 @@ begin
       if DB_IB_Trans.InTransaction then
         DB_IB_Trans.CommitRetaining;
 
+    dtFirebird:
+      //if DB_FB_Trans.InTransaction then
+        DB_FB_Trans.CommitRetaining;
+
     dtAccess, dtSqlServer, dtMySql:
       if DB_ADO.InTransaction then
         DB_ADO.CommitTrans;
@@ -1544,7 +1951,7 @@ begin
 
     ftBoolean:
       begin
-        if FDatabaseType = dtInterbase then
+        if FDatabaseType in [dtInterbase, dtFirebird] then
           sFieldType := 'smallint' // do not localize
         else if FDatabaseType = dtMySql then
           sFieldType := 'tinyint(1)' // do not localize
@@ -1557,7 +1964,7 @@ begin
 
     ftDate, ftTime, ftDateTime:
       begin
-        if FDatabaseType = dtInterbase then
+        if FDatabaseType in [dtInterbase, dtFirebird] then
           sFieldType := 'timestamp' // do not localize
         else
           sFieldType := 'datetime'; // do not localize
@@ -1568,7 +1975,7 @@ begin
 
     ftMemo:
       begin
-        if FDatabaseType = dtInterbase then
+        if FDatabaseType in [dtInterbase, dtFirebird] then
           sFieldType := 'blob sub_type text' // do not localize
         else
           sFieldType := 'text'; // do not localize
@@ -1576,7 +1983,7 @@ begin
 
     ftWideMemo:
       begin
-        if FDatabaseType = dtInterbase then
+        if FDatabaseType in [dtInterbase, dtFirebird] then
           sFieldType := 'blob sub_type text' // do not localize
         else if FDatabaseType = dtSqlServer then
           sFieldType := 'ntext' // do not localize
@@ -1589,7 +1996,7 @@ begin
 
     ftString:
       begin
-        if (FDatabaseType <> dtInterbase) and (FieldSize > 255) then
+        if not (FDatabaseType in [dtInterbase, dtFirebird]) and (FieldSize > 255) then
           sFieldType := 'text' // do not localize
         else
           sFieldType := 'varchar(' + IntToStr(FieldSize) + ')';
@@ -1598,7 +2005,7 @@ begin
 
     ftWideString:
       begin
-        if (FDatabaseType <> dtInterbase) and (FieldSize > 255) then
+        if not (FDatabaseType in [dtInterbase, dtFirebird]) and (FieldSize > 255) then
           sFieldType := 'text' // do not localize
         else if FDatabaseType = dtSqlServer then
           sFieldType := 'nvarchar(' + IntToStr(FieldSize) + ')'
@@ -1633,13 +2040,13 @@ end;
 
 function TDbToolDatabase.GetAllStoredProcedures_Implemented: boolean;
 begin
-  result := DatabaseType = dtSqlServer;
+  result := DatabaseType in [dtSqlServer, dtInterbase, dtFirebird];
   // TODO: Also implement other DBMS in the future
 end;
 
 function TDbToolDatabase.GetStoredProcedureDefinition_Implemented: boolean;
 begin
-  result := DatabaseType = dtSqlServer;
+  result := DatabaseType in [dtSqlServer];
   // TODO: Also implement other DBMS in the future
 end;
 
@@ -1659,14 +2066,14 @@ end;
 
 procedure TDbToolDatabase.RenameTable(oldName, newName: string);
 resourcestring
-  SNoRenamingInMsAccess =
-    'Tabellen können in Microsoft Access per SQL-Befehl nicht umbenannt werden.';
+  SNoRenamingInDbMs =
+    'Tabellen können mit diesem Datenbanksystem per SQL-Befehl nicht umbenannt werden.';
 begin
   // TODO: Für alle unterstützten DBMS implementieren
   // Beispiele gibt es in C:\Program Files (x86)\Common Files\CodeGear Shared\Data
   case FDatabaseType of
     dtAccess:
-      raise Exception.Create(SNoRenamingInMsAccess);
+      raise Exception.Create(SNoRenamingInDbMs);
 
     dtSqlServer:
       begin
@@ -1674,10 +2081,17 @@ begin
           SQL_Escape_TableName(newName) + ';'); // do not localize
       end;
 
-{$IFNDEF WIN64}
+    dtInterbase,
+    dtFirebird:
+      raise Exception.Create(SNoRenamingInDbMs);
+      (*
+      ExecSql('ALTER TABLE ' + SQL_Escape_TableName(oldName) + ' RENAME TO ' +
+        SQL_Escape_TableName(newName) + ';'); // do not localize
+      *)
+
+    {$IFNDEF WIN64}
     dtLocal, // Nicht getestet
 {$ENDIF}
-    dtInterbase, // Nicht getestet
     dtMySql:
       ExecSql('RENAME TABLE ' + SQL_Escape_TableName(oldName) + ' TO ' +
         SQL_Escape_TableName(newName) + ';'); // do not localize
@@ -1693,8 +2107,7 @@ begin
   case FDatabaseType of
     dtSqlServer:
       begin
-        ExecSql('sp_rename ' + SQL_Escape_String(oldName) + ', ' +
-          SQL_Escape_String(newName) + ';'); // do not localize
+        ExecSql('sp_rename ''' + SQL_Escape_String(oldName) + ''', ''' + SQL_Escape_String(newName) + ''';'); // do not localize
       end;
   else
     raise Exception.Create(SNotImplementedForThisDBMS);
@@ -1798,6 +2211,7 @@ begin
     dtLocal, // Nicht getestet Unbekannt, ob es Escaping gibt.
 {$ENDIF}
     dtInterbase, // Nicht getestet Unbekannt, ob es Escaping gibt.
+    dtFirebird, // Nicht getestet Unbekannt, ob es Escaping gibt.
     dtAccess, // Nicht getestet. Unbekannt, ob es Escaping gibt.
     dtMySql: // Nicht getestet. Unbekannt, ob es Escaping gibt.
       result := sDatabaseName;
@@ -1818,6 +2232,7 @@ begin
     dtLocal, // Nicht getestet Unbekannt, ob es Escaping gibt.
 {$ENDIF}
     dtInterbase, // Nicht getestet Unbekannt, ob es Escaping gibt.
+    dtFirebird, // Nicht getestet Unbekannt, ob es Escaping gibt.
     dtAccess, // Nicht getestet. Unbekannt, ob es Escaping gibt.
     dtMySql: // Nicht getestet. Unbekannt, ob es Escaping gibt.
       result := sFieldName;
@@ -1857,6 +2272,7 @@ begin
     dtLocal, // Nicht getestet Unbekannt, ob es Escaping gibt.
 {$ENDIF}
     dtInterbase, // Nicht getestet Unbekannt, ob es Escaping gibt.
+    dtFirebird, // Nicht getestet Unbekannt, ob es Escaping gibt.
     dtAccess: // Nicht getestet. Unbekannt, ob es Escaping gibt.
       result := sTableName;
   else
@@ -1867,7 +2283,7 @@ end;
 
 function TDbToolDatabase.ViewDetectionImplemented: boolean;
 begin
-  result := DatabaseType = dtSqlServer;
+  result := DatabaseType in [dtSqlServer, dtInterbase, dtFirebird];
   // TODO: Also implement other DBMS in the future
 end;
 
@@ -1897,8 +2313,8 @@ begin
 {$IFNDEF WIN64}
     dtLocal, // Nicht getestet Unbekannt, ob es Escaping gibt, und wie dieses aussieht.
 {$ENDIF}
-    dtInterbase,
-    // Nicht getestet Unbekannt, ob es Escaping gibt, und wie dieses aussieht.
+    dtInterbase, // Nicht getestet Unbekannt, ob es Escaping gibt, und wie dieses aussieht.
+    dtFirebird, // Nicht getestet Unbekannt, ob es Escaping gibt, und wie dieses aussieht.
     dtAccess: // Nicht getestet. Unbekannt, ob es Escaping gibt, und wie dieses aussieht.
       begin
         result := StringReplace(result, '''', '\''', [rfReplaceAll]);
@@ -1912,7 +2328,7 @@ end;
 
 function TDbToolDatabase.GetTriggers_Implemented: boolean;
 begin
-  result := FDatabaseType = dtSqlServer;
+  result := FDatabaseType in [dtSqlServer];
 end;
 
 function TDbToolDatabase.HasTriggers(Tablename: string): boolean;
@@ -1936,12 +2352,22 @@ begin
     dtSqlServer:
       begin
         ds := Query('select distinct obj.name ' + // do not localize
-          'from sys.triggers trg ' + // do not localize
-          'inner join sys.objects obj on obj.object_id = trg.parent_id');
-        // do not localize
+                    'from sys.triggers trg ' + // do not localize
+                    'inner join sys.objects obj on obj.object_id = trg.parent_id'); // do not localize
         while not ds.Eof do
         begin
-          sl.Add(ds.FieldByName('name').AsWideString); // do not localize
+          sl.Add(ds.Fields[0].AsWideString); // do not localize
+          ds.Next;
+        end;
+      end;
+
+    dtFirebird, // getestet
+    dtInterbase: // nicht getestet
+      begin
+        ds := Query('SELECT distinct RDB$RELATION_NAME FROM RDB$TRIGGERS'); // do not localize
+        while not ds.Eof do
+        begin
+          sl.Add(ds.Fields[0].AsWideString); // do not localize
           ds.Next;
         end;
       end;
@@ -1966,6 +2392,9 @@ var
   ds: TDataSet;
   i, j: integer;
 begin
+  if not GetTriggers_Implemented then
+    exit;
+
   case FDatabaseType of
     dtSqlServer:
       begin
