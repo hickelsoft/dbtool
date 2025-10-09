@@ -52,6 +52,7 @@ object MDI_Table: TMDI_Table
       Caption = 'Daten'
     end
     object LbSpeedButton2: TSpeedButton
+      Tag = 1
       Left = 0
       Top = 23
       Width = 96
@@ -79,6 +80,7 @@ object MDI_Table: TMDI_Table
       OnClick = BtnClick
     end
     object LbSpeedButton4: TSpeedButton
+      Tag = 2
       Left = 0
       Top = 46
       Width = 96
@@ -116,6 +118,7 @@ object MDI_Table: TMDI_Table
       ExplicitTop = 92
     end
     object LbSpeedButton6: TSpeedButton
+      Tag = 3
       Left = 0
       Top = 92
       Width = 96
@@ -144,6 +147,7 @@ object MDI_Table: TMDI_Table
       ExplicitTop = 115
     end
     object LbSpeedButton7: TSpeedButton
+      Tag = 4
       Left = 0
       Top = 115
       Width = 96
@@ -203,7 +207,7 @@ object MDI_Table: TMDI_Table
       object TPage
         Left = 0
         Top = 0
-        Caption = 'Tabelle'
+        Caption = 'Tag1'
         object Panel3: TPanel
           Left = 0
           Top = 0
@@ -342,31 +346,7 @@ object MDI_Table: TMDI_Table
       object TPage
         Left = 0
         Top = 0
-        Caption = 'Formular'
-        object Panel4: TPanel
-          Left = 0
-          Top = 0
-          Width = 652
-          Height = 24
-          Align = alTop
-          Alignment = taLeftJustify
-          BevelOuter = bvNone
-          Caption = '  Formular'
-          Color = 5263440
-          Font.Charset = ANSI_CHARSET
-          Font.Color = clWhite
-          Font.Height = -16
-          Font.Name = 'Tahoma'
-          Font.Style = [fsBold]
-          ParentBackground = False
-          ParentFont = False
-          TabOrder = 0
-        end
-      end
-      object TPage
-        Left = 0
-        Top = 0
-        Caption = 'Filter'
+        Caption = 'Tag2'
         object Panel6: TPanel
           Left = 0
           Top = 0
@@ -466,7 +446,7 @@ object MDI_Table: TMDI_Table
       object TPage
         Left = 0
         Top = 0
-        Caption = 'Felder'
+        Caption = 'Tag3'
         object Panel7: TPanel
           Left = 0
           Top = 0
@@ -566,7 +546,7 @@ object MDI_Table: TMDI_Table
       object TPage
         Left = 0
         Top = 0
-        Caption = 'Indizes'
+        Caption = 'Tag4'
         object Panel5: TPanel
           Left = 0
           Top = 0

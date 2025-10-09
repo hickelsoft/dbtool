@@ -2,7 +2,7 @@
 <xlat>
   <meta>
     <version>3</version>
-    <created>2025-10-07T14:45:16.220+02:00</created>
+    <created>2025-10-09T15:06:22.772+02:00</created>
     <tool>amTranslationManager</tool>
     <toolversion>2.3.9199.24584</toolversion>
   </meta>
@@ -12,20 +12,20 @@
     <sorted>True</sorted>
     <omitnewstate>True</omitnewstate>
   </options>
-  <project sourcefile="..\..\..\HS-Service\DBTool32.exe" stringsymbolfile=".\DBTool32.drc" language="de-DE" properties="2204">
+  <project sourcefile="..\..\..\HS-Service\DBTool32.exe" stringsymbolfile=".\DBTool32.drc" language="de-DE" properties="2201">
     <targetlanguages>
+      <language language="en-US" translated="1060"/>
       <language language="de-DE" translated="0"/>
-      <language language="en-US" translated="1062"/>
     </targetlanguages>
     <modules>
-      <module name="resourcestrings" type="strings" properties="1859">
+      <module name="resourcestrings" type="strings" properties="1857">
         <items>
           <item name="Bde_Bdeconst_SAutoSessionActive">
             <properties>
               <property>
                 <value>Während AutoSessionName aktiviert ist, kann SessionName nicht geändert werden.</value>
                 <translations>
-                  <translation language="en-US">Cannot modify SessionName while AutoSessionName is enabled</translation>
+                  <translation language="en-US">Cannot modify SessionName while AutoSessionName is enabled.</translation>
                 </translations>
               </property>
             </properties>
@@ -206,7 +206,7 @@
               <property>
                 <value>Die Isolationsebene für Transaktionen muss für lokale Datenbanken Dirty-Read sein.</value>
                 <translations>
-                  <translation language="en-US">The transaction isolation level must be dirty read for local databases</translation>
+                  <translation language="en-US">The transaction isolation level must be dirty read for local databases.</translation>
                 </translations>
               </property>
             </properties>
@@ -1276,7 +1276,7 @@
               <property>
                 <value>Kein Index für die Felder '%s' vorhanden</value>
                 <translations>
-                  <translation language="en-US">No index for fields '%s'</translation>
+                  <translation language="en-US">No index for fields '%s' available</translation>
                 </translations>
               </property>
             </properties>
@@ -1396,7 +1396,7 @@
               <property>
                 <value>Die Datenmenge unterstützt keine Positionsmarken, die von Multi-Datensatz-Elementen benötigt werden.</value>
                 <translations>
-                  <translation language="en-US">Dataset does not support bookmarks, which are required for multi-record data controls</translation>
+                  <translation language="en-US">Dataset does not support bookmarks, which are required for multi-record data controls.</translation>
                 </translations>
               </property>
             </properties>
@@ -1823,7 +1823,7 @@
               <property>
                 <value>Export abgeschlossen.</value>
                 <translations>
-                  <translation language="en-US">Export finished</translation>
+                  <translation language="en-US">Export finished.</translation>
                 </translations>
               </property>
             </properties>
@@ -7346,7 +7346,7 @@
               <property>
                 <value>Die Quelldatei ist leer.</value>
                 <translations>
-                  <translation language="en-US">The source file is empty</translation>
+                  <translation language="en-US">The source file is empty.</translation>
                 </translations>
               </property>
             </properties>
@@ -8947,7 +8947,7 @@
           </item>
           <item name="JclResources_RsPePkgDelphi4Produced">
             <properties>
-              <property>
+              <property status="hold">
                 <value>Delphi 4 or later</value>
               </property>
             </properties>
@@ -9317,7 +9317,7 @@
               <property>
                 <value>Bitte zuerst Abfrage ausführen</value>
                 <translations>
-                  <translation language="en-US">Please execute the query first.</translation>
+                  <translation language="en-US">Please execute the query first</translation>
                 </translations>
               </property>
             </properties>
@@ -9337,7 +9337,7 @@
               <property>
                 <value>DBTool kann nicht nach Updates suchen, da es nicht fest auf diesen Computer installiert ist. Bei portablen Versionen schauen Sie bitte regelmäßig auf github.com/hickelsoft/dbtool nach Updates.</value>
                 <translations>
-                  <translation language="en-US">DBTool cannot search for updates, because it is not installed on this computer. For portable installations, please manually check github.com/hickelsoft/dbtool for updates</translation>
+                  <translation language="en-US">DBTool cannot search for updates, because it is not installed on this computer. For portable installations, please manually check github.com/hickelsoft/dbtool for updates.</translation>
                 </translations>
               </property>
             </properties>
@@ -9377,7 +9377,7 @@
               <property>
                 <value>Keine neuen Updates verfügbar.</value>
                 <translations>
-                  <translation language="en-US">No new updates available</translation>
+                  <translation language="en-US">No new updates available.</translation>
                 </translations>
               </property>
             </properties>
@@ -10014,7 +10014,7 @@
               <property>
                 <value>CheckSynchronize wurde vom Thread $%x aufgerufen, der NICHT der Haupt-Thread ist.</value>
                 <translations>
-                  <translation language="en-US">CheckSynchronize called from thread $%x, which is NOT the main thread</translation>
+                  <translation language="en-US">CheckSynchronize called from thread $%x, which is NOT the main thread.</translation>
                 </translations>
               </property>
             </properties>
@@ -10895,7 +10895,7 @@
           </item>
           <item name="System_RTLConsts_SWindows10">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows 10</value>
               </property>
             </properties>
@@ -11783,7 +11783,7 @@
               <property>
                 <value>Die Anwendung ist für diese Funktion nicht lizenziert.</value>
                 <translations>
-                  <translation language="en-US">Application is not licensed to use this feature</translation>
+                  <translation language="en-US">Application is not licensed to use this feature.</translation>
                 </translations>
               </property>
             </properties>
@@ -12344,7 +12344,7 @@
               <property>
                 <value>Dispatch-Methoden unterstützen maximal 64 Parameter.</value>
                 <translations>
-                  <translation language="en-US">Dispatch methods do not support more than 64 parameters</translation>
+                  <translation language="en-US">Dispatch methods do not support more than 64 parameters.</translation>
                 </translations>
               </property>
             </properties>
@@ -12997,7 +12997,7 @@
               <property>
                 <value>Wegen Speichermangel bei DDE ist ein Fehler aufgetreten ($0%x).</value>
                 <translations>
-                  <translation language="en-US">Error occurred when DDE ran out of memory ($0%x)</translation>
+                  <translation language="en-US">Error occurred when DDE ran out of memory ($0%x).</translation>
                 </translations>
               </property>
             </properties>
@@ -13007,7 +13007,7 @@
               <property>
                 <value>DDE-Konversation konnte nicht verbunden werden.</value>
                 <translations>
-                  <translation language="en-US">Unable to connect DDE conversation</translation>
+                  <translation language="en-US">Unable to connect DDE conversation.</translation>
                 </translations>
               </property>
             </properties>
@@ -13078,7 +13078,7 @@
               <property>
                 <value>Angedocktes Steuerelement muss einen Namen haben.</value>
                 <translations>
-                  <translation language="en-US">Docked control must have a name</translation>
+                  <translation language="en-US">Docked control must have a name.</translation>
                 </translations>
               </property>
             </properties>
@@ -14584,7 +14584,7 @@
               <property>
                 <value>Dieses "Portable Network Graphics" Bild wird nicht unterstützt oder ist ungültig.&amp;#13;&amp;#10;(Der IHDR-Abschnitt ist nicht der erste Abschnitt in der Datei).</value>
                 <translations>
-                  <translation language="en-US">This "Portable Network Graphics" image is not supported or it might be invalid.&amp;#13;&amp;#10;(IHDR chunk is not the first)</translation>
+                  <translation language="en-US">This "Portable Network Graphics" image is not supported or it might be invalid.&amp;#13;&amp;#10;(IHDR chunk is not the first).</translation>
                 </translations>
               </property>
             </properties>
@@ -14759,7 +14759,7 @@
               <property>
                 <value>Operation zur Trennung der Verbindung nicht erlaubt</value>
                 <translations>
-                  <translation language="en-US">Break link operation is not supported.</translation>
+                  <translation language="en-US">Break link operation is not supported</translation>
                 </translations>
               </property>
             </properties>
@@ -15270,7 +15270,7 @@
               <property name="Caption">
                 <value>Datenbanktyp</value>
                 <translations>
-                  <translation language="en-US">Database Type:</translation>
+                  <translation language="en-US">Database Type</translation>
                 </translations>
               </property>
               <property name="Items.Strings[0]">
@@ -18646,7 +18646,7 @@
           </item>
         </items>
       </module>
-      <module name="TMDI_TABLE" type="form" properties="49">
+      <module name="TMDI_TABLE" type="form" properties="48">
         <items>
           <item name="MDI_Table" type="TMDI_Table">
             <properties>
@@ -18736,10 +18736,7 @@
           <item name="MDI_Table.Panel2.Notebook1." type="TPage">
             <properties>
               <property name="Caption" status="skip">
-                <value>Indizes</value>
-                <translations>
-                  <translation language="en-US" status="obsolete">Indices</translation>
-                </translations>
+                <value>Tag4</value>
               </property>
             </properties>
           </item>
@@ -18750,9 +18747,6 @@
               </property>
               <property name="IniAttributes.Delimiter" status="skip">
                 <value>;;</value>
-                <translations>
-                  <translation language="en-US" status="proposed">;;</translation>
-                </translations>
               </property>
               <property name="TitleFont.Name" status="skip">
                 <value>Tahoma</value>
@@ -18891,14 +18885,8 @@
               </property>
             </properties>
           </item>
-          <item name="MDI_Table.Panel2.Notebook1..Panel4" type="TPanel">
+          <item name="MDI_Table.Panel2.Notebook1..Panel4" type="TPanel" state="unused">
             <properties>
-              <property name="Caption">
-                <value>  Formular</value>
-                <translations>
-                  <translation language="en-US">  Form</translation>
-                </translations>
-              </property>
               <property name="Font.Name" status="skip">
                 <value>Tahoma</value>
               </property>
@@ -18922,7 +18910,7 @@
               <property name="Caption">
                 <value>  Filter</value>
                 <translations>
-                  <translation language="en-US">Filter</translation>
+                  <translation language="en-US">  Filter</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">
@@ -19108,7 +19096,7 @@
               <property name="Caption">
                 <value>A&amp;uswahlausschließender Filter</value>
                 <translations>
-                  <translation language="en-US">Selection-excluding filter</translation>
+                  <translation language="en-US">Selection-&amp;excluding filter</translation>
                 </translations>
               </property>
             </properties>

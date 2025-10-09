@@ -2,10 +2,21 @@ unit HS_Mitteilung;
 
 interface
 
-// REDACTED IN OPEN SOURCE RELEASE
+type
+  THsMitteilung = record
+  public
+    class procedure SendeStacktraceAnHickelSOFT(StacktraceFile: string); static;
+  end;
 
 implementation
 
-// REDACTED IN OPEN SOURCE RELEASE
+{ THsMitteilung }
+
+class procedure THsMitteilung.SendeStacktraceAnHickelSOFT(StacktraceFile: string);
+begin
+  // This method is reserved for a future version of DBTool.
+  // Note that in case this gets implemented, no stacktraces would be send
+  // unless the user gave their explicit permission!!!
+end;
 
 end.

@@ -274,6 +274,8 @@ function WindowsVersionString: string;
 function HasReadAccessToFile(const FileName: string): Boolean;
 function HasWriteAccessToFile(const FileName: string): Boolean;
 
+procedure SleepWithMessages(Milliseconds: Integer);
+
 type
   TSenderlessNotifyEvent = procedure of object;
 
@@ -4115,6 +4117,19 @@ begin
   begin
     Result := True;
     CloseHandle(hFile);
+  end;
+end;
+
+procedure SleepWithMessages(Milliseconds: Integer);
+var
+  TargetTime: DWORD;
+begin
+  TargetTime := GetTickCount + Milliseconds;
+  while (GetTickCount < TargetTime) do
+  begin
+    Application.ProcessMessages;
+    if Application.Terminated then Abort;
+    Sleep(10); // kleine Pause, nicht komplett blockierend
   end;
 end;
 

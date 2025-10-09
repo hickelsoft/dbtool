@@ -25,7 +25,6 @@ type
     LbSpeedButton5: TSpeedButton;
     LbSpeedButton6: TSpeedButton;
     LbSpeedButton7: TSpeedButton;
-    Panel4: TPanel;
     Panel5: TPanel;
     Panel6: TPanel;
     Panel7: TPanel;
@@ -475,7 +474,7 @@ begin
   if FInitialized then
   begin
     // Felder-Ansicht verlassen: Sichtbare Felder im Grid anpassen
-    if Notebook1.ActivePage = LbSpeedButton6.Caption { 'Felder' } then
+    if Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton6.Tag) { Tabelle } then
     begin
       // Das MUSS über FieldByName laufen! Vielleicht hat der Benutzer die Reihenfolge der Felder ja geändert...
       for i := 0 to lvFields.Items.Count - 1 do
@@ -486,7 +485,7 @@ begin
     end;
 
     // Filter-Ansicht verlassen: Filter der Tabelle anpassen
-    if Notebook1.ActivePage = LbSpeedButton4.Caption { 'Filter' } then
+    if Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton4.Tag) { Filter } then
     begin
       if FVerwendeQueryAnstelleTable and not _FilterValid(mFilter.Text) then
         raise Exception.Create(SFilterInvalid);
@@ -497,24 +496,24 @@ begin
 
   // Aktive Seite umstellen
   TSpeedButton(Sender).Down := true;
-  Notebook1.ActivePage := TSpeedButton(Sender).Caption;
+  Notebook1.ActivePage := 'Tag'+IntToStr(TSpeedButton(Sender).Tag);
   // Attention: Translation must be correct, otherwise this results in failure
 
   // "Upgrade" notwendig? (Nur-Strukturansicht => Daten)
-  if (Notebook1.ActivePage = LbSpeedButton2.Caption { 'Tabelle' } ) or
-    (Notebook1.ActivePage = LbSpeedButton4.Caption { 'Filter' } ) or
-    (Notebook1.ActivePage = LbSpeedButton7.Caption { 'Indizes' } ) then
+  if (Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton2.Tag) { Tabelle } ) or
+    (Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton4.Tag) { Filter } ) or
+    (Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton7.Tag) { Indizes } ) then
   begin
     if NurStruktur then
     begin
       dsData.Dataset := LoadTable(FDatabaseForm.dbDatabase, FTableName);
-      if (Notebook1.ActivePage = LbSpeedButton7.Caption { 'Indizes' } ) then
+      if (Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton7.Tag) { Indizes } ) then
         CreateIndexInfo;
     end;
   end;
 
   // Jetzt auf Filter-Seite? Filter in Memo eintragen!
-  if Notebook1.ActivePage = LbSpeedButton4.Caption { 'Filter' } then
+  if Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton4.Tag) { Filter } then
   begin
     mFilter.Text := FDatabaseForm.dbDatabase.GetTableFilter(dsData.Dataset);
   end;
