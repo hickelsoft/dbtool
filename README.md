@@ -4,7 +4,7 @@
 
 ## Download
 
-**[Setup for Win32 and Win64](https://github.com/hickelsoft/dbtool/raw/main/Distribution/DBTool_Setup.exe)** (approx. 10 MB)
+**[Setup for Win32 and Win64](https://github.com/hickelsoft/dbtool/raw/main/Distribution/DBTool_Setup.exe)**
 
 ## Features
 
