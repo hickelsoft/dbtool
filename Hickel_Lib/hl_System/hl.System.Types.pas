@@ -1016,8 +1016,9 @@ end;
 function hlDateTime.toSQLString: string;
 begin
   // result := hlString.Create(toString).toSQLString;
-  result := 'CONVERT(DATETIME, ''' + toString + ''', 104)';
+  result := 'CONVERT(varchar(10), ''' + toString + ''', 104) + '' '' + CONVERT(varchar(8), ''' + toString + ''', 108)';
   // Format 104 = "23.08.2019"
+  // Format 108 = "11:22:33"
 end;
 
 function hlDateTime.toString: string;

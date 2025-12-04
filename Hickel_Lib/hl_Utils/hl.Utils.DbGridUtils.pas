@@ -3,7 +3,7 @@ unit hl.Utils.DbGridUtils;
 interface
 
 uses
-  Classes, wwdbgrid, wwdblook, SysUtils;
+  Classes, wwdbgrid, wwdblook, SysUtils, Data.DB;
 
 type
   TwwdbGridHelper = class helper for TwwdbGrid

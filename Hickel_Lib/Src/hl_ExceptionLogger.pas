@@ -46,7 +46,6 @@ var
   slText: TStringList;
   m: integer;
   UniqueExceptionGUID: TGUID;
-  dateidatum: TDateTime;
   sDateiDatum: string;
 begin
   if e is EAbort then
@@ -72,12 +71,11 @@ begin
 
     hlExceptionLog.
       Write('------------------------------------ A U S N A H M E F E H L E R ----------------------------------');
-    // TODO: Stacktrace-Dateiname auch mitangeben
+    // TODO: Stacktrace-Dateiname auch mit angeben
     hlExceptionLog.Write('Fehlerzeitp.: ' + DateTimeToStr(Now));
     hlExceptionLog.Write('');
     hlExceptionLog.Write('Anwendung:    ' + ParamStr(0));
-    hlExceptionLog.Write('Dateiversion: ' + ThlUtils.GetFileVersion
-      (ParamStr(0)));
+    hlExceptionLog.Write('Dateiversion: ' + ThlUtils.GetFileVersion(ParamStr(0)));
     hlExceptionLog.Write('Dateidatum:   ' + sDateiDatum);
     hlExceptionLog.Write('');
     hlExceptionLog.Write('Prozess ID:   ' + IntToStr(GetCurrentProcessId));

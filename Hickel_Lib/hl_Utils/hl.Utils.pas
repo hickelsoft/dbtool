@@ -274,7 +274,8 @@ function WindowsVersionString: string;
 function HasReadAccessToFile(const FileName: string): Boolean;
 function HasWriteAccessToFile(const FileName: string): Boolean;
 
-procedure SleepWithMessages(Milliseconds: Integer);
+procedure SleepWithMessages(Milliseconds: Cardinal);
+function IsDllLoadable(const FileName: string): Boolean;
 
 type
   TSenderlessNotifyEvent = procedure of object;
@@ -683,13 +684,18 @@ begin
   if WindowsBits = 32 then
   begin
     testExe := ExeName;
+    // Variante 1 (CORA_Verwaltung.exe)
     testExe := StringReplace(testExe, '64.exe', '.exe', [rfIgnoreCase]);
     if FileExists(testExe) then
-      ExeName := testExe; // Variante 1 (CORA_Verwaltung.exe)
-    testExe := StringReplace(testExe, '.exe', '32.exe', [rfIgnoreCase]);
-    if FileExists(testExe) then
+    begin
       ExeName := testExe;
-    // Veriante 2 (DBTool32.exe), derzeit nicht mehr im Einsatz (DBTool32.exe heißt nun wieder DBTool.exe)
+    end
+    else
+    begin
+      // Veriante 2 (DBTool32.exe), derzeit nicht mehr im Einsatz (DBTool32.exe heißt nun wieder DBTool.exe)
+      testExe := StringReplace(testExe, '.exe', '32.exe', [rfIgnoreCase]);
+      if FileExists(testExe) then ExeName := testExe; 
+    end;
   end
   else
   begin
@@ -750,8 +756,14 @@ begin
 end;
 
 class function ThlUtils.DaysAge(const filename: string): integer;
+var
+  age: Integer;
 begin
-  Result := Trunc(Now - FileDateToDateTime(FileAge(filename)));
+  age := FileAge(filename);
+  if age = -1 then
+    Result := -1
+  else
+    Result := Trunc(Now - FileDateToDateTime(age));
 end;
 
 class procedure ThlUtils.DeleteDirectory(const DirName: string);
@@ -1624,7 +1636,6 @@ begin
   except
     on E: EAbort do
     begin
-      Result := False;
       Abort;
     end;
     on E: Exception do
@@ -4120,7 +4131,7 @@ begin
   end;
 end;
 
-procedure SleepWithMessages(Milliseconds: Integer);
+procedure SleepWithMessages(Milliseconds: Cardinal);
 var
   TargetTime: DWORD;
 begin
@@ -4130,6 +4141,27 @@ begin
     Application.ProcessMessages;
     if Application.Terminated then Abort;
     Sleep(10); // kleine Pause, nicht komplett blockierend
+  end;
+end;
+
+function IsDllLoadable(const FileName: string): Boolean;
+var
+  Lib: HMODULE;
+begin
+  Result := False;
+  Lib := LoadLibraryEx(PChar(FileName), 0, LOAD_LIBRARY_AS_DATAFILE);
+  if Lib <> 0 then
+  begin
+    // Nur Metadaten geladen, keine Abhängigkeiten geprüft
+    FreeLibrary(Lib);
+  end;
+
+  // Jetzt echter Test:
+  Lib := LoadLibraryEx(PChar(FileName), 0, LOAD_WITH_ALTERED_SEARCH_PATH);
+  if Lib <> 0 then
+  begin
+    FreeLibrary(Lib);
+    Result := True;
   end;
 end;
 

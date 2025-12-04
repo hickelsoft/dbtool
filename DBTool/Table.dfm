@@ -347,6 +347,8 @@ object MDI_Table: TMDI_Table
         Left = 0
         Top = 0
         Caption = 'Tag2'
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel6: TPanel
           Left = 0
           Top = 0
@@ -447,6 +449,8 @@ object MDI_Table: TMDI_Table
         Left = 0
         Top = 0
         Caption = 'Tag3'
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel7: TPanel
           Left = 0
           Top = 0
@@ -547,6 +551,8 @@ object MDI_Table: TMDI_Table
         Left = 0
         Top = 0
         Caption = 'Tag4'
+        ExplicitWidth = 0
+        ExplicitHeight = 0
         object Panel5: TPanel
           Left = 0
           Top = 0

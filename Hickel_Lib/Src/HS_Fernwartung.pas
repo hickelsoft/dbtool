@@ -13,17 +13,16 @@ uses
 
 {$REGION 'Lokalisierung'}
 resourcestring
-  StrFehlerBeimHerunter = 'Fehler beim Herunterladen der %s.';
+  StrFehlerBeimHerunter = 'Fehler beim Herunterladen von %s.';
   StrOnlinePräsentations = 'Online-Präsentations-Software';
   StrFernwartungsSoftwar = 'Fernwartungs-Software';
-  StrSoftwareAktualisier = 'Software-Aktualisierung';
+  StrRustDesk = 'RustDesk';
   StrSWirdAktualisiert = '%s wird aktualisiert. Bitte warten.';
   StrSWirdHeruntergela = '%s wird heruntergeladen. Bitte warten.';
   StrDateigrößeIstNicht = 'Dateigröße ist nicht plausibel.';
   StrBitteNochEinmalVe = 'Bitte noch einmal versuchen.';
   StrFehlerBeimEntpacke = 'Fehler beim Entpacken der Datei %s.';
-  StrBitteInternetVerbi =
-    'Bitte Internet-Verbindung prüfen und Programm nochmal neu starten.';
+  StrBitteInternetVerbi = 'Bitte Internet-Verbindung prüfen und Programm nochmal neu starten.';
   StrGenaueFehlermeldung = 'Genaue Fehlermeldung: %s';
 {$ENDREGION}
 
@@ -69,6 +68,9 @@ begin
     if SameText(ParamStr(i), '--update') then
     begin
       // Aufgerufen von RustDesk beim Auto-Update-Button-Klick.
+      // Oder durch das Auto-Update im System-Service, dann sind die Pfade wie folgt:
+      // C:\WINDOWS\SystemTemp\rustdesk-1.4.3-x86_64.exe --update
+      // C:\Windows\System32\config\systemprofile\AppData\Local\HickelSOFT\Fernwartung\Update-2025-10-22-21-29-01\rustdesk-hickelsoft-win64.zip.tmp
       istRustDeskUpdate := true;
       break;
     end;
@@ -141,16 +143,7 @@ begin
   {$ENDREGION}
 
   {$REGION 'Anwendungsname und Admin-Modus bestimmen'}
-  if IstHickelSoftTestPC then
-  begin
-    // Achtung: Substantiv muss weiblichen Artikel haben, damit es zur Meldung unten passt
-    AnwendungsName := StrFernwartungsSoftwar;
-    // Wenn wir RustDesk als Admin gestartet haben, kann HsInfo den rustdesk:// Link nicht öffnen
-    // (da eine Nicht-Admin-Anwendung einer Admin-Anwendung kein WM_USER+2 Signal senden kann).
-    // Deshalb normal starten, ohne UAC.
-    AdminMode := 0;
-  end
-  else if ContainsText(ExtractFileName(ParamStr(0)), 'Fernwartung') or
+  if ContainsText(ExtractFileName(ParamStr(0)), 'Fernwartung') or
     ContainsText(ExtractFileName(ParamStr(0)), 'CORA_') or
     ContainsText(ExtractFileName(ParamStr(0)), 'HsInfo') or
     ContainsText(ExtractFileName(ParamStr(0)), 'DbTool') then
@@ -165,12 +158,21 @@ begin
     // Achtung: Substantiv muss weiblichen Artikel haben, damit es zur Meldung unten passt
     AnwendungsName := StrOnlinePräsentations;
     // Interessenten auf keinen Fall eine "Diese Anwendung möchte Änderungen an Ihrem PC vornehmen" Meldung zeigen!!!
-    AdminMode := 0;
+    if not istRustDeskUpdate then
+      AdminMode := 0;
   end
   else
   begin
     // Achtung: Substantiv muss weiblichen Artikel haben, damit es zur Meldung unten passt
-    AnwendungsName := StrSoftwareAktualisier;
+    AnwendungsName := StrRustDesk;
+  end;
+
+  if IstHickelSoftTestPC and not istRustDeskUpdate then
+  begin
+    // Wenn wir RustDesk als Admin gestartet haben, kann HsInfo den rustdesk:// Link nicht öffnen
+    // (da eine Nicht-Admin-Anwendung einer Admin-Anwendung kein WM_USER+2 Signal senden kann).
+    // Deshalb normal starten, ohne UAC.
+    AdminMode := 0;
   end;
   {$ENDREGION}
 
@@ -200,7 +202,7 @@ begin
       {$REGION 'Herunterladen versuchen'}
       pgd := TProgressDlg.Create(nil);
       try
-        if FileExists(downloadedZip) then
+        if FileExists(downloadedZip) or istRustDeskUpdate then
           pgd.Text := Format(StrSWirdAktualisiert, [AnwendungsName])
         else
           pgd.Text := Format(StrSWirdHeruntergela, [AnwendungsName]);

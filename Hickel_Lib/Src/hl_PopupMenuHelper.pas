@@ -3,7 +3,7 @@ unit hl_PopupMenuHelper;
 interface
 
 uses
-  Windows, Menus, Controls, Classes;
+  Windows, Menus, Controls, Classes, System.Types;
 
 type
   TPopupMenuHelper = class helper for TPopupMenu

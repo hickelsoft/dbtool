@@ -9,7 +9,7 @@ uses
   SysUtils, Windows, Classes, Controls, StdCtrls, Forms, ExtCtrls, Database,
   DB, DBGrids, Grids, Wwdbgrid, Wwdbigrd, ComCtrls, Menus, Graphics,
   ImgList, Buttons, Dialogs, C_Database, System.ImageList, AdoDb, AdoInt,
-  HsGradientPanel;
+  HsGradientPanel, Variants;
 
 type
   TMDI_Table = class(TForm)
@@ -235,6 +235,25 @@ end;
 
 constructor TMDI_Table.Create(Owner: TComponent; ADbFrm: TMDI_Database;
   ATableName: String; ANurStruktur: boolean = false);
+
+  function AdoIsFieldNullable(AConnection: TADOConnection; const TableName, FieldName: string): Boolean;
+  var
+    ds: TADODataSet;
+  begin
+    ds := TADODataSet.Create(nil);
+    try
+      AConnection.OpenSchema(siColumns, VarArrayOf([Null, Null, TableName, FieldName]), EmptyParam, ds);
+      try
+        Result := ds.FieldByName('IS_NULLABLE').AsBoolean;
+        exit;
+      finally
+        ds.Close;
+      end;
+    finally
+      FreeAndNil(ds);
+    end;
+  end;
+
 var
   aTable: TDataSet;
   slPrimaryKeys: TStringList;
@@ -316,15 +335,22 @@ begin
       else
         anItem.SubItems.Add(IntToStr(aFieldDefs.Items[i].Size));
 
-      if (aTable is TAdoTable) and
-        ((((adFldIsNullable + adFldMayBeNull) and TAdoTable(aTable)
-        .Recordset.Fields[i].Attributes) = 0)) then
-        // aFieldDefs.Items[i].Required geht nicht mit Delphi ADO! Nur mit TBetterAdoDataSet!
-        anItem.SubItems.Add('NOT NULL') // do not localize
-      else if not(aTable is TAdoTable) and aFieldDefs.Items[i].Required then
-        anItem.SubItems.Add('NOT NULL') // do not localize
+      if aTable is TCustomADODataSet then
+      begin
+        // Zumindest in ADO geht Null/NotNull Erkennung par tout nicht.
+        // Mit BetterAdoDataset ging es, aber das ist nicht mehr möglich mit Delphi 13
+        if AdoIsFieldNullable(TAdoDataSet(aTable).Connection, ATableName, aFieldDefs.Items[i].Name) then
+          anItem.SubItems.Add('NULL') // do not localize
+        else
+          anItem.SubItems.Add('NOT NULL'); // do not localize
+      end
       else
-        anItem.SubItems.Add('NULL'); // do not localize
+      begin
+        if not aFieldDefs.Items[i].Required then
+          anItem.SubItems.Add('NULL') // do not localize
+        else
+          anItem.SubItems.Add('NOT NULL'); // do not localize
+      end;
 
       if slPrimaryKeys.IndexOf(aFieldDefs.Items[i].Name) >= 0 then
         anItem.SubItems.Add('PK') // do not localize
