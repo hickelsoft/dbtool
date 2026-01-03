@@ -2,6 +2,7 @@ unit HS_Auth;
 
 interface
 
+const HS_ALUV4_HMAC_SECRET = ''; // REDACTED IN OPEN SOURCE RELEASE
 function HS_SA_DB_USER: string;
 function HS_SA_DB_PASSWORD: string;
 function IstHickelSoftTestPC: boolean;
