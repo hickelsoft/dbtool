@@ -1,11 +1,5 @@
 ﻿# DBTool ToDo
 
-## Important for OpenSource release
-
-- Add README.md, with screenshots and describe a lot of features like DnD and CLI
-
-- Make a website www.hickelsoft.de/dbtool and daniel-marschall.de
-
 ## Important features
 
 - SQL Server: Also allow entering of username and password instead of only allowing NT Auth
