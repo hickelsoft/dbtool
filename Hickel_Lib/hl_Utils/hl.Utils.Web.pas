@@ -715,6 +715,7 @@ var
   bits: integer;
   outfil: string;
   outdir: string;
+  counter: integer;
 begin
   hl_Web_UseIndy := false;
 
@@ -725,89 +726,48 @@ begin
 {$ELSE}
   bits := 32;
 {$ENDIF}
-{$REGION 'Ordner erzeugen'}
-  outdir := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) + 'Win' +
-    IntToStr(bits);
-  if not DirectoryExists(outdir) then
+
+  counter := 0;
+
+  outdir := IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) + 'Win' + IntToStr(bits);
+
+  outfil := IncludeTrailingPathDelimiter(outdir) + 'libeay32.dll';
+  if FileExists(outfil) then
   begin
-    outdir := IncludeTrailingPathDelimiter(GetTempDir) + 'HS_OpenSSL' +
-      IntToStr(bits);
-  end;
-  if not DirectoryExists(outdir) then
+    Inc(counter);
+  end
+  else if FileExists(IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) +
+      'libeay32.' + IntToStr(bits) + '.dll') then
   begin
     ForceDirectories(outdir);
+    if CopyFile(PChar(IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) +
+      'libeay32.' + IntToStr(bits) + '.dll'), PChar(outfil), false) then
+    begin
+      Inc(counter);
+    end;
   end;
-  if not DirectoryExists(outdir) then
-    Exit;
-{$ENDREGION}
-{$REGION 'LibEay32'}
-  outfil := IncludeTrailingPathDelimiter(outdir) + 'libeay32.dll';
-  if not FileExists(outfil) then
-  begin
-    CopyFile(PChar(IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) +
-      'libeay32.' + IntToStr(bits) + '.dll'), PChar(outfil), false);
-  end;
-  (*
-    if not FileExists(outfil) then
-    begin
-    try
-    ResStream := TResourceStream.Create(HInstance, 'LIBEAY32', 'DLL');
-    try
-    ResStream.Position := 0;
-    ResStream.SaveToFile(outfil);
-    finally
-    FreeAndNil(ResStream);
-    end;
-    except
-    on E: EAbort do
-    begin
-    Abort;
-    end;
-    on E: Exception do
-    begin
-    // ignore
-    end;
-    end;
-    end;
-  *)
-  if not FileExists(outfil) then
-    Exit;
-{$ENDREGION}
-{$REGION 'SslEay32'}
+
   outfil := IncludeTrailingPathDelimiter(outdir) + 'ssleay32.dll';
-  if not FileExists(outfil) then
+  if FileExists(outfil) then
   begin
-    CopyFile(PChar(IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) +
-      'ssleay32.' + IntToStr(bits) + '.dll'), PChar(outfil), false);
+    Inc(counter);
+  end
+  else if FileExists(IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) +
+      'ssleay32.' + IntToStr(bits) + '.dll') then
+  begin
+    ForceDirectories(outdir);
+    if CopyFile(PChar(IncludeTrailingPathDelimiter(ExtractFilePath(ParamStr(0))) +
+      'ssleay32.' + IntToStr(bits) + '.dll'), PChar(outfil), false) then
+    begin
+      Inc(counter);
+    end;
   end;
-  (*
-    if not FileExists(outfil) then
-    begin
-    try
-    ResStream := TResourceStream.Create(HInstance, 'SSLEAY32', 'DLL');
-    try
-    ResStream.Position := 0;
-    ResStream.SaveToFile(outfil);
-    finally
-    FreeAndNil(ResStream);
-    end;
-    except
-    on E: EAbort do
-    begin
-    Abort;
-    end;
-    on E: Exception do
-    begin
-    // ignore
-    end;
-    end;
-    end;
-  *)
-  if not FileExists(outfil) then
-    Exit;
-{$ENDREGION}
-  IdOpenSSLSetLibPath(outdir);
-  hl_Web_UseIndy := True;
+
+  if counter = 2 then
+  begin
+    IdOpenSSLSetLibPath(outdir);
+    hl_Web_UseIndy := True;
+  end;
 end;
 
 function DoPost(const URL: string; Params: TStringList): string;

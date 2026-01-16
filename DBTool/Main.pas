@@ -434,6 +434,7 @@ resourcestring
   SNewVersionAvailable =
     'Eine neue Version ist verfügbar! Jetzt herunterladen?';
   SNoNewVersion = 'Keine neuen Updates verfügbar.';
+  HMacError = 'HMAC Fehler. Bitte Download erneut versuchen.';
 begin
   if Modus_CORA_Verzeichnis or Modus_HsInfo2_Verzeichnis then
     exit;
@@ -477,13 +478,17 @@ begin
           pgd.Text := SWaitUpdateDownload;
           pgd.ShowStopButton := true;
           pgd.Open;
-          downloadedFile := IncludeTrailingPathDelimiter(GetDesktopFolder) +
-            'DBTool_Setup.exe'; // do not localize
-          DownloadFile('https://www.hickelsoft.de/dbtool/download.php',
-            downloadedFile, pgd); // do not localize
-          ShellExecute64(Handle, nil, 'explorer.exe',
-            PChar('/select,' + downloadedFile), nil, SW_SHOWNORMAL);
-          // do not localize
+          downloadedFile := IncludeTrailingPathDelimiter(GetDesktopFolder) + 'DBTool_Setup.exe'; // do not localize
+          DownloadFile('https://www.hickelsoft.de/dbtool/download.php', downloadedFile, pgd); // do not localize
+          if HS_ALUV4_HMAC_SECRET <> '' then
+          begin
+            if Trim(DoGet('https://www.hickelsoft.de/dbtool/checksum_hmac.php')) <> HashHmacFileSHA256Hex(downloadedFile, HS_ALUV4_HMAC_SECRET) then
+            begin
+              DeleteFile(downloadedFile);
+              raise Exception.Create(HMacError);
+            end;
+          end;
+          ShellExecute64(Handle, nil, 'explorer.exe', PChar('/select,' + downloadedFile), nil, SW_SHOWNORMAL); // do not localize
         finally
           FreeAndNil(pgd);
         end

@@ -36,7 +36,7 @@ LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
 
 LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
 VS_VERSION_INFO VERSIONINFO
-FILEVERSION             9,0,20,0
+FILEVERSION             9,0,21,0
 PRODUCTVERSION          9,0,0,0
 FILEFLAGSMASK           VS_FFI_FILEFLAGSMASK
 FILEFLAGS               VER_DBG
@@ -49,13 +49,13 @@ BEGIN
         BEGIN
 			VALUE "CompanyName",      "HickelSOFT Huth GmbH"
 			VALUE "FileDescription",  "CORAplus Datenbankoberfläche"
-			VALUE "FileVersion",      "9.0.20.0"
+			VALUE "FileVersion",      "9.0.20.1"
 			VALUE "InternalName",     "DBTool"
-			VALUE "LegalCopyright",   "(C) 1992-2025 HickelSOFT Huth GmbH"
+			VALUE "LegalCopyright",   "(C) 1992-2026 HickelSOFT Huth GmbH"
 			VALUE "LegalTrademarks",  "CORAplus"
 			VALUE "OriginalFilename", "DBTool.exe"
 			VALUE "ProductName",      "CORAplus"
-			VALUE "ProductVersion",	  "2025 (9.0)"
+			VALUE "ProductVersion",	  "2026 (9.0)"
 			VALUE "Comments",         ""
         END
 	END

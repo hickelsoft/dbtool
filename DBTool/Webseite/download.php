@@ -2,7 +2,7 @@
 
 $datei = 'DBTool_Setup.exe';
 
-$local_file = __DIR__.'/../../kunden/DBTool/'.$datei;
+$local_file = __DIR__.'/../../kunden/Programmdateien Sonstiges/'.$datei;
 
 if (!file_exists($local_file)) {
 	header('HTTP/1.1 404 Not Found');

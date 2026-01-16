@@ -10,14 +10,14 @@ echo Sign %1 ...
 	echo File %1 is already signed, skipping
 	exit /b 0
 ) || (
-	"C:\Program Files (x86)\Windows Kits\10\bin\%SDKVER%\x64\signtool.exe" sign /a /tr http://timestamp.globalsign.com/tsa/r6advanced1 /td SHA256 /fd SHA256 /n "HickelSOFT" /v %1
+	"C:\Program Files (x86)\Windows Kits\10\bin\%SDKVER%\x64\signtool.exe" sign /a /tr http://timestamp.globalsign.com/tsa/r45standard /td SHA256 /fd SHA256 /n "HickelSOFT" /v %1
 	>NUL 2>&1 "C:\Program Files (x86)\Windows Kits\10\bin\%SDKVER%\x64\signtool.exe" verify /pa %1 && (
 		echo File %1 is sucessfully signed!
 		exit /b 0
 	) || (
 		echo ERROR while signing file %1 !
 		echo.
-		"C:\Program Files (x86)\Windows Kits\10\bin\%SDKVER%\x64\signtool.exe" sign /a /tr http://timestamp.globalsign.com/tsa/r6advanced1 /td SHA256 /fd SHA256 /n "HickelSOFT" /v %1
+		"C:\Program Files (x86)\Windows Kits\10\bin\%SDKVER%\x64\signtool.exe" sign /a /tr http://timestamp.globalsign.com/tsa/r45standard /td SHA256 /fd SHA256 /n "HickelSOFT" /v %1
 		echo.
 		pause.
 		exit /b 1

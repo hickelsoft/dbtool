@@ -615,6 +615,16 @@ begin
     [TDataSource(Sender).Dataset.RecordCount / 1.0]);
 end;
 
+function RemoveLastComma(const S: string): string;
+var
+  P: Integer;
+begin
+  Result := S;
+  P := LastDelimiter(',', S);
+  if P > 0 then
+    Delete(Result, P, 1);
+end;
+
 procedure TMDI_Table.EinfacheInsertAnweisungkopieren1Click(Sender: TObject);
 var
   i: integer;
@@ -644,8 +654,7 @@ begin
   end;
   for i := 0 to lvFields.Items.Count - 1 do
   begin
-    if lvFields.Items[i].SubItems.Strings[3] = 'NOT NULL' then
-    // do not localize
+    if lvFields.Items[i].SubItems.Strings[3] = 'NOT NULL' then // do not localize
     begin
       s := s + lvFields.Items.Item[i].Caption;
 
@@ -657,18 +666,8 @@ begin
 
       if res = mrYes then
       begin
-        if i < lvFields.Items.Count - 1 then
-        begin
-          s := s + ',' + #13#10;
-          s2 := s2 + ', -- ' + lvFields.Items.Item[i].Caption + #13#10;
-          // do not localize
-        end
-        else
-        begin
-          s := s + #13#10;
-          s2 := s2 + ' -- ' + lvFields.Items.Item[i].Caption + #13#10;
-          // do not localize
-        end;
+        s := s + ',' + #13#10;
+        s2 := s2 + ', -- ' + lvFields.Items.Item[i].Caption + #13#10;
       end
       else
       begin
@@ -681,10 +680,14 @@ begin
     ShowMessage(SNothingAvailable)
   else
   begin
-    s := Copy(s, 1, Length(s) - 2); // remove ', '
-    s2 := Copy(s2, 1, Length(s2) - 2); // remove ', '
-    Clipboard.AsText := 'insert into ' + Table + ' (' + s + ') values (' + s2 +
-      ')'; // do not localize
+    s := Trim(RemoveLastComma(s));
+    s2 := Trim(RemoveLastComma(s2));
+    if res = mrYes then
+    begin
+      s := #13#10 + s + #13#10;
+      s2 := #13#10 + s2 + #13#10;
+    end;
+    Clipboard.AsText := 'insert into ' + Table + ' (' + s + ') values (' + s2 + ')'; // do not localize
     // ShowMessage(SCopiedInClipboard);
   end;
 end;
@@ -730,34 +733,27 @@ begin
 
     if res = mrYes then
     begin
-      if i < lvFields.Items.Count - 1 then
-      begin
-        s := s + ',' + #13#10;
-        s2 := s2 + ', -- ' + lvFields.Items.Item[i].Caption + #13#10;
-        // do not localize
-      end
-      else
-      begin
-        s := s + #13#10;
-        s2 := s2 + ' -- ' + lvFields.Items.Item[i].Caption + #13#10;
-        // do not localize
-      end;
+      s := s + ',' + #13#10;
+      s2 := s2 + ', -- ' + lvFields.Items.Item[i].Caption + #13#10;
     end
     else
     begin
-      if i < lvFields.Items.Count - 1 then
-      begin
-        s := s + ', ';
-        s2 := s2 + ', ';
-      end;
+      s := s + ', ';
+      s2 := s2 + ', ';
     end;
   end;
   if s = '' then
     ShowMessage(SNothingAvailable)
   else
   begin
-    Clipboard.AsText := 'insert into ' + Table + ' (' + s + ') values (' + s2 +
-      ')'; // do not localize
+    s := Trim(RemoveLastComma(s));
+    s2 := Trim(RemoveLastComma(s2));
+    if res = mrYes then
+    begin
+      s := #13#10 + s + #13#10;
+      s2 := #13#10 + s2 + #13#10;
+    end;
+    Clipboard.AsText := 'insert into ' + Table + ' (' + s + ') values (' + s2 + ')'; // do not localize
     // ShowMessage(SCopiedInClipboard);
   end;
 end;

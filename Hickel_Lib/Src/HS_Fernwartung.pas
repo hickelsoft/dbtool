@@ -24,20 +24,20 @@ resourcestring
   StrFehlerBeimEntpacke = 'Fehler beim Entpacken der Datei %s.';
   StrBitteInternetVerbi = 'Bitte Internet-Verbindung prüfen und Programm nochmal neu starten.';
   StrGenaueFehlermeldung = 'Genaue Fehlermeldung: %s';
+  StrHMacFehler = 'HMAC stimmt nicht überein. Bitte Download nochmal versuchen.';
 {$ENDREGION}
 
 procedure HS_FernwartungStarten;
 const
-  zipMaxAge = 30; // days
   // AdminModeDefault 0 = Run normally without UAC
   // AdminModeDefault 1 = Try to run as admin, otherwise run normally if UAC is denied
   // AdminModeDefault 2 = Require admin UAC (fail if UAC is denied)
   AdminModeDefault = 1;
 var
-  zipUrlSigned, zipUrlUnsigned: string;
+  zipUrlSigned, zipUrlSignedHmac: string;
   pgd: TProgressDlg;
   downloadedZip, downloadedExe: string;
-  zipWasChanged: boolean;
+  zipWasChanged, istRustDeskUpdate, needsDownload: boolean;
   fehlerMeldung: string;
   AnwendungsName: string;
   a: AnsiChar;
@@ -47,7 +47,6 @@ var
   Zip: TZipFile;
   ParamStrs: string;
   i: integer;
-  istRustDeskUpdate: boolean;
 begin
   fehlerMeldung := '';
   zipWasChanged := false;
@@ -177,28 +176,34 @@ begin
   {$ENDREGION}
 
   try
-    if istRustDeskUpdate or
-       not FileExists(downloadedZip) or
-       (zipMaxAge <= 0) or
-       (Now - GetFileModDate(downloadedZip) > zipMaxAge) then
+    {$REGION 'Online-Datei bestimmen'}
+    if WindowsBits = 32 then
     begin
-      {$REGION 'Online-Datei bestimmen'}
-      if WindowsBits = 32 then
-      begin
-        zipUrlSigned :=
-          'https://www.hickelsoft.de/fernwartung/v3/rustdesk-hickelsoft-win32.zip';
-        zipUrlUnsigned :=
-          'https://github.com/hickelsoft/rustdesk/releases/download/nightly/rustdesk-hickelsoft-win32.zip';
-      end
-      else
-      begin
-        zipUrlSigned :=
-          'https://www.hickelsoft.de/fernwartung/v3/rustdesk-hickelsoft-win64.zip';
-        zipUrlUnsigned :=
-          'https://github.com/hickelsoft/rustdesk/releases/download/nightly/rustdesk-hickelsoft-win64.zip';
-      end;
-      {$ENDREGION}
+      zipUrlSigned :=
+        'https://www.hickelsoft.de/fernwartung/v3/rustdesk-hickelsoft-win32.zip';
+      zipUrlSignedHmac :=
+        'https://www.hickelsoft.de/fernwartung/v3/rustdesk-hickelsoft-win32.hmac';
+    end
+    else
+    begin
+      zipUrlSigned :=
+        'https://www.hickelsoft.de/fernwartung/v3/rustdesk-hickelsoft-win64.zip';
+      zipUrlSignedHmac :=
+        'https://www.hickelsoft.de/fernwartung/v3/rustdesk-hickelsoft-win64.hmac';
+    end;
+    {$ENDREGION}
 
+    {$REGION 'Prüfen, ob Herunterladen erforderlich ist'}
+    try
+      needsDownload := not FileExists(downloadedZip) or
+                       (Trim(DoGet(zipUrlSignedHmac)) <> HashHmacFileSHA256Hex(downloadedZip, HS_ALUV4_HMAC_SECRET)); // in this case, use the HMAC to check "has the online file changed?"
+    except
+      needsDownload := true;
+    end;
+    {$ENDREGION}
+
+    if needsDownload then
+    begin
       {$REGION 'Herunterladen versuchen'}
       pgd := TProgressDlg.Create(nil);
       try
@@ -210,21 +215,13 @@ begin
         pgd.Open;
         try
           DeleteFile(PChar(downloadedZip + '.tmp'));
-          try
-            DownloadFile(zipUrlSigned, downloadedZip + '.tmp', pgd);
-          except
-            on E: EAbort do
+          DownloadFile(zipUrlSigned, downloadedZip + '.tmp', pgd);
+          if HS_ALUV4_HMAC_SECRET <> '' then
+          begin
+            if Trim(DoGet(zipUrlSignedHmac)) <> HashHmacFileSHA256Hex(downloadedZip + '.tmp', HS_ALUV4_HMAC_SECRET) then
             begin
-              Abort;
-            end;
-            on E: Exception do
-            begin
-              if istRustDeskUpdate then
-                // Beim RustDesk Update möchten wir keine unsignierte Alternative
-                raise
-              else
-                // Bei den restlichen Aufrufen dürfen wir im Notfall auch ein unsigniertes Produkt laden
-                DownloadFile(zipUrlUnsigned, downloadedZip + '.tmp', pgd);
+              DeleteFile(downloadedZip + '.tmp');
+              raise Exception.Create(StrHMacFehler);
             end;
           end;
           if ThlUtils.GetFileSize(downloadedZip + '.tmp') >= 1024 then

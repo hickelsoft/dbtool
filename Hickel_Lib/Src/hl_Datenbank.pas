@@ -516,15 +516,12 @@ procedure ThlDatenbank.CreateStandard(Datenbank, Server: string;
     sqlConnStr: string;
   begin
     sqlConnStr := 'Provider=' + SqlServerProvider + ';';
-    sqlConnStr := sqlConnStr + 'Application Name=' + ExtractFileName(ParamStr(0))
-      + ' hl_Datenbank;';
+    sqlConnStr := sqlConnStr + 'Application Name=' + ExtractFileName(ParamStr(0)) + ' hl_Datenbank;';
 
     if not(AnmeldungAlsBenutzer) then
-      sqlConnStr := sqlConnStr +
-        'Integrated Security=SSPI;Persist Security Info=False;'
+      sqlConnStr := sqlConnStr + 'Integrated Security=SSPI;Persist Security Info=False;'
     else
-      sqlConnStr := sqlConnStr + 'User ID=' + HS_SA_DB_USER + ';Password=' +
-        HS_SA_DB_PASSWORD + ';Persist Security Info=True;';
+      sqlConnStr := sqlConnStr + 'User ID=' + HS_SA_DB_USER + ';Password=' + HS_SA_DB_PASSWORD + ';Persist Security Info=True;';
 
     if SqlServerProvider = 'MSOLEDBSQL19' then
       sqlConnStr := sqlConnStr + 'Use Encryption for Data=False;';
@@ -534,7 +531,9 @@ procedure ThlDatenbank.CreateStandard(Datenbank, Server: string;
       sqlConnStr := sqlConnStr + 'DataTypeCompatibility=80;';
 
     sqlConnStr := sqlConnStr + 'Initial Catalog=' + Datenbank + ';';
-    sqlConnStr := sqlConnStr + 'Data Source=' + Server;
+
+    // 127.0.0.1 darf bei NT-Auth nicht verwendet werden, sonst kommt "SQL Server Network Interfaces: Die zu überprüfende Nachricht ist nicht in Folge"
+    sqlConnStr := sqlConnStr + 'Data Source=' + StringReplace(Server, '127.0.0.1', 'localhost', [rfReplaceAll]);
 
     CreateIndiv(sqlConnStr, AConnectionTimeout);
   end;

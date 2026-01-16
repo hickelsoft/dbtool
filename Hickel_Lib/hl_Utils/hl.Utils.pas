@@ -5,7 +5,7 @@ interface
 uses
   Windows, Messages, Forms, Classes, SysUtils, Math, Controls, ShellAPI, ShlObj,
   ActiveX, DB,
-{$IF CompilerVersion >= 20.0}IOUtils, {$IFEND}
+{$IF CompilerVersion >= 20.0}System.IOUtils, System.Hash,{$IFEND}
   StdCtrls, ZLib, DBCtrls, ADODB, SHFolder, ComCtrls, Dialogs;
 
 type
@@ -187,7 +187,7 @@ function CleanFileName(const InputString: string): string;
 
 function FilesAreEqual(const File1, File2: TFileName): boolean;
 
-function GetDesktopFolder: string;
+function GetDesktopFolder(aPublic: boolean=false): string;
 function CreateDesktopShellLink(const TargetName, Args, ALinkName,
   AIconName: string; AIconIndex: integer): boolean;
 
@@ -276,6 +276,10 @@ function HasWriteAccessToFile(const FileName: string): Boolean;
 
 procedure SleepWithMessages(Milliseconds: Cardinal);
 function IsDllLoadable(const FileName: string): Boolean;
+
+{$IF CompilerVersion >= 20.0} // geraten
+function HashHmacFileSHA256Hex(const FilePath, Secret: string): string;
+{$ENDIF}
 
 type
   TSenderlessNotifyEvent = procedure of object;
@@ -2798,13 +2802,16 @@ begin
   end;
 end;
 
-function GetDesktopFolder: string;
+function GetDesktopFolder(aPublic: boolean=false): string;
 var
   PIDList: PItemIDList;
   Buffer: array [0 .. MAX_PATH - 1] of char;
 begin
   Result := '';
-  SHGetSpecialFolderLocation(Application.Handle, CSIDL_DESKTOP, PIDList);
+  if apublic then
+    SHGetSpecialFolderLocation(Application.Handle, CSIDL_COMMON_DESKTOPDIRECTORY, PIDList)
+  else
+    SHGetSpecialFolderLocation(Application.Handle, CSIDL_DESKTOP, PIDList);
   if Assigned(PIDList) then
     if ShGetPathFromIDList(PIDList, Buffer) then
       Result := Buffer;
@@ -2817,7 +2824,7 @@ var
   ISLink: IShellLink;
   IPFile: IPersistFile;
   PIDL: PItemIDList;
-  LinkName: WideString;
+  LinkNameLocal, LinkNamePublic: WideString;
   InFolder: array [0 .. MAX_PATH - 1] of char;
 begin
   Result := False;
@@ -2838,13 +2845,13 @@ begin
   SHGetSpecialFolderLocation(0, CSIDL_DESKTOPDIRECTORY, PIDL);
   ShGetPathFromIDList(PIDL, InFolder);
 
-  LinkName := IncludeTrailingPathDelimiter(GetDesktopFolder) +
-    ALinkName + '.lnk';
+  LinkNamePublic := IncludeTrailingPathDelimiter(GetDesktopFolder(true)) + ALinkName + '.lnk';
+  LinkNameLocal := IncludeTrailingPathDelimiter(GetDesktopFolder(false)) + ALinkName + '.lnk';
 
-  DeleteFile(LinkName);
+  DeleteFile(LinkNameLocal);
 
-  if not FileExists(LinkName) then
-    if IPFile.Save(PWideChar(LinkName), False) = S_OK then
+  if not FileExists(LinkNameLocal) and not FileExists(LinkNamePublic) then
+    if IPFile.Save(PWideChar(LinkNameLocal), False) = S_OK then
       Result := True;
 end;
 
@@ -4164,5 +4171,26 @@ begin
     Result := True;
   end;
 end;
+
+{$IF CompilerVersion >= 20.0} // geraten
+function HashHmacFileSHA256Hex(const FilePath, Secret: string): string;
+var
+  FileBytes: TBytes;
+  KeyBytes: TBytes;
+  HashBytes: TBytes;
+begin
+  // Entspricht PHP-Funktion:
+  // hash_hmac_file('sha256', $filePath, $secret, false);
+
+  FileBytes := TFile.ReadAllBytes(FilePath);
+  KeyBytes := TEncoding.UTF8.GetBytes(Secret);
+  HashBytes := THashSHA2.GetHMACAsBytes(
+    FileBytes,
+    KeyBytes,
+    THashSHA2.TSHA2Version.SHA256
+  );
+  Result := LowerCase(THash.DigestAsString(HashBytes));
+end;
+{$ENDIF}
 
 end.

@@ -158,22 +158,6 @@ begin
 end;
 
 constructor TDbToolDatabase.Create(DatabaseName: string);
-
-  procedure TryAccessDb(ProvName: string);
-  begin
-    Screen.Cursor := crHourGlass;
-    try
-      FDatabaseType := dtAccess;
-      DB_ADO := TADOConnection.Create(nil);
-      DB_ADO.ConnectionString := 'Provider=' + ProvName +
-        ';User ID=Admin;Data Source=' + DatabaseName + ';'; // do not localize
-      DB_ADO.LoginPrompt := false;
-      DB_ADO.Connected := true;
-    finally
-      Screen.Cursor := crDefault;
-    end;
-  end;
-
 var
   sExt: string;
   accDbSuccessful: boolean;
@@ -217,6 +201,7 @@ begin
 
   if Copy(DatabaseName, 1, 7) = '_MYSQL:' then // do not localize
   begin
+    {$REGION 'MySQL via MSDASQL'}
     Screen.Cursor := crHourGlass;
     try
       FDatabaseType := dtMySql;
@@ -230,9 +215,11 @@ begin
     finally
       Screen.Cursor := crDefault;
     end;
+    {$ENDREGION}
   end
   else if Copy(DatabaseName, 1, 8) = '_SQLSRV:' then // do not localize
   begin
+    {$REGION 'SQL Server via ADO / OLE DB'}
     Screen.Cursor := crHourGlass;
     try
       FDatabaseType := dtSqlServer;
@@ -240,45 +227,40 @@ begin
       DB_ADO.LoginPrompt := false;
       DB_ADO.ConnectionTimeout := 6;
 
-      GivenProvider := ConnStrReadAttr('Provider',
-        Copy(DatabaseName, Length('_SQLSRV:') + 1)); // do not localize
-      if GivenProvider = '' then
-        GivenProvider := SqlServerProvider;
+      GivenProvider := ConnStrReadAttr('Provider', Copy(DatabaseName, Length('_SQLSRV:') + 1)); // do not localize
+      if GivenProvider = '' then GivenProvider := SqlServerProvider;
 
       connStrPrefix := 'Provider=' + GivenProvider + ';'; // do not localize
 
-      if (ConnStrReadAttr('Integrated Security', Copy(DatabaseName,
-        Length('_SQLSRV:') + 1)) = '') and // do not localize
-        (ConnStrReadAttr('User ID', Copy(DatabaseName, Length('_SQLSRV:') + 1))
-        = '') then // do not localize
-        connStrPrefix := connStrPrefix + 'Integrated Security=SSPI;';
-      // do not localize
+      if (ConnStrReadAttr('Integrated Security', Copy(DatabaseName, Length('_SQLSRV:') + 1)) = '') and // do not localize
+        (ConnStrReadAttr('User ID', Copy(DatabaseName, Length('_SQLSRV:') + 1)) = '') then // do not localize
+      begin
+        connStrPrefix := connStrPrefix + 'Integrated Security=SSPI;'; // do not localize
+      end;
 
       if (GivenProvider = 'MSOLEDBSQL19') and
-        (ConnStrReadAttr('Use Encryption for Data', Copy(DatabaseName,
-        Length('_SQLSRV:') + 1)) = '') then // do not localize
-        connStrPrefix := connStrPrefix + 'Use Encryption for Data=False;';
-      // wichtig für MSOLEDBSQL19 (Generation 3, Version 19+) Treiber // do not localize
+        (ConnStrReadAttr('Use Encryption for Data', Copy(DatabaseName, Length('_SQLSRV:') + 1)) = '') then // do not localize
+      begin
+        // Important for MSOLEDBSQL19 (Generation 3, Version 19+) provider
+        connStrPrefix := connStrPrefix + 'Use Encryption for Data=False;'; // do not localize
+      end;
 
       if (SqlServerProvider <> 'SQLOLEDB') and
-        (ConnStrReadAttr('DataTypeCompatibility', Copy(DatabaseName,
-        Length('_SQLSRV:') + 1)) = '') then // do not localize
+        (ConnStrReadAttr('DataTypeCompatibility', Copy(DatabaseName, Length('_SQLSRV:') + 1)) = '') then // do not localize
+      begin
+        // Ansonsten funktionieren "time" Datentypen nicht! (sind im Fields[] und FieldDefs[] nicht da und dbGrid kackt ab)
+        // Leider wird der Typ dann als "WideString" ausgegeben, aber ist halt so...
         connStrPrefix := connStrPrefix + 'DataTypeCompatibility=80;';
-      // ansonsten funktionieren "time" Datentypen nicht! (sind im Fields[] und FieldDefs[] nicht da und dbGrid kackt ab)
-      // leider wird der Typ dann als "WideString" ausgegeben, aber ist halt so...
+      end;
 
       if Modus_CORA_Verzeichnis then
       begin
         try
           // Benutzer-Auth probieren
-          sTmp := connStrPrefix +
-            Copy(DatabaseName, Length('_SQLSRV:') + 1) + ';Application Name=' +
-            ExtractFileName(ParamStr(0)); // do not localize
+          sTmp := connStrPrefix + Copy(DatabaseName, Length('_SQLSRV:') + 1) + ';Application Name=' + ExtractFileName(ParamStr(0)); // do not localize
           try
             HS_SA_DB_OLD := false; // User "cora-admin"
-            DB_ADO.ConnectionString := StringReplace(sTmp,
-              'Integrated Security=SSPI;', 'User ID=' + HS_SA_DB_USER +
-              ';Password=' + HS_SA_DB_PASSWORD + ';', []); // do not localize
+            DB_ADO.ConnectionString := StringReplace(sTmp, 'Integrated Security=SSPI;', 'User ID=' + HS_SA_DB_USER + ';Password=' + HS_SA_DB_PASSWORD + ';', []); // do not localize
             DB_ADO.Connected := true;
           except
             on E: EAbort do
@@ -288,9 +270,7 @@ begin
             on E: Exception do
             begin
               HS_SA_DB_OLD := true; // User "sa"
-              DB_ADO.ConnectionString := StringReplace(sTmp,
-                'Integrated Security=SSPI;', 'User ID=' + HS_SA_DB_USER +
-                ';Password=' + HS_SA_DB_PASSWORD + ';', []); // do not localize
+              DB_ADO.ConnectionString := StringReplace(sTmp, 'Integrated Security=SSPI;', 'User ID=' + HS_SA_DB_USER + ';Password=' + HS_SA_DB_PASSWORD + ';', []); // do not localize
               DB_ADO.Connected := true;
             end;
           end;
@@ -302,28 +282,62 @@ begin
           on E: Exception do
           begin
             // NT Auth probieren
-            DB_ADO.ConnectionString := connStrPrefix +
-              Copy(DatabaseName, Length('_SQLSRV:') + 1) + ';Application Name='
-              + ExtractFileName(ParamStr(0)); // do not localize
+            DB_ADO.ConnectionString := connStrPrefix + Copy(DatabaseName, Length('_SQLSRV:') + 1) + ';Application Name=' + ExtractFileName(ParamStr(0)); // do not localize
+            {$REGION 'Workaround SQL Fehler "Die zu überprüfende Nachricht ist nicht in Folge"'}
+            (*
+            SQL Server Meldung "SQL Server Network Interfaces: Die zu überprüfende Nachricht ist nicht in Folge"
+            kommt, wenn man NT-Authentifizierung auf "127.0.0.1,49010" bei MSOLEDBSQL und MSOLEDBSQL19 macht.
+            SQLOLEDB hingegen würde unendlich lange warten.
+            Lösung:
+            - SQL-User-Authentifizierung anstelle NT-Authentifizierung verwenden
+            oder:
+            - "Localhost,49010" oder "::1,49010" oder "NameDesComputers,49010" verwenden
+            *)
+            DB_ADO.ConnectionString := StringReplace(DB_ADO.ConnectionString, 'Data Source=127.0.0.1,', 'Data Source=localhost,', [rfIgnoreCase]);
+            DB_ADO.ConnectionString := StringReplace(DB_ADO.ConnectionString, 'Data Source=127.0.0.1\', 'Data Source=localhost\', [rfIgnoreCase]);
+            DB_ADO.ConnectionString := StringReplace(DB_ADO.ConnectionString, 'Data Source=127.0.0.1;', 'Data Source=localhost;', [rfIgnoreCase]);
+            if EndsText('Data Source=127.0.0.1', DB_ADO.ConnectionString) then
+              DB_ADO.ConnectionString := StringReplace(DB_ADO.ConnectionString, 'Data Source=127.0.0.1', 'Data Source=localhost', [rfIgnoreCase]);
+            {$ENDREGION}
             DB_ADO.Connected := true;
           end;
         end;
       end
       else
       begin
-        DB_ADO.ConnectionString := connStrPrefix +
-          Copy(DatabaseName, Length('_SQLSRV:') + 1) + ';Application Name=' +
-          ExtractFileName(ParamStr(0)); // do not localize
+        DB_ADO.ConnectionString := connStrPrefix + Copy(DatabaseName, Length('_SQLSRV:') + 1) + ';Application Name=' + ExtractFileName(ParamStr(0)); // do not localize
+        if ContainsText(DB_ADO.ConnectionString, 'Integrated Security=SSPI') or
+           ContainsText(DB_ADO.ConnectionString, 'Integrated Security=Yes') or
+           ContainsText(DB_ADO.ConnectionString, 'Integrated Security=True') then
+        begin
+          {$REGION 'Workaround SQL Fehler "Die zu überprüfende Nachricht ist nicht in Folge"'}
+          (*
+          SQL Server Meldung "SQL Server Network Interfaces: Die zu überprüfende Nachricht ist nicht in Folge"
+          kommt, wenn man NT-Authentifizierung auf "127.0.0.1,49010" bei MSOLEDBSQL und MSOLEDBSQL19 macht.
+          SQLOLEDB hingegen würde unendlich lange warten.
+          Lösung:
+          - SQL-User-Authentifizierung anstelle NT-Authentifizierung verwenden
+          oder:
+          - "Localhost,49010" oder "::1,49010" oder "NameDesComputers,49010" verwenden
+          *)
+          DB_ADO.ConnectionString := StringReplace(DB_ADO.ConnectionString, 'Data Source=127.0.0.1,', 'Data Source=localhost,', [rfIgnoreCase]);
+          DB_ADO.ConnectionString := StringReplace(DB_ADO.ConnectionString, 'Data Source=127.0.0.1\', 'Data Source=localhost\', [rfIgnoreCase]);
+          DB_ADO.ConnectionString := StringReplace(DB_ADO.ConnectionString, 'Data Source=127.0.0.1;', 'Data Source=localhost;', [rfIgnoreCase]);
+          if EndsText('Data Source=127.0.0.1', DB_ADO.ConnectionString) then
+            DB_ADO.ConnectionString := StringReplace(DB_ADO.ConnectionString, 'Data Source=127.0.0.1', 'Data Source=localhost', [rfIgnoreCase]);
+          {$ENDREGION}
+        end;
         DB_ADO.Connected := true;
       end;
-
     finally
       Screen.Cursor := crDefault;
     end;
+    {$ENDREGION}
   end
 {$IFNDEF WIN64}
   else if sExt = '' then // Lokale Datenbank (BDE)
   begin
+    {$REGION 'Local Database (BDE)'}
     Screen.Cursor := crHourGlass;
     try
       FDatabaseType := dtLocal;
@@ -334,10 +348,12 @@ begin
     finally
       Screen.Cursor := crDefault;
     end
+    {$ENDREGION}
   end
 {$ENDIF}
   else if (sExt = '.GDB') or (sExt = '.IB') then // Interbase-Datenbank // do not localize
   begin
+    {$REGION 'Interbase'}
     Screen.Cursor := crHourGlass;
     try
       FDatabaseType := dtInterbase;
@@ -423,9 +439,11 @@ begin
     finally
       Screen.Cursor := crDefault;
     end;
+    {$ENDREGION}
   end
   else if sExt = '.FDB' then // Firebird-Datenbank // do not localize
   begin
+    {$REGION 'Firebird'}
     Screen.Cursor := crHourGlass;
     try
       FDatabaseType := dtFirebird;
@@ -440,7 +458,7 @@ begin
         if      (FbVersion.Major = 12) and (FbVersion.Minor = 0) then FbClientPath := FbClientPath + '30'
         else if (FbVersion.Major = 13) and (FbVersion.Minor = 0) then FbClientPath := FbClientPath + '40'
         else if (FbVersion.Major = 13) and (FbVersion.Minor = 1) then FbClientPath := FbClientPath + '50'
-        else FbClientPath := '__NON_EXISTING__'; // make sure DirectoryExists will fail
+        else FbClientPath := IntToStr(FbVersion.Major) + '_' + IntToStr(FbVersion.Minor); // not supplied by our setup, but user can supply it
         {$IFDEF WIN64}
         FbClientPath := FbClientPath + '_64';
         {$ELSE}
@@ -541,23 +559,26 @@ begin
     finally
       Screen.Cursor := crDefault;
     end;
+    {$ENDREGION}
   end
   else if sExt = '.MDB' then // Access 97 Datenbank // do not localize
   begin
+    {$REGION 'Access 97 via ADO / JET OLE DB'}
     Screen.Cursor := crHourGlass;
     try
       FDatabaseType := dtAccess;
       DB_ADO := TADOConnection.Create(nil);
-      DB_ADO.ConnectionString := 'Provider=Microsoft.Jet.OLEDB.4.0;Data Source='
-        + DatabaseName; // do not localize
+      DB_ADO.ConnectionString := 'Provider=Microsoft.Jet.OLEDB.4.0;Data Source=' + DatabaseName; // do not localize
       DB_ADO.LoginPrompt := false;
       DB_ADO.Connected := true;
     finally
       Screen.Cursor := crDefault;
     end;
+    {$ENDREGION}
   end
   else if sExt = '.ACCDB' then // Moderne Access Datenbank // do not localize
   begin
+    {$REGION 'Access Datenbank via ADO / ACE OLE DB'}
     // Versuche einen geeigneten Provider zu finden. Bevorzuge den mit der höchsten Version
     accDbSuccessful := false;
     accDbLastError := SNoAceOleDbProviderRegistered;
@@ -566,13 +587,20 @@ begin
       reg.RootKey := HKEY_CLASSES_ROOT;
       for i := 99 downto 12 do
       begin
-        if reg.KeyExists('Microsoft.ACE.OLEDB.' + IntToStr(i) + '.0') then
-        // do not localize
+        ProvName := 'Microsoft.ACE.OLEDB.' + IntToStr(i) + '.0'; // do not localize
+        if reg.KeyExists(ProvName) then
         begin
-          ProvName := 'Microsoft.ACE.OLEDB.' + IntToStr(i) + '.0';
-          // do not localize
           try
-            TryAccessDb(ProvName);
+            Screen.Cursor := crHourGlass;
+            try
+              FDatabaseType := dtAccess;
+              DB_ADO := TADOConnection.Create(nil);
+              DB_ADO.ConnectionString := 'Provider=' + ProvName + ';User ID=Admin;Data Source=' + DatabaseName + ';'; // do not localize
+              DB_ADO.LoginPrompt := false;
+              DB_ADO.Connected := true;
+            finally
+              Screen.Cursor := crDefault;
+            end;
             accDbSuccessful := true;
             break;
           except
@@ -595,6 +623,7 @@ begin
     begin
       raise Exception.CreateFmt(SAccessProviderLoadError, [accDbLastError]);
     end;
+    {$ENDREGION}
   end
   // TODO: Repro. Die Meldung kam plötzlich, nachdem man erfolgreich eine CSV exportiert hat... Können wir nicht mehr nachstellen.
   else

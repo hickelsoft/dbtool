@@ -2,7 +2,7 @@
 <xlat>
   <meta>
     <version>3</version>
-    <created>2025-12-04T14:19:18.142+01:00</created>
+    <created>2026-01-16T16:39:22.979+01:00</created>
     <tool>amTranslationManager</tool>
     <toolversion>2.3.9199.24584</toolversion>
   </meta>
@@ -12,13 +12,13 @@
     <sorted>True</sorted>
     <omitnewstate>True</omitnewstate>
   </options>
-  <project sourcefile="..\..\..\HS-Service\DBTool64.exe" stringsymbolfile=".\DBTool64.drc" language="de-DE" properties="2147">
+  <project sourcefile="..\..\..\HS-Service\DBTool64.exe" stringsymbolfile=".\DBTool64.drc" language="de-DE" properties="2148">
     <targetlanguages>
-      <language language="en-US" translated="1015"/>
       <language language="de-DE" translated="0"/>
+      <language language="en-US" translated="1015"/>
     </targetlanguages>
     <modules>
-      <module name="resourcestrings" type="strings" properties="1802">
+      <module name="resourcestrings" type="strings" properties="1803">
         <items>
           <item name="C_Database_SAccessProviderLoadError">
             <properties>
@@ -8762,6 +8762,13 @@
             <properties>
               <property>
                 <value>"%s\%s\%s" is of wrong kind or size</value>
+              </property>
+            </properties>
+          </item>
+          <item name="Main_HMacError">
+            <properties>
+              <property>
+                <value>HMAC Fehler. Bitte Download erneut versuchen.</value>
               </property>
             </properties>
           </item>

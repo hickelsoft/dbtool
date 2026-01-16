@@ -1013,12 +1013,19 @@ begin
   result := hlDateTime.Create(b);
 end;
 
-function hlDateTime.toSQLString: string;
+function hlDateTime.toSQLString: string; // Das gibt einen DATETIME Typ zurück, das ist so gewollt!
+var
+  datum: string;
+  zeit: string;
 begin
-  // result := hlString.Create(toString).toSQLString;
-  result := 'CONVERT(varchar(10), ''' + toString + ''', 104) + '' '' + CONVERT(varchar(8), ''' + toString + ''', 108)';
+  datum := FormatDateTime('dd.mm.yyyy', wert); // Jahreszahl muss 4-stellig sein (Ticket 53630)
+  zeit := FormatDateTime('hh:nn:ss', wert);
   // Format 104 = "23.08.2019"
   // Format 108 = "11:22:33"
+  if zeit <> '00:00:00' then
+    result := 'CONVERT(datetime, ''' + datum + ''', 104) + CONVERT(datetime, ''' + zeit + ''', 108)'
+  else
+    result := 'CONVERT(datetime, ''' + datum + ''', 104)';
 end;
 
 function hlDateTime.toString: string;
@@ -1026,8 +1033,7 @@ var
   datum: string;
   zeit: string;
 begin
-  datum := FormatDateTime('dd.mm.yyyy', wert);
-  // Jahreszahl muss 4-stellig sein (Ticket 53630)
+  datum := FormatDateTime('dd.mm.yyyy', wert); // Jahreszahl muss 4-stellig sein (Ticket 53630)
   zeit := FormatDateTime('hh:nn:ss', wert);
   if zeit <> '00:00:00' then
     result := datum + ' ' + zeit

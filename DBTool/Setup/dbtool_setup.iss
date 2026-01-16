@@ -39,7 +39,7 @@ ArchitecturesAllowed=x86compatible x64compatible
 ArchitecturesInstallIn64BitMode=x64compatible
 ; Configure Sign Tool in InnoSetup at "Tools => Configure Sign Tools" (adjust the path to your SVN repository location)
 ; Name    = sign_single   
-; Command = "D:\SVN\Delphi\DevTools\AuthentiCode Sign\sign_single.bat" $f
+; Command = "C:\SVN\Delphi\DevTools\AuthentiCode Sign\sign_single.bat" $f
 SignTool=sign_single
 SignedUninstaller=yes
 
@@ -50,27 +50,28 @@ Name: de; MessagesFile: "compiler:Languages\German.isl"
 [Tasks]
 ; DM entfernt: Flags: unchecked
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
+Name: "firebirdclient"; Description: "Firebird Client (FB 3.x / 4.x / 5.x) installieren"; GroupDescription: "Optionale Komponenten"; Flags: checkedonce
 
 [Files]
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 ; Die Dinger werden von Delphi kompiliert
-Source: "\\Win11Dev\DBToolCompile$\DBTool32.exe"; DestDir: "{app}"; DestName: "DBTool32.exe"; Flags: ignoreversion signonce
-Source: "\\Win11Dev\DBToolCompile$\DBTool64.exe"; DestDir: "{app}"; DestName: "DBTool64.exe"; Flags: ignoreversion signonce; Check: Is64BitInstallMode
-Source: "\\Win11Dev\DBToolCompile$\DBTool32.enu"; DestDir: "{app}"; DestName: "DBTool32.enu"; Flags: ignoreversion signonce
-Source: "\\Win11Dev\DBToolCompile$\DBTool64.enu"; DestDir: "{app}"; DestName: "DBTool64.enu"; Flags: ignoreversion signonce; Check: Is64BitInstallMode
+Source: "C:\HS-Service\DBTool32.exe"; DestDir: "{app}"; DestName: "DBTool32.exe"; Flags: ignoreversion signonce
+Source: "C:\HS-Service\DBTool64.exe"; DestDir: "{app}"; DestName: "DBTool64.exe"; Flags: ignoreversion signonce; Check: Is64BitInstallMode
+Source: "C:\HS-Service\DBTool32.enu"; DestDir: "{app}"; DestName: "DBTool32.enu"; Flags: ignoreversion signonce
+Source: "C:\HS-Service\DBTool64.enu"; DestDir: "{app}"; DestName: "DBTool64.enu"; Flags: ignoreversion signonce; Check: Is64BitInstallMode
 
 ; https://www.firebirdsql.org/en/firebird-3-0
-Source: "\\Win11Dev\DBToolCompile$\FB30_32\*.*";  DestDir: "{app}\FB30_32"; Flags: ignoreversion recursesubdirs
-Source: "\\Win11Dev\DBToolCompile$\FB30_64\*.*";  DestDir: "{app}\FB30_64"; Flags: ignoreversion recursesubdirs; Check: Is64BitInstallMode
+Source: "C:\HS-Service\FB30_32\*.*";  DestDir: "{app}\FB30_32"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient
+Source: "C:\HS-Service\FB30_64\*.*";  DestDir: "{app}\FB30_64"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient; Check: Is64BitInstallMode
 
 ; https://www.firebirdsql.org/en/firebird-4-0
-Source: "\\Win11Dev\DBToolCompile$\FB40_32\*.*";  DestDir: "{app}\FB40_32"; Flags: ignoreversion recursesubdirs
-Source: "\\Win11Dev\DBToolCompile$\FB40_64\*.*";  DestDir: "{app}\FB40_64"; Flags: ignoreversion recursesubdirs; Check: Is64BitInstallMode
+Source: "C:\HS-Service\FB40_32\*.*";  DestDir: "{app}\FB40_32"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient
+Source: "C:\HS-Service\FB40_64\*.*";  DestDir: "{app}\FB40_64"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient; Check: Is64BitInstallMode
 
 ; https://www.firebirdsql.org/en/firebird-5-0
-Source: "\\Win11Dev\DBToolCompile$\FB50_32\*.*";  DestDir: "{app}\FB50_32"; Flags: ignoreversion recursesubdirs
-Source: "\\Win11Dev\DBToolCompile$\FB50_64\*.*";  DestDir: "{app}\FB50_64"; Flags: ignoreversion recursesubdirs; Check: Is64BitInstallMode
+Source: "C:\HS-Service\FB50_32\*.*";  DestDir: "{app}\FB50_32"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient
+Source: "C:\HS-Service\FB50_64\*.*";  DestDir: "{app}\FB50_64"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient; Check: Is64BitInstallMode
 
 ; Restliche Dateien liegen hier im Setup-Verzeichnis
 Source: "lizenzbedingungen.rtf"; DestDir: "{app}"; Flags: ignoreversion
