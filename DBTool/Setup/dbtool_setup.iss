@@ -56,22 +56,22 @@ Name: "firebirdclient"; Description: "Firebird Client (FB 3.x / 4.x / 5.x) insta
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 ; Die Dinger werden von Delphi kompiliert
-Source: "C:\HS-Service\DBTool32.exe"; DestDir: "{app}"; DestName: "DBTool32.exe"; Flags: ignoreversion signonce
-Source: "C:\HS-Service\DBTool64.exe"; DestDir: "{app}"; DestName: "DBTool64.exe"; Flags: ignoreversion signonce; Check: Is64BitInstallMode
-Source: "C:\HS-Service\DBTool32.enu"; DestDir: "{app}"; DestName: "DBTool32.enu"; Flags: ignoreversion signonce
-Source: "C:\HS-Service\DBTool64.enu"; DestDir: "{app}"; DestName: "DBTool64.enu"; Flags: ignoreversion signonce; Check: Is64BitInstallMode
+Source: "C:\HS-Service\DBTool\DBTool32.exe"; DestDir: "{app}"; DestName: "DBTool32.exe"; Flags: ignoreversion signonce
+Source: "C:\HS-Service\DBTool\DBTool64.exe"; DestDir: "{app}"; DestName: "DBTool64.exe"; Flags: ignoreversion signonce; Check: Is64BitInstallMode
+Source: "C:\HS-Service\DBTool\DBTool32.enu"; DestDir: "{app}"; DestName: "DBTool32.enu"; Flags: ignoreversion signonce
+Source: "C:\HS-Service\DBTool\DBTool64.enu"; DestDir: "{app}"; DestName: "DBTool64.enu"; Flags: ignoreversion signonce; Check: Is64BitInstallMode
 
 ; https://www.firebirdsql.org/en/firebird-3-0
-Source: "C:\HS-Service\FB30_32\*.*";  DestDir: "{app}\FB30_32"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient
-Source: "C:\HS-Service\FB30_64\*.*";  DestDir: "{app}\FB30_64"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient; Check: Is64BitInstallMode
+Source: "C:\HS-Service\DBTool\FB30_32\*.*";  DestDir: "{app}\FB30_32"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient
+Source: "C:\HS-Service\DBTool\FB30_64\*.*";  DestDir: "{app}\FB30_64"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient; Check: Is64BitInstallMode
 
 ; https://www.firebirdsql.org/en/firebird-4-0
-Source: "C:\HS-Service\FB40_32\*.*";  DestDir: "{app}\FB40_32"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient
-Source: "C:\HS-Service\FB40_64\*.*";  DestDir: "{app}\FB40_64"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient; Check: Is64BitInstallMode
+Source: "C:\HS-Service\DBTool\FB40_32\*.*";  DestDir: "{app}\FB40_32"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient
+Source: "C:\HS-Service\DBTool\FB40_64\*.*";  DestDir: "{app}\FB40_64"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient; Check: Is64BitInstallMode
 
 ; https://www.firebirdsql.org/en/firebird-5-0
-Source: "C:\HS-Service\FB50_32\*.*";  DestDir: "{app}\FB50_32"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient
-Source: "C:\HS-Service\FB50_64\*.*";  DestDir: "{app}\FB50_64"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient; Check: Is64BitInstallMode
+Source: "C:\HS-Service\DBTool\FB50_32\*.*";  DestDir: "{app}\FB50_32"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient
+Source: "C:\HS-Service\DBTool\FB50_64\*.*";  DestDir: "{app}\FB50_64"; Flags: ignoreversion recursesubdirs; Tasks: firebirdclient; Check: Is64BitInstallMode
 
 ; Restliche Dateien liegen hier im Setup-Verzeichnis
 Source: "lizenzbedingungen.rtf"; DestDir: "{app}"; Flags: ignoreversion

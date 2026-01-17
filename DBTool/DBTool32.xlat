@@ -12,7 +12,7 @@
     <sorted>True</sorted>
     <omitnewstate>True</omitnewstate>
   </options>
-  <project sourcefile="..\..\..\HS-Service\DBTool32.exe" stringsymbolfile=".\DBTool32.drc" language="de-DE" properties="2202">
+  <project sourcefile="..\..\..\HS-Service\DBTool\DBTool32.exe" stringsymbolfile=".\DBTool32.drc" language="de-DE" properties="2202">
     <targetlanguages>
       <language language="en-US" translated="1060"/>
       <language language="de-DE" translated="0"/>

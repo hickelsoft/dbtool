@@ -65,12 +65,11 @@
         <SanitizedProjectName>DBTool64</SanitizedProjectName>
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;Winapi;System.Win;Data.Win;Bde;Xml.Win;IBX;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_AutoGenVersion>False</VerInfo_AutoGenVersion>
-        <VerInfo_MajorVer>1</VerInfo_MajorVer>
-        <VerInfo_Build>0</VerInfo_Build>
         <VerInfo_Locale>1031</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=HickelSoft Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1992-2023 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool64.exe;ProductName=DBTool;ProductVersion=8.0;Comments=</VerInfo_Keys>
         <DCC_OutputDRCFile>true</DCC_OutputDRCFile>
+        <DCC_ExeOutput>c:\HS-Service\DBTool\</DCC_ExeOutput>
+        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Gui\Src;C:\hbTapi Components\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_Namespace>Datasnap.Win;Web.Win;Soap.Win;$(DCC_Namespace)</DCC_Namespace>
@@ -93,8 +92,6 @@
         <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1999-2002 Leif Bruder, 2016-2024 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool64.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=DBTool;ProductVersion=1.0;Comments=</VerInfo_Keys>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
-        <DCC_ExeOutput>c:\HS-Service\</DCC_ExeOutput>
-        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Gui\Src;C:\hbTapi Components\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <PreBuildEvent><![CDATA[ResCompile DBTool64
 $(PreBuildEvent)]]></PreBuildEvent>
@@ -105,6 +102,7 @@ del c:\HS-Service\DbTool64.map
 if exist c:\HS-Service\_DbTool64.enu move c:\HS-Service\_DbTool64.enu c:\HS-Service\DbTool64.enu
 $(PostBuildEvent)]]></PostBuildEvent>
         <DCC_MapFile>3</DCC_MapFile>
+        <DCC_DcuOutput>c:\HS-Service\DBTool\dcu64\</DCC_DcuOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <Version>7.0</Version>
@@ -115,7 +113,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCC_ResourcePath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;$(BDS)\RaveReports\Lib;..\VCL_JEDI\lib\d11\debug;..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;$(DCC_ResourcePath)</DCC_ResourcePath>
         <DCC_ObjPath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;$(BDS)\RaveReports\Lib;..\VCL_JEDI\lib\d11\debug;..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;$(DCC_ObjPath)</DCC_ObjPath>
         <DCC_IncludePath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;$(BDS)\RaveReports\Lib;..\VCL_JEDI\lib\d11\debug;..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;$(DCC_IncludePath)</DCC_IncludePath>
-        <DCC_ExeOutput>c:\HS-Service\</DCC_ExeOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -131,7 +128,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Version>7.0</Version>
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
-        <DCC_ExeOutput>c:\HS-Service\</DCC_ExeOutput>
         <DCC_ResourcePath>..\VCL_JEDI\lib\d11\debug;..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;c:\Program Files (x86)\Woll2Woll\ipstudio2007\source\windows;c:\Program Files (x86)\Woll2Woll\fcstudio2007\source\windows;..\vcl_hbtapi;..\VCL_Indy_Head\trunk\Lib\SuperCore;..\VCL_Indy_Head\trunk\Lib\Core;..\VCL_Indy_Head\trunk\Lib\System;..\VCL_Indy_Head\trunk\Lib\Protocols;..\VCL_Indy_Head\trunk\Lib\Security;..\VCL_Indy_Head\trunk\Lib\Design;$(DCC_ResourcePath)</DCC_ResourcePath>
         <DCC_ObjPath>..\VCL_JEDI\lib\d11\debug;..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;c:\Program Files (x86)\Woll2Woll\ipstudio2007\source\windows;c:\Program Files (x86)\Woll2Woll\fcstudio2007\source\windows;..\vcl_hbtapi;..\VCL_Indy_Head\trunk\Lib\SuperCore;..\VCL_Indy_Head\trunk\Lib\Core;..\VCL_Indy_Head\trunk\Lib\System;..\VCL_Indy_Head\trunk\Lib\Protocols;..\VCL_Indy_Head\trunk\Lib\Security;..\VCL_Indy_Head\trunk\Lib\Design;$(DCC_ObjPath)</DCC_ObjPath>
         <DCC_IncludePath>..\VCL_JEDI\lib\d11\debug;..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;c:\Program Files (x86)\Woll2Woll\ipstudio2007\source\windows;c:\Program Files (x86)\Woll2Woll\fcstudio2007\source\windows;..\vcl_hbtapi;..\VCL_Indy_Head\trunk\Lib\SuperCore;..\VCL_Indy_Head\trunk\Lib\Core;..\VCL_Indy_Head\trunk\Lib\System;..\VCL_Indy_Head\trunk\Lib\Protocols;..\VCL_Indy_Head\trunk\Lib\Security;..\VCL_Indy_Head\trunk\Lib\Design;$(DCC_IncludePath)</DCC_IncludePath>
@@ -190,8 +186,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <Source Name="MainSource">DBTool64.dpr</Source>
                 </Source>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="C:\Program Files (x86)\Embarcadero\Studio\23.0\bin\designide290.bpl">Datei C:\Program Files (x86)\Embarcadero\Studio\23.0\bin\designide290.bpl nicht gefunden</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Program Files (x86)\Embarcadero\Studio\23.0\bin\designideresources290.bpl">Datei C:\Program Files (x86)\Embarcadero\Studio\23.0\bin\designideresources290.bpl nicht gefunden</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k370.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp370.bpl">Microsoft Office XP Beispiele für gekapselte Komponenten für Automation Server</Excluded_Packages>
                 </Excluded_Packages>
                 <Language>
                     <Language Name="ProjectLang">$00000407</Language>

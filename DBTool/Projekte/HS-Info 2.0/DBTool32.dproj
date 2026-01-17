@@ -67,6 +67,8 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1031</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=HickelSoft Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1992-2023 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool32.exe;ProductName=DBTool;ProductVersion=8.0;Comments=</VerInfo_Keys>
+        <DCC_ExeOutput>c:\HS-Service\Dev\</DCC_ExeOutput>
+        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Gui\Src;C:\hbTapi Components\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_Namespace>Datasnap.Win;Web.Win;Soap.Win;$(DCC_Namespace)</DCC_Namespace>
@@ -77,9 +79,7 @@
         <Icon_MainIcon>DBTool32_Icon.ico</Icon_MainIcon>
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
-        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Gui\Src;C:\hbTapi Components\Source;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
-        <DCC_ExeOutput>c:\HS-Service\Dev\</DCC_ExeOutput>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <PreBuildEvent><![CDATA[ResCompile.bat DBTool32
 $(PreBuildEvent)]]></PreBuildEvent>
@@ -87,6 +87,7 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <PostBuildEvent><![CDATA[..\..\..\DevTools\MakeJclDbg -e c:\HS-Service\Dev\DbTool32.map
 del c:\HS-Service\Dev\DbTool32.map
 $(PostBuildEvent)]]></PostBuildEvent>
+        <DCC_DcuOutput>c:\HS-Service\Dev\dcu32\</DCC_DcuOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <Icon_MainIcon>DBTool32_Icon.ico</Icon_MainIcon>
@@ -125,7 +126,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Version>7.0</Version>
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
-        <DCC_ExeOutput>c:\HS-Service\Dev\</DCC_ExeOutput>
         <DCC_ResourcePath>..\VCL_JEDI\lib\d11\debug;..\..\..\Hickel_Components;..\..\..\Hickel_Cora_Lib\_Basis;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Cora_Lib\Belege\;..\..\..\Hickel_Cora_Lib\Stamm\;..\..\..\Hickel_Cora_Lib\Touren\;..\..\..\Hickel_Cora_Lib\Lohnmost\;..\..\..\Hickel_Cora_Lib\AW\;..\..\..\Hickel_Cora_Lib\LMIV\;..\..\..\Hickel_Cora_Lib\ImEx\;..\..\..\Hickel_Cora_Gui\Src\;..\..\..\Hickel_Cora_Gui\Suche\;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Cora_Gui\Src\LMIV\;..\..\..\Hickel_Cora_Gui\Suche\LMIV\;..\_APro\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Cora_Lib\hcl_Datenbank;..\..\..\Hickel_Cora_Lib\hcl_System;..\..\..\Hickel_Cora_Lib\hcl_Kern;..\..\..\Hickel_Cora_Lib\hcl_Utils;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;..\..\..\Hickel_Cora_Gui\drucken\;c:\Program Files (x86)\Woll2Woll\ipstudio2007\source\windows;c:\Program Files (x86)\Woll2Woll\fcstudio2007\source\windows;..\vcl_hbtapi;..\VCL_Indy_Head\trunk\Lib\SuperCore;..\VCL_Indy_Head\trunk\Lib\Core;..\VCL_Indy_Head\trunk\Lib\System;..\VCL_Indy_Head\trunk\Lib\Protocols;..\VCL_Indy_Head\trunk\Lib\Security;..\VCL_Indy_Head\trunk\Lib\Design;$(DCC_ResourcePath)</DCC_ResourcePath>
         <DCC_ObjPath>..\VCL_JEDI\lib\d11\debug;..\..\..\Hickel_Components;..\..\..\Hickel_Cora_Lib\_Basis;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Cora_Lib\Belege\;..\..\..\Hickel_Cora_Lib\Stamm\;..\..\..\Hickel_Cora_Lib\Touren\;..\..\..\Hickel_Cora_Lib\Lohnmost\;..\..\..\Hickel_Cora_Lib\AW\;..\..\..\Hickel_Cora_Lib\LMIV\;..\..\..\Hickel_Cora_Lib\ImEx\;..\..\..\Hickel_Cora_Gui\Src\;..\..\..\Hickel_Cora_Gui\Suche\;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Cora_Gui\Src\LMIV\;..\..\..\Hickel_Cora_Gui\Suche\LMIV\;..\_APro\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Cora_Lib\hcl_Datenbank;..\..\..\Hickel_Cora_Lib\hcl_System;..\..\..\Hickel_Cora_Lib\hcl_Kern;..\..\..\Hickel_Cora_Lib\hcl_Utils;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;..\..\..\Hickel_Cora_Gui\drucken\;c:\Program Files (x86)\Woll2Woll\ipstudio2007\source\windows;c:\Program Files (x86)\Woll2Woll\fcstudio2007\source\windows;..\vcl_hbtapi;..\VCL_Indy_Head\trunk\Lib\SuperCore;..\VCL_Indy_Head\trunk\Lib\Core;..\VCL_Indy_Head\trunk\Lib\System;..\VCL_Indy_Head\trunk\Lib\Protocols;..\VCL_Indy_Head\trunk\Lib\Security;..\VCL_Indy_Head\trunk\Lib\Design;$(DCC_ObjPath)</DCC_ObjPath>
         <DCC_IncludePath>..\VCL_JEDI\lib\d11\debug;..\..\..\Hickel_Components;..\..\..\Hickel_Cora_Lib\_Basis;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Cora_Lib\Belege\;..\..\..\Hickel_Cora_Lib\Stamm\;..\..\..\Hickel_Cora_Lib\Touren\;..\..\..\Hickel_Cora_Lib\Lohnmost\;..\..\..\Hickel_Cora_Lib\AW\;..\..\..\Hickel_Cora_Lib\LMIV\;..\..\..\Hickel_Cora_Lib\ImEx\;..\..\..\Hickel_Cora_Gui\Src\;..\..\..\Hickel_Cora_Gui\Suche\;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Cora_Gui\Src\LMIV\;..\..\..\Hickel_Cora_Gui\Suche\LMIV\;..\_APro\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Cora_Lib\hcl_Datenbank;..\..\..\Hickel_Cora_Lib\hcl_System;..\..\..\Hickel_Cora_Lib\hcl_Kern;..\..\..\Hickel_Cora_Lib\hcl_Utils;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;..\..\..\Hickel_Cora_Gui\drucken\;c:\Program Files (x86)\Woll2Woll\ipstudio2007\source\windows;c:\Program Files (x86)\Woll2Woll\fcstudio2007\source\windows;..\vcl_hbtapi;..\VCL_Indy_Head\trunk\Lib\SuperCore;..\VCL_Indy_Head\trunk\Lib\Core;..\VCL_Indy_Head\trunk\Lib\System;..\VCL_Indy_Head\trunk\Lib\Protocols;..\VCL_Indy_Head\trunk\Lib\Security;..\VCL_Indy_Head\trunk\Lib\Design;$(DCC_IncludePath)</DCC_IncludePath>
@@ -184,8 +184,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <Source Name="MainSource">DBTool32.dpr</Source>
                 </Source>
                 <Excluded_Packages>
+                    <Excluded_Packages Name="C:\Program Files (x86)\Embarcadero\Studio\23.0\bin\designide290.bpl">Datei C:\Program Files (x86)\Embarcadero\Studio\23.0\bin\designide290.bpl nicht gefunden</Excluded_Packages>
+                    <Excluded_Packages Name="C:\Program Files (x86)\Embarcadero\Studio\23.0\bin\designideresources290.bpl">Datei C:\Program Files (x86)\Embarcadero\Studio\23.0\bin\designideresources290.bpl nicht gefunden</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k370.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp370.bpl">Microsoft Office XP Beispiele für gekapselte Komponenten für Automation Server</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>

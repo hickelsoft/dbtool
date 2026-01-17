@@ -23,12 +23,9 @@ type
 implementation
 
 uses
-  // Delphi 2007:
-  // Für die Unit JclDebug muss JEDI Installiert sein (VCL_JEDI\Install.bat ausführen und Anweisungen folgen).
-  // Manchmal, wenn er hier hängt, muss auch einfach nur Delphi neu gestartet werden.
-  // Delphi 11:
+  // Delphi 13:
   // JEDI über GetIt PackageManager installieren,
-  // danach install.bat aufrufen über c:\Users\dmarschall.HICKELSOFT\Documents\Embarcadero\Studio\22.0\CatalogRepository\JEDICodeLibraryJCL-2022.02\
+  // danach install.bat aufrufen über C:\Users\dmarschall\Documents\Embarcadero\Studio\37.0\CatalogRepository\JEDICodeLibraryJCL-13\2025.10
   JclDebug, Windows, Dateutils;
 
 var

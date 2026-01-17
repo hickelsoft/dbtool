@@ -248,7 +248,9 @@ function IsUserAdmin: boolean;
 procedure MDI_Form_BringToFront(frm: TForm);
 function DaysHumanReadable(days: integer): string;
 function WindowsBits: integer;
+{$IF CompilerVersion >= 20.0} // geraten
 procedure BmpToPngFile(bmpFile, pngFile: string);
+{$IFEND}
 function Hash_djb2(Str: string): string;
 function GetDeepestDir(const AFileName: string): string;
 
@@ -279,7 +281,7 @@ function IsDllLoadable(const FileName: string): Boolean;
 
 {$IF CompilerVersion >= 20.0} // geraten
 function HashHmacFileSHA256Hex(const FilePath, Secret: string): string;
-{$ENDIF}
+{$IFEND}
 
 type
   TSenderlessNotifyEvent = procedure of object;
@@ -289,7 +291,11 @@ implementation
 uses
   FormatSettingsCompat, hl.Utils.CRC32, hl.Utils.MD5, StrUtils, TlHelp32,
   Registry, ComObj, DateUtils,
-  hl.Utils.WmiUtils, WinSock, PngImage, Graphics;
+  hl.Utils.WmiUtils, WinSock,
+  {$IF CompilerVersion >= 20.0} // geraten
+  PngImage,
+  {$IFEND}
+  Graphics;
 
 resourcestring
   StrUngültigeBlockgröße = 'Ungültige Blockgröße';
@@ -3803,6 +3809,7 @@ begin
 {$ENDIF}
 end;
 
+{$IF CompilerVersion >= 20.0} // geraten
 procedure BmpToPngFile(bmpFile, pngFile: string);
 var
   bmp: TBitmap;
@@ -3819,6 +3826,7 @@ begin
     FreeAndNil(png);
   end;
 end;
+{$IFEND}
 
 function Hash_djb2(Str: string): string;
 
@@ -4191,6 +4199,6 @@ begin
   );
   Result := LowerCase(THash.DigestAsString(HashBytes));
 end;
-{$ENDIF}
+{$IFEND}
 
 end.
