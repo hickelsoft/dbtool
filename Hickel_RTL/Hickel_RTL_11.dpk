@@ -54,7 +54,6 @@ requires
 contains
   hl_IntegerList in '..\Hickel_Lib\Src\hl_IntegerList.pas',
   hl_Printer_Neu in '..\Hickel_Lib\Src\hl_Printer_Neu.pas',
-  hl_Suche in '..\Hickel_Lib\Src\hl_Suche.pas',
   hl.Utils in '..\Hickel_Lib\hl_Utils\hl.Utils.pas',
   hl.Utils.Bank in '..\Hickel_Lib\hl_Utils\hl.Utils.Bank.pas',
   hl.System.SingleInstance in '..\Hickel_Lib\hl_System\hl.System.SingleInstance.pas',

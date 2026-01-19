@@ -1046,7 +1046,6 @@
         <DCCReference Include="Drucker.pas"/>
         <DCCReference Include="HsGauge.pas"/>
         <DCCReference Include="HsDruckerConfig.pas"/>
-        <DCCReference Include="HSVersionInfo.pas"/>
         <DCCReference Include="MessaBox.pas"/>
         <DCCReference Include="PicBtn.pas"/>
         <DCCReference Include="Progrdlg.pas"/>

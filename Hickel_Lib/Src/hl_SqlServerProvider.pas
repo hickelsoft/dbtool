@@ -2,10 +2,12 @@ unit hl_SqlServerProvider;
 
 interface
 
-function SqlServerProvider(NoCache: boolean = false): string;
 // gibt den NEUSTEN SQL-Provider zurück oder den Debug-Hartkodierten Provider
-function SqlServerProviderCompat(NoCache: boolean = false): string;
+function SqlServerProvider(NoCache: boolean = false): string;
+
 // gibt den ÄLTESTEN SQL-Provider zurück
+function SqlServerProviderCompat(NoCache: boolean = false): string;
+
 function ProviderIsInstalled(Provider: string): boolean;
 
 implementation

@@ -42,7 +42,6 @@ contains
   Drucker in 'Drucker.pas',
   HsGauge in 'HsGauge.pas',
   HsDruckerConfig in 'HsDruckerConfig.pas',
-  HSVersionInfo in 'HSVersionInfo.pas',
   MessaBox in 'MessaBox.pas',
   PicBtn in 'PicBtn.pas',
   Progrdlg in 'Progrdlg.pas',

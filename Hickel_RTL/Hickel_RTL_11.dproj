@@ -162,7 +162,6 @@
         <DCCReference Include="IndyCore.dcp"/>
         <DCCReference Include="..\Hickel_Lib\Src\hl_IntegerList.pas"/>
         <DCCReference Include="..\Hickel_Lib\Src\hl_Printer_Neu.pas"/>
-        <DCCReference Include="..\Hickel_Lib\Src\hl_Suche.pas"/>
         <DCCReference Include="..\Hickel_Lib\hl_Utils\hl.Utils.pas"/>
         <DCCReference Include="..\Hickel_Lib\hl_Utils\hl.Utils.Bank.pas"/>
         <DCCReference Include="..\Hickel_Lib\hl_System\hl.System.SingleInstance.pas"/>
