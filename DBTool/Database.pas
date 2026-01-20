@@ -84,7 +84,7 @@ type
 implementation
 
 uses
-  Main, Table, Query, Export, Globals, Printers, hl.Utils, hl_Datenbank;
+  Main, Table, Query, Export, Globals, Printers, hl.Utils, hl.Datenbank;
 
 {$R *.DFM}
 

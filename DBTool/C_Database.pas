@@ -120,7 +120,7 @@ implementation
 uses
   ComCtrls, Globals, IbDatabaseName, SysUtils, Controls, ProgrDlg,
   hl_SqlServerProvider,
-  hl_Datenbank, StrUtils, HS_Auth, System.Hash;
+  hl.Datenbank, StrUtils, HS_Auth, System.Hash;
 
 resourcestring
   SInternalError = 'Interner Fehler';

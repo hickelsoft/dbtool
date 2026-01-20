@@ -654,7 +654,7 @@ begin
 
   // Verhindern, dass SQL Server denkt, es sei ein Parameterobjekt
   // Brauchen wir nur, wenn die abfrage ParamCheck=true hat.
-  // Wir haben aber in hl_Datenbank.pas das immer auf false.
+  // Wir haben aber in hl.Datenbank.pas das immer auf false.
   // result := StringReplace(result, ':', '::', [rfReplaceAll]);
 
   // New lines

@@ -1,4 +1,4 @@
-unit hl_Datenbank;
+unit hl.Datenbank;
 
 // DM: Dies ermöglicht, dass eine verschachtelte Transaktion nicht zum Fehler
 // führt. Allerdings ist diese Funktionalität gefährlich, denn ein Rollback
@@ -516,7 +516,7 @@ procedure ThlDatenbank.CreateStandard(Datenbank, Server: string;
     sqlConnStr: string;
   begin
     sqlConnStr := 'Provider=' + SqlServerProvider + ';';
-    sqlConnStr := sqlConnStr + 'Application Name=' + ExtractFileName(ParamStr(0)) + ' hl_Datenbank;';
+    sqlConnStr := sqlConnStr + 'Application Name=' + ExtractFileName(ParamStr(0)) + ' hl.Datenbank;';
 
     if not(AnmeldungAlsBenutzer) then
       sqlConnStr := sqlConnStr + 'Integrated Security=SSPI;Persist Security Info=False;'

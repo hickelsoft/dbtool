@@ -3,7 +3,7 @@ unit hl.Datenbank.RowLock;
 interface
 
 uses
-  SysUtils, hl.System.Types, hl_Datenbank, hl_ExceptionLogger;
+  SysUtils, hl.System.Types, hl.Datenbank, hl_ExceptionLogger;
 
 const
   // in Millisekunden. -1 = deaktiviert

@@ -69,7 +69,7 @@
         <VerInfo_Keys>CompanyName=HickelSoft Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1992-2023 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool32.exe;ProductName=DBTool;ProductVersion=8.0;Comments=</VerInfo_Keys>
         <DCC_OutputDRCFile>true</DCC_OutputDRCFile>
         <DCC_ExeOutput>c:\HS-Service\DBTool\</DCC_ExeOutput>
-        <DCC_UnitSearchPath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\..\..\Hickel_Gui\Src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
+        <DCC_UnitSearchPath>..\..\..\Hickel_VCL;..\..\..\Hickel_RTL\Lib\Src;..\..\..\Hickel_RTL\Lib\System;..\..\..\Hickel_RTL\Lib\Utils;..\..\..\Hickel_RTL\Lib\Datenbank;..\..\..\Hickel_RTL\Gui\Src;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_Namespace>Datasnap.Win;Web.Win;Soap.Win;$(DCC_Namespace)</DCC_Namespace>
@@ -110,9 +110,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <DCC_LocalDebugSymbols>False</DCC_LocalDebugSymbols>
         <DCC_SymbolReferenceInfo>0</DCC_SymbolReferenceInfo>
         <DCC_Define>RELEASE;$(DCC_Define)</DCC_Define>
-        <DCC_ResourcePath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;$(BDS)\RaveReports\Lib;..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;$(DCC_ResourcePath)</DCC_ResourcePath>
-        <DCC_ObjPath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;$(BDS)\RaveReports\Lib;..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;$(DCC_ObjPath)</DCC_ObjPath>
-        <DCC_IncludePath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;$(BDS)\RaveReports\Lib;..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;$(DCC_IncludePath)</DCC_IncludePath>
+        <DCC_ResourcePath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;$(BDS)\RaveReports\Lib;..\..\..\Hickel_VCL;..\..\..\Hickel_RTL\Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_RTL\Lib\System;..\..\..\Hickel_RTL\Lib\Utils;..\..\..\Hickel_RTL\Lib\Datenbank;..\vcl_zcolorstringgrid;$(DCC_ResourcePath)</DCC_ResourcePath>
+        <DCC_ObjPath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;$(BDS)\RaveReports\Lib;..\..\..\Hickel_VCL;..\..\..\Hickel_RTL\Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_RTL\Lib\System;..\..\..\Hickel_RTL\Lib\Utils;..\..\..\Hickel_RTL\Lib\Datenbank;..\vcl_zcolorstringgrid;$(DCC_ObjPath)</DCC_ObjPath>
+        <DCC_IncludePath>$(BDS)\lib\Debug;$(BDS)\Lib\Debug\Indy10;$(BDS)\RaveReports\Lib;..\..\..\Hickel_VCL;..\..\..\Hickel_RTL\Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_RTL\Lib\System;..\..\..\Hickel_RTL\Lib\Utils;..\..\..\Hickel_RTL\Lib\Datenbank;..\vcl_zcolorstringgrid;$(DCC_IncludePath)</DCC_IncludePath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <VerInfo_AutoGenVersion>true</VerInfo_AutoGenVersion>
@@ -130,9 +130,9 @@ $(PostBuildEvent)]]></PostBuildEvent>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Version>7.0</Version>
         <DCC_Define>DEBUG;$(DCC_Define)</DCC_Define>
-        <DCC_ResourcePath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;$(DCC_ResourcePath)</DCC_ResourcePath>
-        <DCC_ObjPath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;$(DCC_ObjPath)</DCC_ObjPath>
-        <DCC_IncludePath>..\..\..\Hickel_Components;..\..\..\Hickel_Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_Lib\hl_System;..\..\..\Hickel_Lib\hl_Utils;..\..\..\Hickel_Lib\hl_Datenbank;..\vcl_zcolorstringgrid;$(DCC_IncludePath)</DCC_IncludePath>
+        <DCC_ResourcePath>..\..\..\Hickel_VCL;..\..\..\Hickel_RTL\Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_RTL\Lib\System;..\..\..\Hickel_RTL\Lib\Utils;..\..\..\Hickel_RTL\Lib\Datenbank;..\vcl_zcolorstringgrid;$(DCC_ResourcePath)</DCC_ResourcePath>
+        <DCC_ObjPath>..\..\..\Hickel_VCL;..\..\..\Hickel_RTL\Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_RTL\Lib\System;..\..\..\Hickel_RTL\Lib\Utils;..\..\..\Hickel_RTL\Lib\Datenbank;..\vcl_zcolorstringgrid;$(DCC_ObjPath)</DCC_ObjPath>
+        <DCC_IncludePath>..\..\..\Hickel_VCL;..\..\..\Hickel_RTL\Lib\Src;..\..\..\Hickel_CL\Src\;..\..\..\Hickel_Gemeinsame\Src\;..\..\..\Hickel_RTL\Lib\System;..\..\..\Hickel_RTL\Lib\Utils;..\..\..\Hickel_RTL\Lib\Datenbank;..\vcl_zcolorstringgrid;$(DCC_IncludePath)</DCC_IncludePath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1999-2002 Leif Bruder, 2016-2024 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool32.exe;ProductName=DBTool;ProductVersion=1.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
@@ -213,7 +213,7 @@ $(PostBuildEvent)]]></PostBuildEvent>
                     <RDP_Source_Files Name="Item10">..\..\OpenSqlDb.dfm</RDP_Source_Files>
                     <RDP_Source_Files Name="Item11">..\..\EditRTF.dfm</RDP_Source_Files>
                     <RDP_Source_Files Name="Item12">..\..\Query.dfm</RDP_Source_Files>
-                    <RDP_Source_Files Name="Item13">..\..\..\Hickel_Components\Statusan.dfm</RDP_Source_Files>
+                    <RDP_Source_Files Name="Item13">..\..\..\Hickel_VCL\Statusan.dfm</RDP_Source_Files>
                     <RDP_Source_Files Name="Item14">C:\HS-Service\DBTool32.drc</RDP_Source_Files>
                 </RDP_Source_Files>
             </Delphi.Personality>

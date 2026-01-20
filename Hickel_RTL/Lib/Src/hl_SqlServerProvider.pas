@@ -29,7 +29,7 @@ begin
 
   // Bitte synchon halten:
   // C#\CORA.Print\CoraSqlProvider.cs
-  // Delphi\Hickel_Lib\Src\hl_SqlServerProvider.pas
+  // Delphi\Hickel_RTL\Lib\Src\hl_SqlServerProvider.pas
 
   reg := TRegistry.Create;
   try

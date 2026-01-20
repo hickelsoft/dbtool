@@ -142,7 +142,7 @@ uses
   Globals, Database, Table, Info, Optionen, OpenSqlDb, OpenMySqlDb, Export,
   Import, DateiNeu,
   Registry, Query, hl.Utils.Color, ProgrDlg, hl.Utils, IniFiles,
-  hl_Datenbank, HickelSOFT_Design, hl.System.ExceptionHandler, hl.Utils.Web,
+  hl.Datenbank, HickelSOFT_Design, hl.System.ExceptionHandler, hl.Utils.Web,
   HS_Auth, hl_SqlServerProvider;
 
 function GetHsInfo2ConnectionString: string;
