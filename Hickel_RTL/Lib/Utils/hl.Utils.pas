@@ -3,8 +3,8 @@ unit hl.Utils;
 interface
 
 uses
-  Windows, Messages, Forms, Classes, SysUtils, Math, Controls, ShellAPI, ShlObj,
-  ActiveX, DB,
+  Windows, Messages, Forms, Classes, SysUtils, Math, Controls, ShellAPI,
+  DB,
 {$IF CompilerVersion >= 20.0}System.IOUtils, System.Hash,{$IFEND}
   StdCtrls, ZLib, DBCtrls, ADODB, SHFolder, ComCtrls, Dialogs;
 
@@ -281,6 +281,7 @@ function IsDllLoadable(const FileName: string): Boolean;
 
 {$IF CompilerVersion >= 20.0} // geraten
 function HashHmacFileSHA256Hex(const FilePath, Secret: string): string;
+procedure SchriftartInstallieren(SchriftartDatei: string);
 {$IFEND}
 
 type
@@ -295,7 +296,8 @@ uses
   {$IF CompilerVersion >= 20.0} // geraten
   PngImage,
   {$IFEND}
-  Graphics;
+  Graphics, ShlObj, ActiveX;
+
 
 resourcestring
   StrUngültigeBlockgröße = 'Ungültige Blockgröße';
@@ -4198,6 +4200,36 @@ begin
     THashSHA2.TSHA2Version.SHA256
   );
   Result := LowerCase(THash.DigestAsString(HashBytes));
+end;
+
+procedure SchriftartInstallieren(SchriftartDatei: string);
+  function GetUserFontsFolder: string;
+  var
+    Path: PWideChar;
+  const
+    FOLDERID_LocalAppData: TGUID = '{F1B32785-6FBA-4FCF-9D55-7B8E7F157091}';
+  begin
+    Result := '';
+    Path := nil;
+    if Succeeded(SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, 0, Path)) then
+    begin
+      Result := IncludeTrailingPathDelimiter(Path) + 'Microsoft\Windows\Fonts';
+      CoTaskMemFree(Path);
+    end;
+  end;
+var
+  FontPath: string;
+begin
+  FontPath := IncludeTrailingPathDelimiter(GetUserFontsFolder);
+  if FontPath = '' then exit;
+  ForceDirectories(FontPath);
+  if CopyFile(PChar(SchriftartDatei), PChar(FontPath + ExtractFileName(SchriftartDatei)), true) then
+  begin
+    if AddFontResourceEx(PChar(FontPath + ExtractFileName(SchriftartDatei)), 0, nil) > 0 then
+    begin
+      SendMessage(HWND_BROADCAST, WM_FONTCHANGE, 0, 0);
+    end;
+  end;
 end;
 {$IFEND}
 

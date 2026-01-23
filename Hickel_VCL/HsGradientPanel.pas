@@ -10,7 +10,7 @@
   ********************************************************************** *)
 
 // NOTE: Component was not created by HickelSOFT.
-// It was moved into Hickel_Components.bpl to make development easier
+// It was moved into Hickel_VCL.bpl to make development easier
 // See a few small improvements marked with "by HickelSOFT"
 
 unit HsGradientPanel;

@@ -1,10 +1,10 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{F4CBE804-8AEA-4FB9-B397-4A11EC74A6C9}</ProjectGuid>
-        <MainSource>Hickel_Components_11.dpk</MainSource>
+        <MainSource>Hickel_VCL.dpk</MainSource>
         <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
         <DCC_DCCCompiler>DCC32</DCC_DCCCompiler>
-        <DCC_DependencyCheckOutputName>c:\Users\Public\Documents\RAD Studio\5.0\Bpl\Hickel_Components.bpl</DCC_DependencyCheckOutputName>
+        <DCC_DependencyCheckOutputName>c:\Users\Public\Documents\RAD Studio\5.0\Bpl\Hickel_VCL.bpl</DCC_DependencyCheckOutputName>
         <FrameworkType>VCL</FrameworkType>
         <ProjectVersion>20.3</ProjectVersion>
         <Base>True</Base>
@@ -12,7 +12,7 @@
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Package</AppType>
-        <ProjectName Condition="'$(ProjectName)'==''">Hickel_Components_11</ProjectName>
+        <ProjectName Condition="'$(ProjectName)'==''">Hickel_VCL</ProjectName>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -59,14 +59,14 @@
         <DCC_OutputNeverBuildDcps>true</DCC_OutputNeverBuildDcps>
         <GenDll>true</GenDll>
         <GenPackage>true</GenPackage>
-        <SanitizedProjectName>Hickel_Components_11</SanitizedProjectName>
+        <SanitizedProjectName>Hickel_VCL</SanitizedProjectName>
         <DCC_DebugInformation>1</DCC_DebugInformation>
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <DCC_Namespace>Vcl;Vcl.Imaging;Vcl.Touch;Vcl.Samples;Vcl.Shell;System;Xml;Data;Datasnap;Web;Soap;DUnitX.Loggers.GUI;DUnitX.StackTrace;Winapi;System.Win;Data.Win;$(DCC_Namespace)</DCC_Namespace>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_MajorVer>8</VerInfo_MajorVer>
         <VerInfo_Locale>1031</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=HickelSOFT VCL;FileVersion=8.0.0.0;InternalName=Hickel_Components;LegalCopyright=(C) 1992-2023 HickelSOFT Huth GmbH;LegalTrademarks=CORAplus;OriginalFilename=Hickel_Components.bpl;ProductName=CORAplus;ProductVersion=8.0;Comments=</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=HickelSOFT VCL;FileVersion=8.0.0.0;InternalName=Hickel_VCL;LegalCopyright=(C) 1992-2023 HickelSOFT Huth GmbH;LegalTrademarks=CORAplus;OriginalFilename=Hickel_VCL.bpl;ProductName=CORAplus;ProductVersion=8.0;Comments=</VerInfo_Keys>
         <DCC_OutputDRCFile>true</DCC_OutputDRCFile>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
@@ -75,14 +75,14 @@
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <Icon_MainIcon>Hickel_Components_11_Icon.ico</Icon_MainIcon>
-        <DCC_UsePackage>vcl;rtl;xmlrtl;vclactnband;vclx;dbrtl;vclie;vcldb;VclSmp;adortl;Jcl;Hickel_Components;vclwinx;$(DCC_UsePackage)</DCC_UsePackage>
+        <Icon_MainIcon>Hickel_VCL.ico</Icon_MainIcon>
+        <DCC_UsePackage>vcl;rtl;xmlrtl;vclactnband;vclx;dbrtl;vclie;vcldb;VclSmp;adortl;Jcl;Hickel_VCL;vclwinx;$(DCC_UsePackage)</DCC_UsePackage>
         <VerInfo_MajorVer>1</VerInfo_MajorVer>
         <DCC_DcuOutput>..\..\..\..\..\..\..\..\..\CORAplus\BAP\bin\dcu32</DCC_DcuOutput>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <Icon_MainIcon>Hickel_Components_11_Icon.ico</Icon_MainIcon>
+        <Icon_MainIcon>Hickel_VCL.ico</Icon_MainIcon>
         <DCC_UsePackage>vcl;rtl;xmlrtl;vclactnband;vclx;dbrtl;vclie;vcldb;VclSmp;adortl;vclwinx;$(DCC_UsePackage)</DCC_UsePackage>
         <DCC_Namespace>Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
         <BT_BuildType>Debug</BT_BuildType>
@@ -145,20 +145,21 @@
                     <VersionInfoKeys Name="CompanyName">HickelSOFT Huth GmbH</VersionInfoKeys>
                     <VersionInfoKeys Name="FileDescription">HickelSOFT VCL</VersionInfoKeys>
                     <VersionInfoKeys Name="FileVersion">8.0.0.0</VersionInfoKeys>
-                    <VersionInfoKeys Name="InternalName">Hickel_Components</VersionInfoKeys>
+                    <VersionInfoKeys Name="InternalName">Hickel_VCL</VersionInfoKeys>
                     <VersionInfoKeys Name="LegalCopyright">(C) 1992-2023 HickelSOFT Huth GmbH</VersionInfoKeys>
                     <VersionInfoKeys Name="LegalTrademarks">CORAplus</VersionInfoKeys>
-                    <VersionInfoKeys Name="OriginalFilename">Hickel_Components.bpl</VersionInfoKeys>
+                    <VersionInfoKeys Name="OriginalFilename">Hickel_VCL.bpl</VersionInfoKeys>
                     <VersionInfoKeys Name="ProductName">CORAplus</VersionInfoKeys>
                     <VersionInfoKeys Name="ProductVersion">8.0</VersionInfoKeys>
                     <VersionInfoKeys Name="Comments"/>
                 </VersionInfoKeys>
                 <Source>
-                    <Source Name="MainSource">Hickel_Components_11.dpk</Source>
+                    <Source Name="MainSource">Hickel_VCL.dpk</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Beispiele für gekapselte Komponenten für Automation Server</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\Skia.Package.FMX.Designtime370.bpl">Skia4Delphi-FMX-Entwurfszeit-Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\Skia.Package.VCL.Designtime370.bpl">Skia4Delphi-VCL-Entwurfszeit-Package</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k370.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>
@@ -167,13 +168,13 @@
                 <Platform value="Win64x">False</Platform>
             </Platforms>
             <Deployment Version="5">
-                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\23.0\Bpl\Hickel_Components_11.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\37.0\Bpl\Hickel_VCL.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>Hickel_Components_11.bpl</RemoteName>
+                        <RemoteName>Hickel_VCL.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName="c:\Users\Public\Documents\Embarcadero\Studio\21.0\Bpl\Hickel_Components_11.bpl" Configuration="Debug" Class="ProjectOutput"/>
+                <DeployFile LocalName="c:\Users\Public\Documents\Embarcadero\Studio\21.0\Bpl\Hickel_VCL.bpl" Configuration="Debug" Class="ProjectOutput"/>
                 <DeployClass Name="AdditionalDebugSymbols">
                     <Platform Name="OSX32">
                         <Operation>1</Operation>
@@ -1045,7 +1046,6 @@
         <DCCReference Include="Jcl.dcp"/>
         <DCCReference Include="Drucker.pas"/>
         <DCCReference Include="HsGauge.pas"/>
-        <DCCReference Include="HsDruckerConfig.pas"/>
         <DCCReference Include="MessaBox.pas"/>
         <DCCReference Include="PicBtn.pas"/>
         <DCCReference Include="Progrdlg.pas"/>

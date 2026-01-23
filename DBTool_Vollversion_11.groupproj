@@ -3,11 +3,11 @@
         <ProjectGuid>{439F1EB0-98A7-433D-8D5C-00CA756D0BE0}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="Hickel_VCL\Hickel_Components_11.dproj">
+        <Projects Include="Hickel_VCL\Hickel_VCL.dproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="Hickel_RTL\Hickel_RTL_11.dproj">
-            <Dependencies>Hickel_VCL\Hickel_Components_11.dproj</Dependencies>
+        <Projects Include="Hickel_RTL\Hickel_RTL.dproj">
+            <Dependencies>Hickel_VCL\Hickel_VCL.dproj</Dependencies>
         </Projects>
         <Projects Include="DBTool\Projekte\Vollversion\DBTool32.dproj">
             <Dependencies/>
@@ -23,23 +23,23 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="Hickel_Components_11">
-        <MSBuild Projects="Hickel_VCL\Hickel_Components_11.dproj"/>
+    <Target Name="Hickel_VCL">
+        <MSBuild Projects="Hickel_VCL\Hickel_VCL.dproj"/>
     </Target>
-    <Target Name="Hickel_Components_11:Clean">
-        <MSBuild Projects="Hickel_VCL\Hickel_Components_11.dproj" Targets="Clean"/>
+    <Target Name="Hickel_VCL:Clean">
+        <MSBuild Projects="Hickel_VCL\Hickel_VCL.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="Hickel_Components_11:Make">
-        <MSBuild Projects="Hickel_VCL\Hickel_Components_11.dproj" Targets="Make"/>
+    <Target Name="Hickel_VCL:Make">
+        <MSBuild Projects="Hickel_VCL\Hickel_VCL.dproj" Targets="Make"/>
     </Target>
-    <Target Name="Hickel_RTL_11" DependsOnTargets="Hickel_Components_11">
-        <MSBuild Projects="Hickel_RTL\Hickel_RTL_11.dproj"/>
+    <Target Name="Hickel_RTL" DependsOnTargets="Hickel_VCL">
+        <MSBuild Projects="Hickel_RTL\Hickel_RTL.dproj"/>
     </Target>
-    <Target Name="Hickel_RTL_11:Clean" DependsOnTargets="Hickel_Components_11:Clean">
-        <MSBuild Projects="Hickel_RTL\Hickel_RTL_11.dproj" Targets="Clean"/>
+    <Target Name="Hickel_RTL:Clean" DependsOnTargets="Hickel_VCL:Clean">
+        <MSBuild Projects="Hickel_RTL\Hickel_RTL.dproj" Targets="Clean"/>
     </Target>
-    <Target Name="Hickel_RTL_11:Make" DependsOnTargets="Hickel_Components_11:Make">
-        <MSBuild Projects="Hickel_RTL\Hickel_RTL_11.dproj" Targets="Make"/>
+    <Target Name="Hickel_RTL:Make" DependsOnTargets="Hickel_VCL:Make">
+        <MSBuild Projects="Hickel_RTL\Hickel_RTL.dproj" Targets="Make"/>
     </Target>
     <Target Name="DBTool32">
         <MSBuild Projects="DBTool\Projekte\Vollversion\DBTool32.dproj"/>
@@ -60,13 +60,13 @@
         <MSBuild Projects="DBTool\Projekte\Vollversion\DBTool64.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Hickel_Components_11;Hickel_RTL_11;DBTool32;DBTool64"/>
+        <CallTarget Targets="Hickel_VCL;Hickel_RTL;DBTool32;DBTool64"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Hickel_Components_11:Clean;Hickel_RTL_11:Clean;DBTool32:Clean;DBTool64:Clean"/>
+        <CallTarget Targets="Hickel_VCL:Clean;Hickel_RTL:Clean;DBTool32:Clean;DBTool64:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Hickel_Components_11:Make;Hickel_RTL_11:Make;DBTool32:Make;DBTool64:Make"/>
+        <CallTarget Targets="Hickel_VCL:Make;Hickel_RTL:Make;DBTool32:Make;DBTool64:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

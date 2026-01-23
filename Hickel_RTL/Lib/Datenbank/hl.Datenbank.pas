@@ -212,8 +212,8 @@ type
       adoCon: TAdoConnection = nil); overload;
 
     /// <summary>Setzt für alle TADOTable, TADOQuery etc. die "Connection"-Eigenschaft auf die Datenbankverbindung in hclMandanten. Außerdem wird EnableBCD auf False gesetzt.</summary>
-    procedure ConnectionsFuerFormKomponentenSetzen(aForm: TForm); overload;
-    procedure ConnectionsFuerFormKomponentenSetzen(aForm: TFrame); overload;
+    procedure ConnectionsFuerFormKomponentenSetzen(aForm: TForm); overload; virtual;
+    procedure ConnectionsFuerFormKomponentenSetzen(aForm: TFrame); overload; virtual;
 
     /// <summary>Diese Funktion soll anstelle von x.Active=true verwendet werden. Sie sorgt dafür, dass alle per MasterSource verbundenen Tabellen ebenfalls reaktiviert werden.</summary>
     class procedure ReaktiviereVerbindung(x: TDataset; aForm: TForm);
@@ -282,8 +282,7 @@ function ConnStrWriteAttr(attr, val, ConnStr: string): string;
 implementation
 
 uses
-  MessaBox, hl.System.ExceptionHandler, HsDruckerConfig, hl_SqlServerProvider,
-  HS_Auth;
+  MessaBox, hl.System.ExceptionHandler, hl_SqlServerProvider, HS_Auth;
 
 resourcestring
   StrGetScalarMitLeerem = 'GetScalar mit leerem SQL String aufgerufen';
@@ -809,11 +808,6 @@ begin
       MakeActiveTryReconnect(TADOQuery(aForm.Components[iCounter]), false);
       SetConnection(aForm.Components[iCounter] as TADOQuery);
       MakeActiveTryReconnect(TADOQuery(aForm.Components[iCounter]), bakActive);
-    end;
-    if (aForm.Components[iCounter] is THsDruckerConfig) then
-    begin
-      THsDruckerConfig(aForm.Components[iCounter]).Connection :=
-        self.Connection;
     end;
   end;
 end;

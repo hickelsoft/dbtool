@@ -1,6 +1,6 @@
 program DBTool;
 
-{$INCLUDE '..\..\CORA.inc'}
+{$INCLUDE '..\..\..\CORA.inc'}
 
 {$IFDEF HICKELSOFT_DISABLE_32BIT}
 uses

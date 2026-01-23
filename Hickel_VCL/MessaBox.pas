@@ -104,7 +104,7 @@ resourcestring
   StrFehlerklasseS = 'Fehlerklasse: %s';
   StrFehlermeldungS = 'Fehlermeldung: %s';
 
-{$R MsgBox.Res}
+{$R MessaBox.res}
 
 type
   TDLG_MoreInfoForm = class(TForm)
