@@ -1,10 +1,10 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{DB9ECE1C-7267-491E-8FBB-FF2DBCD183C2}</ProjectGuid>
-        <MainSource>Hickel_RTL_11.dpk</MainSource>
+        <MainSource>Hickel_RTL.dpk</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <ProjectName Condition="'$(ProjectName)'==''">Hickel_RTL_11</ProjectName>
+        <ProjectName Condition="'$(ProjectName)'==''">Hickel_RTL</ProjectName>
         <TargetedPlatforms>1</TargetedPlatforms>
         <AppType>Package</AppType>
         <FrameworkType>VCL</FrameworkType>
@@ -78,7 +78,7 @@
         <DCC_ImageBase>00400000</DCC_ImageBase>
         <GenDll>true</GenDll>
         <GenPackage>true</GenPackage>
-        <SanitizedProjectName>Hickel_RTL_11</SanitizedProjectName>
+        <SanitizedProjectName>Hickel_RTL</SanitizedProjectName>
         <DCC_Description>HICKEL RTL</DCC_Description>
         <RuntimeOnlyPackage>true</RuntimeOnlyPackage>
         <DCC_OutputNeverBuildDcps>true</DCC_OutputNeverBuildDcps>
@@ -145,7 +145,7 @@
         <DCCReference Include="dbrtl.dcp"/>
         <DCCReference Include="dsnap.dcp"/>
         <DCCReference Include="xmlrtl.dcp"/>
-        <DCCReference Include="Hickel_Components_11.dcp"/>
+        <DCCReference Include="Hickel_VCL.dcp"/>
         <DCCReference Include="VclSmp.dcp"/>
         <DCCReference Include="vclx.dcp"/>
         <DCCReference Include="vclactnband.dcp"/>
@@ -242,7 +242,7 @@
         <BorlandProject>
             <Delphi.Personality>
                 <Source>
-                    <Source Name="MainSource">Hickel_RTL_11.dpk</Source>
+                    <Source Name="MainSource">Hickel_RTL.dpk</Source>
                 </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k370.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
@@ -259,9 +259,9 @@
                 <Platform value="Win64x">False</Platform>
             </Platforms>
             <Deployment Version="5">
-                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\37.0\Bpl\Hickel_RTL_11.bpl" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="C:\Users\Public\Documents\Embarcadero\Studio\37.0\Bpl\Hickel_RTL.bpl" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>Hickel_RTL_11.bpl</RemoteName>
+                        <RemoteName>Hickel_RTL.bpl</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

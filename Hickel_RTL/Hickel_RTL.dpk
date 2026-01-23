@@ -1,4 +1,4 @@
-package Hickel_RTL_11;
+package Hickel_RTL;
 
 {$R *.res}
 {$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
@@ -35,7 +35,7 @@ requires
   dbrtl,
   dsnap,
   xmlrtl,
-  Hickel_Components_11,
+  Hickel_VCL,
   VclSmp,
   vclx,
   vclactnband,
