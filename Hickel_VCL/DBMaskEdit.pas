@@ -1,4 +1,3 @@
-unit DBMaskEdit;
 // ****************************
 // This component makes the MaskEdit Component Data aware
 //
@@ -8,6 +7,12 @@ unit DBMaskEdit;
 // or  : richard.gilbert@mcmail.vanderbilt.edu
 // ****************************
 
+// NOTE: Component was not created by HickelSOFT.
+// It was moved into Hickel_VCL.bpl to make development easier
+// See a few small improvements marked with "by HickelSOFT"
+
+unit DBMaskEdit;
+
 interface
 
 uses
@@ -15,8 +20,8 @@ uses
   StdCtrls, Mask, db, dbctrls, Variants;
 
 type
-{$IF CompilerVersion > 20.0} // Version geraten
-  [ComponentPlatformsAttribute(pidWin32 or pidWin64)]
+{$IF CompilerVersion > 20.0} // Version guessed
+  [ComponentPlatformsAttribute(pidWin32 or pidWin64)] // (by HickelSOFT)
 {$IFEND}
 
   TDBMaskEdit = class(TMaskEdit)
