@@ -119,7 +119,7 @@ implementation
 
 uses
   ComCtrls, Globals, IbDatabaseName, SysUtils, Controls, ProgrDlg,
-  hl_SqlServerProvider,
+  hl_SqlServerProvider, ShlObj,
   hl.Datenbank, StrUtils, HS_Auth, System.Hash;
 
 resourcestring
@@ -158,6 +158,53 @@ begin
 end;
 
 constructor TDbToolDatabase.Create(DatabaseName: string);
+
+  function BDE_GetPrivateDir: string;
+  var
+    Path: array[0..MAX_PATH] of Char;
+  begin
+    SHGetFolderPath(0, CSIDL_LOCAL_APPDATA, 0, 0, Path);
+    Result := IncludeTrailingPathDelimiter(Path) + 'HickelSOFT\DBTool\BDE_Private';
+  end;
+
+  function BDE_GetPublicDir: string;
+  var
+    Path: array[0..MAX_PATH] of Char;
+  begin
+    SHGetFolderPath(0, CSIDL_COMMON_DOCUMENTS, 0, 0, Path);
+    Result := IncludeTrailingPathDelimiter(Path) + 'BDE_Share';
+  end;
+
+  function IsNetworkPath(const Path: string): Boolean;
+  var
+    P: string;
+    Drive: Char;
+  begin
+    Result := False;
+    if Path = '' then Exit;
+
+    P := Path;
+
+    // --- Case 1: Extended UNC  \\?\UNC\server\share\...
+    if UpperCase(P).StartsWith('\\?\UNC\', True) then
+      Exit(True);
+
+    // --- Case 2: Extended Drive \\?\X:\...
+    if P.StartsWith('\\?\', True) then
+      Delete(P, 1, 4); // -> X:\... oder C:\...
+
+    // --- Case 3: Klassischer UNC \\server\share\...
+    if P.StartsWith('\\') then
+      Exit(True);
+
+    // --- Case 4: Drive letter (local or mapped network share?)
+    if (Length(P) >= 3) and (P[2] = ':') and (P[3] = '\') then
+    begin
+      Drive := UpCase(P[1]);
+      Result := GetDriveType(PChar(Drive + ':\')) = DRIVE_REMOTE;
+    end;
+  end;
+
 var
   sExt: string;
   accDbSuccessful: boolean;
@@ -175,6 +222,7 @@ var
   FDPhysFBDriverLink1: TFDPhysFBDriverLink;
   FbClientPath: string;
   FbVersion: TFirebirdODSVersion;
+  BdeOwnPath: string;
 resourcestring
   SAccessProviderLoadError =
     'Access DB Provider konnte nicht geladen werden: %s';
@@ -183,6 +231,9 @@ resourcestring
   SNoAceOleDbProviderRegistered = 'Kein ACE OLEDB Provider registriert!';
   SIbError = 'InterBase-Fehler';
   SFbError = 'Firebird-Fehler';
+{$IFDEF WIN64}
+  SBdeNotSupportedOnX64 = 'Lokale BDE-Datenbanken können nur mit der 32-Bit Version von DBTool geöffnet werden.';
+{$ENDIF}
 begin
   inherited Create;
 
@@ -334,14 +385,46 @@ begin
     end;
     {$ENDREGION}
   end
-{$IFNDEF WIN64}
   else if sExt = '' then // Lokale Datenbank (BDE)
   begin
+{$IFNDEF WIN64}
     {$REGION 'Local Database (BDE)'}
     Screen.Cursor := crHourGlass;
     try
       FDatabaseType := dtLocal;
       DB_BDE := TDatabase.Create(nil);
+
+      DB_BDE.Session.SQLHourGlass := true;
+
+      // Paradox Master Passwords
+      DB_BDE.Session.AddPassword('jIGGAe');
+      DB_BDE.Session.AddPassword('cupcdvum');
+      DB_BDE.Session.AddPassword('nx66ppx');
+
+      // Private (per user)
+      sTmp := BDE_GetPrivateDir;
+      ForceDirectories(sTmp);
+      DB_BDE.Session.PrivateDir := sTmp;
+
+      // Public / NetFileDir (shared)
+      // Choose our own public dir, because C:\PDOXUSERS.NET requires admin priviles
+      sTmp := IncludeTrailingPathDelimiter(DatabaseName) + 'BDE_Share';
+      if IsNetworkPath(DatabaseName) then
+      begin
+        // It is still risky because foreign apps might have a different share file,
+        // hence corrupting the tables, but this is the best we can do, if we want
+        // a generic tool for opening any databases...
+        ForceDirectories(sTmp);
+      end;
+      if not DirectoryExists(sTmp) then
+      begin
+        // If BDE_Share does not exist, we either have a local file (that was never remote before)
+        // or we couldn't generate the shared directory
+        sTmp := BDE_GetPublicDir; // take a share for all users on the local machine
+        ForceDirectories(sTmp);
+      end;
+      DB_BDE.Session.NetFileDir := sTmp;
+
       DB_BDE.DatabaseName := DatabaseName;
       DB_BDE.LoginPrompt := false;
       DB_BDE.Connected := true;
@@ -349,8 +432,10 @@ begin
       Screen.Cursor := crDefault;
     end
     {$ENDREGION}
-  end
+{$ELSE}
+    raise Exception.Create(SBdeNotSupportedOnX64);
 {$ENDIF}
+  end
   else if (sExt = '.GDB') or (sExt = '.IB') then // Interbase-Datenbank // do not localize
   begin
     {$REGION 'Interbase'}

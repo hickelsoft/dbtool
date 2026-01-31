@@ -2,7 +2,7 @@
 <xlat>
   <meta>
     <version>3</version>
-    <created>2026-01-16T16:39:07.347+01:00</created>
+    <created>2026-01-31T20:55:31.951+01:00</created>
     <tool>amTranslationManager</tool>
     <toolversion>2.3.9199.24584</toolversion>
   </meta>
@@ -12,13 +12,13 @@
     <sorted>True</sorted>
     <omitnewstate>True</omitnewstate>
   </options>
-  <project sourcefile="..\..\..\HS-Service\DBTool\DBTool32.exe" stringsymbolfile=".\DBTool32.drc" language="de-DE" properties="2202">
+  <project sourcefile="..\..\..\HS-Service\DBTool\DBTool32.exe" stringsymbolfile=".\DBTool32.drc" language="de-DE" properties="2171">
     <targetlanguages>
-      <language language="en-US" translated="1060"/>
+      <language language="en-US" translated="1116"/>
       <language language="de-DE" translated="0"/>
     </targetlanguages>
     <modules>
-      <module name="resourcestrings" type="strings" properties="1858">
+      <module name="resourcestrings" type="strings" properties="1826">
         <items>
           <item name="Bde_Bdeconst_SAutoSessionActive">
             <properties>
@@ -44,6 +44,9 @@
             <properties>
               <property>
                 <value>Dem Formular oder Datenmodul kann keine Session hinzugefügt werden, da Session '%s' AutoSessionName aktiviert hat</value>
+                <translations>
+                  <translation language="en-US">A session cannot be added to the form or data module, because session '%s' has no enabled AutoSessionName</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -61,6 +64,9 @@
             <properties>
               <property>
                 <value>Array mit Feldwerten kann nicht mit Ausdrucksindizes verwendet werden</value>
+                <translations>
+                  <translation language="en-US">Array with field values cannot be used in expression indexes</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -2460,6 +2466,9 @@
             <properties>
               <property>
                 <value>Client-Info</value>
+                <translations>
+                  <translation language="en-US">Client info</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -2866,6 +2875,9 @@
             <properties>
               <property>
                 <value>CommitCount muss größer als null sein</value>
+                <translations>
+                  <translation language="en-US">CommitCount must be larger than zero</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -3622,6 +3634,9 @@
             <properties>
               <property>
                 <value>Variable [%s] ist kein Array</value>
+                <translations>
+                  <translation language="en-US">Variable [%s] is not an array</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -4620,6 +4635,9 @@
             <properties>
               <property>
                 <value>Dateiende</value>
+                <translations>
+                  <translation language="en-US">End of File</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -5144,6 +5162,9 @@
             <properties>
               <property>
                 <value>SQL-Analysefehler:&amp;#13;&amp;#10;&amp;#13;&amp;#10;%s</value>
+                <translations>
+                  <translation language="en-US">SQL analysis error:&amp;#13;&amp;#10;&amp;#13;&amp;#10;%s</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -5567,6 +5588,9 @@
             <properties>
               <property>
                 <value>Package zu groß.</value>
+                <translations>
+                  <translation language="en-US">Package too big.</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -5805,6 +5829,9 @@
             <properties>
               <property>
                 <value>Protokollfamilie nicht unterstützt.</value>
+                <translations>
+                  <translation language="en-US">Protocol family not supported.</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -6379,6 +6406,9 @@
             <properties>
               <property>
                 <value>Chunk gestartet</value>
+                <translations>
+                  <translation language="en-US">Chunk started</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -6659,6 +6689,9 @@
             <properties>
               <property>
                 <value>CompleteAuthToken nicht unterstützt</value>
+                <translations>
+                  <translation language="en-US">CompleteAuthToken not supported</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -8387,14 +8420,14 @@
           </item>
           <item name="JclResources_RsPeCharacteristics">
             <properties>
-              <property>
+              <property status="hold">
                 <value>Characteristics</value>
               </property>
             </properties>
           </item>
           <item name="JclResources_RsPeCheckSum">
             <properties>
-              <property>
+              <property status="hold">
                 <value>CheckSum</value>
               </property>
             </properties>
@@ -8415,14 +8448,14 @@
           </item>
           <item name="JclResources_RsPeDEBUG_CODEVIEW">
             <properties>
-              <property>
+              <property status="hold">
                 <value>CODEVIEW</value>
               </property>
             </properties>
           </item>
           <item name="JclResources_RsPeDEBUG_COFF">
             <properties>
-              <property>
+              <property status="hold">
                 <value>COFF</value>
               </property>
             </properties>
@@ -8639,7 +8672,7 @@
           </item>
           <item name="JclResources_RsPeImg_14">
             <properties>
-              <property>
+              <property status="hold">
                 <value>COM run-time</value>
               </property>
             </properties>
@@ -8716,14 +8749,14 @@
           </item>
           <item name="JclResources_RsPeMACHINE_CEE">
             <properties>
-              <property>
+              <property status="hold">
                 <value>CEE</value>
               </property>
             </properties>
           </item>
           <item name="JclResources_RsPeMACHINE_CEF">
             <properties>
-              <property>
+              <property status="hold">
                 <value>CEF</value>
               </property>
             </properties>
@@ -8919,7 +8952,7 @@
           </item>
           <item name="JclResources_RsPeNumberOfSections">
             <properties>
-              <property>
+              <property status="hold">
                 <value>Number of Sections</value>
               </property>
             </properties>
@@ -9206,7 +9239,7 @@
           </item>
           <item name="JclResources_RsPeSUBSYSTEM_WINDOWS_CUI">
             <properties>
-              <property>
+              <property status="hold">
                 <value>Console</value>
               </property>
             </properties>
@@ -9299,6 +9332,9 @@
             <properties>
               <property>
                 <value>HMAC Fehler. Bitte Download erneut versuchen.</value>
+                <translations>
+                  <translation language="en-US">HMAC error. Please try downloading again.</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9314,8 +9350,18 @@
           </item>
           <item name="Main_SBackgroundText2">
             <properties>
-              <property>
+              <property status="hold">
                 <value></value>
+              </property>
+            </properties>
+          </item>
+          <item name="Main_SBdeNotFound">
+            <properties>
+              <property>
+                <value>BDE ist nicht installiert oder BDEAdmin.exe fehlt.</value>
+                <translations>
+                  <translation language="en-US">BDE is not installed or BDEAdmin.exe is missing.</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9453,6 +9499,9 @@
             <properties>
               <property>
                 <value>Achtung</value>
+                <translations>
+                  <translation language="en-US">Attention</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9460,6 +9509,9 @@
             <properties>
               <property>
                 <value>Ausnahmebehandlung</value>
+                <translations>
+                  <translation language="en-US">Exception handling</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9467,6 +9519,9 @@
             <properties>
               <property>
                 <value>Drucken / Speichern</value>
+                <translations>
+                  <translation language="en-US">Print / Save</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9484,6 +9539,9 @@
             <properties>
               <property>
                 <value>Fehlerklasse: %s</value>
+                <translations>
+                  <translation language="en-US">Error class: %s</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9491,6 +9549,9 @@
             <properties>
               <property>
                 <value>Fehlermeldung: %s</value>
+                <translations>
+                  <translation language="en-US">Error message: %s</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9498,6 +9559,9 @@
             <properties>
               <property>
                 <value>Frage</value>
+                <translations>
+                  <translation language="en-US">Confirmation</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9505,6 +9569,9 @@
             <properties>
               <property>
                 <value>Information</value>
+                <translations>
+                  <translation language="en-US">Information</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9512,6 +9579,9 @@
             <properties>
               <property>
                 <value>Kopieren in Zwischenablage</value>
+                <translations>
+                  <translation language="en-US">Copy to clip board</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9519,6 +9589,9 @@
             <properties>
               <property>
                 <value>Mehr Informationen anzeigen</value>
+                <translations>
+                  <translation language="en-US">Show more information</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9536,6 +9609,9 @@
             <properties>
               <property>
                 <value>Nachfolgend sehen Sie den Aufruf-Stapel, der einem HickelSOFT-Mitarbeiter</value>
+                <translations>
+                  <translation language="en-US">Here you can see the stacktrace that can be used to help</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9543,6 +9619,9 @@
             <properties>
               <property>
                 <value>beim Lokalisieren des Problems helfen kann:</value>
+                <translations>
+                  <translation language="en-US">a HickelSOFT employee in finding the problem:</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9550,6 +9629,9 @@
             <properties>
               <property>
                 <value>Text in die Zwischenablage &amp;kopieren</value>
+                <translations>
+                  <translation language="en-US">&amp;Copy text to clip board</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9787,6 +9869,9 @@
             <properties>
               <property>
                 <value>Restzeit ca. %2.2d:%2.2d</value>
+                <translations>
+                  <translation language="en-US">ETA: %2.2d:%2.2d</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9794,6 +9879,9 @@
             <properties>
               <property>
                 <value>Restzeit (ca.): xx:xx</value>
+                <translations>
+                  <translation language="en-US">ETA: xx:xx</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9808,6 +9896,9 @@
             <properties>
               <property>
                 <value>Ungültiger URL: "%s"</value>
+                <translations>
+                  <translation language="en-US">Invalid URL: "%s"</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9843,6 +9934,9 @@
             <properties>
               <property>
                 <value>Übereinstimmung erforderlich</value>
+                <translations>
+                  <translation language="en-US">Match required</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10040,6 +10134,9 @@
             <properties>
               <property>
                 <value>Das Laufwerk wurde nicht gefunden</value>
+                <translations>
+                  <translation language="en-US">Drive not found</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10131,6 +10228,9 @@
             <properties>
               <property>
                 <value>Duplikate nicht zulässig</value>
+                <translations>
+                  <translation language="en-US">Duplicates are not allowed</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10196,6 +10296,9 @@
             <properties>
               <property>
                 <value>Ungültige Zeichen im Pfad</value>
+                <translations>
+                  <translation language="en-US">Invalid characters in path</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10618,6 +10721,9 @@
             <properties>
               <property>
                 <value>Eigenschaft '%s' ist schreibgeschützt</value>
+                <translations>
+                  <translation language="en-US">Property '%s' ist read-only</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10625,6 +10731,9 @@
             <properties>
               <property>
                 <value>Eigenschaft '%s' kann nur geschrieben werden</value>
+                <translations>
+                  <translation language="en-US">Property '%s' is write-only</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10828,6 +10937,9 @@
             <properties>
               <property>
                 <value>TimeSpan-Element zu lang</value>
+                <translations>
+                  <translation language="en-US">TimeSpan element too long</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10835,6 +10947,9 @@
             <properties>
               <property>
                 <value>TimeSpan zu lang</value>
+                <translations>
+                  <translation language="en-US">TimeSpan too long</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10842,6 +10957,9 @@
             <properties>
               <property>
                 <value>Wert darf nicht NaN</value>
+                <translations>
+                  <translation language="en-US">Value cannot be NaN</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10876,6 +10994,9 @@
             <properties>
               <property>
                 <value>32-Bit-Edition</value>
+                <translations>
+                  <translation language="en-US">32 Bit Edition</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10883,19 +11004,22 @@
             <properties>
               <property>
                 <value>64-Bit-Edition</value>
+                <translations>
+                  <translation language="en-US">64 Bit Edition</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SVersionStr">
             <properties>
-              <property>
+              <property status="hold">
                 <value>%s (Version %d.%d, Build %d, %5:s)</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindows">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows</value>
               </property>
             </properties>
@@ -10909,119 +11033,119 @@
           </item>
           <item name="System_RTLConsts_SWindows11">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows 11</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindows2000">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows 2000</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindows7">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows 7</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindows8">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows 8</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindows8Point1">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows 8.1</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindowsServer2003">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows Server 2003</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindowsServer2003R2">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows Server 2003 R2</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindowsServer2008">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows Server 2008</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindowsServer2008R2">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows Server 2008 R2</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindowsServer2012">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows Server 2012</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindowsServer2012R2">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows Server 2012 R2</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindowsServer2016">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows Server 2016</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindowsServer2019">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows Server 2019</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindowsServer2022">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows Server 2022</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindowsServer2025">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows Server 2025</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindowsVista">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows Vista</value>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SWindowsXP">
             <properties>
-              <property>
+              <property status="skip">
                 <value>Windows XP</value>
               </property>
             </properties>
@@ -11030,6 +11154,9 @@
             <properties>
               <property>
                 <value>Instanz der Klasse %s kann nicht erstellt werden</value>
+                <translations>
+                  <translation language="en-US">Instance of class %s cannot be created</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11227,6 +11354,9 @@
             <properties>
               <property>
                 <value>Exception %s in Modul %s bei %p.&amp;#13;&amp;#10;%s%s&amp;#13;&amp;#10;</value>
+                <translations>
+                  <translation language="en-US">Exception %s in module %s at %p.&amp;#13;&amp;#10;%s%s&amp;#13;&amp;#10;</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11244,6 +11374,9 @@
             <properties>
               <property>
                 <value>Ausführung</value>
+                <translations>
+                  <translation language="en-US">Execution</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11361,6 +11494,9 @@
             <properties>
               <property>
                 <value>'%s' ist kein gültiger Farbwert</value>
+                <translations>
+                  <translation language="en-US">'%s' is not a valid color</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11408,6 +11544,9 @@
             <properties>
               <property>
                 <value>Ungültiger Codierungsname</value>
+                <translations>
+                  <translation language="en-US">Invalid encoding name</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11465,6 +11604,9 @@
             <properties>
               <property>
                 <value>'%s' ist kein gültiger Integerwert für Typ '%s'</value>
+                <translations>
+                  <translation language="en-US">'%s' isnot a valid integer value for type '%s'</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13410,6 +13552,9 @@
             <properties>
               <property>
                 <value>Ausgewählter Drucker ist ungültig</value>
+                <translations>
+                  <translation language="en-US">Selected printer is invalid</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13548,6 +13693,9 @@
             <properties>
               <property>
                 <value>Ein Stil namens %s wurde nicht registriert</value>
+                <translations>
+                  <translation language="en-US">A style named %s was not registered</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13925,6 +14073,9 @@
             <properties>
               <property>
                 <value>Canvas erlaubt kein Zeichnen</value>
+                <translations>
+                  <translation language="en-US">Canvas does not accept drawing</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13966,6 +14117,9 @@
             <properties>
               <property>
                 <value>%s hat keinen Eigentümer</value>
+                <translations>
+                  <translation language="en-US">%s has no owner</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14023,6 +14177,9 @@
             <properties>
               <property>
                 <value>Systemressourcen erschöpft</value>
+                <translations>
+                  <translation language="en-US">Out of resources</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14090,6 +14247,9 @@
             <properties>
               <property>
                 <value>Prompt-Array darf nicht leer sein</value>
+                <translations>
+                  <translation language="en-US">Prompt array must not be empty</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14362,7 +14522,7 @@
           </item>
           <item name="Vcl_Consts_SUnicodeEncoding">
             <properties>
-              <property>
+              <property status="hold">
                 <value>Unicode</value>
               </property>
             </properties>
@@ -14400,14 +14560,14 @@
           </item>
           <item name="Vcl_Consts_SUTF7Encoding">
             <properties>
-              <property>
+              <property status="hold">
                 <value>UTF-7</value>
               </property>
             </properties>
           </item>
           <item name="Vcl_Consts_SUTF8Encoding">
             <properties>
-              <property>
+              <property status="hold">
                 <value>UTF-8</value>
               </property>
             </properties>
@@ -14463,6 +14623,9 @@
             <properties>
               <property>
                 <value>TIFF-Grafiken</value>
+                <translations>
+                  <translation language="en-US">TIFF graphics</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14865,6 +15028,9 @@
             <properties>
               <property>
                 <value>Aktualisierungen abbrechen</value>
+                <translations>
+                  <translation language="en-US">Cancel updates</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -15142,6 +15308,9 @@
             <properties>
               <property>
                 <value>Kein DOM-Anbieter ausgewählt</value>
+                <translations>
+                  <translation language="en-US">Not DOM vendor selected</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -15179,12 +15348,15 @@
             <properties>
               <property>
                 <value>Element "%s" enthält keinen einzelnen Textknoten</value>
+                <translations>
+                  <translation language="en-US">Element "%s" has no single text node</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="Xml_XMLConst_SUrl">
             <properties>
-              <property>
+              <property status="hold">
                 <value>URL</value>
               </property>
             </properties>
@@ -16910,7 +17082,7 @@
           </item>
         </items>
       </module>
-      <module name="TDLG_MAIN" type="form" properties="64">
+      <module name="TDLG_MAIN" type="form" properties="65">
         <items>
           <item name="DLG_Main" type="TDLG_Main">
             <properties>
@@ -17457,6 +17629,23 @@
                 <translations>
                   <translation language="en-US">&amp;Extras</translation>
                 </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="DLG_Main.MainMenu1.Extras1.BDEAdmin1" type="TMenuItem">
+            <properties>
+              <property name="Caption">
+                <value>BDE-Verwaltung</value>
+                <translations>
+                  <translation language="en-US">BDE Admin</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="DLG_Main.MainMenu1.Extras1.N11" type="TMenuItem">
+            <properties>
+              <property name="Caption" status="skip">
+                <value>-</value>
               </property>
             </properties>
           </item>

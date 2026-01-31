@@ -51,6 +51,7 @@ Name: de; MessagesFile: "compiler:Languages\German.isl"
 ; DM entfernt: Flags: unchecked
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 Name: "firebirdclient"; Description: "Firebird Client (FB 3.x / 4.x / 5.x) installieren"; GroupDescription: "Optionale Komponenten"; Flags: checkedonce
+Name: "bde"; Description: "Borland Database Engine 5.2 installieren"; GroupDescription: "Optionale Komponenten"; Flags: checkedonce
 
 [Files]
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
@@ -75,6 +76,12 @@ Source: "C:\HS-Service\DBTool\FB50_64\*.*";  DestDir: "{app}\FB50_64"; Flags: ig
 
 ; Restliche Dateien liegen hier im Setup-Verzeichnis
 Source: "lizenzbedingungen.rtf"; DestDir: "{app}"; Flags: ignoreversion
+
+; BDE
+Source: "BDE_Setup.exe"; DestDir: "{tmp}"; Tasks: bde; Flags: ignoreversion signonce deleteafterinstall
+
+[Run]
+Filename: "{tmp}\BDE_Setup.exe"; Parameters: "/SILENT"; StatusMsg: "Starte BDE Setup..."; Flags: waituntilterminated; Tasks: bde
 
 [UninstallDelete]
 Type: files; Name: "{app}\Setup.ini"

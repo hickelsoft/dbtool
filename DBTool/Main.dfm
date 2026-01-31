@@ -136,11 +136,12 @@ object DLG_Main: TDLG_Main
       Caption = #214'&ffnen...'
       Dialog.DefaultExt = 'gdb'
       Dialog.Filter = 
-        'Alle bekannten Dateien (*.gdb;*.ib;*.fdb;*.db;*.dbf;*.mdb;*.accdb)|*.gdb;*.ib;*.' +
-        'fdb;*.db;*.dbf;*.mdb;*.accdb|Microsoft Jet-Datenbank (*.mdb)|*.m' +
-        'db|Access-Datenbank (*.accdb)|*.accdb|dBase-Dateien (*.dbf)|*.db' +
-        'f|Paradox-Dateien (*.db)|*.db|InterBase-Dateien (*.gdb;*.ib)|*.gdb;*.ib|Fi' +
-        'rebird-Datieen (*.fdb)|*.fdb|Alle Dateien (*.*)|*.*'
+        'Alle bekannten Dateien (*.gdb;*.ib;*.fdb;*.db;*.dbf;*.mdb;*.accd' +
+        'b)|*.gdb;*.ib;*.fdb;*.db;*.dbf;*.mdb;*.accdb|Microsoft Jet-Daten' +
+        'bank (*.mdb)|*.mdb|Access-Datenbank (*.accdb)|*.accdb|dBase-Date' +
+        'ien (*.dbf)|*.dbf|Paradox-Dateien (*.db)|*.db|InterBase-Dateien ' +
+        '(*.gdb;*.ib)|*.gdb;*.ib|Firebird-Datieen (*.fdb)|*.fdb|Alle Date' +
+        'ien (*.*)|*.*'
       Dialog.Options = [ofAllowMultiSelect, ofPathMustExist, ofFileMustExist, ofEnableSizing]
       Hint = #214'ffnen|Vorhandene Datei '#246'ffnen'
       ImageIndex = 0
@@ -1038,6 +1039,13 @@ object DLG_Main: TDLG_Main
         Action = ExtrasImport1
       end
       object N5: TMenuItem
+        Caption = '-'
+      end
+      object BDEAdmin1: TMenuItem
+        Caption = 'BDE-Verwaltung'
+        OnClick = BDEAdmin1Click
+      end
+      object N11: TMenuItem
         Caption = '-'
       end
       object Optionen1: TMenuItem

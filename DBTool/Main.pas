@@ -100,6 +100,8 @@ type
     N9: TMenuItem;
     N10: TMenuItem;
     Updates1: TMenuItem;
+    BDEAdmin1: TMenuItem;
+    N11: TMenuItem;
     procedure Beenden1Execute(Sender: TObject);
     procedure FileOpen1Accept(Sender: TObject);
     procedure HilfeInfo1Execute(Sender: TObject);
@@ -118,6 +120,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure StartUpTimerTimer(Sender: TObject);
     procedure AlleAbfragefensterschlieen1Click(Sender: TObject);
+    procedure BDEAdmin1Click(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -708,6 +711,35 @@ begin
   end;
 end;
 
+procedure TDLG_Main.BDEAdmin1Click(Sender: TObject);
+var
+  reg: TRegistry;
+  found: boolean;
+resourcestring
+  SBdeNotFound = 'BDE ist nicht installiert oder BDEAdmin.exe fehlt.';
+begin
+  found := false;
+  reg := TRegistry.Create;
+  try
+    reg.RootKey := HKEY_LOCAL_MACHINE;
+    if ((WindowsBits = 32) and reg.OpenKey('SOFTWARE\Borland\Database Engine', false)) or
+       ((WindowsBits = 64) and reg.OpenKey('SOFTWARE\WOW6432Node\Borland\Database Engine', false)) then
+    begin
+      if reg.ValueExists('DLLPath') and
+         FileExists(IncludeTrailingPathDelimiter(reg.ReadString('DLLPath'))+'bdeadmin.exe') then
+      begin
+        ShellExecute(0, 'open', PChar(IncludeTrailingPathDelimiter(reg.ReadString('DLLPath'))+'bdeadmin.exe'), '', PChar(reg.ReadString('DLLPath')), SW_NORMAL);
+        found := true;
+      end;
+      reg.CloseKey;
+    end;
+  finally
+    FreeAndNil(reg);
+  end;
+  if not found then
+    raise Exception.Create(SBdeNotFound);
+end;
+
 procedure TDLG_Main.FormCanResize(Sender: TObject;
   var NewWidth, NewHeight: Integer; var Resize: Boolean);
 begin
@@ -764,6 +796,10 @@ procedure TDLG_Main.FormCreate(Sender: TObject);
 begin
   // Application.OnException := AppException;
   ThlExceptionHandler.Init();
+
+{$IFDEF WIN64}
+  BdeAdmin1.Visible := false;
+{$ENDIF}
 
   DoubleBuffered := true;
 

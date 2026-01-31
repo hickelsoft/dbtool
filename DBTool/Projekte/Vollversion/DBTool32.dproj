@@ -76,7 +76,6 @@
         <BT_BuildType>Debug</BT_BuildType>
         <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=Datenbankoberfläche;FileVersion=1.0.0.0;InternalName=DBTool;LegalCopyright=(C) 1999-2002 Leif Bruder, 2016-2024 HickelSOFT Huth GmbH;LegalTrademarks=;OriginalFilename=DBTool32.exe;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=DBTool;ProductVersion=1.0;Comments=</VerInfo_Keys>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <Debugger_RunParams>&quot;_SQLSRV:Provider=MSOLEDBSQL;Integrated Security=SSPI;Persist Security Info=False;Initial Catalog=HSINFO;Data Source=SHS\HSGMBH,49011&quot;</Debugger_RunParams>
         <Icon_MainIcon>DBTool32_Icon.ico</Icon_MainIcon>
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
@@ -140,7 +139,6 @@ $(PostBuildEvent)]]></PostBuildEvent>
         <VerInfo_Debug>true</VerInfo_Debug>
         <VerInfo_IncludeVerInfo>false</VerInfo_IncludeVerInfo>
         <DCC_DebugDCUs>true</DCC_DebugDCUs>
-        <Debugger_RunParams>C:\Users\dmarschall\Desktop\ZMI_CLIENT15.FDB</Debugger_RunParams>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>

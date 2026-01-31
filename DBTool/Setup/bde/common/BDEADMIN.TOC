@@ -1,0 +1,59 @@
+:Base BDEADMIN.HLP>main
+:Title BDE-Verwaltung - Hilfe
+:Index BDE-Verwaltung - Hilfe=BDEADMIN.HLP
+:Link bde32.hlp
+:Link datapump.hlp
+:Link localsql.hlp
+:Link sqllnk32.hlp
+;
+1 BDE-Verwaltung
+2 BDE-Verwaltung: Übersicht=dbxoverview
+2 Benutzerschnittstelle der BDE-Verwaltung
+3 Das Fenster der BDE-Verwaltung=thedbexploreruserinterface
+3 Farbige Symbole=colorcodedsymbols
+3 Tastaturbefehle=keycommands
+3 Die Mauspalette der BDE-Verwaltung=usingdatabaseexplorerspeedbar
+3 Registerseiten (im linken Bereich)
+4 Die Seite Datenbanken=databases
+4 Die Seite Konfiguration=idh_idapi_configutil
+3 Registerseiten (im rechten Bereich)
+4 Registerseiten (im rechten Bereich)=tabbedpages
+4 Die Seite Definition=definitionpage
+3 Menüoptionen
+4 Menüoptionen=menubarcommands
+4 Optionen des Menüs Objekt=objectmenubarcommands
+4 Optionen des Menüs Bearbeiten=editmenubarcommands
+4 Optionen des Menüs Ansicht=viewmenubarcommands
+4 Optionen des Menüs Optionen=optionsmenubarcommands
+4 Optionen des Menüs Hilfe=helpmenubarcommands
+2 Datenbanken
+3 Die Seite Datenbanken=databases
+3 Mit Datenbankaliasen arbeiten=workingwithdatabasealiases
+2 BDE-Konfiguration
+3 Die Seite Konfiguration=idh_idapi_configutil
+3 Konfigurationsinformationen speichern=savingconfigurationinformation
+3 Microsoft ODBC konfigurieren
+4 Konfigurieren der Microsoft Open Database Connectivity (ODBC)=configuringmicrosoftopendatabaseconnectivityodbc>main
+4 Konfigurieren der ODBC-Konfigurationsdatei=configuringtheodbcconfigurationfile>main
+4 Konfigurieren der BDE-Konfigurationsdatei für ODBC=configuringthebdeconfigurationfileforodbc>main
+4 Konfigurationseinträge für den ODBC-Sockel=odbcsocketconfigurationentries>main
+4 AutoODBC=autoodbc>main
+3 BDE-Konfigurationseinstellungen
+4 Systemeinstellungen
+5 System/INIT-Einstellungen=idh_idapi_sysmgr>main
+5 Formateinstellungen
+6 System/Formate/Datum-Einstellungen=idh_idapi_datemgr>main
+6 System/Formate/Uhrzeit-Einstellungen=idh_idapi_timemgr>main
+6 System/Formate/Zahl-Einstellungen=idh_idapi_numbermgr>main
+4 Treiber-Einstellungen
+5 Treiber-Einstellungen=idh_idapi_drivermgr>main
+5 Access-Treibereinstellungen=idh_idapi_driversaccess
+5 Paradox-Treibereinstellungen=idh_idapi_driverspdox
+5 dBASE- und FoxPro-Treibereinstellungen=idh_idapi_driversdbase
+5 Einstellungen zur ODBC-Treiberverbindung=idh_idapi_driversodbc
+5 Sybase-Treibereinstellungen=idh_idapi_driverssybase
+5 Oracle-Treibereinstellungen=idh_idapi_driversoracle
+5 Informix-Treibereinstellungen=idh_idapi_driversinformix
+5 InterBase-Treibereinstellungen=idh_idapi_driversinterbase
+5 Microsoft SQL-Server-Treibereinstellungen=idh_idapi_driversmssql
+5 DB2-Treibereinstellungen=idh_idapi_driversdb2
