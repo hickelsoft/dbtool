@@ -1,10 +1,10 @@
 object hgInputQry: ThgInputQry
   Left = 0
   Top = 0
-  BorderStyle = bsDialog
+  BorderIcons = [biSystemMenu]
   Caption = 'hgInputQry'
-  ClientHeight = 103
-  ClientWidth = 391
+  ClientHeight = 109
+  ClientWidth = 451
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,6 +13,9 @@ object hgInputQry: ThgInputQry
   Font.Style = []
   Position = poMainFormCenter
   OnShow = FormShow
+  DesignSize = (
+    451
+    109)
   TextHeight = 13
   object Label1: TLabel
     Left = 56
@@ -22,10 +25,11 @@ object hgInputQry: ThgInputQry
     Caption = 'Label1'
   end
   object Button1: TButton
-    Left = 254
-    Top = 62
-    Width = 75
+    Left = 291
+    Top = 68
+    Width = 100
     Height = 25
+    Anchors = [akRight, akBottom]
     Caption = 'OK'
     Default = True
     ModalResult = 1
@@ -34,16 +38,19 @@ object hgInputQry: ThgInputQry
   object Edit1: TEdit
     Left = 56
     Top = 27
-    Width = 273
+    Width = 335
     Height = 21
+    Anchors = [akLeft, akTop, akRight]
     TabOrder = 0
     Text = 'Edit1'
+    ExplicitWidth = 345
   end
   object Button2: TButton
     Left = 56
-    Top = 62
-    Width = 75
+    Top = 68
+    Width = 100
     Height = 25
+    Anchors = [akLeft, akBottom]
     Cancel = True
     Caption = 'Abbrechen'
     ModalResult = 2
@@ -52,9 +59,22 @@ object hgInputQry: ThgInputQry
   object ComboBox1: TComboBox
     Left = 56
     Top = 27
-    Width = 273
+    Width = 335
     Height = 21
+    Anchors = [akLeft, akTop, akRight]
     TabOrder = 3
     Text = 'ComboBox1'
+  end
+  object Memo1: TMemo
+    Left = 56
+    Top = 27
+    Width = 335
+    Height = 23
+    Anchors = [akLeft, akTop, akRight, akBottom]
+    Lines.Strings = (
+      'Memo1')
+    TabOrder = 4
+    Visible = False
+    OnKeyDown = Memo1KeyDown
   end
 end

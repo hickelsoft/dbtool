@@ -12,6 +12,14 @@ uses
   HsGradientPanel, Variants;
 
 type
+  THsFieldDocumentation = record
+    DatabaseFile: string;
+    DatabaseTypeOid: string;
+    FieldDescKey: string;
+    FieldDesc: string;
+    TableDescKey: string;
+    TableDesc: string; // TODO: Implement Table Description Get/Set in GUI
+  end;
   TMDI_Table = class(TForm)
     Panel1: TPanel;
     Panel2: TPanel;
@@ -74,6 +82,10 @@ type
     FindDialog1: TFindDialog;
     KrzesterWert11: TMenuItem;
     HsGradientPanel1: THsGradientPanel;
+    N6: TMenuItem;
+    Beschreibunganzeigenndern1: TMenuItem;
+    FilternnachLIKEEingabewert1: TMenuItem;
+    Label2: TLabel;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormActivate(Sender: TObject);
     procedure dbgTableCalcCellColors(Sender: TObject; Field: TField;
@@ -116,9 +128,12 @@ type
     procedure EinfacheInsertAnweisungkopieren2Click(Sender: TObject);
     procedure UnterschiedlicheWerte1Click(Sender: TObject);
     procedure AnzahlunterschiedlicherWerte1Click(Sender: TObject);
+    procedure Beschreibunganzeigenndern1Click(Sender: TObject);
+    procedure FilternnachLIKEEingabewert1Click(Sender: TObject);
     procedure FindDialog1Find(Sender: TObject);
     procedure KrzesterWert11Click(Sender: TObject);
     procedure FindDialog1Close(Sender: TObject);
+    procedure Label2Click(Sender: TObject);
   private
     FDatabaseForm: TMDI_Database;
     FTableName: string;
@@ -129,15 +144,18 @@ type
     FVerwendeQueryAnstelleTable: boolean;
     FOwnsDataSet: boolean;
 
-    function GetFilter(aField: TField; bInclude: boolean): string; overload;
-    function GetFilter(aField: TField; wert: string; bInclude: boolean)
-      : string; overload;
+    function GetFilter(aField: TField; bInclude, bLike: boolean): string; overload;
+    function GetFilter(aField: TField; wert: string; bInclude, bLike: boolean): string; overload;
     procedure ShowSqlFunction(sQuery, sText: string);
     function GetNextField(var iSearchField: integer): boolean;
 
     function GetSelectString: string;
     procedure CreateIndexInfo;
     function LoadTable(DB: TDbToolDatabase; TableName: string): TDataSet;
+
+    function GetFieldAndTableDescription(const AFieldName: string=''): THsFieldDocumentation;
+    procedure SetFieldDescription(const AFieldName, aDescription: string);
+    procedure SetTableDescription(const aDescription: string);
   public
     property NurStruktur: boolean read FNurStruktur;
     property Table: string read FTableName;
@@ -157,10 +175,12 @@ implementation
 
 uses
   Main, Globals, EditRTF, hl.Utils.DBGridUtils, hg_InputQuery, Clipbrd, Query,
-  hl_PopupMenuHelper, StrUtils, System.Types, System.UITypes;
+  hl_PopupMenuHelper, StrUtils, System.Types, System.UITypes, IniFiles,
+  hl.Utils, ShlObj;
 
 resourcestring
   SNothingAvailable = 'Nichts vorhanden';
+  SClickToEnterTableDesc = 'Klicken, um eine Tabellenbeschreibung festzulegen';
 
 procedure TMDI_Table.CreateIndexInfo;
 var
@@ -262,6 +282,7 @@ var
   anItem: TListItem;
   i: integer;
   datenTyp: string;
+  d: THsFieldDocumentation;
 resourcestring
   STabelleSS = 'Tabelle %s (%s)';
 begin
@@ -310,7 +331,7 @@ begin
     ADbFrm.dbDatabase.GetForeignKeys(slForeignKeys, ATableName);
 
     // In einer View das Löschen verbieten, weil das sehr gefährlich ist (wenn aus mehreren Tabellen gelöscht wird)
-    if ADbFrm.dbDatabase.IstHickelSoftProduktDb and
+    if (ADbFrm.dbDatabase.KnownProductDb <> ptOther) and
       ((Copy(ATableName, 1, 3) = 'vw_') or (Copy(ATableName, 1, 5) = 'X_vw_'))
     then // do not localize
     begin
@@ -361,6 +382,13 @@ begin
         anItem.SubItems.Add('FK') // do not localize
       else
         anItem.SubItems.Add(''); // do not localize
+
+      d := GetFieldAndTableDescription(aFieldDefs.Items[i].Name);
+      anItem.SubItems.Add(d.FieldDesc);
+      if Trim(d.TableDesc) = '' then
+        Label2.Caption := SClickToEnterTableDesc
+      else
+        Label2.Caption := d.TableDesc;
 
       anItem.Checked := true;
     end;
@@ -758,7 +786,7 @@ begin
   end;
 end;
 
-function TMDI_Table.GetFilter(aField: TField; bInclude: boolean): string;
+function TMDI_Table.GetFilter(aField: TField; bInclude, bLike: boolean): string;
 resourcestring
   SFieldTypeNotSupported =
     'Dieser Feldtyp kann (noch) nicht automatisch gefiltert werden.';
@@ -768,31 +796,35 @@ begin
     if FVerwendeQueryAnstelleTable then
     begin
       if bInclude then
-        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
-          (aField.FieldName) + ' is null' // do not localize
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' is null' // do not localize
       else
-        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
-          (aField.FieldName) + ' is not null'; // do not localize
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' is not null'; // do not localize
     end
     else
     begin
       // Beim Filter muss man wirklich "= null" schreiben und nicht "is null"
       if bInclude then
-        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
-          (aField.FieldName) + ' = null' // do not localize
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' = null' // do not localize
       else
-        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
-          (aField.FieldName) + ' <> null'; // do not localize
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' <> null'; // do not localize
     end;
   end
   else
   begin
     if bInclude then
-      result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
-        (aField.FieldName) + ' = '
+    begin
+      if bLike then
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' like '
+      else
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' = ';
+    end
     else
-      result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
-        (aField.FieldName) + ' <> ';
+    begin
+      if bLike then
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' not like '
+      else
+        result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' <> ';
+    end;
 
     case aField.DataType of
       ftBoolean:
@@ -801,20 +833,17 @@ begin
         else
           result := result + '0';
 
-      ftInteger, ftFloat, ftSmallint, ftAutoInc, ftCurrency, ftBCD, ftFMTBcd,
-        ftLargeint, ftWord:
+      ftInteger, ftFloat, ftSmallint, ftAutoInc, ftCurrency, ftBCD, ftFMTBcd, ftLargeint, ftWord:
         result := result + StringReplace(aField.AsWideString, ',', '.', []);
 
       ftString, ftFixedChar, ftWideString, ftDateTime:
-      // DM 05.12.2023 : OK mit SQL Server
-        result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String
-          (aField.AsWideString) + '''';
+        // DM 05.12.2023 : OK mit SQL Server
+        result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(aField.AsWideString) + '''';
 
     else
 
       // Wir versuchen's einfach! Vielleicht geht es ja!
-      result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String
-        (aField.AsWideString) + '''';
+      result := result + '''' + FDatabaseForm.dbDatabase.SQL_Escape_String(aField.AsWideString) + '''';
 
       // result := '';
       // Application.MessageBox(SFieldTypeNotSupported, PChar(Application.Title), MB_ICONEXCLAMATION + MB_OK);
@@ -851,18 +880,110 @@ begin
   *)
 end;
 
-function TMDI_Table.GetFilter(aField: TField; wert: string;
-  bInclude: boolean): string;
+function TMDI_Table.GetFieldAndTableDescription(const AFieldName: string=''): THsFieldDocumentation;
+
+  function DBToolRoamingAppData: string;
+  var
+    Path: array[0..MAX_PATH] of Char;
+  begin
+    SHGetFolderPath(0, CSIDL_APPDATA, 0, 0, Path);
+    Result := IncludeTrailingPathDelimiter(Path) + 'HickelSOFT\DBTool\';
+  end;
+
+var
+  tmp: string;
+  ini: TMemIniFile;
+begin
+  if (frmDatabase.dbDatabase.KnownProductDb = ptCORAplus) and (AnsiUpperCase(ThlUtils.GetDomainName) = 'HICKELSOFT') then
+  begin
+    tmp := 'HICKELSOFT_CORAPLUS';
+    result.DatabaseFile := '\\SHS\Hotline\DBTool\FieldDescriptions_CORAplus.ini';
+  end
+  else if (frmDatabase.dbDatabase.KnownProductDb = ptHsInfo2) and (AnsiUpperCase(ThlUtils.GetDomainName) = 'HICKELSOFT') then
+  begin
+    tmp := 'HICKELSOFT_HSINFO2';
+    result.DatabaseFile := '\\SHS\Hotline\DBTool\FieldDescriptions_HsInfo2.ini';
+  end
+  else if (frmDatabase.dbDatabase.KnownProductDb = ptCmDb2) and (AnsiUpperCase(ThlUtils.GetDomainName) = 'HICKELSOFT') then
+  begin
+    tmp := 'VIATHINKSOFT_CMDB2';
+    result.DatabaseFile := '\\SHS\Hotline\DBTool\FieldDescriptions_CmDb2.ini';
+  end
+  else if (frmDatabase.dbDatabase.KnownProductDb = ptOIDplus2) and (AnsiUpperCase(ThlUtils.GetDomainName) = 'HICKELSOFT') then
+  begin
+    // TODO: At AFieldName, remove table prefix (e.g. 'production_')
+    tmp := 'VIATHINKSOFT_OIDPLUS2';
+    result.DatabaseFile := '\\SHS\Hotline\DBTool\FieldDescriptions_OIDplus2.ini';
+  end
+  else
+  begin
+    tmp := frmDatabase.Database; // <-- TODO: das ist nicht sprachneutral!
+    tmp := StringReplace(tmp, ' auf ', '::', []);
+    tmp := StringReplace(tmp, ' on ', '::', []);
+    result.DatabaseFile := DBToolRoamingAppData + 'FieldDescriptions.ini';
+  end;
+
+  ini := TMemIniFile.Create(result.DatabaseFile);
+  try
+    result.DatabaseTypeOid := '1.3.6.1.4.1.56776.3.1.1'; // { iso(1) identified-organization(3) dod(6) internet(1) private(4) enterprise(1) 56776 dbtool(3) field-description-database(1) v1(1) }
+    result.FieldDescKey := tmp + '::' + Table + '::' + AFieldName + '::FieldDesc';
+    result.FieldDesc := StringReplace(ini.ReadString(result.DatabaseTypeOid, result.FieldDescKey, ''), '|||', #13#10, [rfReplaceAll]);
+    result.TableDescKey := tmp + '::' + Table + '::TableDesc';
+    result.TableDesc := StringReplace(ini.ReadString(result.DatabaseTypeOid, result.TableDescKey, ''), '|||', #13#10, [rfReplaceAll]);
+  finally
+    FreeAndNil(ini);
+  end;
+end;
+
+procedure TMDI_Table.SetFieldDescription(const AFieldName, aDescription: string);
+var
+  d: THsFieldDocumentation;
+  ini: TMemIniFile;
+begin
+  d := GetFieldAndTableDescription(AFieldName);
+  ini := TMemIniFile.Create(d.DatabaseFile);
+  try
+    ini.WriteString(d.DatabaseTypeOid, d.FieldDescKey, StringReplace(aDescription, #13#10, '|||', [rfReplaceAll]));
+    ini.Updatefile;
+  finally
+    FreeAndNil(ini);
+  end;
+end;
+
+procedure TMDI_Table.SetTableDescription(const aDescription: string);
+var
+  d: THsFieldDocumentation;
+  ini: TMemIniFile;
+begin
+  d := GetFieldAndTableDescription('');
+  ini := TMemIniFile.Create(d.DatabaseFile);
+  try
+    ini.WriteString(d.DatabaseTypeOid, d.TableDescKey, StringReplace(aDescription, #13#10, '|||', [rfReplaceAll]));
+    ini.Updatefile;
+  finally
+    FreeAndNil(ini);
+  end;
+end;
+
+function TMDI_Table.GetFilter(aField: TField; wert: string; bInclude, bLike: boolean): string;
 resourcestring
   SFieldTypeNotSupported =
     'Dieser Feldtyp kann (noch) nicht automatisch gefiltert werden.';
 begin
   if bInclude then
-    result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
-      (aField.FieldName) + ' = '
+  begin
+    if bLike then
+      result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' like '
+    else
+      result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' = ';
+  end
   else
-    result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName
-      (aField.FieldName) + ' <> ';
+  begin
+    if bLike then
+      result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' not like '
+    else
+      result := FDatabaseForm.dbDatabase.SQL_Escape_FieldName(aField.FieldName) + ' <> ';
+  end;
 
   case aField.DataType of
     ftBoolean:
@@ -914,7 +1035,7 @@ procedure TMDI_Table.AuswahlbasierterFilter1Click(Sender: TObject);
 var
   sFilter, sNeu: string;
 begin
-  sNeu := GetFilter(dbgTable.GetActiveField, true);
+  sNeu := GetFilter(dbgTable.GetActiveField, true, false);
   if (sNeu = '') then
     exit;
   sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.Dataset);
@@ -995,7 +1116,7 @@ procedure TMDI_Table.AuswahlausschlieenderFilter1Click(Sender: TObject);
 var
   sFilter, sNeu: string;
 begin
-  sNeu := GetFilter(dbgTable.GetActiveField, false);
+  sNeu := GetFilter(dbgTable.GetActiveField, false, false);
   if (sNeu = '') then
     exit;
   sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.Dataset);
@@ -1022,20 +1143,21 @@ end;
 
 procedure TMDI_Table.FilternnachEingabe1Click(Sender: TObject);
 var
-  sFilter, sNeu, wert: string;
-resourcestring
-  SCopyByInputValue = 'Filtern nach Eingabewert';
+  capt, sFilter, sNeu, wert: string;
 begin
-  if not ThgInputQry.InputQuery(SCopyByInputValue, wert) then
+  capt := TMenuItem(Sender).Caption;
+  capt := StringReplace(capt, '&&', #1, [rfReplaceAll]);
+  capt := StringReplace(capt, '&', '', [rfReplaceAll]);
+  capt := StringReplace(capt, #1, '&', [rfReplaceAll]);
+  if not ThgInputQry.InputQuery(capt, wert) then
     exit;
-  sNeu := GetFilter(dbgTable.GetActiveField, wert, true);
+  sNeu := GetFilter(dbgTable.GetActiveField, wert, true, false);
   if (sNeu = '') then
     exit;
   sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.Dataset);
   if sFilter <> '' then
     sFilter := sFilter + ' and '; // do not localize
-  FDatabaseForm.dbDatabase.SetTableFilter(dsData.Dataset,
-    sFilter + '(' + sNeu + ')'); // do not localize
+  FDatabaseForm.dbDatabase.SetTableFilter(dsData.Dataset, sFilter + '(' + sNeu + ')'); // do not localize
 end;
 
 procedure TMDI_Table.LbSpeedButton10Click(Sender: TObject);
@@ -1127,6 +1249,41 @@ begin
     result := 0 // all lower case
   else
     result := 2; // all upper case
+end;
+
+procedure TMDI_Table.Beschreibunganzeigenndern1Click(Sender: TObject);
+var
+  desc: string;
+  d: THsFieldDocumentation;
+resourcestring
+  SEnterFieldDescription = 'Bitte eine Beschreibung für das Feld eingeben';
+begin
+  d := GetFieldAndTableDescription(lvFields.Selected.Caption);
+  desc := d.FieldDesc;
+  if ThgInputQry.InputMemo(SEnterFieldDescription, desc) then
+  begin
+    SetFieldDescription(lvFields.Selected.Caption, desc);
+    lvFields.Selected.SubItems[lvFields.Selected.SubItems.Count-1] := desc;
+  end;
+end;
+
+procedure TMDI_Table.Label2Click(Sender: TObject);
+var
+  desc: string;
+  d: THsFieldDocumentation;
+resourcestring
+  SEnterTableDescription = 'Bitte eine Beschreibung für die Tabelle eingeben';
+begin
+  d := GetFieldAndTableDescription;
+  desc := d.TableDesc;
+  if ThgInputQry.InputMemo(SEnterTableDescription, desc) then
+  begin
+    SetTableDescription(desc);
+    if Trim(desc) = '' then
+      Label2.Caption := SClickToEnterTableDesc
+    else
+      Label2.Caption := desc;
+  end;
 end;
 
 procedure TMDI_Table.UnterschiedlicheWerte1Click(Sender: TObject);
@@ -1509,6 +1666,25 @@ procedure TMDI_Table.btnIndexClick(Sender: TObject);
 begin
   CreateIndexInfo;
   pmIndex.OpenPopupOnControl(TControl(Sender));
+end;
+
+procedure TMDI_Table.FilternnachLIKEEingabewert1Click(Sender: TObject);
+var
+  capt, sFilter, sNeu, wert: string;
+begin
+  capt := TMenuItem(Sender).Caption;
+  capt := StringReplace(capt, '&&', #1, [rfReplaceAll]);
+  capt := StringReplace(capt, '&', '', [rfReplaceAll]);
+  capt := StringReplace(capt, #1, '&', [rfReplaceAll]);
+  if not ThgInputQry.InputQuery(capt, wert) then
+    exit;
+  sNeu := GetFilter(dbgTable.GetActiveField, wert, true, true);
+  if (sNeu = '') then
+    exit;
+  sFilter := FDatabaseForm.dbDatabase.GetTableFilter(dsData.Dataset);
+  if sFilter <> '' then
+    sFilter := sFilter + ' and '; // do not localize
+  FDatabaseForm.dbDatabase.SetTableFilter(dsData.Dataset, sFilter + '(' + sNeu + ')'); // do not localize
 end;
 
 procedure TMDI_Table.FindDialog1Close(Sender: TObject);

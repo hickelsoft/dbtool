@@ -31,7 +31,7 @@ type
     dtInterbase, dtFirebird, dtAccess, dtSqlServer, dtMySql);
 
 type
-  TProductDbType = (ptNotChecked, ptCORAplus, ptHsInfo2, ptCmDb2, ptOther);
+  TKnownProductDbType = (ptOther, ptCORAplus, ptHsInfo2, ptCmDb2, ptOIDplus2);
 
 type
   TDbToolDatabase = class(TObject)
@@ -107,7 +107,7 @@ type
     function SQL_Escape_String(sString: String): String;
     function Clone: TDbToolDatabase;
     function CheckDatabaseSecurityPassword: boolean;
-    function IstHickelSoftProduktDb: boolean;
+    function KnownProductDb: TKnownProductDbType;
   end;
 
 resourcestring
@@ -1087,7 +1087,7 @@ begin
         exit;
       if Trim(q.Fields[0].AsWideString) = '' then
         exit;
-      if IstHickelSoftProduktDb then
+      if KnownProductDb <> ptOther then
         result := '-- ' + SExecuteStoredProcedureWith_ + ' ''exec ' +
           SQL_Escape_String(procedureName) + '''' + #13#10 +
           Trim(q.Fields[0].AsWideString) // do not localize
@@ -1972,7 +1972,7 @@ begin
   Sql := StringReplace(Sql, #13, ' ', [rfReplaceAll]);
   Sql := StringReplace(Sql, #10, ' ', [rfReplaceAll]);
   Sql := StringReplace(Sql, #9, ' ', [rfReplaceAll]);
-  if IstHickelSoftProduktDb then
+  if KnownProductDb <> ptOther then
   begin
     if ContainsStr(Sql, ' vw_') or // do not localize
       ContainsStr(Sql, ' X_vw_') then // do not localize
@@ -2540,7 +2540,7 @@ begin
           ds.Next;
         end;
 
-        if IstHickelSoftProduktDb then
+        if KnownProductDb <> ptOther then
         begin
           // Hack für alte CORAplus Trigger, bei denen kein CRLF vorhanden ist
           for i := 0 to sl.Count - 1 do
@@ -2962,6 +2962,25 @@ begin
     (slTables.IndexOf('MANDATOR') >= 0); // do not localize
 end;
 
+function Ist_OIDplus2_Datenbank(slTables: TStrings): boolean;
+var
+  i, j: integer;
+begin
+  j := 0;
+  for I := 0 to slTables.Count - 1 do
+  begin
+    if ContainsText(slTables.Strings[i], 'objects') or // do not localize
+       ContainsText(slTables.Strings[i], 'iri') or // do not localize
+       ContainsText(slTables.Strings[i], 'asn1id') or // do not localize
+       ContainsText(slTables.Strings[i], 'log') or // do not localize
+       ContainsText(slTables.Strings[i], 'config') then // do not localize
+    begin
+      Inc(j);
+    end;
+  end;
+  result := j = 5;
+end;
+
 function Ist_CORA_Datenbank(slTables: TStrings): boolean;
 var
   istSystemDb: boolean;
@@ -2978,8 +2997,7 @@ begin
 end;
 
 var
-  HickelSOFTEinmaligBestaetigt: boolean = false;
-  FIstHickelSoftProduktDb_Cache: TProductDbType;
+  GHickelSOFTEinmaligBestaetigt: boolean = false;
 
 function TDbToolDatabase.CheckDatabaseSecurityPassword: boolean;
 
@@ -3029,7 +3047,7 @@ type
   var
     s: string;
   begin
-    if ((apHickelEmployee in accepted) and HickelSOFTEinmaligBestaetigt) or
+    if ((apHickelEmployee in accepted) and GHickelSOFTEinmaligBestaetigt) or
        ((apHickelPC in accepted) and IstHickelSoftTestPC) or
        ((apCmDbAdmin in accepted) and VerifyCmDb2Password(''{Not protected})) then
     begin
@@ -3051,7 +3069,7 @@ type
         result := VerifyHickelSOFTPassword(s);
         if result then
         begin
-          HickelSOFTEinmaligBestaetigt := true;
+          GHickelSOFTEinmaligBestaetigt := true;
           exit;
         end;
       end;
@@ -3068,42 +3086,46 @@ type
 
 begin
   result := true;
-  if IstHickelSoftProduktDb then
-  begin
-    if (FIstHickelSoftProduktDb_Cache = ptCORAplus) or
-      (FIstHickelSoftProduktDb_Cache = ptHsInfo2) then
+  case KnownProductDb of
+    ptCORAplus, ptHsInfo2:
     begin
-      RequireDatabasePassword([apHickelEmployee, apHickelPC]);
-    end
-    else if FIstHickelSoftProduktDb_Cache = ptCmDb2 then
+      if not RequireDatabasePassword([apHickelEmployee, apHickelPC]) then exit(false);
+    end;
+    ptCmDb2{, ptOIDplus2}:
     begin
-      RequireDatabasePassword([apHickelEmployee, apHickelPC, apCmDbAdmin]);
+      if not RequireDatabasePassword([apHickelEmployee, apHickelPC, apCmDbAdmin]) then exit(false);
     end;
   end;
 end;
 
-function TDbToolDatabase.IstHickelSoftProduktDb: boolean;
+var
+  GKnownProductDb_Cache: TKnownProductDbType;
+  GKnownProductDb_CheckedOnce: boolean = false;
+
+function TDbToolDatabase.KnownProductDb: TKnownProductDbType;
 var
   slTables: TStringList;
 begin
-  if FIstHickelSoftProduktDb_Cache = ptNotChecked then
+  if not GKnownProductDb_CheckedOnce then
   begin
     slTables := TStringList.Create;
     try
       GetTableNames(slTables);
       if Ist_CORA_Datenbank(slTables) then
-        FIstHickelSoftProduktDb_Cache := ptCORAplus
+        GKnownProductDb_Cache := ptCORAplus
       else if Ist_HsInfo2_Datenbank(slTables) then
-        FIstHickelSoftProduktDb_Cache := ptHsInfo2
+        GKnownProductDb_Cache := ptHsInfo2
       else if Ist_CmDb2_Datenbank(slTables) then
-        FIstHickelSoftProduktDb_Cache := ptCmDb2
+        GKnownProductDb_Cache := ptCmDb2
+      else if Ist_OIDplus2_Datenbank(slTables) then
+        GKnownProductDb_Cache := ptOIDplus2
       else
-        FIstHickelSoftProduktDb_Cache := ptOther;
+        GKnownProductDb_Cache := ptOther;
     finally
       FreeAndNil(slTables);
     end;
   end;
-  result := FIstHickelSoftProduktDb_Cache <> ptOther;
+  result := GKnownProductDb_Cache;
 end;
 
 end.

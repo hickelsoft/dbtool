@@ -2,7 +2,7 @@
 <xlat>
   <meta>
     <version>3</version>
-    <created>2026-01-31T20:55:31.951+01:00</created>
+    <created>2026-02-01T22:49:42.074+01:00</created>
     <tool>amTranslationManager</tool>
     <toolversion>2.3.9199.24584</toolversion>
   </meta>
@@ -12,13 +12,13 @@
     <sorted>True</sorted>
     <omitnewstate>True</omitnewstate>
   </options>
-  <project sourcefile="..\..\..\HS-Service\DBTool\DBTool32.exe" stringsymbolfile=".\DBTool32.drc" language="de-DE" properties="2171">
+  <project sourcefile="..\..\..\HS-Service\DBTool\DBTool32.exe" stringsymbolfile=".\DBTool32.drc" language="de-DE" properties="2176">
     <targetlanguages>
-      <language language="en-US" translated="1116"/>
+      <language language="en-US" translated="1132"/>
       <language language="de-DE" translated="0"/>
     </targetlanguages>
     <modules>
-      <module name="resourcestrings" type="strings" properties="1826">
+      <module name="resourcestrings" type="strings" properties="1827">
         <items>
           <item name="Bde_Bdeconst_SAutoSessionActive">
             <properties>
@@ -10211,6 +10211,9 @@
             <properties>
               <property>
                 <value>Die angegebene Datei ist zu lang.</value>
+                <translations>
+                  <translation language="en-US">The file is too long.</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10238,6 +10241,9 @@
             <properties>
               <property>
                 <value>Eintrag nicht gefunden</value>
+                <translations>
+                  <translation language="en-US">Entry not found</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10245,6 +10251,9 @@
             <properties>
               <property>
                 <value>SHA2: Ein finalisierter Hash kann nicht aktualisiert werden</value>
+                <translations>
+                  <translation language="en-US">SHA2: A finalized hash cannot be updated</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11968,6 +11977,9 @@
             <properties>
               <property>
                 <value>Methode für freigegebenes Objekt aufgerufen</value>
+                <translations>
+                  <translation language="en-US">Invoked method for disposed object</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11985,6 +11997,9 @@
             <properties>
               <property>
                 <value>Systemfehler.  Code: %d.&amp;#13;&amp;#10;%s%s</value>
+                <translations>
+                  <translation language="en-US">System error.  Code: %d.&amp;#13;&amp;#10;%s%s</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -12528,6 +12543,16 @@
               </property>
             </properties>
           </item>
+          <item name="Table_SClickToEnterTableDesc">
+            <properties>
+              <property>
+                <value>Klicken, um eine Tabellenbeschreibung festzulegen</value>
+                <translations>
+                  <translation language="en-US">Click to enter a table description</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
           <item name="Table_SColumnSum">
             <properties>
               <property>
@@ -12538,7 +12563,7 @@
               </property>
             </properties>
           </item>
-          <item name="Table_SCopyByInputValue">
+          <item name="Table_SCopyByInputValue" state="unused">
             <properties>
               <property>
                 <value>Filtern nach Eingabewert</value>
@@ -12574,6 +12599,26 @@
                 <value>Tabellen-Ende erreicht. Es wurden keine weiteren Vorkommen des Suchtexts gefunden.</value>
                 <translations>
                   <translation language="en-US">Reached end of table. No more occurences of the search text were found.</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="Table_SEnterFieldDescription">
+            <properties>
+              <property>
+                <value>Bitte eine Beschreibung für das Feld eingeben</value>
+                <translations>
+                  <translation language="en-US">Please enter a description for the field</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="Table_SEnterTableDescription">
+            <properties>
+              <property>
+                <value>Bitte eine Beschreibung für die Tabelle eingeben</value>
+                <translations>
+                  <translation language="en-US">Please enter a description for the table</translation>
                 </translations>
               </property>
             </properties>
@@ -12998,7 +13043,7 @@
           </item>
           <item name="Vcl_Consts_SBigEndianEncoding">
             <properties>
-              <property>
+              <property status="hold">
                 <value>Big Endian Unicode</value>
               </property>
             </properties>
@@ -13205,6 +13250,9 @@
             <properties>
               <property>
                 <value>Ungültiger Pinselstil</value>
+                <translations>
+                  <translation language="en-US">Invalid brush style</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13431,6 +13479,9 @@
             <properties>
               <property>
                 <value>Bild kann nicht eingefügt werden</value>
+                <translations>
+                  <translation language="en-US">Image could not be inserted</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13458,6 +13509,9 @@
             <properties>
               <property>
                 <value>Ungültige Zeichenflächenoperation</value>
+                <translations>
+                  <translation language="en-US">Invalid canvas operation</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14531,6 +14585,9 @@
             <properties>
               <property>
                 <value>Nicht unterstütztes Zwischenablagenformat</value>
+                <translations>
+                  <translation language="en-US">Unknown clipboard format</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -18367,6 +18424,13 @@
               </property>
             </properties>
           </item>
+          <item name="hgInputQry.Memo1" type="TMemo">
+            <properties>
+              <property name="Lines.Strings[0]" status="hold">
+                <value>Memo1</value>
+              </property>
+            </properties>
+          </item>
         </items>
       </module>
       <module name="TLOGINDIALOG" type="form" properties="1">
@@ -18842,7 +18906,7 @@
           </item>
         </items>
       </module>
-      <module name="TMDI_TABLE" type="form" properties="48">
+      <module name="TMDI_TABLE" type="form" properties="52">
         <items>
           <item name="MDI_Table" type="TMDI_Table">
             <properties>
@@ -19019,6 +19083,16 @@
               </property>
             </properties>
           </item>
+          <item name="MDI_Table.Panel2.Notebook1..lvFields.Columns[7]" type="TListView">
+            <properties>
+              <property name="Caption">
+                <value>Beschreibung</value>
+                <translations>
+                  <translation language="en-US">Description</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
           <item name="MDI_Table.Panel2.Notebook1..lvIndexes.Columns[0]" type="TListView">
             <properties>
               <property name="Caption">
@@ -19153,6 +19227,22 @@
               </property>
             </properties>
           </item>
+          <item name="MDI_Table.Panel2.Notebook1..Panel7.Label2" type="TLabel">
+            <properties>
+              <property name="Caption" status="hold">
+                <value>Label2</value>
+              </property>
+              <property name="Font.Name" status="skip">
+                <value>Tahoma</value>
+              </property>
+              <property name="Hint">
+                <value>Beschreibung ändern</value>
+                <translations>
+                  <translation language="en-US">Change description</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
           <item name="MDI_Table.Panel2.Notebook1..Panel7.LbSpeedButton8" type="TSpeedButton">
             <properties>
               <property name="Caption">
@@ -19233,6 +19323,16 @@
               </property>
             </properties>
           </item>
+          <item name="MDI_Table.pmFelder.Beschreibunganzeigenndern1" type="TMenuItem">
+            <properties>
+              <property name="Caption">
+                <value>Beschreibung ändern</value>
+                <translations>
+                  <translation language="en-US">Change description</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
           <item name="MDI_Table.pmFelder.EinfacheInsertAnweisungkopieren1" type="TMenuItem">
             <properties>
               <property name="Caption">
@@ -19271,6 +19371,13 @@
             </properties>
           </item>
           <item name="MDI_Table.pmFelder.N5" type="TMenuItem">
+            <properties>
+              <property name="Caption" status="skip">
+                <value>-</value>
+              </property>
+            </properties>
+          </item>
+          <item name="MDI_Table.pmFelder.N6" type="TMenuItem">
             <properties>
               <property name="Caption" status="skip">
                 <value>-</value>
@@ -19333,6 +19440,16 @@
                 <value>Filtern nach Eingabewert...</value>
                 <translations>
                   <translation language="en-US">Filter by input value...</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="MDI_Table.PopupMenu1.FilternnachLIKEEingabewert1" type="TMenuItem">
+            <properties>
+              <property name="Caption">
+                <value>Filtern nach LIKE-Eingabewert...</value>
+                <translations>
+                  <translation language="en-US">Filter by LIKE input value...</translation>
                 </translations>
               </property>
             </properties>
