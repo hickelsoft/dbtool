@@ -2423,16 +2423,23 @@ begin
         result := StringReplace(result, '''', '''''', [rfReplaceAll]);
       end;
 
-    dtMySql,
-{$IFNDEF WIN64}
-    dtLocal, // Nicht getestet Unbekannt, ob es Escaping gibt, und wie dieses aussieht.
-{$ENDIF}
-    dtInterbase, // Nicht getestet Unbekannt, ob es Escaping gibt, und wie dieses aussieht.
-    dtFirebird, // Nicht getestet Unbekannt, ob es Escaping gibt, und wie dieses aussieht.
-    dtAccess: // Nicht getestet. Unbekannt, ob es Escaping gibt, und wie dieses aussieht.
+    dtMySql:
       begin
-        result := StringReplace(result, '''', '\''', [rfReplaceAll]);
+        // Important: escape backslashes first, then quotes,
+        // otherwise the backslash from \' gets double-escaped to \\'
         result := StringReplace(result, '\', '\\', [rfReplaceAll]);
+        result := StringReplace(result, '''', '\''', [rfReplaceAll]);
+      end;
+
+{$IFNDEF WIN64}
+    dtLocal, // BDE/Paradox/dBase: use double-quote escaping like SQL standard
+{$ENDIF}
+    dtInterbase,
+    dtFirebird,
+    dtAccess:
+      begin
+        // InterBase, Firebird and Access use SQL-standard '' escaping, not backslash
+        result := StringReplace(result, '''', '''''', [rfReplaceAll]);
       end;
   else
     raise Exception.Create('(TDbToolDatabase.SQL_Escape_String) ' +
