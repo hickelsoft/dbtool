@@ -2365,30 +2365,43 @@ begin
   case FDatabaseType of
     dtSqlServer:
       begin
+        // SQL Server uses [name] quoting; escape ] by doubling it
         result := '';
         ary := SplitString(sTableName, '.');
         for i := 0 to Length(ary) - 1 do
         begin
           if i <> 0 then
             result := result + '.';
-          ary[i] := StringReplace(ary[i], '[', '[[]', [rfReplaceAll]);
-          // TODO: Geht nicht... deshalb dürfen Tabellennamen vorerst keine Klammern haben
+          ary[i] := StringReplace(ary[i], ']', ']]', [rfReplaceAll]);
           result := result + '[' + ary[i] + ']';
         end;
       end;
 
     dtMySql:
       begin
-        result := '`' + sTableName + '`';
+        // MySQL uses backtick quoting; escape backticks by doubling them
+        result := '`' + StringReplace(sTableName, '`', '``', [rfReplaceAll]) + '`';
       end;
 
 {$IFNDEF WIN64}
-    dtLocal, // Nicht getestet Unbekannt, ob es Escaping gibt.
+    dtLocal:
+      begin
+        // BDE/Paradox/dBase: use square bracket quoting like Access
+        result := '[' + StringReplace(sTableName, ']', ']]', [rfReplaceAll]) + ']';
+      end;
 {$ENDIF}
-    dtInterbase, // Nicht getestet Unbekannt, ob es Escaping gibt.
-    dtFirebird, // Nicht getestet Unbekannt, ob es Escaping gibt.
-    dtAccess: // Nicht getestet. Unbekannt, ob es Escaping gibt.
-      result := sTableName;
+    dtInterbase,
+    dtFirebird:
+      begin
+        // InterBase/Firebird use SQL-standard double-quote identifier quoting
+        result := '"' + StringReplace(sTableName, '"', '""', [rfReplaceAll]) + '"';
+      end;
+
+    dtAccess:
+      begin
+        // Access uses square bracket quoting; escape ] by doubling it
+        result := '[' + StringReplace(sTableName, ']', ']]', [rfReplaceAll]) + ']';
+      end;
   else
     raise Exception.Create('(TDbToolDatabase.SQL_Escape_TableName) ' +
       SInternalError);
