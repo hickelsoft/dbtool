@@ -78,7 +78,8 @@ type
     class procedure TryFreeDiskSpace(level: integer = 0);
     class function DeleteFiles(const AFile: string): boolean;
 
-    class function processExists(exeFileName: string): boolean;
+    class function processExistsCount(const exeFileName: string): integer;
+    class function processExists(const exeFileName: string): boolean;
 
     class function GetInside(s, delimA, delimB: string): string;
     class function FileIsReadable(filename: string): boolean;
@@ -281,7 +282,6 @@ function IsDllLoadable(const FileName: string): Boolean;
 
 {$IF CompilerVersion >= 20.0} // geraten
 function HashHmacFileSHA256Hex(const FilePath, Secret: string): string;
-procedure SchriftartInstallieren(SchriftartDatei: string);
 {$IFEND}
 
 type
@@ -318,7 +318,7 @@ resourcestring
   StrDTagen = '%d Tagen';
   Str1Tag = '1 Tag';
 
-class function ThlUtils.processExists(exeFileName: string): boolean;
+class function ThlUtils.processExistsCount(const exeFileName: string): integer;
 var
   ContinueLoop: BOOL;
   FSnapshotHandle: THandle;
@@ -329,20 +329,25 @@ begin
   try
     FProcessEntry32.dwSize := SizeOf(FProcessEntry32);
     ContinueLoop := Process32First(FSnapshotHandle, FProcessEntry32);
-    Result := False;
+    Result := 0;
     while integer(ContinueLoop) <> 0 do
     begin
       if ((UpperCase(ExtractFileName(FProcessEntry32.szExeFile))
         = UpperCase(exeFileName)) or (UpperCase(FProcessEntry32.szExeFile)
         = UpperCase(exeFileName))) then
       begin
-        Result := True;
+        Inc(Result);
       end;
       ContinueLoop := Process32Next(FSnapshotHandle, FProcessEntry32);
     end;
   finally
     CloseHandle(FSnapshotHandle);
   end;
+end;
+
+class function ThlUtils.processExists(const exeFileName: string): boolean;
+begin
+  result := processExistsCount(exeFileName) > 0;
 end;
 
 class function ThlUtils.AdvSelectDirectory(const Caption: string;
@@ -533,8 +538,8 @@ begin
       if ((UpperCase(ExtractFileName(FProcessEntry32.szExeFile))
         = UpperCase(exeFileName)) or (UpperCase(FProcessEntry32.szExeFile)
         = UpperCase(exeFileName))) then
-        Result := integer(TerminateProcess(OpenProcess(PROCESS_TERMINATE,
-          BOOL(0), FProcessEntry32.th32ProcessID), 0));
+        if TerminateProcess(OpenProcess(PROCESS_TERMINATE,
+          BOOL(0), FProcessEntry32.th32ProcessID), 0) then Inc(Result);
       ContinueLoop := Process32Next(FSnapshotHandle, FProcessEntry32);
     end;
   finally
@@ -4200,36 +4205,6 @@ begin
     THashSHA2.TSHA2Version.SHA256
   );
   Result := LowerCase(THash.DigestAsString(HashBytes));
-end;
-
-procedure SchriftartInstallieren(SchriftartDatei: string);
-  function GetUserFontsFolder: string;
-  var
-    Path: PWideChar;
-  const
-    FOLDERID_LocalAppData: TGUID = '{F1B32785-6FBA-4FCF-9D55-7B8E7F157091}';
-  begin
-    Result := '';
-    Path := nil;
-    if Succeeded(SHGetKnownFolderPath(FOLDERID_LocalAppData, 0, 0, Path)) then
-    begin
-      Result := IncludeTrailingPathDelimiter(Path) + 'Microsoft\Windows\Fonts';
-      CoTaskMemFree(Path);
-    end;
-  end;
-var
-  FontPath: string;
-begin
-  FontPath := IncludeTrailingPathDelimiter(GetUserFontsFolder);
-  if FontPath = '' then exit;
-  ForceDirectories(FontPath);
-  if CopyFile(PChar(SchriftartDatei), PChar(FontPath + ExtractFileName(SchriftartDatei)), true) then
-  begin
-    if AddFontResourceEx(PChar(FontPath + ExtractFileName(SchriftartDatei)), 0, nil) > 0 then
-    begin
-      SendMessage(HWND_BROADCAST, WM_FONTCHANGE, 0, 0);
-    end;
-  end;
 end;
 {$IFEND}
 

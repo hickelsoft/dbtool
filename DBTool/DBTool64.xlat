@@ -2,7 +2,7 @@
 <xlat>
   <meta>
     <version>3</version>
-    <created>2026-02-01T22:49:58.515+01:00</created>
+    <created>2026-02-24T11:58:38.000+01:00</created>
     <tool>amTranslationManager</tool>
     <toolversion>2.3.9199.24584</toolversion>
   </meta>
@@ -12,13 +12,13 @@
     <sorted>True</sorted>
     <omitnewstate>True</omitnewstate>
   </options>
-  <project sourcefile="..\..\..\HS-Service\DBTool\DBTool64.exe" stringsymbolfile=".\DBTool64.drc" language="de-DE" properties="2134">
+  <project sourcefile="..\..\..\HS-Service\DBTool\DBTool64.exe" stringsymbolfile=".\DBTool64.drc" language="de-DE" properties="2137">
     <targetlanguages>
-      <language language="en-US" translated="1083"/>
+      <language language="en-US" translated="1088"/>
       <language language="de-DE" translated="0"/>
     </targetlanguages>
     <modules>
-      <module name="resourcestrings" type="strings" properties="1784">
+      <module name="resourcestrings" type="strings" properties="1785">
         <items>
           <item name="C_Database_SAccessProviderLoadError">
             <properties>
@@ -54,6 +54,9 @@
             <properties>
               <property>
                 <value>Lokale BDE-Datenbanken können nur mit der 32-Bit Version von DBTool geöffnet werden.</value>
+                <translations>
+                  <translation language="en-US">Local BDE databases can only be opened with the 32 bit Edition of DBTool.</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -113,6 +116,26 @@
                 <value>Für diese Datenbank ist ein Passwort erforderlich</value>
                 <translations>
                   <translation language="en-US">This database requires a password</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="C_Database_SEnterFieldDescription">
+            <properties>
+              <property>
+                <value>Bitte eine Beschreibung für das Feld eingeben</value>
+                <translations>
+                  <translation language="en-US">Please enter a description for the field</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="C_Database_SEnterTableDescription">
+            <properties>
+              <property>
+                <value>Bitte eine Beschreibung für die Tabelle eingeben</value>
+                <translations>
+                  <translation language="en-US">Please enter a description for the table</translation>
                 </translations>
               </property>
             </properties>
@@ -12073,7 +12096,7 @@
               </property>
             </properties>
           </item>
-          <item name="Table_SEnterFieldDescription">
+          <item name="Table_SEnterFieldDescription" state="unused">
             <properties>
               <property>
                 <value>Bitte eine Beschreibung für das Feld eingeben</value>
@@ -12083,7 +12106,7 @@
               </property>
             </properties>
           </item>
-          <item name="Table_SEnterTableDescription">
+          <item name="Table_SEnterTableDescription" state="unused">
             <properties>
               <property>
                 <value>Bitte eine Beschreibung für die Tabelle eingeben</value>
@@ -12190,6 +12213,13 @@
                 <translations>
                   <translation language="en-US">Nothing available</translation>
                 </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="Table_SOrderingNotImplemented">
+            <properties>
+              <property>
+                <value>Sortierung nach Index ist derzeit nicht implementiert.</value>
               </property>
             </properties>
           </item>
@@ -17971,7 +18001,7 @@
           </item>
         </items>
       </module>
-      <module name="TMDI_DATABASE" type="form" properties="18">
+      <module name="TMDI_DATABASE" type="form" properties="19">
         <items>
           <item name="MDI_Database" type="TMDI_Database">
             <properties>
@@ -18169,6 +18199,16 @@
                 <value>Struktur &amp;drucken</value>
                 <translations>
                   <translation language="en-US">&amp;Print structure</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="MDI_Database.pmTables.TabellenBeschreibungAendern" type="TMenuItem">
+            <properties>
+              <property name="Caption">
+                <value>Tabellen-Beschreibung anzeigen/ändern</value>
+                <translations>
+                  <translation language="en-US">View/Edit table description</translation>
                 </translations>
               </property>
             </properties>
@@ -18388,7 +18428,7 @@
           </item>
         </items>
       </module>
-      <module name="TMDI_TABLE" type="form" properties="52">
+      <module name="TMDI_TABLE" type="form" properties="53">
         <items>
           <item name="MDI_Table" type="TMDI_Table">
             <properties>
@@ -18718,9 +18758,9 @@
                 <value>Tahoma</value>
               </property>
               <property name="Hint">
-                <value>Beschreibung ändern</value>
+                <value>Tabellen-Beschreibung anzeigen/ändern</value>
                 <translations>
-                  <translation language="en-US">Change description</translation>
+                  <translation language="en-US">View/Edit table description</translation>
                 </translations>
               </property>
             </properties>
@@ -18808,9 +18848,9 @@
           <item name="MDI_Table.pmFelder.Beschreibunganzeigenndern1" type="TMenuItem">
             <properties>
               <property name="Caption">
-                <value>Beschreibung ändern</value>
+                <value>Feldbeschreibung anzeigen/ändern</value>
                 <translations>
-                  <translation language="en-US">Change description</translation>
+                  <translation language="en-US">View/Edit field description</translation>
                 </translations>
               </property>
             </properties>
@@ -18902,6 +18942,16 @@
                 <value>Anzahl</value>
                 <translations>
                   <translation language="en-US">Row count</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="MDI_Table.PopupMenu1.Feldbeschreibunganzeigenndern1" type="TMenuItem">
+            <properties>
+              <property name="Caption">
+                <value>Feldbeschreibung anzeigen/ändern</value>
+                <translations>
+                  <translation language="en-US">View/Edit field description</translation>
                 </translations>
               </property>
             </properties>

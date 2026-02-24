@@ -85,8 +85,8 @@ begin
   end;
 
   // Das ist der Standard von DBTool Vollversion
-  outDir := SysUtils.GetEnvironmentVariable('APPDATA');
-  // das ist das Appdata\Roaming Verzeichnis // do not localize
+  // %APPDATA% ist das ist das Appdata\Roaming Verzeichnis
+  outDir := SysUtils.GetEnvironmentVariable('APPDATA'); // do not localize
   if outDir <> '' then
     outDir := IncludeTrailingPathDelimiter(outDir) +
       'HickelSOFT\DBTool\Config\';
@@ -98,8 +98,8 @@ function GetMySQLDBListFilename: string;
 var
   outDir: string;
 begin
-  outDir := SysUtils.GetEnvironmentVariable('APPDATA');
-  // das ist das Appdata\Roaming Verzeichnis // do not localize
+  // %APPDATA% ist das Appdata\Roaming Verzeichnis
+  outDir := SysUtils.GetEnvironmentVariable('APPDATA'); // do not localize
   if outDir <> '' then
     outDir := IncludeTrailingPathDelimiter(outDir) +
       'HickelSOFT\DBTool\Config\';

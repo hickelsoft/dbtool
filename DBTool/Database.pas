@@ -39,6 +39,8 @@ type
     Triggeranzeigen1: TMenuItem;
     Panel4: TPanel;
     HsGradientPanel1: THsGradientPanel;
+    TabellenBeschreibungAendern: TMenuItem;
+    procedure TabellenBeschreibungAendernClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure lvTablesDblClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -84,7 +86,8 @@ type
 implementation
 
 uses
-  Main, Table, Query, Export, Globals, Printers, hl.Utils, hl.Datenbank;
+  Main, Table, Query, Export, Globals, Printers, hl.Utils, hl.Datenbank,
+  hg_InputQuery;
 
 {$R *.DFM}
 
@@ -140,6 +143,31 @@ begin
 
   ReloadTabellenListe;
   // Müssen wir machen, weil das OnShow bereits oben ausgelöst wurde, aus welchem Grund auch immer!!!
+end;
+
+procedure TMDI_Database.TabellenBeschreibungAendernClick(Sender: TObject);
+var
+  desc, desc_bak: string;
+  d: THsFieldDocumentation;
+  TableName: string;
+  i: integer;
+begin
+  for i := 0 to lvTables.Items.Count - 1 do
+  begin
+    if lvTables.Items[i].Selected then
+    begin
+      TableName := lvTables.Items[i].Caption;
+      d := dbDatabase.GetDbToolFieldAndTableDescription(TableName, ''{FieldName does not matter});
+      desc := d.TableDesc;
+      desc_bak := desc;
+      if ThgInputQry.InputMemo(TableName, SEnterTableDescription, desc) then
+      begin
+        if desc = desc_bak then exit;
+        dbDatabase.SetDbToolTableDescription(TableName, desc);
+        // TODO: Change Label2.Caption of existing TableForm
+      end;
+    end;
+  end;
 end;
 
 procedure TMDI_Database.Erste100Zeilenzeigen1Click(Sender: TObject);

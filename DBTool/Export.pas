@@ -37,7 +37,7 @@ interface
 uses
   Windows, Messages, SysUtils, Classes, Graphics, Controls, Forms, Dialogs,
   Db, {$IFNDEF WIN64}DBTables, {$ENDIF}StdCtrls, ExtCtrls, Buttons, Gauges,
-  ShellAPI;
+  ShellAPI, C_Database;
 
 type
   TDLG_Export = class(TForm)
@@ -128,15 +128,17 @@ type
   private
     FDateinameBasis: string;
     FTable1: TDataSet;
+    FDatabase: TDbToolDatabase;
     FIsWorking: Boolean;
     function GetDateinameBasis: string;
     procedure IncludeExcludeButtonsRefresh;
   protected
     function DefaultExportDir: string;
   public
-    property Table1: TDataSet read FTable1 write FTable1;
-    property DateinameBasis: string read GetDateinameBasis
-      write FDateinameBasis;
+    constructor Create(Owner: TComponent; aDB: TDbToolDatabase; aDS: TDataSet; aDateiNameBasis: string);
+    property Table1: TDataSet read FTable1;
+    property Database: TDbToolDatabase read FDatabase;
+    property DateinameBasis: string read GetDateinameBasis;
   end;
 
 const
@@ -156,6 +158,15 @@ implementation
 
 uses
   hl.System.Types, hl.Utils, System.UITypes;
+
+constructor TDLG_Export.Create(Owner: TComponent; aDB: TDbToolDatabase; aDS: TDataSet; aDateiNameBasis: string);
+begin
+  inherited Create(Owner);
+
+  FDatabase := aDB;
+  FTable1 := aDS;
+  FDateinameBasis := aDateiNameBasis;
+end;
 
 procedure TDLG_Export.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
@@ -792,8 +803,7 @@ begin
     felder := '';
     for iCounter := 0 to lbDst.Items.Count - 1 do
     begin
-      // TODO: escape
-      felder := felder + lbDst.Items[iCounter] + ', ';
+      felder := felder + FDatabase.SQL_Escape_FieldName(lbDst.Items[iCounter]) + ', ';
     end;
     felder := Copy(felder, 1, Length(felder) - 2);
 
@@ -808,7 +818,7 @@ begin
         values := '';
         for iCounter := 0 to lbDst.Items.Count - 1 do
         begin
-          // TODO: je nach datentyp string-zeichen geben oder NULL geben
+          // TODO: je nach datentyp string-zeichen geben (und ggf. korrektes escaping) oder NULL geben
           case FTable1.FieldDefs.Items[iCounter].DataType of
             ftString, ftWidestring, ftFixedWideChar, ftFixedChar, ftGUID,
               ftMemo, ftWideMemo, ftDate, ftTime, ftDateTime:
@@ -846,9 +856,7 @@ begin
         values := Copy(values, 1, Length(values) - 2);
 
         // ...und rein in die Datei!
-        // TODO: escape
-        sZeilenBuffer := 'insert into ' + sTableName + ' (' + felder +
-          ') values (' + values + ');'; // do not localize
+        sZeilenBuffer := 'insert into ' + FDatabase.SQL_Escape_TableName(sTableName) + ' (' + felder + ') values (' + values + ');'; // do not localize
         writeln(F, sZeilenBuffer);
 
         FTable1.Next;

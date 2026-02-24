@@ -11,7 +11,9 @@ object hgInputQry: ThgInputQry
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
+  KeyPreview = True
   Position = poMainFormCenter
+  OnKeyUp = FormKeyUp
   OnShow = FormShow
   DesignSize = (
     451
@@ -43,7 +45,6 @@ object hgInputQry: ThgInputQry
     Anchors = [akLeft, akTop, akRight]
     TabOrder = 0
     Text = 'Edit1'
-    ExplicitWidth = 345
   end
   object Button2: TButton
     Left = 56
@@ -75,6 +76,7 @@ object hgInputQry: ThgInputQry
       'Memo1')
     TabOrder = 4
     Visible = False
+    WantTabs = True
     OnKeyDown = Memo1KeyDown
   end
 end

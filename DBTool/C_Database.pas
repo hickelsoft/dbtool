@@ -34,6 +34,14 @@ type
   TKnownProductDbType = (ptOther, ptCORAplus, ptHsInfo2, ptCmDb2, ptOIDplus2);
 
 type
+  THsFieldDocumentation = record
+    DatabaseFile: string;
+    DatabaseTypeOid: string;
+    FieldDescKey: string;
+    FieldDesc: string;
+    TableDescKey: string;
+    TableDesc: string;
+  end;
   TDbToolDatabase = class(TObject)
   private
     FDatabaseType: TDatabaseType;
@@ -52,6 +60,9 @@ type
     // function UmlauteRaus(Sql: String): string;
     procedure BeforeDelete(DataSet: TDataSet);
   protected
+    FFieldAndTableDescription_Praefix: string;
+    FFieldAndTableDescription_File: string;
+
     function SQL_CreateTable_Head(sMyTable: String): String;
   public
     constructor Create(DatabaseName: string);
@@ -81,6 +92,11 @@ type
     function HasTriggers(Tablename: string): boolean; // requires GetTriggers_Implemented=true
     procedure GetTriggers(Tablename: string; sl: TStringList); // requires GetTriggers_Implemented=true
 
+    function DataBasePropertyImplemented: boolean;
+    function DataBasePropertyExists(const aPropertyName: string): boolean;
+    function GetDataBaseProperty(const aPropertyName: string): string;
+    procedure SetDataBaseProperty(const aPropertyName, aValue: string);
+
     procedure ExecSql(Sql: String);
     procedure CommitRetaining;
     procedure RefreshTable(aTable: TDataSet);
@@ -108,18 +124,23 @@ type
     function Clone: TDbToolDatabase;
     function CheckDatabaseSecurityPassword: boolean;
     function KnownProductDb: TKnownProductDbType;
+    function GetDbToolFieldAndTableDescription(const ATableName, AFieldName: string): THsFieldDocumentation;
+    procedure SetDbToolFieldDescription(const ATableName, AFieldName, aDescription: string);
+    procedure SetDbToolTableDescription(const ATableName, aDescription: string);
   end;
 
 resourcestring
   SExecuteStoredProcedureWith_ = 'Ausführen der Stored Procedure mittels';
   STriggerActived = 'Trigger ist aktiviert';
   STriggerDeactived = 'Trigger ist DEAKTIVIERT!';
+  SEnterFieldDescription = 'Bitte eine Beschreibung für das Feld eingeben';
+  SEnterTableDescription = 'Bitte eine Beschreibung für die Tabelle eingeben';
 
 implementation
 
 uses
   ComCtrls, Globals, IbDatabaseName, SysUtils, Controls, ProgrDlg,
-  hl_SqlServerProvider, ShlObj,
+  hl_SqlServerProvider, ShlObj, IniFiles, hl.Utils,
   hl.Datenbank, StrUtils, HS_Auth, System.Hash;
 
 resourcestring
@@ -1558,6 +1579,17 @@ begin
 end;
 
 function TDbToolDatabase.GetIndexDefs(aTableName: string): TIndexDefs;
+
+  function FindIndexDef(IndexDefs: TIndexDefs; const Name: string): TIndexDef;
+  var
+    I: Integer;
+  begin
+    for I := 0 to IndexDefs.Count - 1 do
+      if SameText(IndexDefs[I].Name, Name) then
+        Exit(IndexDefs[I]);
+    Result := nil;
+  end;
+
 var
 {$IFNDEF WIN64}
   bdeReturn: TTable;
@@ -1565,6 +1597,12 @@ var
   adoReturn: TADOTable;
   ibReturn: TIBTable;
   fbReturn: TFDTable;
+  rsSchema: TAdoDataset;
+  idxName: string;
+  colName: string;
+  isUnique: boolean;
+  isPrimary: boolean;
+  idx: TIndexDef;
 begin
   case FDatabaseType of
 {$IFNDEF WIN64}
@@ -1576,6 +1614,7 @@ begin
           bdeReturn.DatabaseName := DB_BDE.DatabaseName;
           bdeReturn.Tablename := SQL_Escape_TableName(aTableName);
           bdeReturn.DisableControls; // Performance?
+          bdeReturn.IndexDefs.Update; // neu hinzugemacht, geht nicht
           bdeReturn.Open;
           result := TTable(bdeReturn).IndexDefs;
           exit;
@@ -1592,6 +1631,7 @@ begin
           ibReturn.Database := DB_IB;
           ibReturn.Tablename := SQL_Escape_TableName(aTableName);
           ibReturn.DisableControls; // Performance?
+          ibReturn.IndexDefs.Update; // neu hinzugemacht, geht nicht
           ibReturn.Open;
           result := TIBTable(ibReturn).IndexDefs;
           exit;
@@ -1608,6 +1648,7 @@ begin
           fbReturn.Connection := DB_FB;
           fbReturn.Tablename := SQL_Escape_TableName(aTableName);
           fbReturn.DisableControls; // Performance?
+          fbReturn.IndexDefs.Update; // neu hinzugemacht, geht nicht
           fbReturn.Open;
           result := TFDTable(fbReturn).IndexDefs;
           exit;
@@ -1617,6 +1658,57 @@ begin
       end;
 
     dtAccess, dtSqlServer, dtMySql:
+    begin
+      Screen.Cursor := crHourGlass;
+      try
+        adoReturn := TADOTable.Create(DB_ADO);
+        adoReturn.Connection := DB_ADO;
+        adoReturn.TableName := SQL_Escape_TableName(aTableName);
+        adoReturn.Open;
+
+        // IndexDefs manuell aus Schema befüllen
+        adoReturn.IndexDefs.Clear;
+        rsSchema := TADODataSet.Create(nil);
+        try
+          DB_ADO.OpenSchema(siIndexes,
+            VarArrayOf([Unassigned, Unassigned, Unassigned,
+                         Unassigned, aTableName]),
+            EmptyParam, rsSchema);
+          while not rsSchema.Eof do
+          begin
+            idxName := rsSchema.FieldByName('INDEX_NAME').AsString;
+            colName := rsSchema.FieldByName('COLUMN_NAME').AsString;
+            isUnique := not rsSchema.FieldByName('UNIQUE').AsBoolean;
+            isPrimary := rsSchema.FieldByName('PRIMARY_KEY').AsBoolean;
+
+            // Existiert der Index schon? (Multi-Column-Index)
+            idx := FindIndexDef(adoReturn.IndexDefs, idxName);
+            if idx <> nil then
+              idx.Fields := idx.Fields + ';' + colName
+            else
+            begin
+              idx := adoReturn.IndexDefs.AddIndexDef;
+              idx.Name := idxName;
+              idx.Fields := colName;
+              if isPrimary then
+                idx.Options := [ixPrimary, ixUnique]
+              else if isUnique then
+                idx.Options := [ixUnique];
+            end;
+            rsSchema.Next;
+          end;
+        finally
+          FreeAndNil(rsSchema);
+        end;
+        result := adoReturn.IndexDefs;
+        exit;
+      finally
+        Screen.Cursor := crDefault;
+      end;
+    end;
+
+    (*
+    dtAccess, dtSqlServer, dtMySql:
       begin
         Screen.Cursor := crHourGlass;
         try
@@ -1624,6 +1716,7 @@ begin
           adoReturn.Connection := DB_ADO;
           adoReturn.Tablename := SQL_Escape_TableName(aTableName);
           adoReturn.DisableControls; // Performance?
+          adoReturn.IndexDefs.Update; // neu hinzugemacht, geht nicht
           adoReturn.Open;
           result := TADOTable(adoReturn).IndexDefs;
           exit;
@@ -1631,6 +1724,7 @@ begin
           Screen.Cursor := crDefault;
         end;
       end;
+    *)
 
   else
     raise Exception.Create('(TDbToolDatabase.GetIndexDefs) ' + SInternalError);
@@ -2318,17 +2412,21 @@ end;
 function TDbToolDatabase.SQL_Escape_DatabaseName(sDatabaseName: string): string;
 begin
   case FDatabaseType of
-    dtSqlServer:
-      result := '[' + sDatabaseName + ']';
+    dtSqlServer,
+    dtAccess:
+      result := '[' + sDatabaseName + ']'; // TODO: Escape?
 
 {$IFNDEF WIN64}
-    dtLocal, // Nicht getestet Unbekannt, ob es Escaping gibt.
-{$ENDIF}
-    dtInterbase, // Nicht getestet Unbekannt, ob es Escaping gibt.
-    dtFirebird, // Nicht getestet Unbekannt, ob es Escaping gibt.
-    dtAccess, // Nicht getestet. Unbekannt, ob es Escaping gibt.
-    dtMySql: // Nicht getestet. Unbekannt, ob es Escaping gibt.
+    dtLocal:
       result := sDatabaseName;
+{$ENDIF}
+
+    dtInterbase,
+    dtFirebird:
+      result := '"' + sDatabaseName + '"'; // TODO: Escape?
+
+    dtMySql:
+      result := '`' + sDatabaseName + '`'; // TODO: Escape?
 
   else
     raise Exception.Create('(TDbToolDatabase.SQL_Escape_DatabaseName) ' +
@@ -2339,17 +2437,21 @@ end;
 function TDbToolDatabase.SQL_Escape_FieldName(sFieldName: string): string;
 begin
   case FDatabaseType of
-    dtSqlServer:
-      result := '[' + sFieldName + ']';
+    dtSqlServer,
+    dtAccess:
+      result := '[' + sFieldName + ']'; // TODO: Escape?
 
 {$IFNDEF WIN64}
-    dtLocal, // Nicht getestet Unbekannt, ob es Escaping gibt.
-{$ENDIF}
-    dtInterbase, // Nicht getestet Unbekannt, ob es Escaping gibt.
-    dtFirebird, // Nicht getestet Unbekannt, ob es Escaping gibt.
-    dtAccess, // Nicht getestet. Unbekannt, ob es Escaping gibt.
-    dtMySql: // Nicht getestet. Unbekannt, ob es Escaping gibt.
+    dtLocal:
       result := sFieldName;
+{$ENDIF}
+
+    dtInterbase,
+    dtFirebird:
+      result := '"' + sFieldName + '"'; // TODO: Escape?
+
+    dtMySql:
+      result := '`' + sFieldName + '`'; // TODO: Escape?
 
   else
     raise Exception.Create('(TDbToolDatabase.SQL_Escape_FieldName) ' +
@@ -2357,6 +2459,7 @@ begin
   end;
 end;
 
+// TODO: Review https://github.com/hickelsoft/dbtool/pull/9/
 function TDbToolDatabase.SQL_Escape_TableName(sTableName: String): string;
 var
   ary: TArray<string>;
@@ -2365,30 +2468,44 @@ begin
   case FDatabaseType of
     dtSqlServer:
       begin
+        // SQL Server uses [name] quoting; escape ] by doubling it
         result := '';
         ary := SplitString(sTableName, '.');
         for i := 0 to Length(ary) - 1 do
         begin
           if i <> 0 then
             result := result + '.';
-          ary[i] := StringReplace(ary[i], '[', '[[]', [rfReplaceAll]);
-          // TODO: Geht nicht... deshalb dürfen Tabellennamen vorerst keine Klammern haben
+          ary[i] := StringReplace(ary[i], ']', ']]', [rfReplaceAll]);
           result := result + '[' + ary[i] + ']';
         end;
       end;
 
     dtMySql:
       begin
-        result := '`' + sTableName + '`';
+        // MySQL uses backtick quoting; escape backticks by doubling them
+        result := '`' + StringReplace(sTableName, '`', '``', [rfReplaceAll]) + '`';
       end;
 
 {$IFNDEF WIN64}
-    dtLocal, // Nicht getestet Unbekannt, ob es Escaping gibt.
+    dtLocal:
+      begin
+        // BDE/Paradox/dBase: use square bracket quoting like Access
+        result := '[' + StringReplace(sTableName, ']', ']]', [rfReplaceAll]) + ']';
+      end;
 {$ENDIF}
-    dtInterbase, // Nicht getestet Unbekannt, ob es Escaping gibt.
-    dtFirebird, // Nicht getestet Unbekannt, ob es Escaping gibt.
-    dtAccess: // Nicht getestet. Unbekannt, ob es Escaping gibt.
-      result := sTableName;
+    dtInterbase,
+    dtFirebird:
+      begin
+        // InterBase/Firebird use SQL-standard double-quote identifier quoting
+        result := '"' + StringReplace(sTableName, '"', '""', [rfReplaceAll]) + '"';
+      end;
+
+    dtAccess:
+      begin
+        // Access uses square bracket quoting; escape ] by doubling it
+        result := '[' + StringReplace(sTableName, ']', ']]', [rfReplaceAll]) + ']';
+      end;
+
   else
     raise Exception.Create('(TDbToolDatabase.SQL_Escape_TableName) ' +
       SInternalError);
@@ -2401,6 +2518,7 @@ begin
   // TODO: Also implement other DBMS in the future
 end;
 
+// TODO: Review https://github.com/hickelsoft/dbtool/pull/8
 function TDbToolDatabase.SQL_Escape_String(sString: String): String;
 begin
   result := sString;
@@ -2423,16 +2541,23 @@ begin
         result := StringReplace(result, '''', '''''', [rfReplaceAll]);
       end;
 
-    dtMySql,
-{$IFNDEF WIN64}
-    dtLocal, // Nicht getestet Unbekannt, ob es Escaping gibt, und wie dieses aussieht.
-{$ENDIF}
-    dtInterbase, // Nicht getestet Unbekannt, ob es Escaping gibt, und wie dieses aussieht.
-    dtFirebird, // Nicht getestet Unbekannt, ob es Escaping gibt, und wie dieses aussieht.
-    dtAccess: // Nicht getestet. Unbekannt, ob es Escaping gibt, und wie dieses aussieht.
+    dtMySql:
       begin
-        result := StringReplace(result, '''', '\''', [rfReplaceAll]);
+        // Important: escape backslashes first, then quotes,
+        // otherwise the backslash from \' gets double-escaped to \\'
         result := StringReplace(result, '\', '\\', [rfReplaceAll]);
+        result := StringReplace(result, '''', '\''', [rfReplaceAll]);
+      end;
+
+{$IFNDEF WIN64}
+    dtLocal, // BDE/Paradox/dBase: use double-quote escaping like SQL standard
+{$ENDIF}
+    dtInterbase,
+    dtFirebird,
+    dtAccess:
+      begin
+        // InterBase, Firebird and Access use SQL-standard '' escaping, not backslash
+        result := StringReplace(result, '''', '''''', [rfReplaceAll]);
       end;
   else
     raise Exception.Create('(TDbToolDatabase.SQL_Escape_String) ' +
@@ -3126,6 +3251,243 @@ begin
     end;
   end;
   result := GKnownProductDb_Cache;
+end;
+
+function TDbToolDatabase.DataBasePropertyImplemented: boolean;
+begin
+  result := DatabaseType in [dtSqlServer];
+end;
+
+function TDbToolDatabase.DataBasePropertyExists(const aPropertyName: string): boolean;
+var
+  q: TDataSet;
+begin
+  if not DataBasePropertyImplemented then
+    exit(false);
+  if DatabaseType = dtSqlServer then
+  begin
+    q := Query('SELECT 1 ' +
+               'FROM sys.extended_properties ' +
+               'WHERE name = N''' + SQL_Escape_String(aPropertyName) + ''' ' +
+               '  AND class = 0'); // class 0 = database
+    try
+      result := q.RecordCount > 0;
+    finally
+      FreeAndNil(q);
+    end;
+  end
+  else
+  begin
+    result := false; // not implemented
+  end;
+end;
+
+function TDbToolDatabase.GetDataBaseProperty(const aPropertyName: string): string;
+var
+  q: TDataSet;
+begin
+  if not DataBasePropertyImplemented then
+    exit;
+  if DatabaseType = dtSqlServer then
+  begin
+    q := Query('SELECT value ' +
+               'FROM sys.extended_properties ' +
+               'WHERE name = N''' + SQL_Escape_String(aPropertyName) + ''' ' +
+               '  AND class = 0'); // class 0 = database
+    try
+      result := q.Fields[0].AsWideString;
+    finally
+      FreeAndNil(q);
+    end;
+  end
+  else
+  begin
+    result := ''; // not implemented
+  end;
+end;
+
+procedure TDbToolDatabase.SetDataBaseProperty(const aPropertyName, aValue: string);
+begin
+  if not DataBasePropertyImplemented then
+    exit;
+  if DatabaseType = dtSqlServer then
+  begin
+    if DataBasePropertyExists(aPropertyName) then
+    begin
+      ExecSql('EXEC sys.sp_updateextendedproperty ' +
+              '     @name = N''' + SQL_Escape_String(aPropertyName) + ''', ' +
+              '     @value = N''' + SQL_Escape_String(aValue) + '''' );
+    end
+    else
+    begin
+      ExecSql('EXEC sys.sp_addextendedproperty ' +
+              '     @name = N''' + SQL_Escape_String(aPropertyName) + ''', ' +
+              '     @value = N''' + SQL_Escape_String(aValue) + '''' );
+    end;
+  end;
+end;
+
+function TDbToolDatabase.GetDbToolFieldAndTableDescription(const ATableName, AFieldName: string): THsFieldDocumentation;
+
+  function DBToolRoamingAppData: string;
+  var
+    Path: array[0..MAX_PATH] of Char;
+  begin
+    SHGetFolderPath(0, CSIDL_APPDATA, 0, 0, Path);
+    Result := IncludeTrailingPathDelimiter(Path) + 'HickelSOFT\DBTool\';
+  end;
+
+var
+  tmp: string;
+  ini: TMemIniFile;
+const
+  DBPROP_FIELDESC = 'DBTOOL-FieldDesc-Praefix';
+  DBPROP_FILE     = 'DBTOOL-FieldDesc-File'; // undocumented (must be set manually)
+begin
+  // TODO: Wouldn't it be better if we save the information directly in the database as property? Or at least the path to the INI file? (INI files have the advantage that it can be diffed, saved in GIT, etc.)
+
+  {$REGION 'Define FFieldAndTableDescription_File'}
+  if FFieldAndTableDescription_File = '' then
+  begin
+    FFieldAndTableDescription_File := GetDataBaseProperty(DBPROP_FILE);
+    if FFieldAndTableDescription_File = '' then
+    begin
+      if (KnownProductDb = ptCORAplus) and (AnsiUpperCase(ThlUtils.GetDomainName) = 'HICKELSOFT') then
+      begin
+        FFieldAndTableDescription_File := '\\SHS\Hotline\DBTool\FieldDescriptions_CORAplus.ini';
+      end
+      else if (KnownProductDb = ptHsInfo2) and (AnsiUpperCase(ThlUtils.GetDomainName) = 'HICKELSOFT') then
+      begin
+        FFieldAndTableDescription_File := '\\SHS\Hotline\DBTool\FieldDescriptions_HsInfo2.ini';
+      end
+      else if (KnownProductDb = ptCmDb2) and (AnsiUpperCase(ThlUtils.GetDomainName) = 'HICKELSOFT') then
+      begin
+        FFieldAndTableDescription_File := '\\SHS\Hotline\DBTool\FieldDescriptions_CmDb2.ini';
+      end
+      else if (KnownProductDb = ptOIDplus2) and (AnsiUpperCase(ThlUtils.GetDomainName) = 'HICKELSOFT') then
+      begin
+        FFieldAndTableDescription_File := '\\SHS\Hotline\DBTool\FieldDescriptions_OIDplus2.ini';
+      end
+      else
+      begin
+        FFieldAndTableDescription_File := DBToolRoamingAppData + 'FieldDescriptions.ini';
+      end;
+    end;
+  end;
+  {$ENDREGION}
+  result.DatabaseFile := FFieldAndTableDescription_File;
+
+  {$REGION 'Define FFieldAndTableDescription_Praefix'}
+  if FFieldAndTableDescription_Praefix = '' then
+  begin
+    if KnownProductDb = ptCORAplus then
+    begin
+      FFieldAndTableDescription_Praefix := 'HICKELSOFT_CORAPLUS';
+    end
+    else if KnownProductDb = ptHsInfo2 then
+    begin
+      FFieldAndTableDescription_Praefix := 'HICKELSOFT_HSINFO2';
+    end
+    else if KnownProductDb = ptCmDb2 then
+    begin
+      FFieldAndTableDescription_Praefix := 'VIATHINKSOFT_CMDB2';
+    end
+    else if KnownProductDb = ptOIDplus2 then
+    begin
+      // TODO: At AFieldName, remove table prefix (e.g. 'production_')
+      FFieldAndTableDescription_Praefix := 'VIATHINKSOFT_OIDPLUS2';
+    end
+    else
+    begin
+      FFieldAndTableDescription_Praefix := GetDataBaseProperty(DBPROP_FIELDESC);
+      if FFieldAndTableDescription_Praefix = '' then
+      begin
+        SetDataBaseProperty(DBPROP_FIELDESC, THash.GetRandomString(10));
+        FFieldAndTableDescription_Praefix := GetDataBaseProperty(DBPROP_FIELDESC);
+      end;
+      if FFieldAndTableDescription_Praefix = '' then
+      begin
+        FFieldAndTableDescription_Praefix := DatabaseName; // <-- TODO: das ist nicht sprachneutral!
+        FFieldAndTableDescription_Praefix := StringReplace(FFieldAndTableDescription_Praefix, ' auf ', '::', []);
+        FFieldAndTableDescription_Praefix := StringReplace(FFieldAndTableDescription_Praefix, ' on ', '::', []);
+      end;
+    end;
+  end;
+  {$ENDREGION}
+  tmp := FFieldAndTableDescription_Praefix;
+
+  ini := TMemIniFile.Create(result.DatabaseFile);
+  try
+    result.DatabaseTypeOid := '1.3.6.1.4.1.56776.3.1.1'; // { iso(1) identified-organization(3) dod(6) internet(1) private(4) enterprise(1) 56776 dbtool(3) field-description-database(1) v1(1) }
+    if (ATableName = '') or (AFieldName = '') then
+    begin
+      result.FieldDescKey := '';
+      result.FieldDesc := '';
+    end
+    else
+    begin
+      result.FieldDescKey := tmp + '::' + ATableName + '::' + AFieldName + '::FieldDesc';
+      result.FieldDesc := StringReplace(ini.ReadString(result.DatabaseTypeOid, result.FieldDescKey, ''), '|||', #13#10, [rfReplaceAll]);
+    end;
+    if ATableName = '' then
+    begin
+      result.TableDescKey := '';
+      result.TableDesc := '';
+    end
+    else
+    begin
+      result.TableDescKey := tmp + '::' + ATableName + '::TableDesc';
+      result.TableDesc := StringReplace(ini.ReadString(result.DatabaseTypeOid, result.TableDescKey, ''), '|||', #13#10, [rfReplaceAll]);
+    end;
+  finally
+    FreeAndNil(ini);
+  end;
+end;
+
+procedure TDbToolDatabase.SetDbToolFieldDescription(const ATableName, AFieldName, aDescription: string);
+var
+  d: THsFieldDocumentation;
+  ini: TMemIniFile;
+  tmp: string;
+begin
+  d := GetDbToolFieldAndTableDescription(ATableName, AFieldName);
+  ini := TMemIniFile.Create(d.DatabaseFile);
+  try
+    tmp := aDescription;
+    tmp := StringReplace(tmp, #13#10, '|||', [rfReplaceAll]);
+    tmp := StringReplace(tmp, #13, '|||', [rfReplaceAll]);
+    tmp := StringReplace(tmp, #10, '|||', [rfReplaceAll]);
+    if d.FieldDescKey <> '' then
+    begin
+      ini.WriteString(d.DatabaseTypeOid, d.FieldDescKey, tmp);
+      ini.Updatefile;
+    end;
+  finally
+    FreeAndNil(ini);
+  end;
+end;
+
+procedure TDbToolDatabase.SetDbToolTableDescription(const ATableName, aDescription: string);
+var
+  d: THsFieldDocumentation;
+  ini: TMemIniFile;
+  tmp: string;
+begin
+  d := GetDbToolFieldAndTableDescription(ATableName, ''{FieldName does not matter});
+  ini := TMemIniFile.Create(d.DatabaseFile);
+  try
+    tmp := aDescription;
+    tmp := StringReplace(tmp, #13#10, '|||', [rfReplaceAll]);
+    tmp := StringReplace(tmp, #13, '|||', [rfReplaceAll]);
+    tmp := StringReplace(tmp, #10, '|||', [rfReplaceAll]);
+    if d.TableDescKey <> '' then
+    begin
+      ini.WriteString(d.DatabaseTypeOid, d.TableDescKey, tmp);
+      ini.Updatefile;
+    end;
+  finally
+    FreeAndNil(ini);
+  end;
 end;
 
 end.

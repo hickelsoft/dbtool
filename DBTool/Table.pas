@@ -12,14 +12,6 @@ uses
   HsGradientPanel, Variants;
 
 type
-  THsFieldDocumentation = record
-    DatabaseFile: string;
-    DatabaseTypeOid: string;
-    FieldDescKey: string;
-    FieldDesc: string;
-    TableDescKey: string;
-    TableDesc: string; // TODO: Implement Table Description Get/Set in GUI
-  end;
   TMDI_Table = class(TForm)
     Panel1: TPanel;
     Panel2: TPanel;
@@ -86,6 +78,7 @@ type
     Beschreibunganzeigenndern1: TMenuItem;
     FilternnachLIKEEingabewert1: TMenuItem;
     Label2: TLabel;
+    Feldbeschreibunganzeigenndern1: TMenuItem;
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormActivate(Sender: TObject);
     procedure dbgTableCalcCellColors(Sender: TObject; Field: TField;
@@ -129,11 +122,13 @@ type
     procedure UnterschiedlicheWerte1Click(Sender: TObject);
     procedure AnzahlunterschiedlicherWerte1Click(Sender: TObject);
     procedure Beschreibunganzeigenndern1Click(Sender: TObject);
+    procedure Feldbeschreibunganzeigenndern1Click(Sender: TObject);
     procedure FilternnachLIKEEingabewert1Click(Sender: TObject);
     procedure FindDialog1Find(Sender: TObject);
     procedure KrzesterWert11Click(Sender: TObject);
     procedure FindDialog1Close(Sender: TObject);
     procedure Label2Click(Sender: TObject);
+    procedure lvFieldsDblClick(Sender: TObject);
   private
     FDatabaseForm: TMDI_Database;
     FTableName: string;
@@ -152,10 +147,6 @@ type
     function GetSelectString: string;
     procedure CreateIndexInfo;
     function LoadTable(DB: TDbToolDatabase; TableName: string): TDataSet;
-
-    function GetFieldAndTableDescription(const AFieldName: string=''): THsFieldDocumentation;
-    procedure SetFieldDescription(const AFieldName, aDescription: string);
-    procedure SetTableDescription(const aDescription: string);
   public
     property NurStruktur: boolean read FNurStruktur;
     property Table: string read FTableName;
@@ -176,7 +167,7 @@ implementation
 uses
   Main, Globals, EditRTF, hl.Utils.DBGridUtils, hg_InputQuery, Clipbrd, Query,
   hl_PopupMenuHelper, StrUtils, System.Types, System.UITypes, IniFiles,
-  hl.Utils, ShlObj;
+  hl.Utils, ShlObj, hl_ExceptionLogger;
 
 resourcestring
   SNothingAvailable = 'Nichts vorhanden';
@@ -339,7 +330,7 @@ begin
       dbgTable.KeyOptions := dbgTable.KeyOptions - [dgAllowInsert];
     end;
 
-    // Feldinfo erstellen
+    {$REGION 'Feldinfo erstellen'}
     aFieldDefs := ADbFrm.dbDatabase.GetFieldDefs(aTable);
     for i := 0 to aTable.FieldCount - 1 do
     begin
@@ -383,19 +374,38 @@ begin
       else
         anItem.SubItems.Add(''); // do not localize
 
-      d := GetFieldAndTableDescription(aFieldDefs.Items[i].Name);
-      anItem.SubItems.Add(d.FieldDesc);
+      d := frmDatabase.dbDatabase.GetDbToolFieldAndTableDescription(FTableName, aFieldDefs.Items[i].Name);
+      anItem.SubItems.Add(StringReplace(StringReplace(d.FieldDesc, #13#10, '      ', [rfReplaceAll]), #9, '   ', [rfReplaceAll]));
       if Trim(d.TableDesc) = '' then
         Label2.Caption := SClickToEnterTableDesc
       else
-        Label2.Caption := d.TableDesc;
+        Label2.Caption := StringReplace(StringReplace(d.TableDesc, #13#10, '      ', [rfReplaceAll]), #9, '   ', [rfReplaceAll]);
 
       anItem.Checked := true;
     end;
+    {$ENDREGION}
+
   finally
     FreeAndNil(slPrimaryKeys);
     FreeAndNil(slForeignKeys);
   end;
+
+  {$REGION 'List indexes'}
+  try
+    CreateIndexInfo;
+  except
+    on E: EAbort do
+    begin
+      Abort;
+    end;
+    on E: Exception do
+    begin
+      LbSpeedButton7.Visible := false;
+      btnIndex.Visible := false;
+      ThlExceptionLogger.LogException(E);
+    end;
+  end;
+  {$ENDREGION}
 
   if ANurStruktur then
   begin
@@ -528,7 +538,7 @@ begin
   if FInitialized then
   begin
     // Felder-Ansicht verlassen: Sichtbare Felder im Grid anpassen
-    if Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton6.Tag) { Tabelle } then
+    if Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton6.Tag) { Felder } then
     begin
       // Das MUSS über FieldByName laufen! Vielleicht hat der Benutzer die Reihenfolge der Felder ja geändert...
       for i := 0 to lvFields.Items.Count - 1 do
@@ -561,8 +571,8 @@ begin
     if NurStruktur then
     begin
       dsData.Dataset := LoadTable(FDatabaseForm.dbDatabase, FTableName);
-      if (Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton7.Tag) { Indizes } ) then
-        CreateIndexInfo;
+      //if (Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton7.Tag) { Indizes } ) then
+      //  CreateIndexInfo;
     end;
   end;
 
@@ -880,91 +890,6 @@ begin
   *)
 end;
 
-function TMDI_Table.GetFieldAndTableDescription(const AFieldName: string=''): THsFieldDocumentation;
-
-  function DBToolRoamingAppData: string;
-  var
-    Path: array[0..MAX_PATH] of Char;
-  begin
-    SHGetFolderPath(0, CSIDL_APPDATA, 0, 0, Path);
-    Result := IncludeTrailingPathDelimiter(Path) + 'HickelSOFT\DBTool\';
-  end;
-
-var
-  tmp: string;
-  ini: TMemIniFile;
-begin
-  if (frmDatabase.dbDatabase.KnownProductDb = ptCORAplus) and (AnsiUpperCase(ThlUtils.GetDomainName) = 'HICKELSOFT') then
-  begin
-    tmp := 'HICKELSOFT_CORAPLUS';
-    result.DatabaseFile := '\\SHS\Hotline\DBTool\FieldDescriptions_CORAplus.ini';
-  end
-  else if (frmDatabase.dbDatabase.KnownProductDb = ptHsInfo2) and (AnsiUpperCase(ThlUtils.GetDomainName) = 'HICKELSOFT') then
-  begin
-    tmp := 'HICKELSOFT_HSINFO2';
-    result.DatabaseFile := '\\SHS\Hotline\DBTool\FieldDescriptions_HsInfo2.ini';
-  end
-  else if (frmDatabase.dbDatabase.KnownProductDb = ptCmDb2) and (AnsiUpperCase(ThlUtils.GetDomainName) = 'HICKELSOFT') then
-  begin
-    tmp := 'VIATHINKSOFT_CMDB2';
-    result.DatabaseFile := '\\SHS\Hotline\DBTool\FieldDescriptions_CmDb2.ini';
-  end
-  else if (frmDatabase.dbDatabase.KnownProductDb = ptOIDplus2) and (AnsiUpperCase(ThlUtils.GetDomainName) = 'HICKELSOFT') then
-  begin
-    // TODO: At AFieldName, remove table prefix (e.g. 'production_')
-    tmp := 'VIATHINKSOFT_OIDPLUS2';
-    result.DatabaseFile := '\\SHS\Hotline\DBTool\FieldDescriptions_OIDplus2.ini';
-  end
-  else
-  begin
-    tmp := frmDatabase.Database; // <-- TODO: das ist nicht sprachneutral!
-    tmp := StringReplace(tmp, ' auf ', '::', []);
-    tmp := StringReplace(tmp, ' on ', '::', []);
-    result.DatabaseFile := DBToolRoamingAppData + 'FieldDescriptions.ini';
-  end;
-
-  ini := TMemIniFile.Create(result.DatabaseFile);
-  try
-    result.DatabaseTypeOid := '1.3.6.1.4.1.56776.3.1.1'; // { iso(1) identified-organization(3) dod(6) internet(1) private(4) enterprise(1) 56776 dbtool(3) field-description-database(1) v1(1) }
-    result.FieldDescKey := tmp + '::' + Table + '::' + AFieldName + '::FieldDesc';
-    result.FieldDesc := StringReplace(ini.ReadString(result.DatabaseTypeOid, result.FieldDescKey, ''), '|||', #13#10, [rfReplaceAll]);
-    result.TableDescKey := tmp + '::' + Table + '::TableDesc';
-    result.TableDesc := StringReplace(ini.ReadString(result.DatabaseTypeOid, result.TableDescKey, ''), '|||', #13#10, [rfReplaceAll]);
-  finally
-    FreeAndNil(ini);
-  end;
-end;
-
-procedure TMDI_Table.SetFieldDescription(const AFieldName, aDescription: string);
-var
-  d: THsFieldDocumentation;
-  ini: TMemIniFile;
-begin
-  d := GetFieldAndTableDescription(AFieldName);
-  ini := TMemIniFile.Create(d.DatabaseFile);
-  try
-    ini.WriteString(d.DatabaseTypeOid, d.FieldDescKey, StringReplace(aDescription, #13#10, '|||', [rfReplaceAll]));
-    ini.Updatefile;
-  finally
-    FreeAndNil(ini);
-  end;
-end;
-
-procedure TMDI_Table.SetTableDescription(const aDescription: string);
-var
-  d: THsFieldDocumentation;
-  ini: TMemIniFile;
-begin
-  d := GetFieldAndTableDescription('');
-  ini := TMemIniFile.Create(d.DatabaseFile);
-  try
-    ini.WriteString(d.DatabaseTypeOid, d.TableDescKey, StringReplace(aDescription, #13#10, '|||', [rfReplaceAll]));
-    ini.Updatefile;
-  finally
-    FreeAndNil(ini);
-  end;
-end;
-
 function TMDI_Table.GetFilter(aField: TField; wert: string; bInclude, bLike: boolean): string;
 resourcestring
   SFieldTypeNotSupported =
@@ -1253,36 +1178,37 @@ end;
 
 procedure TMDI_Table.Beschreibunganzeigenndern1Click(Sender: TObject);
 var
-  desc: string;
+  desc, desc_bak: string;
   d: THsFieldDocumentation;
-resourcestring
-  SEnterFieldDescription = 'Bitte eine Beschreibung für das Feld eingeben';
 begin
-  d := GetFieldAndTableDescription(lvFields.Selected.Caption);
+  d := frmDatabase.dbDatabase.GetDbToolFieldAndTableDescription(FTableName, lvFields.Selected.Caption);
   desc := d.FieldDesc;
-  if ThgInputQry.InputMemo(SEnterFieldDescription, desc) then
+  desc_bak := desc;
+  if ThgInputQry.InputMemo(lvFields.Selected.Caption, SEnterFieldDescription, desc) then
   begin
-    SetFieldDescription(lvFields.Selected.Caption, desc);
+    if desc = desc_bak then exit;
+    frmDatabase.dbDatabase.SetDbToolFieldDescription(FTableName, lvFields.Selected.Caption, desc);
+    desc := StringReplace(StringReplace(desc, #13#10, '      ', [rfReplaceAll]), #9, '   ', [rfReplaceAll]);
     lvFields.Selected.SubItems[lvFields.Selected.SubItems.Count-1] := desc;
   end;
 end;
 
 procedure TMDI_Table.Label2Click(Sender: TObject);
 var
-  desc: string;
+  desc, desc_bak: string;
   d: THsFieldDocumentation;
-resourcestring
-  SEnterTableDescription = 'Bitte eine Beschreibung für die Tabelle eingeben';
 begin
-  d := GetFieldAndTableDescription;
+  d := frmDatabase.dbDatabase.GetDbToolFieldAndTableDescription(FTableName, ''{FieldName does not matter});
   desc := d.TableDesc;
-  if ThgInputQry.InputMemo(SEnterTableDescription, desc) then
+  desc_bak := desc;
+  if ThgInputQry.InputMemo(FTableName, SEnterTableDescription, desc) then
   begin
-    SetTableDescription(desc);
+    if desc = desc_bak then exit;
+    frmDatabase.dbDatabase.SetDbToolTableDescription(FTableName, desc);
     if Trim(desc) = '' then
       Label2.Caption := SClickToEnterTableDesc
     else
-      Label2.Caption := desc;
+      Label2.Caption := StringReplace(StringReplace(desc, #13#10, '      ', [rfReplaceAll]), #9, '   ', [rfReplaceAll]);
   end;
 end;
 
@@ -1370,6 +1296,8 @@ begin
   try
     X := FDatabaseForm.dbDatabase.Query(sSQL + ';');
     try
+      if X.RecordCount = 0 then exit;
+
       iMaxLen := 0;
       while not X.Eof do
       begin
@@ -1446,20 +1374,27 @@ begin
 end;
 
 procedure TMDI_Table.IndexMenuClick(Sender: TObject);
+resourcestring
+  SOrderingNotImplemented = 'Sortierung nach Index ist derzeit nicht implementiert.';
 var
   i: integer;
 begin
   if FVerwendeQueryAnstelleTable then
-    exit; // TODO: !!! Nicht implementiert (TODO: Implementieren mittels ORDER BY, aber dann muss SetTableFilter/GetTableFilter muss angepasst werden)
-
-  FDatabaseForm.dbDatabase.SetTableIndex(dsData.Dataset,
-    StringReplace(TMenuItem(Sender).Caption, '&', '', [rfReplaceAll]));
-
-  for i := 0 to pmIndex.Items.Count - 1 do
   begin
-    pmIndex.Items.Items[i].Checked := false;
+    // TODO: !!! Nicht implementiert (TODO: Implementieren mittels ORDER BY, aber dann muss SetTableFilter/GetTableFilter muss angepasst werden)
+    Application.MessageBox(PChar(SOrderingNotImplemented), PChar(Application.Title), MB_ICONINFORMATION + MB_OK);
+  end
+  else
+  begin
+    FDatabaseForm.dbDatabase.SetTableIndex(dsData.Dataset,
+      StringReplace(TMenuItem(Sender).Caption, '&', '', [rfReplaceAll]));
+
+    for i := 0 to pmIndex.Items.Count - 1 do
+    begin
+      pmIndex.Items.Items[i].Checked := false;
+    end;
+    TMenuItem(Sender).Checked := true;
   end;
-  TMenuItem(Sender).Checked := true;
 end;
 
 procedure TMDI_Table.KrzesterWert11Click(Sender: TObject);
@@ -1470,6 +1405,7 @@ var
   sResult: string;
   sSQL: string;
   sFilter: string;
+  tmp: string;
 resourcestring
   SShortestNonEmptyValue = 'Kürzester nicht leerer Wert: "%s" (%d Zeichen)';
   SShortestValueCannotBeDetermined =
@@ -1485,12 +1421,15 @@ begin
   try
     X := FDatabaseForm.dbDatabase.Query(sSQL + ';');
     try
+      if X.RecordCount = 0 then exit;
+
       iMinLen := 999999;
       while not X.Eof do
       begin
-        if Length(X.Fields.Fields[0].AsWideString) < iMinLen then
+        tmp := X.Fields.Fields[0].AsWideString;
+        if (tmp <> '') and (Length(tmp) < iMinLen) then
         begin
-          sMinVal := X.Fields.Fields[0].AsWideString;
+          sMinVal := tmp;
           iMinLen := Length(sMinVal);
         end;
         X.Next;
@@ -1668,6 +1607,26 @@ begin
   pmIndex.OpenPopupOnControl(TControl(Sender));
 end;
 
+procedure TMDI_Table.Feldbeschreibunganzeigenndern1Click(Sender: TObject);
+var
+  desc, desc_bak: string;
+  d: THsFieldDocumentation;
+  i: integer;
+begin
+  d := frmDatabase.dbDatabase.GetDbToolFieldAndTableDescription(FTableName, dbgTable.GetActiveField.FieldName);
+  desc := d.FieldDesc;
+  desc_bak := desc;
+  if ThgInputQry.InputMemo(dbgTable.GetActiveField.FieldName, SEnterFieldDescription, desc) then
+  begin
+    if desc = desc_bak then exit;
+    frmDatabase.dbDatabase.SetDbToolFieldDescription(FTableName, dbgTable.GetActiveField.FieldName, desc);
+    desc := StringReplace(StringReplace(desc, #13#10, '      ', [rfReplaceAll]), #9, '   ', [rfReplaceAll]);
+    for i := 0 to lvFields.Items.Count - 1 do
+      if lvFields.Items[i].Caption = dbgTable.GetActiveField.FieldName then
+        lvFields.Items[i].SubItems[lvFields.Items[i].SubItems.Count-1] := desc;
+  end;
+end;
+
 procedure TMDI_Table.FilternnachLIKEEingabewert1Click(Sender: TObject);
 var
   capt, sFilter, sNeu, wert: string;
@@ -1700,6 +1659,14 @@ begin
   FFindStr := FindDialog1.FindText;
   FFindCaseInsensitive := not(frMatchCase in FindDialog1.Options);
   FindNext;
+end;
+
+procedure TMDI_Table.lvFieldsDblClick(Sender: TObject);
+begin
+  if AnsiUpperCase(ThlUtils.GetDomainName) = 'HICKELSOFT' then
+  begin
+    Beschreibunganzeigenndern1.Click;
+  end;
 end;
 
 end.

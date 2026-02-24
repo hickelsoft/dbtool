@@ -209,8 +209,6 @@ object MDI_Table: TMDI_Table
         Left = 0
         Top = 0
         Caption = 'Tag1'
-        ExplicitWidth = 652
-        ExplicitHeight = 340
         object Panel3: TPanel
           Left = 0
           Top = 0
@@ -229,7 +227,6 @@ object MDI_Table: TMDI_Table
           ParentBackground = False
           ParentFont = False
           TabOrder = 0
-          ExplicitWidth = 652
           object LbSpeedButton11: TSpeedButton
             Left = 793
             Top = 0
@@ -327,8 +324,6 @@ object MDI_Table: TMDI_Table
           OnKeyUp = dbgTableKeyUp
           OnMouseDown = dbgTableMouseDown
           PaintOptions.AlternatingRowRegions = [arrDataColumns, arrActiveDataColumn]
-          ExplicitWidth = 652
-          ExplicitHeight = 291
         end
         object QueryStatusPanel: TPanel
           Left = 0
@@ -347,16 +342,12 @@ object MDI_Table: TMDI_Table
           ParentBackground = False
           ParentFont = False
           TabOrder = 2
-          ExplicitTop = 315
-          ExplicitWidth = 652
         end
       end
       object TPage
         Left = 0
         Top = 0
         Caption = 'Tag2'
-        ExplicitWidth = 652
-        ExplicitHeight = 340
         object Panel6: TPanel
           Left = 0
           Top = 0
@@ -375,7 +366,6 @@ object MDI_Table: TMDI_Table
           ParentBackground = False
           ParentFont = False
           TabOrder = 0
-          ExplicitWidth = 652
           object LbSpeedButton10: TSpeedButton
             Left = 878
             Top = 0
@@ -419,7 +409,6 @@ object MDI_Table: TMDI_Table
           Align = alTop
           BevelOuter = bvNone
           TabOrder = 1
-          ExplicitWidth = 652
           object Label1: TLabel
             Left = 12
             Top = 12
@@ -437,8 +426,6 @@ object MDI_Table: TMDI_Table
           BevelOuter = bvNone
           BorderWidth = 8
           TabOrder = 2
-          ExplicitWidth = 652
-          ExplicitHeight = 290
           object mFilter: TMemo
             Left = 8
             Top = 8
@@ -454,8 +441,6 @@ object MDI_Table: TMDI_Table
             ScrollBars = ssVertical
             TabOrder = 0
             OnKeyDown = mFilterKeyDown
-            ExplicitWidth = 636
-            ExplicitHeight = 274
           end
         end
       end
@@ -481,6 +466,24 @@ object MDI_Table: TMDI_Table
           ParentBackground = False
           ParentFont = False
           TabOrder = 0
+          object Label2: TLabel
+            Left = 80
+            Top = 4
+            Width = 37
+            Height = 16
+            Cursor = crHandPoint
+            Hint = 'Tabellen-Beschreibung anzeigen/'#228'ndern'
+            Caption = 'Label2'
+            Font.Charset = ANSI_CHARSET
+            Font.Color = clWhite
+            Font.Height = -13
+            Font.Name = 'Tahoma'
+            Font.Style = [fsItalic]
+            ParentFont = False
+            ParentShowHint = False
+            ShowHint = True
+            OnClick = Label2Click
+          end
           object LbSpeedButton8: TSpeedButton
             Left = 793
             Top = 0
@@ -495,6 +498,7 @@ object MDI_Table: TMDI_Table
             Font.Name = 'Tahoma'
             Font.Style = []
             ParentFont = False
+            Transparent = False
             OnClick = LbSpeedButton8Click
             ExplicitLeft = 315
           end
@@ -512,26 +516,9 @@ object MDI_Table: TMDI_Table
             Font.Name = 'Tahoma'
             Font.Style = []
             ParentFont = False
+            Transparent = False
             OnClick = LbSpeedButton9Click
             ExplicitLeft = 400
-          end
-          object Label2: TLabel
-            Left = 80
-            Top = 4
-            Width = 37
-            Height = 16
-            Cursor = crHandPoint
-            Hint = 'Beschreibung '#228'ndern'
-            Caption = 'Label2'
-            Font.Charset = ANSI_CHARSET
-            Font.Color = clWhite
-            Font.Height = -13
-            Font.Name = 'Tahoma'
-            Font.Style = [fsItalic]
-            ParentFont = False
-            ParentShowHint = False
-            ShowHint = True
-            OnClick = Label2Click
           end
         end
         object lvFields: TListView
@@ -579,14 +566,13 @@ object MDI_Table: TMDI_Table
           PopupMenu = pmFelder
           TabOrder = 1
           ViewStyle = vsReport
+          OnDblClick = lvFieldsDblClick
         end
       end
       object TPage
         Left = 0
         Top = 0
         Caption = 'Tag4'
-        ExplicitWidth = 652
-        ExplicitHeight = 340
         object Panel5: TPanel
           Left = 0
           Top = 0
@@ -605,7 +591,6 @@ object MDI_Table: TMDI_Table
           ParentBackground = False
           ParentFont = False
           TabOrder = 0
-          ExplicitWidth = 652
         end
         object lvIndexes: TListView
           Left = 0
@@ -624,8 +609,6 @@ object MDI_Table: TMDI_Table
           RowSelect = True
           TabOrder = 1
           ViewStyle = vsReport
-          ExplicitWidth = 652
-          ExplicitHeight = 316
         end
       end
     end
@@ -715,6 +698,10 @@ object MDI_Table: TMDI_Table
     object Spalteausblenden1: TMenuItem
       Caption = 'Spalte &ausblenden'
       OnClick = Spalteausblenden1Click
+    end
+    object Feldbeschreibunganzeigenndern1: TMenuItem
+      Caption = 'Feldbeschreibung anzeigen/'#228'ndern'
+      OnClick = Feldbeschreibunganzeigenndern1Click
     end
   end
   object ilTableMenu: TImageList
@@ -1033,7 +1020,7 @@ object MDI_Table: TMDI_Table
       Caption = '-'
     end
     object Beschreibunganzeigenndern1: TMenuItem
-      Caption = 'Beschreibung '#228'ndern'
+      Caption = 'Feldbeschreibung anzeigen/'#228'ndern'
       OnClick = Beschreibunganzeigenndern1Click
     end
   end

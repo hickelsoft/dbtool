@@ -8,7 +8,7 @@ uses
   Windows, SysUtils, Classes, Controls, StdCtrls, Forms, ComCtrls, ToolWin,
   Menus, ActnList,
   ActnMan, ImgList, StdActns, ActnCtrls, ActnMenus, ExtCtrls, DdeMan,
-  Graphics,
+  Graphics, Db, C_Database,
   ShellAPI, Messages, System.ImageList, System.Actions;
 
 type
@@ -538,30 +538,33 @@ end;
 procedure TDLG_Main.ExtrasExport1Execute(Sender: TObject);
 var
   aDlg: TDLG_Export;
+  aDs: TDataSet;
+  aDb: TDbToolDatabase;
+  aDateinameBasis: string;
 resourcestring
   SFirstExecuteQuery = 'Bitte zuerst Abfrage ausführen';
   SQueryS = 'Abfrage_%s';
   SSelectFittingForm = 'Bitte passendes Fenster auswählen.';
 begin
-  aDlg := TDLG_Export.Create(Self);
+  aDb := TMDI_Table(ActiveMDIChild).frmDatabase.dbDatabase;
+  if ActiveMDIChild is TMDI_Table then
+  begin
+    // TODO: Sollte hier nicht eine TTable erstellt werden?
+    aDs := TMDI_Table(ActiveMDIChild).frmDatabase.dbDatabase.Query(TMDI_Table(ActiveMDIChild).SelectString);
+    aDateinameBasis := TMDI_Table(ActiveMDIChild).Table;
+  end
+  else if ActiveMDIChild is TMDI_Query then
+  begin
+    aDs := TMDI_Query(ActiveMDIChild).DataSource1.DataSet;
+    if not Assigned(aDs) then
+      raise Exception.Create(SFirstExecuteQuery);
+    aDateinameBasis := Format(SQueryS, [formatdatetime('yyyymmdd_hhnnss', Now)]);
+  end
+  else
+    raise Exception.Create(SSelectFittingForm);
+
+  aDlg := TDLG_Export.Create(Self, aDb, aDs, aDateinameBasis);
   try
-    if ActiveMDIChild is TMDI_Table then
-    begin
-      // TODO: Sollte hier nicht eine TTable erstellt werden?
-      aDlg.Table1 := TMDI_Table(ActiveMDIChild).frmDatabase.dbDatabase.Query
-        (TMDI_Table(ActiveMDIChild).SelectString);
-      aDlg.DateinameBasis := TMDI_Table(ActiveMDIChild).Table;
-    end
-    else if ActiveMDIChild is TMDI_Query then
-    begin
-      aDlg.Table1 := TMDI_Query(ActiveMDIChild).DataSource1.DataSet;
-      if not Assigned(aDlg.Table1) then
-        raise Exception.Create(SFirstExecuteQuery);
-      aDlg.DateinameBasis :=
-        Format(SQueryS, [formatdatetime('yyyymmdd_hhnnss', Now)]);
-    end
-    else
-      raise Exception.Create(SSelectFittingForm);
     aDlg.ShowModal;
     if ActiveMDIChild is TMDI_Table then
     begin

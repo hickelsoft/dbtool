@@ -18,6 +18,7 @@ type
     ComboBox1: TComboBox;
     Label1: TLabel;
     Memo1: TMemo;
+    procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
     procedure Memo1KeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   public
@@ -33,6 +34,15 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure ThgInputQry.FormKeyUp(Sender: TObject; var Key: Word; Shift:
+    TShiftState);
+begin
+  if Key = VK_ESCAPE then
+  begin
+    ModalResult := mrCancel;
+  end;
+end;
 
 { ThgInputQry }
 

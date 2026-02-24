@@ -257,5 +257,9 @@ object MDI_Database: TMDI_Database
       Caption = 'Tabellen-Namen kopieren'
       OnClick = abellenNamenkopieren1Click
     end
+    object TabellenBeschreibungAendern: TMenuItem
+      Caption = 'Tabellen-Beschreibung anzeigen/'#228'ndern'
+      OnClick = TabellenBeschreibungAendernClick
+    end
   end
 end

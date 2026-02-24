@@ -22,6 +22,9 @@ type
     class function CheckKTO(kto: string): Boolean;
     class function CheckBLZ(blz: string): Boolean;
 
+    class function KontoNummerAusIBAN(iban: string): string;
+    class function BLZAusIBAN(iban: string): string;
+
     /// <remarks>Bearbeitet</remarks>
     /// <see>Quelle: http://www.delphipraxis.net/176530-pruefziffer-fuer-iban-berechnen.html</see>
     class function CreateGermanIBAN(KontoNr, blz: String): String; static;
@@ -41,6 +44,18 @@ begin
   for a := 'A' to 'Z' do
   begin
     Result := StringReplace(Result, a, IntToStr(Ord(a) - 55), [rfReplaceAll]);
+  end;
+end;
+
+class function ThlBankUtils.BLZAusIBAN(iban: string): string;
+begin
+  if UpperCase(Copy(iban,1,2)) = 'DE' then
+  begin
+    result := Copy(iban,5,8);
+  end
+  else
+  begin
+    result := '';
   end;
 end;
 
@@ -151,6 +166,18 @@ end;
 class function ThlBankUtils.FormatIBAN(iban: string): string;
 begin
   Result := ThlUtils.InBlöckeAufspalten(iban, 4);
+end;
+
+class function ThlBankUtils.KontoNummerAusIBAN(iban: string): string;
+begin
+  if UpperCase(Copy(iban,1,2)) = 'DE' then
+  begin
+    result := Copy(iban,13,10);
+  end
+  else
+  begin
+    result := '';
+  end;
 end;
 
 class function ThlBankUtils.FormatBLZ(blz: string): string;
