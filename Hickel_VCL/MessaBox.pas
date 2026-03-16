@@ -411,57 +411,29 @@ begin
       Height := 48;
       Transparent := True;
 
-      if False then // if Copy(DateToStr(Now),1,6) = '01.04.' then
+      if Copy(DateToStr(Now),1,6) = '01.04.' then
       begin
-        if RandomRange(0, 2) { return 0 or 1 } = 0 then
-        begin
-          case FStyle of
-            mbsInformation:
-              begin
-                Picture.Bitmap.LoadFromResourceName(hInstance, 'APRIL1');
-                MessageBeep(MB_ICONINFORMATION);
-              end;
-            mbsStop:
-              begin
-                Picture.Bitmap.LoadFromResourceName(hInstance, 'APRIL1');
-                MessageBeep(MB_ICONHAND);
-              end;
-            mbsQuestion:
-              begin
-                Picture.Bitmap.LoadFromResourceName(hInstance, 'APRIL1');
-                MessageBeep(MB_ICONQUESTION);
-              end;
-            mbsExclamation:
-              begin
-                Picture.Bitmap.LoadFromResourceName(hInstance, 'APRIL1');
-                MessageBeep(MB_ICONEXCLAMATION);
-              end;
-          end;
-        end
-        else
-        begin
-          case FStyle of
-            mbsInformation:
-              begin
-                Picture.Bitmap.LoadFromResourceName(hInstance, 'APRIL2');
-                MessageBeep(MB_ICONINFORMATION);
-              end;
-            mbsStop:
-              begin
-                Picture.Bitmap.LoadFromResourceName(hInstance, 'APRIL2');
-                MessageBeep(MB_ICONHAND);
-              end;
-            mbsQuestion:
-              begin
-                Picture.Bitmap.LoadFromResourceName(hInstance, 'APRIL2');
-                MessageBeep(MB_ICONQUESTION);
-              end;
-            mbsExclamation:
-              begin
-                Picture.Bitmap.LoadFromResourceName(hInstance, 'APRIL2');
-                MessageBeep(MB_ICONEXCLAMATION);
-              end;
-          end;
+        case FStyle of
+          mbsInformation:
+            begin
+              Picture.Bitmap.LoadFromResourceName(hInstance, 'INFORMATION_APR');
+              MessageBeep(MB_ICONINFORMATION);
+            end;
+          mbsStop:
+            begin
+              Picture.Bitmap.LoadFromResourceName(hInstance, 'STOP_APR');
+              MessageBeep(MB_ICONHAND);
+            end;
+          mbsQuestion:
+            begin
+              Picture.Bitmap.LoadFromResourceName(hInstance, 'QUESTION_APR');
+              MessageBeep(MB_ICONQUESTION);
+            end;
+          mbsExclamation:
+            begin
+              Picture.Bitmap.LoadFromResourceName(hInstance, 'EXCLAMATION_APR');
+              MessageBeep(MB_ICONEXCLAMATION);
+            end;
         end;
       end
       else
