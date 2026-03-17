@@ -75,7 +75,7 @@ implementation
 {$R *.DFM}
 
 uses
-  Main, Globals, EditRTF, StrUtils, hl.Utils;
+  Main, Globals, EditRTF, StrUtils, hl.Utils, hl.Utils.Gui;
 
 constructor TMDI_Query.Create(Owner: TComponent; DbFrm: TMDI_Database);
 resourcestring

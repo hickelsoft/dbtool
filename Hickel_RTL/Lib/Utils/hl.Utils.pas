@@ -3,10 +3,10 @@ unit hl.Utils;
 interface
 
 uses
-  Windows, Messages, Forms, Classes, SysUtils, Math, Controls, ShellAPI,
-  DB,
+  Windows, Messages, Classes, SysUtils, Math, ShellAPI, DB,
 {$IF CompilerVersion >= 20.0}System.IOUtils, System.Hash,{$IFEND}
-  StdCtrls, ZLib, DBCtrls, ADODB, SHFolder, ComCtrls, Dialogs;
+{$IFNDEF CONSOLE}Forms, Controls,{$ENDIF}
+  ZLib, ADODB;
 
 type
   /// <summary>Statische Klasse mit Hilfsfunktionen. Die Klasse ist eine Art Namespace. Es wurde auf prozedurale Entwicklung verzichtet, um die XML-Dokumentation zu ermöglichen</summary>
@@ -18,7 +18,7 @@ type
     /// <see>http://users.atw.hu/delphicikk/listaz.php?id=1622&oldal=45</see>
     class function implode(const glue: string; const pieces: array of string)
       : string; static;
-    class function GermanDayOfWeek(date: TDate): integer; static;
+    class function GermanDayOfWeek(date: TDateTime): integer; static;
 
     class function InBlöckeAufspalten(s: string; blockgröße: integer)
       : string; static;
@@ -35,12 +35,10 @@ type
       ncmdShow: integer; wait: boolean): integer;
     class function Find3264ExeCandidate(ExeName: string): string;
 
+    {$IF CompilerVersion >= 20.0} // geraten
     class function GetUserDir: string; static;
+    {$IFEND}
     class function GetUserDocumentsDir: string; static;
-
-    class function AdvSelectDirectory(const Caption: string;
-      const Root: WideString; var Directory: string; EditBox: boolean = False;
-      ShowFiles: boolean = False; AllowCreateDirs: boolean = True): boolean;
 
     class procedure DeleteDirectory(const DirName: string); static;
 
@@ -118,23 +116,15 @@ procedure Split(Delimiter: char; Str: string; ListOfStrings: TStrings);
 
 function CheckAscii(sValue: ansistring): ansistring;
 
-function GetNextPossibleForm(ctrl: TComponent): TForm;
-
 procedure LoadStringListFromResource(const ResName: string; SL: TStrings;
   ResType: PChar = RT_RCDATA; otherHInstance: HMODULE = 0);
 
 function GetTempDir: string;
 
-procedure CropFrame(frame: TFrame; onlyVisible: boolean;
-  rightPadding, bottomPadding: integer);
 
 function StringXorCrypt(const text, key: ansistring): ansistring;
-procedure SaveStrToFile(const filename, SourceString: string);
-function LoadFileToStr(const filename: TFileName): ansistring;
 Function DeCompressAnsiString(const Input: ansistring): ansistring;
 Function CompressAnsiString(const Input: ansistring): ansistring;
-
-function EnterToTabAllowed(f: TForm): boolean;
 
 function RandomString(strlength: integer): string;
 
@@ -197,15 +187,10 @@ procedure FilePutContentsW(filename, binary: WideString);
 
 procedure CopyFiles(Source, Target: string); // Kann auch mit WildCards umgehen!
 
-procedure AnDenAnfangScrollen(riched: TCustomRichEdit);
-procedure AnsEndeScrollen(riched: TCustomRichEdit);
-
 function DirectoryExistsAndIsNotEmpty(DirName: string): boolean;
 
 function GetBuildTimestamp(const ExeFile: string): TDateTime;
 function GetOwnBuildTimestamp: TDateTime;
-
-function RichTextToPlainText(richText: string): string;
 
 function ShellExecute64(HWND: HWND; Operation, filename, Parameters,
   Directory: PChar; ShowCmd: integer): HINST;
@@ -246,12 +231,8 @@ function GetWindowsDisplayUserName: string;
 
 function IsUserAdmin: boolean;
 
-procedure MDI_Form_BringToFront(frm: TForm);
 function DaysHumanReadable(days: integer): string;
 function WindowsBits: integer;
-{$IF CompilerVersion >= 20.0} // geraten
-procedure BmpToPngFile(bmpFile, pngFile: string);
-{$IFEND}
 function Hash_djb2(Str: string): string;
 function GetDeepestDir(const AFileName: string): string;
 
@@ -284,6 +265,17 @@ function IsDllLoadable(const FileName: string): Boolean;
 function HashHmacFileSHA256Hex(const FilePath, Secret: string): string;
 {$IFEND}
 
+function StreamsAreIdentical(const aStream1, aStream2: TStream;
+                             const aBlockSize: Integer = 4096): Boolean;
+procedure ExtractFileFromResource(ResType: PChar; ResName, OutFile: string);
+
+function SQL4KBSektor_AutoAdjust: boolean;
+
+function FileExtToMime(fileext: string): string;
+function LoadFileToStr(const FileName: TFileName): String;
+procedure SaveStrToFile(const filename, SourceString: string);
+function GetElement(n: integer; s: string): string;
+
 type
   TSenderlessNotifyEvent = procedure of object;
 
@@ -293,11 +285,7 @@ uses
   FormatSettingsCompat, hl.Utils.CRC32, hl.Utils.MD5, StrUtils, TlHelp32,
   Registry, ComObj, DateUtils,
   hl.Utils.WmiUtils, WinSock,
-  {$IF CompilerVersion >= 20.0} // geraten
-  PngImage,
-  {$IFEND}
-  Graphics, ShlObj, ActiveX;
-
+  ShlObj, ActiveX;
 
 resourcestring
   StrUngültigeBlockgröße = 'Ungültige Blockgröße';
@@ -309,7 +297,6 @@ resourcestring
   StrKomprimierungStimmt = 'Komprimierung stimmt nicht überein.';
   StrIsWow64BadProcess = 'IsWow64: bad process handle';
   StrGetBuildTimestamps = 'GetBuildTimestamp(%s) fehlgeschlagen';
-  StrRTFToTextIstFehl = 'RTF-To-Text ist fehlgeschlagen!';
   StrPortDKonnteNicht = 'Port %d konnte nicht freigeschaltet werden!';
   StrDJahren = '%d Jahren';
   Str1Jahr = '1 Jahr';
@@ -350,109 +337,7 @@ begin
   result := processExistsCount(exeFileName) > 0;
 end;
 
-class function ThlUtils.AdvSelectDirectory(const Caption: string;
-  const Root: WideString; var Directory: string; EditBox: boolean = False;
-  ShowFiles: boolean = False; AllowCreateDirs: boolean = True): boolean;
-// Quelle: http://www.swissdelphicenter.ch/de/showcode.php?id=1802
-
-{
-  Dieser Code zeigt den SelectDirectory-Dialog mit zusätzlichen Erweiterungen:
-  - eine Edit-Box, wo der Benutzer den Verzeichnisnamen eingeben kann,
-  - auch Dateien können in der Liste angezeigt werden,
-  - eine Schaltfläche zum Erstellen neuer Verzeichnisse.
-}
-
-// callback function that is called when the dialog has been initialized
-// or a new directory has been selected
-
-// Callback-Funktion, die aufgerufen wird, wenn der Dialog initialisiert oder
-// ein neues Verzeichnis selektiert wurde
-  function SelectDirCB(Wnd: HWND; uMsg: UINT; lParam, lpData: lParam)
-    : integer; stdcall;
-  // var
-  // PathName: array[0..MAX_PATH] of Char;
-  begin
-    case uMsg of
-      BFFM_INITIALIZED:
-        SendMessage(Wnd, BFFM_SETSELECTION, Ord(True), integer(lpData));
-      // include the following comment into your code if you want to react on the
-      // event that is called when a new directory has been selected
-      // binde den folgenden Kommentar in deinen Code ein, wenn du auf das Ereignis
-      // reagieren willst, das aufgerufen wird, wenn ein neues Verzeichnis selektiert wurde
-      { BFFM_SELCHANGED:
-        begin
-        SHGetPathFromIDList(PItemIDList(lParam), @PathName);
-        // the directory "PathName" has been selected
-        // das Verzeichnis "PathName" wurde selektiert
-        end; }
-    end;
-    Result := 0;
-  end;
-
-var
-  WindowList: Pointer;
-  BrowseInfo: TBrowseInfo;
-  Buffer: PChar;
-  RootItemIDList, ItemIDList: PItemIDList;
-  ShellMalloc: IMalloc;
-  IDesktopFolder: IShellFolder;
-  Eaten, Flags: LongWord;
-const
-  // necessary for some of the additional expansions
-  // notwendig für einige der zusätzlichen Erweiterungen
-  BIF_USENEWUI = $0040;
-  BIF_NOCREATEDIRS = $0200;
-begin
-  Result := False;
-  if not DirectoryExists(Directory) then
-    Directory := '';
-  FillChar(BrowseInfo, SizeOf(BrowseInfo), 0);
-  if (ShGetMalloc(ShellMalloc) = S_OK) and (ShellMalloc <> nil) then
-  begin
-    Buffer := ShellMalloc.Alloc(MAX_PATH);
-    try
-      RootItemIDList := nil;
-      if Root <> '' then
-      begin
-        SHGetDesktopFolder(IDesktopFolder);
-        IDesktopFolder.ParseDisplayName(Application.Handle, nil, POleStr(Root),
-          Eaten, RootItemIDList, Flags);
-      end;
-      OleInitialize(nil);
-      with BrowseInfo do
-      begin
-        hwndOwner := Application.Handle;
-        pidlRoot := RootItemIDList;
-        pszDisplayName := Buffer;
-        lpszTitle := PChar(Caption);
-        // defines how the dialog will appear:
-        // legt fest, wie der Dialog erscheint:
-        ulFlags := BIF_RETURNONLYFSDIRS or BIF_USENEWUI or BIF_EDITBOX *
-          Ord(EditBox) or BIF_BROWSEINCLUDEFILES * Ord(ShowFiles) or
-          BIF_NOCREATEDIRS * Ord(not AllowCreateDirs);
-        lpfn := @SelectDirCB;
-        if Directory <> '' then
-          lParam := integer(PChar(Directory));
-      end;
-      WindowList := DisableTaskWindows(0);
-      try
-        ItemIDList := ShBrowseForFolder(BrowseInfo);
-      finally
-        EnableTaskWindows(WindowList);
-      end;
-      Result := ItemIDList <> nil;
-      if Result then
-      begin
-        ShGetPathFromIDList(ItemIDList, Buffer);
-        ShellMalloc.Free(ItemIDList);
-        Directory := Buffer;
-      end;
-    finally
-      ShellMalloc.Free(Buffer);
-    end;
-  end;
-end;
-
+{$IF CompilerVersion >= 20.0} // geraten
 class function ThlUtils.GetUserDir: string;
 const
   SHGFP_TYPE_CURRENT = 0;
@@ -462,6 +347,7 @@ begin
   SHGetFolderPath(0, CSIDL_PROFILE, 0, SHGFP_TYPE_CURRENT, @path[0]);
   Result := IncludeTrailingPathDelimiter(path);
 end;
+{$IFEND}
 
 class function ThlUtils.GetUserDocumentsDir: string;
 Var
@@ -481,7 +367,7 @@ end;
 
 // DayOfWeek():       1=So, ..., 7=Sa
 // GermanDayOfWeek(): 0=Mo, ..., 6=So
-class function ThlUtils.GermanDayOfWeek(date: TDate): integer;
+class function ThlUtils.GermanDayOfWeek(date: TDateTime): integer;
 begin
   Result := (DayOfWeek(date) + 5) mod 7;
 end;
@@ -595,10 +481,12 @@ class function ThlUtils.ShellExecuteWait(aWnd: HWND; Operation: string;
       repeat
         exitCode := WaitForSingleObject(Info.hProcess, 100);
         Sleep(50);
+        {$IFNDEF CONSOLE}
         if Windows.GetCurrentThreadId = System.MainThreadID then
           Application.ProcessMessages;
         if Assigned(Application) and Application.Terminated then
           Abort;
+        {$ENDIF}
       until (exitCode <> WAIT_TIMEOUT);
 
       if not GetExitCodeProcess(Info.hProcess, exitCode) then
@@ -661,10 +549,12 @@ class function ThlUtils.ShellExecuteWait(aWnd: HWND; Operation: string;
         if lpExitCode <> STILL_ACTIVE then
           Break;
         Sleep(50);
+        {$IFNDEF CONSOLE}
         if Windows.GetCurrentThreadId = System.MainThreadID then
           Application.ProcessMessages;
         if Assigned(Application) and Application.Terminated then
           Abort;
+        {$ENDIF}
       end;
       Result := integer(lpExitCode);
     finally
@@ -759,12 +649,15 @@ begin
   if Windows.GetCurrentThreadId <> System.MainThreadID then
     exit;
 
-  Application.ProcessMessages;
+  {$IFNDEF CONSOLE}
   if Assigned(Application) then
   begin
+    Application.ProcessMessages;
     if Application.Terminated then
       Abort;
   end;
+  {$ENDIF}
+
   if Assigned(PleaseCancel) then
   begin
     if PleaseCancel^ then
@@ -817,10 +710,12 @@ var
 begin
   Directory := IncludeTrailingPathDelimiter(Directory);
 
+  {$IFNDEF CONSOLE}
   if Application.Terminated then
     exit;
   if Windows.GetCurrentThreadId = System.MainThreadID then
     Application.ProcessMessages;
+  {$ENDIF}
 
   if FindFirst(Directory + '*', faAnyFile, SR) = 0 then;
   begin
@@ -866,11 +761,21 @@ begin
   try
     Rewrite(fOut);
     sComment := '; ' + StrPrüfsummenDatei;
+    {$IFNDEF CONSOLE}
     if Assigned(Application) then
     begin
       sComment := sComment + ', ' + Format(StrErstelltMitS,
         [Application.Title]);
+    end
+    else
+    begin
+      sComment := sComment + ', ' + Format(StrErstelltMitS,
+        [ExtractFilePath(ParamStr(0))]);
     end;
+    {$ELSE}
+    sComment := sComment + ', ' + Format(StrErstelltMitS,
+      [ExtractFilePath(ParamStr(0))]);
+    {$ENDIF}
     Writeln(fOut, sChkFile, sComment);
     ThlUtils.ListFiles(DirName, slFiles, True);
     for sChkFile in slFiles do
@@ -910,11 +815,21 @@ begin
   try
     Rewrite(fOut);
     sComment := '; ' + StrPrüfsummenDatei;
+    {$IFNDEF CONSOLE}
     if Assigned(Application) then
     begin
       sComment := sComment + ', ' + Format(StrErstelltMitS,
         [Application.Title]);
+    end
+    else
+    begin
+      sComment := sComment + ', ' + Format(StrErstelltMitS,
+        [ExtractFilePath(ParamStr(0))]);
     end;
+    {$ELSE}
+    sComment := sComment + ', ' + Format(StrErstelltMitS,
+      [ExtractFilePath(ParamStr(0))]);
+    {$ENDIF}
     Writeln(fOut, sChkFile, sComment);
     ThlUtils.ListFiles(DirName, slFiles, True);
     for sChkFile in slFiles do
@@ -1062,7 +977,11 @@ begin
   ZeroMemory(@sh, SizeOf(sh));
   with sh do
   begin
+    {$IFNDEF CONSOLE}
     Wnd := Application.Handle;
+    {$ELSE}
+    Wnd := 0;
+    {$ENDIF}
     wFunc := FO_DELETE;
     pFrom := PChar(AFile + #0);
     fFlags := FOF_SILENT or FOF_NOCONFIRMATION;
@@ -1073,23 +992,6 @@ end;
 // TODO: Prozedurale Methoden in ThlUtils einbinden oder in hl.Utils.*.pas splitten
 
 {$REGION 'Noch prozedurale Utils'}
-
-function GetNextPossibleForm(ctrl: TComponent): TForm;
-begin
-  Result := nil;
-
-  while not(ctrl is TForm) do
-  begin
-    if TComponent(ctrl).Owner = nil then
-      exit;
-    ctrl := TComponent(ctrl).Owner;
-  end;
-
-  if ctrl = nil then
-    exit;
-
-  Result := ctrl as TForm;
-end;
 
 (*
   procedure Split(Delimiter: Char; Str: string; ListOfStrings: TStrings) ;
@@ -1431,35 +1333,6 @@ begin
   Result := IncludeTrailingPathDelimiter(Result);
 end;
 
-procedure CropFrame(frame: TFrame; onlyVisible: boolean;
-  rightPadding, bottomPadding: integer);
-var
-  I: integer;
-  c: TControl;
-  maxRight: integer;
-  maxBottom: integer;
-begin
-  maxRight := 0;
-  maxBottom := 0;
-  for I := 0 to frame.ControlCount - 1 do
-  begin
-    c := frame.Controls[I];
-    if onlyVisible then
-    begin
-      if not c.Visible then
-        Continue;
-      if (c is TLabel) and (TLabel(c).Caption = '') then
-        Continue;
-    end;
-    maxRight := Max(maxRight, c.Left + c.Width);
-    maxBottom := Max(maxBottom, c.Top + c.Height);
-  end;
-  inc(maxRight, rightPadding);
-  inc(maxBottom, bottomPadding);
-  frame.ClientWidth := maxRight;
-  frame.ClientHeight := maxBottom;
-end;
-
 Function CompressAnsiString(const Input: ansistring): ansistring;
 {$IF CompilerVersion > 20.0} // Ich weiß nicht genau, ab welcher Version CompressBuf durch ZCompress ersetzt wurde... Ich habe daher irgendeine Version eingetragen
 var
@@ -1522,34 +1395,6 @@ begin
 {$IFEND}
 end;
 
-function LoadFileToStr(const filename: TFileName): ansistring;
-var
-  FileStream: TFileStream;
-begin
-  FileStream := TFileStream.Create(filename, fmOpenRead or fmShareDenyWrite);
-  try
-    if FileStream.Size > 0 then
-    begin
-      SetLength(Result, FileStream.Size);
-      FileStream.Read(Pointer(Result)^, FileStream.Size);
-    end;
-  finally
-    FreeAndNil(FileStream);
-  end;
-end;
-
-procedure SaveStrToFile(const filename, SourceString: string);
-var
-  Stream: TFileStream;
-begin
-  Stream := TFileStream.Create(filename, fmCreate);
-  try
-    Stream.WriteBuffer(Pointer(SourceString)^, Length(SourceString));
-  finally
-    FreeAndNil(Stream);
-  end;
-end;
-
 function StringXorCrypt(const text, key: ansistring): ansistring;
 var
   I, j, keylen: integer;
@@ -1572,17 +1417,6 @@ begin
   ListOfStrings.Delimiter := Delimiter;
   ListOfStrings.StrictDelimiter := True; // Requires D2006 or newer.
   ListOfStrings.DelimitedText := Str;
-end;
-
-function EnterToTabAllowed(f: TForm): boolean;
-begin
-  // Tastenfunktionen außerhalb des Grids zum Weiterschalten ( Tab-Ersatz )
-  Result := (f.ActiveControl <> nil) and
-    (f.ActiveControl.classname <> 'TwwDBGrid') and
-    (f.ActiveControl.classname <> 'TMemo') and
-    (f.ActiveControl.classname <> 'TwwDBRichEdit') and
-    ((f.ActiveControl.parent = nil) or (f.ActiveControl.parent.classname <>
-    'TwwDBGrid')) and not(f.ActiveControl is TDBMemo);
 end;
 
 function RandomString(strlength: integer): string;
@@ -2622,14 +2456,18 @@ begin
       fFlags := fFlags or FOF_SILENT;
   end;
 
+  {$IFNDEF CONSOLE}
   Screen.Cursor := crHourGlass;
+  {$ENDIF}
   try
     MyFOStruct.fAnyOperationsAborted := False;
     MyFOStruct.hNameMappings := nil;
     ResultVal := SHFileOperation(MyFOStruct);
     Result := (ResultVal = 0);
   finally
+    {$IFNDEF CONSOLE}
     Screen.Cursor := crDefault;
+    {$ENDIF}
   end;
 
 end;
@@ -2822,9 +2660,9 @@ var
 begin
   Result := '';
   if apublic then
-    SHGetSpecialFolderLocation(Application.Handle, CSIDL_COMMON_DESKTOPDIRECTORY, PIDList)
+    SHGetSpecialFolderLocation({$IFNDEF CONSOLE}Application.Handle{$ELSE}0{$ENDIF}, CSIDL_COMMON_DESKTOPDIRECTORY, PIDList)
   else
-    SHGetSpecialFolderLocation(Application.Handle, CSIDL_DESKTOP, PIDList);
+    SHGetSpecialFolderLocation({$IFNDEF CONSOLE}Application.Handle{$ELSE}0{$ENDIF}, CSIDL_DESKTOP, PIDList);
   if Assigned(PIDList) then
     if ShGetPathFromIDList(PIDList, Buffer) then
       Result := Buffer;
@@ -2905,18 +2743,6 @@ begin
   SHFileOperation(FO); // TODO: check result
 end;
 
-procedure AnDenAnfangScrollen(riched: TCustomRichEdit);
-begin
-  riched.SelStart := 0;
-  riched.Perform(EM_SCROLLCARET, 0, 0);
-end;
-
-procedure AnsEndeScrollen(riched: TCustomRichEdit);
-begin
-  riched.SelStart := riched.GetTextLen;
-  riched.Perform(EM_SCROLLCARET, 0, 0);
-end;
-
 function DirectoryExistsAndIsNotEmpty(DirName: string): boolean;
 var
   SR: TSearchRec;
@@ -2977,46 +2803,6 @@ end;
 function GetOwnBuildTimestamp: TDateTime;
 begin
   Result := GetBuildTimestamp(ParamStr(0));
-end;
-
-// TODO: CODE DUPLIKATE
-// hl.Utils.pas (RichTextToPlainText)
-// hl.Datenbank.CSVExporter.pas (RichTextToPlainText)
-// hcl.Utils.Rtf.pas (ThclUtilsRtf.RtfToPlainText)
-function RichTextToPlainText(richText: string): string;
-var
-  RichEdit1: TRichEdit;
-  ss: TStringStream;
-begin
-  if copy(richText, 1, 5) <> '{\rtf' then
-  begin
-    Result := richText;
-    exit;
-  end;
-  RichEdit1 := TRichEdit.Create(Application.MainForm);
-  try
-    // Wenn Visible=true oder Parent=nil, dann geht es nicht...
-    RichEdit1.Width := 0;
-    RichEdit1.Height := 0;
-    RichEdit1.parent := Application.MainForm;
-
-    // RichEdit1.Text := richText;
-    ss := TStringStream.Create(richText);
-    try
-      RichEdit1.Lines.LoadFromStream(ss);
-    finally
-      FreeAndNil(ss);
-    end;
-
-    RichEdit1.PlainText := True;
-    Result := Trim(RichEdit1.text);
-  finally
-    FreeAndNil(RichEdit1);
-  end;
-  if copy(Result, 1, 5) = '{\rtf' then
-  begin
-    ShowMessage(StrRTFToTextIstFehl);
-  end;
 end;
 
 function ExpandEnvStr(const szInput: string): string;
@@ -3769,21 +3555,6 @@ begin
   Result := IsMember;
 end;
 
-procedure MDI_Form_BringToFront(frm: TForm);
-begin
-  // Anmerkung DM: Das ist bestimmt alles doppelt gemoppelt. Sollte man nochmal genau prüfen!
-  if frm.WindowState = wsMinimized then
-    frm.WindowState := wsNormal;
-  frm.Show;
-  LockWindowUpdate(frm.Handle);
-  frm.BringToFront;
-  LockWindowUpdate(0);
-  // if frm.WindowState = wsMinimized then frm.WindowState := wsNormal;
-  if frm.WindowState = wsMinimized then
-    ShowWindow(frm.Handle, SW_RESTORE);
-  // Application.ProcessMessages;
-end;
-
 function DaysHumanReadable(days: integer): string;
 begin
   if days >= 2 * 12 * 30 then
@@ -3815,25 +3586,6 @@ begin
     Result := 32;
 {$ENDIF}
 end;
-
-{$IF CompilerVersion >= 20.0} // geraten
-procedure BmpToPngFile(bmpFile, pngFile: string);
-var
-  bmp: TBitmap;
-  png: TPNGObject;
-begin
-  bmp := TBitmap.Create;
-  png := TPNGObject.Create;
-  try
-    bmp.LoadFromFile(bmpFile);
-    png.Assign(bmp);
-    png.SaveToFile(pngFile);
-  finally
-    FreeAndNil(bmp);
-    FreeAndNil(png);
-  end;
-end;
-{$IFEND}
 
 function Hash_djb2(Str: string): string;
 
@@ -4160,8 +3912,10 @@ begin
   TargetTime := GetTickCount + Milliseconds;
   while (GetTickCount < TargetTime) do
   begin
+    {$IFNDEF CONSOLE}
     Application.ProcessMessages;
     if Application.Terminated then Abort;
+    {$ENDIF}
     Sleep(10); // kleine Pause, nicht komplett blockierend
   end;
 end;
@@ -4207,5 +3961,290 @@ begin
   Result := LowerCase(THash.DigestAsString(HashBytes));
 end;
 {$IFEND}
+
+function StreamsAreIdentical(const aStream1, aStream2: TStream;
+                             const aBlockSize: Integer = 4096): Boolean;
+var
+  lBuffer1: array of byte;
+  lBuffer2: array of byte;
+  lBuffer1Readed,
+  lBuffer2Readed,
+  lBlockSize: integer;
+begin
+  // https://stackoverflow.com/questions/4605908/delphi-function-comparing-content-of-two-tstream
+
+  Result := False;
+
+  if aStream1.Size <> aStream2.Size then Exit;
+
+  aStream1.Position := 0;
+  aStream2.Position := 0;
+
+  if aBlockSize > 0 then
+    lBlockSize := aBlockSize
+  else
+    lBlockSize := 4096;
+
+  SetLength(lBuffer1, lBlockSize);
+  SetLength(lBuffer2, lBlockSize);
+
+  lBuffer1Readed := 1; // just for entering while
+
+  while (lBuffer1Readed > 0) and (aStream1.Position < aStream1.Size) do
+  begin
+    lBuffer1Readed := aStream1.Read(lBuffer1[0], lBlockSize);
+    lBuffer2Readed := aStream2.Read(lBuffer2[0], lBlockSize);
+
+    if (lBuffer1Readed <> lBuffer2Readed) then Exit;
+    if (lBuffer1Readed <> lBlockSize) and (aStream1.Position < aStream1.Size) then Exit;
+    if not CompareMem(@lBuffer1[0], @lBuffer2[0], lBuffer1Readed) then Exit;
+  end; // while
+
+  Result:=True;
+end;
+
+procedure ExtractFileFromResource(ResType: PChar; ResName, OutFile: string);
+var
+  ResStream: TResourceStream;
+  FilStream: TFileStream;
+begin
+  ResStream := TResourceStream.Create(HInstance, ResName, ResType);
+  if FileExists(OutFile) then
+    FilStream := TfileStream.Create(OutFile, fmOpenRead or fmShareDenyNone)
+  else
+    FilStream := nil;
+  try
+    ResStream.Position := 0;
+    if not Assigned(FilStream) or not StreamsAreIdentical(FilStream, ResStream) then
+    begin
+      FreeAndNil(FilStream);
+      ResStream.SaveToFile(OutFile);
+    end;
+  finally
+    FreeAndNil(ResStream);
+    FreeAndNil(FilStream);
+  end;
+end;
+
+function SQL4KBSektor_AutoAdjust: boolean;
+
+  function Max(a,b: DWORD): DWORD;
+  begin
+    if a > b then exit(a) else exit(b);
+  end;
+
+  function SQL4KBSektor_GetPhysicalSectorSize(const Drive: string): DWORD;
+  var
+    SA: TSecurityAttributes;
+    ReadPipe, WritePipe: THandle;
+    StartupInfo: TStartupInfo;
+    ProcessInfo: TProcessInformation;
+    Buffer: array[0..4095] of AnsiChar;
+    BytesRead: DWORD;
+    Output: string;
+    Line: string;
+    SL: TStringList;
+    I: Integer;
+  begin
+    // TODO: Better would be to query the value from the WinAPI, but I am not sure
+    //       how to do this.
+
+    Result := 0;
+    Output := '';
+
+    ZeroMemory(@SA, SizeOf(SA));
+    SA.nLength := SizeOf(SA);
+    SA.bInheritHandle := True;
+
+    CreatePipe(ReadPipe, WritePipe, @SA, 0);
+
+    ZeroMemory(@StartupInfo, SizeOf(StartupInfo));
+    StartupInfo.cb := SizeOf(StartupInfo);
+    StartupInfo.dwFlags := STARTF_USESTDHANDLES;
+    StartupInfo.hStdOutput := WritePipe;
+    StartupInfo.hStdError := WritePipe;
+
+    ZeroMemory(@ProcessInfo, SizeOf(ProcessInfo));
+
+    if not CreateProcess(
+      nil,
+      PChar('cmd.exe /C fsutil fsinfo sectorinfo ' + Drive),
+      nil,
+      nil,
+      True,
+      CREATE_NO_WINDOW,
+      nil,
+      nil,
+      StartupInfo,
+      ProcessInfo) then
+      RaiseLastOSError;
+
+    CloseHandle(WritePipe);
+
+    while ReadFile(ReadPipe, Buffer, SizeOf(Buffer), BytesRead, nil) and (BytesRead > 0) do
+      Output := Output + string(Copy(Buffer, 1, BytesRead));
+
+    CloseHandle(ReadPipe);
+
+    WaitForSingleObject(ProcessInfo.hProcess, INFINITE);
+    CloseHandle(ProcessInfo.hProcess);
+    CloseHandle(ProcessInfo.hThread);
+
+    SL := TStringList.Create;
+    try
+      SL.Text := Output;
+
+      for I := 0 to SL.Count - 1 do
+      begin
+        Line := Trim(SL[I]);
+        if Line.StartsWith('PhysicalBytesPerSector') or
+           Line.StartsWith('Physische Bytes pro Sektor') then
+        begin
+          Result := Max(Result, StrToInt(Trim(Copy(Line, Pos(':', Line) + 1, MaxInt))));
+          Break;
+        end;
+      end;
+    finally
+      SL.Free;
+    end;
+  end;
+
+  function SQL4KBSektor_GetRegistryHack: boolean;
+  var
+    reg: TRegistry;
+  begin
+    result := false;
+    reg := TRegistry.Create;
+    try
+      reg.RootKey := HKEY_LOCAL_MACHINE;
+      if reg.OpenKey('SYSTEM\CurrentControlSet\Services\stornvme\Parameters\Device', false) then
+      begin
+        result := reg.ValueExists('ForcedPhysicalSectorSizeInBytes') and
+             (reg.ReadMultiString('ForcedPhysicalSectorSizeInBytes')[0] = '* 4095');
+        reg.CloseKey;
+      end;
+    finally
+      FreeAndNil(reg);
+    end;
+  end;
+
+  procedure SQL4KBSektor_SetRegistryHack(AEnable: boolean);
+  var
+    reg: TRegistry;
+  begin
+    reg := TRegistry.Create;
+    try
+      reg.RootKey := HKEY_LOCAL_MACHINE;
+      if reg.OpenKey('SYSTEM\CurrentControlSet\Services\stornvme\Parameters\Device', true) then
+      begin
+        if AEnable then
+          reg.WriteMultiString('ForcedPhysicalSectorSizeInBytes', ['* 4095'])
+        else if reg.ValueExists('ForcedPhysicalSectorSizeInBytes') then
+          reg.DeleteValue('ForcedPhysicalSectorSizeInBytes');
+        reg.CloseKey;
+      end;
+    finally
+      FreeAndNil(reg);
+    end;
+  end;
+
+begin
+  result := false;
+  if (SQL4KBSektor_GetPhysicalSectorSize('C:') > 4096) and not SQL4KBSektor_GetRegistryHack then
+  begin
+    SQL4KBSektor_SetRegistryHack(true);
+    result := true;
+  end;
+end;
+
+function FileExtToMime(fileext: string): string;
+begin
+  if SameText(fileext, '.gif') then
+    result := 'image/gif'
+  else if SameText(fileext, '.jpeg') then
+    result := 'image/jpeg'
+  else if SameText(fileext, '.jpg') then
+    result := 'image/jpeg'
+  else if SameText(fileext, '.jpe') then
+    result := 'image/jpeg'
+  else if SameText(fileext, '.png') then
+    result := 'image/png'
+  else if SameText(fileext, '.css') then
+    result := 'text/css'
+  else if SameText(fileext, '.js') then
+    result := 'text/javascript'
+  else if SameText(fileext, '.txt') then
+    result := 'text/plain'
+  else if SameText(fileext, '.xml') then
+    result := 'text/xml'
+  else if SameText(fileext, '.htm') then
+    result := 'text/html'
+  else if SameText(fileext, '.html') then
+    result := 'text/html'
+  else if SameText(fileext, '.pdf') then
+    result := 'application/pdf'
+  else
+    result := 'application/octet-stream';
+end;
+
+function LoadFileToStr(const FileName: TFileName): String;
+var
+  LStrings: TStringList;
+begin
+  LStrings := TStringList.Create;
+  try
+    LStrings.Loadfromfile(FileName);
+    Result := LStrings.text;
+  finally
+    FreeAndNil(LStrings);
+  end;
+end;
+
+// Alternative implementation:
+(*
+function LoadFileToStr(const filename: TFileName): ansistring;
+var
+  FileStream: TFileStream;
+begin
+  FileStream := TFileStream.Create(filename, fmOpenRead or fmShareDenyWrite);
+  try
+    if FileStream.Size > 0 then
+    begin
+      SetLength(Result, FileStream.Size);
+      FileStream.Read(Pointer(Result)^, FileStream.Size);
+    end;
+  finally
+    FreeAndNil(FileStream);
+  end;
+end;
+*)
+
+procedure SaveStrToFile(const filename, SourceString: string);
+var
+  Stream: TFileStream;
+begin
+  Stream := TFileStream.Create(filename, fmCreate);
+  try
+    Stream.WriteBuffer(Pointer(SourceString)^, Length(SourceString));
+  finally
+    FreeAndNil(Stream);
+  end;
+end;
+
+function GetElement(n: integer; s: string): string;
+var
+  tmpSL: TStringList;
+begin
+  tmpSL := TStringList.Create;
+  try
+    ExtractStrings(['_'], [], PChar(s), tmpSL);
+    if n >= tmpSL.Count then
+      result := ''
+    else
+      result := tmpSL.Strings[n];
+  finally
+    FreeAndNil(tmpSL);
+  end;
+end;
 
 end.

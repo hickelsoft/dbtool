@@ -42,7 +42,7 @@ type
 implementation
 
 uses
-  hl.Utils, hl.Utils.Color, ProgrDlg, Classes, SysUtils;
+  hl.Utils, hl.Utils.Gui, hl.Utils.Color, ProgrDlg, Classes, SysUtils;
 
 procedure ReplaceLineUnderMainMenu(frm: TForm; Color: TColor);
 var

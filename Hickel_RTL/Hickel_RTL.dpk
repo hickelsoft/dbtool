@@ -109,6 +109,7 @@ contains
   ShareFolderUnit in 'Lib\Utils\ShareFolderUnit.pas',
   hg_InputQuery in 'Gui\Src\hg_InputQuery.pas' {hgInputQry},
   hg_CheckboxVoransicht in 'Gui\Src\hg_CheckboxVoransicht.pas' {DLG_CheckboxVoransicht},
-  hl.Datenbank in 'Lib\Datenbank\hl.Datenbank.pas';
+  hl.Datenbank in 'Lib\Datenbank\hl.Datenbank.pas',
+  hl.Utils.Gui in 'Lib\Utils\hl.Utils.Gui.pas';
 
 end.

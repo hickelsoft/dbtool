@@ -86,7 +86,7 @@ type
 implementation
 
 uses
-  Main, Table, Query, Export, Globals, Printers, hl.Utils, hl.Datenbank,
+  Main, Table, Query, Export, Globals, Printers, hl.Utils, hl.Utils.Gui, hl.Datenbank,
   hg_InputQuery;
 
 {$R *.DFM}

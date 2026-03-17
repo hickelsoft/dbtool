@@ -143,7 +143,7 @@ implementation
 
 uses
   Globals, Database, Table, Info, Optionen, OpenSqlDb, OpenMySqlDb, Export,
-  Import, DateiNeu,
+  Import, DateiNeu, hl.Utils.Gui,
   Registry, Query, hl.Utils.Color, ProgrDlg, hl.Utils, IniFiles,
   hl.Datenbank, HickelSOFT_Design, hl.System.ExceptionHandler, hl.Utils.Web,
   HS_Auth, hl_SqlServerProvider;
@@ -546,15 +546,16 @@ resourcestring
   SQueryS = 'Abfrage_%s';
   SSelectFittingForm = 'Bitte passendes Fenster auswählen.';
 begin
-  aDb := TMDI_Table(ActiveMDIChild).frmDatabase.dbDatabase;
   if ActiveMDIChild is TMDI_Table then
   begin
     // TODO: Sollte hier nicht eine TTable erstellt werden?
+    aDb := TMDI_Table(ActiveMDIChild).frmDatabase.dbDatabase;
     aDs := TMDI_Table(ActiveMDIChild).frmDatabase.dbDatabase.Query(TMDI_Table(ActiveMDIChild).SelectString);
     aDateinameBasis := TMDI_Table(ActiveMDIChild).Table;
   end
   else if ActiveMDIChild is TMDI_Query then
   begin
+    aDb := TMDI_Query(ActiveMDIChild).frmDatabase.dbDatabase;
     aDs := TMDI_Query(ActiveMDIChild).DataSource1.DataSet;
     if not Assigned(aDs) then
       raise Exception.Create(SFirstExecuteQuery);
