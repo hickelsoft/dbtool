@@ -213,9 +213,12 @@ begin
 
   if FVerwendeQueryAnstelleTable then
   begin
-
-    sql := 'select * from ' + DB.SQL_Escape_TableName(TableName);
-    // do not localize
+    sql := 'select * from '; // do not localize
+    if DB.IsView(TableName) then
+    begin
+      sql := sql + ViewDummySequence; // this "warns" BeforeDelete to block the delete request
+    end;
+    sql := sql + DB.SQL_Escape_TableName(TableName);
 
     slPrimaryKeys := TStringList.Create;
     try
@@ -565,15 +568,18 @@ begin
 
   // "Upgrade" notwendig? (Nur-Strukturansicht => Daten)
   if (Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton2.Tag) { Tabelle } ) or
-    (Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton4.Tag) { Filter } ) or
-    (Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton7.Tag) { Indizes } ) then
+    (Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton4.Tag) { Filter } ) then
   begin
     if NurStruktur then
     begin
       dsData.Dataset := LoadTable(FDatabaseForm.dbDatabase, FTableName);
-      //if (Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton7.Tag) { Indizes } ) then
-      //  CreateIndexInfo;
     end;
+  end;
+
+  // Jetzt auf Index-Seite? Indexes müssen geladen sein!
+  if (Notebook1.ActivePage = 'Tag'+IntToStr(LbSpeedButton7.Tag) { Indizes } ) then
+  begin
+    CreateIndexInfo
   end;
 
   // Jetzt auf Filter-Seite? Filter in Memo eintragen!

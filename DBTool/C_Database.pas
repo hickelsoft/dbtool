@@ -865,6 +865,7 @@ begin
           bdeReturn := TTable.Create(DB_BDE);
           bdeReturn.DatabaseName := DB_BDE.DatabaseName;
           bdeReturn.Tablename := SQL_Escape_TableName(Tablename);
+          bdeReturn.BeforeDelete := BeforeDelete;
           bdeReturn.Open;
           result := bdeReturn;
           exit;
@@ -880,6 +881,7 @@ begin
           ibReturn := TIBTable.Create(DB_IB);
           ibReturn.Database := DB_IB;
           ibReturn.Tablename := SQL_Escape_TableName(Tablename);
+          ibReturn.BeforeDelete := BeforeDelete;
           ibReturn.Open;
           result := ibReturn;
           exit;
@@ -895,6 +897,7 @@ begin
           fbReturn := TFDTable.Create(DB_FB);
           fbReturn.Connection := DB_FB;
           fbReturn.Tablename := SQL_Escape_TableName(Tablename);
+          fbReturn.BeforeDelete := BeforeDelete;
           fbReturn.Open;
           result := fbReturn;
           exit;
@@ -910,6 +913,7 @@ begin
           adoReturn := TADOTable.Create(DB_ADO);
           adoReturn.Connection := DB_ADO;
           adoReturn.Tablename := SQL_Escape_TableName(Tablename);
+          adoReturn.BeforeDelete := BeforeDelete;
           adoReturn.Open;
           result := adoReturn;
           exit;
@@ -1615,7 +1619,7 @@ begin
           bdeReturn.Tablename := SQL_Escape_TableName(aTableName);
           bdeReturn.DisableControls; // Performance?
           bdeReturn.IndexDefs.Update; // neu hinzugemacht, geht nicht
-          bdeReturn.Open;
+          //bdeReturn.Open;
           result := TTable(bdeReturn).IndexDefs;
           exit;
         finally
@@ -1632,7 +1636,7 @@ begin
           ibReturn.Tablename := SQL_Escape_TableName(aTableName);
           ibReturn.DisableControls; // Performance?
           ibReturn.IndexDefs.Update; // neu hinzugemacht, geht nicht
-          ibReturn.Open;
+          //ibReturn.Open;
           result := TIBTable(ibReturn).IndexDefs;
           exit;
         finally
@@ -1649,7 +1653,7 @@ begin
           fbReturn.Tablename := SQL_Escape_TableName(aTableName);
           fbReturn.DisableControls; // Performance?
           fbReturn.IndexDefs.Update; // neu hinzugemacht, geht nicht
-          fbReturn.Open;
+          //fbReturn.Open;
           result := TFDTable(fbReturn).IndexDefs;
           exit;
         finally
@@ -1664,7 +1668,7 @@ begin
         adoReturn := TADOTable.Create(DB_ADO);
         adoReturn.Connection := DB_ADO;
         adoReturn.TableName := SQL_Escape_TableName(aTableName);
-        adoReturn.Open;
+        //adoReturn.Open;
 
         // IndexDefs manuell aus Schema befüllen
         adoReturn.IndexDefs.Clear;
@@ -1717,7 +1721,7 @@ begin
           adoReturn.Tablename := SQL_Escape_TableName(aTableName);
           adoReturn.DisableControls; // Performance?
           adoReturn.IndexDefs.Update; // neu hinzugemacht, geht nicht
-          adoReturn.Open;
+          //adoReturn.Open;
           result := TADOTable(adoReturn).IndexDefs;
           exit;
         finally
@@ -2054,37 +2058,90 @@ begin
 end;
 
 procedure TDbToolDatabase.BeforeDelete(DataSet: TDataSet);
-var
-  Sql: string;
 resourcestring
   SViewDeleteWarningCora =
-    'STOPP! Diese View könnte eine JOIN-Abfrage beinhalten. Ein Löschen ist deswegen zu gefährlich und wird daher verboten.';
-  SViewDeleteWarningGeneral =
+    'STOPP! Eine View kann eine JOIN-Abfrage beinhalten. Ein Löschen ist deswegen zu gefährlich und wird daher verboten.';
+  SJoinDeleteWarningGeneral =
     'STOPP! Ein Löschen aus einer JOIN-Abfrage löscht die Vorkommen auf ALLEN verbundenen Tabellen. Dieser Vorgang ist zu gefährlich und wird daher verboten.';
-begin
-  Sql := TADOQuery(DataSet).Sql.Text;
-  Sql := StringReplace(Sql, #13, ' ', [rfReplaceAll]);
-  Sql := StringReplace(Sql, #10, ' ', [rfReplaceAll]);
-  Sql := StringReplace(Sql, #9, ' ', [rfReplaceAll]);
-  if KnownProductDb <> ptOther then
+
+
+  procedure _CheckSql(Sql: string);
   begin
-    if ContainsStr(Sql, ' vw_') or // do not localize
-      ContainsStr(Sql, ' X_vw_') then // do not localize
+    if ContainsStr(Sql, ViewDummySequence) then
+      raise Exception.Create(SViewDeleteWarningCora);
+    Sql := StringReplace(Sql, #13, ' ', [rfReplaceAll]);
+    Sql := StringReplace(Sql, #10, ' ', [rfReplaceAll]);
+    Sql := StringReplace(Sql, #9, ' ', [rfReplaceAll]);
+    if KnownProductDb <> ptOther then
+    begin
+      if ContainsStr(Sql, ' vw_') or // do not localize
+         ContainsStr(Sql, ' X_vw_') then // do not localize
+      begin
+        raise Exception.Create(SViewDeleteWarningCora);
+      end;
+    end;
+    Sql := StringReplace(Sql, ' ', '', [rfReplaceAll]);
+    if (ContainsText(Sql, 'INNERJOIN') or // do not localize
+      ContainsText(Sql, 'LEFTJOIN') or // do not localize
+      ContainsText(Sql, 'LEFTOUTERJOIN') or // do not localize
+      ContainsText(Sql, 'RIGHTJOIN') or // do not localize
+      ContainsText(Sql, 'RIGHTOUTERJOIN') or // do not localize
+      ContainsText(Sql, 'FULLJOIN') or // do not localize
+      ContainsText(Sql, 'FULLOUTERJOIN') or // do not localize
+      ContainsText(Sql, 'CROSSJOIN')) then // do not localize
+    begin
+      raise Exception.Create(SJoinDeleteWarningGeneral);
+    end;
+  end;
+
+begin
+  if DataSet is TAdoTable then
+  begin
+    if IsView(TAdoTable(DataSet).TableName) then
     begin
       raise Exception.Create(SViewDeleteWarningCora);
     end;
-  end;
-  Sql := StringReplace(Sql, ' ', '', [rfReplaceAll]);
-  if (ContainsText(Sql, 'INNERJOIN') or // do not localize
-    ContainsText(Sql, 'LEFTJOIN') or // do not localize
-    ContainsText(Sql, 'LEFTOUTERJOIN') or // do not localize
-    ContainsText(Sql, 'RIGHTJOIN') or // do not localize
-    ContainsText(Sql, 'RIGHTOUTERJOIN') or // do not localize
-    ContainsText(Sql, 'FULLJOIN') or // do not localize
-    ContainsText(Sql, 'FULLOUTERJOIN') or // do not localize
-    ContainsText(Sql, 'CROSSJOIN')) then // do not localize
+  end
+  else if DataSet is TFDTable then
   begin
-    raise Exception.Create(SViewDeleteWarningGeneral);
+    if IsView(TFDTable(DataSet).TableName) then
+    begin
+      raise Exception.Create(SViewDeleteWarningCora);
+    end;
+  end
+  else if DataSet is TIBTable then
+  begin
+    if IsView(TIBTable(DataSet).TableName) then
+    begin
+      raise Exception.Create(SViewDeleteWarningCora);
+    end;
+  end
+  {$IFNDEF WIN64}
+  else if DataSet is TTable then
+  begin
+    if IsView(TTable(DataSet).TableName) then
+    begin
+      raise Exception.Create(SViewDeleteWarningCora);
+    end;
+  end
+  {$ENDIF}
+  else if DataSet is TAdoQuery then
+  begin
+    _CheckSql(TADOQuery(DataSet).Sql.Text);
+  end
+  else if DataSet is TFdQuery then
+  begin
+    _CheckSql(TFdQuery(DataSet).Sql.Text);
+  end
+  else if DataSet is TIbQuery then
+  begin
+    _CheckSql(TIbQuery(DataSet).Sql.Text);
+  {$IFNDEF WIN64}
+  end
+  else if DataSet is TQuery then
+  begin
+    _CheckSql(TQuery(DataSet).Sql.Text);
+  {$ENDIF}
   end;
 end;
 
@@ -2459,7 +2516,6 @@ begin
   end;
 end;
 
-// TODO: Review https://github.com/hickelsoft/dbtool/pull/9/
 function TDbToolDatabase.SQL_Escape_TableName(sTableName: String): string;
 var
   ary: TArray<string>;
@@ -2489,8 +2545,7 @@ begin
 {$IFNDEF WIN64}
     dtLocal:
       begin
-        // BDE/Paradox/dBase: use square bracket quoting like Access
-        result := '[' + StringReplace(sTableName, ']', ']]', [rfReplaceAll]) + ']';
+        result := sTableName;
       end;
 {$ENDIF}
     dtInterbase,
@@ -2518,7 +2573,6 @@ begin
   // TODO: Also implement other DBMS in the future
 end;
 
-// TODO: Review https://github.com/hickelsoft/dbtool/pull/8
 function TDbToolDatabase.SQL_Escape_String(sString: String): String;
 begin
   result := sString;

@@ -18,6 +18,9 @@ var
 const
   ConfigRegKey = '\Software\HickelSOFT\DBTool'; // do not localize
 
+const
+  ViewDummySequence = #9+' '+#9+' '+#9+'  '+#9#9+' '+#9#9+'   '+#9;
+
 procedure FixSpeedButtonColors(control: TWinControl; color: TColor);
 function OEM2Ansi(Value: AnsiString): AnsiString;
 function GetSQLServerDBListFilename: string;

@@ -2,7 +2,7 @@
 <xlat>
   <meta>
     <version>3</version>
-    <created>2026-03-17T22:22:44.826+01:00</created>
+    <created>2026-03-23T13:38:11.398+01:00</created>
     <tool>amTranslationManager</tool>
     <toolversion>2.3.9199.24584</toolversion>
   </meta>
@@ -14,7 +14,7 @@
   </options>
   <project sourcefile="..\..\..\HS-Service\DBTool\DBTool32.exe" stringsymbolfile=".\DBTool32.drc" language="de-DE" properties="2179">
     <targetlanguages>
-      <language language="en-US" translated="1136"/>
+      <language language="en-US" translated="1137"/>
       <language language="de-DE" translated="0"/>
     </targetlanguages>
     <modules>
@@ -527,6 +527,16 @@
               </property>
             </properties>
           </item>
+          <item name="C_Database_SJoinDeleteWarningGeneral">
+            <properties>
+              <property>
+                <value>STOPP! Ein Löschen aus einer JOIN-Abfrage löscht die Vorkommen auf ALLEN verbundenen Tabellen. Dieser Vorgang ist zu gefährlich und wird daher verboten.</value>
+                <translations>
+                  <translation language="en-US">STOP! A deletion from a JOIN query deletes the occurrences on ALL joined tables. This operation is too dangerous and is therefore prohibited.</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
           <item name="C_Database_SLocalCreateDatabaseNotPossible">
             <properties>
               <property>
@@ -650,19 +660,19 @@
           <item name="C_Database_SViewDeleteWarningCora">
             <properties>
               <property>
-                <value>STOPP! Diese View könnte eine JOIN-Abfrage beinhalten. Ein Löschen ist deswegen zu gefährlich und wird daher verboten.</value>
+                <value>STOPP! Eine View kann eine JOIN-Abfrage beinhalten. Ein Löschen ist deswegen zu gefährlich und wird daher verboten.</value>
                 <translations>
-                  <translation language="en-US">STOP! This view may contain a JOIN query. Deleting it is therefore too dangerous and is therefore prohibited.</translation>
+                  <translation language="en-US">STOP! A view can contain a JOIN query. Deleting it is therefore too dangerous and is therefore prohibited.</translation>
                 </translations>
               </property>
             </properties>
           </item>
-          <item name="C_Database_SViewDeleteWarningGeneral">
+          <item name="C_Database_SViewDeleteWarningGeneral" state="unused">
             <properties>
               <property>
                 <value>STOPP! Ein Löschen aus einer JOIN-Abfrage löscht die Vorkommen auf ALLEN verbundenen Tabellen. Dieser Vorgang ist zu gefährlich und wird daher verboten.</value>
                 <translations>
-                  <translation language="en-US">STOP! A delete from a JOIN query deletes the occurrences on ALL joined tables. This operation is too dangerous and is therefore prohibited.</translation>
+                  <translation language="en-US">STOP! A deletion from a JOIN query deletes the occurrences on ALL joined tables. This operation is too dangerous and is therefore prohibited.</translation>
                 </translations>
               </property>
             </properties>
@@ -19022,7 +19032,7 @@
               <property name="Caption">
                 <value>Indizes</value>
                 <translations>
-                  <translation language="en-US">Indices</translation>
+                  <translation language="en-US">Indexes</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">
@@ -19204,7 +19214,7 @@
               <property name="Caption">
                 <value>  Indizes</value>
                 <translations>
-                  <translation language="en-US">  Indices</translation>
+                  <translation language="en-US">  Indexes</translation>
                 </translations>
               </property>
               <property name="Font.Name" status="skip">

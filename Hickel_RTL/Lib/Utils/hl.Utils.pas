@@ -269,7 +269,9 @@ function StreamsAreIdentical(const aStream1, aStream2: TStream;
                              const aBlockSize: Integer = 4096): Boolean;
 procedure ExtractFileFromResource(ResType: PChar; ResName, OutFile: string);
 
+{$IF CompilerVersion >= 20.0} // geraten
 function SQL4KBSektor_AutoAdjust: boolean;
+{$IFEND}
 
 function FileExtToMime(fileext: string): string;
 function LoadFileToStr(const FileName: TFileName): String;
@@ -1455,12 +1457,12 @@ begin
 end;
 
 class function ThlUtils.FileGetContents(const filename: string): string;
-{$IF CompilerVersion < 20.0} // Version geraten
+{$IF CompilerVersion < 20.0} // geraten
 var
   FileStream: TFileStream;
 {$IFEND}
 begin
-{$IF CompilerVersion >= 20.0} // Version geraten
+{$IF CompilerVersion >= 20.0} // geraten
   Result := TFile.ReadAllText(filename);
 {$ELSE}
   FileStream := TFileStream.Create(filename, fmOpenRead or fmShareDenyWrite);
@@ -4026,9 +4028,10 @@ begin
   end;
 end;
 
+{$IF CompilerVersion >= 20.0} // geraten
 function SQL4KBSektor_AutoAdjust: boolean;
 
-  function Max(a,b: DWORD): DWORD;
+  function Max(a,b: integer): integer;
   begin
     if a > b then exit(a) else exit(b);
   end;
@@ -4156,6 +4159,7 @@ begin
     result := true;
   end;
 end;
+{$IFEND}
 
 function FileExtToMime(fileext: string): string;
 begin
