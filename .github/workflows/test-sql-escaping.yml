@@ -1,0 +1,86 @@
+name: SQL Escaping Tests
+
+on:
+  push:
+    branches: [ fix/sql-escape-string-order ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  unit-test:
+    name: Unit Tests (Free Pascal)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Free Pascal
+        run: sudo apt-get update && sudo apt-get install -y fp-compiler
+
+      - name: Compile tests
+        run: fpc Tests/TestSQLEscapeString.pas
+
+      - name: Run tests
+        run: ./Tests/TestSQLEscapeString
+
+  integration-test:
+    name: Integration Tests (Firebird + MariaDB)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start Firebird
+        run: |
+          docker run -d --name firebird-test \
+            -e FIREBIRD_DATABASE=testdb \
+            -e FIREBIRD_USER=testuser \
+            -e FIREBIRD_PASSWORD=testpass \
+            -e ISC_PASSWORD=masterkey \
+            jacobalberty/firebird:v4.0
+
+      - name: Start MariaDB
+        run: |
+          docker run -d --name mysql-test \
+            -e MARIADB_ROOT_PASSWORD=testpass \
+            -e MARIADB_DATABASE=testdb \
+            mariadb:10
+
+      - name: Start SQL Server
+        run: |
+          docker run -d --name mssql-test \
+            -e ACCEPT_EULA=Y \
+            -e MSSQL_SA_PASSWORD='TestPass123!' \
+            mcr.microsoft.com/mssql/server:2022-latest
+
+      - name: Wait for databases
+        run: |
+          echo "Waiting for Firebird..."
+          for i in $(seq 1 30); do
+            if docker exec firebird-test /usr/local/firebird/bin/isql \
+              -user SYSDBA -password masterkey localhost:/firebird/data/testdb \
+              -i /dev/stdin <<< "SELECT 1 FROM RDB\$DATABASE;" > /dev/null 2>&1; then
+              echo "Firebird ready"; break
+            fi; sleep 2
+          done
+          echo "Waiting for MariaDB..."
+          for i in $(seq 1 30); do
+            if docker exec mysql-test mariadb -uroot -ptestpass testdb \
+              -e "SELECT 1;" > /dev/null 2>&1; then
+              echo "MariaDB ready"; break
+            fi; sleep 2
+          done
+          echo "Waiting for SQL Server..."
+          for i in $(seq 1 30); do
+            if docker exec mssql-test /opt/mssql-tools18/bin/sqlcmd \
+              -S localhost -U sa -P 'TestPass123!' -C \
+              -Q "SELECT 1" > /dev/null 2>&1; then
+              echo "SQL Server ready"; break
+            fi; sleep 2
+          done
+
+      - name: Run integration tests
+        run: bash Tests/TestSQLEscapeIntegration.sh
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker rm -f firebird-test mysql-test mssql-test 2>/dev/null || true
