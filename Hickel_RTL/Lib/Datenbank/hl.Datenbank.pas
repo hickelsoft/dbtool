@@ -932,22 +932,22 @@ begin
       begin
         if q.FieldByName('IndexType').AsWideString = 'HEAP' then
         begin
-          ExecSql(Format('ALTER TABLE [%s].[%s] REBUILD;',
+          ExecSql(10*60, Format('ALTER TABLE [%s].[%s] REBUILD;',
             [SchemaName, TableName]));
         end
         else
         begin
           if q.FieldByName('avg_fragmentation_in_percent').AsInteger > 30 then
-            ExecSql(Format('ALTER INDEX [%s] ON [%s].[%s] REBUILD;',
+            ExecSql(10*60, Format('ALTER INDEX [%s] ON [%s].[%s] REBUILD;',
               [IndexName, SchemaName, TableName]))
           else if q.FieldByName('avg_fragmentation_in_percent').AsInteger > 10
           then
-            ExecSql(Format('ALTER INDEX [%s] ON [%s].[%s] REORGANIZE;',
+            ExecSql(10*60, Format('ALTER INDEX [%s] ON [%s].[%s] REORGANIZE;',
               [IndexName, SchemaName, TableName]));
         end;
       end;
 
-      ExecSql(Format('UPDATE STATISTICS [%s].[%s] WITH FULLSCAN;',
+      ExecSql(10*60, Format('UPDATE STATISTICS [%s].[%s] WITH FULLSCAN;',
         [SchemaName, TableName]));
 
       q.Next;
@@ -963,16 +963,16 @@ begin
     begin
       SchemaName := q.FieldByName('SchemaName').AsWideString;
       TableName := q.FieldByName('TableName').AsWideString;
-      ExecSql(Format('sp_recompile ''[%s].[%s]'';', [SchemaName, TableName]));
+      ExecSql(10*60, Format('sp_recompile ''[%s].[%s]'';', [SchemaName, TableName]));
       q.Next;
     end;
   finally
     FreeAndNil(q);
   end;
 
-  ExecSql('DBCC FREEPROCCACHE;');
+  ExecSql(10*60, 'DBCC FREEPROCCACHE;');
   // geht nicht ohne sysadmin Rechte, obwohl die Dokumentation sagt, dass man nur db_owner sein muss...
-  //ExecSql('exec sp_updatestats;');
+  //ExecSql(10*60, 'exec sp_updatestats;');
 end;
 
 destructor ThlDatenbank.Destroy;
