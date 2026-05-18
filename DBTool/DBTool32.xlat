@@ -2,7 +2,7 @@
 <xlat>
   <meta>
     <version>3</version>
-    <created>2026-03-23T13:38:11.398+01:00</created>
+    <created>2026-05-18T15:52:35.298+02:00</created>
     <tool>amTranslationManager</tool>
     <toolversion>2.3.9199.24584</toolversion>
   </meta>
@@ -12,13 +12,13 @@
     <sorted>True</sorted>
     <omitnewstate>True</omitnewstate>
   </options>
-  <project sourcefile="..\..\..\HS-Service\DBTool\DBTool32.exe" stringsymbolfile=".\DBTool32.drc" language="de-DE" properties="2179">
+  <project sourcefile="..\..\..\HS-Service\DBTool\DBTool32.exe" stringsymbolfile=".\DBTool32.drc" language="de-DE" properties="2181">
     <targetlanguages>
-      <language language="en-US" translated="1137"/>
       <language language="de-DE" translated="0"/>
+      <language language="en-US" translated="1137"/>
     </targetlanguages>
     <modules>
-      <module name="resourcestrings" type="strings" properties="1828">
+      <module name="resourcestrings" type="strings" properties="1830">
         <items>
           <item name="Bde_Bdeconst_SAutoSessionActive">
             <properties>
@@ -3971,6 +3971,13 @@
               </property>
             </properties>
           </item>
+          <item name="FireDAC_Stan_ResStrs_S_FD_SQLiteLinkedEngIsNotCompat">
+            <properties>
+              <property>
+                <value>Verknüpfte SQLite-Engine [%s] ist nicht kompatibel mit [FireDAC.Phys.SQLiteWrapper.%s]. Hinweis: Suchen Sie nach einem anderen [FireDAC.Phys.SQLiteWrapper.*] und entfernen Sie ihn aus Ihrem Projekt</value>
+              </property>
+            </properties>
+          </item>
           <item name="FireDAC_Stan_ResStrs_S_FD_SQLitePwdInvalid">
             <properties>
               <property>
@@ -4241,6 +4248,13 @@
             <properties>
               <property>
                 <value>Warnung:</value>
+              </property>
+            </properties>
+          </item>
+          <item name="Globals_SWantToSaveChanges">
+            <properties>
+              <property>
+                <value>Änderungen speichern?</value>
               </property>
             </properties>
           </item>
@@ -10227,6 +10241,13 @@
               </property>
             </properties>
           </item>
+          <item name="System_RTLConsts_SFCreateError">
+            <properties>
+              <property>
+                <value>Datei %s kann nicht erstellt werden</value>
+              </property>
+            </properties>
+          </item>
           <item name="System_RTLConsts_SFCreateErrorEx">
             <properties>
               <property>
@@ -10247,7 +10268,7 @@
               </property>
             </properties>
           </item>
-          <item name="System_RTLConsts_SFOpenErrorEx">
+          <item name="System_RTLConsts_SFOpenErrorEx" state="unused">
             <properties>
               <property>
                 <value>Datei %s kann nicht geöffnet werden. %s</value>

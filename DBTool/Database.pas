@@ -151,6 +151,7 @@ var
   d: THsFieldDocumentation;
   TableName: string;
   i: integer;
+  doSave: boolean;
 begin
   for i := 0 to lvTables.Items.Count - 1 do
   begin
@@ -160,12 +161,12 @@ begin
       d := dbDatabase.GetDbToolFieldAndTableDescription(TableName, ''{FieldName does not matter});
       desc := d.TableDesc;
       desc_bak := desc;
-      if ThgInputQry.InputMemo(TableName, SEnterTableDescription, desc) then
-      begin
-        if desc = desc_bak then exit;
-        dbDatabase.SetDbToolTableDescription(TableName, desc);
-        // TODO: Change Label2.Caption of existing TableForm
-      end;
+      doSave := ThgInputQry.InputMemo(TableName, SEnterTableDescription, desc, true);
+      if desc = desc_bak then exit;
+      if not doSave then doSave := MessageDlg(SWantToSaveChanges, mtConfirmation, mbYesNoCancel, 0) = mrYes;
+      if not doSave then exit;
+      dbDatabase.SetDbToolTableDescription(TableName, desc);
+      // TODO: Change Label2.Caption of existing TableForm
     end;
   end;
 end;

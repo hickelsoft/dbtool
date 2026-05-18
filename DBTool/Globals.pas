@@ -15,6 +15,9 @@ var
   clActiveField: TColor = $0080FFFF; // RGB($FF, $FF, $80)
   clNullField: TColor = $00DDDDFF; // Schweinchen Rosa
 
+resourcestring
+  SWantToSaveChanges = 'Änderungen speichern?';
+
 const
   ConfigRegKey = '\Software\HickelSOFT\DBTool'; // do not localize
 

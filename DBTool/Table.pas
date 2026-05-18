@@ -467,8 +467,7 @@ end;
 procedure TMDI_Table.dbgTableCalcCellColors(Sender: TObject; Field: TField;
   State: TGridDrawState; Highlight: boolean; AFont: TFont; ABrush: TBrush);
 begin
-  if not Assigned(Field) then
-    exit;
+  if Field = nil then exit;
   if Field.IsNull then
     ABrush.Color := clNullField;
   if not Highlight then
@@ -1186,36 +1185,38 @@ procedure TMDI_Table.Beschreibunganzeigenndern1Click(Sender: TObject);
 var
   desc, desc_bak: string;
   d: THsFieldDocumentation;
+  doSave: boolean;
 begin
   d := frmDatabase.dbDatabase.GetDbToolFieldAndTableDescription(FTableName, lvFields.Selected.Caption);
   desc := d.FieldDesc;
   desc_bak := desc;
-  if ThgInputQry.InputMemo(lvFields.Selected.Caption, SEnterFieldDescription, desc) then
-  begin
-    if desc = desc_bak then exit;
-    frmDatabase.dbDatabase.SetDbToolFieldDescription(FTableName, lvFields.Selected.Caption, desc);
-    desc := StringReplace(StringReplace(desc, #13#10, '      ', [rfReplaceAll]), #9, '   ', [rfReplaceAll]);
-    lvFields.Selected.SubItems[lvFields.Selected.SubItems.Count-1] := desc;
-  end;
+  doSave := ThgInputQry.InputMemo(lvFields.Selected.Caption, SEnterFieldDescription, desc, true);
+  if desc = desc_bak then exit;
+  if not doSave then doSave := MessageDlg(SWantToSaveChanges, mtConfirmation, mbYesNoCancel, 0) = mrYes;
+  if not doSave then exit;
+  frmDatabase.dbDatabase.SetDbToolFieldDescription(FTableName, lvFields.Selected.Caption, desc);
+  desc := StringReplace(StringReplace(desc, #13#10, '      ', [rfReplaceAll]), #9, '   ', [rfReplaceAll]);
+  lvFields.Selected.SubItems[lvFields.Selected.SubItems.Count-1] := desc;
 end;
 
 procedure TMDI_Table.Label2Click(Sender: TObject);
 var
   desc, desc_bak: string;
   d: THsFieldDocumentation;
+  doSave: boolean;
 begin
   d := frmDatabase.dbDatabase.GetDbToolFieldAndTableDescription(FTableName, ''{FieldName does not matter});
   desc := d.TableDesc;
   desc_bak := desc;
-  if ThgInputQry.InputMemo(FTableName, SEnterTableDescription, desc) then
-  begin
-    if desc = desc_bak then exit;
-    frmDatabase.dbDatabase.SetDbToolTableDescription(FTableName, desc);
-    if Trim(desc) = '' then
-      Label2.Caption := SClickToEnterTableDesc
-    else
-      Label2.Caption := StringReplace(StringReplace(desc, #13#10, '      ', [rfReplaceAll]), #9, '   ', [rfReplaceAll]);
-  end;
+  doSave := ThgInputQry.InputMemo(FTableName, SEnterTableDescription, desc, true);
+  if desc = desc_bak then exit;
+  if not doSave then doSave := MessageDlg(SWantToSaveChanges, mtConfirmation, mbYesNoCancel, 0) = mrYes;
+  if not doSave then exit;
+  frmDatabase.dbDatabase.SetDbToolTableDescription(FTableName, desc);
+  if Trim(desc) = '' then
+    Label2.Caption := SClickToEnterTableDesc
+  else
+    Label2.Caption := StringReplace(StringReplace(desc, #13#10, '      ', [rfReplaceAll]), #9, '   ', [rfReplaceAll]);
 end;
 
 procedure TMDI_Table.UnterschiedlicheWerte1Click(Sender: TObject);
@@ -1618,19 +1619,20 @@ var
   desc, desc_bak: string;
   d: THsFieldDocumentation;
   i: integer;
+  doSave: boolean;
 begin
   d := frmDatabase.dbDatabase.GetDbToolFieldAndTableDescription(FTableName, dbgTable.GetActiveField.FieldName);
   desc := d.FieldDesc;
   desc_bak := desc;
-  if ThgInputQry.InputMemo(dbgTable.GetActiveField.FieldName, SEnterFieldDescription, desc) then
-  begin
-    if desc = desc_bak then exit;
-    frmDatabase.dbDatabase.SetDbToolFieldDescription(FTableName, dbgTable.GetActiveField.FieldName, desc);
-    desc := StringReplace(StringReplace(desc, #13#10, '      ', [rfReplaceAll]), #9, '   ', [rfReplaceAll]);
-    for i := 0 to lvFields.Items.Count - 1 do
-      if lvFields.Items[i].Caption = dbgTable.GetActiveField.FieldName then
-        lvFields.Items[i].SubItems[lvFields.Items[i].SubItems.Count-1] := desc;
-  end;
+  doSave := ThgInputQry.InputMemo(dbgTable.GetActiveField.FieldName, SEnterFieldDescription, desc, true);
+  if desc = desc_bak then exit;
+  if not doSave then doSave := MessageDlg(SWantToSaveChanges, mtConfirmation, mbYesNoCancel, 0) = mrYes;
+  if not doSave then exit;
+  frmDatabase.dbDatabase.SetDbToolFieldDescription(FTableName, dbgTable.GetActiveField.FieldName, desc);
+  desc := StringReplace(StringReplace(desc, #13#10, '      ', [rfReplaceAll]), #9, '   ', [rfReplaceAll]);
+  for i := 0 to lvFields.Items.Count - 1 do
+    if lvFields.Items[i].Caption = dbgTable.GetActiveField.FieldName then
+      lvFields.Items[i].SubItems[lvFields.Items[i].SubItems.Count-1] := desc;
 end;
 
 procedure TMDI_Table.FilternnachLIKEEingabewert1Click(Sender: TObject);

@@ -24,8 +24,8 @@ type
   public
     class function InputQuery(title: string; var text: string; liste: TStrings = nil): boolean; overload;
     class function InputQuery(title, description: string; var text: string; liste: TStrings = nil): boolean; overload;
-    class function InputMemo(title: string; var text: string): boolean; overload;
-    class function InputMemo(title, description: string; var text: string): boolean; overload;
+    class function InputMemo(title: string; var text: string; ATextBeiAbbruchBehalten: boolean=false): boolean; overload;
+    class function InputMemo(title, description: string; var text: string; ATextBeiAbbruchBehalten: boolean=false): boolean; overload;
   end;
 
 var
@@ -56,12 +56,12 @@ begin
     Memo1.SetFocus;
 end;
 
-class function ThgInputQry.InputMemo(title: string; var text: string): boolean;
+class function ThgInputQry.InputMemo(title: string; var text: string; ATextBeiAbbruchBehalten: boolean=false): boolean;
 begin
-  result := InputMemo(title, title, text);
+  result := InputMemo(title, title, text, ATextBeiAbbruchBehalten);
 end;
 
-class function ThgInputQry.InputMemo(title, description: string; var text: string): boolean;
+class function ThgInputQry.InputMemo(title, description: string; var text: string; ATextBeiAbbruchBehalten: boolean=false): boolean;
 var
   frm: ThgInputQry;
 begin
@@ -85,7 +85,7 @@ begin
     //frm.Button2.Top := frm.Button2.Top + frm.Label1.Height;
     frm.ClientHeight := frm.ClientHeight + frm.Label1.Height;
     result := frm.ShowModal = mrOk;
-    if result then
+    if result or ATextBeiAbbruchBehalten then
     begin
       text := frm.Memo1.text;
     end;

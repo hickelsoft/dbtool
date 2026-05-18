@@ -168,8 +168,7 @@ end;
 procedure TMDI_Query.dbgTableCalcCellColors(Sender: TObject; Field: TField;
   State: TGridDrawState; Highlight: boolean; AFont: TFont; ABrush: TBrush);
 begin
-  if not Assigned(Field) then
-    exit;
+  if Field = nil then exit;
   if Field.IsNull then
     ABrush.Color := clNullField;
   if not Highlight then
