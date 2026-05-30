@@ -6,7 +6,7 @@ interface
 
 uses
   SysUtils, Windows, Classes, Controls, StdCtrls, Forms, ExtCtrls, Menus,
-  ComCtrls, Grids,
+  ComCtrls, Grids, System.UITypes,
   DB, Dialogs, Buttons, C_Database, Wwdbgrid, Wwdbigrd, Graphics, ClipBrd,
   HsGradientPanel;
 

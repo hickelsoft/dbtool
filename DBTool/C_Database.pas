@@ -72,7 +72,8 @@ type
     class procedure CreateDataBase(dt: TDatabaseType; const sName, sServer: string);
 
     function GetTable(Tablename: string): TDataSet;
-    function Query(Sql: string): TDataSet;
+    function Query(Sql: string): TDataSet; overload;
+    function Query(Sql: string; out RowsAffected: integer): TDataSet; overload;
 
     function GetViewDefinition_Implemented: boolean;
     function GetViewDefinition(viewName: string): string; // requires GetViewDefinition_Implemented=true
@@ -98,7 +99,7 @@ type
     function GetDataBaseProperty(const aPropertyName: string): string;
     procedure SetDataBaseProperty(const aPropertyName, aValue: string);
 
-    procedure ExecSql(Sql: String);
+    function ExecSql(Sql: String): integer;
     procedure CommitRetaining;
     procedure RefreshTable(aTable: TDataSet);
     procedure ImportFromDatabase(dbSource: TDbToolDatabase; sTable: String);
@@ -928,17 +929,34 @@ begin
   end;
 end;
 
-procedure TDbToolDatabase.ExecSql(Sql: string);
+function TDbToolDatabase.ExecSql(Sql: string): Integer;
 var
   IBQuery: TIBQuery;
   FBQuery: TFDQuery;
 {$IFNDEF WIN64}
-  bdeQuery: TQuery;
+  BDEQuery: TQuery;
 {$ENDIF}
-  adoQuery: TADOQuery;
+  ADOQuery: TADOQuery;
+
+  function NormalizeRowsAffected(Value: Integer): Integer;
+  begin
+    // Manche Treiber liefern negative Werte wenn unbekannt
+    if Value < 0 then
+      Result := -1
+    else
+      Result := Value;
+  end;
+
 begin
-  if Copy(Sql, Length(Sql), 1) = ';' then
-    Sql := Copy(Sql, 1, Length(Sql) - 1);
+  Result := -1;
+
+  if Trim(Sql) = '' then
+    Exit;
+
+  // letztes ; entfernen
+  if Sql[Length(Sql)] = ';' then
+    Delete(Sql, Length(Sql), 1);
+
   Screen.Cursor := crHourGlass;
 
   try
@@ -946,64 +964,103 @@ begin
 
 {$IFNDEF WIN64}
       dtLocal:
-        begin
-          bdeQuery := TQuery.Create(DB_BDE);
+      begin
+        BDEQuery := TQuery.Create(nil);
+        try
+          BDEQuery.DatabaseName := DB_BDE.DatabaseName;
+          BDEQuery.SQL.Text := Sql;
+
+          BDEQuery.ExecSQL;
+
           try
-            bdeQuery.DatabaseName := DB_BDE.DatabaseName;
-            bdeQuery.Sql.Clear;
-            bdeQuery.Sql.Add(Sql);
-            bdeQuery.ExecSql;
-          finally
-            FreeAndNil(bdeQuery);
+            Result := NormalizeRowsAffected(BDEQuery.RowsAffected);
+          except
+            Result := -1;
           end;
+
+        finally
+          BDEQuery.Free;
         end;
+      end;
 {$ENDIF}
+
       dtInterbase:
-        begin
-          IBQuery := TIBQuery.Create(DB_IB);
+      begin
+        IBQuery := TIBQuery.Create(nil);
+        try
+          IBQuery.Database := DB_IB;
+          IBQuery.Transaction := DB_IB_Trans;
+          IBQuery.SQL.Text := Sql;
+
+          IBQuery.ExecSQL;
+
           try
-            IBQuery.Database := DB_IB;
-            IBQuery.Transaction := DB_IB_Trans;
-            IBQuery.Sql.Clear;
-            IBQuery.Sql.Add(Sql);
-            IBQuery.ExecSql;
-          finally
-            FreeAndNil(IBQuery);
+            Result := NormalizeRowsAffected(IBQuery.RowsAffected);
+          except
+            Result := -1;
           end;
+
+        finally
+          IBQuery.Free;
         end;
+      end;
 
       dtFirebird:
-        begin
-          FBQuery := TFDQuery.Create(DB_FB);
-          try
-            FBQuery.Connection := DB_FB;
-            FBQuery.Transaction := DB_FB_Trans;
-            FBQuery.Sql.Clear;
-            FBQuery.Sql.Add(Sql);
-            FBQuery.ExecSql;
-          finally
-            FreeAndNil(FBQuery);
-          end;
-        end;
+      begin
+        FBQuery := TFDQuery.Create(nil);
+        try
+          FBQuery.Connection := DB_FB;
+          FBQuery.Transaction := DB_FB_Trans;
+          FBQuery.SQL.Text := Sql;
 
-      dtAccess, dtSqlServer, dtMySql:
-        begin
-          adoQuery := TADOQuery.Create(DB_ADO);
+          FBQuery.ExecSQL;
+
           try
-            adoQuery.Connection := DB_ADO;
-            adoQuery.CommandTimeout := 86400; // 24 Stunden
-            adoQuery.ParamCheck := false;
-            adoQuery.Sql.Clear;
-            adoQuery.Sql.Add(Sql);
-            adoQuery.ExecSql;
-          finally
-            FreeAndNil(adoQuery);
+            Result := NormalizeRowsAffected(FBQuery.RowsAffected);
+          except
+            Result := -1;
           end;
+
+        finally
+          FBQuery.Free;
         end;
+      end;
+
+      dtAccess,
+      dtSqlServer,
+      dtMySql:
+      begin
+        ADOQuery := TADOQuery.Create(nil);
+        try
+          ADOQuery.Connection := DB_ADO;
+          ADOQuery.CommandTimeout := 86400;
+          ADOQuery.ParamCheck := False;
+          ADOQuery.SQL.Text := Sql;
+
+          ADOQuery.ExecSQL;
+
+          try
+            Result := NormalizeRowsAffected(ADOQuery.RowsAffected);
+
+            // ADO liefert manchmal 0 oder -1 obwohl erfolgreich
+            // => unbekannt
+            if Result < 0 then
+              Result := -1;
+
+          except
+            Result := -1;
+          end;
+
+        finally
+          ADOQuery.Free;
+        end;
+      end;
 
     else
-      raise Exception.Create('(TDbToolDatabase.ExecSql) ' + SInternalError);
+      raise Exception.Create(
+        '(TDbToolDatabase.ExecSql) ' + SInternalError);
     end;
+
   finally
     Screen.Cursor := crDefault;
   end;
@@ -1113,6 +1170,7 @@ begin
         exit;
       if Trim(q.Fields[0].AsWideString) = '' then
         exit;
+      // TODO: Zeige die Parameter!
       if KnownProductDb <> ptOther then
         result := '-- ' + SExecuteStoredProcedureWith_ + ' ''exec ' +
           SQL_Escape_String(procedureName) + '''' + #13#10 +
@@ -1197,7 +1255,10 @@ begin
       if M.Success then
         p := M.Index
       else
+      begin
+        p := 0;
         Assert(false);
+      end;
 
       if p > 0 then
         result := Copy(result, p + 3, Length(result) - (p + 3) + 1);
@@ -1233,149 +1294,242 @@ begin
 end;
 
 function TDbToolDatabase.Query(Sql: String): TDataSet;
+var
+  dummy: integer;
+begin
+  result := Query(Sql, dummy);
+end;
+
+function TDbToolDatabase.Query(
+  Sql: String;
+  out RowsAffected: Integer
+): TDataSet;
 // Achtung: Ergebnis muss mit Free() freigegeben werden
 var
   IBQuery: TIBQuery;
   FBQuery: TFDQuery;
 {$IFNDEF WIN64}
-  bdeQuery: TQuery;
+  BDEQuery: TQuery;
 {$ENDIF}
-  adoQuery: TADOQuery;
+  ADOQuery: TADOQuery;
+
+  function NormalizeRowsAffected(Value: Integer): Integer;
+  begin
+    if Value < 0 then
+      Result := -1
+    else
+      Result := Value;
+  end;
+
+  function IsSelectStatement(const S: string): Boolean;
+  var
+    T: string;
+  begin
+    T := Trim(UpperCase(S));
+
+    // primitive aber robuste Lösung
+    Result :=
+      StartsText('SELECT', T) or
+      StartsText('WITH', T) or
+      //StartsText('EXEC', T) or
+      //StartsText('EXECUTE', T) or
+      StartsText('SHOW', T) or
+      StartsText('EXPLAIN', T) or
+      StartsText('PRAGMA', T);
+  end;
+
 begin
-  if Copy(Sql, Length(Sql), 1) = ';' then
-    Sql := Copy(Sql, 1, Length(Sql) - 1);
+  Result := nil;
+  RowsAffected := -1;
+
+  Sql := Trim(Sql);
+
+  if Sql = '' then
+    Exit;
+
+  if Sql[Length(Sql)] = ';' then
+    Delete(Sql, Length(Sql), 1);
+
   Screen.Cursor := crHourGlass;
-  result := nil;
 
   try
     case FDatabaseType of
+
 {$IFNDEF WIN64}
       dtLocal:
-        begin
-          bdeQuery := TQuery.Create(DB_BDE);
-          bdeQuery.DatabaseName := DB_BDE.DatabaseName;
-          bdeQuery.BeforeDelete := BeforeDelete;
-          bdeQuery.Sql.Clear;
-          bdeQuery.Sql.Add(Sql);
-          try
-            bdeQuery.Active := true;
-            result := bdeQuery;
-          except
-            on E: EAbort do
-            begin
-              Abort;
-            end;
-            on E: Exception do
-            begin
-              if E.Message = bdeconst.SHandleError then
-                result := nil
-              else
-                raise;
-            end
-            else
-              raise;
-          end;
-        end;
-{$ENDIF}
-      dtInterbase:
-        begin
-          if not StartsText('SELECT', Trim(Sql)) then // TODO: There could be comments at the beginning!!!
+      begin
+        BDEQuery := TQuery.Create(nil);
+
+        try
+          BDEQuery.DatabaseName := DB_BDE.DatabaseName;
+          BDEQuery.BeforeDelete := BeforeDelete;
+          BDEQuery.SQL.Text := Sql;
+
+          if IsSelectStatement(Sql) then
           begin
-            DB_IB.ExecuteImmediate(Sql, DB_IB_Trans);
-            result := nil;
+            BDEQuery.Open;
+
+            Result := BDEQuery;
+
+            try
+              RowsAffected :=
+                NormalizeRowsAffected(BDEQuery.RowsAffected);
+            except
+              RowsAffected := -1;
+            end;
           end
           else
           begin
-            IBQuery := TIBQuery.Create(DB_IB);
+            BDEQuery.ExecSQL;
+
+            try
+              RowsAffected :=
+                NormalizeRowsAffected(BDEQuery.RowsAffected);
+            except
+              RowsAffected := -1;
+            end;
+
+            BDEQuery.Free;
+          end;
+
+        except
+          BDEQuery.Free;
+          raise;
+        end;
+      end;
+{$ENDIF}
+
+      dtInterbase:
+      begin
+        if IsSelectStatement(Sql) then
+        begin
+          IBQuery := TIBQuery.Create(nil);
+
+          try
             IBQuery.Database := DB_IB;
             IBQuery.Transaction := DB_IB_Trans;
             IBQuery.BeforeDelete := BeforeDelete;
-            IBQuery.Sql.Clear;
-            IBQuery.Sql.Add(Sql);
+            IBQuery.SQL.Text := Sql;
+
+            IBQuery.Open;
+
+            Result := IBQuery;
+
             try
-              IBQuery.Active := true;
-              result := IBQuery;
+              RowsAffected :=
+                NormalizeRowsAffected(IBQuery.RowsAffected);
             except
-              on E: EAbort do
-              begin
-                Abort;
-              end;
-              on E: EIBError do
-              begin
-                if E.SQLCode = Ord(ibxeEmptySQLStatement) then
-                  result := nil
-                else
-                  raise;
-              end;
-              on E: Exception do
-              begin
-                raise;
-              end;
+              RowsAffected := -1;
             end;
+
+          except
+            IBQuery.Free;
+            raise;
           end;
+        end
+        else
+        begin
+          DB_IB.ExecuteImmediate(Sql, DB_IB_Trans);
+
+          // IBX liefert hier oft nichts brauchbares
+          RowsAffected := -1;
         end;
+      end;
 
       dtFirebird:
+      begin
+        if IsSelectStatement(Sql) then
         begin
-          if not StartsText('SELECT', Trim(Sql)) then // TODO: There could be comments at the beginning!!!
-          begin
-            DB_FB.ExecSQL(Sql);
-            result := nil;
-          end
-          else
-          begin
-            FBQuery := TFDQuery.Create(DB_FB);
+          FBQuery := TFDQuery.Create(nil);
+
+          try
             FBQuery.Connection := DB_FB;
             FBQuery.Transaction := DB_FB_Trans;
             FBQuery.BeforeDelete := BeforeDelete;
-            FBQuery.Sql.Clear;
-            FBQuery.Sql.Add(Sql);
-            try
-              FBQuery.Active := true;
-              result := FBQuery;
-            except
-              on E: EAbort do
-              begin
-                Abort;
-              end;
-              on E: Exception do
-              begin
-                raise;
-              end;
-            end;
-          end;
-        end;
+            FBQuery.SQL.Text := Sql;
 
-      dtAccess, dtSqlServer, dtMySql:
-        begin
-          adoQuery := TADOQuery.Create(DB_ADO);
-          adoQuery.Connection := DB_ADO;
-          adoQuery.CommandTimeout := 86400; // 24 Stunden
-          adoQuery.ParamCheck := false;
-          adoQuery.BeforeDelete := BeforeDelete;
-          adoQuery.Sql.Clear;
-          adoQuery.Sql.Add(Sql);
-          try
-            adoQuery.Active := true;
-            result := adoQuery;
+            FBQuery.Open;
+
+            Result := FBQuery;
+
+            try
+              RowsAffected :=
+                NormalizeRowsAffected(FBQuery.RowsAffected);
+            except
+              RowsAffected := -1;
+            end;
+
           except
-            on E: EAbort do
-            begin
-              Abort;
-            end;
-            on E: Exception do
-            begin
-              if E.Message = adoconst.SNoResultSet then
-                result := nil
-              else
-                raise;
-            end;
+            FBQuery.Free;
+            raise;
+          end;
+        end
+        else
+        begin
+          try
+            RowsAffected := DB_FB.ExecSQL(Sql);
+
+            RowsAffected :=
+              NormalizeRowsAffected(RowsAffected);
+
+          except
+            RowsAffected := -1;
+            raise;
           end;
         end;
+      end;
+
+      dtAccess,
+      dtSqlServer,
+      dtMySql:
+      begin
+        ADOQuery := TADOQuery.Create(nil);
+
+        try
+          ADOQuery.Connection := DB_ADO;
+          ADOQuery.CommandTimeout := 3600; // 1h
+          ADOQuery.ParamCheck := False;
+          ADOQuery.BeforeDelete := BeforeDelete;
+          ADOQuery.SQL.Text := Sql;
+
+          if IsSelectStatement(Sql) then
+          begin
+            ADOQuery.Open;
+
+            Result := ADOQuery;
+
+            try
+              RowsAffected :=
+                NormalizeRowsAffected(ADOQuery.RowsAffected);
+            except
+              RowsAffected := -1;
+            end;
+          end
+          else
+          begin
+            ADOQuery.ExecSQL;
+
+            try
+              RowsAffected :=
+                NormalizeRowsAffected(ADOQuery.RowsAffected);
+            except
+              RowsAffected := -1;
+            end;
+
+            ADOQuery.Free;
+          end;
+
+        except
+          ADOQuery.Free;
+          raise;
+        end;
+      end;
 
     else
-      raise Exception.Create('(TDbToolDatabase.ExecSql) ' + SInternalError);
+      raise Exception.Create(
+        '(TDbToolDatabase.Query) ' + SInternalError);
     end;
+
   finally
     Screen.Cursor := crDefault;
   end;

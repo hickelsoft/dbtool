@@ -1528,6 +1528,8 @@ begin
       else
         iPos := Pos(FFindStr, dsData.Dataset.Fields.Fields[iSearchField]
           .AsWideString);
+      if iPos > 0 then
+        break;
     except
       on E: EAbort do
       begin
@@ -1535,12 +1537,10 @@ begin
       end;
       on E: Exception do
       begin
-        iPos := 0;
+        // do nothing
       end;
     end;
 
-    if iPos > 0 then
-      break;
     if not GetNextField(iSearchField) then
       break;
   end;

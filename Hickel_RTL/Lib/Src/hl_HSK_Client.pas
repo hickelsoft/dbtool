@@ -1,6 +1,7 @@
 unit hl_HSK_Client;
 
-// REDACTED (DUMMY IMPLEMENTATION) IN OPEN SOURCE RELEASE
+// REDACTED IN OPEN SOURCE RELEASE
+// (REPLACED BY DUMMY IMPLEMENTATION)
 
 interface
 
@@ -92,7 +93,7 @@ end;
 
 function HSK_0012(A: PWideChar): DWORD;
 begin
-  exit;
+  exit(0);
 end;
 
 function HSK_0013: Double;

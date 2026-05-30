@@ -341,6 +341,8 @@ begin
       else
         iPos := Pos(FFindStr, DataSource1.DataSet.Fields.Fields[iSearchField]
           .AsWideString);
+      if iPos > 0 then
+        break;
     except
       on E: EAbort do
       begin
@@ -348,12 +350,10 @@ begin
       end;
       on E: Exception do
       begin
-        iPos := 0;
+        // do nothing
       end;
     end;
 
-    if iPos > 0 then
-      break;
     if not GetNextField(iSearchField) then
       break;
   end;
@@ -389,8 +389,10 @@ var
   slTmp: TStringList;
   iLine: integer;
   sLine: string;
+  RowsAffected: integer;
 resourcestring
   SSqlExecuted = 'SQL-Befehl ausgeführt.';
+  SDRowsAffected = '%d Zeilen betroffen.';
 begin
   // Bitte Synchron halten:  DBtool\Query.pas  und hcg_Generic_SQL_Query.pas
 
@@ -457,7 +459,8 @@ begin
       DataSource1.DataSet.Free;
       DataSource1.DataSet := nil;
     end;
-    DataSource1.DataSet := FDatabase.Query(sGesamtMitZeilenumbruechen);
+    DataSource1.DataSet := FDatabase.Query(sGesamtMitZeilenumbruechen, RowsAffected);
+    showmessage('X Rows affected: ' + IntToStr(RowsAffected)); // sponge
     bLastWasQuery := DataSource1.DataSet <> nil;
   end
   else
@@ -483,21 +486,7 @@ begin
         DataSource1.DataSet.Free;
         DataSource1.DataSet := nil;
       end;
-      (*
-        if (UpperCase(Copy(sBefehl, 1, 6)) = 'SELECT') or // do not localize
-        (UpperCase(Copy(sBefehl, 1, 7)) = 'EXPLAIN') or // do not localize
-        (UpperCase(Copy(sBefehl, 1, 4)) = 'SHOW') then // do not localize
-        begin
-        bLastWasQuery := true;
-        DataSource1.DataSet := FDatabase.Query(sBefehl);
-        end
-        else
-        begin
-        bLastWasQuery := false;
-        FDatabase.ExecSql(sBefehl);
-        end;
-      *)
-      DataSource1.DataSet := FDatabase.Query(sBefehl);
+      DataSource1.DataSet := FDatabase.Query(sBefehl, RowsAffected);
       bLastWasQuery := DataSource1.DataSet <> nil;
 
       sGesamt := Trim(Copy(sGesamt, Length(sBefehl) + 1));
@@ -509,8 +498,18 @@ begin
   // war bug: wenn man im query fenster ist und auf den leeren dbgrid klickt und dann eine taste drückt, kommt listenindex fehler!
 
   if not bLastWasQuery then
-    Application.MessageBox(PChar(SSqlExecuted), PChar(Application.Title),
-      MB_ICONINFORMATION + MB_OK);
+  begin
+    if RowsAffected = -1 then
+    begin
+      Application.MessageBox(PChar(SSqlExecuted), PChar(Application.Title),
+        MB_ICONINFORMATION + MB_OK);
+    end
+    else
+    begin
+      Application.MessageBox(PChar(SSqlExecuted+' '+Format(SDRowsAffected,[RowsAffected])), PChar(Application.Title),
+        MB_ICONINFORMATION + MB_OK);
+    end;
+  end;
 end;
 
 procedure TMDI_Query.btnCSVExportClick(Sender: TObject);
