@@ -6,22 +6,27 @@ uses
   SysUtils, Forms;
 
 type
+  TStacktraceHandlingCallback = procedure(const AStackTraceFile: string);
+
+type
   ThlExceptionHandler = class(TObject)
   private
+    class var FCallback: TStacktraceHandlingCallback;
     class var FExceptionHandler: TExceptionEvent;
   protected
     class procedure DoException(Sender: TObject; E: Exception);
   public
+    class property Callback: TStacktraceHandlingCallback read FCallback write FCallback;
     class procedure ManualDoException(E: Exception);
     class procedure ErstelleStacktrace(E: Exception);
-    class procedure Init(AExceptionHandler: TExceptionEvent = nil);
+    class procedure Init(AExceptionHandler: TExceptionEvent = nil; ACallback: TStacktraceHandlingCallback = nil);
     class procedure Uninit;
   end;
 
 implementation
 
 uses
-  hl_Log, StrUtils, hl_ExceptionLogger, MessaBox, Windows, HS_Mitteilung;
+  hl_Log, StrUtils, hl_ExceptionLogger, MessaBox, Windows;
 
 class procedure ThlExceptionHandler.ErstelleStacktrace(E: Exception);
 var
@@ -38,7 +43,8 @@ begin
     hlExceptionLog := ThlLog.Create(logfile);
     try
       ThlExceptionLogger.LogException(E, hlExceptionLog);
-      THsMitteilung.SendeStacktraceAnHickelSOFT(hlExceptionLog.FileName);
+      if Assigned(FCallback) then
+        FCallback(hlExceptionLog.FileName);
     finally
       FreeAndNil(hlExceptionLog);
     end;
@@ -58,10 +64,11 @@ begin
 end;
 
 class procedure ThlExceptionHandler.Init(AExceptionHandler
-  : TExceptionEvent = nil);
+  : TExceptionEvent = nil; ACallback: TStacktraceHandlingCallback = nil);
 begin
   Application.OnException := DoException;
   FExceptionHandler := AExceptionHandler;
+  FCallback := ACallback;
 end;
 
 class procedure ThlExceptionHandler.ManualDoException(E: Exception);

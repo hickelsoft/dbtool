@@ -798,8 +798,7 @@ end;
 
 procedure TDLG_Main.FormCreate(Sender: TObject);
 begin
-  // Application.OnException := AppException;
-  ThlExceptionHandler.Init();
+  ThlExceptionHandler.Init(nil, nil);
 
 {$IFDEF WIN64}
   BdeAdmin1.Visible := false;
