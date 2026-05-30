@@ -206,7 +206,6 @@
         <DCCReference Include="Lib\Utils\FormatSettingsCompat.pas"/>
         <DCCReference Include="Lib\Src\hl_Adresse.pas"/>
         <DCCReference Include="Lib\Src\hl_Lizenz.pas"/>
-        <DCCReference Include="Lib\Src\hl_Consts.pas"/>
         <DCCReference Include="Lib\Utils\hl.Utils.AutoSnippingTool.pas"/>
         <DCCReference Include="Lib\Utils\hl.Utils.Mapi.pas"/>
         <DCCReference Include="Lib\Src\HickelSOFT_Design.pas"/>
@@ -225,6 +224,7 @@
         </DCCReference>
         <DCCReference Include="Lib\Datenbank\hl.Datenbank.pas"/>
         <DCCReference Include="Lib\Utils\hl.Utils.Gui.pas"/>
+        <DCCReference Include="Lib\Src\hl_HSK_Client.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

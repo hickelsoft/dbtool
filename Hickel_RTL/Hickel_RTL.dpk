@@ -96,7 +96,6 @@ contains
   FormatSettingsCompat in 'Lib\Utils\FormatSettingsCompat.pas',
   hl_Adresse in 'Lib\Src\hl_Adresse.pas',
   hl_Lizenz in 'Lib\Src\hl_Lizenz.pas',
-  hl_Consts in 'Lib\Src\hl_Consts.pas',
   hl.Utils.AutoSnippingTool in 'Lib\Utils\hl.Utils.AutoSnippingTool.pas',
   hl.Utils.Mapi in 'Lib\Utils\hl.Utils.Mapi.pas',
   HickelSOFT_Design in 'Lib\Src\HickelSOFT_Design.pas',
@@ -110,6 +109,7 @@ contains
   hg_InputQuery in 'Gui\Src\hg_InputQuery.pas' {hgInputQry},
   hg_CheckboxVoransicht in 'Gui\Src\hg_CheckboxVoransicht.pas' {DLG_CheckboxVoransicht},
   hl.Datenbank in 'Lib\Datenbank\hl.Datenbank.pas',
-  hl.Utils.Gui in 'Lib\Utils\hl.Utils.Gui.pas';
+  hl.Utils.Gui in 'Lib\Utils\hl.Utils.Gui.pas',
+  hl_HSK_Client in 'Lib\Src\hl_HSK_Client.pas';
 
 end.
