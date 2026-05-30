@@ -1,11 +1,17 @@
 unit hl.Utils;
 
+{$IFNDEF CONSOLE}
+  {$IFNDEF NO_GUI}
+    {$DEFINE CAN_USE_GUI_CODE}
+  {$ENDIF}
+{$ENDIF}
+
 interface
 
 uses
   Windows, Messages, Classes, SysUtils, Math, ShellAPI, DB,
 {$IF CompilerVersion >= 20.0}System.IOUtils, System.Hash,{$IFEND}
-{$IFNDEF CONSOLE}Forms, Controls,{$ENDIF}
+{$IFDEF CAN_USE_GUI_CODE}Forms, Controls,{$ENDIF}
   ZLib, ADODB;
 
 type
@@ -483,7 +489,7 @@ class function ThlUtils.ShellExecuteWait(aWnd: HWND; Operation: string;
       repeat
         exitCode := WaitForSingleObject(Info.hProcess, 100);
         Sleep(50);
-        {$IFNDEF CONSOLE}
+        {$IFDEF CAN_USE_GUI_CODE}
         if Windows.GetCurrentThreadId = System.MainThreadID then
           Application.ProcessMessages;
         if Assigned(Application) and Application.Terminated then
@@ -551,7 +557,7 @@ class function ThlUtils.ShellExecuteWait(aWnd: HWND; Operation: string;
         if lpExitCode <> STILL_ACTIVE then
           Break;
         Sleep(50);
-        {$IFNDEF CONSOLE}
+        {$IFDEF CAN_USE_GUI_CODE}
         if Windows.GetCurrentThreadId = System.MainThreadID then
           Application.ProcessMessages;
         if Assigned(Application) and Application.Terminated then
@@ -651,7 +657,7 @@ begin
   if Windows.GetCurrentThreadId <> System.MainThreadID then
     exit;
 
-  {$IFNDEF CONSOLE}
+  {$IFDEF CAN_USE_GUI_CODE}
   if Assigned(Application) then
   begin
     Application.ProcessMessages;
@@ -712,7 +718,7 @@ var
 begin
   Directory := IncludeTrailingPathDelimiter(Directory);
 
-  {$IFNDEF CONSOLE}
+  {$IFDEF CAN_USE_GUI_CODE}
   if Application.Terminated then
     exit;
   if Windows.GetCurrentThreadId = System.MainThreadID then
@@ -763,7 +769,7 @@ begin
   try
     Rewrite(fOut);
     sComment := '; ' + StrPrüfsummenDatei;
-    {$IFNDEF CONSOLE}
+    {$IFDEF CAN_USE_GUI_CODE}
     if Assigned(Application) then
     begin
       sComment := sComment + ', ' + Format(StrErstelltMitS,
@@ -817,7 +823,7 @@ begin
   try
     Rewrite(fOut);
     sComment := '; ' + StrPrüfsummenDatei;
-    {$IFNDEF CONSOLE}
+    {$IFDEF CAN_USE_GUI_CODE}
     if Assigned(Application) then
     begin
       sComment := sComment + ', ' + Format(StrErstelltMitS,
@@ -979,7 +985,7 @@ begin
   ZeroMemory(@sh, SizeOf(sh));
   with sh do
   begin
-    {$IFNDEF CONSOLE}
+    {$IFDEF CAN_USE_GUI_CODE}
     Wnd := Application.Handle;
     {$ELSE}
     Wnd := 0;
@@ -1097,7 +1103,7 @@ begin
   else
   begin
     // Das ist wichtig, denn bei folgendem Ausdruck wird der SQL Server zur Diva:
-    // "SELECT ROUND(0.996, 2)"  => Arithmetischer Überlauf... (Fein 60998)
+    // "SELECT ROUND(0.996, 2)"  => Arithmetischer Überlauf... (Ticket 60998)
     Result := 'cast(' + Result + ' as float)';
   end;
 end;
@@ -1114,7 +1120,7 @@ begin
   else
   begin
     // Das ist wichtig, denn bei folgendem Ausdruck wird der SQL Server zur Diva:
-    // "SELECT ROUND(0.996, 2)"  => Arithmetischer Überlauf... (Fein 60998)
+    // "SELECT ROUND(0.996, 2)"  => Arithmetischer Überlauf... (Ticket 60998)
     Result := 'cast(' + Result + ' as float)';
   end;
 end;
@@ -2458,7 +2464,7 @@ begin
       fFlags := fFlags or FOF_SILENT;
   end;
 
-  {$IFNDEF CONSOLE}
+  {$IFDEF CAN_USE_GUI_CODE}
   Screen.Cursor := crHourGlass;
   {$ENDIF}
   try
@@ -2467,7 +2473,7 @@ begin
     ResultVal := SHFileOperation(MyFOStruct);
     Result := (ResultVal = 0);
   finally
-    {$IFNDEF CONSOLE}
+    {$IFDEF CAN_USE_GUI_CODE}
     Screen.Cursor := crDefault;
     {$ENDIF}
   end;
@@ -2662,9 +2668,9 @@ var
 begin
   Result := '';
   if apublic then
-    SHGetSpecialFolderLocation({$IFNDEF CONSOLE}Application.Handle{$ELSE}0{$ENDIF}, CSIDL_COMMON_DESKTOPDIRECTORY, PIDList)
+    SHGetSpecialFolderLocation({$IFDEF CAN_USE_GUI_CODE}Application.Handle{$ELSE}0{$ENDIF}, CSIDL_COMMON_DESKTOPDIRECTORY, PIDList)
   else
-    SHGetSpecialFolderLocation({$IFNDEF CONSOLE}Application.Handle{$ELSE}0{$ENDIF}, CSIDL_DESKTOP, PIDList);
+    SHGetSpecialFolderLocation({$IFDEF CAN_USE_GUI_CODE}Application.Handle{$ELSE}0{$ENDIF}, CSIDL_DESKTOP, PIDList);
   if Assigned(PIDList) then
     if ShGetPathFromIDList(PIDList, Buffer) then
       Result := Buffer;
@@ -3914,7 +3920,7 @@ begin
   TargetTime := GetTickCount + Milliseconds;
   while (GetTickCount < TargetTime) do
   begin
-    {$IFNDEF CONSOLE}
+    {$IFDEF CAN_USE_GUI_CODE}
     Application.ProcessMessages;
     if Application.Terminated then Abort;
     {$ENDIF}

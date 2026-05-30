@@ -1106,8 +1106,9 @@ begin
               E.Message) >= 1) or
               (Pos('Waiting until recovery is finished', E.Message) >= 1) then
             begin
-              // "Die LUTZ_1-Datenbank wird wiederhergestellt. Warten Sie, bis die Wiederherstellung beendet ist"
-              // oder "Database 'LUTZ_1' is being recovered. Waiting until recovery is finished"
+              // "Die ...-Datenbank wird wiederhergestellt. Warten Sie, bis die Wiederherstellung beendet ist"
+              // oder
+              // "Database '...' is being recovered. Waiting until recovery is finished"
               Sleep(5000);
             end
             else

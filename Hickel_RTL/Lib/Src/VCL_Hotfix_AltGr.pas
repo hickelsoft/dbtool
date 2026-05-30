@@ -10,6 +10,9 @@ interface
 
 implementation
 
+{$IF CompilerVersion < 20.0} // Version geraten
+{$IF NOT DEFINED(CLR)}
+
 uses
   Menus, Windows, Registry, SysUtils;
 
@@ -18,8 +21,6 @@ uses
 // - IsWow64 geändert
 // - $ENDIF -> $IFEND (alte Delphi Kompatiblität)
 // - .Free -> FreeAndNil()
-
-{$IF NOT DEFINED(CLR)}
 
 resourcestring
   StrIsWow64BadProcess = 'IsWow64: Schlechtes Prozess-Handle';
@@ -168,7 +169,7 @@ begin
     Result := IsAltGRKeyLayout;
   end;
 end;
-{$IFEND}
+
 // Ende vom Delphi 12.3 Code
 
 // Der folgende Code kommt von
@@ -209,16 +210,16 @@ var
 
 procedure PatchAltGrBug;
 begin
-{$IF CompilerVersion < 20.0} // Version geraten
   if AlreadyFixed then
     exit;
   RedirectProcedure(@IsAltGRPressed, @IsAltGRPressed_New);
   AlreadyFixed := true;
-{$IFEND}
 end;
 
 initialization
 
 PatchAltGrBug;
+{$IFEND}
+{$IFEND}
 
 end.

@@ -74,6 +74,7 @@ object hgInputQry: ThgInputQry
     Anchors = [akLeft, akTop, akRight, akBottom]
     Lines.Strings = (
       'Memo1')
+    ScrollBars = ssBoth
     TabOrder = 4
     Visible = False
     WantTabs = True

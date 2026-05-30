@@ -1,5 +1,11 @@
 unit hl.Utils.Web;
 
+{$IFNDEF CONSOLE}
+  {$IFNDEF NO_GUI}
+    {$DEFINE CAN_USE_GUI_CODE}
+  {$ENDIF}
+{$ENDIF}
+
 // TODO: GET/POST Unicode implementations seem to be off
 // GET Indy     : Response as UTF8, GET Parameters are sent as '?'
 // GET WinInet  : Response as UTF8, GET Parameters are sent as ANSI
@@ -9,7 +15,7 @@ unit hl.Utils.Web;
 interface
 
 uses
-  Windows, Classes, IdSSLOpenSSL, IdComponent, ProgrDlg, Forms;
+  Windows, Classes, IdSSLOpenSSL, IdComponent{$IFDEF CAN_USE_GUI_CODE}, ProgrDlg, Forms{$ENDIF};
 
 function secure_email(email, linktext: string; crypt_linktext: boolean): string;
 function htmlEntities(s: string): string;
@@ -21,7 +27,7 @@ function TextToHtml(text: string): string;
 function DoPost(const URL: string; Params: TStringList): string;
 function DoGet(const URL: string): string;
 function EncodeURIComponent(const ASrc: string): UTF8String;
-procedure DownloadFile(const URL, filename: string; pgd: TProgressDlg = nil);
+procedure DownloadFile(const URL, filename: string; pgd: {$IFDEF CAN_USE_GUI_CODE}TProgressDlg{$ELSE}TObject{$ENDIF} = nil);
 
 var
   hl_Web_UseIndy: boolean;
@@ -290,7 +296,9 @@ end;
 type
   TTempDownloadProgress = class(TObject)
   public
+    {$IFDEF CAN_USE_GUI_CODE}
     pgd: TProgressDlg;
+    {$ENDIF}
     procedure DoWorkEnd(ASender: TObject; AWorkMode: TWorkMode);
     procedure DoWork(ASender: TObject; AWorkMode: TWorkMode; AWorkCount: Int64);
     procedure DoWorkBegin(ASender: TObject; AWorkMode: TWorkMode;
@@ -300,6 +308,7 @@ type
 procedure TTempDownloadProgress.DoWork(ASender: TObject; AWorkMode: TWorkMode;
   AWorkCount: Int64);
 begin
+  {$IFDEF CAN_USE_GUI_CODE}
   if pgd.StopButtonSignal then
   begin
     Abort;
@@ -307,13 +316,16 @@ begin
 
   // In 50KB-Schritten vorangehen, weil die ProgressBar-Komponente nicht Int64 kann!
   pgd.Position := AWorkCount div (1024 * 50);
+  {$ENDIF}
 end;
 
 procedure TTempDownloadProgress.DoWorkBegin(ASender: TObject;
   AWorkMode: TWorkMode; AWorkCountMax: Int64);
 begin
+  {$IFDEF CAN_USE_GUI_CODE}
   // In 50KB-Schritten vorangehen, weil die ProgressBar-Komponente nicht Int64 kann!
   pgd.MaxValue := AWorkCountMax div (1024 * 50);
+  {$ENDIF}
 end;
 
 procedure TTempDownloadProgress.DoWorkEnd(ASender: TObject;
@@ -323,7 +335,7 @@ begin
 end;
 
 procedure Indy_DownloadFile(const URL, filename: string;
-  pgd: TProgressDlg = nil);
+  pgd: {$IFDEF CAN_USE_GUI_CODE}TProgressDlg{$ELSE}TObject{$ENDIF} = nil);
 var
   IdHTTP1: TIdHTTP;
   Stream: TMemoryStream;
@@ -342,7 +354,9 @@ begin
     if Assigned(pgd) then
     begin
       tmpDownload := TTempDownloadProgress.Create;
+      {$IFDEF CAN_USE_GUI_CODE}
       tmpDownload.pgd := pgd;
+      {$ENDIF}
 
       IdHTTP1.OnWork := tmpDownload.DoWork;
       IdHTTP1.OnWorkBegin := tmpDownload.DoWorkBegin;
@@ -461,8 +475,10 @@ begin
     RedirectCount := 0;
     while True do
     begin
+      {$IFDEF CAN_USE_GUI_CODE}
       if Assigned(Application) and Application.Terminated then
         Abort;
+      {$ENDIF}
       ExtractHostAndPath(AURL, Host, Path, Port);
       hConnect := InternetConnect(hSession, PChar(Host), Port, nil, nil,
         INTERNET_SERVICE_HTTP, 0, 0);
@@ -512,8 +528,10 @@ begin
               InternetReadFile(hRequest, @Buffer, SizeOf(Buffer), BytesRead);
               if BytesRead > 0 then
                 Response := Response + Copy(Buffer, 1, BytesRead);
+              {$IFDEF CAN_USE_GUI_CODE}
               if Assigned(Application) and Application.Terminated then
                 Abort;
+              {$ENDIF}
             until BytesRead = 0;
 
             // Output the server response.
@@ -558,8 +576,10 @@ begin
     RedirectCount := 0;
     while True do
     begin
+      {$IFDEF CAN_USE_GUI_CODE}
       if Assigned(Application) and Application.Terminated then
         Abort;
+      {$ENDIF}
       hRequest := InternetOpenUrl(hSession, PChar(AURL), nil, 0,
         INTERNET_FLAG_RELOAD, 0);
       if not Assigned(hRequest) then
@@ -585,8 +605,10 @@ begin
           dwNumber := 1024;
           while (InternetReadFile(hRequest, @databuffer, dwNumber, dwread)) do
           begin
+            {$IFDEF CAN_USE_GUI_CODE}
             if Assigned(Application) and Application.Terminated then
               Abort;
+            {$ENDIF}
             if dwread = 0 then
               break;
             databuffer[dwread] := #0;
@@ -611,7 +633,7 @@ begin
 end;
 
 procedure WinInet_DownloadFile(const URL, filename: string;
-  pgd: TProgressDlg = nil);
+  pgd: {$IFDEF CAN_USE_GUI_CODE}TProgressDlg{$ELSE}TObject{$ENDIF} = nil);
 var
   AURL: string;
   hSession, hRequest: HINTERNET;
@@ -635,8 +657,10 @@ begin
     RedirectCount := 0;
     while True do
     begin
+      {$IFDEF CAN_USE_GUI_CODE}
       if Assigned(Application) and Application.Terminated then
         Abort;
+      {$ENDIF}
       hRequest := InternetOpenUrl(hSession, PChar(AURL), nil, 0,
         INTERNET_FLAG_RELOAD or INTERNET_FLAG_NO_CACHE_WRITE, 0);
       if not Assigned(hRequest) then
@@ -663,11 +687,13 @@ begin
           reserved := 0;
           if pgd <> nil then
           begin
+            {$IFDEF CAN_USE_GUI_CODE}
             if HttpQueryInfo(hRequest, HTTP_QUERY_CONTENT_LENGTH or
               HTTP_QUERY_FLAG_NUMBER, @FileSize, dwSize, reserved) then
               pgd.MaxValue := FileSize div 1024 // Number of KiB
             else
               pgd.MaxValue := 0;
+            {$ENDIF}
           end;
 
           FileStream := TFileStream.Create(filename, fmCreate);
@@ -680,15 +706,19 @@ begin
               begin
                 FileStream.Write(Buffer, BufferLen);
                 TotalRead := TotalRead + BufferLen;
+                {$IFDEF CAN_USE_GUI_CODE}
                 if pgd <> nil then
                 begin
                   pgd.Position := TotalRead div 1024;
                   if pgd.StopButtonSignal then
                     Abort;
                 end;
+                {$ENDIF}
               end;
+              {$IFDEF CAN_USE_GUI_CODE}
               if Assigned(Application) and Application.Terminated then
                 Abort;
+              {$ENDIF}
             until BufferLen = 0;
           finally
             FreeAndNil(FileStream);
@@ -786,7 +816,7 @@ begin
     result := WinInet_DoGet(URL);
 end;
 
-procedure DownloadFile(const URL, filename: string; pgd: TProgressDlg = nil);
+procedure DownloadFile(const URL, filename: string; pgd: {$IFDEF CAN_USE_GUI_CODE}TProgressDlg{$ELSE}TObject{$ENDIF} = nil);
 begin
   if hl_Web_UseIndy then
     Indy_DownloadFile(URL, filename, pgd)

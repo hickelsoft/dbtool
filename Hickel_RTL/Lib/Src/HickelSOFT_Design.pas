@@ -283,7 +283,7 @@ begin
         ARect.Right := 24;
       end;
       ACanvas.Font.Charset := DEFAULT_CHARSET;
-      // important, otherwise "Wingdings" won'T work
+      // important, otherwise "Wingdings" won't work
       if isRTL then
         DrawText(ACanvas.Handle, PChar(text), Length(text), ARect,
           DT_RIGHT or DT_SINGLELINE or DT_VCENTER)
