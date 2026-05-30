@@ -460,7 +460,6 @@ begin
       DataSource1.DataSet := nil;
     end;
     DataSource1.DataSet := FDatabase.Query(sGesamtMitZeilenumbruechen, RowsAffected);
-    showmessage('X Rows affected: ' + IntToStr(RowsAffected)); // sponge
     bLastWasQuery := DataSource1.DataSet <> nil;
   end
   else

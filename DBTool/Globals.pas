@@ -82,14 +82,6 @@ begin
       exit;
   end;
 
-  // Backwards compatibility to HS-Info 1.0
-  if IstHickelSoftTestPC then
-  begin
-    Result := 'C:\HS-Service\DbToolDatenbanken.txt';
-    if FileExists(Result) then
-      exit;
-  end;
-
   // Das ist der Standard von DBTool Vollversion
   // %APPDATA% ist das ist das Appdata\Roaming Verzeichnis
   outDir := SysUtils.GetEnvironmentVariable('APPDATA'); // do not localize

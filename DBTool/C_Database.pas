@@ -1153,10 +1153,31 @@ begin
   end;
 end;
 
-function TDbToolDatabase.GetStoredProcedureDefinition(procedureName
-  : string): string;
+function TDbToolDatabase.GetStoredProcedureDefinition(procedureName: string): string;
+
+  function _ExtractParams(const SQL: string): string;
+  var
+    Matches: TMatchCollection;
+    M: TMatch;
+  begin
+    // Sucht nach Parametern wie: @von int
+    Matches := TRegEx.Matches(SQL, '@(\w+)\s+\w+');
+
+    result := '';
+    for M in Matches do
+    begin
+      if result <> '' then
+        result := result + ', ';
+      // Group[1] enthält den Parameternamen ohne @
+      result := result + Format('@%s=xxx', [M.Groups[1].Value]);
+    end;
+  end;
+
 var
   q: TDataSet;
+  M: TMatch;
+  p: integer;
+  tmp: string;
 begin
   result := '';
   if not GetStoredProcedureDefinition_Implemented then
@@ -1170,15 +1191,29 @@ begin
         exit;
       if Trim(q.Fields[0].AsWideString) = '' then
         exit;
-      // TODO: Zeige die Parameter!
+
+      M := TRegEx.Match(
+        LowerCase(q.Fields[0].AsWideString),
+        '\bas\b' // do not localize
+      );
+
+      tmp := '';
+      if M.Success then
+      begin
+        p := M.Index;
+        tmp := ' ' + _ExtractParams(Copy(q.Fields[0].AsWideString, 1, p));
+      end;
+
+      result := '-- ' + SExecuteStoredProcedureWith_ + #13#10;
       if KnownProductDb <> ptOther then
-        result := '-- ' + SExecuteStoredProcedureWith_ + ' ''exec ' +
-          SQL_Escape_String(procedureName) + '''' + #13#10 +
-          Trim(q.Fields[0].AsWideString) // do not localize
+         result := result + '-- exec ' + // do not localize
+          Trim(SQL_Escape_String(procedureName) + tmp) + #13#10 +
+          Trim(q.Fields[0].AsWideString)
       else
-        result := '-- ' + SExecuteStoredProcedureWith_ + ' ''EXEC ' +
-          SQL_Escape_String(procedureName) + '''' + #13#10 +
-          Trim(q.Fields[0].AsWideString); // do not localize
+        result := result + '-- EXEC ' + // do not localize
+          Trim(SQL_Escape_String(procedureName) + tmp) + #13#10 +
+          Trim(q.Fields[0].AsWideString);
+      result := result + #13#10;
     finally
       FreeAndNil(q);
     end;
@@ -1249,7 +1284,7 @@ begin
 
       M := TRegEx.Match(
         LowerCase(Result),
-        '\bas\b'
+        '\bas\b' // do not localize
       );
 
       if M.Success then
@@ -1846,8 +1881,8 @@ begin
             EmptyParam, rsSchema);
           while not rsSchema.Eof do
           begin
-            idxName := rsSchema.FieldByName('INDEX_NAME').AsString;
-            colName := rsSchema.FieldByName('COLUMN_NAME').AsString;
+            idxName := rsSchema.FieldByName('INDEX_NAME').AsWideString;
+            colName := rsSchema.FieldByName('COLUMN_NAME').AsWideString;
             isUnique := not rsSchema.FieldByName('UNIQUE').AsBoolean;
             isPrimary := rsSchema.FieldByName('PRIMARY_KEY').AsBoolean;
 
