@@ -21,7 +21,8 @@ uses
   FireDAC.VCLUI.Wait,
   FireDAC.Comp.Client,
   FireDAC.Phys.IBBase,
-  FireDAC.DApt;
+  FireDAC.DApt,
+  System.RegularExpressions;
 
 type
   TDatabaseType = (
@@ -1169,6 +1170,7 @@ function TDbToolDatabase.GetViewDefinition(viewName: string): string;
 var
   q: TDataSet;
   p: integer;
+  M: TMatch;
 begin
   result := '';
   if not GetViewDefinition_Implemented then
@@ -1186,9 +1188,19 @@ begin
       result := q.Fields[0].AsWideString;
       if Trim(result) = '' then
         exit;
-      p := Pos(' as', LowerCase(result));
+
+      M := TRegEx.Match(
+        LowerCase(Result),
+        '\bas\b'
+      );
+
+      if M.Success then
+        p := M.Index
+      else
+        Assert(false);
+
       if p > 0 then
-        result := Copy(result, p + 4, Length(result) - (p + 4) + 1);
+        result := Copy(result, p + 3, Length(result) - (p + 3) + 1);
       result := Trim(result);
       if result = '' then
         exit;
@@ -3272,7 +3284,7 @@ begin
     end;
     ptCmDb2{, ptOIDplus2}:
     begin
-      if not RequireDatabasePassword([apHickelEmployee, apHickelPC, apCmDbAdmin]) then exit(false);
+      if not RequireDatabasePassword([apCmDbAdmin]) then exit(false);
     end;
   end;
 end;
