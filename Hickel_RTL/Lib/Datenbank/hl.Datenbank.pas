@@ -124,8 +124,7 @@ type
     function IstExpressEdition: boolean;
 
     function DbOwnerSid: string;
-    function SqlServerMac: string;
-
+    
     procedure ShrinkDatabase(Datenbankname: string; typ: string = 'LOG');
 
     class function GetScalar(sql: hlString; adoCon: TAdoConnection;
@@ -884,21 +883,6 @@ begin
   Result := GetScalar
     ('select CONVERT([varchar](100), owner_sid, 1) from sys.databases where name = '
     + Datenbankname.toSQLString).AsWideString;
-end;
-
-function ThlDatenbank.SqlServerMac: string;
-begin
-  ExecSql('IF object_id(''SeqId'', ''P'') IS NOT NULL DROP PROCEDURE [dbo].[SeqId];');
-
-  ExecSql('CREATE PROCEDURE SeqId ' + 'AS ' + 'begin ' + '  declare @t table ' +
-    '    ( ' + '    i uniqueidentifier default newsequentialid(), ' +
-    '    m as cast(i as char(36)) ' + '    ) ' + ' ' +
-    '    insert into @t default values; ' + ' ' + '    select m FROM @t '
-    + 'end;');
-
-  Result := Copy(GetScalar('exec SeqId').AsWideString, 25, 12);
-
-  ExecSql('DROP PROCEDURE [dbo].[SeqId];');
 end;
 
 class function ThlDatenbank.DefaultCommandTimeout: integer;
