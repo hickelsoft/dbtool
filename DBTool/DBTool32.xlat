@@ -2,7 +2,7 @@
 <xlat>
   <meta>
     <version>3</version>
-    <created>2026-05-18T15:52:35.298+02:00</created>
+    <created>2026-05-31T22:59:07.281+02:00</created>
     <tool>amTranslationManager</tool>
     <toolversion>2.3.9199.24584</toolversion>
   </meta>
@@ -12,13 +12,13 @@
     <sorted>True</sorted>
     <omitnewstate>True</omitnewstate>
   </options>
-  <project sourcefile="..\..\..\HS-Service\DBTool\DBTool32.exe" stringsymbolfile=".\DBTool32.drc" language="de-DE" properties="2181">
+  <project sourcefile="..\..\..\HS-Service\DBTool\DBTool32.exe" stringsymbolfile=".\DBTool32.drc" language="de-DE" properties="2170">
     <targetlanguages>
+      <language language="en-US" translated="1238"/>
       <language language="de-DE" translated="0"/>
-      <language language="en-US" translated="1137"/>
     </targetlanguages>
     <modules>
-      <module name="resourcestrings" type="strings" properties="1830">
+      <module name="resourcestrings" type="strings" properties="1819">
         <items>
           <item name="Bde_Bdeconst_SAutoSessionActive">
             <properties>
@@ -4255,6 +4255,9 @@
             <properties>
               <property>
                 <value>Änderungen speichern?</value>
+                <translations>
+                  <translation language="en-US">Save changes?</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -4325,7 +4328,7 @@
               </property>
             </properties>
           </item>
-          <item name="hl_Utils_Web_StrErrorConnectingTo">
+          <item name="hl_Utils_Web_StrErrorConnectingTo" state="unused">
             <properties>
               <property>
                 <value>Fehler beim Verbinden zum Server: %s</value>
@@ -4355,7 +4358,7 @@
               </property>
             </properties>
           </item>
-          <item name="hl_Utils_Web_StrErrorSendingReques">
+          <item name="hl_Utils_Web_StrErrorSendingReques" state="unused">
             <properties>
               <property>
                 <value>Fehler beim Senden der HTTP-Anfrage: %s</value>
@@ -9869,6 +9872,16 @@
               </property>
             </properties>
           </item>
+          <item name="Query_SDRowsAffected">
+            <properties>
+              <property>
+                <value>%d Zeilen betroffen.</value>
+                <translations>
+                  <translation language="en-US">%d rows were affected.</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
           <item name="Query_SQueryFor">
             <properties>
               <property>
@@ -9929,14 +9942,14 @@
               </property>
             </properties>
           </item>
-          <item name="System_NetConsts_SNetUriIndexOutOfRange">
+          <item name="System_NetConsts_SNetUriIndexOutOfRange" state="unused">
             <properties>
               <property>
                 <value>Parameterindex (%d) außerhalb des Bereichs (%d..%d)</value>
               </property>
             </properties>
           </item>
-          <item name="System_NetConsts_SNetUriInvalid">
+          <item name="System_NetConsts_SNetUriInvalid" state="unused">
             <properties>
               <property>
                 <value>Ungültiger URL: "%s"</value>
@@ -9946,14 +9959,14 @@
               </property>
             </properties>
           </item>
-          <item name="System_NetConsts_SNetUriInvalidRelPath">
+          <item name="System_NetConsts_SNetUriInvalidRelPath" state="unused">
             <properties>
               <property>
                 <value>Ungültiger relativer URL-Pfad: "%s"</value>
               </property>
             </properties>
           </item>
-          <item name="System_NetConsts_SNetUriParamNotFound">
+          <item name="System_NetConsts_SNetUriParamNotFound" state="unused">
             <properties>
               <property>
                 <value>Parameter "%s" nicht gefunden</value>
@@ -9964,6 +9977,9 @@
             <properties>
               <property>
                 <value>Fehler in regulärem Ausdruck bei Offset %d: %s</value>
+                <translations>
+                  <translation language="en-US">Error in regular expression at offset %d: %s</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9971,6 +9987,9 @@
             <properties>
               <property>
                 <value>Index überschreitet das Maximum (%d)</value>
+                <translations>
+                  <translation language="en-US">Index exceeds maximum (%d)</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9988,6 +10007,9 @@
             <properties>
               <property>
                 <value>Ein in RegEx angegebener regulärer Ausdruck ist erforderlich</value>
+                <translations>
+                  <translation language="en-US">A regular expression specified in RegEx is required</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -9995,6 +10017,9 @@
             <properties>
               <property>
                 <value>Strings-Parameter darf nicht Nil sein</value>
+                <translations>
+                  <translation language="en-US">The Strings parameter must not be nil</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10002,6 +10027,9 @@
             <properties>
               <property>
                 <value>Fehler beim Untersuchen von regex: %s</value>
+                <translations>
+                  <translation language="en-US">Error examining regex: %s</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10069,6 +10097,9 @@
             <properties>
               <property>
                 <value>Argument darf nicht nil sein</value>
+                <translations>
+                  <translation language="en-US">Argument must not be nil</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10076,6 +10107,9 @@
             <properties>
               <property>
                 <value>Argument außerhalb des Bereichs</value>
+                <translations>
+                  <translation language="en-US">Argument is out of range</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10083,6 +10117,9 @@
             <properties>
               <property>
                 <value>Ungültiger UTF32-Zeichenwert.  Muss &gt;= 0 und &lt;= $10FFFF sein, ausgenommen Ersatzpaarbereiche</value>
+                <translations>
+                  <translation language="en-US">Invalid UTF-32 character value. Must be &gt;= 0 and &lt;= $10FFFF, excluding surrogate pair ranges</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10090,6 +10127,9 @@
             <properties>
               <property>
                 <value>String-Index außerhalb des Bereichs (%d).  Muss &gt;= %d und &lt;= %d sein</value>
+                <translations>
+                  <translation language="en-US">String index out of range (%d). Must be &gt;= %d and &lt;= %d</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10107,6 +10147,9 @@
             <properties>
               <property>
                 <value>BeginInvoke kann bei der Freigabe für TComponent nicht aufgerufen werden</value>
+                <translations>
+                  <translation language="en-US">BeginInvoke cannot be called during the release of a TComponent</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10124,6 +10167,9 @@
             <properties>
               <property>
                 <value>VAR- und OUT-Argumente müssen exakt mit dem Parametertyp übereinstimmen</value>
+                <translations>
+                  <translation language="en-US">VAR and OUT arguments must match the parameter type exactly</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10131,6 +10177,9 @@
             <properties>
               <property>
                 <value>Negation des Minimalwertes einer Zeitspanne ist ungültig</value>
+                <translations>
+                  <translation language="en-US">Negation of the minimum value of a time span is invalid</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10218,6 +10267,9 @@
             <properties>
               <property>
                 <value>In der String-Liste sind Duplikate nicht zulässig</value>
+                <translations>
+                  <translation language="en-US">Duplicates are not allowed in the String-List</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10231,7 +10283,7 @@
               </property>
             </properties>
           </item>
-          <item name="System_RTLConsts_sErrorDecodingURLText">
+          <item name="System_RTLConsts_sErrorDecodingURLText" state="unused">
             <properties>
               <property>
                 <value>Fehler beim Decodieren eines im URL-Stil (%%XX) codierten Strings bei Position %d</value>
@@ -10245,6 +10297,9 @@
             <properties>
               <property>
                 <value>Datei %s kann nicht erstellt werden</value>
+                <translations>
+                  <translation language="en-US">File %s cannot be created</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10332,6 +10387,9 @@
             <properties>
               <property>
                 <value>Eingabepuffer für %s = %d, %s = %d überschritten</value>
+                <translations>
+                  <translation language="en-US">Input buffer exceeded for %s = %d, %s = %d</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10339,6 +10397,9 @@
             <properties>
               <property>
                 <value>Unzureichende RTTI zur Unterstützung dieser Operation verfügbar</value>
+                <translations>
+                  <translation language="en-US">Insufficient RTTI available to support this operation</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10446,6 +10507,9 @@
             <properties>
               <property>
                 <value>RTTI-Objekte können nicht manuell vom Anwendungscode freigegeben werden</value>
+                <translations>
+                  <translation language="en-US">RTTI objects cannot be manually released by application code</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10463,6 +10527,9 @@
             <properties>
               <property>
                 <value>Die Länge von String- und Objekt-Arrays muss gleich sein</value>
+                <translations>
+                  <translation language="en-US">The lengths of string and object arrays must be equal</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10470,6 +10537,9 @@
             <properties>
               <property>
                 <value>Ungültiger Wert für Zeitüberschreitung: %s</value>
+                <translations>
+                  <translation language="en-US">Invalid value for timeout: %s</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10477,6 +10547,9 @@
             <properties>
               <property>
                 <value>Die Dauer kann nicht zurückgegeben werden, weil der absolute Wert den Wert von TTimeSpan.MaxValue überschreitet</value>
+                <translations>
+                  <translation language="en-US">The duration cannot be returned because its absolute value exceeds TTimeSpan.MaxValue</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10484,10 +10557,13 @@
             <properties>
               <property>
                 <value>Ungültiges TimeSpan-Format</value>
+                <translations>
+                  <translation language="en-US">Invalid TimeSpan format</translation>
+                </translations>
               </property>
             </properties>
           </item>
-          <item name="System_RTLConsts_sInvalidURLEncodedChar">
+          <item name="System_RTLConsts_sInvalidURLEncodedChar" state="unused">
             <properties>
               <property>
                 <value>Ungültiges URL-codiertes Zeichen (%s) an Position %d</value>
@@ -10528,6 +10604,9 @@
             <properties>
               <property>
                 <value>Listenindex außerhalb des gültigen Bereichs (%d)</value>
+                <translations>
+                  <translation language="en-US">List index out of valid range (%d)</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10535,6 +10614,9 @@
             <properties>
               <property>
                 <value>. %s ist leer</value>
+                <translations>
+                  <translation language="en-US">. %s is empty</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10542,6 +10624,9 @@
             <properties>
               <property>
                 <value>. %s-Bereich ist 0..%d</value>
+                <translations>
+                  <translation language="en-US">. %s range is 0..%d</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10549,6 +10634,9 @@
             <properties>
               <property>
                 <value>Die angegebene "%s" lokale Uhrzeit ist ungültig (befindet sich im fehlenden Zeitraum vor der Sommerzeit).</value>
+                <translations>
+                  <translation language="en-US">The specified local time "%s" is invalid (falls within the missing period before Daylight Saving Time).</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10566,6 +10654,9 @@
             <properties>
               <property>
                 <value>Es muss auf mindestens ein Ereignis gewartet werden</value>
+                <translations>
+                  <translation language="en-US">At least one event must be awaited</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10603,6 +10694,9 @@
             <properties>
               <property>
                 <value>Keine Hilfe für Kontext %d gefunden</value>
+                <translations>
+                  <translation language="en-US">No help found for context %d</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10620,6 +10714,9 @@
             <properties>
               <property>
                 <value>Typ '%s' ist im interface-Abschnitt einer Unit nicht deklariert</value>
+                <translations>
+                  <translation language="en-US">Type '%s' is not declared in the interface section of a unit</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10677,6 +10774,9 @@
             <properties>
               <property>
                 <value>Der Observer-Kollektion können nicht mehrere Einfach-Typumwandlungs-Observer hinzugefügt werden</value>
+                <translations>
+                  <translation language="en-US">Multiple simple type-casting observers cannot be added to the Observer collection</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10684,6 +10784,9 @@
             <properties>
               <property>
                 <value>Das Objekt implementiert das Observer-Interface nicht</value>
+                <translations>
+                  <translation language="en-US">The object does not implement the Observer interface</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10691,6 +10794,9 @@
             <properties>
               <property>
                 <value>Der Observer-Kollektion wurde kein Mehrfach-Typumwandlungs-Observer mit der ID %d hinzugefügt</value>
+                <translations>
+                  <translation language="en-US">No multi-type-conversion Observer with ID %d was added to the Observer collection</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10698,6 +10804,9 @@
             <properties>
               <property>
                 <value>Der Observer-Kollektion wurde kein Einfach-Typumwandlungs-Observer mit der ID %d hinzugefügt</value>
+                <translations>
+                  <translation language="en-US">No simple-type-conversion Observer with ID %d was added to the Observer collection</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10705,6 +10814,9 @@
             <properties>
               <property>
                 <value>Observer ist nicht verfügbar</value>
+                <translations>
+                  <translation language="en-US">Observer is not available</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10712,6 +10824,9 @@
             <properties>
               <property>
                 <value>Observer wird nicht unterstützt</value>
+                <translations>
+                  <translation language="en-US">Observer is not supported</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10719,6 +10834,9 @@
             <properties>
               <property>
                 <value>Parameteranzahl stimmt nicht überein</value>
+                <translations>
+                  <translation language="en-US">Parameter count mismatch</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10726,6 +10844,9 @@
             <properties>
               <property>
                 <value>Parameter %s darf kein negativer Wert sein</value>
+                <translations>
+                  <translation language="en-US">Parameter %s must not be a negative value</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10733,6 +10854,9 @@
             <properties>
               <property>
                 <value>Parameter %s darf nicht Nil sein</value>
+                <translations>
+                  <translation language="en-US">Parameter %s must not be nil</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10750,6 +10874,9 @@
             <properties>
               <property>
                 <value>Das Pfadformat wird nicht unterstützt</value>
+                <translations>
+                  <translation language="en-US">The path format is not supported</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10757,6 +10884,9 @@
             <properties>
               <property>
                 <value>Der angegebene Pfad wurde nicht gefunden</value>
+                <translations>
+                  <translation language="en-US">The specified path was not found</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10764,6 +10894,9 @@
             <properties>
               <property>
                 <value>Der angegebene Pfad ist zu lang</value>
+                <translations>
+                  <translation language="en-US">The specified path is too long</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10861,6 +10994,9 @@
             <properties>
               <property>
                 <value>Quell- und Ziel-Arrays dürfen nicht gleich sein</value>
+                <translations>
+                  <translation language="en-US">Source and target arrays must not be the same</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10878,6 +11014,9 @@
             <properties>
               <property>
                 <value>Angegebener Dienst für die Anmeldeinformationen nicht gefunden</value>
+                <translations>
+                  <translation language="en-US">Specified service for the credentials not found</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10895,6 +11034,9 @@
             <properties>
               <property>
                 <value>Die angegebene Datei wurde nicht gefunden</value>
+                <translations>
+                  <translation language="en-US">The specified file was not found</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10902,12 +11044,15 @@
             <properties>
               <property>
                 <value>SpinCount außerhalb des Bereichs. Muss zwischen 0 und %d liegen</value>
+                <translations>
+                  <translation language="en-US">SpinCount is out of range. It must be between 0 and %d</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="System_RTLConsts_SSPVersionStr">
             <properties>
-              <property>
+              <property status="hold">
                 <value>%s Service Pack %4:d (Version %1:d.%2:d, Build %3:d, %5:s)</value>
               </property>
             </properties>
@@ -10956,6 +11101,9 @@
             <properties>
               <property>
                 <value>CheckTerminated kann nicht für einen extern erstellten Thread aufgerufen werden</value>
+                <translations>
+                  <translation language="en-US">CheckTerminated cannot be called for an externally created thread</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10963,6 +11111,9 @@
             <properties>
               <property>
                 <value>SetReturnValue kann nicht für einen extern erstellten Thread aufgerufen werden</value>
+                <translations>
+                  <translation language="en-US">SetReturnValue cannot be called for an externally created thread</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -10990,6 +11141,9 @@
             <properties>
               <property>
                 <value>Start kann für einen laufenden oder unterbrochenen Thread nicht aufgerufen werden</value>
+                <translations>
+                  <translation language="en-US">Start cannot be called on a running or suspended thread</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11027,6 +11181,9 @@
             <properties>
               <property>
                 <value>Stack- oder Warteschlangenoperation nicht abgeschlossen</value>
+                <translations>
+                  <translation language="en-US">Stack or queue operation not completed</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -11660,7 +11817,7 @@
               </property>
             </properties>
           </item>
-          <item name="System_SysConst_SInvalidInteger2">
+          <item name="System_SysConst_SInvalidInteger2" state="unused">
             <properties>
               <property>
                 <value>'%s' ist kein gültiger Integerwert für Typ '%s'</value>
@@ -11974,6 +12131,9 @@
             <properties>
               <property>
                 <value>Zugriffsverletzung bei Adresse %p in Modul '%s' (Offset %x). %s von Adresse %p</value>
+                <translations>
+                  <translation language="en-US">Access violation at address %p in module '%s' (offset %x). %s from address %p</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -12001,6 +12161,9 @@
             <properties>
               <property>
                 <value>Keine Zuordnung für Unicode-Zeichen in der Multibyte-Zielcodeseite vorhanden</value>
+                <translations>
+                  <translation language="en-US">No mapping exists for Unicode characters in the target multibyte code page</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -12778,6 +12941,9 @@
             <properties>
               <property>
                 <value>Sortierung nach Index ist derzeit nicht implementiert.</value>
+                <translations>
+                  <translation language="en-US">Sorting by index is currently not implemented.</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -12905,6 +13071,9 @@
             <properties>
               <property>
                 <value>ListView-Element kann nur hinzugefügt werden, wenn OwnerData False ist. Verwenden Sie stattdessen OnData.</value>
+                <translations>
+                  <translation language="en-US">A ListView item can only be added if OwnerData is False. Use OnData instead.</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -12912,6 +13081,9 @@
             <properties>
               <property>
                 <value>%d ist ein ungültiger Wert für PageIndex.  PageIndex muss zwischen 0 und %d liegen</value>
+                <translations>
+                  <translation language="en-US">%d is an invalid value for PageIndex. PageIndex must be between 0 and %d</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13009,6 +13181,9 @@
             <properties>
               <property>
                 <value>Für TabPosition tpLeft und tpRight muss MultiLine True sein</value>
+                <translations>
+                  <translation language="en-US">For TabPosition tpLeft and tpRight, MultiLine must be True</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13096,6 +13271,9 @@
             <properties>
               <property>
                 <value>BeginInvoke kann nicht ohne übergeordnetes Element oder Fenster-Handle aufgerufen werden</value>
+                <translations>
+                  <translation language="en-US">BeginInvoke cannot be called without a parent element or window handle</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13160,6 +13338,9 @@
             <properties>
               <property>
                 <value>Sichtbares Fenster kann nicht in modales geändert werden</value>
+                <translations>
+                  <translation language="en-US">Visible window cannot be changed to modal</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13177,6 +13358,9 @@
             <properties>
               <property>
                 <value>Die Größe einer WIC-Grafik kann nicht verändert werden</value>
+                <translations>
+                  <translation language="en-US">The size of a WIC graphic cannot be changed</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13204,6 +13388,9 @@
             <properties>
               <property>
                 <value>Steuerelement '%s' wird nicht für einen Haupt-Thread verwendet</value>
+                <translations>
+                  <translation language="en-US">Control '%s' is not used on a main thread</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13221,6 +13408,9 @@
             <properties>
               <property>
                 <value>. Pfad:&amp;#13;&amp;#10;%s</value>
+                <translations>
+                  <translation language="en-US">. Path:&amp;#13;&amp;#10;%s</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13318,6 +13508,9 @@
             <properties>
               <property>
                 <value>Andere Zeichenfläche kann nicht Eigentümer von %s sein</value>
+                <translations>
+                  <translation language="en-US">Another artboard cannot be the owner of %s</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13325,6 +13518,9 @@
             <properties>
               <property>
                 <value>Kein Pinsel mit einer einheitlichen Farbe</value>
+                <translations>
+                  <translation language="en-US">No brush with a solid color</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13382,6 +13578,9 @@
             <properties>
               <property>
                 <value>&amp;Domäne</value>
+                <translations>
+                  <translation language="en-US">&amp;Domain</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13389,6 +13588,9 @@
             <properties>
               <property>
                 <value>Menü '%s' wird bereits von einem anderen Formular verwendet</value>
+                <translations>
+                  <translation language="en-US">Menu '%s' is already being used by another form</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13456,6 +13658,9 @@
             <properties>
               <property>
                 <value>GroupIndex darf nicht kleiner sein als der GroupIndex eines vorherigen Menüelements</value>
+                <translations>
+                  <translation language="en-US">GroupIndex must not be less than the GroupIndex of a previous menu item</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13493,6 +13698,9 @@
             <properties>
               <property>
                 <value>Ein Bild kann nur geändert werden, wenn es ein Bitmap enthält</value>
+                <translations>
+                  <translation language="en-US">An image can only be modified if it contains a bitmap</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13500,6 +13708,9 @@
             <properties>
               <property>
                 <value>Ungültiger ImageList-Index</value>
+                <translations>
+                  <translation language="en-US">Invalid ImageList index</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13587,6 +13798,9 @@
             <properties>
               <property>
                 <value>Ungültiger Bild-Frame-Index %d: es sind %d Frames vorhanden (0-%d)</value>
+                <translations>
+                  <translation language="en-US">Invalid image frame index %d: %d frames available (0-%d)</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13694,6 +13908,9 @@
             <properties>
               <property>
                 <value>Position des Registers ist nicht mit dem aktuellen Registerstil kompatibel</value>
+                <translations>
+                  <translation language="en-US">The position of the register is incompatible with the current register style</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13701,6 +13918,9 @@
             <properties>
               <property>
                 <value>Registerstil ist nicht mit der aktuellen Position kompatibel</value>
+                <translations>
+                  <translation language="en-US">Register style is incompatible with the current position</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -13718,6 +13938,9 @@
             <properties>
               <property>
                 <value>Das Textformat-Flag '%s' wird nicht unterstützt</value>
+                <translations>
+                  <translation language="en-US">The text format flag '%s' is not supported</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14195,6 +14418,9 @@
             <properties>
               <property>
                 <value>Aktuell ist kein Standarddrucker ausgewählt</value>
+                <translations>
+                  <translation language="en-US">No default printer is currently selected</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14212,6 +14438,9 @@
             <properties>
               <property>
                 <value>Formular kann nicht erstellt werden. Aktuell sind keine MDI-Formulare aktiv</value>
+                <translations>
+                  <translation language="en-US">The form cannot be created. No MDI forms are currently active</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14369,6 +14598,9 @@
             <properties>
               <property>
                 <value>Länge des Werte-Arrays muss &gt;= der Länge des Prompt-Arrays sein</value>
+                <translations>
+                  <translation language="en-US">The length of the values ​​array must be &gt;= the length of the prompt array</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14396,6 +14628,9 @@
             <properties>
               <property>
                 <value>Für Quelle und Ziel ist derselbe Eigentümer erforderlich</value>
+                <translations>
+                  <translation language="en-US">The same owner is required for both source and destination</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14463,6 +14698,9 @@
             <properties>
               <property>
                 <value>Stilklasse '%s' nicht gefunden</value>
+                <translations>
+                  <translation language="en-US">Style class '%s' not found</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14470,6 +14708,9 @@
             <properties>
               <property>
                 <value>Stilklasse '%s' bereits registriert</value>
+                <translations>
+                  <translation language="en-US">Style class '%s' is already registered</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14477,6 +14718,9 @@
             <properties>
               <property>
                 <value>Funktion wird von diesem Stil nicht unterstützt</value>
+                <translations>
+                  <translation language="en-US">This style does not support this function</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14484,6 +14728,9 @@
             <properties>
               <property>
                 <value>Datei im VCL-Stil</value>
+                <translations>
+                  <translation language="en-US">File in VCL style</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14491,6 +14738,9 @@
             <properties>
               <property>
                 <value>Ungültiges Stilformat</value>
+                <translations>
+                  <translation language="en-US">Invalid style format</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14498,6 +14748,9 @@
             <properties>
               <property>
                 <value>Für %s wurde keine StyleHook-Klasse registriert</value>
+                <translations>
+                  <translation language="en-US">No StyleHook class was registered for %s</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14505,6 +14758,9 @@
             <properties>
               <property>
                 <value>Klasse '%s' ist für '%s' nicht registriert</value>
+                <translations>
+                  <translation language="en-US">Class '%s' is not registered for '%s'</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14512,6 +14768,9 @@
             <properties>
               <property>
                 <value>Klasse '%s' ist für '%s' bereits registriert</value>
+                <translations>
+                  <translation language="en-US">Class '%s' is already registered for '%s'</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14519,6 +14778,9 @@
             <properties>
               <property>
                 <value>Ungültiges Stil-Handle</value>
+                <translations>
+                  <translation language="en-US">Invalid style handle</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14526,6 +14788,9 @@
             <properties>
               <property>
                 <value>Parameter %s darf nicht nil sein</value>
+                <translations>
+                  <translation language="en-US">Parameter %s must not be nil</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14533,6 +14798,9 @@
             <properties>
               <property>
                 <value>Stil '%s' kann nicht geladen werden</value>
+                <translations>
+                  <translation language="en-US">Style '%s' cannot be loaded</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14540,6 +14808,9 @@
             <properties>
               <property>
                 <value>Stile %s können nicht geladen werden</value>
+                <translations>
+                  <translation language="en-US">Styles %s could not be loaded</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14547,6 +14818,9 @@
             <properties>
               <property>
                 <value>Stil '%s' nicht gefunden</value>
+                <translations>
+                  <translation language="en-US">Style '%s' not found</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14554,6 +14828,9 @@
             <properties>
               <property>
                 <value>Der Stil '%s' ist nicht registriert</value>
+                <translations>
+                  <translation language="en-US">The style '%s' is not registered</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14561,6 +14838,9 @@
             <properties>
               <property>
                 <value>Stil nicht registriert</value>
+                <translations>
+                  <translation language="en-US">Style not registered</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14568,6 +14848,9 @@
             <properties>
               <property>
                 <value>Stil '%s' bereits registriert</value>
+                <translations>
+                  <translation language="en-US">Style '%s' is already registered</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14575,19 +14858,22 @@
             <properties>
               <property>
                 <value>Die Registrierung des Systemstils kann nicht aufgehoben werden</value>
+                <translations>
+                  <translation language="en-US">The registration of the system style cannot be undone</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="Vcl_Consts_STaskDlgButtonCaption">
             <properties>
-              <property>
+              <property status="hold">
                 <value>Button%d</value>
               </property>
             </properties>
           </item>
           <item name="Vcl_Consts_STaskDlgRadioButtonCaption">
             <properties>
-              <property>
+              <property status="hold">
                 <value>RadioButton%d</value>
               </property>
             </properties>
@@ -14663,6 +14949,9 @@
             <properties>
               <property>
                 <value>Nicht unterstütztes Stream-Format</value>
+                <translations>
+                  <translation language="en-US">Unsupported Stream format</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14670,6 +14959,9 @@
             <properties>
               <property>
                 <value>&amp;Benutzername</value>
+                <translations>
+                  <translation language="en-US">&amp;User name</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14691,6 +14983,9 @@
             <properties>
               <property>
                 <value>Bitmaps</value>
+                <translations>
+                  <translation language="en-US">Bitmaps</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14878,6 +15173,9 @@
             <properties>
               <property>
                 <value>Das PNG-Bild (Portable Network Graphics) konnte nicht geladen werden, weil das Bild eine ungültige Bit-Tiefe verwendet.</value>
+                <translations>
+                  <translation language="en-US">The PNG (Portable Network Graphics) image could not be loaded because the image uses an invalid bit depth.</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14895,6 +15193,9 @@
             <properties>
               <property>
                 <value>Die gerade gelesene Datei ist kein gültiges PNG-Bild ("Portable Network Graphics"), weil sie keinen gültigen Header enthält. Diese Datei ist möglicherweise beschädigt. Versuchen Sie, eine neue Version davon zu bekommen</value>
+                <translations>
+                  <translation language="en-US">The file just read is not a valid PNG ("Portable Network Graphics") image, because it does not contain a valid header. This file may be corrupted. Try to obtain a new version of it.</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14952,6 +15253,9 @@
             <properties>
               <property>
                 <value>Dieses PNG-Bild (Portable Network Graphics) wird nicht unterstützt, weil die Breite oder Höhe die maximale Größe von 65535 Pixel überschreitet.</value>
+                <translations>
+                  <translation language="en-US">This PNG (Portable Network Graphics) image is not supported because its width or height exceeds the maximum size of 65,535 pixels.</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -14969,6 +15273,9 @@
             <properties>
               <property>
                 <value>Dieses PNG-Bild (Portable Network Graphics) verwendet einen unbekannten Farbtyp, der nicht decodiert werden konnte.</value>
+                <translations>
+                  <translation language="en-US">This PNG (Portable Network Graphics) image uses an unknown color type that could not be decoded.</translation>
+                </translations>
               </property>
             </properties>
           </item>
@@ -15016,6 +15323,9 @@
             <properties>
               <property>
                 <value>Die Grafik konnte nicht entpackt werden, weil Teile der komprimierten Daten fehlerhaft sind. &amp;#13;&amp;#10;Beschreibung: </value>
+                <translations>
+                  <translation language="en-US">The graphic could not be uncompressed because parts of the compressed data are corrupt.&amp;#13;&amp;#10;Description:</translation>
+                </translations>
               </property>
             </properties>
           </item>
