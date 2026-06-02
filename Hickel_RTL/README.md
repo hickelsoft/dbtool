@@ -2,7 +2,7 @@
 
 Hickel_RTL contains various runtime methods shared across all HickelSOFT products.
 
-As part of the Open Source release of DBTool, both Hickel_RTL and Hickel_VCL were also released as Open Source under the terms of the Apache License 2.0.
+As part of the Open Source release of DBTool, both Hickel_RTL and Hickel_VCL were also released as Open Source under the terms of the Apache 2.0 License.
 
 However, the following units are excluded from the Open Source release due to their proprietary and confidential nature, and have therefore been redacted:
 

@@ -1,16 +1,10 @@
-unit hl.Utils.Web;
+ï»¿unit hl.Utils.Web;
 
 {$IFNDEF CONSOLE}
   {$IFNDEF NO_GUI}
     {$DEFINE CAN_USE_GUI_CODE}
   {$ENDIF}
 {$ENDIF}
-
-// TODO: GET/POST Unicode implementations seem to be off
-// GET Indy     : Response as UTF8, GET Parameters are sent as '?'
-// GET WinInet  : Response as UTF8, GET Parameters are sent as ANSI
-// POST Indy    : Response as UTF8, GET Parameters are sent as '?',  POST parameter as sent as UTF8
-// POST WinInet : Response as UTF8, GET Parameters are sent as UTF8, POST parameter as sent as UTF8
 
 interface
 
@@ -26,7 +20,8 @@ function HTMLToText(html: string): string;
 function TextToHtml(text: string): string;
 function DoPost(const URL: string; Params: TStringList): string;
 function DoGet(const URL: string): string;
-function EncodeURIComponent(const ASrc: string): UTF8String;
+function EncodeURIComponent(const ASrc: string): string;
+function EncodeURL(const URL: string): string;
 procedure DownloadFile(const URL, filename: string; pgd: {$IFDEF CAN_USE_GUI_CODE}TProgressDlg{$ELSE}TObject{$ENDIF} = nil);
 
 var
@@ -36,7 +31,7 @@ implementation
 
 uses
   SysUtils, StrUtils, SHDocVW, MsHTML, Variants, ActiveX,
-  IdSSLOpenSSLHeaders, IdHTTP,
+  IdSSLOpenSSLHeaders, IdHTTP, Math,
   WinInet, System.Net.URLClient, System.NetEncoding,
   hl.Utils;
 
@@ -45,12 +40,34 @@ resourcestring
     'Bitte JavaScript einschalten, um die E-Mail-Adresse anzuzeigen.';
   StrErrorTooManyRedi = 'Fehler: Zu viele Umleitungen';
   StrHTTPErrorDWithG = 'HTTP-Fehler %d bei GET-Anfrage %s';
-  StrErrorOpeningReques = 'Fehler beim Öffnen der HTTP-Anfrage: %s';
+  StrErrorOpeningReques = 'Fehler beim Ã–ffnen der HTTP-Anfrage: %s';
   StrErrorInitializingW = 'Fehler beim Initialisieren von WinInet: %s';
   StrErrorConnectingTo = 'Fehler beim Verbinden zum Server: %s';
   StrErrorSendingReques = 'Fehler beim Senden der HTTP-Anfrage: %s';
 
+function DummyUserAgent: string;
+
+  function ChromeMajor: Integer;
+  var
+    BaseVersion: Integer;
+    BaseDate: TDateTime;
+    Days: Double;
+  begin
+    // https://chromestatus.com/roadmap
+    BaseVersion := 149;
+    BaseDate := EncodeDate(2026, 5, 20);
+
+    Days := (Now - BaseDate);
+
+    Result := BaseVersion + Floor(Days / 28);
+  end;
+
+begin
+  result := 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/'+IntToStr(chromeMajor)+'.0.0.0 Safari/537.36';
+end;
+
 function secure_email(email, linktext: string; crypt_linktext: boolean): string;
+
   function alas_js_crypt(text: string): string;
   var
     i: integer;
@@ -61,6 +78,7 @@ function secure_email(email, linktext: string; crypt_linktext: boolean): string;
       result := result + 'document.write("&#' + IntToStr(ord(text[i])) + ';");';
     end;
   end;
+
   function alas_js_write(text: string): string;
   begin
     text := StringReplace(text, '\', '\\', [rfReplaceAll]);
@@ -183,7 +201,7 @@ end;
   i, intResultLength: Integer;
   begin
   // Quelle: http://www.scalabium.com/faq/dct0162.htm
-  // Problem: Zeilenumbrüche gehen verloren
+  // Problem: ZeilenumbrÃ¼che gehen verloren
 
   P := PChar(html);
   Result := '';
@@ -244,11 +262,33 @@ begin
     TIdSSLIOHandlerSocketOpenSSL(lHTTP.IOHandler).SSLOptions.Method :=
       sslvTLSv1_2;
 
-    // Ich bekomme es nicht hin mit TIdEncoding, es kommt immer "h?f" anstelle "häf" raus
-    // Mit Stream gehts...
-    Stream := TStringStream.Create('');
+    Stream := TStringStream.Create('', TEncoding.UTF8);
     try
-      lHTTP.Post(URL, Params, Stream);
+      begin
+      var s: string := '';
+      var i: Integer;
+      for i := 0 to Params.Count - 1 do
+      begin
+        if i > 0 then
+          s := s + '&';
+
+        s := s +
+          string(EncodeURIComponent(Params.Names[i])) + '=' +
+          string(EncodeURIComponent(Params.ValueFromIndex[i]));
+      end;
+
+      var PostData := TStringStream.Create(s, TEncoding.UTF8);
+      try
+        lHTTP.Request.ContentType :=
+          'application/x-www-form-urlencoded; charset=UTF-8';
+
+        lHTTP.Request.UserAgent := DummyUserAgent;
+
+        lHTTP.Post(EncodeURL(URL), PostData, Stream);
+      finally
+        PostData.Free;
+      end;
+    end;
       Stream.Position := 0;
       result := Stream.DataString;
     finally
@@ -273,16 +313,16 @@ begin
     TIdSSLIOHandlerSocketOpenSSL(lHTTP.IOHandler).SSLOptions.Method :=
       sslvTLSv1_2;
 
-    // Ich bekomme es nicht hin mit TIdEncoding, es kommt immer "h?f" anstelle "häf" raus
-    // Mit Stream gehts...
-    Stream := TStringStream.Create('');
+    Stream := TStringStream.Create('', TEncoding.UTF8);
     try
 
       // https://stackoverflow.com/questions/53261747/indy10-connecttimeout-minimal-value
       lHTTP.ConnectTimeout := 60000; // 60s
       lHTTP.ReadTimeout := 60000; // 60s
 
-      lHTTP.Get(URL, Stream);
+      lHTTP.Request.UserAgent := DummyUserAgent;
+
+      lHTTP.Get(EncodeURL(URL), Stream);
       Stream.Position := 0;
       result := Stream.DataString;
     finally
@@ -365,7 +405,9 @@ begin
     else
       tmpDownload := nil;
 
-    IdHTTP1.Get(URL, Stream);
+    IdHTTP1.Request.UserAgent := DummyUserAgent;
+
+    IdHTTP1.Get(EncodeURL(URL), Stream);
 
     if Assigned(tmpDownload) then
     begin
@@ -383,8 +425,6 @@ end;
 {$REGION 'WinInet HTTP Get/Post/Download'}
 
 const
-  USER_AGENT =
-    'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36';
   MaxRedirects = 5;
 
 function GetRedirectLocation(hRequest: HINTERNET): string;
@@ -422,211 +462,317 @@ end;
 
 function WinInet_DoPost(const URL: string; Params: TStringList): string;
 
-  function StringListToPostData(Params: TStringList): RawByteString;
+  function StringListToPostData(Params: TStringList): UTF8String;
   var
-    i: integer;
+    i: Integer;
+    s: string;
   begin
-    result := '';
+    s := '';
+
     for i := 0 to Params.Count - 1 do
     begin
       if i > 0 then
-        result := result + '&';
-      result := result + TNetEncoding.URL.Encode(Params.KeyNames[i]) + '=' +
-        TNetEncoding.URL.Encode(Params.ValueFromIndex[i]);
+        s := s + '&';
+
+      s := s +
+        string(EncodeURIComponent(Params.Names[i])) + '=' +
+        string(EncodeURIComponent(Params.ValueFromIndex[i]));
     end;
+
+    Result := UTF8Encode(s);
   end;
 
-  procedure ExtractHostAndPath(const URL: string; var Host, Path: string;
-    var Port: integer);
+  procedure ExtractHostAndPath(
+    const URL: string;
+    var Host, Path: string;
+    var Port: Integer
+  );
   var
     URI: TURI;
   begin
     URI := TURI.Create(URL);
+
     Host := URI.Host;
     Path := URI.Path;
+
     if URI.Query <> '' then
       Path := Path + '?' + URI.Query;
+
     Port := URI.Port;
   end;
 
 var
   AURL: string;
-  hSession, hConnect, hRequest: HINTERNET;
-  PostData: RawByteString; // sic!!!
-  Headers, Host, Path: string;
-  Port: integer;
-  PostDataLength: DWORD;
-  Buffer: array [0 .. 1024] of AnsiChar;
-  BytesRead: DWORD;
-  Response: RawByteString;
-  StatusCode: DWORD;
-  RedirectCount: integer;
-const
-  ContentType = 'application/x-www-form-urlencoded';
+
+  hSession : HINTERNET;
+  hConnect : HINTERNET;
+  hRequest : HINTERNET;
+
+  PostData : UTF8String;
+  Headers  : string;
+  Host     : string;
+  Path     : string;
+  Port     : Integer;
+
+  PostDataLength : DWORD;
+
+  Buffer    : array[0..1023] of Byte;
+  BytesRead : DWORD;
+
+  ResponseStream : TMemoryStream;
+  UTF8Response   : UTF8String;
+
+  StatusCode   : DWORD;
+  RedirectCount: Integer;
+
 begin
+  Result := '';
+
   AURL := URL;
 
-  hSession := InternetOpen(USER_AGENT, INTERNET_OPEN_TYPE_PRECONFIG,
-    nil, nil, 0);
+  hSession := InternetOpen(
+    PChar(DummyUserAgent),
+    INTERNET_OPEN_TYPE_PRECONFIG,
+    nil,
+    nil,
+    0
+  );
+
   if not Assigned(hSession) then
-    raise Exception.CreateFmt(StrErrorInitializingW,
-      [SysErrorMessage(GetLastError)]);
+    raise Exception.CreateFmt(
+      StrErrorInitializingW,
+      [SysErrorMessage(GetLastError)]
+    );
+
   try
+
     RedirectCount := 0;
+
     while True do
     begin
+
       {$IFDEF CAN_USE_GUI_CODE}
       if Assigned(Application) and Application.Terminated then
         Abort;
       {$ENDIF}
-      ExtractHostAndPath(AURL, Host, Path, Port);
-      hConnect := InternetConnect(hSession, PChar(Host), Port, nil, nil,
-        INTERNET_SERVICE_HTTP, 0, 0);
-      if not Assigned(hConnect) then
-        raise Exception.CreateFmt(StrErrorConnectingTo,
-          [SysErrorMessage(GetLastError)]);
-      try
-        hRequest := HttpOpenRequest(hConnect, 'POST', PChar(Path), nil, nil,
-          nil, INTERNET_FLAG_SECURE, 0);
-        if not Assigned(hRequest) then
-          raise Exception.CreateFmt(StrErrorOpeningReques,
-            [SysErrorMessage(GetLastError)]);
-        try
-          // Set headers.
-          Headers := 'Content-Type: ' + ContentType + #13#10;
 
-          // Convert the StringList parameters to a URL-encoded string.
+      ExtractHostAndPath(
+        EncodeURL(AURL),
+        Host,
+        Path,
+        Port
+      );
+
+      hConnect := InternetConnect(
+        hSession,
+        PChar(Host),
+        Port,
+        nil,
+        nil,
+        INTERNET_SERVICE_HTTP,
+        0,
+        0
+      );
+
+      if not Assigned(hConnect) then
+        raise Exception.CreateFmt(
+          StrErrorConnectingTo,
+          [SysErrorMessage(GetLastError)]
+        );
+
+      try
+
+        hRequest := HttpOpenRequest(
+          hConnect,
+          'POST',
+          PChar(Path),
+          nil,
+          nil,
+          nil,
+          INTERNET_FLAG_SECURE,
+          0
+        );
+
+        if not Assigned(hRequest) then
+          raise Exception.CreateFmt(
+            StrErrorOpeningReques,
+            [SysErrorMessage(GetLastError)]
+          );
+
+        try
+
+          Headers :=
+            'Content-Type: application/x-www-form-urlencoded; charset=UTF-8'
+            + #13#10;
+
           PostData := StringListToPostData(Params);
+
           PostDataLength := Length(PostData);
 
-          // Send the request with POST data.
-          if not HttpSendRequest(hRequest, PChar(Headers), Length(Headers),
-            PAnsiChar(PostData), PostDataLength) then
-            raise Exception.CreateFmt(StrErrorSendingReques,
-              [SysErrorMessage(GetLastError)]);
+          if not HttpSendRequest(
+            hRequest,
+            PChar(Headers),
+            Length(Headers),
+            PAnsiChar(PostData),
+            PostDataLength
+          ) then
+          begin
+            raise Exception.CreateFmt(
+              StrErrorSendingReques,
+              [SysErrorMessage(GetLastError)]
+            );
+          end;
 
           StatusCode := GetStatusCode(hRequest);
 
           if (StatusCode >= 300) and (StatusCode < 400) then
           begin
+
             Inc(RedirectCount);
 
-            // Stop following redirects if we exceed the maximum number of allowed redirects.
             if RedirectCount > MaxRedirects then
-            begin
               raise Exception.Create(StrErrorTooManyRedi);
-            end;
 
-            // Get the "Location" header for the new URL
             AURL := GetRedirectLocation(hRequest);
           end
-          else if (StatusCode = 200) then // do not localize
+          else
+          if StatusCode = 200 then
           begin
-            // Read the response.
-            Response := '';
-            repeat
-              InternetReadFile(hRequest, @Buffer, SizeOf(Buffer), BytesRead);
-              if BytesRead > 0 then
-                Response := Response + Copy(Buffer, 1, BytesRead);
-              {$IFDEF CAN_USE_GUI_CODE}
-              if Assigned(Application) and Application.Terminated then
-                Abort;
-              {$ENDIF}
-            until BytesRead = 0;
 
-            // Output the server response.
-            result := Response;
+            ResponseStream := TMemoryStream.Create;
+            try
 
-            break;
+              repeat
+
+                BytesRead := 0;
+
+                InternetReadFile(
+                  hRequest,
+                  @Buffer,
+                  SizeOf(Buffer),
+                  BytesRead
+                );
+
+                if BytesRead > 0 then
+                  ResponseStream.WriteBuffer(Buffer, BytesRead);
+
+                {$IFDEF CAN_USE_GUI_CODE}
+                if Assigned(Application) and Application.Terminated then
+                  Abort;
+                {$ENDIF}
+
+              until BytesRead = 0;
+
+              SetString(
+                UTF8Response,
+                PAnsiChar(ResponseStream.Memory),
+                ResponseStream.Size
+              );
+
+              Result := UTF8ToString(UTF8Response);
+
+            finally
+              ResponseStream.Free;
+            end;
+
+            Break;
           end
           else
-            raise Exception.CreateFmt(StrHTTPErrorDWithG, [StatusCode, AURL]);
+          begin
+            raise Exception.CreateFmt(
+              StrHTTPErrorDWithG,
+              [StatusCode, AURL]
+            );
+          end;
+
         finally
           InternetCloseHandle(hRequest);
         end;
+
       finally
         InternetCloseHandle(hConnect);
       end;
     end;
+
   finally
     InternetCloseHandle(hSession);
   end;
 end;
 
-function WinInet_DoGet(const URL: string): string;
+function WinInet_DoGet(const AURL: string): string;
 var
-  AURL: string;
-  databuffer: array [0 .. 4095] of AnsiChar; // SIC! ansichar!
-  Response: ansistring; // SIC! ansistring
-  hSession, hRequest: HINTERNET;
-  dwread, dwNumber: cardinal;
-  Str: PAnsiChar; // SIC! pansichar
-  StatusCode: DWORD;
-  RedirectCount: integer;
+  hSession : HINTERNET;
+  hURL     : HINTERNET;
+  dwread   : DWORD;
+  databuffer : array[0..1023] of Byte;
+
+  ResponseStream : TMemoryStream;
+  UTF8Response   : UTF8String;
 begin
-  Response := '';
-  AURL := URL;
+  Result := '';
 
-  hSession := InternetOpen(USER_AGENT, INTERNET_OPEN_TYPE_PRECONFIG,
-    nil, nil, 0);
-  if not Assigned(hSession) then
-    raise Exception.CreateFmt(StrErrorInitializingW,
-      [SysErrorMessage(GetLastError)]);
+  hSession := InternetOpen(
+    PChar(DummyUserAgent),
+    INTERNET_OPEN_TYPE_PRECONFIG,
+    nil,
+    nil,
+    0
+  );
+
+  if hSession = nil then
+    Exit;
+
   try
-    RedirectCount := 0;
-    while True do
-    begin
-      {$IFDEF CAN_USE_GUI_CODE}
-      if Assigned(Application) and Application.Terminated then
-        Abort;
-      {$ENDIF}
-      hRequest := InternetOpenUrl(hSession, PChar(AURL), nil, 0,
-        INTERNET_FLAG_RELOAD, 0);
-      if not Assigned(hRequest) then
-        raise Exception.CreateFmt(StrErrorOpeningReques,
-          [SysErrorMessage(GetLastError)]);
+
+    hURL := InternetOpenUrl(
+      hSession,
+      PChar(EncodeURL(AURL)),
+      nil,
+      0,
+      INTERNET_FLAG_RELOAD,
+      0
+    );
+
+    if hURL = nil then
+      Exit;
+
+    try
+
+      ResponseStream := TMemoryStream.Create;
       try
-        StatusCode := GetStatusCode(hRequest);
-        if (StatusCode >= 300) and (StatusCode < 400) then
-        begin
-          Inc(RedirectCount);
 
-          // Stop following redirects if we exceed the maximum number of allowed redirects.
-          if RedirectCount > MaxRedirects then
-          begin
-            raise Exception.Create(StrErrorTooManyRedi);
-          end;
+        repeat
 
-          // Get the "Location" header for the new URL
-          AURL := GetRedirectLocation(hRequest);
-        end
-        else if (StatusCode = 200) then // do not localize
-        begin
-          dwNumber := 1024;
-          while (InternetReadFile(hRequest, @databuffer, dwNumber, dwread)) do
-          begin
-            {$IFDEF CAN_USE_GUI_CODE}
-            if Assigned(Application) and Application.Terminated then
-              Abort;
-            {$ENDIF}
-            if dwread = 0 then
-              break;
-            databuffer[dwread] := #0;
-            Str := PAnsiChar(@databuffer);
-            Response := Response + Str;
-          end;
+          dwread := 0;
 
-          // Output the server response.
-          result := Response;
+          InternetReadFile(
+            hURL,
+            @databuffer,
+            SizeOf(databuffer),
+            dwread
+          );
 
-          break;
-        end
-        else
-          raise Exception.CreateFmt(StrHTTPErrorDWithG, [StatusCode, AURL]);
+          if dwread > 0 then
+            ResponseStream.WriteBuffer(databuffer, dwread);
+
+        until dwread = 0;
+
+        SetString(
+          UTF8Response,
+          PAnsiChar(ResponseStream.Memory),
+          ResponseStream.Size
+        );
+
+        Result := UTF8ToString(UTF8Response);
+
       finally
-        InternetCloseHandle(hRequest);
+        ResponseStream.Free;
       end;
+
+    finally
+      InternetCloseHandle(hURL);
     end;
+
   finally
     InternetCloseHandle(hSession);
   end;
@@ -648,7 +794,7 @@ var
 begin
   AURL := URL;
 
-  hSession := InternetOpen(USER_AGENT, INTERNET_OPEN_TYPE_PRECONFIG,
+  hSession := InternetOpen(PChar(DummyUserAgent), INTERNET_OPEN_TYPE_PRECONFIG,
     nil, nil, 0);
   if not Assigned(hSession) then
     raise Exception.CreateFmt(StrErrorInitializingW,
@@ -661,7 +807,7 @@ begin
       if Assigned(Application) and Application.Terminated then
         Abort;
       {$ENDIF}
-      hRequest := InternetOpenUrl(hSession, PChar(AURL), nil, 0,
+      hRequest := InternetOpenUrl(hSession, PChar(EncodeURL(AURL)), nil, 0,
         INTERNET_FLAG_RELOAD or INTERNET_FLAG_NO_CACHE_WRITE, 0);
       if not Assigned(hRequest) then
         raise Exception.CreateFmt(StrErrorOpeningReques,
@@ -825,9 +971,9 @@ begin
 end;
 
 // https://marc.durdin.net/2012/07/indy-tiduri-pathencode-urlencode-and-paramsencode-and-more/
-function EncodeURIComponent(const ASrc: string): UTF8String;
+function EncodeURIComponent(const ASrc: string): string;
 const
-  HexMap: UTF8String = '0123456789ABCDEF';
+  HexMap: string = '0123456789ABCDEF';
 
   function IsSafeChar(ch: integer): boolean;
   begin
@@ -853,7 +999,7 @@ const
 
 var
   i, J: integer;
-  ASrcUTF8: UTF8String;
+  ASrcUTF8: Utf8String;
 begin
   result := ''; { Do not Localize }
 
@@ -868,7 +1014,7 @@ begin
   begin
     if IsSafeChar(ord(ASrcUTF8[i])) then
     begin
-      result[J] := ASrcUTF8[i];
+      result[J] := Char(ASrcUTF8[i]);
       Inc(J);
     end
     else
@@ -882,6 +1028,53 @@ begin
   end;
 
   SetLength(result, J - 1);
+end;
+
+function EncodeURL(const URL: string): string;
+var
+  p: Integer;
+  BaseURL, Query, Pair, EncodedQuery: string;
+  SL: TStringList;
+begin
+  p := Pos('?', URL);
+
+  if p = 0 then
+    Exit(URL);
+
+  BaseURL := Copy(URL, 1, p - 1);
+  Query := Copy(URL, p + 1, MaxInt);
+
+  SL := TStringList.Create;
+  try
+    SL.StrictDelimiter := True;
+    SL.Delimiter := '&';
+    SL.DelimitedText := Query;
+
+    EncodedQuery := '';
+
+    for p := 0 to SL.Count - 1 do
+    begin
+      Pair := SL[p];
+
+      if EncodedQuery <> '' then
+        EncodedQuery := EncodedQuery + '&';
+
+      if Pos('=', Pair) > 0 then
+      begin
+        EncodedQuery := EncodedQuery +
+          EncodeURIComponent(Copy(Pair, 1, Pos('=', Pair)-1)) + '=' +
+          EncodeURIComponent(Copy(Pair, Pos('=', Pair)+1, MaxInt));
+      end
+      else
+      begin
+        EncodedQuery := EncodedQuery + EncodeURIComponent(Pair);
+      end;
+    end;
+
+    Result := BaseURL + '?' + EncodedQuery;
+  finally
+    SL.Free;
+  end;
 end;
 
 initialization

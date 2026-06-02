@@ -18,7 +18,7 @@ function HSK_0005(A: PWideChar): DWORD;
 function HSK_0006(A: integer; B: integer; C: integer; D: PWideChar): DWORD;
 function HSK_0007(A: PWideChar; B: BOOL; C: PWideChar): DWORD;
 function HSK_0008: DWORD;
-procedure HSK_0009(A: WideString; B: integer; C: Int64);
+procedure HSK_0009(A: PWideChar; B: integer; C: Int64);
 procedure HSK_0010;
 procedure HSK_0011(A: PWideChar; B: PByte);
 function HSK_0012(A: PWideChar): DWORD;
@@ -76,7 +76,7 @@ begin
   exit(0);
 end;
 
-procedure HSK_0009(A: WideString; B: integer; C: Int64);
+procedure HSK_0009(A: PWideChar; B: integer; C: Int64);
 begin
   exit;
 end;
