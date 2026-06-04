@@ -224,7 +224,7 @@
         </DCCReference>
         <DCCReference Include="Lib\Datenbank\hl.Datenbank.pas"/>
         <DCCReference Include="Lib\Utils\hl.Utils.Gui.pas"/>
-        <DCCReference Include="Lib\Src\hl_HSK_Client.pas"/>
+        <DCCReference Include="Lib\Src\hl_HSK.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

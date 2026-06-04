@@ -110,6 +110,6 @@ contains
   hg_CheckboxVoransicht in 'Gui\Src\hg_CheckboxVoransicht.pas' {DLG_CheckboxVoransicht},
   hl.Datenbank in 'Lib\Datenbank\hl.Datenbank.pas',
   hl.Utils.Gui in 'Lib\Utils\hl.Utils.Gui.pas',
-  hl_HSK_Client in 'Lib\Src\hl_HSK_Client.pas';
+  hl_HSK in 'Lib\Src\hl_HSK.pas';
 
 end.

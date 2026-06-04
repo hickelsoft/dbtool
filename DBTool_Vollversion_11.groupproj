@@ -9,12 +9,6 @@
         <Projects Include="Hickel_RTL\Hickel_RTL.dproj">
             <Dependencies>Hickel_VCL\Hickel_VCL.dproj</Dependencies>
         </Projects>
-        <Projects Include="Hickel_HSK\Hickel_HSK32.dproj">
-            <Dependencies/>
-        </Projects>
-        <Projects Include="Hickel_HSK\Hickel_HSK64.dproj">
-            <Dependencies/>
-        </Projects>
         <Projects Include="DBTool\Projekte\Vollversion\DBTool32.dproj">
             <Dependencies/>
         </Projects>
@@ -47,24 +41,6 @@
     <Target Name="Hickel_RTL:Make" DependsOnTargets="Hickel_VCL:Make">
         <MSBuild Projects="Hickel_RTL\Hickel_RTL.dproj" Targets="Make"/>
     </Target>
-    <Target Name="Hickel_HSK32">
-        <MSBuild Projects="Hickel_HSK\Hickel_HSK32.dproj"/>
-    </Target>
-    <Target Name="Hickel_HSK32:Clean">
-        <MSBuild Projects="Hickel_HSK\Hickel_HSK32.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="Hickel_HSK32:Make">
-        <MSBuild Projects="Hickel_HSK\Hickel_HSK32.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="Hickel_HSK64">
-        <MSBuild Projects="Hickel_HSK\Hickel_HSK64.dproj"/>
-    </Target>
-    <Target Name="Hickel_HSK64:Clean">
-        <MSBuild Projects="Hickel_HSK\Hickel_HSK64.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="Hickel_HSK64:Make">
-        <MSBuild Projects="Hickel_HSK\Hickel_HSK64.dproj" Targets="Make"/>
-    </Target>
     <Target Name="DBTool32">
         <MSBuild Projects="DBTool\Projekte\Vollversion\DBTool32.dproj"/>
     </Target>
@@ -84,13 +60,13 @@
         <MSBuild Projects="DBTool\Projekte\Vollversion\DBTool64.dproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Hickel_VCL;Hickel_RTL;Hickel_HSK32;Hickel_HSK64;DBTool32;DBTool64"/>
+        <CallTarget Targets="Hickel_VCL;Hickel_RTL;DBTool32;DBTool64"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Hickel_VCL:Clean;Hickel_RTL:Clean;Hickel_HSK32:Clean;Hickel_HSK64:Clean;DBTool32:Clean;DBTool64:Clean"/>
+        <CallTarget Targets="Hickel_VCL:Clean;Hickel_RTL:Clean;DBTool32:Clean;DBTool64:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Hickel_VCL:Make;Hickel_RTL:Make;Hickel_HSK32:Make;Hickel_HSK64:Make;DBTool32:Make;DBTool64:Make"/>
+        <CallTarget Targets="Hickel_VCL:Make;Hickel_RTL:Make;DBTool32:Make;DBTool64:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

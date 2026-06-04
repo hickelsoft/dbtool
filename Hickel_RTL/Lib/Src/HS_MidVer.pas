@@ -11,7 +11,7 @@ procedure MidVer_Stop;
 implementation
 
 uses
-  hl_HSK_Client;
+  hl_HSK;
 
 procedure MidVer_Start(AProduct: WideString; ASerienNr: integer; ACounter: Int64);
 begin

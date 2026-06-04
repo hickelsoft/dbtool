@@ -7,7 +7,7 @@ function July22Crypt(passwort: WideString; do_encrypt: boolean): WideString;
 implementation
 
 uses
-  Windows, hl_HSK_Client;
+  Windows, hl_HSK;
 
 function July22Crypt(passwort: WideString; do_encrypt: boolean): WideString;
 var

@@ -15,7 +15,7 @@ function make_code(KundenNr: integer; SerienNr: integer; Dateianfrage: integer):
 implementation
 
 uses
-  Windows, hl_HSK_Client;
+  Windows, hl_HSK;
 
 function IstHickelSoftTestPC: boolean;
 begin
