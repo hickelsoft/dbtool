@@ -51,9 +51,9 @@ type
     // hMode: THandle;
     FBinNumber: TStrings;
     FPrinter: TPrinter;
-    pcDriver: pChar;
-    pcName: pChar;
-    pcPort: pChar;
+    sDriver: String;
+    sName: String;
+    sPort: String;
 
     mKopien: Integer;
     mPrinterIndex: Integer;
@@ -247,9 +247,6 @@ begin
   inherited Create(aOwner);
 
   LinkedTo := TList.Create;
-  pcDriver := AllocMem(512);
-  pcPort := AllocMem(512);
-  pcName := AllocMem(512);
   // hMode := 0;
 
   FPrinter := TPrinter.Create;
@@ -288,9 +285,6 @@ var
   iCounter: LongInt;
 
 begin
-  FreeMem(pcDriver);
-  FreeMem(pcPort);
-  FreeMem(pcName);
   FreeAndNil(FBinNumber);
   FreeAndNil(FPrinter);
 
@@ -851,12 +845,12 @@ begin
     FPrinter.PrinterIndex := Index;
   // FPrinterIndex := FPrinter.PrinterIndex;  // <-- nein, wir lassen kein "Feedback" zu. "-1" bleibt bei uns "-1"
 
-  FPrinter.GetPrinter(pcName, pcDriver, pcPort, hMode);
+  FPrinter.GetPrinter(sName, sDriver, sPort, hMode);
 
   if (hMode = 0) then
   begin
-    FPrinter.SetPrinter(pcName, pcDriver, pcPort, hMode);
-    FPrinter.GetPrinter(pcName, pcDriver, pcPort, hMode);
+    FPrinter.SetPrinter(sName, sDriver, sPort, hMode);
+    FPrinter.GetPrinter(sName, sDriver, sPort, hMode);
   end;
 
   FDevMode := GlobalLock(hMode);
@@ -874,7 +868,7 @@ begin
           wbuffer := AllocMem(Hs_Max_Bins * 2);
           try
             // DC_BINS: Retrieves a list of available paper bins. The pOutput buffer receives an array of WORD values that indicate the available paper sources for the printer. The return value indicates the number of entries in the array. For a list of the possible array values, see the description of the dmDefaultSource member of the DEVMODE structure. If pOutput is NULL, the return value indicates the required number of entries in the array.
-            dwBuffer := DeviceCapabilities(pcName, pcPort, DC_BINS,
+            dwBuffer := DeviceCapabilities(PChar(sName), PChar(sPort), DC_BINS,
               pChar(wbuffer), nil);
             wbuffer1 := wbuffer;
             for iCounter := 0 to dwBuffer - 1 do
@@ -900,7 +894,7 @@ begin
             pcBuffer := AllocMem(Hs_Max_Bins * 24);
             try
               // DC_BINNAMES: 	Retrieves the names of the printer's paper bins. The pOutput buffer receives an array of string buffers. Each string buffer is 24 characters long and contains the name of a paper bin. The return value indicates the number of entries in the array. The name strings are null-terminated unless the name is 24 characters long. If pOutput is NULL, the return value is the number of bin entries required.
-              dwBuffer := DeviceCapabilities(pcName, pcPort, DC_BINNAMES,
+              dwBuffer := DeviceCapabilities(PChar(sName), PChar(sPort), DC_BINNAMES,
                 pcBuffer, FDevMode);
               for iCounter := 0 to dwBuffer - 1 do
               begin
@@ -991,16 +985,16 @@ begin
         FPaperBin.enabled := False;
       end;
     end;
-    FName := strpas(pcName);
-    FDriver := strpas(pcDriver);
-    FPort := strpas(pcPort);
+    FName := sName;
+    FDriver := sDriver;
+    FPort := sPort;
     with TiniFile.Create('Win.Ini') do
     begin
       FDriver := ReadString('devices', FName, '');
       Free;
     end;
     FDriver := copy(FDriver, 1, Pos(',', FDriver) - 1);
-    StrPCopy(pcDriver, FDriver);
+    sDriver := FDriver;
     if assigned(FDruckerListe) then
     begin
       // OnChange muss abgeschaltet werden, um Rekursionen zu vermeiden!

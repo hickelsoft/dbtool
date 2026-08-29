@@ -144,8 +144,12 @@ begin
     if Bcc <> '' then
       newMail.Bcc := Bcc;
 
-    newMail.Attachments.Add(FileName).Displayname :=
-      ChangeFileExt(ExtractFileName(FileName), '');
+    if FileName <> '' then
+    begin
+      newMail.Attachments.Add(FileName).Displayname :=
+        ChangeFileExt(ExtractFileName(FileName), '');
+    end;
+
     if not IsHTML(Body) then
     begin
       (*

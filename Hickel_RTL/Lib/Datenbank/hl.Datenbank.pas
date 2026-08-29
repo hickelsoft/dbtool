@@ -281,7 +281,8 @@ function ConnStrWriteAttr(attr, val, ConnStr: string): string;
 implementation
 
 uses
-  MessaBox, hl.System.ExceptionHandler, hl_SqlServerProvider, HS_Auth;
+  MessaBox, hl.System.ExceptionHandler, hl_SqlServerProvider, HS_Auth,
+  hl.Utils;
 
 resourcestring
   StrGetScalarMitLeerem = 'GetScalar mit leerem SQL String aufgerufen';
@@ -429,7 +430,7 @@ end;
 
 { ThlDatenbank }
 
-function ThlDatenbank.TableExists(aTableName: hlString): boolean;
+function ThlDatenbank.TableExists(aTableName: hlString): boolean; // TODO: Umbenennen zu TableOrViewExists
 begin
   Result := TableExists(aTableName, mConnection);
 end;
@@ -538,7 +539,7 @@ procedure ThlDatenbank.CreateStandard(Datenbank, Server: string;
 
 begin
   try
-    HS_SA_DB_OLD := false; // "cora-client" Auth für die Zeit nach dem Anlegen
+    HS_SA_DB_OLD := false; // "cora-*" Auth für die Zeit nach dem Anlegen
     _Versuchen;
   except
     on E: EAbort do
@@ -780,7 +781,7 @@ begin
 
 {$IF CompilerVersion >= 20.0}
     // Das gehört eigentlich nicht in diese Funktion, aber es ist wichtig, dass das überall gemacht wird
-    // da sonst alles am Arsch ist. (TAdoTable im Lookup zeigt Fehler "Der aktuelle Provider unterstützt nicht die erforderliche Schnittstelle für die Indexfunktion")
+    // da sonst alles im Eimer ist. (TAdoTable im Lookup zeigt Fehler "Der aktuelle Provider unterstützt nicht die erforderliche Schnittstelle für die Indexfunktion")
     // (Ticket 54113/11)
     // => Eigentlich OrderByDisplay nur einen Effekt haben, wenn das LookupDataset ein TwwTable ist. Fehler berichtet am 8.6.2023.
     // => Fixed in Woll2Woll InfoPower 4K Alexandria (22.1.0.7, 2023-06-13)
@@ -916,22 +917,22 @@ begin
       begin
         if q.FieldByName('IndexType').AsWideString = 'HEAP' then
         begin
-          ExecSql(10*60, Format('ALTER TABLE [%s].[%s] REBUILD;',
+          ExecSql(3600, Format('ALTER TABLE [%s].[%s] REBUILD;',
             [SchemaName, TableName]));
         end
         else
         begin
           if q.FieldByName('avg_fragmentation_in_percent').AsInteger > 30 then
-            ExecSql(10*60, Format('ALTER INDEX [%s] ON [%s].[%s] REBUILD;',
+            ExecSql(3600, Format('ALTER INDEX [%s] ON [%s].[%s] REBUILD;',
               [IndexName, SchemaName, TableName]))
           else if q.FieldByName('avg_fragmentation_in_percent').AsInteger > 10
           then
-            ExecSql(10*60, Format('ALTER INDEX [%s] ON [%s].[%s] REORGANIZE;',
+            ExecSql(3600, Format('ALTER INDEX [%s] ON [%s].[%s] REORGANIZE;',
               [IndexName, SchemaName, TableName]));
         end;
       end;
 
-      ExecSql(10*60, Format('UPDATE STATISTICS [%s].[%s] WITH FULLSCAN;',
+      ExecSql(3600, Format('UPDATE STATISTICS [%s].[%s] WITH FULLSCAN;',
         [SchemaName, TableName]));
 
       q.Next;
@@ -947,16 +948,16 @@ begin
     begin
       SchemaName := q.FieldByName('SchemaName').AsWideString;
       TableName := q.FieldByName('TableName').AsWideString;
-      ExecSql(10*60, Format('sp_recompile ''[%s].[%s]'';', [SchemaName, TableName]));
+      ExecSql(3600, Format('sp_recompile ''[%s].[%s]'';', [SchemaName, TableName]));
       q.Next;
     end;
   finally
     FreeAndNil(q);
   end;
 
-  ExecSql(10*60, 'DBCC FREEPROCCACHE;');
+  ExecSql(3600, 'DBCC FREEPROCCACHE;');
   // geht nicht ohne sysadmin Rechte, obwohl die Dokumentation sagt, dass man nur db_owner sein muss...
-  //ExecSql(10*60, 'exec sp_updatestats;');
+  //ExecSql(3600, 'exec sp_updatestats;');
 end;
 
 destructor ThlDatenbank.Destroy;
@@ -1093,7 +1094,7 @@ begin
               // "Die ...-Datenbank wird wiederhergestellt. Warten Sie, bis die Wiederherstellung beendet ist"
               // oder
               // "Database '...' is being recovered. Waiting until recovery is finished"
-              Sleep(5000);
+              SleepWithMessages(5000);
             end
             else
             begin
@@ -1600,12 +1601,27 @@ end;
 class procedure ThlDatenbank.ttRefresh(aTable: TDataset);
 var
   wasActive: boolean;
+  bakSort: string;
 begin
-  wasActive := aTable.active;
-  if wasActive = true then
-  begin
-    aTable.active := false; // MakeActiveTryReconnect(aTable, False);
-    aTable.active := true; // MakeActiveTryReconnect(aTable, True);
+  // TODO: Es wäre gut, wenn hier auch ein Code gemacht wird, der die Scrollposition (IndexField + Locate) behalten wird
+
+  if not aTable.active then exit;
+
+  if aTable is TAdoQuery then
+    bakSort := TAdoQuery(aTable).Sort
+  else if aTable is TAdoTable then
+    bakSort := TAdoTable(aTable).Sort
+  else
+    bakSort := '';
+  try
+    // This is more stable than Requery!
+    aTable.active := false;
+    aTable.active := true;
+  finally
+    if (bakSort <> '') and (aTable is TAdoQuery) then
+      TAdoQuery(aTable).Sort := bakSort;
+    if (bakSort <> '') and (aTable is TAdoTable) then
+      TAdoTable(aTable).Sort := bakSort;
   end;
 end;
 

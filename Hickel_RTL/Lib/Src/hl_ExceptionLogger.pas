@@ -16,8 +16,7 @@ type
     /// <summary>Speichert alle notwendigen Informationen über eine Exception, inklusive CallStack (benötigt JEDI).</summary>
     /// <remarks>Damit der Call-Stack funktioniert, muss "Mapping" in den Linker-Einstellungen auf Detailliert gestellt werden. Weitere Informationen im Ordner "Dokumentation Entwicklung".</remarks>
     /// <author>Daniel Marschall</author>
-    class procedure LogException(e: Exception;
-      hlExceptionLog: ThlLog = nil); static;
+    class procedure LogException(e: Exception; hlExceptionLog: ThlLog); static;
   end;
 
 implementation
@@ -34,8 +33,7 @@ var
 
   { ThlExceptionLogger }
 
-class procedure ThlExceptionLogger.LogException(e: Exception;
-  hlExceptionLog: ThlLog = nil);
+class procedure ThlExceptionLogger.LogException(e: Exception; hlExceptionLog: ThlLog);
 var
   slCallStack: TStringList;
   i: integer;

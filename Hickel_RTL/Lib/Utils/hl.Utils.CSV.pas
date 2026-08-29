@@ -37,7 +37,7 @@ end;
 
 class function ThsCSVUtils.ImportCSVField_Bool(s: string): boolean;
 begin
-  result := s = 'true';
+  result := SameText(s, 'true') or SameText(s, 'yes') or (s = '1');
 end;
 
 class function ThsCSVUtils.ImportCSVField_DateTime(s: string): TDateTime;

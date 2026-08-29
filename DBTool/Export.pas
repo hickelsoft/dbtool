@@ -106,6 +106,7 @@ type
     Label8: TLabel;
     Label17: TLabel;
     Label7: TLabel;
+    cbUtf8: TCheckBox;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
     procedure btnFertigClick(Sender: TObject);
@@ -311,20 +312,35 @@ begin
       btnFertig.Enabled := true;
       case rgDateiformate.ItemIndex of
         RG_DATEIFORMAT_DBASE:
+        begin
+          cbUtf8.visible := false;
           eDateiname.Text := IncludeTrailingPathDelimiter(DefaultExportDir) +
             DateinameBasis + '.dbf'; // do not localize
+        end;
         RG_DATEIFORMAT_HTML:
+        begin
+          cbUtf8.visible := true;
           eDateiname.Text := IncludeTrailingPathDelimiter(DefaultExportDir) +
             DateinameBasis + '.htm'; // do not localize
+        end;
         RG_DATEIFORMAT_PARADOX:
+        begin
+          cbUtf8.visible := false;
           eDateiname.Text := IncludeTrailingPathDelimiter(DefaultExportDir) +
             DateinameBasis + '.db'; // do not localize
+        end;
         RG_DATEIFORMAT_XML:
+        begin
+          cbUtf8.visible := true;
           eDateiname.Text := IncludeTrailingPathDelimiter(DefaultExportDir) +
             DateinameBasis + '.xml'; // do not localize
+        end;
         RG_DATEIFORMAT_SQL:
+        begin
+          cbUtf8.visible := true;
           eDateiname.Text := IncludeTrailingPathDelimiter(DefaultExportDir) +
             DateinameBasis + '.sql'; // do not localize
+        end;
       end;
     end;
   end
@@ -796,7 +812,10 @@ begin
   // SQL Dump ------------------------
   begin
     // Erst mal die neue Datei anlegen
-    AssignFile(F, eDateiname.Text);
+    if cbUtf8.Checked then
+      AssignFile(F, eDateiname.Text, CP_UTF8)
+    else
+      AssignFile(F, eDateiname.Text, CP_ACP);
     Rewrite(F);
 
     // Feldnamen sammeln
@@ -874,14 +893,23 @@ begin
   // HTML-Export ------------------------
   begin
     // Erst mal die neue Datei anlegen
-    AssignFile(F, eDateiname.Text);
+    if cbUtf8.Checked then
+      AssignFile(F, eDateiname.Text, CP_UTF8)
+    else
+      AssignFile(F, eDateiname.Text, CP_ACP);
     Rewrite(F);
     writeln(F,
       '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">');
     // do not localize
     writeln(F, '<!-- ' + SDBToolHtmlComment + ' -->'); // do not localize
     writeln(F, '');
-    writeln(F, '<HTML><HEAD><TITLE>' + ToHtml(sTableName) + '</TITLE></HEAD>');
+    writeln(F, '<HTML><HEAD>');
+    if cbUtf8.Checked then
+      writeln(F, '<META http-equiv="Content-Type" content="text/html; charset=UTF-8">')
+    else
+      writeln(F, '<META http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">'); // TODO: Hier sollte die ACP (ActiveCodePage) rein
+    writeln(F, '<TITLE>' + ToHtml(sTableName) + '</TITLE>');
+    writeln(F, '</HEAD>');
     // do not localize
     writeln(F, '<BODY bgColor="#ffffff"><CENTER><H1>' + ToHtml(sTableName) +
       '</H1><BR><TABLE BORDER="1">'); // do not localize
@@ -928,10 +956,13 @@ begin
     CloseFile(F);
   end
   else if rgDateiformate.ItemIndex = RG_DATEIFORMAT_CSV then
-  // Text-Export -----------------------
+  // CSV-Export -----------------------
   begin
     // Erst mal die neue Datei anlegen
-    AssignFile(F, eDateiname.Text);
+    if cbUtf8.Checked then
+      AssignFile(F, eDateiname.Text, CP_UTF8)
+    else
+      AssignFile(F, eDateiname.Text, CP_ACP);
     Rewrite(F);
 
     case rgTrennzeichen.ItemIndex of
@@ -1001,9 +1032,15 @@ begin
   // XML-Export ------------------------
   begin
     // Erst mal die neue Datei anlegen
-    AssignFile(F, eDateiname.Text);
+    if cbUtf8.Checked then
+      AssignFile(F, eDateiname.Text, CP_UTF8)
+    else
+      AssignFile(F, eDateiname.Text, CP_ACP);
     Rewrite(F);
-    writeln(F, '<?xml version="1.0" encoding="ISO-8859-1"?>');
+    if cbUtf8.Checked then
+      writeln(F, '<?xml version="1.0" encoding="UTF-8"?>')
+    else
+      writeln(F, '<?xml version="1.0" encoding="ISO-8859-1"?>'); // TODO: Hier sollte die ACP (ActiveCodePage) rein
     // do not localize
     writeln(F, '<!-- ' + SDBToolHtmlComment + ' -->'); // do not localize
     writeln(F, '');

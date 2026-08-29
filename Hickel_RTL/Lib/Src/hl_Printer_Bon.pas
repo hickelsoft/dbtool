@@ -31,7 +31,6 @@ type
   end;
 
 function hlPrinterBon: ThlPrinterBon;
-function SetHlPrinterBon(NewPrinter: ThlPrinterBon): ThlPrinterBon;
 
 implementation
 
@@ -79,7 +78,7 @@ begin
   // Canvas.Font.Color := clBlack;
   // Canvas.Font.Style := [];
 
-  if ContainsText(PrinterName, 'Samsung') or ContainsText(PrinterName, 'Bixolon')
+  if ContainsText(PrinterName, 'Samsung') or ContainsText(PrinterName, 'Bixolon') or ContainsText(PrinterName, 'Metapace')
   then
     Canvas.Font.Name :=
       'FontControl' { Control Function Font Name für Bixolon / Samsung SRP 350 }
@@ -100,12 +99,6 @@ begin
   if (_hlPrinterBon = nil) then
     _hlPrinterBon := ThlPrinterBon.Create;
   Result := _hlPrinterBon;
-end;
-
-function SetHlPrinterBon(NewPrinter: ThlPrinterBon): ThlPrinterBon;
-begin
-  Result := _hlPrinterBon;
-  _hlPrinterBon := NewPrinter;
 end;
 
 initialization

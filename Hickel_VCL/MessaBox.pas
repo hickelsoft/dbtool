@@ -10,18 +10,14 @@ type
   // Wichtig: Muss nach Schwere aufsteigend sortiert sein
   TMBstyle = (mbsInformation, mbsQuestion, mbsExclamation, mbsStop);
 
-type
   TMBbuttons = (mbbOk, mbbOkCancel, mbbYesNo, mbbYesNoCancel, mbbRetryCancel,
     mbbAbortRetryIgnore);
 
-type
   TBeforeExecute = procedure(ParamString: string) of object;
 
-type
 {$IF CompilerVersion > 20.0} // Version geraten
   [ComponentPlatformsAttribute(pidWin32 or pidWin64)]
 {$IFEND}
-
   TMessageBox = class(TComponent)
   private
     FCaption, FText: String;
@@ -63,8 +59,8 @@ type
       write FBeforeExecute;
   end;
 
-  // ShowMessage-Ersatz
-  // Typischer VCL Aufruf: MessageDlg('Nachricht', '', mtWarning, mbOKCancel, 0);
+// ShowMessage-Ersatz
+// Typischer VCL Aufruf: MessageDlg('Nachricht', '', mtWarning, mbOKCancel, 0);
 function HsShowMessage(sText: string; sCaption: string = '';
   mbStyle: TMBstyle = mbsInformation; mbButtons: TMBbuttons = mbbOk;
   AMoreInfoSL: TStrings = nil): Integer; overload;
@@ -84,7 +80,8 @@ implementation
 // dann im Projekt-Suchpfad einfügen: ..\VCL_JEDI\source\common und ..\VCL_JEDI\source\windows
 // Delphi 12:
 // JEDI über GetIt PackageManager installieren. Im nachfolgenden Installer nicht vergessen "Only install selected" zu klicken, damit nur Delphi 12 bearbeitet wird.
-uses Dialogs, ShellAPI, Math, JclDebug;
+uses
+  Dialogs, DateUtils, ShellAPI, Math, JclDebug;
 
 resourcestring
   StrTextInDieZwischen = 'Text in die Zwischenablage &kopieren';
@@ -411,55 +408,27 @@ begin
       Height := 48;
       Transparent := True;
 
-      if Copy(DateToStr(Now),1,6) = '01.04.' then
-      begin
-        case FStyle of
-          mbsInformation:
-            begin
-              Picture.Bitmap.LoadFromResourceName(hInstance, 'INFORMATION_APR');
-              MessageBeep(MB_ICONINFORMATION);
-            end;
-          mbsStop:
-            begin
-              Picture.Bitmap.LoadFromResourceName(hInstance, 'STOP_APR');
-              MessageBeep(MB_ICONHAND);
-            end;
-          mbsQuestion:
-            begin
-              Picture.Bitmap.LoadFromResourceName(hInstance, 'QUESTION_APR');
-              MessageBeep(MB_ICONQUESTION);
-            end;
-          mbsExclamation:
-            begin
-              Picture.Bitmap.LoadFromResourceName(hInstance, 'EXCLAMATION_APR');
-              MessageBeep(MB_ICONEXCLAMATION);
-            end;
-        end;
-      end
-      else
-      begin
-        case FStyle of
-          mbsInformation:
-            begin
-              Picture.Bitmap.LoadFromResourceName(hInstance, 'INFORMATION');
-              MessageBeep(MB_ICONINFORMATION);
-            end;
-          mbsStop:
-            begin
-              Picture.Bitmap.LoadFromResourceName(hInstance, 'STOP');
-              MessageBeep(MB_ICONHAND);
-            end;
-          mbsQuestion:
-            begin
-              Picture.Bitmap.LoadFromResourceName(hInstance, 'QUESTION');
-              MessageBeep(MB_ICONQUESTION);
-            end;
-          mbsExclamation:
-            begin
-              Picture.Bitmap.LoadFromResourceName(hInstance, 'EXCLAMATION');
-              MessageBeep(MB_ICONEXCLAMATION);
-            end;
-        end;
+      case FStyle of
+        mbsInformation:
+          begin
+            Picture.Bitmap.LoadFromResourceName(hInstance, 'INFORMATION');
+            MessageBeep(MB_ICONINFORMATION);
+          end;
+        mbsStop:
+          begin
+            Picture.Bitmap.LoadFromResourceName(hInstance, 'STOP');
+            MessageBeep(MB_ICONHAND);
+          end;
+        mbsQuestion:
+          begin
+            Picture.Bitmap.LoadFromResourceName(hInstance, 'QUESTION');
+            MessageBeep(MB_ICONQUESTION);
+          end;
+        mbsExclamation:
+          begin
+            Picture.Bitmap.LoadFromResourceName(hInstance, 'EXCLAMATION');
+            MessageBeep(MB_ICONEXCLAMATION);
+          end;
       end;
     end;
     with TBitBtn.Create(aPanel) do
@@ -557,6 +526,9 @@ begin
         Font.Style := [fsUnderline];
         Cursor := crHandPoint;
         OnClick := MoreInfoClick;
+        // Damit die Buttons nicht das Label verdecken
+        Parent.Parent.ClientHeight := Parent.Parent.ClientHeight + 16;
+        Top := Top + 16;
       end;
     end;
     DLG_MessageBox.ActiveControl := aPanel;
@@ -675,10 +647,10 @@ var
   LogFile: string;
   Wow64FsEnableRedirection: LongBool;
 begin
-  LogFile := GetTempDir + 'CORA_WeitereInformationen.txt';
+  LogFile := IncludeTrailingPathDelimiter(GetTempDir) + 'CORA_WeitereInformationen.txt';
   Memo1.Lines.SaveToFile(LogFile);
 
-  // Ich mache das hier so, weil wir Shellexecute64() in hl.Utils nicht von diesem Package aus verwenden dürfen
+  // Ich mache das hier so, weil wir ShellExecute64() in hl.Utils nicht von diesem Package aus verwenden dürfen
   Wow64DisableWow64FsRedirection(Wow64FsEnableRedirection);
   try
     ShellExecute(0, 'open', pChar(LogFile), '', '', SW_NORMAL);

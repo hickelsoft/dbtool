@@ -94,15 +94,12 @@ object DLG_Import: TDLG_Import
     Height = 328
     Align = alTop
     Color = clBtnFace
-    PageIndex = 3
     ParentColor = False
     TabOrder = 4
     object TPage
       Left = 0
       Top = 0
       Caption = '0'
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Shape1: TShape
         Left = 164
         Top = 0
@@ -5885,8 +5882,6 @@ object DLG_Import: TDLG_Import
       Left = 0
       Top = 0
       Caption = '4'
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object lExportFormat: TLabel
         Left = 32
         Top = 136
@@ -5964,8 +5959,6 @@ object DLG_Import: TDLG_Import
       Left = 0
       Top = 0
       Caption = '5'
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label23: TLabel
         Left = 20
         Top = 77

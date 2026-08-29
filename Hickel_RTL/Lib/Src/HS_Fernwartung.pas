@@ -9,7 +9,7 @@ implementation
 
 uses
   Windows, SysUtils, ProgrDlg, hl.Utils, hl.Utils.Web, MessaBox, Classes,
-  ShellAPI, StrUtils, Zip, HS_Auth;
+  ShellAPI, StrUtils, Zip, HS_Auth, Registry;
 
 {$REGION 'Lokalisierung'}
 resourcestring
@@ -26,6 +26,73 @@ resourcestring
   StrGenaueFehlermeldung = 'Genaue Fehlermeldung: %s';
   StrHMacFehler = 'HMAC stimmt nicht überein. Bitte Download nochmal versuchen.';
 {$ENDREGION}
+
+procedure _Aufrufen(exeName: string; adminMode: integer);
+var
+  i: integer;
+  ParamStrs: string;
+begin
+  // Rustdesk Auto-Update downloads Fernwartung.exe and runs it as --update
+  // we will pass through the paramter
+  ParamStrs := '';
+  for i := 1 to ParamCount do
+  begin
+    ParamStrs := ParamStrs + ' ' + ParamStr(i);
+  end;
+
+  if AdminMode = 0 then
+  begin
+    // AdminMode 0 = Run normally without UAC
+    ShellExecute64(0, 'open', PChar(exeName), PChar(Trim(ParamStrs)),
+      '', SW_NORMAL);
+  end
+  else
+  begin
+    // AdminMode 1 = Try to run as admin, otherwise run normally if UAC is denied
+    // AdminMode 2 = Require admin UAC (fail if UAC is denied)
+    if ShellExecute64(0, 'runas', PChar(exeName),
+      PChar(Trim(ParamStrs)), '', SW_NORMAL) = SE_ERR_ACCESSDENIED then
+    begin
+      if AdminMode = 1 then
+      begin
+        ShellExecute64(0, 'open', PChar(exeName),
+          PChar(Trim(ParamStrs)), '', SW_NORMAL);
+      end;
+    end;
+  end;
+end;
+
+function _RustDeskInstalledExeName: string;
+var
+  Reg: TRegistry;
+  S: string;
+  P: Integer;
+begin
+  Result := 'C:\Program Files\RustDesk\RustDesk.exe';
+
+  Reg := TRegistry.Create(KEY_READ);
+  try
+    Reg.RootKey := HKEY_LOCAL_MACHINE;
+
+    if Reg.OpenKeyReadOnly('\SOFTWARE\Classes\rustdesk\shell\open\command') then
+    begin
+      S := Reg.ReadString('');
+
+      if (S <> '') and (S[1] = '"') then
+      begin
+        Delete(S, 1, 1);
+        P := Pos('"', S);
+        if P > 0 then
+          Result := Copy(S, 1, P - 1);
+      end;
+    end;
+  finally
+    FreeAndNil(Reg);
+  end;
+
+  if not FileExists(Result) then
+    Result := '';
+end;
 
 procedure HS_FernwartungStarten;
 const
@@ -45,7 +112,6 @@ var
   AdminMode: integer;
   tmp: string;
   Zip: TZipFile;
-  ParamStrs: string;
   i: integer;
 begin
   fehlerMeldung := '';
@@ -172,6 +238,24 @@ begin
     // (da eine Nicht-Admin-Anwendung einer Admin-Anwendung kein WM_USER+2 Signal senden kann).
     // Deshalb normal starten, ohne UAC.
     AdminMode := 0;
+  end;
+  {$ENDREGION}
+
+  {$REGION 'Falls vorhanden, installierte RustDesk Variante aufrufen'}
+  if not istRustDeskUpdate then
+  begin
+    // Dieser Schritt ist nowendig, da ab RustDesk 1.4.7 nur der IPC nur noch
+    // möglich ist, wenn beide EXE Dateien der selbe Pfad sind.
+    // https://github.com/rustdesk/rustdesk/issues/15398
+    // Aus diesem Grund müssen wir die installierte EXE und nicht mehr die
+    // portable EXE aufrufen. Die portable EXE wird nur noch runtergeladen,
+    // wenn der Update-Befehl über den RustDesk-Updater angesteuert wird.
+    tmp := _RustDeskInstalledExeName;
+    if tmp <> '' then
+    begin
+      _Aufrufen(tmp, AdminMode);
+      exit;
+    end;
   end;
   {$ENDREGION}
 
@@ -305,36 +389,7 @@ begin
       end;
       {$ENDREGION}
 
-      {$REGION 'Aufrufen'}
-      // Rustdesk Auto-Update downloads Fernwartung.exe and runs it as --update
-      // we will pass through the paramter
-      ParamStrs := '';
-      for i := 1 to ParamCount do
-      begin
-        ParamStrs := ParamStrs + ' ' + ParamStr(i);
-      end;
-
-      if AdminMode = 0 then
-      begin
-        // AdminMode 0 = Run normally without UAC
-        ShellExecute64(0, 'open', PChar(downloadedExe), PChar(Trim(ParamStrs)),
-          '', SW_NORMAL);
-      end
-      else
-      begin
-        // AdminMode 1 = Try to run as admin, otherwise run normally if UAC is denied
-        // AdminMode 2 = Require admin UAC (fail if UAC is denied)
-        if ShellExecute64(0, 'runas', PChar(downloadedExe),
-          PChar(Trim(ParamStrs)), '', SW_NORMAL) = SE_ERR_ACCESSDENIED then
-        begin
-          if AdminMode = 1 then
-          begin
-            ShellExecute64(0, 'open', PChar(downloadedExe),
-              PChar(Trim(ParamStrs)), '', SW_NORMAL);
-          end;
-        end;
-      end;
-      {$ENDREGION}
+      _Aufrufen(downloadedExe, AdminMode);
     end
     else if fehlerMeldung <> '' then
     begin

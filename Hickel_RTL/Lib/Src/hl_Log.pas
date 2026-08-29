@@ -18,6 +18,9 @@ type
     class function DefaultLogDir: string;
   end;
 
+const
+  HS_DEPRECATED_LOG_WARN_FILE = '__HINWEIS__.TXT';
+
 implementation
 
 uses
@@ -34,8 +37,6 @@ class function ThlLog.DefaultLogDir: string;
 var
   exePath: string;
   slTmp: TStringList;
-const
-  HINWEIS_TXT = '__HINWEIS__.TXT';
 begin
 {$REGION 'Deprecated log dir Warnung einfügen'}
   result := '';
@@ -67,14 +68,14 @@ begin
     result := '';
   end;
 
-  if (result <> '') and not FileExists(result + HINWEIS_TXT) then
+  if (result <> '') and not FileExists(result + HS_DEPRECATED_LOG_WARN_FILE) then
   begin
     try
       slTmp := TStringList.Create;
       try
         slTmp.text := StrWichtigerHinweisL + ' ' + #13#10 +
           'C:\Users\...\AppData\Local\HickelSOFT\Logs\';
-        slTmp.SaveToFile(result + HINWEIS_TXT);
+        slTmp.SaveToFile(result + HS_DEPRECATED_LOG_WARN_FILE);
       finally
         FreeAndNil(slTmp);
       end;

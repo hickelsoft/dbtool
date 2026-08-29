@@ -92,7 +92,6 @@ object DLG_Export: TDLG_Export
     Height = 328
     Align = alTop
     Color = clBtnFace
-    PageIndex = 1
     ParentColor = False
     TabOrder = 4
     object TPage
@@ -5692,8 +5691,6 @@ object DLG_Export: TDLG_Export
       Left = 0
       Top = 0
       Caption = '3'
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Panel4: TPanel
         Left = 0
         Top = 0
@@ -5829,8 +5826,6 @@ object DLG_Export: TDLG_Export
       Left = 0
       Top = 0
       Caption = '5'
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object Label5: TLabel
         Left = 32
         Top = 108
@@ -5907,13 +5902,21 @@ object DLG_Export: TDLG_Export
           ParentFont = False
         end
       end
+      object cbUtf8: TCheckBox
+        Left = 32
+        Top = 160
+        Width = 247
+        Height = 17
+        Caption = 'Speichern im UTF-8 Zeichensatz (ohne BOM)'
+        Checked = True
+        State = cbChecked
+        TabOrder = 2
+      end
     end
     object TPage
       Left = 0
       Top = 0
       Caption = '6'
-      ExplicitWidth = 0
-      ExplicitHeight = 0
       object lExportFormat: TLabel
         Left = 32
         Top = 152

@@ -55,7 +55,7 @@
         <Base>true</Base>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
-        <DCC_Description>HICKEL UI Komponenten</DCC_Description>
+        <DCC_Description>HICKEL VCL</DCC_Description>
         <DCC_OutputNeverBuildDcps>true</DCC_OutputNeverBuildDcps>
         <GenDll>true</GenDll>
         <GenPackage>true</GenPackage>
@@ -68,6 +68,9 @@
         <VerInfo_Locale>1031</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=HickelSOFT VCL;FileVersion=8.0.0.0;InternalName=Hickel_VCL;LegalCopyright=(C) 1992-2023 HickelSOFT Huth GmbH;LegalTrademarks=CORAplus;OriginalFilename=Hickel_VCL.bpl;ProductName=CORAplus;ProductVersion=8.0;Comments=</VerInfo_Keys>
         <DCC_OutputDRCFile>true</DCC_OutputDRCFile>
+        <PreBuildEvent><![CDATA[ResCompile.bat MessaBox
+ResCompile.bat HsProgressChecklist
+$(PreBuildEvent)]]></PreBuildEvent>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_Namespace>Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
@@ -158,7 +161,6 @@
                 </Source>
                 <Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\Skia.Package.FMX.Designtime370.bpl">Skia4Delphi-FMX-Entwurfszeit-Package</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\Skia.Package.VCL.Designtime370.bpl">Skia4Delphi-VCL-Entwurfszeit-Package</Excluded_Packages>
                     <Excluded_Packages Name="$(BDSBIN)\dcloffice2k370.bpl">Microsoft Office 2000 Beispiele für gekapselte Komponenten für Automatisierungsserver</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
@@ -1087,4 +1089,52 @@
     <Import Project="$(BDS)\Bin\CodeGear.Delphi.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Delphi.Targets')"/>
     <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
     <Import Project="$(MSBuildProjectName).deployproj" Condition="Exists('$(MSBuildProjectName).deployproj')"/>
+    <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win32'">
+        <PreBuildEvent>ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent/>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64'">
+        <PreBuildEvent>ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent/>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64x'">
+        <PreBuildEvent>ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent/>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win32'">
+        <PreBuildEvent>ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent/>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64'">
+        <PreBuildEvent>ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent/>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64x'">
+        <PreBuildEvent>ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
+        <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
+        <PreLinkEvent/>
+        <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
+        <PostBuildEvent/>
+        <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
+    </PropertyGroup>
 </Project>

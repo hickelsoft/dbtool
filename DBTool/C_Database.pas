@@ -1988,7 +1988,9 @@ begin
     end
     else if aTable.ClassNameIs('TADOTable') then // do not localize
     begin
-      TADOTable(aTable).Requery;
+      //TADOTable(aTable).Requery;
+      TADOTable(aTable).Active := false;
+      TADOTable(aTable).Active := true;
     end
     else if aTable.ClassNameIs('TAdoQuery') then // do not localize
     begin

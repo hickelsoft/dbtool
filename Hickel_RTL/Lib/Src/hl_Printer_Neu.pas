@@ -1,7 +1,6 @@
 unit hl_Printer_Neu;
 
-// Hinweis: Diese Unit wird derzeit nur von CORA_DruckDLL.pas (C#) und
-// Kasse Alt (über hl_Printer_Bon.pas) verwendet.
+// Hinweis: Diese Unit wird derzeit nur von CORA_Druck.exe (C#) verwendet.
 // Im Gegensatz zu HickelComponents\Drucker.pas ist diese Unit keine VCL-Unit,
 // die anhand von ComboBoxen Druckerlisten anzeigt etc.
 
@@ -25,9 +24,9 @@ type
     FPaperSizeIndex: integer;
     FDuplexTextListe: TStrings;
 
-    ADevice: array [0 .. 255] of char;
-    ADriver: array [0 .. 255] of char;
-    APort: array [0 .. 255] of char;
+    FDevice: string;
+    FDriver: string;
+    FPort: string;
     function InitPrinterParams: THandle; // returns hDMode
 
     function GetPrinterName: string;
@@ -67,11 +66,9 @@ type
     property DefaultPrinterName: string read GetDefaultPrinterName;
 
     property PaperSizes: TStrings read GetPaperSizeNames;
-    property PaperSizeIndex: integer read FPaperSizeIndex
-      write SetPaperSizeIndex;
+    property PaperSizeIndex: integer read FPaperSizeIndex write SetPaperSizeIndex;
     property PaperSizeNumbers: TStrings read GetPaperSizeNumbers;
-    property PaperSizeNr: SmallInt read Win_GetPapersize;
-    // Achtung! Das ist die Windows-Interne SchachtNummer (FBinNumber) und nicht der Index in der Auswahlliste!
+    property PaperSizeNr: SmallInt read Win_GetPapersize; // Achtung! Das ist die Windows-Interne SchachtNummer (FBinNumber) und nicht der Index in der Auswahlliste!
     property PaperSizeVerfuegbar: boolean read GetPaperSizeVerfuegbar;
     property PaperSizeName: string read GetPaperSizeName write SetPaperSizeName;
     property DefaultPapersize: string read GetDefaultPapersize;
@@ -80,11 +77,9 @@ type
     property DefaultPapersizeNr: SmallInt read GetDefaultPapersizeNr;
 
     property PaperSources: TStrings read GetPaperSourceNames;
-    property PaperSourceIndex: integer read FPaperSourceIndex
-      write SetPaperSourceIndex;
+    property PaperSourceIndex: integer read FPaperSourceIndex write SetPaperSourceIndex;
     property PaperSourceNumbers: TStrings read GetPaperSourceNumbers;
-    property PaperSourceNr: SmallInt read Win_GetDefaultSource;
-    // Achtung! Das ist die Windows-Interne SchachtNummer (FBinNumber) und nicht der Index in der Auswahlliste!
+    property PaperSourceNr: SmallInt read Win_GetDefaultSource; // Achtung! Das ist die Windows-Interne SchachtNummer (FBinNumber) und nicht der Index in der Auswahlliste!
     property SchachtVerfuegbar: boolean read GetSchachtVerfuegbar;
     property SchachtName: string read GetSchachtName write SetSchachtName;
     property DefaultSchachtName: string read GetDefaultSchachtName;
@@ -97,7 +92,6 @@ type
   end;
 
 function hlPrinterNeu: ThlPrinterNeu;
-function SethlPrinterNeu(NewPrinter: ThlPrinterNeu): ThlPrinterNeu;
 
 implementation
 
@@ -127,13 +121,12 @@ begin
   if hDMode <> 0 then
   begin
     pDevMode := GlobalLock(hDMode);
-    try
-      if (pDevMode <> nil) and
-        (pDevMode^.dmFields and DM_DEFAULTSOURCE = DM_DEFAULTSOURCE) then
+    if pDevMode <> nil then
+    begin
+      if (pDevMode^.dmFields and DM_DEFAULTSOURCE = DM_DEFAULTSOURCE) then
       begin
         result := pDevMode^.dmDefaultSource;
       end;
-    finally
       GlobalUnlock(hDMode);
     end;
   end;
@@ -149,13 +142,12 @@ begin
   if hDMode <> 0 then
   begin
     pDevMode := GlobalLock(hDMode);
-    try
-      if (pDevMode <> nil) and (pDevMode^.dmFields and DM_DUPLEX = DM_DUPLEX)
-      then
+    if pDevMode <> nil then
+    begin
+      if (pDevMode^.dmFields and DM_DUPLEX = DM_DUPLEX) then
       begin
         result := pDevMode^.dmDuplex;
       end;
-    finally
       GlobalUnlock(hDMode);
     end;
   end;
@@ -171,13 +163,12 @@ begin
   if hDMode <> 0 then
   begin
     pDevMode := GlobalLock(hDMode);
-    try
-      if (pDevMode <> nil) and
-        (pDevMode^.dmFields and DM_PAPERSIZE = DM_PAPERSIZE) then
+    if pDevMode <> nil then
+    begin
+      if (pDevMode^.dmFields and DM_PAPERSIZE = DM_PAPERSIZE) then
       begin
         result := pDevMode^.dmPaperSize;
       end;
-    finally
       GlobalUnlock(hDMode);
     end;
   end;
@@ -274,30 +265,60 @@ begin
 end;
 
 function ThlPrinterNeu.GetPaperSourceNames: TStrings;
+const
+  CCH_BINNAME = 24;
 var
   pDevMode: PDeviceMode;
-  bin: array [0 .. 255, 0 .. 23] of char;
-  // TODO: 255 nicht hartkodiert machen. lieber DeviceCapabilities mit pOutput=nil aufrufen um anzahl rauszufinden
-  i: integer;
-  Res: integer;
+  BinCount: Integer;
+  Res: Integer;
+  BinNames: array of array[0..CCH_BINNAME - 1] of Char;
+  i: Integer;
 begin
-  if (FPaperSourceNames = nil) then
-  begin
+  if FPaperSourceNames = nil then
     FPaperSourceNames := TStringList.Create;
-  end;
 
   FPaperSourceNames.Clear;
   InitPrinterParams;
 
   pDevMode := nil;
-  Res := DeviceCapabilities(ADevice, APort, DC_BINNAMES, PCHAR(@(bin[0][0])),
-    pDevMode);
-  for i := 0 to Res - 1 do
+
+  // Erst herausfinden, wie viele Papierquellen vorhanden sind.
+  BinCount := DeviceCapabilities(
+    PChar(FDevice),
+    PChar(FPort),
+    DC_BINNAMES,
+    nil,
+    pDevMode
+  );
+
+  if BinCount <= 0 then
   begin
-    FPaperSourceNames.Add(bin[i]);
+    Result := FPaperSourceNames;
+    Exit;
   end;
 
-  result := FPaperSourceNames;
+  // Puffer passend zur tatsächlichen Anzahl anlegen.
+  SetLength(BinNames, BinCount);
+
+  // Namen der Papierquellen abfragen.
+  Res := DeviceCapabilities(
+    PChar(FDevice),
+    PChar(FPort),
+    DC_BINNAMES,
+    PChar(@BinNames[0][0]),
+    pDevMode
+  );
+
+  if Res <= 0 then
+  begin
+    Result := FPaperSourceNames;
+    Exit;
+  end;
+
+  for i := 0 to Res - 1 do
+    FPaperSourceNames.Add(BinNames[i]);
+
+  Result := FPaperSourceNames;
 end;
 
 function ThlPrinterNeu.GetPrinterName: string;
@@ -313,15 +334,15 @@ end;
 
 function ThlPrinterNeu.InitPrinterParams: THandle;
 begin
-  GetPrinter(ADevice, ADriver, APort, result);
+  GetPrinter(FDevice, FDriver, FPort, result);
   {
     Ohne Handle auf eine DevMode-Struktur geht nichts. Deshalb wird durch den Aufruf
     von SetPrinter das Handle besorgt
   }
   if (result = 0) then
   begin
-    SetPrinter(ADevice, ADriver, APort, result);
-    GetPrinter(ADevice, ADriver, APort, result);
+    SetPrinter(FDevice, FDriver, FPort, result);
+    GetPrinter(FDevice, FDriver, FPort, result);
   end;
 end;
 
@@ -354,93 +375,156 @@ end;
 function ThlPrinterNeu.GetPaperSourceNumbers: TStrings;
 var
   pDevMode: PDeviceMode;
-  wBuffer, wbuffer1: pWord;
-  i: integer;
-  Res: integer;
-const
-  Hs_Max_Bins = 1000;
+  Buffer: array of WORD;
+  BinCount: Integer;
+  Res: Integer;
+  i: Integer;
 begin
-  if (FPaperSourceNumbers = nil) then
-  begin
+  if FPaperSourceNumbers = nil then
     FPaperSourceNumbers := TStringList.Create;
-  end;
 
   FPaperSourceNumbers.Clear;
   InitPrinterParams;
 
-  wBuffer := AllocMem(Hs_Max_Bins * 2);
-  try
-    pDevMode := nil;
-    Res := DeviceCapabilities(ADevice, APort, DC_BINS, PCHAR(wBuffer),
-      pDevMode);
-    wbuffer1 := wBuffer;
-    for i := 0 to Res - 1 do
-    begin
-      FPaperSourceNumbers.Add(IntToStr(wbuffer1^));
-      Inc(pWord(wbuffer1), 1); // inkrement um 1 WORD (also 2 byte)
-    end;
-  finally
-    FreeMem(wBuffer);
+  pDevMode := nil;
+
+  // Erst Anzahl der vorhandenen Papierzuführungen ermitteln.
+  BinCount := DeviceCapabilities(
+    PChar(FDevice),
+    PChar(FPort),
+    DC_BINS,
+    nil,
+    pDevMode
+  );
+
+  if BinCount <= 0 then
+  begin
+    Result := FPaperSourceNumbers;
+    Exit;
   end;
 
-  result := FPaperSourceNumbers;
+  // Puffer passend zur tatsächlichen Anzahl anlegen.
+  SetLength(Buffer, BinCount);
+
+  // Papierzuführungsnummern abfragen.
+  Res := DeviceCapabilities(
+    PChar(FDevice),
+    PChar(FPort),
+    DC_BINS,
+    PChar(@Buffer[0]),
+    pDevMode
+  );
+
+  for i := 0 to Res - 1 do
+    FPaperSourceNumbers.Add(IntToStr(Buffer[i]));
+
+  Result := FPaperSourceNumbers;
 end;
 
 function ThlPrinterNeu.GetPaperSizeNames: TStrings;
+const
+  CCH_PAPERNAME = 64;
 var
   pDevMode: PDeviceMode;
-  pl: array [0 .. 255, 0 .. 63] of char;
-  // TODO: 255 nicht hartkodiert machen. lieber DeviceCapabilities mit pOutput=nil aufrufen um anzahl rauszufinden
-  i: integer;
-  Res: integer;
+  PaperCount: Integer;
+  Res: Integer;
+  PaperNames: array of array[0..CCH_PAPERNAME - 1] of Char;
+  i: Integer;
 begin
-  if (FPaperSizeNames = nil) then
-  begin
+  if FPaperSizeNames = nil then
     FPaperSizeNames := TStringList.Create;
-  end;
 
   FPaperSizeNames.Clear;
   InitPrinterParams;
 
   pDevMode := nil;
-  Res := DeviceCapabilities(ADevice, APort, DC_PAPERNAMES, PCHAR(@(pl[0][0])),
-    pDevMode);
-  for i := 0 to Res - 1 do
+
+  // Erst herausfinden, wie viele Papiergrößen vorhanden sind.
+  PaperCount := DeviceCapabilities(
+    PChar(FDevice),
+    PChar(FPort),
+    DC_PAPERNAMES,
+    nil,
+    pDevMode
+  );
+
+  if PaperCount <= 0 then
   begin
-    FPaperSizeNames.Add(pl[i]);
+    Result := FPaperSizeNames;
+    Exit;
   end;
-  result := FPaperSizeNames;
+
+  // Puffer passend zur tatsächlichen Anzahl anlegen.
+  SetLength(PaperNames, PaperCount);
+
+  // Namen der Papiergrößen abfragen.
+  Res := DeviceCapabilities(
+    PChar(FDevice),
+    PChar(FPort),
+    DC_PAPERNAMES,
+    PChar(@PaperNames[0][0]),
+    pDevMode
+  );
+
+  if Res <= 0 then
+  begin
+    Result := FPaperSizeNames;
+    Exit;
+  end;
+
+  for i := 0 to Res - 1 do
+    FPaperSizeNames.Add(PaperNames[i]);
+
+  Result := FPaperSizeNames;
 end;
 
 function ThlPrinterNeu.GetPaperSizeNumbers: TStrings;
 var
   pDevMode: PDeviceMode;
-  pcBuffer: PCHAR;
-  i: integer;
-  Res: integer;
+  Buffer: array of WORD;
+  PaperCount: Integer;
+  Res: Integer;
+  i: Integer;
 begin
-  if (FPaperSizeNumbers = nil) then
-  begin
+  if FPaperSizeNumbers = nil then
     FPaperSizeNumbers := TStringList.Create;
-  end;
 
   FPaperSizeNumbers.Clear;
   InitPrinterParams;
 
-  pcBuffer := AllocMem(2048);
-  try
-    pDevMode := nil;
-    Res := DeviceCapabilities(ADevice, APort, DC_PAPERS, pcBuffer, pDevMode);
-    for i := 0 to Res - 1 do
-    begin
-      FPaperSizeNumbers.Add(IntToStr(ord(pcBuffer[i * 2]) + 256 *
-        ord(pcBuffer[1 + i * 2])));
-    end;
-  finally
-    FreeMem(pcBuffer);
+  pDevMode := nil;
+
+  // Erst Anzahl der unterstützten Papierformate ermitteln.
+  PaperCount := DeviceCapabilities(
+    PChar(FDevice),
+    PChar(FPort),
+    DC_PAPERS,
+    nil,
+    pDevMode
+  );
+
+  if PaperCount <= 0 then
+  begin
+    Result := FPaperSizeNumbers;
+    Exit;
   end;
 
-  result := FPaperSizeNumbers;
+  // Puffer passend zur tatsächlichen Anzahl anlegen.
+  SetLength(Buffer, PaperCount);
+
+  // Papierformatnummern abfragen.
+  Res := DeviceCapabilities(
+    PChar(FDevice),
+    PChar(FPort),
+    DC_PAPERS,
+    PChar(@Buffer[0]),
+    pDevMode
+  );
+
+  for i := 0 to Res - 1 do
+    FPaperSizeNumbers.Add(IntToStr(Buffer[i]));
+
+  Result := FPaperSizeNumbers;
 end;
 
 function ThlPrinterNeu.GetPaperSizeVerfuegbar: boolean;
@@ -473,47 +557,90 @@ begin
     result := DuplexListe.Strings[2];
 end;
 
-function ThlPrinterNeu.GetPageHeight_mm: integer;
+function ThlPrinterNeu.GetPageHeight_mm: Integer;
 var
   pDevMode: PDeviceMode;
-  p: array [0 .. 99] of TPoint;
-  // TODO: 255 nicht hartkodiert machen. lieber DeviceCapabilities mit pOutput=nil aufrufen um anzahl rauszufinden
-  Res: DWORD;
+  PaperCount: Integer;
+  Res: Integer;
+  Papers: array of TPoint;
 begin
   InitPrinterParams;
   pDevMode := nil;
-  Res := DeviceCapabilities(ADevice, APort, DC_PAPERSIZE, PCHAR(@p[0]),
-    pDevMode);
-  if (FPaperSizeIndex <= integer(Res)) then
+
+  // Anzahl der unterstützten Papierformate ermitteln.
+  PaperCount := DeviceCapabilities(
+    PChar(FDevice),
+    PChar(FPort),
+    DC_PAPERSIZE,
+    nil,
+    pDevMode
+  );
+
+  if PaperCount <= 0 then
   begin
-    result := p[FPaperSizeIndex].y;
-  end
-  else
-  begin
-    result := 0;
+    Result := 0;
+    Exit;
   end;
+
+  // Puffer passend zur tatsächlichen Anzahl anlegen.
+  SetLength(Papers, PaperCount);
+
+  // Papiergrößen abfragen.
+  Res := DeviceCapabilities(
+    PChar(FDevice),
+    PChar(FPort),
+    DC_PAPERSIZE,
+    PChar(@Papers[0]),
+    pDevMode
+  );
+
+  if (FPaperSizeIndex >= 0) and (FPaperSizeIndex < Res) then
+    Result := Papers[FPaperSizeIndex].Y
+  else
+    Result := 0;
 end;
 
-function ThlPrinterNeu.GetPageWidth_mm: integer;
+function ThlPrinterNeu.GetPageWidth_mm: Integer;
 var
   pDevMode: PDeviceMode;
-  p: array [0 .. 99] of TPoint;
-  // TODO: 255 nicht hartkodiert machen. lieber DeviceCapabilities mit pOutput=nil aufrufen um anzahl rauszufinden
-  Res: DWORD;
-
+  PaperCount: Integer;
+  Res: Integer;
+  Papers: array of TPoint;
 begin
   InitPrinterParams;
   pDevMode := nil;
-  Res := DeviceCapabilities(ADevice, APort, DC_PAPERSIZE, PCHAR(@p[0]),
-    pDevMode);
-  if (FPaperSizeIndex <= integer(Res)) then
+
+  // Anzahl der unterstützten Papierformate ermitteln.
+  PaperCount := DeviceCapabilities(
+    PChar(FDevice),
+    PChar(FPort),
+    DC_PAPERSIZE,
+    nil,
+    pDevMode
+  );
+
+  if PaperCount <= 0 then
   begin
-    result := p[FPaperSizeIndex].x;
-  end
-  else
-  begin
-    result := 0;
+    Result := 0;
+    Exit;
   end;
+
+  // Puffer passend zur tatsächlichen Anzahl anlegen.
+  SetLength(Papers, PaperCount);
+
+  // Papiergrößen abfragen.
+  Res := DeviceCapabilities(
+    PChar(FDevice),
+    PChar(FPort),
+    DC_PAPERSIZE,
+    PChar(@Papers[0]),
+    pDevMode
+  );
+
+  if (FPaperSizeIndex >= 0) and (FPaperSizeIndex < Res) then
+    Result := Papers[FPaperSizeIndex].X
+  else
+    Result := 0;
 end;
 
 function ThlPrinterNeu.GetSchachtName: string;
@@ -545,8 +672,6 @@ end;
 procedure ThlPrinterNeu.SetDuplexModus(const Value: integer);
 var
   pDevMode: PDeviceMode;
-  p: array [0 .. 99] of WORD;
-  // TODO: 255 nicht hartkodiert machen. lieber DeviceCapabilities mit pOutput=nil aufrufen um anzahl rauszufinden
   Res: DWORD;
   hDMode: THandle;
 
@@ -554,7 +679,6 @@ begin
   if (Printing) then
     raise EPrinter.Create(SPrinting);
 
-  // FALSCH: if ((Value < 0) or (Value >= PaperSizes.Count)) then exit;
   if (Value < 0) then
     exit;
 
@@ -562,19 +686,17 @@ begin
   if (hDMode <> 0) then
   begin
     pDevMode := nil;
-    Res := DeviceCapabilities(ADevice, APort, DC_DUPLEX, PCHAR(@p[0]),
-      pDevMode);
+    Res := DeviceCapabilities(PChar(FDevice), PChar(FPort), DC_DUPLEX, nil, pDevMode);
 
-    // FALSCH: if (Value <= integer(Res)) then
     if Res <> 0 then
     begin
       pDevMode := GlobalLock(hDMode);
-      if (pDevMode <> nil) then
+      if pDevMode <> nil then
       begin
         pDevMode^.dmFields := pDevMode^.dmFields or DM_DUPLEX;
         pDevMode^.dmDuplex := Value;
+        GlobalUnlock(hDMode);
       end;
-      GlobalUnlock(hDMode);
     end;
   end;
 end;
@@ -590,61 +712,88 @@ begin
     raise ThlException.CreateFmt(StrDuplexModusSNich, [Value]);
 end;
 
-procedure ThlPrinterNeu.SetPaperSizeIndex(Value: integer);
+procedure ThlPrinterNeu.SetPaperSizeIndex(Value: Integer);
 var
   pDevMode: PDeviceMode;
-  p: array [0 .. 99] of WORD;
-  // TODO: 255 nicht hartkodiert machen. lieber DeviceCapabilities mit pOutput=nil aufrufen um anzahl rauszufinden
-  Res: DWORD;
-  found: boolean;
-  i: integer;
+  p: array of WORD;
+  PaperCount: Integer;
+  Res: Integer;
+  found: Boolean;
+  i: Integer;
   hDMode: THandle;
-
+  PaperSizeNumber: Integer;
 begin
-  if (Printing) then
+  if Printing then
     raise EPrinter.Create(SPrinting);
 
-  // FALSCH: if ((Value < 0) or (Value >= PaperSizes.Count)) then exit;
-  if (Value < 0) then
-    exit;
+  if Value < 0 then
+    Exit;
+
+  // Auch den Zugriff auf PaperSizeNumbers absichern.
+  if Value >= PaperSizeNumbers.Count then
+    Exit;
 
   hDMode := InitPrinterParams;
-  if (hDMode <> 0) then
+  if hDMode <> 0 then
   begin
     pDevMode := nil;
-    Res := DeviceCapabilities(ADevice, APort, DC_PAPERS, PCHAR(@p[0]),
-      pDevMode);
 
-    // FALSCH: if (Value <= integer(Res)) then
-    if Res <> 0 then
+    // Erst Anzahl der unterstützten Papierformate ermitteln.
+    PaperCount := DeviceCapabilities(
+      PChar(FDevice),
+      PChar(FPort),
+      DC_PAPERS,
+      nil,
+      pDevMode
+    );
+
+    if PaperCount > 0 then
     begin
-      pDevMode := GlobalLock(hDMode);
-      if (pDevMode <> nil) then
-      begin
-        pDevMode^.dmFields := pDevMode^.dmFields or DM_PAPERSIZE;
+      // Puffer passend zur tatsächlichen Anzahl anlegen.
+      SetLength(p, PaperCount);
 
-        // FALSCH: pDevMode^.dmPaperSize := p[Value];
-        found := false;
-        for i := 0 to Res - 1 do
+      // Papierformat-IDs abfragen.
+      Res := DeviceCapabilities(
+        PChar(FDevice),
+        PChar(FPort),
+        DC_PAPERS,
+        PChar(@p[0]),
+        pDevMode
+      );
+
+      if Res > 0 then
+      begin
+        pDevMode := GlobalLock(hDMode);
+        if pDevMode <> nil then
         begin
-          if p[i] = strToInt(PaperSizeNumbers.Strings[Value]) then
+          pDevMode^.dmFields := pDevMode^.dmFields or DM_PAPERSIZE;
+
+          PaperSizeNumber := StrToInt(PaperSizeNumbers.Strings[Value]);
+
+          found := False;
+          for i := 0 to Res - 1 do
           begin
-            found := true;
-            break;
+            if p[i] = PaperSizeNumber then
+            begin
+              found := True;
+              Break;
+            end;
           end;
-        end;
-        if found then
-        begin
-          pDevMode^.dmPaperSize := strToInt(PaperSizeNumbers.Strings[Value]);
-          FPaperSizeIndex := Value;
-        end
-        else
-        begin
-          pDevMode^.dmPaperSize := DMBIN_AUTO;
-          FPaperSizeIndex := -1;
+
+          if found then
+          begin
+            pDevMode^.dmPaperSize := PaperSizeNumber;
+            FPaperSizeIndex := Value;
+          end
+          else
+          begin
+            pDevMode^.dmPaperSize := 0;
+            FPaperSizeIndex := -1;
+          end;
+
+          GlobalUnlock(hDMode);
         end;
       end;
-      GlobalUnlock(hDMode);
     end;
   end;
 end;
@@ -660,62 +809,80 @@ begin
     raise ThlException.CreateFmt(StrPapiergrößeSNicht, [Value]);
 end;
 
-procedure ThlPrinterNeu.SetPaperSourceIndex(Value: integer);
+procedure ThlPrinterNeu.SetPaperSourceIndex(Value: Integer);
 var
   pDevMode: PDeviceMode;
-  wBuffer, wbuffer1: pWord;
-  Res: DWORD;
-  i: integer;
-  found: boolean;
+  Buffer: array of WORD;
+  BinCount: Integer;
+  Res: Integer;
+  i: Integer;
+  found: Boolean;
   hDMode: THandle;
-const
-  Hs_Max_Bins = 1000;
+  PaperSourceNumber: Integer;
 begin
-  if (Printing) then
+  if Printing then
     raise EPrinter.Create(SPrinting);
 
-  // DM 09.11.2017: Korrigiert. Hier wurden der Zufuhrlisten-Index und nicht die Schacht-Nr von Windows verwendet!
-  // Deswegen wurden nie die in den CORA-Druckeinstellungen gewählten Schächte gewählt, sondern nur die aus der Systemsteuerung.
+  if Value < 0 then
+    Exit;
 
-  // FALSCH: if ((Value < 0) or (Value >= PaperSources.Count)) then exit;
-  if (Value < 0) then
-    exit;
+  // Verhindert einen ungültigen Zugriff auf PaperSourceNumbers.
+  if Value >= PaperSourceNumbers.Count then
+    Exit;
 
   hDMode := InitPrinterParams;
-  if (hDMode <> 0) then
+  if hDMode <> 0 then
   begin
-    wBuffer := AllocMem(Hs_Max_Bins * 2);
-    try
-      pDevMode := nil;
-      Res := DeviceCapabilities(ADevice, APort, DC_BINS, PCHAR(wBuffer),
-        pDevMode);
+    pDevMode := nil;
 
-      // FALSCH: if (Value <= integer(Res)) then
-      if Res <> 0 then
+    // Erst Anzahl der vorhandenen Papierzuführungen ermitteln.
+    BinCount := DeviceCapabilities(
+      PChar(FDevice),
+      PChar(FPort),
+      DC_BINS,
+      nil,
+      pDevMode
+    );
+
+    if BinCount > 0 then
+    begin
+      // Puffer passend zur tatsächlichen Anzahl anlegen.
+      SetLength(Buffer, BinCount);
+
+      // Papierzuführungsnummern abfragen.
+      Res := DeviceCapabilities(
+        PChar(FDevice),
+        PChar(FPort),
+        DC_BINS,
+        PChar(@Buffer[0]),
+        pDevMode
+      );
+
+      if Res > 0 then
       begin
         pDevMode := GlobalLock(hDMode);
-        if (pDevMode <> nil) then
+        if pDevMode <> nil then
         begin
-          pDevMode^.dmFields := pDevMode^.dmFields or DM_DEFAULTSOURCE;
+          pDevMode^.dmFields :=
+            pDevMode^.dmFields or DM_DEFAULTSOURCE;
 
-          // FALSCH: pDevMode^.dmDefaultSource := p[Value];
-          found := false;
+          PaperSourceNumber :=
+            StrToInt(PaperSourceNumbers.Strings[Value]);
 
-          wbuffer1 := wBuffer;
+          found := False;
+
           for i := 0 to Res - 1 do
           begin
-            if integer(wbuffer1^) = strToInt(PaperSourceNumbers.Strings[Value])
-            then
+            if Buffer[i] = PaperSourceNumber then
             begin
-              found := true;
-              break;
+              found := True;
+              Break;
             end;
-            Inc(pWord(wbuffer1), 1); // inkrement um 1 WORD (also 2 byte)
           end;
+
           if found then
           begin
-            pDevMode^.dmDefaultSource :=
-              strToInt(PaperSourceNumbers.Strings[Value]);
+            pDevMode^.dmDefaultSource := PaperSourceNumber;
             FPaperSourceIndex := Value;
           end
           else
@@ -723,11 +890,10 @@ begin
             pDevMode^.dmDefaultSource := DMBIN_AUTO;
             FPaperSourceIndex := -1;
           end;
+
+          GlobalUnlock(hDMode);
         end;
-        GlobalUnlock(hDMode);
       end;
-    finally
-      FreeMem(wBuffer);
     end;
   end;
 end;
@@ -759,12 +925,6 @@ begin
   if (_hlPrinterNeu = nil) then
     _hlPrinterNeu := ThlPrinterNeu.Create;
   result := _hlPrinterNeu;
-end;
-
-function SethlPrinterNeu(NewPrinter: ThlPrinterNeu): ThlPrinterNeu;
-begin
-  result := _hlPrinterNeu;
-  _hlPrinterNeu := NewPrinter;
 end;
 
 initialization

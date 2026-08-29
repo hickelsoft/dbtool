@@ -246,12 +246,65 @@ begin
   { here you may add another symbols from RFC if you need }
 end;
 
+function StreamToUtf8OrAnsi(lHTTP: TIdHttp; MS: TMemoryStream): string;
+var
+  SS: TStringStream;
+begin
+  if Assigned(lHTTP) and (SameText(lHTTP.Response.CharSet,'ISO-8859-1') or SameText(lHTTP.Response.CharSet,'Windows-1252')) then
+  begin
+    try
+      SS := TStringStream.Create('', TEncoding.ANSI);
+      try
+        MS.Position := 0;
+        SS.CopyFrom(MS, 0);
+        Result := SS.DataString;
+      finally
+        FreeAndNil(SS);
+      end;
+    except
+      SS := TStringStream.Create('', TEncoding.UTF8);
+      try
+        MS.Position := 0;
+        SS.CopyFrom(MS, 0);
+        Result := SS.DataString;
+      finally
+        FreeAndNil(SS);
+      end;
+    end;
+  end
+  else
+  begin
+    try
+      SS := TStringStream.Create('', TEncoding.UTF8);
+      try
+        MS.Position := 0;
+        SS.CopyFrom(MS, 0);
+        Result := SS.DataString;
+      finally
+        FreeAndNil(SS);
+      end;
+    except
+      SS := TStringStream.Create('', TEncoding.ANSI);
+      try
+        MS.Position := 0;
+        SS.CopyFrom(MS, 0);
+        Result := SS.DataString;
+      finally
+        FreeAndNil(SS);
+      end;
+    end;
+  end;
+end;
+
 {$REGION 'Indy HTTP Get/Post/Download'}
 
 function Indy_DoPost(const URL: string; Params: TStringList): string;
 var
-  Stream: TStringStream;
   lHTTP: TIdHTTP;
+  MS: TStringStream;
+  PostData: TStringStream;
+  s: string;
+  i: Integer;
 begin
   lHTTP := TIdHTTP.Create;
   try
@@ -262,11 +315,8 @@ begin
     TIdSSLIOHandlerSocketOpenSSL(lHTTP.IOHandler).SSLOptions.Method :=
       sslvTLSv1_2;
 
-    Stream := TStringStream.Create('', TEncoding.UTF8);
+    MS := TStringStream.Create('', TEncoding.UTF8);
     try
-      begin
-      var s: string := '';
-      var i: Integer;
       for i := 0 to Params.Count - 1 do
       begin
         if i > 0 then
@@ -277,22 +327,21 @@ begin
           string(EncodeURIComponent(Params.ValueFromIndex[i]));
       end;
 
-      var PostData := TStringStream.Create(s, TEncoding.UTF8);
+      PostData := TStringStream.Create(s, TEncoding.UTF8);
       try
         lHTTP.Request.ContentType :=
           'application/x-www-form-urlencoded; charset=UTF-8';
 
         lHTTP.Request.UserAgent := DummyUserAgent;
 
-        lHTTP.Post(EncodeURL(URL), PostData, Stream);
+        lHTTP.Post(EncodeURL(URL), PostData, MS);
       finally
-        PostData.Free;
+        FreeAndNil(PostData);
       end;
-    end;
-      Stream.Position := 0;
-      result := Stream.DataString;
+      MS.Position := 0;
+      Result := StreamToUtf8OrAnsi(lHTTP, MS);
     finally
-      FreeAndNil(Stream);
+      FreeAndNil(MS);
     end;
   finally
     FreeAndNil(lHTTP);
@@ -301,8 +350,8 @@ end;
 
 function Indy_DoGet(const URL: string): string;
 var
-  Stream: TStringStream;
   lHTTP: TIdHTTP;
+  MS: TMemoryStream;
 begin
   lHTTP := TIdHTTP.Create;
   try
@@ -313,20 +362,19 @@ begin
     TIdSSLIOHandlerSocketOpenSSL(lHTTP.IOHandler).SSLOptions.Method :=
       sslvTLSv1_2;
 
-    Stream := TStringStream.Create('', TEncoding.UTF8);
+    MS := TMemoryStream.Create;
     try
-
       // https://stackoverflow.com/questions/53261747/indy10-connecttimeout-minimal-value
       lHTTP.ConnectTimeout := 60000; // 60s
       lHTTP.ReadTimeout := 60000; // 60s
 
       lHTTP.Request.UserAgent := DummyUserAgent;
 
-      lHTTP.Get(EncodeURL(URL), Stream);
-      Stream.Position := 0;
-      result := Stream.DataString;
+      lHTTP.Get(EncodeURL(URL), MS);
+      MS.Position := 0;
+      Result := StreamToUtf8OrAnsi(lHTTP, MS);
     finally
-      FreeAndNil(Stream);
+      FreeAndNil(MS);
     end;
   finally
     FreeAndNil(lHTTP);
@@ -663,6 +711,7 @@ begin
 
               until BytesRead = 0;
 
+              (*
               SetString(
                 UTF8Response,
                 PAnsiChar(ResponseStream.Memory),
@@ -670,9 +719,13 @@ begin
               );
 
               Result := UTF8ToString(UTF8Response);
+              *)
+
+              // TODO: Wie kommen wir an den Charset der Response dran?
+              Result := StreamToUtf8OrAnsi(nil, ResponseStream);
 
             finally
-              ResponseStream.Free;
+              FreeAndNil(ResponseStream);
             end;
 
             Break;
@@ -757,6 +810,7 @@ begin
 
         until dwread = 0;
 
+        (*
         SetString(
           UTF8Response,
           PAnsiChar(ResponseStream.Memory),
@@ -764,9 +818,13 @@ begin
         );
 
         Result := UTF8ToString(UTF8Response);
+        *)
+
+        // TODO: Wie kommen wir an den Charset der Response dran?
+        Result := StreamToUtf8OrAnsi(nil, ResponseStream);
 
       finally
-        ResponseStream.Free;
+        FreeAndNil(ResponseStream);
       end;
 
     finally
@@ -1073,7 +1131,7 @@ begin
 
     Result := BaseURL + '?' + EncodedQuery;
   finally
-    SL.Free;
+    FreeAndNil(SL);
   end;
 end;
 

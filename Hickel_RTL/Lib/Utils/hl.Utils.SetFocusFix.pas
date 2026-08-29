@@ -1,16 +1,9 @@
 unit hl.Utils.SetFocusFix;
 
 (*
-  * Diese Unit hackt die Funktion "SetFocus" und ersetzt sie durch eine Variante,
-  * die keine Exception auslöst. Wir haben nämlich an vielen Stellen im Programm
-  * Bugs, bei denen eine solche Exception auslöst. Somit wird aus einem optischen
-  * Problem gleich ein kompletter Ausfall der Funktion. Insbesondere bei der
-  * CORAplus Handelsversion, bei der wir sehr viele Controls ausblenden, ist die
-  * Gefahr groß, dass hier ein SetFocus vergessen wird und es damit zum Absturz kommt.
-  * -- DM 07.12.2016
-  *
-  * Verwendung: Diese Unit wird einmal irgendwo im Projekt eingebunden,
-  * am besten gleich im Hauptform.
+  Diese Unit ersetzt TWinControl.SetFocus durch eine Variante,
+  die keine Exception auslöst, wenn ein Control nicht fokussierbar ist.
+  Die Hook-Installation erfolgt beim Laden der Unit.
 *)
 
 interface
@@ -18,10 +11,10 @@ interface
 implementation
 
 uses
-  Controls,
-  Forms,
+  Windows,
   SysUtils,
-  Windows;
+  Controls,
+  Forms;
 
 type
   TWinControlHack = class(TWinControl)
@@ -46,25 +39,73 @@ begin
 end;
 
 procedure RedirectFunction(OrgProc, NewProc: Pointer);
+{$IFDEF WIN64}
 type
-  TJmpBuffer = packed record
-    Jmp: Byte;
-    Offset: Integer;
+  TAbsoluteJump = packed record
+    MovRax: Word;   // $B848 = mov rax, imm64
+    Address: UInt64;
+    JmpRax: Word;   // $E0FF = jmp rax
   end;
+const
+  PatchSize = SizeOf(TAbsoluteJump); // 12 Bytes
 var
-  n: UINT_PTR;
-  JmpBuffer: TJmpBuffer;
+  Patch: TAbsoluteJump;
+  OldProtect: DWORD;
 begin
-  JmpBuffer.Jmp := $E9;
-  // JmpBuffer.Offset := PByte(NewProc) - (PByte(OrgProc) + 5);
-  JmpBuffer.Offset := uint64(PByte(NewProc)) - (uint64(PByte(OrgProc)) + 5);
-  if not WriteProcessMemory(GetCurrentProcess, OrgProc, @JmpBuffer,
-    SizeOf(JmpBuffer), n) then
+  if (OrgProc = nil) or (NewProc = nil) then
+    raise Exception.Create('RedirectFunction: nil pointer');
+
+  Patch.MovRax := $B848;
+  Patch.Address := UInt64(NewProc);
+  Patch.JmpRax := $E0FF;
+
+  if not VirtualProtect(OrgProc, PatchSize, PAGE_EXECUTE_READWRITE, OldProtect) then
     RaiseLastOSError;
+  try
+    Move(Patch, Pointer(OrgProc)^, PatchSize);
+    FlushInstructionCache(GetCurrentProcess, OrgProc, PatchSize);
+  finally
+    VirtualProtect(OrgProc, PatchSize, OldProtect, OldProtect);
+  end;
 end;
+{$ELSE}
+type
+  TJmpRel32 = packed record
+    Jmp: Byte;       // $E9
+    Offset: Integer; // rel32
+  end;
+const
+  PatchSize = SizeOf(TJmpRel32); // 5 Bytes
+var
+  Patch: TJmpRel32;
+  OldProtect: DWORD;
+  Delta: Int64;
+begin
+  if (OrgProc = nil) or (NewProc = nil) then
+    raise Exception.Create('RedirectFunction: nil pointer');
+
+  Delta := NativeInt(NewProc) - (NativeInt(OrgProc) + PatchSize);
+  if (Delta < Low(Integer)) or (Delta > High(Integer)) then
+    raise Exception.Create('RedirectFunction: target out of range for rel32 jump');
+
+  Patch.Jmp := $E9;
+  Patch.Offset := Integer(Delta);
+
+  if not VirtualProtect(OrgProc, PatchSize, PAGE_EXECUTE_READWRITE, OldProtect) then
+    RaiseLastOSError;
+  try
+    Move(Patch, Pointer(OrgProc)^, PatchSize);
+    FlushInstructionCache(GetCurrentProcess, OrgProc, PatchSize);
+  finally
+    VirtualProtect(OrgProc, PatchSize, OldProtect, OldProtect);
+  end;
+end;
+{$ENDIF}
 
 initialization
-
-RedirectFunction(@TWinControl.SetFocus, @TWinControlHack.SetFocus);
+  try
+    RedirectFunction(@TWinControl.SetFocus, @TWinControlHack.SetFocus);
+  except
+  end;
 
 end.

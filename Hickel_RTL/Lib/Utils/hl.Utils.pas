@@ -283,6 +283,9 @@ function FileExtToMime(fileext: string): string;
 function LoadFileToStr(const FileName: TFileName): String;
 procedure SaveStrToFile(const filename, SourceString: string);
 function GetElement(n: integer; s: string): string;
+function GenerateSecurePassword(const ALength: Integer): string;
+
+function IsValidGTIN(const EANCode: string): Boolean;
 
 type
   TSenderlessNotifyEvent = procedure of object;
@@ -1634,6 +1637,8 @@ var
   cdis: boolean;
   I: integer;
 begin
+  // Hinweis: Same SPOT, nicht Same ROW!
+
   cdis := ds.ControlsDisabled;
   ds.DisableControls;
   try
@@ -1646,7 +1651,8 @@ begin
       inc(I);
     end;
 
-    ds.Requery;
+    ds.Active := false;
+    ds.Active := true;
 
     while I > 0 do
     begin
@@ -3191,11 +3197,6 @@ begin
     or (GuidStr = '{00000000-0000-0000-0000-000000000000}');
 end;
 
-{$IFDEF MSWINDOWS}
-function IsEqualGUID; external 'ole32.dll' name 'IsEqualGUID';
-{$ENDIF MSWINDOWS}
-{$IFDEF LINUX}
-
 function IsEqualGUID(const guid1, guid2: TGUID): boolean;
 var
   A, b: PIntegerArray;
@@ -3205,7 +3206,6 @@ begin
   Result := (A^[0] = b^[0]) and (A^[1] = b^[1]) and (A^[2] = b^[2]) and
     (A^[3] = b^[3]);
 end;
-{$ENDIF LINUX}
 
 function StrgGedrueckt(key, Buchstabe: char): boolean;
 begin
@@ -4255,6 +4255,80 @@ begin
   finally
     FreeAndNil(tmpSL);
   end;
+end;
+
+function GenerateSecurePassword(const ALength: Integer): string;
+const
+  LowerChars = 'abcdefghijklmnopqrstuvwxyz';
+  UpperChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  Digits     = '0123456789';
+  Special    = '!@#$%^&*()-_=+[]{}?';
+  AllChars   = LowerChars + UpperChars + Digits + Special;
+var
+  I, J: Integer;
+  Temp: Char;
+begin
+  Randomize;
+
+  Result :=
+    LowerChars[Random(Length(LowerChars)) + 1] +
+    UpperChars[Random(Length(UpperChars)) + 1] +
+    Digits[Random(Length(Digits)) + 1] +
+    Special[Random(Length(Special)) + 1];
+
+  for I := 5 to ALength do
+    Result := Result + AllChars[Random(Length(AllChars)) + 1];
+
+  // Fisher-Yates Shuffle
+  for I := System.Length(Result) downto 2 do
+  begin
+    J := Random(I) + 1;
+    Temp := Result[I];
+    Result[I] := Result[J];
+    Result[J] := Temp;
+  end;
+end;
+
+function IsValidGTIN(const EANCode: string): Boolean;
+var
+  SumOdd, SumEven, CheckSum, ProvidedCheckDigit, CalculatedCheckDigit: Integer;
+  i: Integer;
+begin
+  Result := False;
+
+  // Ensure the EAN code has exactly 13 digits
+  // Anmerkung: Auch möglich aber unüblich: EAN-9 und EAN-14
+  if (Length(EANCode) <> 8) and (Length(EANCode) <> 13) then
+    Exit;
+
+  // Check if all characters are digits
+  for i := 1 to Length(EANCode) do
+    if not (EANCode[i] in ['0'..'9']) then
+      Exit;
+
+  SumOdd := 0;
+  SumEven := 0;
+
+  // Calculate the sum of odd and even positioned digits
+  for i := 1 to Length(EANCode)-1 do
+  begin
+    if (i mod 2) = 0 then
+      SumEven := SumEven + StrToInt(EANCode[i])
+    else
+      SumOdd := SumOdd + StrToInt(EANCode[i]);
+  end;
+
+  // Calculate the checksum
+  CheckSum := SumOdd + (SumEven * 3);
+
+  // Calculate the check digit
+  CalculatedCheckDigit := (10 - (CheckSum mod 10)) mod 10;
+
+  // Get the provided check digit
+  ProvidedCheckDigit := StrToInt(EANCode[Length(EANCode)]);
+
+  // Validate the check digit
+  Result := CalculatedCheckDigit = ProvidedCheckDigit;
 end;
 
 end.

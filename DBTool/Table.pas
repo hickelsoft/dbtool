@@ -167,7 +167,7 @@ implementation
 uses
   Main, Globals, EditRTF, hl.Utils.DBGridUtils, hg_InputQuery, Clipbrd, Query,
   hl_PopupMenuHelper, StrUtils, System.Types, System.UITypes, IniFiles,
-  hl.Utils, ShlObj, hl_ExceptionLogger;
+  hl.Utils, ShlObj, hl.System.ExceptionHandler;
 
 resourcestring
   SNothingAvailable = 'Nichts vorhanden';
@@ -405,7 +405,7 @@ begin
     begin
       LbSpeedButton7.Visible := false;
       btnIndex.Visible := false;
-      ThlExceptionLogger.LogException(E);
+      ThlExceptionHandler.ErstelleStacktrace(E);
     end;
   end;
   {$ENDREGION}
@@ -1624,6 +1624,10 @@ begin
   d := frmDatabase.dbDatabase.GetDbToolFieldAndTableDescription(FTableName, dbgTable.GetActiveField.FieldName);
   desc := d.FieldDesc;
   desc_bak := desc;
+  (* TODO: Es kam einmal folgender Fehler nach dem Abbrechen (unbekannt ob es hier kam oder woanders)
+  16.06.2026 16:22:58 - Fehlerklasse: EAccessViolation
+  16.06.2026 16:22:58 - Fehlertext:   Zugriffsverletzung bei Adresse 00007FF733AAE089 in Modul 'DBTool64.exe' (Offset BEE089). Lesen von Adresse 0000000000000000
+  *)
   doSave := ThgInputQry.InputMemo(dbgTable.GetActiveField.FieldName, SEnterFieldDescription, desc, true);
   if desc = desc_bak then exit;
   if not doSave then doSave := MessageDlg(SWantToSaveChanges, mtConfirmation, mbYesNoCancel, 0) = mrYes;
