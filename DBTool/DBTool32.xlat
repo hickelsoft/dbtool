@@ -18338,6 +18338,16 @@
               </property>
             </properties>
           </item>
+          <item name="DLG_Export.Notebook1..cbUtf8" type="TCheckBox">
+            <properties>
+              <property name="Caption">
+                <value>Speichern im UTF-8 Zeichensatz (ohne BOM)</value>
+                <translations>
+                  <translation language="en-US">Save with UTF-8 charset (without BOM)</translation>
+                </translations>
+              </property>
+            </properties>
+          </item>
           <item name="DLG_Export.Notebook1..DstLabel" type="TLabel">
             <properties>
               <property name="Caption">

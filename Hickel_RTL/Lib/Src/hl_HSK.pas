@@ -25,6 +25,7 @@ const HSK_0012_Compat = 0;
 function HSK_0013: Double;
 function HSK_0014(A: DWORD; B: PWideChar): DWORD;
 const HSK_0015_Compat = 0;
+const HSK_0016_Compat = 0;
 
 implementation
 
