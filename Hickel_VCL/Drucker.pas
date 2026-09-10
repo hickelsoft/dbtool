@@ -204,7 +204,7 @@ begin
   if not(csDesigning in Componentstate) then
   begin
     // Änderung 17.05. Reinhard + Leif: Standardwerte setzen
-    if FBildschirm = False then
+    if not FBildschirm then
     begin
       FStandardIndex := Printer.PrinterIndex;
       if PrinterIndex <> Printer.PrinterIndex then
@@ -381,7 +381,7 @@ begin
       break;
     end;
   end;
-  if bFound = False then
+  if not bFound then
     result := nil;
 end;
 
@@ -407,7 +407,7 @@ begin
       break;
     end;
   end;
-  if bFound = False then
+  if not bFound then
     result := nil;
 end;
 
@@ -433,7 +433,7 @@ begin
       break;
     end;
   end;
-  if bFound = False then
+  if not bFound then
     result := nil;
 end;
 
@@ -459,7 +459,7 @@ begin
       break;
     end;
   end;
-  if bFound = False then
+  if not bFound then
     result := nil;
 end;
 
@@ -608,7 +608,7 @@ end;
 
 procedure TPrinterData.PrinterChange(Sender: TObject);
 begin
-  if FBildschirm = True then
+  if FBildschirm then
   begin
     if PrinterIndex <> FDruckerListe.ItemIndex - 1 then
       PrinterIndex := FDruckerListe.ItemIndex - 1;
@@ -694,7 +694,7 @@ begin
     if not(csDesigning in Componentstate) then
     begin
       Items.Assign(TPrinterData.CachedPrinterList);
-      if FBildschirm = True then
+      if FBildschirm then
       begin
         Items.Insert(0, StrBildschirm);
         if FPrinterIndex <> -1 then
@@ -1000,7 +1000,7 @@ begin
       // OnChange muss abgeschaltet werden, um Rekursionen zu vermeiden!
       if not(csDesigning in Componentstate) then
         FDruckerListe.Onchange := nil;
-      if FBildschirm = True then
+      if FBildschirm then
         FDruckerListe.ItemIndex := FPrinterIndex + 1
       else
         FDruckerListe.ItemIndex := FPrinterIndex;

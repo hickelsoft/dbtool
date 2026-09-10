@@ -33,7 +33,7 @@ foreach ($files as $pas_file) {
 	$dfm_file = str_ireplace('.pas', '.dfm', $pas_file);
 	if (!file_exists($dfm_file)) continue;
 
-	if (strpos($dfm_file,'_CRW11')) continue;
+	if (strpos($dfm_file,'VCL_CRW11')) continue;
 	if (strpos($dfm_file,'VCL_WOLL2WOLL')) continue;
 	if (strpos($dfm_file,'ZZ___ABGESCHALTETE')) continue;
 

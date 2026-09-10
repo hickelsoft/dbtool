@@ -178,7 +178,7 @@ begin
 
   Canvas.Pen.Style := psClear;
   Canvas.Brush.Color := FColor;
-  if FTransparent = False then
+  if not FTransparent then
     Canvas.Rectangle(0, 0, Width + 1, Height + 1);
   Canvas.Pen.Style := psSolid;
 
@@ -187,12 +187,12 @@ begin
     iOffset := 1;
 
   { Bild zeichnen, falls eins vorhanden ist }
-  if Enabled = True then
+  if Enabled then
     bPaint := not(FPictureEnabled.Bitmap.Empty)
   else
     bPaint := not(FPictureDisabled.Bitmap.Empty);
 
-  if bPaint = True then
+  if bPaint then
   begin
     Stretch := Screen.PixelsPerInch / 96;
 
@@ -211,12 +211,12 @@ begin
       aBitmap.Width := round(FImageWidth * Stretch);
 
       try
-        if Enabled = True then
+        if Enabled then
           aBitmap.Canvas.StretchDraw(aRect2, FPictureEnabled.Bitmap)
         else
           aBitmap.Canvas.StretchDraw(aRect2, FPictureDisabled.Bitmap);
 
-        if FTransparent = True then
+        if FTransparent then
           DrawTransparentBitmap(Canvas.Handle, aBitmap, aRect1.Left, aRect1.Top)
         else
           Canvas.CopyRect(aRect1, aBitmap.Canvas, aRect2);
@@ -238,7 +238,7 @@ begin
   { Caption zeichnen }
   Canvas.Font := Font;
   SetBkMode(Canvas.Handle, TRANSPARENT);
-  if Enabled = False then
+  if not Enabled then
     Canvas.Font.Color := clGray;
   aRect1.Left := FLabelLeft + iOffset;
   aRect1.Top := FLabelTop + iOffset;
@@ -395,9 +395,9 @@ begin
   if csDesigning in ComponentState then
     exit;
 
-  if bCursorOnButton = True then
+  if bCursorOnButton then
   begin
-    if (bButtonDown = True) and (FState <> bsDown) then
+    if (bButtonDown) and (FState <> bsDown) then
     begin
       FState := bsDown;
       Invalidate;
@@ -409,9 +409,9 @@ begin
     end;
   end;
 
-  if bCursorOnButton = False then
+  if not bCursorOnButton then
   begin
-    if FOffice97Look = True then
+    if FOffice97Look then
     begin
       if FState <> bsFlat then
       begin
@@ -434,7 +434,7 @@ procedure THsPictBtn.MouseMove(Shift: TShiftState; X, Y: integer);
 begin
   if csDesigning in ComponentState then
     exit;
-  if FEnabled = False then
+  if not FEnabled then
     exit;
   bCursorOnButton := False;
   if (X >= 0) and (X <= Width) and (Y >= 0) and (Y <= Height) then
@@ -449,7 +449,7 @@ procedure THsPictBtn.MouseDown(Button: TMouseButton; Shift: TShiftState;
 begin
   if csDesigning in ComponentState then
     exit;
-  if FEnabled = False then
+  if not FEnabled then
     exit;
   MouseHandler(Shift, X, Y);
   if assigned(FOnMouseDown) then
@@ -461,7 +461,7 @@ procedure THsPictBtn.MouseUp(Button: TMouseButton; Shift: TShiftState;
 begin
   if csDesigning in ComponentState then
     exit;
-  if FEnabled = False then
+  if not FEnabled then
     exit;
   MouseHandler(Shift, X, Y);
   if assigned(FOnMouseUp) then

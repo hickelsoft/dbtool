@@ -1662,7 +1662,7 @@ procedure TMDI_Table.FindDialog1Close(Sender: TObject);
 begin
   // Workaround für seltsamen Fehler, nämlich wird beim schließen des Suchen-Dialogs
   // eine Anwendung aus dem Hintergrund vorgeholt, nämlich wenn MainFormOnTaskBar=true
-  // Die ganzen Tipps im Internet mit Popupmode usw. klappen incht...
+  // Die ganzen Tipps im Internet mit Popupmode usw. klappen nicht...
   SetForegroundWindow(Application.Handle);
 end;
 

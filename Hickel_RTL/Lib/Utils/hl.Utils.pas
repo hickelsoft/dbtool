@@ -12,7 +12,7 @@ uses
   Windows, Messages, Classes, SysUtils, Math, ShellAPI, DB,
 {$IF CompilerVersion >= 20.0}System.IOUtils, System.Hash,{$IFEND}
 {$IFDEF CAN_USE_GUI_CODE}Forms, Controls,{$ENDIF}
-  ZLib, ADODB;
+  ZLib, hl.System.Types;
 
 type
   /// <summary>Statische Klasse mit Hilfsfunktionen. Die Klasse ist eine Art Namespace. Es wurde auf prozedurale Entwicklung verzichtet, um die XML-Dokumentation zu ermöglichen</summary>
@@ -22,8 +22,9 @@ type
     /// PHP like implode function. Returns a string containing a string representation of all the array elements in the same order, with the glue string between each element.
     /// </summary>
     /// <see>http://users.atw.hu/delphicikk/listaz.php?id=1622&oldal=45</see>
-    class function implode(const glue: string; const pieces: array of string)
-      : string; static;
+    class function Implode(const cSeparator: string; const pieces: array of string): string; overload; static;
+    class function Implode(const cSeparator: String; const sl: TStrings): String; overload; static;
+    class procedure Explode(Delimiter: Char; Str: string; ListOfStrings: TStrings); static;
     class function GermanDayOfWeek(date: TDateTime): integer; static;
 
     class function InBlöckeAufspalten(s: string; blockgröße: integer)
@@ -85,7 +86,6 @@ type
     class function processExistsCount(const exeFileName: string): integer;
     class function processExists(const exeFileName: string): boolean;
 
-    class function GetInside(s, delimA, delimB: string): string;
     class function FileIsReadable(filename: string): boolean;
     class function EinigeDateienNichtLesbar(filemask: string): boolean;
     class function AbsToRel(const AbsPath, BasePath: string): string;
@@ -93,13 +93,11 @@ type
     class function GetModificationTimeOfFile(const AFileName: String)
       : TDateTime; static;
 
-    class function FileGetContents(const filename: string): string; static;
-
     class function DaysAge(const filename: string): integer; static;
 
     class function KillTask(exeFileName: string): integer;
 
-    class procedure RequeryAndGotoSameSpot(ds: TAdoQuery);
+    class function PreisAufrunden(originalwert, rundenAufCentAnzahl: hlDecimal; force: boolean=false): hlDecimal; static;
   end;
 
 function FloatToStrForSQL(aValue: extended; NKStellen: integer): string; overload;
@@ -159,6 +157,8 @@ function IsWindows11: boolean;
 
 function Crw11_IstInstalliert: boolean;
 function Crw13_IstInstalliert: boolean;
+function Crw13_32_IstInstalliert: boolean;
+function Crw13_64_IstInstalliert: boolean;
 
 function IsVCRuntime2022_32Bit_Installed: boolean;
 function IsVCRuntime2022_32Bit_Version: string;
@@ -383,15 +383,34 @@ begin
   Result := (DayOfWeek(date) + 5) mod 7;
 end;
 
-class function ThlUtils.implode(const glue: string;
-  const pieces: array of string): string;
+class function ThlUtils.Implode(const cSeparator: string; const pieces: array of string): string;
 var
   I: integer;
 begin
   Result := '';
   for I := 0 to High(pieces) do
-    Result := Result + glue + pieces[I];
-  Delete(Result, 1, Length(glue));
+    Result := Result + cSeparator + pieces[I];
+  Delete(Result, 1, Length(cSeparator));
+end;
+
+class function ThlUtils.Implode(const cSeparator: String; const sl: TStrings): String;
+var
+  i: Integer;
+begin
+  Result := '';
+  for i := 0 to sl.Count - 1 do
+  begin
+    Result := Result + cSeparator + sl[i];
+  end;
+  System.Delete(Result, 1, Length(cSeparator));
+end;
+
+class procedure ThlUtils.Explode(Delimiter: Char; Str: string; ListOfStrings: TStrings);
+begin
+  ListOfStrings.Clear;
+  ListOfStrings.Delimiter := Delimiter;
+  ListOfStrings.StrictDelimiter := True; // Requires D2006 or newer.
+  ListOfStrings.DelimitedText := Str;
 end;
 
 class function ThlUtils.InBlöckeAufspalten(s: string;
@@ -1238,7 +1257,7 @@ end;
 
 function hclBoolToStr(aValue: boolean): string;
 begin
-  if aValue = True then
+  if aValue then
     Result := StrJA
   else
     Result := StrNEIN;
@@ -1447,46 +1466,6 @@ end;
 
 {$ENDREGION}
 
-class function ThlUtils.GetInside(s, delimA, delimB: string): string;
-var
-  pa, pb: integer;
-begin
-  pa := pos(delimA, s);
-  if pa = 0 then
-    pa := 1;
-  inc(pa, Length(delimA));
-  s := copy(s, pa, Length(s) - pa + 1);
-
-  pb := pos(delimB, s);
-  if pb = 0 then
-    pb := Length(s);
-  s := copy(s, 1, pb - 1);
-
-  Result := s;
-end;
-
-class function ThlUtils.FileGetContents(const filename: string): string;
-{$IF CompilerVersion < 20.0} // geraten
-var
-  FileStream: TFileStream;
-{$IFEND}
-begin
-{$IF CompilerVersion >= 20.0} // geraten
-  Result := TFile.ReadAllText(filename);
-{$ELSE}
-  FileStream := TFileStream.Create(filename, fmOpenRead or fmShareDenyWrite);
-  try
-    if FileStream.Size > 0 then
-    begin
-      SetLength(Result, FileStream.Size);
-      FileStream.Read(Pointer(Result)^, FileStream.Size);
-    end;
-  finally
-    FreeAndNil(FileStream);
-  end;
-{$IFEND}
-end;
-
 class function ThlUtils.FileIsReadable(filename: string): boolean;
 var
   ss: TFileStream;
@@ -1630,39 +1609,6 @@ begin
   Result := H <> INVALID_HANDLE_VALUE;
   if Result then
     CloseHandle(H);
-end;
-
-class procedure ThlUtils.RequeryAndGotoSameSpot(ds: TAdoQuery);
-var
-  cdis: boolean;
-  I: integer;
-begin
-  // Hinweis: Same SPOT, nicht Same ROW!
-
-  cdis := ds.ControlsDisabled;
-  ds.DisableControls;
-  try
-    ds.Prior;
-
-    I := 0;
-    while not ds.Bof do
-    begin
-      ds.Prior;
-      inc(I);
-    end;
-
-    ds.Active := false;
-    ds.Active := true;
-
-    while I > 0 do
-    begin
-      Dec(I);
-      ds.Next;
-    end;
-  finally
-    if not cdis then
-      ds.EnableControls
-  end;
 end;
 
 const
@@ -2134,6 +2080,14 @@ begin
 end;
 
 function Crw13_IstInstalliert: boolean;
+begin
+  if WindowsBits = 64 then
+    result := Crw13_64_IstInstalliert
+  else
+    result := Crw13_32_IstInstalliert;
+end;
+
+function Crw13_32_IstInstalliert: boolean;
 var
   testFile: string;
 begin
@@ -2152,6 +2106,32 @@ begin
       Result := False;
       exit;
     end;
+  end
+  else
+  begin
+    testFile :=
+      'C:\Program Files\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\crpe32.dll';
+    if not FileExists(testFile) then
+    begin
+      Result := False;
+      exit;
+    end;
+    if FileDateToDateTime(FileAge(testFile)) < Encodedate(2020, 1, 1) then
+    begin
+      // Runtime aus 2014 verursacht Probleme (Ticket 60253)
+      Result := False;
+      exit;
+    end;
+    Result := True;
+  end;
+end;
+
+function Crw13_64_IstInstalliert: boolean;
+var
+  testFile: string;
+begin
+  if WindowsBits = 64 then
+  begin
     // sic! Die 64 Bit crpe32.dll liegt wirklich in "Program Files (x86)" !
     testFile :=
       'C:\Program Files (x86)\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win64_x64\crpe32.dll';
@@ -2170,8 +2150,10 @@ begin
   end
   else
   begin
+    Result := false; // Auf 32 Bit Windows kann 64 Bit nicht installiert sein, bzw. es würde nix bringen
+    (*
     testFile :=
-      'C:\Program Files\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win32_x86\crpe32.dll';
+      'C:\Program Files\SAP BusinessObjects\Crystal Reports for .NET Framework 4.0\Common\SAP BusinessObjects Enterprise XI 4.0\win64_x64\crpe32.dll';
     if not FileExists(testFile) then
     begin
       Result := False;
@@ -2184,6 +2166,7 @@ begin
       exit;
     end;
     Result := True;
+    *)
   end;
 end;
 
@@ -4198,24 +4181,16 @@ begin
 end;
 
 function LoadFileToStr(const FileName: TFileName): String;
+{$IF CompilerVersion < 20.0} // geraten
 var
+  //FileStream: TFileStream;
   LStrings: TStringList;
+{$IFEND}
 begin
-  LStrings := TStringList.Create;
-  try
-    LStrings.Loadfromfile(FileName);
-    Result := LStrings.text;
-  finally
-    FreeAndNil(LStrings);
-  end;
-end;
-
-// Alternative implementation:
-(*
-function LoadFileToStr(const filename: TFileName): ansistring;
-var
-  FileStream: TFileStream;
-begin
+{$IF CompilerVersion >= 20.0} // geraten
+  Result := TFile.ReadAllText(filename);
+{$ELSE}
+  (*
   FileStream := TFileStream.Create(filename, fmOpenRead or fmShareDenyWrite);
   try
     if FileStream.Size > 0 then
@@ -4226,8 +4201,16 @@ begin
   finally
     FreeAndNil(FileStream);
   end;
+  *)
+  LStrings := TStringList.Create;
+  try
+    LStrings.Loadfromfile(FileName);
+    Result := LStrings.text;
+  finally
+    FreeAndNil(LStrings);
+  end;
+{$IFEND}
 end;
-*)
 
 procedure SaveStrToFile(const filename, SourceString: string);
 var
@@ -4329,6 +4312,26 @@ begin
 
   // Validate the check digit
   Result := CalculatedCheckDigit = ProvidedCheckDigit;
+end;
+
+class function ThlUtils.PreisAufrunden(originalwert, rundenAufCentAnzahl: hlDecimal; force: boolean=false): hlDecimal;
+var
+  cent: hlDecimal;
+  rest: hlDecimal;
+begin
+  cent := originalwert*100;
+  rest := cent mod rundenAufCentAnzahl;
+
+  if (rest = 0) and not force then
+  begin
+    result := cent / 100;
+    exit;
+  end;
+
+  if cent > 0 then
+    result := (cent + rundenAufCentAnzahl - rest) / 100   // ThlUtils.PreisAufrunden( 12.93, 2, false) ->  12.95
+  else
+    result := (cent - rundenAufCentAnzahl - rest) / 100;  // ThlUtils.PreisAufrunden(-12.93, 2, false) -> -12.95
 end;
 
 end.

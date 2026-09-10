@@ -139,7 +139,7 @@ var
 
 begin
   { disabled or invisible? Get out of here! }
-  if (enabled and visible) = false then
+  if not enabled or not visible then
     exit;
   if csLoading in Componentstate then
     exit;

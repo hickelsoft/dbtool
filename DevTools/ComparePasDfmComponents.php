@@ -103,7 +103,7 @@ $dfmFiles = findDFMFiles($directory);
 foreach ($dfmFiles as $xx) {
 	if (strpos($xx, 'VCL_WOLL2WOLL') !== false) continue;
 	if (strpos($xx, 'VCL_DELPHIZIP') !== false) continue;
-	if (strpos($xx, '_CRW11') !== false) continue;
+	if (strpos($xx, 'VCL_CRW11') !== false) continue;
 
 	$dfmPath = $xx;
 	$pasPath = str_replace('.dfm', '.pas', $xx);

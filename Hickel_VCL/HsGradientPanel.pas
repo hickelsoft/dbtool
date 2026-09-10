@@ -243,7 +243,7 @@ procedure THsGradientPanel.MouseUp(Button: TMouseButton; Shift: TShiftState;
   X, Y: Integer);
 begin
   inherited MouseUp(Button, Shift, X, Y);
-  if Moving = true then
+  if Moving then
   begin
     if (MoveWho <> mwNone) and (Button = mbleft) then
     begin

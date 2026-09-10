@@ -9,7 +9,7 @@ if (isset($argv[1])) $dir = $argv[1];
 
 $exclude_dir = array();
 $exclude_dir[] = $dir . '/Cora_Verwaltung/Src/GoBD/Res/GoBD_DocToINI/TLB/';
-$exclude_dir[] = $dir . '/_CRW11/';
+$exclude_dir[] = $dir . '/VCL_CRW11/';
 $exclude_dir[] = $dir . '/VCL_WOLL2WOLL/';
 $exclude_dir[] = $dir . '/VCL_ZXING/';
 $exclude_dir[] = $dir . '/ZZ___ABGESCHALTETE/';

@@ -250,6 +250,7 @@ type
     *)
 
     class procedure ttRefresh(aTable: TDataset);
+    class procedure RequeryAndGotoSameSpot(ds: TAdoQuery);
 
     procedure GetTableNames(List: TStrings; SystemTables: boolean = false);
 
@@ -1622,6 +1623,38 @@ begin
       TAdoQuery(aTable).Sort := bakSort;
     if (bakSort <> '') and (aTable is TAdoTable) then
       TAdoTable(aTable).Sort := bakSort;
+  end;
+end;
+
+class procedure ThlDatenbank.RequeryAndGotoSameSpot(ds: TAdoQuery);
+var
+  cdis: boolean;
+  I: integer;
+begin
+  // Hinweis: Same SPOT, nicht Same ROW!
+
+  cdis := ds.ControlsDisabled;
+  ds.DisableControls;
+  try
+    ds.Prior;
+
+    I := 0;
+    while not ds.Bof do
+    begin
+      ds.Prior;
+      inc(I);
+    end;
+
+    ttRefresh(ds);
+
+    while I > 0 do
+    begin
+      Dec(I);
+      ds.Next;
+    end;
+  finally
+    if not cdis then
+      ds.EnableControls;
   end;
 end;
 

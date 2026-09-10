@@ -10,7 +10,7 @@ object DummyForm: TDummyForm
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  Position = poDesigned
+  Position = poDefault
   OnShow = FormShow
   TextHeight = 13
 end

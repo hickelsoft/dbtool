@@ -3,46 +3,9 @@ unit hl.System.Types;
 interface
 
 uses
-  System.Types, System.Math, System.SysUtils;
+  Types, Math, SysUtils;
 
-{$REGION 'Operatoren Vorlage'}
-// http://docwiki.embarcadero.com/RADStudio/Seattle/de/%C3%9Cberladene_Operatoren_%28Delphi%29
-(*
-  class operator Add(const Left, Right: Decimal): Decimal;
-  class operator Dec(const D: Decimal): Decimal;
-  class operator Divide(const Left, Right: Decimal): Decimal;
-  class operator Equal(const Left, Right: Decimal): Boolean;
-  class operator GreaterThan(const Left, Right: Decimal): Boolean;
-  class operator GreaterThanOrEqual(const Left, Right: Decimal): Boolean;
-  class operator Implicit(const C: Cardinal): Decimal;
-  class operator Implicit(const c: Currency): Decimal;
-  class operator Implicit(const D: Decimal): Currency;
-  class operator Implicit(const D: Decimal): Extended;
-  class operator Implicit(const D: Decimal): Int64;
-  class operator Implicit(const D: Decimal): Longint;
-  class operator Implicit(const D: Decimal): Longword;
-  class operator Implicit(const D: Decimal): string;
-  class operator Implicit(const D: Decimal): UInt64;
-  class operator Implicit(const D: Double): Decimal;
-  class operator Implicit(const E: Extended): Decimal;
-  class operator Implicit(const I: Integer): Decimal;
-  class operator Implicit(const I64: Int64): Decimal;
-  class operator Implicit(const S: Single): Decimal;
-  class operator Implicit(const S: string): Decimal;
-  class operator Implicit(const UI64: UInt64): Decimal;
-  class operator Inc(const D: Decimal): Decimal;
-  class operator LessThan(const Left, Right: Decimal): Boolean;
-  class operator LessThanOrEqual(const Left, Right: Decimal): Boolean;
-  class operator Modulus(const Dividend, Divisor: Decimal): Decimal;
-  class operator Multiply(const Left, Right: Decimal): Decimal;
-  class operator Negative(const D: Decimal): Decimal;
-  class operator NotEqual(const Left, Right: Decimal): Boolean;
-  class operator Positive(const D: Decimal): Decimal;
-  class operator Round(const D: Decimal): Decimal;
-  class operator Subtract(const Left, Right: Decimal): Decimal;
-  class operator Trunc(const D: Decimal): Decimal;
-*)
-{$ENDREGION}
+// TODO: Ggf. weitere Operatoren implementieren: https://docwiki.embarcadero.com/RADStudio/Florence/de/%C3%9Cberladene_Operatoren_(Delphi)
 
 type
   TIntegerArray = array of Integer;
@@ -122,6 +85,9 @@ type
       einschliesslich: boolean = true): boolean;
     function LowerLimit(limit: hlInteger): hlInteger;
     function UpperLimit(limit: hlInteger): hlInteger;
+    class operator BitwiseAnd(a: hlInteger; b: hlInteger): hlInteger;
+    class operator BitwiseOr(a: hlInteger; b: hlInteger): hlInteger;
+    class operator BitwiseXor(a: hlInteger; b: hlInteger): hlInteger;
     class operator Implicit(const i: int64): hlInteger;
     class operator Implicit(const i: Integer): hlInteger;
     class operator Implicit(const i: hlInteger): int64;
@@ -200,6 +166,10 @@ type
     function toBoolean: boolean;
     function toGermanString: string;
     function toSQLString: string;
+    class operator LogicalNot(const A: hlBoolean): hlBoolean;
+    class operator LogicalAnd(a: hlBoolean; b: hlBoolean): hlBoolean;
+    class operator LogicalOr(a: hlBoolean; b: hlBoolean): hlBoolean;
+    class operator LogicalXor(a: hlBoolean; b: hlBoolean): hlBoolean;
     class operator Implicit(const s: string): hlBoolean;
     class operator Implicit(const s: hlString): hlBoolean;
     class operator Implicit(const b: boolean): hlBoolean;
@@ -276,7 +246,7 @@ type
 implementation
 
 uses
-  FormatSettingsCompat, System.StrUtils, hl.Utils;
+  FormatSettingsCompat, StrUtils, hl.Utils;
 
 resourcestring
   LNG_RANGE_ERROR =
@@ -370,12 +340,12 @@ end;
 
 function hlDecimal.LowerLimit(limit: hlDecimal): hlDecimal;
 begin
-  result := System.Math.max(limit, wert);
+  result := Math.max(limit, wert);
 end;
 
 function hlDecimal.UpperLimit(limit: hlDecimal): hlDecimal;
 begin
-  result := System.Math.min(limit, wert);
+  result := Math.min(limit, wert);
 end;
 
 class operator hlDecimal.Modulus(const Dividend, Divisor: hlDecimal): hlDecimal;
@@ -528,7 +498,7 @@ end;
 
 function hlString.IncludeTrailingPathDelimiter: hlString;
 begin
-  result := hlString.Create(System.SysUtils.IncludeTrailingPathDelimiter(wert));
+  result := hlString.Create(SysUtils.IncludeTrailingPathDelimiter(wert));
 end;
 
 function hlString.isEmpty: boolean;
@@ -683,7 +653,7 @@ end;
 
 function hlString.trim: hlString;
 begin
-  result := hlString.Create(System.SysUtils.trim(wert));
+  result := hlString.Create(SysUtils.trim(wert));
 end;
 
 function hlString.Trunc(len: Integer): hlString;
@@ -722,6 +692,21 @@ begin
   begin
     result := (self > lo) and (self < hi);
   end;
+end;
+
+class operator hlInteger.BitwiseAnd(a, b: hlInteger): hlInteger;
+begin
+  result.wert := a.wert and b.wert;
+end;
+
+class operator hlInteger.BitwiseOr(a, b: hlInteger): hlInteger;
+begin
+  result.wert := a.wert or b.wert;
+end;
+
+class operator hlInteger.BitwiseXor(a, b: hlInteger): hlInteger;
+begin
+  result.wert := a.wert xor b.wert;
 end;
 
 function hlInteger.CompareTo(i: Integer): TValueRelationship;
@@ -829,12 +814,12 @@ end;
 
 function hlInteger.LowerLimit(limit: hlInteger): hlInteger;
 begin
-  result := System.Math.max(limit, wert);
+  result := Math.max(limit, wert);
 end;
 
 function hlInteger.UpperLimit(limit: hlInteger): hlInteger;
 begin
-  result := System.Math.min(limit, wert);
+  result := Math.min(limit, wert);
 end;
 
 class operator hlInteger.Negative(x: hlInteger): hlInteger;
@@ -904,6 +889,26 @@ end;
 class operator hlBoolean.Implicit(const b: hlBoolean): boolean;
 begin
   result := b.wert;
+end;
+
+class operator hlBoolean.LogicalAnd(a, b: hlBoolean): hlBoolean;
+begin
+  Result.wert := a.wert and b.wert;
+end;
+
+class operator hlBoolean.LogicalNot(const A: hlBoolean): hlBoolean;
+begin
+  Result.wert := not A.wert;
+end;
+
+class operator hlBoolean.LogicalOr(a, b: hlBoolean): hlBoolean;
+begin
+  Result.wert := a.wert or b.wert;
+end;
+
+class operator hlBoolean.LogicalXor(a, b: hlBoolean): hlBoolean;
+begin
+  Result.wert := a.wert xor b.wert;
 end;
 
 class function hlBoolean.StrToBool(s: hlString): boolean;

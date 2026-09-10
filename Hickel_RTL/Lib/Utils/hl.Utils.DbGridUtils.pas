@@ -34,30 +34,10 @@ type
 implementation
 
 uses
-  IniFiles;
+  IniFiles, hl.Utils;
 
 resourcestring
   StrFeldSNichtGefund = 'Feld %s nicht gefunden';
-
-procedure Explode(Delimiter: Char; Str: string; ListOfStrings: TStrings);
-begin
-  ListOfStrings.Clear;
-  ListOfStrings.Delimiter := Delimiter;
-  ListOfStrings.StrictDelimiter := True; // Requires D2006 or newer.
-  ListOfStrings.DelimitedText := Str;
-end;
-
-function Implode(const cSeparator: String; const sl: TStrings): String;
-var
-  i: Integer;
-begin
-  Result := '';
-  for i := 0 to sl.Count - 1 do
-  begin
-    Result := Result + cSeparator + sl[i];
-  end;
-  System.Delete(Result, 1, Length(cSeparator));
-end;
 
 { TwwdbGridHelper }
 
@@ -71,7 +51,7 @@ begin
   try
     for i := Selected.Count - 1 downto 0 do
     begin
-      Explode(#9, Selected.Strings[i], outSL);
+      ThlUtils.Explode(#9, Selected.Strings[i], outSL);
       if (outSL.Count > 0) and (outSL.Strings[0] = sucheFeld) then
       begin
         if ausblenden then
@@ -83,7 +63,7 @@ begin
           Assert(outSL.Count >= 3);
           if neuerName <> '' then
             outSL.Strings[2] := neuerName;
-          Selected.Strings[i] := Implode(#9, outSL);
+          Selected.Strings[i] := ThlUtils.Implode(#9, outSL);
         end;
         Exit;
       end;
@@ -123,7 +103,7 @@ begin
     Result := false;
     for i := 0 to Selected.Count - 1 do
     begin
-      Explode(#9, Selected.Strings[i], outSL);
+      ThlUtils.Explode(#9, Selected.Strings[i], outSL);
       if (outSL.Count > 0) and (outSL.Strings[0] = sucheFeld) then
       begin
         Result := True;
@@ -311,7 +291,7 @@ begin
   try
     for i := Selected.Count - 1 downto 0 do
     begin
-      Explode(#9, Selected.Strings[i], outSL);
+      ThlUtils.Explode(#9, Selected.Strings[i], outSL);
       if (outSL.Count > 0) and (outSL.Strings[0] = sucheFeld) then
       begin
         if ausblenden then
@@ -323,7 +303,7 @@ begin
           Assert(outSL.Count >= 3);
           if neuerName <> '' then
             outSL.Strings[2] := neuerName;
-          Selected.Strings[i] := Implode(#9, outSL);
+          Selected.Strings[i] := ThlUtils.Implode(#9, outSL);
         end;
         Exit;
       end;
@@ -364,7 +344,7 @@ begin
     Result := false;
     for i := 0 to Selected.Count - 1 do
     begin
-      Explode(#9, Selected.Strings[i], outSL);
+      ThlUtils.Explode(#9, Selected.Strings[i], outSL);
       if (outSL.Count > 0) and (outSL.Strings[0] = sucheFeld) then
       begin
         Result := True;

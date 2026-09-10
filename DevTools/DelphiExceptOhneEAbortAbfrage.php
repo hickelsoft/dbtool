@@ -33,7 +33,6 @@ $files = array_merge(
 function checkPascalFile($filePath) {
 
 	if (strpos($filePath, '/VCL_') !== false) return;
-	if (strpos($filePath, '/_CRW11') !== false) return;
 	if (strpos($filePath, 'ABGESCHALTETE') !== false) return;
 	if (strpos($filePath, 'BetterADODataSet.pas') !== false) return;
 	if (strpos($filePath, 'PerlRegEx.pas') !== false) return;
