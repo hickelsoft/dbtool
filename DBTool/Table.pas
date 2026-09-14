@@ -213,12 +213,7 @@ begin
 
   if FVerwendeQueryAnstelleTable then
   begin
-    sql := 'select * from '; // do not localize
-    if DB.IsView(TableName) then
-    begin
-      sql := sql + ViewDummySequence; // this "warns" BeforeDelete to block the delete request
-    end;
-    sql := sql + DB.SQL_Escape_TableName(TableName);
+    sql := 'select * from ' + DB.SQL_Escape_TableName(TableName); // do not localize
 
     slPrimaryKeys := TStringList.Create;
     try
@@ -236,6 +231,8 @@ begin
     end;
 
     result := DB.Query(sql);
+    if DB.IsView(TableName) then
+      result.Tag := result.Tag or DATASET_TAG_IS_VIEW; // this "warns" BeforeDelete to block the delete request
   end
   else
   begin

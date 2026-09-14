@@ -12,7 +12,6 @@ object DLG_Main: TDLG_Main
   Font.Style = []
   FormStyle = fsMDIForm
   Menu = MainMenu1
-  Position = poDefault
   WindowState = wsMaximized
   OnCanResize = FormCanResize
   OnCloseQuery = FormCloseQuery

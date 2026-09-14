@@ -2,6 +2,8 @@ program DBTool;
 
 {$INCLUDE '..\..\..\CORA.inc'}
 
+{$R *.res}
+
 {$IFDEF HICKELSOFT_DISABLE_32BIT}
 uses
   SysUtils, ShellAPI;
@@ -41,8 +43,6 @@ uses
   Query in '..\..\Query.pas' {MDI_Query},
   C_Database in '..\..\C_Database.pas',
   Globals in '..\..\Globals.pas';
-
-{$R *.res}
 
 begin
   Application.Initialize;

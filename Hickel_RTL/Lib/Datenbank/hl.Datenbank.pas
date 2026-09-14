@@ -8,12 +8,8 @@ unit hl.Datenbank;
 
 interface
 
-{$IF CompilerVersion <= 20.0}
-{$DEFINE UseBetterADO}
-{$IFEND}
-
 uses
-  ActiveX, hl_Exceptions, AdoDB, {$IFDEF UseBetterADO}BetterAdoDataset, {$ENDIF} DB, SysUtils, hl_Log, Forms,
+  ActiveX, hl_Exceptions, AdoDB, DB, SysUtils, hl_Log, Forms,
   hl.System.Types, Classes (*, hl.Datenbank.RowLock*) , Windows, wwdblook;
 
 const
@@ -443,11 +439,7 @@ begin
   // TODO: Diese Methode ist leider nicht statisch...
   // result := CreateNewADODataset(adoCon);
 
-{$IFDEF UseBetterADO}
-  Result := ThlDataSet(TBetterADODataSet.Create(nil));
-{$ELSE}
   Result := ThlDataSet(TADODataSet.Create(nil));
-{$ENDIF}
   Result.EnableBCD := false;
   Result.Connection := adoCon;
   Result.ParamCheck := false;
@@ -573,11 +565,7 @@ begin
   // Abgeschaltet weil CORA SCHON WIEDER zu langsam wird!!! (Ticket 59369, 59374, 59381)
   // RecheckConnectionStatus(self);
 
-{$IFDEF UseBetterADO}
-  Result := TBetterADODataSet.Create(nil);
-{$ELSE}
   Result := TADODataSet.Create(nil);
-{$ENDIF}
   SetConnection(Result, adoCon);
   Result.EnableBCD := false;
 end;
@@ -687,11 +675,7 @@ end;
 class function ThlDatenbank.StaticCreateNewADODataSet(adoCon: TAdoConnection)
   : TADODataSet;
 begin
-{$IFDEF UseBetterADO}
-  Result := TBetterADODataSet.Create(nil);
-{$ELSE}
   Result := TADODataSet.Create(nil);
-{$ENDIF}
   StaticSetConnection(Result, adoCon);
 end;
 
@@ -1601,7 +1585,6 @@ end;
 
 class procedure ThlDatenbank.ttRefresh(aTable: TDataset);
 var
-  wasActive: boolean;
   bakSort: string;
 begin
   // TODO: Es wäre gut, wenn hier auch ein Code gemacht wird, der die Scrollposition (IndexField + Locate) behalten wird
@@ -1678,11 +1661,7 @@ begin
 
   mCommand := TAdoCommand.Create(nil);
 
-{$IFDEF UseBetterADO}
-  mScalarTable := ThlDataSet(TBetterADODataSet.Create(nil));
-{$ELSE}
   mScalarTable := ThlDataSet(TADODataSet.Create(nil));
-{$ENDIF}
   mScalarTable.Connection := mConnection;
 
   (*
@@ -1723,11 +1702,7 @@ begin
     mConnection.LoginPrompt := false;
 
     mCommand := TAdoCommand.Create(nil);
-{$IFDEF UseBetterADO}
-    mScalarTable := ThlDataSet(TBetterADODataSet.Create(nil));
-{$ELSE}
     mScalarTable := ThlDataSet(TADODataSet.Create(nil));
-{$ENDIF}
     mScalarTable.Connection := mConnection;
 
     mConnection.CommandTimeout := ThlDatenbank.DefaultCommandTimeout;

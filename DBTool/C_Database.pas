@@ -34,6 +34,9 @@ type
 type
   TKnownProductDbType = (ptOther, ptCORAplus, ptHsInfo2, ptCmDb2, ptOIDplus2);
 
+const // Bitfields
+  DATASET_TAG_IS_VIEW = 1;
+
 type
   THsFieldDocumentation = record
     DatabaseFile: string;
@@ -245,7 +248,6 @@ var
   FDPhysFBDriverLink1: TFDPhysFBDriverLink;
   FbClientPath: string;
   FbVersion: TFirebirdODSVersion;
-  BdeOwnPath: string;
 resourcestring
   SAccessProviderLoadError =
     'Access DB Provider konnte nicht geladen werden: %s';
@@ -2270,7 +2272,7 @@ resourcestring
 
   procedure _CheckSql(Sql: string);
   begin
-    if ContainsStr(Sql, ViewDummySequence) then
+    if (Dataset.Tag and DATASET_TAG_IS_VIEW) <> 0 then
       raise Exception.Create(SViewDeleteWarningCora);
     Sql := StringReplace(Sql, #13, ' ', [rfReplaceAll]);
     Sql := StringReplace(Sql, #10, ' ', [rfReplaceAll]);

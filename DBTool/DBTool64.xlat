@@ -14,8 +14,8 @@
   </options>
   <project sourcefile="..\..\..\HS-Service\DBTool\DBTool64.exe" stringsymbolfile=".\DBTool64.drc" language="de-DE">
     <targetlanguages>
-      <language language="de-DE"/>
       <language language="en-US"/>
+      <language language="de-DE"/>
     </targetlanguages>
     <modules>
       <module name="resourcestrings" type="strings">
@@ -4634,6 +4634,13 @@
                 <translations>
                   <translation language="en-US">Important notice: Log files will now be saved in this location:</translation>
                 </translations>
+              </property>
+            </properties>
+          </item>
+          <item name="hl_System_Types_LNG_RANGE_ERROR">
+            <properties>
+              <property>
+                <value>Zuzuweisender Wert liegt außerhalb des gültigen Wertebereichs</value>
               </property>
             </properties>
           </item>
@@ -22540,120 +22547,171 @@
         <items>
           <item name="wwRichBarFrame.ColorMenu.Aqua1" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Aqua</value>
+              <property name="Caption">
+                <value>Türkis</value>
+                <translations>
+                  <translation language="en-US">Aqua</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.Automatic1" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Automatic</value>
+              <property name="Caption">
+                <value>Automatisch</value>
+                <translations>
+                  <translation language="en-US">Automatic</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.Black1" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Black</value>
+              <property name="Caption">
+                <value>Schwarz</value>
+                <translations>
+                  <translation language="en-US">Black</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.Blue1" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Olive</value>
+              <property name="Caption">
+                <value>Ocker</value>
+                <translations>
+                  <translation language="en-US">Olive</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.Blue2" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Blue</value>
+              <property name="Caption">
+                <value>Blau</value>
+                <translations>
+                  <translation language="en-US">Blue</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.Fuchsia1" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Fuchsia</value>
+              <property name="Caption">
+                <value>Pink</value>
+                <translations>
+                  <translation language="en-US">Fuchsia</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.Gray1" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Gray</value>
+              <property name="Caption">
+                <value>Dunkelgrau</value>
+                <translations>
+                  <translation language="en-US">Gray</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.Green1" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Maroon</value>
+              <property name="Caption">
+                <value>Dunkelrot</value>
+                <translations>
+                  <translation language="en-US">Maroon</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.Lime1" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Lime</value>
+              <property name="Caption">
+                <value>Hellgrün</value>
+                <translations>
+                  <translation language="en-US">Lime</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.Purple1" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Purple</value>
+              <property name="Caption">
+                <value>Lila</value>
+                <translations>
+                  <translation language="en-US">Purple</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.Red1" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Green</value>
+              <property name="Caption">
+                <value>Grün</value>
+                <translations>
+                  <translation language="en-US">Green</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.Red2" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Red</value>
+              <property name="Caption">
+                <value>Rot</value>
+                <translations>
+                  <translation language="en-US">Red</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.Silver1" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Silver</value>
+              <property name="Caption">
+                <value>Hellgrau</value>
+                <translations>
+                  <translation language="en-US">Silver</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.Teal1" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Teal</value>
+              <property name="Caption">
+                <value>Dunkles Türkis</value>
+                <translations>
+                  <translation language="en-US">Teal</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.White1" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>White</value>
+              <property name="Caption">
+                <value>Weiß</value>
+                <translations>
+                  <translation language="en-US">White</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.Yellow1" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Navy</value>
+              <property name="Caption">
+                <value>Dunkelblau</value>
+                <translations>
+                  <translation language="en-US">Navy</translation>
+                </translations>
               </property>
             </properties>
           </item>
           <item name="wwRichBarFrame.ColorMenu.Yellow2" type="TMenuItem">
             <properties>
-              <property name="Caption" status="hold">
-                <value>Yellow</value>
+              <property name="Caption">
+                <value>Gelb</value>
+                <translations>
+                  <translation language="en-US">Yellow</translation>
+                </translations>
               </property>
             </properties>
           </item>

@@ -56,7 +56,6 @@
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base)'!=''">
         <DCC_Description>HICKEL VCL</DCC_Description>
-        <DCC_OutputNeverBuildDcps>true</DCC_OutputNeverBuildDcps>
         <GenDll>true</GenDll>
         <GenPackage>true</GenPackage>
         <SanitizedProjectName>Hickel_VCL</SanitizedProjectName>
@@ -68,9 +67,11 @@
         <VerInfo_Locale>1031</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=HickelSOFT Huth GmbH;FileDescription=HickelSOFT VCL;FileVersion=8.0.0.0;InternalName=Hickel_VCL;LegalCopyright=(C) 1992-2023 HickelSOFT Huth GmbH;LegalTrademarks=CORAplus;OriginalFilename=Hickel_VCL.bpl;ProductName=CORAplus;ProductVersion=8.0;Comments=</VerInfo_Keys>
         <DCC_OutputDRCFile>true</DCC_OutputDRCFile>
-        <PreBuildEvent><![CDATA[ResCompile.bat MessaBox
+        <PreBuildEvent><![CDATA[ResCompile.bat Hickel_VCL
+ResCompile.bat MessaBox
 ResCompile.bat HsProgressChecklist
 $(PreBuildEvent)]]></PreBuildEvent>
+        <DCC_UnitSearchPath>..\VCL_JCL;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <DCC_Namespace>Datasnap.Win;Web.Win;Soap.Win;Xml.Win;Bde;$(DCC_Namespace)</DCC_Namespace>
@@ -79,7 +80,7 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <Icon_MainIcon>Hickel_VCL.ico</Icon_MainIcon>
-        <DCC_UsePackage>vcl;rtl;xmlrtl;vclactnband;vclx;dbrtl;vclie;vcldb;VclSmp;adortl;Jcl;Hickel_VCL;vclwinx;$(DCC_UsePackage)</DCC_UsePackage>
+        <DCC_UsePackage>vcl;rtl;xmlrtl;vclactnband;vclx;dbrtl;vclie;vcldb;VclSmp;adortl;Jcl;Hickel_VCL;vclwinx;KJclDebugOnly;$(DCC_UsePackage)</DCC_UsePackage>
         <VerInfo_MajorVer>1</VerInfo_MajorVer>
         <DCC_DcuOutput>..\..\..\..\..\..\..\..\..\CORAplus\BAP\bin\dcu32</DCC_DcuOutput>
     </PropertyGroup>
@@ -1057,7 +1058,7 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <DCCReference Include="vcldb.dcp"/>
         <DCCReference Include="VclSmp.dcp"/>
         <DCCReference Include="adortl.dcp"/>
-        <DCCReference Include="Jcl.dcp"/>
+        <DCCReference Include="KJclDebugOnly.dcp"/>
         <DCCReference Include="Drucker.pas"/>
         <DCCReference Include="HsGauge.pas"/>
         <DCCReference Include="MessaBox.pas"/>
@@ -1090,7 +1091,7 @@ $(PreBuildEvent)]]></PreBuildEvent>
     <Import Project="$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj" Condition="Exists('$(APPDATA)\Embarcadero\$(BDSAPPDATABASEDIR)\$(PRODUCTVERSION)\UserTools.proj')"/>
     <Import Project="$(MSBuildProjectName).deployproj" Condition="Exists('$(MSBuildProjectName).deployproj')"/>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win32'">
-        <PreBuildEvent>ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
+        <PreBuildEvent>ResCompile.bat Hickel_VCL&amp;&amp;ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
@@ -1098,7 +1099,7 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64'">
-        <PreBuildEvent>ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
+        <PreBuildEvent>ResCompile.bat Hickel_VCL&amp;&amp;ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
@@ -1106,7 +1107,7 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' And '$(Platform)'=='Win64x'">
-        <PreBuildEvent>ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
+        <PreBuildEvent>ResCompile.bat Hickel_VCL&amp;&amp;ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
@@ -1114,7 +1115,7 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win32'">
-        <PreBuildEvent>ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
+        <PreBuildEvent>ResCompile.bat Hickel_VCL&amp;&amp;ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
@@ -1122,7 +1123,7 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64'">
-        <PreBuildEvent>ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
+        <PreBuildEvent>ResCompile.bat Hickel_VCL&amp;&amp;ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>
@@ -1130,7 +1131,7 @@ $(PreBuildEvent)]]></PreBuildEvent>
         <PostBuildEventIgnoreExitCode>False</PostBuildEventIgnoreExitCode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Debug' And '$(Platform)'=='Win64x'">
-        <PreBuildEvent>ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
+        <PreBuildEvent>ResCompile.bat Hickel_VCL&amp;&amp;ResCompile.bat MessaBox&amp;&amp;ResCompile.bat HsProgressChecklist</PreBuildEvent>
         <PreBuildEventIgnoreExitCode>False</PreBuildEventIgnoreExitCode>
         <PreLinkEvent/>
         <PreLinkEventIgnoreExitCode>False</PreLinkEventIgnoreExitCode>

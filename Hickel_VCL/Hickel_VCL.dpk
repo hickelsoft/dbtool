@@ -26,7 +26,7 @@ package Hickel_VCL;
 {$DEFINE DEBUG}
 {$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'HICKEL VCL'}
-{$IMPLICITBUILD OFF}
+{$IMPLICITBUILD ON}
 
 requires
   vcl,
@@ -36,7 +36,7 @@ requires
   vcldb,
   VclSmp,
   adortl,
-  Jcl;
+  KJclDebugOnly; // Jcl
 
 contains
   Drucker in 'Drucker.pas',
@@ -51,6 +51,7 @@ contains
   HsProgressChecklist in 'HsProgressChecklist.pas',
   DBMaskEdit in 'DBMaskEdit.pas',
   MetaObjVcl in 'MetaObjVcl.pas',
-  HsGradientPanel in 'HsGradientPanel.pas';
+  HsGradientPanel in 'HsGradientPanel.pas' {*,
+  VCL_Hotfix_AltGr in 'VCL_Hotfix_AltGr.pas'*};
 
 end.

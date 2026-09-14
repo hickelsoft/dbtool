@@ -27,7 +27,7 @@ package Hickel_RTL;
 {$ENDIF IMPLICITBUILDING}
 {$DESCRIPTION 'HICKEL RTL'}
 {$RUNONLY}
-{$IMPLICITBUILD OFF}
+{$IMPLICITBUILD ON}
 
 requires
   vcl,
@@ -40,16 +40,16 @@ requires
   vclx,
   vclactnband,
   designide,
-  Jcl,
+  KJclDebugOnly, //Jcl,
   adortl,
-  ipstudiowin,
   vclie,
   soaprtl,
   inet,
   vcldb,
   IndySystem,
   IndyProtocols,
-  IndyCore;
+  IndyCore,
+  KInfoPower; // ipstudiowin
 
 contains
   hl_IntegerList in 'Lib\Src\hl_IntegerList.pas',

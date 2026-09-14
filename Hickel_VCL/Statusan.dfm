@@ -13,7 +13,6 @@ object DLG_Statusanzeige: TDLG_Statusanzeige
   Font.Height = -11
   Font.Name = 'MS Sans Serif'
   Font.Style = []
-  Position = poDefault
   OnCreate = FormCreate
   TextHeight = 13
   object Panel2: TPanel
